@@ -1,0 +1,475 @@
+================================================================================
+模块二：大模型（LLM）与提示词工程（10 关）
+================================================================================
+
+--------------------------------------------------------------------------------
+关卡 2-1：Transformer 架构核心 — 自注意力机制与位置编码
+所属模块：模块二 · 大模型与提示词工程
+--------------------------------------------------------------------------------
+
+【任务描述】
+Transformer 的核心是自注意力机制（Self-Attention），它让模型理解一个序列中
+每个词与其他所有词的关系。公式简化版：Attention(Q,K,V) = softmax(QK^T/√dk)V，
+其中 Q=Query, K=Key, V=Value 均由输入向量通过线性变换得到。位置编码（Positional
+Encoding）则给词向量加上位置信息，因为 Self-Attention 本身不感知顺序。
+
+请实现函数 `scaled_dot_product_attention(Q, K, V)`，用 Python 原生数学模拟注意力
+计算（不需要真实矩阵运算，用列表嵌套模拟 2x2 矩阵即可）。
+
+【输入输出说明】
+输入：Q, K, V 各为一个 2x2 列表（如 [[1,0],[0,1]]）
+输出：注意力输出矩阵（2x2 列表），每个元素保留 3 位小数
+样例输入：Q=[[1,0],[0,1]], K=[[1,0],[0,1]], V=[[1,2],[3,4]]
+样例输出：[[0.731, 0.731], [2.269, 3.269]]
+
+【初始代码】
+```python
+import math
+
+def softmax_row(row):
+    """对一行做 softmax，返回新列表"""
+    exp_row = [math.exp(x) for x in row]
+    total = sum(exp_row)
+    return [x / total for x in exp_row]
+
+def scaled_dot_product_attention(Q, K, V):
+    """
+    Q, K, V: 2x2 列表
+    计算 softmax(Q * K^T / sqrt(dk)) * V
+    """
+    dk = len(Q[0])  # key 维度
+    # TODO: 1. 计算 Q * K^T; 2. 除以 sqrt(dk); 3. softmax; 4. 乘以 V
+    pass
+```
+
+【评测代码】
+```python
+def evaluate_2_1(student_func):
+    Q = [[1.0, 0.0], [0.0, 1.0]]
+    K = [[1.0, 0.0], [0.0, 1.0]]
+    V = [[1.0, 2.0], [3.0, 4.0]]
+    result = student_func(Q, K, V)
+    assert len(result) == 2 and len(result[0]) == 2, "输出应为2x2矩阵"
+    # 检查每行和为 V 对应行的加权和（softmax后每行和为1）
+    for row in result:
+        assert all(isinstance(v, float) for v in row), "元素应为浮点数"
+    return True, "关卡通过：正确实现注意力计算"
+```
+
+--------------------------------------------------------------------------------
+关卡 2-2：预训练与指令微调
+所属模块：模块二 · 大模型与提示词工程
+--------------------------------------------------------------------------------
+
+【任务描述】
+大模型的训练分为两个关键阶段：
+1. 预训练（Pre-training）：在海量无标注文本上，用"预测下一个词"任务训练基座模型
+2. 指令微调（Instruction Tuning）：在有标注的指令-回答数据上微调，让模型学会遵循指令
+
+编写函数 `simulate_finetune_effect(base_model_knowledge, instruction_data)`：
+- base_model_knowledge：基座模型对词的概率分布 dict
+- instruction_data：指令微调数据，list of (question, answer) tuples
+- 模拟微调：如果 question 中的词在 knowledge 中，将其概率提高 20%
+- 返回微调后的概率分布
+
+【输入输出说明】
+输入：base_model_knowledge（dict），instruction_data（list[tuple]）
+输出：微调后的概率分布（dict）
+样例输入：{"AI": 0.5, "智能体": 0.3}, [("什么是AI", "AI是人工智能")]
+样例输出：{"AI": 0.6, "智能体": 0.3}
+
+【初始代码】
+```python
+def simulate_finetune_effect(base_model_knowledge, instruction_data):
+    """
+    模拟指令微调：对 instruction_data 中出现的词提高概率。
+    """
+    result = dict(base_model_knowledge)  # 复制
+    # TODO: 遍历 instruction_data，提取词并提高概率
+    pass
+```
+
+【评测代码】
+```python
+def evaluate_2_2(student_func):
+    base = {"AI": 0.5, "ML": 0.3, "DL": 0.2}
+    data = [("什么是AI", "AI是人工智能"), ("机器学习简介", "ML是AI的子集")]
+    result = student_func(base, data)
+    assert result["AI"] == 0.6, "AI应提高20%"
+    assert result["ML"] > 0.3, "ML应提高"
+    assert result["DL"] == 0.2, "DL未被提及应不变"
+    return True, "关卡通过：正确模拟指令微调效果"
+```
+
+--------------------------------------------------------------------------------
+关卡 2-3：LoRA 低秩适配基本概念
+所属模块：模块二 · 大模型与提示词工程
+--------------------------------------------------------------------------------
+
+【任务描述】
+LoRA（Low-Rank Adaptation）是一种高效微调技术。核心思想：不修改原始大模型
+权重 W，而是训练两个小矩阵 A 和 B，使 W' = W + B×A。其中 A 和 B 的秩远小于
+W 的秩，因此可训练参数大幅减少。
+
+编写函数 `apply_lora(original_weight, lora_A, lora_B, alpha=1.0)`：
+模拟 LoRA 权重更新。original_weight 是 2x2 矩阵（列表），lora_A 是 2×r 矩阵，
+lora_B 是 r×2 矩阵（r=2 简化）。返回 W + alpha * (B × A)。
+
+【输入输出说明】
+输入：original_weight(2x2), lora_A(2x2), lora_B(2x2), alpha(float)
+输出：更新后的 2x2 矩阵（保留4位小数）
+样例输入：W=[[1,0],[0,1]], A=[[0.1,0],[0,0.1]], B=[[0.1,0],[0,0.1]], alpha=1.0
+样例输出：[[1.01, 0.0], [0.0, 1.01]]
+
+【初始代码】
+```python
+def apply_lora(original_weight, lora_A, lora_B, alpha=1.0):
+    """
+    模拟 LoRA: W' = W + alpha * (B @ A)
+    original_weight, lora_A, lora_B 均为 2x2 列表
+    """
+    # 矩阵乘法 B @ A: (2x2) x (2x2) = (2x2)
+    n = len(original_weight)
+    # TODO: 计算 BA = B * A，然后 W' = W + alpha * BA
+    pass
+```
+
+【评测代码】
+```python
+def evaluate_2_3(student_func):
+    W = [[1.0, 0.0], [0.0, 1.0]]
+    A = [[0.1, 0.0], [0.0, 0.1]]
+    B = [[0.1, 0.0], [0.0, 0.1]]
+    result = student_func(W, A, B, 1.0)
+    assert abs(result[0][0] - 1.01) < 0.001, "位置(0,0)应为1.01"
+    assert abs(result[1][1] - 1.01) < 0.001, "位置(1,1)应为1.01"
+    assert abs(result[0][1] - 0.0) < 0.001, "非对角线应不变"
+    return True, "关卡通过：正确实现LoRA低秩适配"
+```
+
+--------------------------------------------------------------------------------
+关卡 2-4：上下文学习与少样本提示
+所属模块：模块二 · 大模型与提示词工程
+--------------------------------------------------------------------------------
+
+【任务描述】
+上下文学习（In-Context Learning）是大模型的涌现能力：在 Prompt 中给几个示例
+（Few-shot），模型就能理解任务格式并正确回答，无需参数更新。
+
+编写函数 `build_few_shot_prompt(task, examples, query)`：
+- task：任务描述字符串
+- examples：示例列表 [(输入, 输出), ...]
+- query：用户实际要问的输入
+- 返回拼接好的完整 Prompt 字符串，格式：
+  [任务描述]
+  示例1: 输入→输出
+  示例2: 输入→输出
+  现在请回答: query
+
+【输入输出说明】
+输入：task(str), examples(list[tuple]), query(str)
+输出：格式化后的 Prompt 字符串
+
+【初始代码】
+```python
+def build_few_shot_prompt(task, examples, query):
+    """
+    构建 Few-shot 提示词。
+    """
+    # TODO: 按格式拼接 task, examples, query
+    pass
+```
+
+【评测代码】
+```python
+def evaluate_2_4(student_func):
+    task = "将英文翻译成中文"
+    examples = [("hello", "你好"), ("world", "世界")]
+    query = "AI agent"
+    result = student_func(task, examples, query)
+    assert task in result, "应包含任务描述"
+    assert "hello" in result and "你好" in result, "应包含示例1"
+    assert "world" in result and "世界" in result, "应包含示例2"
+    assert "AI agent" in result, "应包含查询"
+    assert result.index(task) < result.index("hello"), "任务描述应在示例之前"
+    return True, "关卡通过：正确构建Few-shot提示词"
+```
+
+--------------------------------------------------------------------------------
+关卡 2-5：Prompt 标准结构
+所属模块：模块二 · 大模型与提示词工程
+--------------------------------------------------------------------------------
+
+【任务描述】
+标准 Prompt 由三部分组成：
+1. 系统指令（System Prompt）：定义角色和能力
+2. 用户指令（User Prompt）：具体任务要求
+3. 输出格式限定（Format Spec）：指定输出 JSON/Markdown/纯文本等
+
+编写函数 `build_structured_prompt(role, task, output_format)`，返回一个字典，
+包含 system、user、format 三个键，并模拟生成最终发给 LLM 的完整消息列表。
+
+【输入输出说明】
+输入：role(str), task(str), output_format(str)
+输出：dict，包含 "messages" 列表（每条为 {"role":..., "content":...}）
+
+【初始代码】
+```python
+def build_structured_prompt(role, task, output_format):
+    """
+    构建标准 Prompt 结构，返回包含 messages 的字典。
+    """
+    # TODO: 构建 system + user 消息列表
+    pass
+```
+
+【评测代码】
+```python
+def evaluate_2_5(student_func):
+    result = student_func("Python专家", "写一个排序函数", "Python代码")
+    msgs = result.get("messages", [])
+    assert len(msgs) == 2, "应包含system和user两条消息"
+    assert msgs[0]["role"] == "system", "第一条应为system"
+    assert msgs[1]["role"] == "user", "第二条应为user"
+    assert "Python专家" in msgs[0]["content"], "system应包含角色"
+    assert "排序函数" in msgs[1]["content"], "user应包含任务"
+    assert "Python代码" in msgs[1]["content"], "user应包含格式限定"
+    return True, "关卡通过：正确构建标准Prompt结构"
+```
+
+--------------------------------------------------------------------------------
+关卡 2-6：思维链 Chain of Thought
+所属模块：模块二 · 大模型与提示词工程
+--------------------------------------------------------------------------------
+
+【任务描述】
+思维链（Chain of Thought, CoT）通过在 Prompt 中加入"让我们一步一步思考"
+（Let's think step by step），引导模型将复杂问题分解为中间推理步骤。
+
+编写函数 `cot_solver(problem, steps)`：
+- problem：数学文字题字符串
+- steps：推理步骤数
+- 模拟 CoT 流程：每步输出中间结果，最终返回答案
+- 用 eval() 安全计算最终表达式（仅限基本运算 +-*/）
+
+【输入输出说明】
+输入：problem(str 如 "计算 3+5*2"), steps(int)
+输出：{"reasoning": ["步骤1: 先算乘法 5*2=10", "步骤2: 再算加法 3+10=13"], "answer": 13}
+
+【初始代码】
+```python
+def cot_solver(problem, steps=2):
+    """
+    模拟思维链推理。problem 格式: "计算 a op b op c"
+    支持 +-*/, 遵循运算优先级。
+    """
+    import re
+    # TODO: 解析表达式，按步骤拆分计算，返回推理过程和答案
+    reasoning = []
+    # 简易实现：用 eval 计算，但分步展示
+    try:
+        answer = eval(problem.replace("计算", "").strip())
+        reasoning.append(f"步骤1: 解析表达式")
+        reasoning.append(f"步骤2: 计算结果 = {answer}")
+        return {"reasoning": reasoning, "answer": answer}
+    except:
+        return {"reasoning": [], "answer": None}
+```
+
+【评测代码】
+```python
+def evaluate_2_6(student_func):
+    result = student_func("计算 3+5*2", 2)
+    assert result["answer"] == 13, "3+5*2应等于13"
+    assert len(result["reasoning"]) >= 1, "至少应有推理步骤"
+    result2 = student_func("计算 10/2+3", 2)
+    assert result2["answer"] == 8.0, "10/2+3应等于8"
+    return True, "关卡通过：正确实现思维链推理"
+```
+
+--------------------------------------------------------------------------------
+关卡 2-7：思维树 Tree of Thoughts
+所属模块：模块二 · 大模型与提示词工程
+--------------------------------------------------------------------------------
+
+【任务描述】
+思维树（Tree of Thoughts, ToT）是 CoT 的升级版：同时探索多条推理路径，
+评估每条路径的质量，选择最优路径继续。类似"广度优先搜索+剪枝"。
+
+编写函数 `tot_search(branches, scores)` 模拟 ToT 路径选择：
+- branches：每条路径的分数列表
+- 选择得分最高的前 k 条路径（k=min(3, len(branches))）
+- 如果最高分路径有多个并列，全部保留
+- 返回入选路径的索引列表
+
+【输入输出说明】
+输入：branches(list[float]), scores(list[float])
+输出：top_k_indices(list[int])
+
+【初始代码】
+```python
+def tot_search(branches_scores):
+    """
+    branches_scores: list of (branch_name, score) tuples
+    返回得分最高的前k条路径的 branch_name 列表
+    """
+    # TODO: 按分数排序，取前 k=3，包括所有并列最高分
+    pass
+```
+
+【评测代码】
+```python
+def evaluate_2_7(student_func):
+    bs = [("A", 0.8), ("B", 0.5), ("C", 0.9), ("D", 0.7)]
+    result = student_func(bs)
+    assert len(result) <= 3, "至多保留3条"
+    assert result[0] == "C", "最高分C应排第一"
+    assert "A" in result, "0.8分应入选"
+    # 测试并列
+    bs2 = [("X", 0.9), ("Y", 0.9), ("Z", 0.9), ("W", 0.5)]
+    result2 = student_func(bs2)
+    assert len(result2) == 3, "三个并列最高分应全部保留"
+    return True, "关卡通过：正确实现思维树搜索"
+```
+
+--------------------------------------------------------------------------------
+关卡 2-8：ReAct 模式 — 推理与行动交替
+所属模块：模块二 · 大模型与提示词工程
+--------------------------------------------------------------------------------
+
+【任务描述】
+ReAct（Reasoning + Acting）模式让智能体交替进行推理和行动：先思考下一步该
+做什么（Reasoning），然后执行具体操作（Acting），再根据结果继续推理。
+
+编写函数 `react_loop(task, tools, max_rounds=5)` 模拟 ReAct 循环：
+- 每轮先输出推理（Thought），再执行行动（Action），最后观察结果（Observation）
+- tools 字典：{工具名: lambda input: output}
+- 任务示例：计算 "(3+5)*2"，tools={"calc": lambda x: eval(x)}
+- 返回每一轮的日志列表
+
+【输入输出说明】
+输入：task(str), tools(dict), max_rounds(int)
+输出：list[dict]，每轮 {"Thought":..., "Action":..., "Observation":...}
+
+【初始代码】
+```python
+def react_loop(task, tools, max_rounds=5):
+    """
+    模拟 ReAct 交替推理与行动。
+    """
+    log = []
+    # TODO: 实现 Thought → Action → Observation 循环
+    for i in range(max_rounds):
+        thought = f"第{i+1}轮推理：需要调用工具来完成任务"
+        # 选择第一个可用工具
+        tool_name = list(tools.keys())[0]
+        action_result = tools[tool_name](task)
+        observation = str(action_result)
+        log.append({"Thought": thought, "Action": f"调用{tool_name}", "Observation": observation})
+        task = observation  # 更新task为观察结果
+    return log
+```
+
+【评测代码】
+```python
+def evaluate_2_8(student_func):
+    log = student_func("(3+5)*2", {"calc": lambda x: str(eval(x))}, max_rounds=2)
+    assert len(log) == 2, "应执行2轮"
+    assert "Thought" in log[0] and "Action" in log[0] and "Observation" in log[0]
+    assert "16" in log[0]["Observation"] or "16" in log[1]["Observation"], "计算结果应为16"
+    return True, "关卡通过：正确实现ReAct模式"
+```
+
+--------------------------------------------------------------------------------
+关卡 2-9：模型量化与推理加速
+所属模块：模块二 · 大模型与提示词工程
+--------------------------------------------------------------------------------
+
+【任务描述】
+模型量化（Quantization）通过降低模型权重的数值精度来减少显存占用和加速推理。
+常见精度：FP32（32位）→ FP16（16位）→ INT8（8位）→ INT4（4位）。
+
+编写函数 `simulate_quantization(weights, bits)`：
+- weights：浮点数列表
+- bits：目标位数（32, 16, 8, 4）
+- 模拟量化：计算缩放因子 scale = max(|w|) / (2^(bits-1)-1)，将每个权重
+  四舍五入到最近的量化级别，再反量化回浮点
+- 返回 {"quantized": [...], "dequantized": [...], "error": 平均绝对误差}
+
+【输入输出说明】
+输入：weights(list[float]), bits(int)
+输出：dict 包含量化值、反量化值、平均误差
+
+【初始代码】
+```python
+def simulate_quantization(weights, bits=8):
+    """
+    模拟权重量化与反量化过程。
+    """
+    max_val = max(abs(w) for w in weights)
+    levels = 2 ** (bits - 1) - 1  # 量化级别数
+    scale = max_val / levels if levels > 0 else 1.0
+    # TODO: 量化（round(w/scale)*scale），计算误差
+    quantized = []
+    dequantized = []
+    for w in weights:
+        q = round(w / scale) * scale
+        quantized.append(q)
+        dequantized.append(q)
+    error = sum(abs(weights[i] - dequantized[i]) for i in range(len(weights))) / len(weights)
+    return {"quantized": quantized, "dequantized": dequantized, "error": error}
+```
+
+【评测代码】
+```python
+def evaluate_2_9(student_func):
+    w = [0.5, -0.3, 0.8, -0.1]
+    r8 = student_func(w, 8)
+    assert "error" in r8
+    assert r8["error"] < 0.1, "8位量化误差应较小"
+    r4 = student_func(w, 4)
+    assert r4["error"] >= r8["error"], "4位量化误差应更大"
+    return True, "关卡通过：正确模拟量化过程"
+```
+
+--------------------------------------------------------------------------------
+关卡 2-10：模型评估基础
+所属模块：模块二 · 大模型与提示词工程
+--------------------------------------------------------------------------------
+
+【任务描述】
+模型评估的常用指标：
+- 准确率（Accuracy）：(TP+TN) / Total
+- 精确率（Precision）：TP / (TP+FP)
+- 召回率（Recall）：TP / (TP+FN)
+- F1 分数：2 * Precision * Recall / (Precision + Recall)
+
+编写函数 `calculate_metrics(tp, fp, tn, fn)`，返回上述四个指标。
+
+【输入输出说明】
+输入：tp, fp, tn, fn（均为 int）
+输出：{"accuracy": float, "precision": float, "recall": float, "f1": float}
+
+【初始代码】
+```python
+def calculate_metrics(tp, fp, tn, fn):
+    """
+    计算分类模型的四个核心评估指标。
+    """
+    # TODO: 实现 accuracy, precision, recall, f1 的计算
+    pass
+```
+
+【评测代码】
+```python
+def evaluate_2_10(student_func):
+    r = student_func(tp=8, fp=2, tn=85, fn=5)
+    assert abs(r["accuracy"] - 0.93) < 0.01, f"accuracy应为0.93, 得到{r['accuracy']}"
+    assert abs(r["precision"] - 0.8) < 0.01, f"precision应为0.8"
+    assert abs(r["recall"] - 0.615) < 0.05, f"recall应≈0.615"
+    assert r["f1"] > 0.6 and r["f1"] < 0.8, "f1应在合理范围"
+    # 边界：全对
+    r2 = student_func(tp=10, fp=0, tn=10, fn=0)
+    assert r2["accuracy"] == 1.0 and r2["precision"] == 1.0
+    return True, "关卡通过：正确计算模型评估指标"
+```

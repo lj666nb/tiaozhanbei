@@ -1,0 +1,200 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="800" height="500">
+  <defs>
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#E8F4FD"/>
+      <stop offset="100%" stop-color="#F0F8FF"/>
+    </linearGradient>
+    <linearGradient id="era1Grad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#7A9BB5"/>
+      <stop offset="100%" stop-color="#5A7A94"/>
+    </linearGradient>
+    <linearGradient id="era2Grad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#4A90C4"/>
+      <stop offset="100%" stop-color="#3A7AB0"/>
+    </linearGradient>
+    <linearGradient id="era3Grad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#409EFF"/>
+      <stop offset="100%" stop-color="#2B7ED6"/>
+    </linearGradient>
+    <filter id="shadow" x="-5%" y="-5%" width="115%" height="115%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#1a1a2e" flood-opacity="0.12"/>
+    </filter>
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="4" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- 背景 -->
+  <rect width="800" height="500" fill="url(#bgGrad)" rx="8"/>
+  
+  <!-- 标题 -->
+  <text x="400" y="42" text-anchor="middle" font-family="Arial, 'Microsoft YaHei', sans-serif" font-size="20" font-weight="bold" fill="#1a1a2e">人工智能发展历程</text>
+
+  <!-- 时间线主线 -->
+  <line x1="120" y1="250" x2="720" y2="250" stroke="#1a1a2e" stroke-width="2.5" stroke-linecap="round" opacity="0.3"/>
+
+  <!-- ===== 第一时代：专家系统 (1980s-2000s) ===== -->
+  <g transform="translate(155, 250)">
+    <!-- 图标圆背景 -->
+    <circle cx="0" cy="-55" r="48" fill="white" filter="url(#shadow)"/>
+    <circle cx="0" cy="-55" r="48" fill="url(#era1Grad)" opacity="0.15"/>
+    
+    <!-- 流程图图标 - IF/THEN 规则 -->
+    <rect x="-28" y="-83" width="56" height="36" rx="4" fill="url(#era1Grad)" opacity="0.9"/>
+    <text x="0" y="-67" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" font-weight="bold" fill="white">IF</text>
+    <text x="0" y="-55" text-anchor="middle" font-family="Arial, sans-serif" font-size="7" fill="white" opacity="0.9">THEN</text>
+    
+    <!-- 决策箭头 -->
+    <line x1="0" y1="-47" x2="0" y2="-38" stroke="#5A7A94" stroke-width="1.5" marker-end="url(#arrowSmall)"/>
+    <rect x="-12" y="-38" width="24" height="14" rx="3" fill="#5A7A94" opacity="0.7"/>
+    <text x="0" y="-28" text-anchor="middle" font-family="Arial, sans-serif" font-size="6" fill="white">规则</text>
+
+    <!-- 时代标签 -->
+    <text x="0" y="15" text-anchor="middle" font-family="Arial, 'Microsoft YaHei', sans-serif" font-size="14" font-weight="bold" fill="#1a1a2e">专家系统</text>
+    <text x="0" y="35" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#1a1a2e" opacity="0.7">1980s - 2000s</text>
+  </g>
+
+  <!-- 连接箭头 1→2 -->
+  <g transform="translate(290, 250)">
+    <line x1="0" y1="-55" x2="50" y2="-55" stroke="#1a1a2e" stroke-width="2" stroke-linecap="round" opacity="0.25"/>
+    <polygon points="48,-60 58,-55 48,-50" fill="#1a1a2e" opacity="0.3"/>
+  </g>
+
+  <!-- ===== 第二时代：机器学习 (2000s-2018) ===== -->
+  <g transform="translate(400, 250)">
+    <!-- 图标圆背景 -->
+    <circle cx="0" cy="-55" r="48" fill="white" filter="url(#shadow)"/>
+    <circle cx="0" cy="-55" r="48" fill="url(#era2Grad)" opacity="0.15"/>
+    
+    <!-- 大脑 + 神经网络节点 -->
+    <ellipse cx="0" cy="-65" rx="22" ry="16" fill="url(#era2Grad)" opacity="0.9"/>
+    <!-- 大脑褶皱 -->
+    <path d="M-12,-65 Q-6,-72 0,-65 Q6,-58 12,-65" stroke="white" stroke-width="1.2" fill="none" opacity="0.6"/>
+    <path d="M-8,-60 Q-3,-66 3,-60" stroke="white" stroke-width="1" fill="none" opacity="0.5"/>
+    
+    <!-- 神经网络节点 -->
+    <circle cx="-18" cy="-48" r="4" fill="#3A7AB0" opacity="0.8"/>
+    <circle cx="0" cy="-44" r="4" fill="#3A7AB0" opacity="0.8"/>
+    <circle cx="18" cy="-48" r="4" fill="#3A7AB0" opacity="0.8"/>
+    <circle cx="-10" cy="-52" r="3" fill="#3A7AB0" opacity="0.5"/>
+    <circle cx="10" cy="-52" r="3" fill="#3A7AB0" opacity="0.5"/>
+    
+    <!-- 节点连接线 -->
+    <line x1="-18" y1="-48" x2="0" y2="-44" stroke="#3A7AB0" stroke-width="0.8" opacity="0.4"/>
+    <line x1="0" y1="-44" x2="18" y2="-48" stroke="#3A7AB0" stroke-width="0.8" opacity="0.4"/>
+    <line x1="-10" y1="-52" x2="0" y2="-44" stroke="#3A7AB0" stroke-width="0.8" opacity="0.3"/>
+    <line x1="10" y1="-52" x2="0" y2="-44" stroke="#3A7AB0" stroke-width="0.8" opacity="0.3"/>
+    
+    <!-- 强化学习循环箭头 -->
+    <path d="M20,-70 A28,28 0 0,1 20,-40" stroke="#3A7AB0" stroke-width="2" fill="none" stroke-linecap="round" opacity="0.8"/>
+    <polygon points="20,-38 16,-46 24,-46" fill="#3A7AB0" opacity="0.8"/>
+
+    <!-- 时代标签 -->
+    <text x="0" y="15" text-anchor="middle" font-family="Arial, 'Microsoft YaHei', sans-serif" font-size="14" font-weight="bold" fill="#1a1a2e">机器学习</text>
+    <text x="0" y="35" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#1a1a2e" opacity="0.7">2000s - 2018</text>
+  </g>
+
+  <!-- 连接箭头 2→3 -->
+  <g transform="translate(535, 250)">
+    <line x1="0" y1="-55" x2="50" y2="-55" stroke="#1a1a2e" stroke-width="2" stroke-linecap="round" opacity="0.25"/>
+    <polygon points="48,-60 58,-55 48,-50" fill="#1a1a2e" opacity="0.3"/>
+  </g>
+
+  <!-- ===== 第三时代：大语言模型 (2023-present) ===== -->
+  <g transform="translate(645, 250)">
+    <!-- 发光核心 -->
+    <circle cx="0" cy="-55" r="48" fill="white" filter="url(#shadow)"/>
+    <circle cx="0" cy="-55" r="48" fill="url(#era3Grad)" opacity="0.12"/>
+    
+    <!-- 发光核心 -->
+    <circle cx="0" cy="-55" r="18" fill="#409EFF" opacity="0.3" filter="url(#glow)"/>
+    <circle cx="0" cy="-55" r="12" fill="#409EFF" opacity="0.6"/>
+    <circle cx="0" cy="-55" r="6" fill="white" opacity="0.9"/>
+    
+    <!-- LLM 核心文本 -->
+    <text x="0" y="-52" text-anchor="middle" font-family="Arial, sans-serif" font-size="7" font-weight="bold" fill="#1a1a2e" opacity="0.7">LLM</text>
+    
+    <!-- 从核心浮现的机器人 -->
+    <g transform="translate(0, -75)">
+      <!-- 机器人头部 -->
+      <rect x="-10" y="-12" width="20" height="16" rx="4" fill="#409EFF" opacity="0.9"/>
+      <!-- 眼睛 -->
+      <circle cx="-4" cy="-5" r="2.5" fill="white"/>
+      <circle cx="4" cy="-5" r="2.5" fill="white"/>
+      <!-- 天线 -->
+      <line x1="0" y1="-12" x2="0" y2="-18" stroke="#409EFF" stroke-width="1.5"/>
+      <circle cx="0" cy="-19" r="2" fill="#409EFF"/>
+    </g>
+    
+    <!-- 工具图标：搜索、代码、日历 -->
+    <!-- 搜索图标 -->
+    <g transform="translate(-22, -42)">
+      <circle cx="0" cy="0" r="6" fill="none" stroke="#409EFF" stroke-width="1.5" opacity="0.8"/>
+      <line x1="4" y1="4" x2="9" y2="9" stroke="#409EFF" stroke-width="1.5" stroke-linecap="round" opacity="0.8"/>
+    </g>
+    
+    <!-- 代码图标 -->
+    <g transform="translate(0, -38)">
+      <text x="0" y="4" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#409EFF" opacity="0.8">&lt;/&gt;</text>
+    </g>
+    
+    <!-- 日历图标 -->
+    <g transform="translate(22, -42)">
+      <rect x="-6" y="-5" width="12" height="10" rx="1.5" fill="none" stroke="#409EFF" stroke-width="1.3" opacity="0.8"/>
+      <line x1="-6" y1="-1" x2="6" y2="-1" stroke="#409EFF" stroke-width="1" opacity="0.8"/>
+      <line x1="-2" y1="-5" x2="-2" y2="-8" stroke="#409EFF" stroke-width="1" opacity="0.8"/>
+      <line x1="2" y1="-5" x2="2" y2="-8" stroke="#409EFF" stroke-width="1" opacity="0.8"/>
+    </g>
+
+    <!-- 时代标签 -->
+    <text x="0" y="15" text-anchor="middle" font-family="Arial, 'Microsoft YaHei', sans-serif" font-size="14" font-weight="bold" fill="#1a1a2e">大语言模型</text>
+    <text x="0" y="35" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#1a1a2e" opacity="0.7">2023 - 至今</text>
+  </g>
+
+  <!-- 底部标注区域 -->
+  <g transform="translate(0, 380)">
+    <!-- 分隔线 -->
+    <line x1="100" y1="0" x2="700" y2="0" stroke="#1a1a2e" stroke-width="0.8" opacity="0.15"/>
+    
+    <!-- 标注 1 -->
+    <g transform="translate(155, 20)">
+      <circle cx="0" cy="0" r="3" fill="#5A7A94"/>
+      <text x="12" y="4" font-family="Arial, 'Microsoft YaHei', sans-serif" font-size="13" fill="#1a1a2e" opacity="0.8">基于规则推理</text>
+    </g>
+    
+    <!-- 标注 2 -->
+    <g transform="translate(155, 48)">
+      <circle cx="0" cy="0" r="3" fill="#5A7A94"/>
+      <text x="12" y="4" font-family="Arial, 'Microsoft YaHei', sans-serif" font-size="13" fill="#1a1a2e" opacity="0.8">知识库驱动</text>
+    </g>
+
+    <!-- 标注 3 -->
+    <g transform="translate(400, 20)">
+      <circle cx="0" cy="0" r="3" fill="#3A7AB0"/>
+      <text x="12" y="4" font-family="Arial, 'Microsoft YaHei', sans-serif" font-size="13" fill="#1a1a2e" opacity="0.8">数据驱动学习</text>
+    </g>
+    
+    <!-- 标注 4 -->
+    <g transform="translate(400, 48)">
+      <circle cx="0" cy="0" r="3" fill="#3A7AB0"/>
+      <text x="12" y="4" font-family="Arial, 'Microsoft YaHei', sans-serif" font-size="13" fill="#1a1a2e" opacity="0.8">强化学习反馈</text>
+    </g>
+
+    <!-- 标注 5 -->
+    <g transform="translate(645, 20)">
+      <circle cx="0" cy="0" r="3" fill="#409EFF"/>
+      <text x="12" y="4" font-family="Arial, 'Microsoft YaHei', sans-serif" font-size="13" fill="#1a1a2e" opacity="0.8">海量参数训练</text>
+    </g>
+    
+    <!-- 标注 6 -->
+    <g transform="translate(645, 48)">
+      <circle cx="0" cy="0" r="3" fill="#409EFF"/>
+      <text x="12" y="4" font-family="Arial, 'Microsoft YaHei', sans-serif" font-size="13" fill="#1a1a2e" opacity="0.8">多任务泛化能力</text>
+    </g>
+  </g>
+
+</svg>

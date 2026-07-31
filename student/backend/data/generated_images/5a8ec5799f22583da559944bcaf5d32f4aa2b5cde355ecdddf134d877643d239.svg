@@ -1,0 +1,111 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="800" height="500">
+  <defs>
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#E8F4FD"/>
+      <stop offset="100%" stop-color="#F0F8FF"/>
+    </linearGradient>
+    <linearGradient id="severityGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#52C41A"/>
+      <stop offset="25%" stop-color="#FAAD14"/>
+      <stop offset="50%" stop-color="#FA8C16"/>
+      <stop offset="75%" stop-color="#E8450C"/>
+      <stop offset="100%" stop-color="#CF1322"/>
+    </linearGradient>
+    <filter id="shadow" x="-2" y="-2" width="4" height="4">
+      <feDropShadow dx="1" dy="2" stdDeviation="2" flood-opacity="0.1"/>
+    </filter>
+  </defs>
+
+  <!-- 背景 -->
+  <rect width="800" height="500" fill="url(#bgGrad)" rx="8"/>
+
+  <!-- 标题 -->
+  <text x="400" y="38" text-anchor="middle" font-family="sans-serif" font-size="20" font-weight="bold" fill="#1a1a2e">执行监控架构</text>
+
+  <!-- 三个监控模块 -->
+  <!-- 状态验证器 -->
+  <rect x="60" y="65" width="200" height="80" rx="10" fill="#409EFF" filter="url(#shadow)"/>
+  <text x="160" y="95" text-anchor="middle" font-family="sans-serif" font-size="15" font-weight="bold" fill="#fff">状态验证器</text>
+  <!-- 对勾/叉号图标 -->
+  <text x="135" y="128" text-anchor="middle" font-family="sans-serif" font-size="22" fill="#fff">✓</text>
+  <text x="185" y="128" text-anchor="middle" font-family="sans-serif" font-size="22" fill="#fff">✗</text>
+
+  <!-- 资源监视器 -->
+  <rect x="300" y="65" width="200" height="80" rx="10" fill="#409EFF" filter="url(#shadow)"/>
+  <text x="400" y="95" text-anchor="middle" font-family="sans-serif" font-size="15" font-weight="bold" fill="#fff">资源监视器</text>
+  <!-- 仪表盘图标 -->
+  <text x="400" y="128" text-anchor="middle" font-family="sans-serif" font-size="24" fill="#fff">⏱</text>
+
+  <!-- 约束检查器 -->
+  <rect x="540" y="65" width="200" height="80" rx="10" fill="#409EFF" filter="url(#shadow)"/>
+  <text x="640" y="95" text-anchor="middle" font-family="sans-serif" font-size="15" font-weight="bold" fill="#fff">约束检查器</text>
+  <!-- 天平图标 -->
+  <text x="640" y="128" text-anchor="middle" font-family="sans-serif" font-size="24" fill="#fff">⚖</text>
+
+  <!-- 模块标签 -->
+  <text x="160" y="162" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#1a1a2e" opacity="0.7">状态比较</text>
+  <text x="400" y="162" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#1a1a2e" opacity="0.7">资源仪表盘</text>
+  <text x="640" y="162" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#1a1a2e" opacity="0.7">规则检查</text>
+
+  <!-- 连接线：模块 → 异常聚合器 -->
+  <line x1="160" y1="145" x2="160" y2="210" stroke="#409EFF" stroke-width="2" stroke-dasharray="5,3"/>
+  <line x1="400" y1="145" x2="400" y2="210" stroke="#409EFF" stroke-width="2" stroke-dasharray="5,3"/>
+  <line x1="640" y1="145" x2="640" y2="210" stroke="#409EFF" stroke-width="2" stroke-dasharray="5,3"/>
+  <line x1="160" y1="210" x2="640" y2="210" stroke="#409EFF" stroke-width="2"/>
+  <line x1="400" y1="210" x2="400" y2="235" stroke="#409EFF" stroke-width="2"/>
+
+  <!-- 异常聚合器 -->
+  <rect x="300" y="235" width="200" height="70" rx="10" fill="#1a1a2e" filter="url(#shadow)"/>
+  <text x="400" y="262" text-anchor="middle" font-family="sans-serif" font-size="15" font-weight="bold" fill="#fff">异常聚合器</text>
+  <!-- 漏斗图标 -->
+  <text x="400" y="290" text-anchor="middle" font-family="sans-serif" font-size="20" fill="#409EFF">▼</text>
+
+  <!-- 连接线：异常聚合器 → 重新规划触发器 -->
+  <line x1="400" y1="305" x2="400" y2="345" stroke="#1a1a2e" stroke-width="2"/>
+
+  <!-- 重新规划触发器 -->
+  <rect x="300" y="345" width="200" height="60" rx="10" fill="#E8450C" filter="url(#shadow)"/>
+  <text x="400" y="372" text-anchor="middle" font-family="sans-serif" font-size="15" font-weight="bold" fill="#fff">重新规划触发器</text>
+  <!-- 铃铛图标 -->
+  <text x="400" y="395" text-anchor="middle" font-family="sans-serif" font-size="18" fill="#fff">🔔</text>
+
+  <!-- 标签 -->
+  <text x="400" y="425" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#1a1a2e" opacity="0.7">触发重新规划</text>
+
+  <!-- 偏差严重程度区域 -->
+  <rect x="30" y="200" width="130" height="230" rx="8" fill="#fff" stroke="#1a1a2e" stroke-width="1" filter="url(#shadow)"/>
+  <text x="95" y="222" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="#1a1a2e">偏差严重程度</text>
+
+  <!-- 严重程度级别 -->
+  <!-- L0 -->
+  <rect x="45" y="235" width="100" height="30" rx="5" fill="#52C41A"/>
+  <text x="95" y="254" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="#fff">L0 无</text>
+
+  <!-- L1 -->
+  <rect x="45" y="273" width="100" height="30" rx="5" fill="#FAAD14"/>
+  <text x="95" y="292" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="#fff">L1 轻微</text>
+
+  <!-- L2 -->
+  <rect x="45" y="311" width="100" height="30" rx="5" fill="#FA8C16"/>
+  <text x="95" y="330" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="#fff">L2 局部</text>
+
+  <!-- L3 -->
+  <rect x="45" y="349" width="100" height="30" rx="5" fill="#E8450C"/>
+  <text x="95" y="368" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="#fff">L3 级联</text>
+
+  <!-- L4 -->
+  <rect x="45" y="387" width="100" height="30" rx="5" fill="#CF1322"/>
+  <text x="95" y="406" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="#fff">L4 致命</text>
+
+  <!-- 从严重程度区域到异常聚合器的虚线连接 -->
+  <line x1="160" y1="270" x2="300" y2="270" stroke="#1a1a2e" stroke-width="1.5" stroke-dasharray="4,3" opacity="0.4"/>
+
+  <!-- 图例/脚注 -->
+  <text x="400" y="465" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#1a1a2e" opacity="0.5">执行监控架构 — 扁平化设计可视化</text>
+
+  <!-- 装饰性角点 -->
+  <circle cx="20" cy="20" r="3" fill="#409EFF" opacity="0.3"/>
+  <circle cx="780" cy="20" r="3" fill="#409EFF" opacity="0.3"/>
+  <circle cx="20" cy="480" r="3" fill="#409EFF" opacity="0.3"/>
+  <circle cx="780" cy="480" r="3" fill="#409EFF" opacity="0.3"/>
+</svg>

@@ -1,0 +1,127 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="800" height="500">
+  <defs>
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#E8F4FD"/>
+      <stop offset="100%" stop-color="#D0ECFA"/>
+    </linearGradient>
+    <linearGradient id="nodeGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#409EFF"/>
+      <stop offset="100%" stop-color="#3A8EE6"/>
+    </linearGradient>
+    <linearGradient id="leafGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#7BC0FF"/>
+      <stop offset="100%" stop-color="#6AB5F5"/>
+    </linearGradient>
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto" fill="#409EFF">
+      <polygon points="0 0, 10 3.5, 0 7"/>
+    </marker>
+  </defs>
+
+  <!-- 背景 -->
+  <rect x="0" y="0" width="800" height="500" fill="url(#bgGrad)" rx="8"/>
+
+  <!-- 根节点：你的任务需要理解全文全局结构吗？ -->
+  <rect x="240" y="25" width="320" height="48" rx="24" fill="url(#nodeGrad)" stroke="#3A8EE6" stroke-width="1.5"/>
+  <text x="400" y="55" text-anchor="middle" fill="#FFFFFF" font-size="15" font-weight="600" font-family="SimHei, Microsoft YaHei, sans-serif">你的任务需要理解全文全局结构吗？</text>
+
+  <!-- 从根节点到左分支（是）的连线 -->
+  <line x1="320" y1="73" x2="160" y2="140" stroke="#409EFF" stroke-width="2" marker-end="url(#arrowhead)"/>
+  <!-- 从根节点到右分支（否）的连线 -->
+  <line x1="480" y1="73" x2="640" y2="140" stroke="#409EFF" stroke-width="2" marker-end="url(#arrowhead)"/>
+
+  <!-- 左分支标签 "是" -->
+  <text x="230" y="110" text-anchor="middle" fill="#1a1a2e" font-size="14" font-weight="600" font-family="SimHei, Microsoft YaHei, sans-serif">是</text>
+  <!-- 右分支标签 "否" -->
+  <text x="570" y="110" text-anchor="middle" fill="#1a1a2e" font-size="14" font-weight="600" font-family="SimHei, Microsoft YaHei, sans-serif">否</text>
+
+  <!-- 左分支节点：使用长上下文模型 -->
+  <rect x="80" y="140" width="180" height="44" rx="22" fill="url(#nodeGrad)" stroke="#3A8EE6" stroke-width="1.5"/>
+  <text x="170" y="168" text-anchor="middle" fill="#FFFFFF" font-size="14" font-weight="600" font-family="SimHei, Microsoft YaHei, sans-serif">使用长上下文模型</text>
+
+  <!-- 从"使用长上下文模型"到子分支的连线 -->
+  <line x1="130" y1="184" x2="100" y2="250" stroke="#409EFF" stroke-width="2" marker-end="url(#arrowhead)"/>
+  <line x1="210" y1="184" x2="240" y2="250" stroke="#409EFF" stroke-width="2" marker-end="url(#arrowhead)"/>
+
+  <!-- 左分支子节点1：文档超过窗口80% -->
+  <rect x="20" y="250" width="160" height="44" rx="22" fill="url(#leafGrad)" stroke="#5BA8F0" stroke-width="1.5"/>
+  <text x="100" y="278" text-anchor="middle" fill="#FFFFFF" font-size="14" font-weight="500" font-family="SimHei, Microsoft YaHei, sans-serif">文档超过窗口80%</text>
+
+  <!-- 左分支子节点2：窗口内 -->
+  <rect x="190" y="250" width="130" height="44" rx="22" fill="url(#leafGrad)" stroke="#5BA8F0" stroke-width="1.5"/>
+  <text x="255" y="278" text-anchor="middle" fill="#FFFFFF" font-size="14" font-weight="500" font-family="SimHei, Microsoft YaHei, sans-serif">窗口内</text>
+
+  <!-- 从子节点1到递归摘要的连线 -->
+  <line x1="100" y1="294" x2="100" y2="350" stroke="#409EFF" stroke-width="2" marker-end="url(#arrowhead)"/>
+  <!-- 递归摘要标注 -->
+  <rect x="30" y="350" width="140" height="40" rx="20" fill="#FFFFFF" stroke="#409EFF" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <text x="100" y="375" text-anchor="middle" fill="#1a1a2e" font-size="14" font-weight="500" font-family="SimHei, Microsoft YaHei, sans-serif">递归摘要</text>
+
+  <!-- 从子节点2到直接输入的连线 -->
+  <line x1="255" y1="294" x2="255" y2="350" stroke="#409EFF" stroke-width="2" marker-end="url(#arrowhead)"/>
+  <!-- 直接输入标注 -->
+  <rect x="185" y="350" width="140" height="40" rx="20" fill="#FFFFFF" stroke="#409EFF" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <text x="255" y="375" text-anchor="middle" fill="#1a1a2e" font-size="14" font-weight="500" font-family="SimHei, Microsoft YaHei, sans-serif">直接输入（关键信息优先）</text>
+
+  <!-- 右分支节点：查找还是理解？ -->
+  <rect x="555" y="140" width="170" height="44" rx="22" fill="url(#nodeGrad)" stroke="#3A8EE6" stroke-width="1.5"/>
+  <text x="640" y="168" text-anchor="middle" fill="#FFFFFF" font-size="14" font-weight="600" font-family="SimHei, Microsoft YaHei, sans-serif">查找还是理解？</text>
+
+  <!-- 从"查找还是理解？"到子分支的连线 -->
+  <line x1="595" y1="184" x2="570" y2="250" stroke="#409EFF" stroke-width="2" marker-end="url(#arrowhead)"/>
+  <line x1="685" y1="184" x2="710" y2="250" stroke="#409EFF" stroke-width="2" marker-end="url(#arrowhead)"/>
+
+  <!-- 右分支子节点1：查找 -> RAG -->
+  <rect x="495" y="250" width="150" height="44" rx="22" fill="url(#leafGrad)" stroke="#5BA8F0" stroke-width="1.5"/>
+  <text x="570" y="278" text-anchor="middle" fill="#FFFFFF" font-size="14" font-weight="500" font-family="SimHei, Microsoft YaHei, sans-serif">查找 → RAG</text>
+
+  <!-- 右分支子节点2：理解 -> 逐块处理 -->
+  <rect x="630" y="250" width="160" height="44" rx="22" fill="url(#leafGrad)" stroke="#5BA8F0" stroke-width="1.5"/>
+  <text x="710" y="278" text-anchor="middle" fill="#FFFFFF" font-size="14" font-weight="500" font-family="SimHei, Microsoft YaHei, sans-serif">理解 → 逐块处理</text>
+
+  <!-- 从RAG到分段文档的连线 -->
+  <line x1="570" y1="294" x2="570" y2="350" stroke="#409EFF" stroke-width="2" marker-end="url(#arrowhead)"/>
+  <!-- 分段文档标注 -->
+  <rect x="495" y="350" width="150" height="40" rx="20" fill="#FFFFFF" stroke="#409EFF" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <text x="570" y="375" text-anchor="middle" fill="#1a1a2e" font-size="14" font-weight="500" font-family="SimHei, Microsoft YaHei, sans-serif">分段检索</text>
+
+  <!-- 从逐块处理到顺序处理的连线 -->
+  <line x1="710" y1="294" x2="710" y2="350" stroke="#409EFF" stroke-width="2" marker-end="url(#arrowhead)"/>
+  <!-- 顺序处理标注 -->
+  <rect x="635" y="350" width="150" height="40" rx="20" fill="#FFFFFF" stroke="#409EFF" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <text x="710" y="375" text-anchor="middle" fill="#1a1a2e" font-size="14" font-weight="500" font-family="SimHei, Microsoft YaHei, sans-serif">顺序处理</text>
+
+  <!-- 图标：全文档图标（在"使用长上下文模型"左侧） -->
+  <rect x="88" y="149" width="18" height="24" rx="2" fill="none" stroke="#FFFFFF" stroke-width="1.5"/>
+  <line x1="92" y1="155" x2="102" y2="155" stroke="#FFFFFF" stroke-width="1"/>
+  <line x1="92" y1="159" x2="102" y2="159" stroke="#FFFFFF" stroke-width="1"/>
+  <line x1="92" y1="163" x2="100" y2="163" stroke="#FFFFFF" stroke-width="1"/>
+
+  <!-- 图标：放大镜（在"查找 → RAG"左侧） -->
+  <circle cx="510" cy="272" r="8" fill="none" stroke="#FFFFFF" stroke-width="1.5"/>
+  <line x1="516" y1="278" x2="522" y2="284" stroke="#FFFFFF" stroke-width="1.5" stroke-linecap="round"/>
+
+  <!-- 图标：文档块（在"理解 → 逐块处理"左侧） -->
+  <rect x="643" y="258" width="10" height="10" rx="1" fill="none" stroke="#FFFFFF" stroke-width="1.2"/>
+  <rect x="643" y="270" width="10" height="10" rx="1" fill="none" stroke="#FFFFFF" stroke-width="1.2"/>
+  <rect x="655" y="258" width="10" height="10" rx="1" fill="none" stroke="#FFFFFF" stroke-width="1.2"/>
+  <rect x="655" y="270" width="10" height="10" rx="1" fill="none" stroke="#FFFFFF" stroke-width="1.2"/>
+
+  <!-- 图标：递归箭头（在"递归摘要"左侧） -->
+  <path d="M45 365 C40 358, 40 350, 48 350 C56 350, 56 358, 52 362" fill="none" stroke="#1a1a2e" stroke-width="1.2" stroke-linecap="round"/>
+  <polygon points="52,362 48,358 55,358" fill="#1a1a2e"/>
+
+  <!-- 图标：直接输入箭头（在"直接输入"左侧） -->
+  <line x1="198" y1="370" x2="210" y2="370" stroke="#1a1a2e" stroke-width="1.5" stroke-linecap="round"/>
+  <polygon points="210,370 204,365 204,375" fill="#1a1a2e"/>
+
+  <!-- 图标：分段文档（在"分段检索"左侧） -->
+  <rect x="508" y="358" width="8" height="8" rx="1" fill="none" stroke="#1a1a2e" stroke-width="1.2"/>
+  <rect x="518" y="358" width="8" height="8" rx="1" fill="none" stroke="#1a1a2e" stroke-width="1.2"/>
+  <rect x="508" y="368" width="8" height="8" rx="1" fill="none" stroke="#1a1a2e" stroke-width="1.2"/>
+  <rect x="518" y="368" width="8" height="8" rx="1" fill="none" stroke="#1a1a2e" stroke-width="1.2"/>
+
+  <!-- 图标：顺序处理（在"顺序处理"左侧） -->
+  <circle cx="648" cy="370" r="4" fill="none" stroke="#1a1a2e" stroke-width="1.2"/>
+  <line x1="654" y1="370" x2="662" y2="370" stroke="#1a1a2e" stroke-width="1.2" stroke-linecap="round"/>
+  <polygon points="662,370 657,366 657,374" fill="#1a1a2e"/>
+</svg>

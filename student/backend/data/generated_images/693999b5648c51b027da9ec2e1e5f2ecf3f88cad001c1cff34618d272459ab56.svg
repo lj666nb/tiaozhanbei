@@ -1,0 +1,146 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="800" height="500">
+  <defs>
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#e8f4fd"/>
+      <stop offset="100%" stop-color="#f0f8ff"/>
+    </linearGradient>
+    <linearGradient id="tableGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#409EFF"/>
+      <stop offset="100%" stop-color="#2b7cd0"/>
+    </linearGradient>
+    <filter id="shadow" x="-5%" y="-5%" width="110%" height="110%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#1a1a2e" flood-opacity="0.15"/>
+    </filter>
+  </defs>
+
+  <!-- 背景 -->
+  <rect width="800" height="500" fill="url(#bgGrad)"/>
+
+  <!-- 标题 -->
+  <text x="400" y="38" text-anchor="middle" font-family="sans-serif" font-size="20" font-weight="bold" fill="#1a1a2e">博弈论：智能体策略交互</text>
+
+  <!-- 博弈桌 -->
+  <rect x="290" y="160" width="220" height="180" rx="8" fill="url(#tableGrad)" filter="url(#shadow)" opacity="0.9"/>
+  <rect x="290" y="160" width="220" height="180" rx="8" fill="none" stroke="#1a1a2e" stroke-width="1.5" opacity="0.3"/>
+
+  <!-- 收益矩阵 - 2x2 -->
+  <!-- 分割线 -->
+  <line x1="400" y1="160" x2="400" y2="340" stroke="#ffffff" stroke-width="1.5" opacity="0.5"/>
+  <line x1="290" y1="250" x2="510" y2="250" stroke="#ffffff" stroke-width="1.5" opacity="0.5"/>
+
+  <!-- 左上 (A合作, B合作) -->
+  <text x="345" y="210" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#ffffff">(3, 3)</text>
+  <!-- 右上 (A背叛, B合作) -->
+  <text x="450" y="210" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#ffffff">(5, 0)</text>
+  <!-- 左下 (A合作, B背叛) -->
+  <text x="345" y="300" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#ffffff">(0, 5)</text>
+  <!-- 右下 (A背叛, B背叛) -->
+  <text x="450" y="300" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#ffffff">(1, 1)</text>
+
+  <!-- 矩阵标签 -->
+  <text x="345" y="175" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#ffffff" opacity="0.8">合作</text>
+  <text x="450" y="175" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#ffffff" opacity="0.8">背叛</text>
+  <text x="282" y="210" text-anchor="end" font-family="sans-serif" font-size="12" fill="#ffffff" opacity="0.8">合作</text>
+  <text x="282" y="300" text-anchor="end" font-family="sans-serif" font-size="12" fill="#ffffff" opacity="0.8">背叛</text>
+
+  <!-- 智能体A（左侧） -->
+  <g filter="url(#shadow)">
+    <rect x="80" y="200" width="100" height="100" rx="50" fill="#1a1a2e"/>
+    <circle cx="130" cy="240" r="18" fill="#409EFF" opacity="0.8"/>
+    <circle cx="130" cy="240" r="10" fill="#ffffff" opacity="0.3"/>
+    <rect x="108" y="262" width="44" height="6" rx="3" fill="#409EFF" opacity="0.7"/>
+    <rect x="112" y="272" width="36" height="4" rx="2" fill="#409EFF" opacity="0.5"/>
+  </g>
+  <text x="130" y="325" text-anchor="middle" font-family="sans-serif" font-size="16" font-weight="bold" fill="#1a1a2e">智能体A</text>
+  <text x="130" y="345" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#409EFF">决策者</text>
+
+  <!-- 智能体B（右侧） -->
+  <g filter="url(#shadow)">
+    <rect x="620" y="200" width="100" height="100" rx="50" fill="#1a1a2e"/>
+    <circle cx="670" cy="240" r="18" fill="#409EFF" opacity="0.8"/>
+    <circle cx="670" cy="240" r="10" fill="#ffffff" opacity="0.3"/>
+    <rect x="648" y="262" width="44" height="6" rx="3" fill="#409EFF" opacity="0.7"/>
+    <rect x="652" y="272" width="36" height="4" rx="2" fill="#409EFF" opacity="0.5"/>
+  </g>
+  <text x="670" y="325" text-anchor="middle" font-family="sans-serif" font-size="16" font-weight="bold" fill="#1a1a2e">智能体B</text>
+  <text x="670" y="345" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#409EFF">决策者</text>
+
+  <!-- 连接线：智能体到决策节点 -->
+  <!-- A到决策节点 -->
+  <line x1="180" y1="230" x2="260" y2="210" stroke="#1a1a2e" stroke-width="1.5" stroke-dasharray="6,3" opacity="0.5"/>
+  <line x1="180" y1="260" x2="260" y2="280" stroke="#1a1a2e" stroke-width="1.5" stroke-dasharray="6,3" opacity="0.5"/>
+
+  <!-- B到决策节点 -->
+  <line x1="620" y1="230" x2="540" y2="210" stroke="#1a1a2e" stroke-width="1.5" stroke-dasharray="6,3" opacity="0.5"/>
+  <line x1="620" y1="260" x2="540" y2="280" stroke="#1a1a2e" stroke-width="1.5" stroke-dasharray="6,3" opacity="0.5"/>
+
+  <!-- 决策节点 -->
+  <circle cx="260" cy="210" r="6" fill="#409EFF"/>
+  <circle cx="260" cy="280" r="6" fill="#409EFF"/>
+  <circle cx="540" cy="210" r="6" fill="#409EFF"/>
+  <circle cx="540" cy="280" r="6" fill="#409EFF"/>
+
+  <!-- 策略树分支 - A侧 -->
+  <line x1="260" y1="210" x2="290" y2="210" stroke="#1a1a2e" stroke-width="1.5" opacity="0.4"/>
+  <line x1="260" y1="280" x2="290" y2="280" stroke="#1a1a2e" stroke-width="1.5" opacity="0.4"/>
+
+  <!-- 策略树分支 - B侧 -->
+  <line x1="510" y1="210" x2="540" y2="210" stroke="#1a1a2e" stroke-width="1.5" opacity="0.4"/>
+  <line x1="510" y1="280" x2="540" y2="280" stroke="#1a1a2e" stroke-width="1.5" opacity="0.4"/>
+
+  <!-- 策略标签 -->
+  <text x="275" y="200" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#1a1a2e">合作</text>
+  <text x="275" y="300" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#1a1a2e">背叛</text>
+  <text x="525" y="200" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#1a1a2e">合作</text>
+  <text x="525" y="300" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#1a1a2e">背叛</text>
+
+  <!-- 收益箭头标注 -->
+  <path d="M 400 340 L 400 370" stroke="#409EFF" stroke-width="1.5" fill="none" marker-end="url(#arrowBlue)"/>
+  <defs>
+    <marker id="arrowBlue" markerWidth="8" markerHeight="6" refX="4" refY="3" orient="auto">
+      <path d="M 0 0 L 8 3 L 0 6 Z" fill="#409EFF"/>
+    </marker>
+  </defs>
+
+  <!-- 底部标注 - 收益说明 -->
+  <rect x="330" y="375" width="140" height="28" rx="14" fill="#1a1a2e" opacity="0.08"/>
+  <text x="400" y="394" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#1a1a2e">收益矩阵 (A, B)</text>
+
+  <!-- 标注1：策略树 -->
+  <g>
+    <rect x="40" y="390" width="100" height="28" rx="14" fill="#409EFF" opacity="0.15"/>
+    <text x="90" y="409" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#409EFF">策略分支</text>
+    <line x1="90" y1="390" x2="130" y2="345" stroke="#409EFF" stroke-width="1" stroke-dasharray="3,2" opacity="0.5"/>
+  </g>
+
+  <!-- 标注2：决策节点 -->
+  <g>
+    <rect x="580" y="390" width="100" height="28" rx="14" fill="#409EFF" opacity="0.15"/>
+    <text x="630" y="409" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#409EFF">决策节点</text>
+    <line x1="630" y1="390" x2="540" y2="285" stroke="#409EFF" stroke-width="1" stroke-dasharray="3,2" opacity="0.5"/>
+  </g>
+
+  <!-- 标注3：博弈互动 -->
+  <g>
+    <rect x="580" y="440" width="100" height="28" rx="14" fill="#1a1a2e" opacity="0.08"/>
+    <text x="630" y="459" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#1a1a2e">策略互动</text>
+    <line x1="580" y1="454" x2="510" y2="340" stroke="#1a1a2e" stroke-width="1" stroke-dasharray="3,2" opacity="0.3"/>
+  </g>
+
+  <!-- 标注4：智能体 -->
+  <g>
+    <rect x="40" y="440" width="100" height="28" rx="14" fill="#1a1a2e" opacity="0.08"/>
+    <text x="90" y="459" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#1a1a2e">智能体决策</text>
+    <line x1="90" y1="440" x2="130" y2="330" stroke="#1a1a2e" stroke-width="1" stroke-dasharray="3,2" opacity="0.3"/>
+  </g>
+
+  <!-- 装饰性几何节点 -->
+  <circle cx="400" cy="130" r="3" fill="#409EFF" opacity="0.3"/>
+  <circle cx="300" cy="140" r="2" fill="#409EFF" opacity="0.2"/>
+  <circle cx="500" cy="140" r="2" fill="#409EFF" opacity="0.2"/>
+  <circle cx="200" cy="180" r="2" fill="#1a1a2e" opacity="0.15"/>
+  <circle cx="600" cy="180" r="2" fill="#1a1a2e" opacity="0.15"/>
+
+  <!-- 底部信息 -->
+  <text x="400" y="490" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#1a1a2e" opacity="0.3">博弈论基础 · 策略与收益</text>
+</svg>

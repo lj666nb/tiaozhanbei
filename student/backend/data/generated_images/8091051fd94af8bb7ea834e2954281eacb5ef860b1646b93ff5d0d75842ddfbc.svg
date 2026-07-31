@@ -1,0 +1,172 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" font-family="'Microsoft YaHei', 'PingFang SC', 'Noto Sans SC', sans-serif">
+  <defs>
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#f0f7ff"/>
+      <stop offset="100%" stop-color="#e3effa"/>
+    </linearGradient>
+    <linearGradient id="headerGrad" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#409EFF"/>
+      <stop offset="100%" stop-color="#2b7fd9"/>
+    </linearGradient>
+    <filter id="shadow" x="-2%" y="-2%" width="104%" height="108%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#1a1a2e" flood-opacity="0.08"/>
+    </filter>
+  </defs>
+
+  <!-- 背景 -->
+  <rect width="800" height="500" fill="url(#bgGrad)" rx="12"/>
+
+  <!-- 主框架 -->
+  <rect x="40" y="30" width="720" height="440" rx="16" fill="none" stroke="#409EFF" stroke-width="2.5" stroke-dasharray="0" opacity="0.35"/>
+  <rect x="40" y="30" width="720" height="440" rx="16" fill="white" opacity="0.85" filter="url(#shadow)"/>
+
+  <!-- 标题栏 -->
+  <rect x="40" y="30" width="720" height="46" rx="16" fill="url(#headerGrad)"/>
+  <rect x="40" y="46" width="720" height="30" fill="url(#headerGrad)"/>
+  <text x="400" y="60" text-anchor="middle" fill="white" font-size="20" font-weight="bold" letter-spacing="2">多智能体系统（Multi-Agent System）</text>
+
+  <!-- 智能体 A - 研究员 -->
+  <g filter="url(#shadow)">
+    <rect x="70" y="100" width="200" height="170" rx="12" fill="white" stroke="#409EFF" stroke-width="1.8"/>
+    <rect x="70" y="100" width="200" height="36" rx="12" fill="#409EFF" opacity="0.15"/>
+    <rect x="70" y="120" width="200" height="16" fill="#409EFF" opacity="0.15"/>
+    <circle cx="100" cy="118" r="12" fill="#409EFF" opacity="0.2"/>
+    <text x="100" y="123" text-anchor="middle" fill="#409EFF" font-size="14" font-weight="bold">🔍</text>
+    <text x="170" y="123" text-anchor="middle" fill="#1a1a2e" font-size="15" font-weight="bold">智能体 A</text>
+    <text x="170" y="145" text-anchor="middle" fill="#409EFF" font-size="13" font-weight="bold">研究员</text>
+
+    <line x1="85" y1="158" x2="255" y2="158" stroke="#e8eef5" stroke-width="1"/>
+
+    <text x="85" y="178" fill="#1a1a2e" font-size="12" font-weight="bold">角色：</text>
+    <text x="125" y="178" fill="#555" font-size="12">信息检索与收集</text>
+
+    <text x="85" y="198" fill="#1a1a2e" font-size="12" font-weight="bold">工具：</text>
+    <rect x="125" y="186" width="52" height="18" rx="9" fill="#409EFF" opacity="0.12"/>
+    <text x="151" y="199" text-anchor="middle" fill="#409EFF" font-size="11">🔎 搜索</text>
+
+    <text x="85" y="220" fill="#1a1a2e" font-size="12" font-weight="bold">知识域：</text>
+    <text x="145" y="220" fill="#555" font-size="12">通用知识库</text>
+
+    <rect x="85" y="234" width="170" height="22" rx="6" fill="#409EFF" opacity="0.06"/>
+    <text x="170" y="249" text-anchor="middle" fill="#409EFF" font-size="11">📚 知识图谱 · 文档库</text>
+  </g>
+
+  <!-- 智能体 B - 分析师 -->
+  <g filter="url(#shadow)">
+    <rect x="300" y="100" width="200" height="170" rx="12" fill="white" stroke="#409EFF" stroke-width="1.8"/>
+    <rect x="300" y="100" width="200" height="36" rx="12" fill="#409EFF" opacity="0.15"/>
+    <rect x="300" y="120" width="200" height="16" fill="#409EFF" opacity="0.15"/>
+    <circle cx="330" cy="118" r="12" fill="#409EFF" opacity="0.2"/>
+    <text x="330" y="123" text-anchor="middle" fill="#409EFF" font-size="14" font-weight="bold">📊</text>
+    <text x="400" y="123" text-anchor="middle" fill="#1a1a2e" font-size="15" font-weight="bold">智能体 B</text>
+    <text x="400" y="145" text-anchor="middle" fill="#409EFF" font-size="13" font-weight="bold">分析师</text>
+
+    <line x1="315" y1="158" x2="485" y2="158" stroke="#e8eef5" stroke-width="1"/>
+
+    <text x="315" y="178" fill="#1a1a2e" font-size="12" font-weight="bold">角色：</text>
+    <text x="355" y="178" fill="#555" font-size="12">数据处理与分析</text>
+
+    <text x="315" y="198" fill="#1a1a2e" font-size="12" font-weight="bold">工具：</text>
+    <rect x="355" y="186" width="52" height="18" rx="9" fill="#409EFF" opacity="0.12"/>
+    <text x="381" y="199" text-anchor="middle" fill="#409EFF" font-size="11">💻 代码</text>
+
+    <text x="315" y="220" fill="#1a1a2e" font-size="12" font-weight="bold">知识域：</text>
+    <text x="375" y="220" fill="#555" font-size="12">数据分析</text>
+
+    <rect x="315" y="234" width="170" height="22" rx="6" fill="#409EFF" opacity="0.06"/>
+    <text x="400" y="249" text-anchor="middle" fill="#409EFF" font-size="11">📈 统计模型 · 可视化</text>
+  </g>
+
+  <!-- 智能体 C - 写手 -->
+  <g filter="url(#shadow)">
+    <rect x="530" y="100" width="200" height="170" rx="12" fill="white" stroke="#409EFF" stroke-width="1.8"/>
+    <rect x="530" y="100" width="200" height="36" rx="12" fill="#409EFF" opacity="0.15"/>
+    <rect x="530" y="120" width="200" height="16" fill="#409EFF" opacity="0.15"/>
+    <circle cx="560" cy="118" r="12" fill="#409EFF" opacity="0.2"/>
+    <text x="560" y="123" text-anchor="middle" fill="#409EFF" font-size="14" font-weight="bold">✍️</text>
+    <text x="630" y="123" text-anchor="middle" fill="#1a1a2e" font-size="15" font-weight="bold">智能体 C</text>
+    <text x="630" y="145" text-anchor="middle" fill="#409EFF" font-size="13" font-weight="bold">写手</text>
+
+    <line x1="545" y1="158" x2="715" y2="158" stroke="#e8eef5" stroke-width="1"/>
+
+    <text x="545" y="178" fill="#1a1a2e" font-size="12" font-weight="bold">角色：</text>
+    <text x="585" y="178" fill="#555" font-size="12">内容生成与润色</text>
+
+    <text x="545" y="198" fill="#1a1a2e" font-size="12" font-weight="bold">工具：</text>
+    <rect x="585" y="186" width="52" height="18" rx="9" fill="#409EFF" opacity="0.12"/>
+    <text x="611" y="199" text-anchor="middle" fill="#409EFF" font-size="11">📝 编辑</text>
+
+    <text x="545" y="220" fill="#1a1a2e" font-size="12" font-weight="bold">知识域：</text>
+    <text x="605" y="220" fill="#555" font-size="12">语言模型</text>
+
+    <rect x="545" y="234" width="170" height="22" rx="6" fill="#409EFF" opacity="0.06"/>
+    <text x="630" y="249" text-anchor="middle" fill="#409EFF" font-size="11">📖 语法库 · 风格指南</text>
+  </g>
+
+  <!-- 通信基础设施 -->
+  <g filter="url(#shadow)">
+    <rect x="70" y="300" width="660" height="44" rx="22" fill="#1a1a2e" opacity="0.92"/>
+    <rect x="70" y="300" width="660" height="44" rx="22" fill="#409EFF" opacity="0.08"/>
+
+    <!-- 消息队列图标 -->
+    <rect x="100" y="312" width="28" height="20" rx="4" fill="none" stroke="white" stroke-width="1.5" opacity="0.9"/>
+    <rect x="106" y="316" width="16" height="4" rx="2" fill="white" opacity="0.7"/>
+    <rect x="106" y="322" width="16" height="4" rx="2" fill="white" opacity="0.7"/>
+
+    <text x="145" y="327" fill="white" font-size="14" font-weight="bold">通信基础设施</text>
+    <text x="310" y="327" fill="white" font-size="12" opacity="0.7">消息队列 / 总线</text>
+
+    <!-- 连接线到各智能体 -->
+    <line x1="170" y1="300" x2="170" y2="270" stroke="#409EFF" stroke-width="1.5" stroke-dasharray="4,3" opacity="0.5"/>
+    <line x1="400" y1="300" x2="400" y2="270" stroke="#409EFF" stroke-width="1.5" stroke-dasharray="4,3" opacity="0.5"/>
+    <line x1="630" y1="300" x2="630" y2="270" stroke="#409EFF" stroke-width="1.5" stroke-dasharray="4,3" opacity="0.5"/>
+
+    <!-- 双向箭头 -->
+    <polygon points="165,275 170,268 175,275" fill="#409EFF" opacity="0.5"/>
+    <polygon points="395,275 400,268 405,275" fill="#409EFF" opacity="0.5"/>
+    <polygon points="625,275 630,268 635,275" fill="#409EFF" opacity="0.5"/>
+  </g>
+
+  <!-- 能力标签 - 感知 -->
+  <g>
+    <rect x="70" y="370" width="145" height="80" rx="10" fill="white" stroke="#409EFF" stroke-width="1.5" opacity="0.9" filter="url(#shadow)"/>
+    <circle cx="100" cy="400" r="16" fill="#409EFF" opacity="0.12"/>
+    <text x="100" y="405" text-anchor="middle" fill="#409EFF" font-size="16">👁️</text>
+    <text x="142" y="400" fill="#1a1a2e" font-size="15" font-weight="bold">感知</text>
+    <text x="142" y="420" fill="#666" font-size="11">环境信息采集</text>
+    <text x="142" y="438" fill="#666" font-size="11">与输入处理</text>
+  </g>
+
+  <!-- 能力标签 - 决策 -->
+  <g>
+    <rect x="235" y="370" width="145" height="80" rx="10" fill="white" stroke="#409EFF" stroke-width="1.5" opacity="0.9" filter="url(#shadow)"/>
+    <circle cx="265" cy="400" r="16" fill="#409EFF" opacity="0.12"/>
+    <text x="265" y="405" text-anchor="middle" fill="#409EFF" font-size="16">🧠</text>
+    <text x="307" y="400" fill="#1a1a2e" font-size="15" font-weight="bold">决策</text>
+    <text x="307" y="420" fill="#666" font-size="11">推理与规划</text>
+    <text x="307" y="438" fill="#666" font-size="11">策略选择</text>
+  </g>
+
+  <!-- 能力标签 - 行动 -->
+  <g>
+    <rect x="400" y="370" width="145" height="80" rx="10" fill="white" stroke="#409EFF" stroke-width="1.5" opacity="0.9" filter="url(#shadow)"/>
+    <circle cx="430" cy="400" r="16" fill="#409EFF" opacity="0.12"/>
+    <text x="430" y="405" text-anchor="middle" fill="#409EFF" font-size="16">⚙️</text>
+    <text x="472" y="400" fill="#1a1a2e" font-size="15" font-weight="bold">行动</text>
+    <text x="472" y="420" fill="#666" font-size="11">工具调用与</text>
+    <text x="472" y="438" fill="#666" font-size="11">任务执行</text>
+  </g>
+
+  <!-- 能力标签 - 通信 -->
+  <g>
+    <rect x="565" y="370" width="165" height="80" rx="10" fill="white" stroke="#409EFF" stroke-width="1.5" opacity="0.9" filter="url(#shadow)"/>
+    <circle cx="595" cy="400" r="16" fill="#409EFF" opacity="0.12"/>
+    <text x="595" y="405" text-anchor="middle" fill="#409EFF" font-size="16">💬</text>
+    <text x="637" y="400" fill="#1a1a2e" font-size="15" font-weight="bold">通信</text>
+    <text x="637" y="420" fill="#666" font-size="11">智能体间消息</text>
+    <text x="637" y="438" fill="#666" font-size="11">传递与协调</text>
+  </g>
+
+  <!-- 底部标注 -->
+  <text x="400" y="485" text-anchor="middle" fill="#999" font-size="11">多智能体系统通过感知、决策、行动与通信四个核心能力的协同，完成复杂任务</text>
+</svg>

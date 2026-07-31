@@ -1,0 +1,142 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="800" height="500">
+  <defs>
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#E8F4FD"/>
+      <stop offset="100%" stop-color="#F0F8FF"/>
+    </linearGradient>
+    <linearGradient id="pubGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#409EFF"/>
+      <stop offset="100%" stop-color="#2B7ED6"/>
+    </linearGradient>
+    <linearGradient id="brokerGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#5AABFF"/>
+      <stop offset="100%" stop-color="#409EFF"/>
+    </linearGradient>
+    <linearGradient id="subGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#409EFF"/>
+      <stop offset="100%" stop-color="#2B7ED6"/>
+    </linearGradient>
+    <filter id="shadow" x="-5%" y="-5%" width="115%" height="115%">
+      <feDropShadow dx="2" dy="3" stdDeviation="4" flood-color="#1a1a2e" flood-opacity="0.12"/>
+    </filter>
+    <filter id="shadowLight" x="-5%" y="-5%" width="115%" height="115%">
+      <feDropShadow dx="1" dy="2" stdDeviation="3" flood-color="#1a1a2e" flood-opacity="0.08"/>
+    </filter>
+  </defs>
+
+  <!-- 背景 -->
+  <rect width="800" height="500" fill="url(#bgGrad)" rx="8"/>
+
+  <!-- 标题 -->
+  <text x="400" y="38" text-anchor="middle" font-family="'Microsoft YaHei', 'PingFang SC', sans-serif" font-size="20" font-weight="bold" fill="#1a1a2e">发布/订阅（Pub/Sub）模式架构图</text>
+
+  <!-- ==================== 发布者（左侧） ==================== -->
+  <g filter="url(#shadow)">
+    <rect x="40" y="100" width="160" height="100" rx="12" fill="url(#pubGrad)"/>
+    <text x="120" y="148" text-anchor="middle" font-family="'Microsoft YaHei', 'PingFang SC', sans-serif" font-size="18" font-weight="bold" fill="#FFFFFF">发布者</text>
+    <text x="120" y="174" text-anchor="middle" font-family="'Microsoft YaHei', 'PingFang SC', sans-serif" font-size="13" fill="#D6E9FF">Publisher</text>
+  </g>
+
+  <!-- 发布者标签 -->
+  <rect x="55" y="80" width="50" height="22" rx="11" fill="#1a1a2e" opacity="0.8"/>
+  <text x="80" y="95" text-anchor="middle" font-family="'Microsoft YaHei', 'PingFang SC', sans-serif" font-size="11" fill="#FFFFFF">发送方</text>
+
+  <!-- ==================== 事件信封（发布者右侧） ==================== -->
+  <g filter="url(#shadowLight)">
+    <rect x="215" y="115" width="70" height="70" rx="6" fill="#FFFFFF" stroke="#409EFF" stroke-width="2"/>
+    <!-- 信封折线 -->
+    <polyline points="215,115 250,150 285,115" fill="none" stroke="#409EFF" stroke-width="2" stroke-linejoin="round"/>
+    <!-- 主题标签 -->
+    <rect x="228" y="160" width="44" height="16" rx="4" fill="#E8F4FD" stroke="#409EFF" stroke-width="0.8"/>
+    <text x="250" y="172" text-anchor="middle" font-family="'Microsoft YaHei', 'PingFang SC', sans-serif" font-size="9" fill="#409EFF">主题A</text>
+    <!-- 负载点 -->
+    <circle cx="250" cy="133" r="4" fill="#409EFF" opacity="0.6"/>
+  </g>
+
+  <!-- 事件标签 -->
+  <text x="250" y="108" text-anchor="middle" font-family="'Microsoft YaHei', 'PingFang SC', sans-serif" font-size="12" fill="#1a1a2e" opacity="0.7">事件</text>
+
+  <!-- ==================== 从发布者到代理的箭头 ==================== -->
+  <line x1="285" y1="150" x2="330" y2="150" stroke="#409EFF" stroke-width="2.5" stroke-dasharray="6,4"/>
+  <polygon points="328,143 340,150 328,157" fill="#409EFF"/>
+
+  <!-- ==================== 代理/消息代理（中间） ==================== -->
+  <g filter="url(#shadow)">
+    <rect x="340" y="85" width="180" height="130" rx="14" fill="url(#brokerGrad)"/>
+    <!-- 代理内部图标 -->
+    <rect x="370" y="100" width="120" height="3" rx="1.5" fill="#FFFFFF" opacity="0.3"/>
+    <rect x="370" y="110" width="100" height="3" rx="1.5" fill="#FFFFFF" opacity="0.3"/>
+    <rect x="370" y="120" width="110" height="3" rx="1.5" fill="#FFFFFF" opacity="0.3"/>
+    <text x="430" y="155" text-anchor="middle" font-family="'Microsoft YaHei', 'PingFang SC', sans-serif" font-size="18" font-weight="bold" fill="#FFFFFF">消息代理</text>
+    <text x="430" y="178" text-anchor="middle" font-family="'Microsoft YaHei', 'PingFang SC', sans-serif" font-size="13" fill="#D6E9FF">Broker / 路由器</text>
+    <!-- 代理底部标签 -->
+    <rect x="375" y="192" width="110" height="18" rx="9" fill="#1a1a2e" opacity="0.25"/>
+    <text x="430" y="205" text-anchor="middle" font-family="'Microsoft YaHei', 'PingFang SC', sans-serif" font-size="10" fill="#FFFFFF">订阅管理 · 路由</text>
+  </g>
+
+  <!-- 代理标注 -->
+  <rect x="365" y="65" width="60" height="22" rx="11" fill="#1a1a2e" opacity="0.8"/>
+  <text x="395" y="80" text-anchor="middle" font-family="'Microsoft YaHei', 'PingFang SC', sans-serif" font-size="11" fill="#FFFFFF">中介者</text>
+
+  <!-- ==================== 从代理到订阅者的箭头 ==================== -->
+  <!-- 到A -->
+  <line x1="520" y1="120" x2="565" y2="120" stroke="#409EFF" stroke-width="2.5" stroke-dasharray="6,4"/>
+  <polygon points="563,113 575,120 563,127" fill="#409EFF"/>
+  <!-- 到B -->
+  <line x1="520" y1="150" x2="565" y2="150" stroke="#409EFF" stroke-width="2.5" stroke-dasharray="6,4"/>
+  <polygon points="563,143 575,150 563,157" fill="#409EFF"/>
+  <!-- 到C -->
+  <line x1="520" y1="180" x2="565" y2="180" stroke="#409EFF" stroke-width="2.5" stroke-dasharray="6,4"/>
+  <polygon points="563,173 575,180 563,187" fill="#409EFF"/>
+
+  <!-- ==================== 订阅者（右侧） ==================== -->
+  <!-- 订阅者 A -->
+  <g filter="url(#shadow)">
+    <rect x="575" y="90" width="130" height="60" rx="10" fill="url(#subGrad)"/>
+    <text x="640" y="122" text-anchor="middle" font-family="'Microsoft YaHei', 'PingFang SC', sans-serif" font-size="16" font-weight="bold" fill="#FFFFFF">订阅者 A</text>
+    <text x="640" y="140" text-anchor="middle" font-family="'Microsoft YaHei', 'PingFang SC', sans-serif" font-size="11" fill="#D6E9FF">Subscriber</text>
+  </g>
+
+  <!-- 订阅者 B -->
+  <g filter="url(#shadow)">
+    <rect x="575" y="160" width="130" height="60" rx="10" fill="url(#subGrad)"/>
+    <text x="640" y="192" text-anchor="middle" font-family="'Microsoft YaHei', 'PingFang SC', sans-serif" font-size="16" font-weight="bold" fill="#FFFFFF">订阅者 B</text>
+    <text x="640" y="210" text-anchor="middle" font-family="'Microsoft YaHei', 'PingFang SC', sans-serif" font-size="11" fill="#D6E9FF">Subscriber</text>
+  </g>
+
+  <!-- 订阅者 C -->
+  <g filter="url(#shadow)">
+    <rect x="575" y="230" width="130" height="60" rx="10" fill="url(#subGrad)"/>
+    <text x="640" y="262" text-anchor="middle" font-family="'Microsoft YaHei', 'PingFang SC', sans-serif" font-size="16" font-weight="bold" fill="#FFFFFF">订阅者 C</text>
+    <text x="640" y="280" text-anchor="middle" font-family="'Microsoft YaHei', 'PingFang SC', sans-serif" font-size="11" fill="#D6E9FF">Subscriber</text>
+  </g>
+
+  <!-- 订阅者标签 -->
+  <rect x="590" y="72" width="50" height="20" rx="10" fill="#1a1a2e" opacity="0.8"/>
+  <text x="615" y="86" text-anchor="middle" font-family="'Microsoft YaHei', 'PingFang SC', sans-serif" font-size="11" fill="#FFFFFF">接收方</text>
+
+  <!-- ==================== 解耦标注 ==================== -->
+  <!-- 左侧解耦标注 -->
+  <line x1="80" y1="230" x2="80" y2="310" stroke="#1a1a2e" stroke-width="1.2" stroke-dasharray="4,3" opacity="0.4"/>
+  <line x1="80" y1="310" x2="430" y2="310" stroke="#1a1a2e" stroke-width="1.2" stroke-dasharray="4,3" opacity="0.4"/>
+  <line x1="430" y1="310" x2="430" y2="250" stroke="#1a1a2e" stroke-width="1.2" stroke-dasharray="4,3" opacity="0.4"/>
+
+  <!-- 右侧解耦标注 -->
+  <line x1="640" y1="310" x2="640" y2="340" stroke="#1a1a2e" stroke-width="1.2" stroke-dasharray="4,3" opacity="0.4"/>
+  <line x1="640" y1="340" x2="430" y2="340" stroke="#1a1a2e" stroke-width="1.2" stroke-dasharray="4,3" opacity="0.4"/>
+  <line x1="430" y1="340" x2="430" y2="260" stroke="#1a1a2e" stroke-width="1.2" stroke-dasharray="4,3" opacity="0.4"/>
+
+  <!-- 解耦说明框 -->
+  <rect x="280" y="355" width="300" height="75" rx="10" fill="#FFFFFF" stroke="#409EFF" stroke-width="1.5" filter="url(#shadowLight)"/>
+  <text x="430" y="378" text-anchor="middle" font-family="'Microsoft YaHei', 'PingFang SC', sans-serif" font-size="13" font-weight="bold" fill="#1a1a2e">解耦关系</text>
+  <text x="430" y="398" text-anchor="middle" font-family="'Microsoft YaHei', 'PingFang SC', sans-serif" font-size="12" fill="#1a1a2e" opacity="0.8">发布者不知道谁会接收</text>
+  <text x="430" y="418" text-anchor="middle" font-family="'Microsoft YaHei', 'PingFang SC', sans-serif" font-size="12" fill="#1a1a2e" opacity="0.8">订阅者不知道谁发送的</text>
+
+  <!-- ==================== 底部标注 ==================== -->
+  <rect x="40" y="450" width="720" height="35" rx="8" fill="#1a1a2e" opacity="0.06"/>
+  <text x="400" y="473" text-anchor="middle" font-family="'Microsoft YaHei', 'PingFang SC', sans-serif" font-size="12" fill="#1a1a2e" opacity="0.5">发布-订阅模式：通过消息代理实现发布者与订阅者的完全解耦</text>
+
+  <!-- 图例 -->
+  <rect x="40" y="320" width="14" height="14" rx="3" fill="#409EFF" opacity="0.3" stroke="#409EFF" stroke-width="1.5" stroke-dasharray="4,2"/>
+  <text x="60" y="332" font-family="'Microsoft YaHei', 'PingFang SC', sans-serif" font-size="11" fill="#1a1a2e" opacity="0.6">虚线表示解耦连接</text>
+</svg>

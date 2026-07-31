@@ -1,0 +1,117 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="800" height="500">
+  <defs>
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#E8F4FD"/>
+      <stop offset="100%" stop-color="#D0ECFA"/>
+    </linearGradient>
+    <linearGradient id="arrowGrad" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#A0A0A0"/>
+      <stop offset="40%" stop-color="#7BB8E8"/>
+      <stop offset="100%" stop-color="#409EFF"/>
+    </linearGradient>
+    <linearGradient id="glowGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#409EFF"/>
+      <stop offset="100%" stop-color="#2B7BE5"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#409EFF" flood-opacity="0.3"/>
+    </filter>
+  </defs>
+
+  <!-- 背景 -->
+  <rect width="800" height="500" fill="url(#bgGrad)" rx="8"/>
+
+  <!-- 标题 -->
+  <text x="400" y="45" text-anchor="middle" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#1a1a2e">从被动工具到主动伙伴的进化</text>
+
+  <!-- 进化箭头主体 -->
+  <line x1="120" y1="200" x2="680" y2="200" stroke="url(#arrowGrad)" stroke-width="8" stroke-linecap="round"/>
+
+  <!-- 箭头头部 -->
+  <polygon points="680,186 710,200 680,214" fill="#409EFF"/>
+
+  <!-- 左侧：被动工具图标（锤子） -->
+  <g transform="translate(80, 160)">
+    <!-- 锤头 -->
+    <rect x="0" y="10" width="50" height="20" rx="4" fill="#A0A0A0"/>
+    <!-- 锤柄 -->
+    <rect x="20" y="30" width="10" height="45" rx="3" fill="#B0B0B0"/>
+    <!-- 标签 -->
+    <text x="25" y="95" text-anchor="middle" font-family="Arial, sans-serif" font-size="15" fill="#1a1a2e" font-weight="bold">被动工具</text>
+  </g>
+
+  <!-- 右侧：主动伙伴机器人图标 -->
+  <g transform="translate(670, 145)" filter="url(#shadow)">
+    <!-- 机器人头部 -->
+    <rect x="0" y="0" width="50" height="40" rx="10" fill="#409EFF"/>
+    <!-- 天线 -->
+    <line x1="25" y1="0" x2="25" y2="-12" stroke="#409EFF" stroke-width="3" stroke-linecap="round"/>
+    <circle cx="25" cy="-15" r="4" fill="#409EFF"/>
+    <!-- 眼睛 -->
+    <circle cx="15" cy="16" r="4" fill="white"/>
+    <circle cx="35" cy="16" r="4" fill="white"/>
+    <!-- 瞳孔 -->
+    <circle cx="15" cy="16" r="2" fill="#1a1a2e"/>
+    <circle cx="35" cy="16" r="2" fill="#1a1a2e"/>
+    <!-- 微笑 -->
+    <path d="M14,26 Q25,34 36,26" stroke="white" stroke-width="2" fill="none" stroke-linecap="round"/>
+    <!-- 身体 -->
+    <rect x="8" y="40" width="34" height="25" rx="6" fill="#409EFF"/>
+    <!-- 手臂 -->
+    <rect x="-6" y="44" width="10" height="6" rx="3" fill="#409EFF"/>
+    <rect x="46" y="44" width="10" height="6" rx="3" fill="#409EFF"/>
+    <!-- 标签 -->
+    <text x="25" y="85" text-anchor="middle" font-family="Arial, sans-serif" font-size="15" fill="#1a1a2e" font-weight="bold">主动伙伴</text>
+  </g>
+
+  <!-- 里程碑标记点 -->
+  <!-- 标记点 1：自主性 (A) -->
+  <g transform="translate(230, 200)">
+    <circle cx="0" cy="0" r="10" fill="url(#glowGrad)" filter="url(#shadow)"/>
+    <text x="0" y="4" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="white" font-weight="bold">A</text>
+    <text x="0" y="28" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="#1a1a2e" font-weight="bold">自主性</text>
+  </g>
+
+  <!-- 标记点 2：反应性 (R) -->
+  <g transform="translate(360, 200)">
+    <circle cx="0" cy="0" r="10" fill="url(#glowGrad)" filter="url(#shadow)"/>
+    <text x="0" y="4" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="white" font-weight="bold">R</text>
+    <text x="0" y="28" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="#1a1a2e" font-weight="bold">反应性</text>
+  </g>
+
+  <!-- 标记点 3：主动性 (P) -->
+  <g transform="translate(490, 200)">
+    <circle cx="0" cy="0" r="10" fill="url(#glowGrad)" filter="url(#shadow)"/>
+    <text x="0" y="4" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="white" font-weight="bold">P</text>
+    <text x="0" y="28" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="#1a1a2e" font-weight="bold">主动性</text>
+  </g>
+
+  <!-- 标记点 4：社交能力 (S) -->
+  <g transform="translate(600, 200)">
+    <circle cx="0" cy="0" r="10" fill="url(#glowGrad)" filter="url(#shadow)"/>
+    <text x="0" y="4" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="white" font-weight="bold">S</text>
+    <text x="0" y="28" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="#1a1a2e" font-weight="bold">社交能力</text>
+  </g>
+
+  <!-- 连接线（从箭头到标记点的竖线） -->
+  <line x1="230" y1="190" x2="230" y2="170" stroke="#409EFF" stroke-width="1.5" stroke-dasharray="3,3" opacity="0.5"/>
+  <line x1="360" y1="190" x2="360" y2="170" stroke="#409EFF" stroke-width="1.5" stroke-dasharray="3,3" opacity="0.5"/>
+  <line x1="490" y1="190" x2="490" y2="170" stroke="#409EFF" stroke-width="1.5" stroke-dasharray="3,3" opacity="0.5"/>
+  <line x1="600" y1="190" x2="600" y2="170" stroke="#409EFF" stroke-width="1.5" stroke-dasharray="3,3" opacity="0.5"/>
+
+  <!-- 底部说明区域 -->
+  <g transform="translate(400, 420)">
+    <rect x="-200" y="-15" width="400" height="50" rx="8" fill="white" opacity="0.7"/>
+    <text x="0" y="5" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="#1a1a2e">
+      工具 → 具备自主性、反应性、主动性和社交能力的智能伙伴
+    </text>
+  </g>
+
+  <!-- 颜色渐变指示 -->
+  <g transform="translate(400, 310)">
+    <text x="-180" y="0" text-anchor="start" font-family="Arial, sans-serif" font-size="12" fill="#888">被动</text>
+    <rect x="-160" y="-6" width="320" height="12" rx="6" fill="url(#arrowGrad)"/>
+    <text x="180" y="0" text-anchor="end" font-family="Arial, sans-serif" font-size="12" fill="#409EFF" font-weight="bold">主动</text>
+  </g>
+
+</svg>

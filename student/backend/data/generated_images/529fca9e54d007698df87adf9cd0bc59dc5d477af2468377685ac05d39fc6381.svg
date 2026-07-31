@@ -1,0 +1,204 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="800" height="500">
+  <defs>
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#E8F4FD"/>
+      <stop offset="100%" stop-color="#F0F8FF"/>
+    </linearGradient>
+    <linearGradient id="blueGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#409EFF"/>
+      <stop offset="100%" stop-color="#2B7BE8"/>
+    </linearGradient>
+    <linearGradient id="darkGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#1a1a2e"/>
+      <stop offset="100%" stop-color="#2a2a4e"/>
+    </linearGradient>
+  </defs>
+
+  <!-- 背景 -->
+  <rect width="800" height="500" fill="url(#bgGrad)" rx="12"/>
+
+  <!-- 标题区域 -->
+  <text x="400" y="38" text-anchor="middle" font-family="sans-serif" font-size="20" font-weight="bold" fill="#1a1a2e">提示策略选择决策树</text>
+
+  <!-- 顶部天平图标 -->
+  <g transform="translate(400, 72)">
+    <!-- 天平底座 -->
+    <rect x="-40" y="18" width="80" height="4" rx="2" fill="#1a1a2e"/>
+    <rect x="-6" y="22" width="12" height="10" rx="2" fill="#1a1a2e"/>
+    <!-- 天平横梁 -->
+    <rect x="-70" y="8" width="140" height="4" rx="2" fill="#409EFF"/>
+    <!-- 天平左盘 -->
+    <circle cx="-50" cy="16" r="10" fill="none" stroke="#409EFF" stroke-width="2"/>
+    <line x1="-50" y1="6" x2="-50" y2="12" stroke="#409EFF" stroke-width="1.5"/>
+    <!-- 天平右盘 -->
+    <circle cx="50" cy="16" r="10" fill="none" stroke="#409EFF" stroke-width="2"/>
+    <line x1="50" y1="6" x2="50" y2="12" stroke="#409EFF" stroke-width="1.5"/>
+    <!-- 中央指针 -->
+    <line x1="0" y1="8" x2="0" y2="18" stroke="#1a1a2e" stroke-width="2"/>
+  </g>
+
+  <!-- 分支路径：左侧 - 零样本 -->
+  <g transform="translate(200, 130)">
+    <!-- 路径箭头线 -->
+    <line x1="0" y1="0" x2="0" y2="60" stroke="#409EFF" stroke-width="2.5" stroke-dasharray="6,3"/>
+    <polygon points="0,65 -6,55 6,55" fill="#409EFF"/>
+
+    <!-- 零样本节点 -->
+    <rect x="-55" y="-30" width="110" height="36" rx="18" fill="url(#blueGrad)"/>
+    <text x="0" y="-8" text-anchor="middle" font-family="sans-serif" font-size="15" font-weight="bold" fill="#fff">零样本</text>
+
+    <!-- 直接箭头指向靶心 -->
+    <line x1="0" y1="65" x2="0" y2="110" stroke="#409EFF" stroke-width="2.5"/>
+    <polygon points="0,115 -6,105 6,105" fill="#409EFF"/>
+
+    <!-- 靶心图标 -->
+    <circle cx="0" cy="135" r="18" fill="none" stroke="#409EFF" stroke-width="2"/>
+    <circle cx="0" cy="135" r="10" fill="#409EFF" opacity="0.4"/>
+    <circle cx="0" cy="135" r="4" fill="#409EFF"/>
+
+    <!-- 简洁标签 -->
+    <text x="0" y="168" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#1a1a2e" opacity="0.7">直接·简洁</text>
+  </g>
+
+  <!-- 分支路径：右侧 - 少样本 -->
+  <g transform="translate(600, 130)">
+    <!-- 路径箭头线 -->
+    <line x1="0" y1="0" x2="0" y2="60" stroke="#409EFF" stroke-width="2.5" stroke-dasharray="6,3"/>
+    <polygon points="0,65 -6,55 6,55" fill="#409EFF"/>
+
+    <!-- 少样本节点 -->
+    <rect x="-55" y="-30" width="110" height="36" rx="18" fill="url(#darkGrad)"/>
+    <text x="0" y="-8" text-anchor="middle" font-family="sans-serif" font-size="15" font-weight="bold" fill="#fff">少样本</text>
+
+    <!-- 示例卡片 -->
+    <rect x="-40" y="72" width="30" height="22" rx="3" fill="#409EFF" opacity="0.3"/>
+    <rect x="-20" y="76" width="30" height="22" rx="3" fill="#409EFF" opacity="0.5"/>
+    <rect x="0" y="80" width="30" height="22" rx="3" fill="#409EFF" opacity="0.7"/>
+    <rect x="20" y="84" width="30" height="22" rx="3" fill="#409EFF"/>
+
+    <!-- 汇聚箭头 -->
+    <line x1="-25" y1="94" x2="0" y2="115" stroke="#409EFF" stroke-width="1.5"/>
+    <line x1="0" y1="94" x2="0" y2="115" stroke="#409EFF" stroke-width="1.5"/>
+    <line x1="25" y1="94" x2="0" y2="115" stroke="#409EFF" stroke-width="1.5"/>
+    <line x1="0" y1="115" x2="0" y2="125" stroke="#409EFF" stroke-width="2.5"/>
+    <polygon points="0,130 -6,120 6,120" fill="#409EFF"/>
+
+    <!-- 靶心图标 -->
+    <circle cx="0" cy="150" r="18" fill="none" stroke="#409EFF" stroke-width="2"/>
+    <circle cx="0" cy="150" r="10" fill="#409EFF" opacity="0.4"/>
+    <circle cx="0" cy="150" r="4" fill="#409EFF"/>
+
+    <!-- 示例标签 -->
+    <text x="0" y="183" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#1a1a2e" opacity="0.7">示例驱动</text>
+  </g>
+
+  <!-- 中央连接线 -->
+  <line x1="200" y1="130" x2="600" y2="130" stroke="#409EFF" stroke-width="1" opacity="0.3"/>
+  <line x1="200" y1="200" x2="600" y2="200" stroke="#409EFF" stroke-width="1" opacity="0.3"/>
+
+  <!-- 分隔线 -->
+  <line x1="60" y1="230" x2="740" y2="230" stroke="#409EFF" stroke-width="1" opacity="0.3"/>
+
+  <!-- 底部维度对比区域标题 -->
+  <text x="400" y="260" text-anchor="middle" font-family="sans-serif" font-size="16" font-weight="bold" fill="#1a1a2e">六维判断标准</text>
+
+  <!-- 六维对比图标行 -->
+  <!-- 维度1：任务新颖性 -->
+  <g transform="translate(130, 300)">
+    <rect x="-30" y="-12" width="60" height="24" rx="12" fill="#E8F4FD" stroke="#409EFF" stroke-width="1"/>
+    <text x="0" y="4" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#409EFF">新颖性</text>
+    <!-- 星星图标 -->
+    <polygon points="0,24 -4,34 -12,34 -6,40 -8,48 0,44 8,48 6,40 12,34 4,34" fill="#409EFF" opacity="0.6" transform="scale(0.6)"/>
+  </g>
+
+  <!-- 维度2：模型能力 -->
+  <g transform="translate(260, 300)">
+    <rect x="-30" y="-12" width="60" height="24" rx="12" fill="#E8F4FD" stroke="#409EFF" stroke-width="1"/>
+    <text x="0" y="4" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#409EFF">模型能力</text>
+    <!-- 大脑图标简化 -->
+    <circle cx="0" cy="24" r="8" fill="none" stroke="#409EFF" stroke-width="1.5" opacity="0.6"/>
+    <path d="M-4,24 Q0,18 4,24" fill="none" stroke="#409EFF" stroke-width="1" opacity="0.6"/>
+  </g>
+
+  <!-- 维度3：输出格式 -->
+  <g transform="translate(390, 300)">
+    <rect x="-30" y="-12" width="60" height="24" rx="12" fill="#E8F4FD" stroke="#409EFF" stroke-width="1"/>
+    <text x="0" y="4" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#409EFF">输出格式</text>
+    <!-- 文档图标 -->
+    <rect x="-6" y="20" width="12" height="14" rx="2" fill="none" stroke="#409EFF" stroke-width="1.5" opacity="0.6"/>
+    <line x1="-3" y1="24" x2="3" y2="24" stroke="#409EFF" stroke-width="1" opacity="0.6"/>
+    <line x1="-3" y1="28" x2="3" y2="28" stroke="#409EFF" stroke-width="1" opacity="0.6"/>
+  </g>
+
+  <!-- 维度4：成本敏感 -->
+  <g transform="translate(520, 300)">
+    <rect x="-30" y="-12" width="60" height="24" rx="12" fill="#E8F4FD" stroke="#409EFF" stroke-width="1"/>
+    <text x="0" y="4" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#409EFF">成本敏感</text>
+    <!-- 钱袋图标 -->
+    <circle cx="0" cy="24" r="7" fill="none" stroke="#409EFF" stroke-width="1.5" opacity="0.6"/>
+    <text x="0" y="27" text-anchor="middle" font-size="8" fill="#409EFF" opacity="0.6">$</text>
+  </g>
+
+  <!-- 维度5：稳定性 -->
+  <g transform="translate(650, 300)">
+    <rect x="-30" y="-12" width="60" height="24" rx="12" fill="#E8F4FD" stroke="#409EFF" stroke-width="1"/>
+    <text x="0" y="4" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#409EFF">稳定性</text>
+    <!-- 盾牌图标 -->
+    <path d="M0,20 L8,24 L8,30 Q8,36 0,40 Q-8,36 -8,30 L-8,24 Z" fill="none" stroke="#409EFF" stroke-width="1.5" opacity="0.6"/>
+  </g>
+
+  <!-- 维度6：多样性 -->
+  <g transform="translate(130, 370)">
+    <rect x="-30" y="-12" width="60" height="24" rx="12" fill="#E8F4FD" stroke="#409EFF" stroke-width="1"/>
+    <text x="0" y="4" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#409EFF">多样性</text>
+    <!-- 多彩方块 -->
+    <rect x="-8" y="20" width="6" height="6" rx="1" fill="#409EFF" opacity="0.4"/>
+    <rect x="0" y="20" width="6" height="6" rx="1" fill="#409EFF" opacity="0.6"/>
+    <rect x="6" y="20" width="6" height="6" rx="1" fill="#409EFF" opacity="0.8"/>
+  </g>
+
+  <!-- 维度标签补充（第二行右侧） -->
+  <g transform="translate(260, 370)">
+    <rect x="-30" y="-12" width="60" height="24" rx="12" fill="#E8F4FD" stroke="#409EFF" stroke-width="1"/>
+    <text x="0" y="4" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#409EFF">任务类型</text>
+    <!-- 齿轮图标 -->
+    <circle cx="0" cy="24" r="6" fill="none" stroke="#409EFF" stroke-width="1.5" opacity="0.6"/>
+    <circle cx="0" cy="24" r="2" fill="#409EFF" opacity="0.4"/>
+  </g>
+
+  <g transform="translate(390, 370)">
+    <rect x="-30" y="-12" width="60" height="24" rx="12" fill="#E8F4FD" stroke="#409EFF" stroke-width="1"/>
+    <text x="0" y="4" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#409EFF">数据需求</text>
+    <!-- 数据库图标 -->
+    <ellipse cx="0" cy="22" rx="7" ry="3" fill="none" stroke="#409EFF" stroke-width="1.5" opacity="0.6"/>
+    <line x1="-7" y1="22" x2="-7" y2="28" stroke="#409EFF" stroke-width="1" opacity="0.6"/>
+    <line x1="7" y1="22" x2="7" y2="28" stroke="#409EFF" stroke-width="1" opacity="0.6"/>
+    <ellipse cx="0" cy="28" rx="7" ry="3" fill="none" stroke="#409EFF" stroke-width="1.5" opacity="0.6"/>
+  </g>
+
+  <g transform="translate(520, 370)">
+    <rect x="-30" y="-12" width="60" height="24" rx="12" fill="#E8F4FD" stroke="#409EFF" stroke-width="1"/>
+    <text x="0" y="4" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#409EFF">可解释性</text>
+    <!-- 放大镜图标 -->
+    <circle cx="-2" cy="24" r="5" fill="none" stroke="#409EFF" stroke-width="1.5" opacity="0.6"/>
+    <line x1="2" y1="28" x2="6" y2="32" stroke="#409EFF" stroke-width="1.5" opacity="0.6"/>
+  </g>
+
+  <g transform="translate(650, 370)">
+    <rect x="-30" y="-12" width="60" height="24" rx="12" fill="#E8F4FD" stroke="#409EFF" stroke-width="1"/>
+    <text x="0" y="4" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#409EFF">部署难度</text>
+    <!-- 箭头上升 -->
+    <line x1="-6" y1="30" x2="0" y2="22" stroke="#409EFF" stroke-width="1.5" opacity="0.6"/>
+    <line x1="0" y1="22" x2="6" y2="30" stroke="#409EFF" stroke-width="1.5" opacity="0.6"/>
+    <polygon points="0,20 -3,24 3,24" fill="#409EFF" opacity="0.6"/>
+  </g>
+
+  <!-- 底部提示文字 -->
+  <text x="400" y="440" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#1a1a2e" opacity="0.5">根据任务需求，在零样本与少样本之间权衡选择</text>
+
+  <!-- 装饰性圆点 -->
+  <circle cx="70" cy="70" r="3" fill="#409EFF" opacity="0.15"/>
+  <circle cx="730" cy="70" r="3" fill="#409EFF" opacity="0.15"/>
+  <circle cx="70" cy="430" r="3" fill="#409EFF" opacity="0.15"/>
+  <circle cx="730" cy="430" r="3" fill="#409EFF" opacity="0.15"/>
+</svg>

@@ -1,0 +1,335 @@
+[
+  {
+    "category": "智能体基础概念",
+    "description": "AI智能体的基本概念与核心特征，是所有后续学习的基础",
+    "prerequisites": [],
+    "tags": [
+      {
+        "name": "AI智能体定义",
+        "difficulty": "Lv1入门",
+        "description": "理解AI智能体的基本定义与核心特征",
+        "prerequisites": []
+      },
+      {
+        "name": "智能体核心特征",
+        "difficulty": "Lv1入门",
+        "description": "自主性、反应性、主动性、社交能力四大特征",
+        "prerequisites": [
+          "AI智能体定义"
+        ]
+      },
+      {
+        "name": "智能体分类",
+        "difficulty": "Lv1入门",
+        "description": "掌握反应式、慎思式、混合式智能体的分类",
+        "prerequisites": [
+          "AI智能体定义"
+        ]
+      },
+      {
+        "name": "智能体与大模型区别",
+        "difficulty": "Lv2中等",
+        "description": "辨析AI智能体与大语言模型的本质差异",
+        "prerequisites": [
+          "AI智能体定义",
+          "智能体核心特征"
+        ]
+      },
+      {
+        "name": "智能体应用边界",
+        "difficulty": "Lv2中等",
+        "description": "了解AI智能体的能力范围与局限性",
+        "prerequisites": [
+          "智能体与大模型区别"
+        ]
+      },
+      {
+        "name": "智能体架构设计",
+        "difficulty": "Lv3高阶",
+        "description": "掌握AI智能体的整体架构设计理念",
+        "prerequisites": [
+          "智能体核心特征",
+          "智能体应用边界"
+        ]
+      }
+    ]
+  },
+  {
+    "category": "大模型基座原理",
+    "description": "理解大语言模型的基础原理，是学习提示词工程和Agent开发的前提",
+    "prerequisites": [
+      "智能体基础概念"
+    ],
+    "tags": [
+      {
+        "name": "LLM上下文窗口",
+        "difficulty": "Lv1入门",
+        "description": "理解大语言模型的上下文窗口机制",
+        "prerequisites": []
+      },
+      {
+        "name": "Transformer架构",
+        "difficulty": "Lv3高阶",
+        "description": "理解Transformer的核心架构设计（编码器-解码器、自注意力、位置编码）",
+        "prerequisites": [
+          "LLM上下文窗口"
+        ]
+      },
+      {
+        "name": "预训练与微调",
+        "difficulty": "Lv2中等",
+        "description": "了解LLM的预训练和微调范式，以及LoRA等高效微调方法",
+        "prerequisites": [
+          "Transformer架构"
+        ]
+      },
+      {
+        "name": "模型参数能力",
+        "difficulty": "Lv2中等",
+        "description": "模型参数量与能力的关系、涌现能力、Scaling Law",
+        "prerequisites": [
+          "预训练与微调"
+        ]
+      },
+      {
+        "name": "推理机制",
+        "difficulty": "Lv3高阶",
+        "description": "深入理解LLM的推理链路、KV Cache、推测解码等优化技术",
+        "prerequisites": [
+          "Transformer架构",
+          "模型参数能力"
+        ]
+      },
+      {
+        "name": "模型局限性",
+        "difficulty": "Lv2中等",
+        "description": "幻觉问题、知识截止、推理偏差、偏见等局限及应对策略",
+        "prerequisites": [
+          "推理机制"
+        ]
+      }
+    ]
+  },
+  {
+    "category": "提示词工程",
+    "description": "掌握与大语言模型高效交互的技术，是开发Agent的必要技能",
+    "prerequisites": [
+      "大模型基座原理"
+    ],
+    "tags": [
+      {
+        "name": "零样本提示",
+        "difficulty": "Lv1入门",
+        "description": "掌握零样本提示的基本用法与适用场景",
+        "prerequisites": []
+      },
+      {
+        "name": "角色提示",
+        "difficulty": "Lv1入门",
+        "description": "通过角色设定引导模型行为与输出风格",
+        "prerequisites": [
+          "零样本提示"
+        ]
+      },
+      {
+        "name": "少样本提示",
+        "difficulty": "Lv2中等",
+        "description": "通过示例引导模型输出格式与内容的技术",
+        "prerequisites": [
+          "零样本提示"
+        ]
+      },
+      {
+        "name": "结构化输出提示",
+        "difficulty": "Lv2中等",
+        "description": "控制模型输出JSON、XML等结构化格式的方法",
+        "prerequisites": [
+          "少样本提示"
+        ]
+      },
+      {
+        "name": "思维链Prompt",
+        "difficulty": "Lv3高阶",
+        "description": "Chain-of-Thought推理提示设计，引导模型逐步思考",
+        "prerequisites": [
+          "少样本提示",
+          "结构化输出提示"
+        ]
+      },
+      {
+        "name": "Prompt优化技巧",
+        "difficulty": "Lv3高阶",
+        "description": "高级提示词优化、调试与自动化Prompt生成方法",
+        "prerequisites": [
+          "思维链Prompt"
+        ]
+      }
+    ]
+  },
+  {
+    "category": "智能体框架开发",
+    "description": "学习AI Agent的主流开发框架和核心技术组件",
+    "prerequisites": [
+      "提示词工程"
+    ],
+    "tags": [
+      {
+        "name": "框架基础",
+        "difficulty": "Lv1入门",
+        "description": "了解LangChain、LangGraph、Coze、AutoGen等主流Agent框架",
+        "prerequisites": []
+      },
+      {
+        "name": "Agent运行机制",
+        "difficulty": "Lv2中等",
+        "description": "理解AI智能体的运行循环（感知-规划-执行）与生命周期管理",
+        "prerequisites": [
+          "框架基础"
+        ]
+      },
+      {
+        "name": "记忆模块",
+        "difficulty": "Lv2中等",
+        "description": "短期记忆与长期记忆的设计与实现，向量数据库集成",
+        "prerequisites": [
+          "Agent运行机制"
+        ]
+      },
+      {
+        "name": "行动-工具调用FunctionCalling",
+        "difficulty": "Lv3高阶",
+        "description": "掌握Function Calling、MCP协议、工具定义与注册",
+        "prerequisites": [
+          "Agent运行机制"
+        ]
+      },
+      {
+        "name": "规划-任务分解",
+        "difficulty": "Lv3高阶",
+        "description": "任务分解与执行规划的核心算法，Plan-and-Execute模式",
+        "prerequisites": [
+          "工具调用ToolUse",
+          "记忆模块"
+        ]
+      },
+      {
+        "name": "多模态智能体",
+        "difficulty": "Lv3高阶",
+        "description": "处理文本、图像、语音的多模态Agent设计与实现",
+        "prerequisites": [
+          "规划模块"
+        ]
+      }
+    ]
+  },
+  {
+    "category": "智能体算法逻辑",
+    "description": "深入Agent内部算法，掌握推理、决策、反思等核心逻辑",
+    "prerequisites": [
+      "智能体框架开发"
+    ],
+    "tags": [
+      {
+        "name": "任务拆解逻辑",
+        "difficulty": "Lv2中等",
+        "description": "复杂任务自动分解为子任务的逻辑与策略",
+        "prerequisites": []
+      },
+      {
+        "name": "推理链路算法",
+        "difficulty": "Lv3高阶",
+        "description": "多步推理链路的算法设计，ReAct模式详解",
+        "prerequisites": [
+          "任务拆解逻辑"
+        ]
+      },
+      {
+        "name": "知识检索增强",
+        "difficulty": "Lv2中等",
+        "description": "RAG技术在智能体中的应用，检索增强生成",
+        "prerequisites": [
+          "任务拆解逻辑"
+        ]
+      },
+      {
+        "name": "自主决策算法",
+        "difficulty": "Lv3高阶",
+        "description": "ReAct、Plan-Act、Tree-of-Thought等决策算法的原理与对比",
+        "prerequisites": [
+          "推理链路算法"
+        ]
+      },
+      {
+        "name": "反思迭代机制",
+        "difficulty": "Lv2中等",
+        "description": "自我反思与迭代优化的算法实现，Reflection模式",
+        "prerequisites": [
+          "自主决策算法"
+        ]
+      },
+      {
+        "name": "强化学习与智能体",
+        "difficulty": "Lv3高阶",
+        "description": "RLHF与智能体训练的关联，基于人类反馈的强化学习",
+        "prerequisites": [
+          "反思迭代机制"
+        ]
+      }
+    ]
+  },
+  {
+    "category": "多智能体应用",
+    "description": "多个AI Agent协同工作的系统设计与实际应用",
+    "prerequisites": [
+      "智能体算法逻辑"
+    ],
+    "tags": [
+      {
+        "name": "场景落地实践",
+        "difficulty": "Lv1入门",
+        "description": "多智能体在客服、教育、软件开发等场景的应用案例",
+        "prerequisites": []
+      },
+      {
+        "name": "多Agent协作",
+        "difficulty": "Lv2中等",
+        "description": "多个AI智能体协同工作的机制与模式",
+        "prerequisites": [
+          "场景落地实践"
+        ]
+      },
+      {
+        "name": "分工机制",
+        "difficulty": "Lv2中等",
+        "description": "智能体角色分配与任务分工策略，CrewAI角色设计",
+        "prerequisites": [
+          "多Agent协作"
+        ]
+      },
+      {
+        "name": "通信协议设计",
+        "difficulty": "Lv3高阶",
+        "description": "智能体间的消息传递与通信协议，A2A协议",
+        "prerequisites": [
+          "分工机制"
+        ]
+      },
+      {
+        "name": "冲突解决逻辑",
+        "difficulty": "Lv3高阶",
+        "description": "多智能体意见不一致时的投票、仲裁、协商解决机制",
+        "prerequisites": [
+          "通信协议设计"
+        ]
+      },
+      {
+        "name": "多智能体系统架构",
+        "difficulty": "Lv3高阶",
+        "description": "大规模多智能体系统的整体架构、部署与监控",
+        "prerequisites": [
+          "冲突解决逻辑"
+        ]
+      }
+    ]
+  }
+]

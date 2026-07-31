@@ -1,0 +1,157 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="800" height="500">
+  <defs>
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#E8F4FD"/>
+      <stop offset="100%" stop-color="#F0F8FF"/>
+    </linearGradient>
+    <linearGradient id="blueGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#60B0FF"/>
+      <stop offset="100%" stop-color="#409EFF"/>
+    </linearGradient>
+    <linearGradient id="darkGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#2a2a4e"/>
+      <stop offset="100%" stop-color="#1a1a2e"/>
+    </linearGradient>
+    <filter id="shadow" x="-2" y="-2" width="8" height="8">
+      <feDropShadow dx="0" dy="1" stdDeviation="2" flood-color="#00000018"/>
+    </filter>
+  </defs>
+
+  <!-- 背景 -->
+  <rect width="800" height="500" fill="url(#bgGrad)" rx="8"/>
+
+  <!-- 标题 -->
+  <text x="400" y="38" text-anchor="middle" font-family="sans-serif" font-size="20" font-weight="bold" fill="#1a1a2e">三种架构模式对比</text>
+
+  <!-- ==================== 左侧：集中式 ==================== -->
+  <!-- 区域标题 -->
+  <rect x="20" y="55" width="240" height="32" rx="6" fill="#409EFF" filter="url(#shadow)"/>
+  <text x="140" y="76" text-anchor="middle" font-family="sans-serif" font-size="15" font-weight="bold" fill="#fff">集中式架构</text>
+
+  <!-- 编排器（中心节点） -->
+  <rect x="90" y="105" width="100" height="34" rx="17" fill="url(#blueGrad)" filter="url(#shadow)"/>
+  <text x="140" y="126" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="bold" fill="#fff">编排器</text>
+
+  <!-- 连接线：编排器 → 智能体 -->
+  <line x1="140" y1="139" x2="140" y2="175" stroke="#409EFF" stroke-width="2"/>
+  <line x1="140" y1="139" x2="80" y2="175" stroke="#409EFF" stroke-width="2"/>
+  <line x1="140" y1="139" x2="200" y2="175" stroke="#409EFF" stroke-width="2"/>
+
+  <!-- 智能体节点 -->
+  <rect x="100" y="175" width="80" height="30" rx="15" fill="#E8F4FD" stroke="#409EFF" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="140" y="195" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#1a1a2e">智能体 1</text>
+
+  <rect x="40" y="220" width="80" height="30" rx="15" fill="#E8F4FD" stroke="#409EFF" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="80" y="240" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#1a1a2e">智能体 2</text>
+
+  <rect x="160" y="220" width="80" height="30" rx="15" fill="#E8F4FD" stroke="#409EFF" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="200" y="240" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#1a1a2e">智能体 3</text>
+
+  <!-- 连接线：编排器 → 智能体 2/3 -->
+  <line x1="140" y1="139" x2="80" y2="220" stroke="#409EFF" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <line x1="140" y1="139" x2="200" y2="220" stroke="#409EFF" stroke-width="1.5" stroke-dasharray="4,3"/>
+
+  <!-- 优缺点标注 -->
+  <text x="140" y="278" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#1a1a2e">✓ 控制简单</text>
+  <text x="140" y="296" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#1a1a2e">✗ 单点故障</text>
+  <text x="140" y="314" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#1a1a2e">✗ 扩展性差</text>
+
+  <!-- ==================== 中间：去中心化 ==================== -->
+  <rect x="280" y="55" width="240" height="32" rx="6" fill="#409EFF" filter="url(#shadow)"/>
+  <text x="400" y="76" text-anchor="middle" font-family="sans-serif" font-size="15" font-weight="bold" fill="#fff">去中心化架构</text>
+
+  <!-- 网格节点（网状拓扑） -->
+  <!-- 节点位置：上、左、右、下 -->
+  <circle cx="400" cy="120" r="18" fill="url(#blueGrad)" filter="url(#shadow)"/>
+  <text x="400" y="125" text-anchor="middle" font-family="sans-serif" font-size="12" font-weight="bold" fill="#fff">A</text>
+
+  <circle cx="340" cy="180" r="18" fill="url(#blueGrad)" filter="url(#shadow)"/>
+  <text x="340" y="185" text-anchor="middle" font-family="sans-serif" font-size="12" font-weight="bold" fill="#fff">B</text>
+
+  <circle cx="460" cy="180" r="18" fill="url(#blueGrad)" filter="url(#shadow)"/>
+  <text x="460" y="185" text-anchor="middle" font-family="sans-serif" font-size="12" font-weight="bold" fill="#fff">C</text>
+
+  <circle cx="400" cy="240" r="18" fill="url(#blueGrad)" filter="url(#shadow)"/>
+  <text x="400" y="245" text-anchor="middle" font-family="sans-serif" font-size="12" font-weight="bold" fill="#fff">D</text>
+
+  <!-- 全连接线 -->
+  <line x1="400" y1="120" x2="340" y2="180" stroke="#409EFF" stroke-width="1.5"/>
+  <line x1="400" y1="120" x2="460" y2="180" stroke="#409EFF" stroke-width="1.5"/>
+  <line x1="400" y1="120" x2="400" y2="240" stroke="#409EFF" stroke-width="1.5"/>
+  <line x1="340" y1="180" x2="460" y2="180" stroke="#409EFF" stroke-width="1.5"/>
+  <line x1="340" y1="180" x2="400" y2="240" stroke="#409EFF" stroke-width="1.5"/>
+  <line x1="460" y1="180" x2="400" y2="240" stroke="#409EFF" stroke-width="1.5"/>
+
+  <!-- 优缺点标注 -->
+  <text x="400" y="278" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#1a1a2e">✓ 高可用</text>
+  <text x="400" y="296" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#1a1a2e">✓ 无单点故障</text>
+  <text x="400" y="314" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#1a1a2e">✗ 协调复杂</text>
+
+  <!-- ==================== 右侧：混合架构（推荐） ==================== -->
+  <rect x="540" y="55" width="240" height="32" rx="6" fill="#1a1a2e" filter="url(#shadow)"/>
+  <text x="660" y="76" text-anchor="middle" font-family="sans-serif" font-size="15" font-weight="bold" fill="#fff">混合架构（推荐）</text>
+
+  <!-- 全局协调层 -->
+  <rect x="600" y="105" width="120" height="28" rx="14" fill="#1a1a2e" filter="url(#shadow)"/>
+  <text x="660" y="123" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#fff">全局协调层</text>
+
+  <!-- 连接线 -->
+  <line x1="660" y1="133" x2="660" y2="155" stroke="#1a1a2e" stroke-width="1.5"/>
+  <line x1="660" y1="133" x2="580" y2="155" stroke="#1a1a2e" stroke-width="1.5"/>
+  <line x1="660" y1="133" x2="740" y2="155" stroke="#1a1a2e" stroke-width="1.5"/>
+
+  <!-- 领域协调器 A/B/C -->
+  <rect x="610" y="155" width="100" height="26" rx="13" fill="#409EFF" filter="url(#shadow)"/>
+  <text x="660" y="172" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#fff">领域协调器 A</text>
+
+  <rect x="530" y="195" width="100" height="26" rx="13" fill="#409EFF" filter="url(#shadow)"/>
+  <text x="580" y="212" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#fff">领域协调器 B</text>
+
+  <rect x="690" y="195" width="100" height="26" rx="13" fill="#409EFF" filter="url(#shadow)"/>
+  <text x="740" y="212" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#fff">领域协调器 C</text>
+
+  <!-- 连接线：领域协调器 → 智能体 -->
+  <line x1="660" y1="181" x2="660" y2="240" stroke="#409EFF" stroke-width="1.5"/>
+  <line x1="660" y1="181" x2="600" y2="240" stroke="#409EFF" stroke-width="1.5"/>
+  <line x1="660" y1="181" x2="720" y2="240" stroke="#409EFF" stroke-width="1.5"/>
+
+  <line x1="580" y1="221" x2="580" y2="240" stroke="#409EFF" stroke-width="1.5"/>
+  <line x1="580" y1="221" x2="520" y2="240" stroke="#409EFF" stroke-width="1.5"/>
+  <line x1="580" y1="221" x2="640" y2="240" stroke="#409EFF" stroke-width="1.5"/>
+
+  <line x1="740" y1="221" x2="740" y2="240" stroke="#409EFF" stroke-width="1.5"/>
+  <line x1="740" y1="221" x2="680" y2="240" stroke="#409EFF" stroke-width="1.5"/>
+  <line x1="740" y1="221" x2="800" y2="240" stroke="#409EFF" stroke-width="1.5"/>
+
+  <!-- 智能体节点（每个领域下 2-3 个） -->
+  <rect x="625" y="240" width="70" height="24" rx="12" fill="#E8F4FD" stroke="#409EFF" stroke-width="1.2"/>
+  <text x="660" y="256" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#1a1a2e">智能体</text>
+
+  <rect x="565" y="240" width="70" height="24" rx="12" fill="#E8F4FD" stroke="#409EFF" stroke-width="1.2"/>
+  <text x="600" y="256" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#1a1a2e">智能体</text>
+
+  <rect x="685" y="240" width="70" height="24" rx="12" fill="#E8F4FD" stroke="#409EFF" stroke-width="1.2"/>
+  <text x="720" y="256" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#1a1a2e">智能体</text>
+
+  <rect x="545" y="272" width="70" height="24" rx="12" fill="#E8F4FD" stroke="#409EFF" stroke-width="1.2"/>
+  <text x="580" y="288" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#1a1a2e">智能体</text>
+
+  <rect x="605" y="272" width="70" height="24" rx="12" fill="#E8F4FD" stroke="#409EFF" stroke-width="1.2"/>
+  <text x="640" y="288" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#1a1a2e">智能体</text>
+
+  <rect x="705" y="272" width="70" height="24" rx="12" fill="#E8F4FD" stroke="#409EFF" stroke-width="1.2"/>
+  <text x="740" y="288" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#1a1a2e">智能体</text>
+
+  <!-- 优缺点标注 -->
+  <text x="660" y="318" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#1a1a2e">✓ 平衡控制与扩展</text>
+  <text x="660" y="336" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#1a1a2e">✓ 领域隔离</text>
+  <text x="660" y="354" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#1a1a2e">✓ 推荐用于复杂系统</text>
+
+  <!-- ==================== 底部说明 ==================== -->
+  <rect x="20" y="380" width="760" height="100" rx="8" fill="#fff" stroke="#409EFF" stroke-width="1" opacity="0.9" filter="url(#shadow)"/>
+  <text x="40" y="405" font-family="sans-serif" font-size="14" font-weight="bold" fill="#1a1a2e">架构选型建议：</text>
+  <text x="40" y="428" font-family="sans-serif" font-size="13" fill="#1a1a2e">• 集中式：适用于小规模系统，控制简单但存在单点故障风险</text>
+  <text x="40" y="448" font-family="sans-serif" font-size="13" fill="#1a1a2e">• 去中心化：适用于高可用场景，但节点间协调复杂</text>
+  <text x="40" y="468" font-family="sans-serif" font-size="13" fill="#1a1a2e">• 混合架构：结合两者优点，通过领域协调实现平衡，推荐用于企业级系统</text>
+
+</svg>

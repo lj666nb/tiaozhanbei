@@ -1,0 +1,63 @@
+# ===== 依赖 =====
+node_modules/
+__pycache__/
+*.pyc
+*.pyo
+.playwright-mcp
+
+# ===== 构建产物 =====
+dist/
+.vite/
+*.zip
+
+# ===== 数据库 =====
+*.db
+*.sqlite
+*.sqlite3
+
+# ===== Python =====
+.venv/
+venv/
+*.egg-info/
+.eggs/
+
+# ===== 备份文件 =====
+*.bak
+
+# ===== 日志 =====
+debug.log
+*.log
+
+# ===== 临时文件 =====
+tmp_*.json
+*.tmp
+
+# ===== IDE =====
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# ===== OS =====
+.DS_Store
+Thumbs.db
+
+# ===== 环境变量 =====
+.env
+.env.local
+.env.*.local
+
+# ===== Claude =====
+.claude/settings.local.json
+
+# ===== 大文件/数据文件 =====
+*.pdf
+*.bin
+*.pickle
+**/chroma_db/
+**/dataset/backup/
+**/hub/
+
+# ===== Docker =====
+docker-compose.override.yml

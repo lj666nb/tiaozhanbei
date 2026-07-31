@@ -1,0 +1,63 @@
+# ===== 依赖 =====
+node_modules/
+__pycache__/
+*.pyc
+*.pyo
+.playwright-mcp
+
+# ===== 构建产物 =====
+dist/
+.vite/
+*.zip
+
+pdf
+
+hub
+
+*.png
+
+# ===== 备份文件 =====
+*.bak
+
+# ===== 数据库 =====
+*.db
+*.sqlite
+*.sqlite3
+
+# ===== 运行时生成 =====
+backend/data/generated_images/*
+!backend/data/generated_images/*.svg
+
+# ===== 日志 =====
+debug.log
+*.log
+
+.venv
+
+# ===== 临时文件 =====
+tmp_*.json
+*.tmp
+
+# ===== IDE =====
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# ===== OS =====
+.DS_Store
+Thumbs.db
+
+# ===== 环境变量（防止泄露密钥） =====
+.env
+.env.local
+.env.*.local
+backend/data/.jwt-secret
+
+# ===== Claude settings (local) =====
+.claude/settings.local.json
+
+# ===== Python =====
+*.egg-info/
+.eggs/

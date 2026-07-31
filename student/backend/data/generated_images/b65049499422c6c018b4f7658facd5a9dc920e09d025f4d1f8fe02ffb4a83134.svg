@@ -1,0 +1,171 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="800" height="500">
+  <defs>
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#f0f6ff"/>
+      <stop offset="100%" stop-color="#e0edff"/>
+    </linearGradient>
+    <linearGradient id="boxGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="100%" stop-color="#f5f9ff"/>
+    </linearGradient>
+  </defs>
+
+  <!-- 背景 -->
+  <rect width="800" height="500" fill="url(#bgGrad)" rx="8"/>
+
+  <!-- 标题 -->
+  <text x="400" y="32" text-anchor="middle" font-family="sans-serif" font-size="18" font-weight="bold" fill="#1a1a2e">局部重规划 vs 全局重规划</text>
+
+  <!-- ========== 上方面板：局部重规划 ========== -->
+  <rect x="30" y="50" width="480" height="175" fill="url(#boxGrad)" stroke="#1a1a2e" stroke-width="1.5" rx="6"/>
+  <text x="45" y="75" font-family="sans-serif" font-size="15" font-weight="bold" fill="#1a1a2e">局部重规划</text>
+
+  <!-- 步骤序列 -->
+  <!-- Step1 完成 -->
+  <rect x="45" y="95" width="70" height="36" rx="4" fill="#e8f5e9" stroke="#4caf50" stroke-width="1.2"/>
+  <text x="80" y="117" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#2e7d32">Step1 ✓</text>
+
+  <!-- 箭头1 -->
+  <polygon points="120,113 130,108 130,118" fill="#1a1a2e"/>
+
+  <!-- Step2 完成 -->
+  <rect x="135" y="95" width="70" height="36" rx="4" fill="#e8f5e9" stroke="#4caf50" stroke-width="1.2"/>
+  <text x="170" y="117" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#2e7d32">Step2 ✓</text>
+
+  <!-- 箭头2 -->
+  <polygon points="210,113 220,108 220,118" fill="#1a1a2e"/>
+
+  <!-- Step3 失败 -->
+  <rect x="225" y="95" width="70" height="36" rx="4" fill="#ffebee" stroke="#f44336" stroke-width="1.2"/>
+  <text x="260" y="117" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#c62828">Step3 ✗</text>
+
+  <!-- 替换箭头 -->
+  <polygon points="300,113 310,108 310,118" fill="#409EFF"/>
+
+  <!-- Step3' 新 -->
+  <rect x="315" y="95" width="75" height="36" rx="4" fill="#e3f2fd" stroke="#409EFF" stroke-width="1.5"/>
+  <text x="352" y="117" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#409EFF" font-weight="bold">Step3' 新</text>
+
+  <!-- 箭头3 -->
+  <polygon points="395,113 405,108 405,118" fill="#1a1a2e"/>
+
+  <!-- Step4 保留 -->
+  <rect x="410" y="95" width="70" height="36" rx="4" fill="#f5f5f5" stroke="#9e9e9e" stroke-width="1.2"/>
+  <text x="445" y="117" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#616161">Step4 保留</text>
+
+  <!-- 箭头4 -->
+  <polygon points="485,113 490,108 490,118" fill="#1a1a2e"/>
+
+  <!-- Step5 保留 -->
+  <rect x="495" y="95" width="70" height="36" rx="4" fill="#f5f5f5" stroke="#9e9e9e" stroke-width="1.2"/>
+  <text x="530" y="117" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#616161">Step5 保留</text>
+
+  <!-- 说明文字 -->
+  <text x="45" y="155" font-family="sans-serif" font-size="13" fill="#1a1a2e">失败步骤被替换，后续步骤保持不变</text>
+
+  <!-- 图例 -->
+  <rect x="45" y="170" width="12" height="12" rx="2" fill="#e3f2fd" stroke="#409EFF" stroke-width="1"/>
+  <text x="62" y="181" font-family="sans-serif" font-size="11" fill="#1a1a2e">新计划元素</text>
+
+  <!-- ========== 下方面板：全局重规划 ========== -->
+  <rect x="30" y="250" width="480" height="175" fill="url(#boxGrad)" stroke="#1a1a2e" stroke-width="1.5" rx="6"/>
+  <text x="45" y="275" font-family="sans-serif" font-size="15" font-weight="bold" fill="#1a1a2e">全局重规划</text>
+
+  <!-- 步骤序列 -->
+  <!-- Step1 完成 -->
+  <rect x="45" y="295" width="70" height="36" rx="4" fill="#e8f5e9" stroke="#4caf50" stroke-width="1.2"/>
+  <text x="80" y="317" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#2e7d32">Step1 ✓</text>
+
+  <!-- 箭头 -->
+  <polygon points="120,313 130,308 130,318" fill="#1a1a2e"/>
+
+  <!-- Step2 完成 -->
+  <rect x="135" y="295" width="70" height="36" rx="4" fill="#e8f5e9" stroke="#4caf50" stroke-width="1.2"/>
+  <text x="170" y="317" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#2e7d32">Step2 ✓</text>
+
+  <!-- 跳过大箭头 -->
+  <line x1="210" y1="295" x2="210" y2="331" stroke="#f44336" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <polygon points="210,333 205,325 215,325" fill="#f44336"/>
+  <text x="220" y="325" font-family="sans-serif" font-size="11" fill="#f44336">跳过</text>
+
+  <!-- 全部重新生成区域 -->
+  <rect x="225" y="290" width="340" height="46" rx="5" fill="#e3f2fd" stroke="#409EFF" stroke-width="1.5" stroke-dasharray="5,3"/>
+  <text x="395" y="308" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#409EFF" font-weight="bold">全部重新生成</text>
+
+  <!-- 新步骤3-5 -->
+  <rect x="240" y="300" width="65" height="30" rx="4" fill="#e3f2fd" stroke="#409EFF" stroke-width="1.2"/>
+  <text x="272" y="319" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#409EFF">Step3'</text>
+
+  <rect x="315" y="300" width="65" height="30" rx="4" fill="#e3f2fd" stroke="#409EFF" stroke-width="1.2"/>
+  <text x="347" y="319" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#409EFF">Step4'</text>
+
+  <rect x="390" y="300" width="65" height="30" rx="4" fill="#e3f2fd" stroke="#409EFF" stroke-width="1.2"/>
+  <text x="422" y="319" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#409EFF">Step5'</text>
+
+  <!-- 说明文字 -->
+  <text x="45" y="360" font-family="sans-serif" font-size="13" fill="#1a1a2e">所有待定步骤被跳过并完全重新生成</text>
+
+  <!-- 图例 -->
+  <rect x="45" y="378" width="12" height="12" rx="2" fill="#e3f2fd" stroke="#409EFF" stroke-width="1"/>
+  <text x="62" y="389" font-family="sans-serif" font-size="11" fill="#1a1a2e">新计划元素</text>
+  <rect x="130" y="378" width="12" height="12" rx="2" fill="#ffebee" stroke="#f44336" stroke-width="1"/>
+  <text x="147" y="389" font-family="sans-serif" font-size="11" fill="#1a1a2e">跳过/失败</text>
+
+  <!-- ========== 右侧：决策流程图 ========== -->
+  <rect x="540" y="50" width="230" height="375" fill="url(#boxGrad)" stroke="#1a1a2e" stroke-width="1.5" rx="6"/>
+  <text x="655" y="75" text-anchor="middle" font-family="sans-serif" font-size="15" font-weight="bold" fill="#1a1a2e">决策逻辑</text>
+
+  <!-- 起始节点 -->
+  <ellipse cx="655" cy="110" rx="60" ry="20" fill="#1a1a2e"/>
+  <text x="655" y="115" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#ffffff" font-weight="bold">规划失败</text>
+
+  <!-- 箭头 -->
+  <line x1="655" y1="130" x2="655" y2="155" stroke="#1a1a2e" stroke-width="1.5"/>
+  <polygon points="655,158 649,148 661,148" fill="#1a1a2e"/>
+
+  <!-- 决策菱形1 -->
+  <polygon points="655,160 720,200 655,240 590,200" fill="#e3f2fd" stroke="#409EFF" stroke-width="1.5"/>
+  <text x="655" y="197" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#1a1a2e">L2 或以下？</text>
+
+  <!-- 是分支 -->
+  <line x1="590" y1="200" x2="520" y2="200" stroke="#4caf50" stroke-width="1.5"/>
+  <text x="555" y="193" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#4caf50">是</text>
+  <polygon points="520,200 530,194 530,206" fill="#4caf50"/>
+
+  <rect x="460" y="185" width="60" height="30" rx="15" fill="#e8f5e9" stroke="#4caf50" stroke-width="1.2"/>
+  <text x="490" y="204" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#2e7d32">局部</text>
+
+  <!-- 否分支 -->
+  <line x1="720" y1="200" x2="780" y2="200" stroke="#f44336" stroke-width="1.5"/>
+  <text x="750" y="193" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#f44336">否</text>
+  <polygon points="780,200 770,194 770,206" fill="#f44336"/>
+
+  <!-- 箭头向下 -->
+  <line x1="780" y1="200" x2="780" y2="270" stroke="#1a1a2e" stroke-width="1.5"/>
+  <polygon points="780,273 774,263 786,263" fill="#1a1a2e"/>
+
+  <!-- 决策菱形2 -->
+  <polygon points="780,278 840,318 780,358 720,318" fill="#e3f2fd" stroke="#409EFF" stroke-width="1.5"/>
+  <text x="780" y="312" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#1a1a2e">多依赖？</text>
+
+  <!-- 是分支 -->
+  <line x1="840" y1="318" x2="870" y2="318" stroke="#4caf50" stroke-width="1.5"/>
+  <text x="855" y="311" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#4caf50">是</text>
+  <polygon points="870,318 860,312 860,324" fill="#4caf50"/>
+
+  <rect x="875" y="303" width="60" height="30" rx="15" fill="#fff3e0" stroke="#ff9800" stroke-width="1.2"/>
+  <text x="905" y="322" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#e65100">混合</text>
+
+  <!-- 否分支 -->
+  <line x1="720" y1="318" x2="680" y2="318" stroke="#f44336" stroke-width="1.5"/>
+  <text x="700" y="311" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#f44336">否</text>
+  <polygon points="680,318 690,312 690,324" fill="#f44336"/>
+
+  <rect x="620" y="303" width="60" height="30" rx="15" fill="#e8f5e9" stroke="#4caf50" stroke-width="1.2"/>
+  <text x="650" y="322" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#2e7d32">全局</text>
+
+  <!-- 底部说明 -->
+  <text x="655" y="400" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#616161">根据失败层级和依赖关系</text>
+  <text x="655" y="416" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#616161">选择重规划策略</text>
+
+</svg>

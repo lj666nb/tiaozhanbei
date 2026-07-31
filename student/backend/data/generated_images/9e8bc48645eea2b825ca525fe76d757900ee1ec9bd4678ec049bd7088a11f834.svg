@@ -1,0 +1,142 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="800" height="500">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#e8f4ff;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#d0ecff;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="cardGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#ffffff;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#f5faff;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="agentBadge" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#409EFF;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#6ab0ff;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="llmBadge" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#b8d4e8;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#d0e4f0;stop-opacity:1" />
+    </linearGradient>
+    <filter id="shadow" x="-5%" y="-5%" width="115%" height="115%">
+      <feDropShadow dx="0" dy="2" stdDeviation="4" flood-color="#b0c8d8" flood-opacity="0.3"/>
+    </filter>
+  </defs>
+
+  <!-- 背景 -->
+  <rect width="800" height="500" fill="url(#bgGrad)" rx="0"/>
+
+  <!-- 标题 -->
+  <text x="400" y="42" text-anchor="middle" font-family="Arial, sans-serif" font-size="22" font-weight="bold" fill="#1a1a2e">任务类型决策指南</text>
+  <line x1="320" y1="52" x2="480" y2="52" stroke="#409EFF" stroke-width="2" stroke-linecap="round"/>
+
+  <!-- ==================== 第1行 ==================== -->
+
+  <!-- 卡片1：写文章 - Pure LLM -->
+  <g filter="url(#shadow)">
+    <rect x="30" y="75" width="220" height="120" rx="12" fill="url(#cardGrad)" stroke="#e0ecf5" stroke-width="1"/>
+    <!-- 图标区 -->
+    <circle cx="65" cy="112" r="20" fill="#f0f6fc"/>
+    <text x="65" y="118" text-anchor="middle" font-family="Arial" font-size="20" fill="#1a1a2e">✍️</text>
+    <text x="100" y="110" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#1a1a2e">写文章</text>
+    <text x="100" y="130" font-family="Arial, sans-serif" font-size="11" fill="#6a7a8a">内容创作与编辑</text>
+    <!-- 推荐徽章 -->
+    <rect x="100" y="148" width="100" height="22" rx="11" fill="url(#llmBadge)"/>
+    <text x="150" y="163" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#3a5a6a">推荐 Pure LLM</text>
+  </g>
+
+  <!-- 卡片2：头脑风暴 - Pure LLM -->
+  <g filter="url(#shadow)">
+    <rect x="290" y="75" width="220" height="120" rx="12" fill="url(#cardGrad)" stroke="#e0ecf5" stroke-width="1"/>
+    <circle cx="325" cy="112" r="20" fill="#f0f6fc"/>
+    <text x="325" y="118" text-anchor="middle" font-family="Arial" font-size="20" fill="#1a1a2e">💡</text>
+    <text x="360" y="110" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#1a1a2e">头脑风暴</text>
+    <text x="360" y="130" font-family="Arial, sans-serif" font-size="11" fill="#6a7a8a">创意点子生成</text>
+    <rect x="360" y="148" width="100" height="22" rx="11" fill="url(#llmBadge)"/>
+    <text x="410" y="163" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#3a5a6a">推荐 Pure LLM</text>
+  </g>
+
+  <!-- 卡片3：天气/股票查询 - AI Agent -->
+  <g filter="url(#shadow)">
+    <rect x="550" y="75" width="220" height="120" rx="12" fill="url(#cardGrad)" stroke="#dce8f5" stroke-width="1"/>
+    <circle cx="585" cy="112" r="20" fill="#e8f2ff"/>
+    <text x="585" y="118" text-anchor="middle" font-family="Arial" font-size="18" fill="#1a1a2e">⛅</text>
+    <text x="620" y="110" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#1a1a2e">天气/股票查询</text>
+    <text x="620" y="130" font-family="Arial, sans-serif" font-size="11" fill="#6a7a8a">实时数据获取</text>
+    <rect x="620" y="148" width="100" height="22" rx="11" fill="url(#agentBadge)"/>
+    <text x="670" y="163" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#ffffff">推荐 AI Agent</text>
+    <!-- 工具图标 -->
+    <circle cx="565" cy="175" r="8" fill="#409EFF" opacity="0.7"/>
+    <text x="565" y="179" text-anchor="middle" font-family="Arial" font-size="8" fill="#fff">API</text>
+    <circle cx="585" cy="175" r="8" fill="#409EFF" opacity="0.7"/>
+    <text x="585" y="179" text-anchor="middle" font-family="Arial" font-size="7" fill="#fff">DB</text>
+    <circle cx="605" cy="175" r="8" fill="#409EFF" opacity="0.7"/>
+    <text x="605" y="179" text-anchor="middle" font-family="Arial" font-size="6" fill="#fff">MEM</text>
+  </g>
+
+  <!-- ==================== 第2行 ==================== -->
+
+  <!-- 卡片4：自动报告生成 - AI Agent -->
+  <g filter="url(#shadow)">
+    <rect x="30" y="235" width="220" height="120" rx="12" fill="url(#cardGrad)" stroke="#dce8f5" stroke-width="1"/>
+    <circle cx="65" cy="272" r="20" fill="#e8f2ff"/>
+    <text x="65" y="278" text-anchor="middle" font-family="Arial" font-size="18" fill="#1a1a2e">📊</text>
+    <text x="100" y="270" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#1a1a2e">自动报告生成</text>
+    <text x="100" y="290" font-family="Arial, sans-serif" font-size="11" fill="#6a7a8a">数据分析与汇总</text>
+    <rect x="100" y="308" width="100" height="22" rx="11" fill="url(#agentBadge)"/>
+    <text x="150" y="323" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#ffffff">推荐 AI Agent</text>
+    <circle cx="65" cy="335" r="8" fill="#409EFF" opacity="0.7"/>
+    <text x="65" y="339" text-anchor="middle" font-family="Arial" font-size="8" fill="#fff">API</text>
+    <circle cx="85" cy="335" r="8" fill="#409EFF" opacity="0.7"/>
+    <text x="85" y="339" text-anchor="middle" font-family="Arial" font-size="7" fill="#fff">DB</text>
+    <circle cx="105" cy="335" r="8" fill="#409EFF" opacity="0.7"/>
+    <text x="105" y="339" text-anchor="middle" font-family="Arial" font-size="6" fill="#fff">MEM</text>
+  </g>
+
+  <!-- 卡片5：客服自动化 - AI Agent -->
+  <g filter="url(#shadow)">
+    <rect x="290" y="235" width="220" height="120" rx="12" fill="url(#cardGrad)" stroke="#dce8f5" stroke-width="1"/>
+    <circle cx="325" cy="272" r="20" fill="#e8f2ff"/>
+    <text x="325" y="278" text-anchor="middle" font-family="Arial" font-size="18" fill="#1a1a2e">🎧</text>
+    <text x="360" y="270" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#1a1a2e">客服自动化</text>
+    <text x="360" y="290" font-family="Arial, sans-serif" font-size="11" fill="#6a7a8a">智能对话与工单</text>
+    <rect x="360" y="308" width="100" height="22" rx="11" fill="url(#agentBadge)"/>
+    <text x="410" y="323" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#ffffff">推荐 AI Agent</text>
+    <circle cx="325" cy="335" r="8" fill="#409EFF" opacity="0.7"/>
+    <text x="325" y="339" text-anchor="middle" font-family="Arial" font-size="8" fill="#fff">API</text>
+    <circle cx="345" cy="335" r="8" fill="#409EFF" opacity="0.7"/>
+    <text x="345" y="339" text-anchor="middle" font-family="Arial" font-size="7" fill="#fff">DB</text>
+    <circle cx="365" cy="335" r="8" fill="#409EFF" opacity="0.7"/>
+    <text x="365" y="339" text-anchor="middle" font-family="Arial" font-size="6" fill="#fff">MEM</text>
+  </g>
+
+  <!-- 卡片6：个人日程管理 - AI Agent -->
+  <g filter="url(#shadow)">
+    <rect x="550" y="235" width="220" height="120" rx="12" fill="url(#cardGrad)" stroke="#dce8f5" stroke-width="1"/>
+    <circle cx="585" cy="272" r="20" fill="#e8f2ff"/>
+    <text x="585" y="278" text-anchor="middle" font-family="Arial" font-size="18" fill="#1a1a2e">📅</text>
+    <text x="620" y="270" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#1a1a2e">个人日程管理</text>
+    <text x="620" y="290" font-family="Arial, sans-serif" font-size="11" fill="#6a7a8a">会议与任务提醒</text>
+    <rect x="620" y="308" width="100" height="22" rx="11" fill="url(#agentBadge)"/>
+    <text x="670" y="323" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#ffffff">推荐 AI Agent</text>
+    <circle cx="565" cy="335" r="8" fill="#409EFF" opacity="0.7"/>
+    <text x="565" y="339" text-anchor="middle" font-family="Arial" font-size="8" fill="#fff">API</text>
+    <circle cx="585" cy="335" r="8" fill="#409EFF" opacity="0.7"/>
+    <text x="585" y="339" text-anchor="middle" font-family="Arial" font-size="7" fill="#fff">DB</text>
+    <circle cx="605" cy="335" r="8" fill="#409EFF" opacity="0.7"/>
+    <text x="605" y="339" text-anchor="middle" font-family="Arial" font-size="6" fill="#fff">MEM</text>
+  </g>
+
+  <!-- 底部说明 -->
+  <rect x="240" y="395" width="320" height="36" rx="18" fill="#1a1a2e" opacity="0.08"/>
+  <text x="400" y="418" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" fill="#1a1a2e" opacity="0.7">
+    💡 复杂任务建议使用 AI Agent，简单生成任务使用 Pure LLM
+  </text>
+
+  <!-- 图例 -->
+  <rect x="230" y="450" width="14" height="14" rx="3" fill="#b8d4e8"/>
+  <text x="250" y="462" font-family="Arial, sans-serif" font-size="12" fill="#1a1a2e">Pure LLM</text>
+  <rect x="380" y="450" width="14" height="14" rx="3" fill="#409EFF"/>
+  <text x="400" y="462" font-family="Arial, sans-serif" font-size="12" fill="#1a1a2e">AI Agent</text>
+  <circle cx="540" cy="457" r="5" fill="#409EFF" opacity="0.7"/>
+  <text x="552" y="462" font-family="Arial, sans-serif" font-size="11" fill="#1a1a2e">工具集成</text>
+
+</svg>

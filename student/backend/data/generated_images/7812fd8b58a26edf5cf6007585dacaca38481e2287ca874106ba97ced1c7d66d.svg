@@ -1,0 +1,135 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" font-family="Microsoft YaHei, PingFang SC, sans-serif">
+  <defs>
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#e8f4ff"/>
+      <stop offset="100%" stop-color="#d0eaff"/>
+    </linearGradient>
+    <linearGradient id="boxGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="100%" stop-color="#f0f7ff"/>
+    </linearGradient>
+  </defs>
+
+  <!-- 背景 -->
+  <rect width="800" height="500" fill="url(#bgGrad)"/>
+
+  <!-- 标题 -->
+  <text x="400" y="32" text-anchor="middle" font-size="18" font-weight="bold" fill="#1a1a2e">事件代理内部路由机制</text>
+
+  <!-- ===== 左侧：发布者 ===== -->
+  <rect x="30" y="80" width="100" height="120" rx="8" fill="url(#boxGrad)" stroke="#409EFF" stroke-width="2"/>
+  <text x="80" y="115" text-anchor="middle" font-size="14" font-weight="bold" fill="#1a1a2e">发布者</text>
+  <text x="80" y="140" text-anchor="middle" font-size="12" fill="#409EFF">事件流</text>
+  <!-- 小箭头 -->
+  <polygon points="130,140 145,135 145,145" fill="#409EFF"/>
+
+  <!-- 从发布者到代理的箭头 -->
+  <line x1="130" y1="140" x2="195" y2="140" stroke="#409EFF" stroke-width="2" stroke-dasharray="6,3"/>
+  <polygon points="195,140 188,136 188,144" fill="#409EFF"/>
+
+  <!-- ===== 代理主体 ===== -->
+  <rect x="200" y="60" width="400" height="380" rx="12" fill="url(#boxGrad)" stroke="#409EFF" stroke-width="2.5"/>
+  <text x="400" y="85" text-anchor="middle" font-size="15" font-weight="bold" fill="#409EFF">事件代理（Event Broker）</text>
+
+  <!-- 订阅表 -->
+  <rect x="220" y="100" width="170" height="90" rx="6" fill="#f5faff" stroke="#409EFF" stroke-width="1.5"/>
+  <text x="305" y="120" text-anchor="middle" font-size="13" font-weight="bold" fill="#1a1a2e">订阅表</text>
+  <text x="305" y="140" text-anchor="middle" font-size="11" fill="#666">主题模式 → 订阅者</text>
+  <line x1="230" y1="148" x2="380" y2="148" stroke="#409EFF" stroke-width="0.5" opacity="0.5"/>
+  <text x="305" y="163" text-anchor="middle" font-size="10" fill="#409EFF">sensor.* → [sub_01, sub_02]</text>
+  <text x="305" y="178" text-anchor="middle" font-size="10" fill="#409EFF">#.alarm → [sub_03]</text>
+
+  <!-- 主题索引 -->
+  <rect x="410" y="100" width="170" height="90" rx="6" fill="#f5faff" stroke="#409EFF" stroke-width="1.5"/>
+  <text x="495" y="120" text-anchor="middle" font-size="13" font-weight="bold" fill="#1a1a2e">主题索引</text>
+  <text x="495" y="140" text-anchor="middle" font-size="11" fill="#666">精确匹配 O(1) 查找</text>
+  <line x1="420" y1="148" x2="570" y2="148" stroke="#409EFF" stroke-width="0.5" opacity="0.5"/>
+  <text x="495" y="163" text-anchor="middle" font-size="10" fill="#409EFF">sensor.temp → sub_01</text>
+  <text x="495" y="178" text-anchor="middle" font-size="10" fill="#409EFF">sensor.humid → sub_02</text>
+
+  <!-- 通配符匹配器 -->
+  <rect x="220" y="210" width="170" height="80" rx="6" fill="#f5faff" stroke="#409EFF" stroke-width="1.5"/>
+  <text x="305" y="232" text-anchor="middle" font-size="13" font-weight="bold" fill="#1a1a2e">通配符匹配器</text>
+  <text x="305" y="252" text-anchor="middle" font-size="11" fill="#666">正则引擎（* 和 #）</text>
+  <text x="305" y="272" text-anchor="middle" font-size="10" fill="#409EFF">* 匹配单级，# 匹配多级</text>
+
+  <!-- 基于内容的过滤 -->
+  <rect x="410" y="210" width="170" height="80" rx="6" fill="#f5faff" stroke="#409EFF" stroke-width="1.5"/>
+  <text x="495" y="232" text-anchor="middle" font-size="13" font-weight="bold" fill="#1a1a2e">内容过滤</text>
+  <text x="495" y="252" text-anchor="middle" font-size="11" fill="#666">二级过滤门</text>
+  <text x="495" y="272" text-anchor="middle" font-size="10" fill="#409EFF">severity ≥ 8</text>
+
+  <!-- 事件历史存储 -->
+  <rect x="220" y="310" width="170" height="70" rx="6" fill="#f5faff" stroke="#409EFF" stroke-width="1.5"/>
+  <text x="305" y="332" text-anchor="middle" font-size="13" font-weight="bold" fill="#1a1a2e">事件历史存储</text>
+  <text x="305" y="352" text-anchor="middle" font-size="11" fill="#666">时序列表（可回放）</text>
+  <text x="305" y="368" text-anchor="middle" font-size="10" fill="#409EFF">T1 → T2 → T3 → ...</text>
+
+  <!-- 统计计数器 -->
+  <rect x="410" y="310" width="170" height="70" rx="6" fill="#f5faff" stroke="#409EFF" stroke-width="1.5"/>
+  <text x="495" y="332" text-anchor="middle" font-size="13" font-weight="bold" fill="#1a1a2e">统计计数器</text>
+  <text x="495" y="352" text-anchor="middle" font-size="11" fill="#666">已发布 / 已投递 / 已丢弃</text>
+  <text x="495" y="368" text-anchor="middle" font-size="10" fill="#409EFF">活跃订阅数: 3</text>
+
+  <!-- 内部箭头：主题匹配 → 内容过滤 -->
+  <line x1="390" y1="250" x2="410" y2="250" stroke="#409EFF" stroke-width="1.5" stroke-dasharray="4,2"/>
+  <polygon points="410,250 403,247 403,253" fill="#409EFF"/>
+
+  <!-- 内部箭头：订阅表 → 主题索引 -->
+  <line x1="390" y1="145" x2="410" y2="145" stroke="#409EFF" stroke-width="1.5" stroke-dasharray="4,2"/>
+  <polygon points="410,145 403,142 403,148" fill="#409EFF"/>
+
+  <!-- ===== 右侧：订阅者 ===== -->
+  <rect x="640" y="80" width="100" height="120" rx="8" fill="url(#boxGrad)" stroke="#409EFF" stroke-width="2"/>
+  <text x="690" y="115" text-anchor="middle" font-size="14" font-weight="bold" fill="#1a1a2e">订阅者</text>
+  <text x="690" y="140" text-anchor="middle" font-size="12" fill="#409EFF">sub_01</text>
+  <text x="690" y="158" text-anchor="middle" font-size="12" fill="#409EFF">sub_02</text>
+  <text x="690" y="176" text-anchor="middle" font-size="12" fill="#409EFF">sub_03</text>
+
+  <!-- 从代理到订阅者的箭头 -->
+  <line x1="600" y1="140" x2="640" y2="140" stroke="#409EFF" stroke-width="2" stroke-dasharray="6,3"/>
+  <polygon points="640,140 633,136 633,144" fill="#409EFF"/>
+
+  <!-- ===== 标注 ===== -->
+  <!-- 标注1 -->
+  <rect x="50" y="380" width="130" height="28" rx="14" fill="#409EFF" opacity="0.9"/>
+  <text x="115" y="399" text-anchor="middle" font-size="12" fill="#fff" font-weight="bold">事件流入</text>
+
+  <!-- 标注2 -->
+  <rect x="200" y="450" width="130" height="28" rx="14" fill="#409EFF" opacity="0.9"/>
+  <text x="265" y="469" text-anchor="middle" font-size="12" fill="#fff" font-weight="bold">主题匹配</text>
+
+  <!-- 标注3 -->
+  <rect x="370" y="450" width="130" height="28" rx="14" fill="#409EFF" opacity="0.9"/>
+  <text x="435" y="469" text-anchor="middle" font-size="12" fill="#fff" font-weight="bold">内容过滤</text>
+
+  <!-- 标注4 -->
+  <rect x="540" y="450" width="130" height="28" rx="14" fill="#409EFF" opacity="0.9"/>
+  <text x="605" y="469" text-anchor="middle" font-size="12" fill="#fff" font-weight="bold">投递事件</text>
+
+  <!-- 标注5 -->
+  <rect x="540" y="80" width="100" height="28" rx="14" fill="#409EFF" opacity="0.9"/>
+  <text x="590" y="99" text-anchor="middle" font-size="12" fill="#fff" font-weight="bold">O(1) 索引</text>
+
+  <!-- 标注6 -->
+  <rect x="50" y="200" width="130" height="28" rx="14" fill="#409EFF" opacity="0.9"/>
+  <text x="115" y="219" text-anchor="middle" font-size="12" fill="#fff" font-weight="bold">通配匹配</text>
+
+  <!-- 标注7 -->
+  <rect x="50" y="310" width="130" height="28" rx="14" fill="#409EFF" opacity="0.9"/>
+  <text x="115" y="329" text-anchor="middle" font-size="12" fill="#fff" font-weight="bold">事件回放</text>
+
+  <!-- 标注8 -->
+  <rect x="540" y="310" width="130" height="28" rx="14" fill="#409EFF" opacity="0.9"/>
+  <text x="605" y="329" text-anchor="middle" font-size="12" fill="#fff" font-weight="bold">统计监控</text>
+
+  <!-- 连接线：标注到目标 -->
+  <line x1="115" y1="380" x2="80" y2="200" stroke="#409EFF" stroke-width="0.8" stroke-dasharray="3,3" opacity="0.4"/>
+  <line x1="265" y1="450" x2="305" y2="300" stroke="#409EFF" stroke-width="0.8" stroke-dasharray="3,3" opacity="0.4"/>
+  <line x1="435" y1="450" x2="495" y2="290" stroke="#409EFF" stroke-width="0.8" stroke-dasharray="3,3" opacity="0.4"/>
+  <line x1="605" y1="450" x2="690" y2="200" stroke="#409EFF" stroke-width="0.8" stroke-dasharray="3,3" opacity="0.4"/>
+  <line x1="590" y1="108" x2="580" y2="145" stroke="#409EFF" stroke-width="0.8" stroke-dasharray="3,3" opacity="0.4"/>
+  <line x1="115" y1="228" x2="220" y2="250" stroke="#409EFF" stroke-width="0.8" stroke-dasharray="3,3" opacity="0.4"/>
+  <line x1="115" y1="338" x2="220" y2="345" stroke="#409EFF" stroke-width="0.8" stroke-dasharray="3,3" opacity="0.4"/>
+  <line x1="605" y1="338" x2="580" y2="345" stroke="#409EFF" stroke-width="0.8" stroke-dasharray="3,3" opacity="0.4"/>
+</svg>

@@ -1,0 +1,103 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="800" height="500">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#e8f4fd;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#f0f8ff;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="nodeGrad1" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#ffffff;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#f5faff;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="nodeGrad2" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#ffffff;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#f5faff;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="nodeGrad3" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#ffffff;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#f5faff;stop-opacity:1" />
+    </linearGradient>
+    <marker id="arrowBlue" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#409EFF" />
+    </marker>
+    <marker id="arrowFeedback" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#409EFF" />
+    </marker>
+  </defs>
+
+  <!-- 背景 -->
+  <rect width="800" height="500" fill="url(#bgGrad)" rx="8" ry="8" />
+
+  <!-- 主标题 -->
+  <text x="400" y="42" text-anchor="middle" font-family="sans-serif" font-size="20" font-weight="bold" fill="#1a1a2e">感知—规划—执行 循环模型</text>
+
+  <!-- 节点1：感知 (左上) -->
+  <rect x="95" y="120" width="200" height="100" rx="20" ry="20" fill="url(#nodeGrad1)" stroke="#409EFF" stroke-width="2.5" />
+  <!-- 眼睛图标 -->
+  <g transform="translate(145, 145)">
+    <ellipse cx="0" cy="0" rx="14" ry="9" fill="none" stroke="#409EFF" stroke-width="2" />
+    <circle cx="0" cy="0" r="4" fill="#409EFF" />
+    <line x1="-18" y1="-10" x2="-10" y2="-4" stroke="#409EFF" stroke-width="1.5" />
+    <line x1="18" y1="-10" x2="10" y2="-4" stroke="#409EFF" stroke-width="1.5" />
+  </g>
+  <text x="195" y="178" text-anchor="middle" font-family="sans-serif" font-size="18" font-weight="bold" fill="#1a1a2e">感知</text>
+  <text x="195" y="200" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#666">信息收集</text>
+
+  <!-- 节点2：规划 (右上) -->
+  <rect x="505" y="120" width="200" height="100" rx="20" ry="20" fill="url(#nodeGrad2)" stroke="#409EFF" stroke-width="2.5" />
+  <!-- 大脑/齿轮图标 -->
+  <g transform="translate(555, 145)">
+    <circle cx="0" cy="0" r="10" fill="none" stroke="#409EFF" stroke-width="2" />
+    <circle cx="0" cy="0" r="4" fill="#409EFF" />
+    <line x1="0" y1="-12" x2="0" y2="-15" stroke="#409EFF" stroke-width="1.5" />
+    <line x1="0" y1="12" x2="0" y2="15" stroke="#409EFF" stroke-width="1.5" />
+    <line x1="-12" y1="0" x2="-15" y2="0" stroke="#409EFF" stroke-width="1.5" />
+    <line x1="12" y1="0" x2="15" y2="0" stroke="#409EFF" stroke-width="1.5" />
+    <line x1="-8" y1="-8" x2="-11" y2="-11" stroke="#409EFF" stroke-width="1.5" />
+    <line x1="8" y1="8" x2="11" y2="11" stroke="#409EFF" stroke-width="1.5" />
+    <line x1="-8" y1="8" x2="-11" y2="11" stroke="#409EFF" stroke-width="1.5" />
+    <line x1="8" y1="-8" x2="11" y2="-11" stroke="#409EFF" stroke-width="1.5" />
+  </g>
+  <text x="605" y="178" text-anchor="middle" font-family="sans-serif" font-size="18" font-weight="bold" fill="#1a1a2e">规划</text>
+  <text x="605" y="200" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#666">策略制定</text>
+
+  <!-- 节点3：执行 (下方中间) -->
+  <rect x="300" y="320" width="200" height="100" rx="20" ry="20" fill="url(#nodeGrad3)" stroke="#409EFF" stroke-width="2.5" />
+  <!-- 播放按钮图标 -->
+  <g transform="translate(350, 345)">
+    <polygon points="-8,-10 8,0 -8,10" fill="#409EFF" />
+    <rect x="-14" y="-12" width="28" height="24" rx="4" fill="none" stroke="#409EFF" stroke-width="1.5" />
+  </g>
+  <text x="400" y="378" text-anchor="middle" font-family="sans-serif" font-size="18" font-weight="bold" fill="#1a1a2e">执行</text>
+  <text x="400" y="400" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#666">行动实施</text>
+
+  <!-- 箭头：感知 → 规划 (上方弧线) -->
+  <path d="M 295 160 Q 400 80 505 160" fill="none" stroke="#409EFF" stroke-width="2.5" marker-end="url(#arrowBlue)" />
+  <text x="400" y="105" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#1a1a2e">信息传递</text>
+
+  <!-- 箭头：规划 → 执行 (右侧弧线) -->
+  <path d="M 605 220 Q 680 300 500 370" fill="none" stroke="#409EFF" stroke-width="2.5" marker-end="url(#arrowBlue)" />
+  <text x="640" y="295" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#1a1a2e">方案下达</text>
+
+  <!-- 箭头：执行 → 感知 (左侧弧线) -->
+  <path d="M 300 370 Q 120 300 195 220" fill="none" stroke="#409EFF" stroke-width="2.5" marker-end="url(#arrowBlue)" />
+  <text x="160" y="295" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#1a1a2e">结果反馈</text>
+
+  <!-- 反馈箭头：执行 → 感知 (底部弧线，带标签) -->
+  <path d="M 350 420 Q 200 460 150 420" fill="none" stroke="#409EFF" stroke-width="2" stroke-dasharray="6,4" marker-end="url(#arrowFeedback)" />
+  <text x="250" y="455" text-anchor="middle" font-family="sans-serif" font-size="14" font-style="italic" fill="#409EFF">反馈循环</text>
+
+  <!-- 标注1 -->
+  <rect x="30" y="60" width="100" height="28" rx="14" fill="#409EFF" opacity="0.12" />
+  <text x="80" y="79" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#409EFF">输入阶段</text>
+
+  <!-- 标注2 -->
+  <rect x="670" y="60" width="100" height="28" rx="14" fill="#409EFF" opacity="0.12" />
+  <text x="720" y="79" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#409EFF">处理阶段</text>
+
+  <!-- 标注3 -->
+  <rect x="350" y="440" width="100" height="28" rx="14" fill="#409EFF" opacity="0.12" />
+  <text x="400" y="459" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#409EFF">输出阶段</text>
+
+  <!-- 底部说明 -->
+  <text x="400" y="490" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#999">循环持续进行，不断优化</text>
+</svg>

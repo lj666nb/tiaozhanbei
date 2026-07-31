@@ -1,0 +1,40 @@
+{
+  "name": "ai-agent-learning-platform",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@element-plus/icons-vue": "^2.3.0",
+    "@codemirror/autocomplete": "^6.18.6",
+    "@codemirror/commands": "^6.8.1",
+    "@codemirror/lang-javascript": "^6.2.3",
+    "@codemirror/lang-json": "^6.0.1",
+    "@codemirror/lang-markdown": "^6.3.2",
+    "@codemirror/lang-python": "^6.1.7",
+    "@codemirror/state": "^6.5.2",
+    "@codemirror/theme-one-dark": "^6.1.2",
+    "@codemirror/view": "^6.36.5",
+    "axios": "^1.7.0",
+    "codemirror": "^6.0.1",
+    "echarts": "^5.5.0",
+    "element-plus": "^2.7.0",
+    "highlight.js": "^11.11.1",
+    "marked": "^12.0.0",
+    "mermaid": "^11.16.0",
+    "pinia": "^2.1.0",
+    "pinia-plugin-persistedstate": "^3.2.0",
+    "vue": "^3.4.0",
+    "vue-echarts": "^6.7.0",
+    "vue-router": "^4.3.0"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.61.1",
+    "@vitejs/plugin-vue": "^5.0.0",
+    "vite": "^5.4.0"
+  }
+}

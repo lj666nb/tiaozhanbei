@@ -1,0 +1,140 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="800" height="500">
+  <defs>
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#E8F4FD"/>
+      <stop offset="100%" stop-color="#F0F8FF"/>
+    </linearGradient>
+    <linearGradient id="cardGrad1" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#409EFF"/>
+      <stop offset="100%" stop-color="#2B7ED9"/>
+    </linearGradient>
+    <linearGradient id="cardGrad2" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#5BA3F5"/>
+      <stop offset="100%" stop-color="#409EFF"/>
+    </linearGradient>
+    <linearGradient id="cardGrad3" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#7BB8F7"/>
+      <stop offset="100%" stop-color="#5BA3F5"/>
+    </linearGradient>
+  </defs>
+
+  <!-- 背景 -->
+  <rect width="800" height="500" fill="url(#bgGrad)" rx="8"/>
+
+  <!-- 标题 -->
+  <text x="400" y="38" text-anchor="middle" font-family="sans-serif" font-size="20" font-weight="bold" fill="#1a1a2e">角色冲突管理策略</text>
+
+  <!-- ====== 策略1：明确角色边界 ====== -->
+  <rect x="25" y="55" width="240" height="420" rx="10" fill="white" stroke="#409EFF" stroke-width="1.5" opacity="0.95"/>
+  <rect x="25" y="55" width="240" height="36" rx="10" fill="url(#cardGrad1)"/>
+  <rect x="25" y="81" width="240" height="10" fill="url(#cardGrad1)"/>
+  <text x="145" y="79" text-anchor="middle" font-family="sans-serif" font-size="15" font-weight="bold" fill="white">策略1：明确角色边界</text>
+
+  <!-- 角色卡片A -->
+  <rect x="45" y="110" width="200" height="70" rx="8" fill="#E8F4FD" stroke="#409EFF" stroke-width="1.2"/>
+  <text x="145" y="138" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="bold" fill="#1a1a2e">角色A</text>
+  <text x="145" y="158" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#666">职责范围明确</text>
+  <line x1="55" y1="168" x2="235" y2="168" stroke="#409EFF" stroke-width="2" stroke-dasharray="4,3"/>
+
+  <!-- 协作接口区域 -->
+  <rect x="65" y="195" width="160" height="40" rx="6" fill="#409EFF" fill-opacity="0.12" stroke="#409EFF" stroke-width="1" stroke-dasharray="5,3"/>
+  <text x="145" y="220" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="#409EFF">协作接口</text>
+
+  <!-- 角色卡片B -->
+  <rect x="45" y="250" width="200" height="70" rx="8" fill="#E8F4FD" stroke="#409EFF" stroke-width="1.2"/>
+  <text x="145" y="278" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="bold" fill="#1a1a2e">角色B</text>
+  <text x="145" y="298" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#666">职责范围明确</text>
+  <line x1="55" y1="308" x2="235" y2="308" stroke="#409EFF" stroke-width="2" stroke-dasharray="4,3"/>
+
+  <!-- 预防标注 -->
+  <rect x="60" y="340" width="170" height="30" rx="15" fill="#409EFF" fill-opacity="0.15"/>
+  <text x="145" y="360" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="#409EFF">预防优于干预</text>
+
+  <!-- 边界线标注 -->
+  <line x1="145" y1="375" x2="145" y2="405" stroke="#409EFF" stroke-width="1" stroke-dasharray="3,3"/>
+  <polygon points="145,405 140,395 150,395" fill="#409EFF"/>
+
+  <!-- ====== 策略2：协调者角色 ====== -->
+  <rect x="280" y="55" width="240" height="420" rx="10" fill="white" stroke="#409EFF" stroke-width="1.5" opacity="0.95"/>
+  <rect x="280" y="55" width="240" height="36" rx="10" fill="url(#cardGrad2)"/>
+  <rect x="280" y="81" width="240" height="10" fill="url(#cardGrad2)"/>
+  <text x="400" y="79" text-anchor="middle" font-family="sans-serif" font-size="15" font-weight="bold" fill="white">策略2：协调者角色</text>
+
+  <!-- 冲突代理A -->
+  <rect x="300" y="110" width="90" height="70" rx="8" fill="#FFF0F0" stroke="#E06060" stroke-width="1.2"/>
+  <text x="345" y="140" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="bold" fill="#C04040">代理A</text>
+  <text x="345" y="160" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#C04040">冲突方</text>
+
+  <!-- 冲突代理B -->
+  <rect x="410" y="110" width="90" height="70" rx="8" fill="#FFF0F0" stroke="#E06060" stroke-width="1.2"/>
+  <text x="455" y="140" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="bold" fill="#C04040">代理B</text>
+  <text x="455" y="160" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#C04040">冲突方</text>
+
+  <!-- 冲突箭头 -->
+  <line x1="390" y1="135" x2="410" y2="135" stroke="#E06060" stroke-width="2"/>
+  <line x1="390" y1="145" x2="410" y2="145" stroke="#E06060" stroke-width="2"/>
+  <line x1="390" y1="155" x2="410" y2="155" stroke="#E06060" stroke-width="2"/>
+
+  <!-- 协调者 -->
+  <rect x="345" y="200" width="110" height="80" rx="10" fill="#409EFF" fill-opacity="0.15" stroke="#409EFF" stroke-width="2"/>
+  <text x="400" y="232" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="bold" fill="#409EFF">协调者/仲裁者</text>
+
+  <!-- 法槌图标 -->
+  <rect x="380" y="245" width="40" height="25" rx="4" fill="#409EFF"/>
+  <text x="400" y="263" text-anchor="middle" font-family="sans-serif" font-size="14" fill="white">⚖</text>
+
+  <!-- 连接线 -->
+  <line x1="345" y1="180" x2="345" y2="200" stroke="#409EFF" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <line x1="455" y1="180" x2="455" y2="200" stroke="#409EFF" stroke-width="1.5" stroke-dasharray="4,3"/>
+
+  <!-- 决策标注 -->
+  <rect x="310" y="300" width="180" height="30" rx="15" fill="#409EFF" fill-opacity="0.12"/>
+  <text x="400" y="320" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="#409EFF">具有约束力的决策</text>
+
+  <!-- 仲裁箭头向下 -->
+  <line x1="400" y1="330" x2="400" y2="360" stroke="#409EFF" stroke-width="1.5"/>
+  <polygon points="400,360 394,352 406,352" fill="#409EFF"/>
+
+  <!-- ====== 策略3：升级机制 ====== -->
+  <rect x="535" y="55" width="240" height="420" rx="10" fill="white" stroke="#409EFF" stroke-width="1.5" opacity="0.95"/>
+  <rect x="535" y="55" width="240" height="36" rx="10" fill="url(#cardGrad3)"/>
+  <rect x="535" y="81" width="240" height="10" fill="url(#cardGrad3)"/>
+  <text x="655" y="79" text-anchor="middle" font-family="sans-serif" font-size="15" font-weight="bold" fill="white">策略3：升级机制</text>
+
+  <!-- 第1级：直接沟通 -->
+  <rect x="555" y="110" width="200" height="75" rx="8" fill="#E8F4FD" stroke="#409EFF" stroke-width="1.2"/>
+  <text x="655" y="132" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="#1a1a2e">第1级：直接沟通</text>
+  <!-- 对话气泡 -->
+  <ellipse cx="610" cy="160" rx="22" ry="14" fill="white" stroke="#409EFF" stroke-width="1"/>
+  <text x="610" y="164" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#409EFF">💬</text>
+  <ellipse cx="700" cy="160" rx="22" ry="14" fill="white" stroke="#409EFF" stroke-width="1"/>
+  <text x="700" y="164" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#409EFF">💬</text>
+  <line x1="632" y1="160" x2="678" y2="160" stroke="#409EFF" stroke-width="1.5"/>
+
+  <!-- 箭头1→2 -->
+  <line x1="655" y1="185" x2="655" y2="210" stroke="#409EFF" stroke-width="1.5"/>
+  <polygon points="655,210 649,203 661,203" fill="#409EFF"/>
+
+  <!-- 第2级：协调者调解 -->
+  <rect x="555" y="215" width="200" height="75" rx="8" fill="#E8F4FD" stroke="#409EFF" stroke-width="1.2"/>
+  <text x="655" y="237" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="#1a1a2e">第2级：协调者调解</text>
+  <!-- 调解人图标 -->
+  <rect x="625" y="250" width="60" height="30" rx="6" fill="#409EFF" fill-opacity="0.2"/>
+  <text x="655" y="270" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#409EFF">调解人</text>
+
+  <!-- 箭头2→3 -->
+  <line x1="655" y1="290" x2="655" y2="315" stroke="#409EFF" stroke-width="1.5"/>
+  <polygon points="655,315 649,308 661,308" fill="#409EFF"/>
+
+  <!-- 第3级：人工操作员 -->
+  <rect x="555" y="320" width="200" height="75" rx="8" fill="#E8F4FD" stroke="#409EFF" stroke-width="1.2"/>
+  <text x="655" y="342" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="#1a1a2e">第3级：人工操作员</text>
+  <!-- 人手图标 -->
+  <rect x="625" y="355" width="60" height="30" rx="6" fill="#409EFF" fill-opacity="0.2"/>
+  <text x="655" y="375" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#409EFF">✋</text>
+
+  <!-- 升级标注 -->
+  <rect x="570" y="410" width="170" height="25" rx="12" fill="#409EFF" fill-opacity="0.12"/>
+  <text x="655" y="428" text-anchor="middle" font-family="sans-serif" font-size="12" font-weight="bold" fill="#409EFF">逐级升级机制</text>
+
+</svg>

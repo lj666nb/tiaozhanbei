@@ -1,0 +1,188 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="800" height="500">
+  <defs>
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#E8F4FD"/>
+      <stop offset="100%" stop-color="#D0EAF8"/>
+    </linearGradient>
+    <linearGradient id="barGrad" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#409EFF"/>
+      <stop offset="100%" stop-color="#6BB5FF"/>
+    </linearGradient>
+    <filter id="shadow" x="-5%" y="-5%" width="110%" height="110%">
+      <feDropShadow dx="1" dy="2" stdDeviation="2" flood-opacity="0.12" flood-color="#1a1a2e"/>
+    </filter>
+  </defs>
+
+  <!-- 背景 -->
+  <rect width="800" height="500" fill="url(#bgGrad)" rx="8"/>
+
+  <!-- 标题 -->
+  <text x="400" y="36" text-anchor="middle" font-family="sans-serif" font-size="20" font-weight="bold" fill="#1a1a2e">多智能体困境场景示意</text>
+
+  <!-- ============ 左侧面板：API 速率限制 ============ -->
+  <g transform="translate(30, 60)">
+    <rect x="0" y="0" width="230" height="390" rx="10" fill="white" stroke="#409EFF" stroke-width="1.5" filter="url(#shadow)"/>
+    <text x="115" y="28" text-anchor="middle" font-family="sans-serif" font-size="15" font-weight="bold" fill="#1a1a2e">API 速率限制</text>
+
+    <!-- 左侧智能体 -->
+    <g transform="translate(45, 65)">
+      <circle cx="0" cy="0" r="22" fill="#409EFF" opacity="0.85"/>
+      <text x="0" y="5" text-anchor="middle" font-family="sans-serif" font-size="14" fill="white" font-weight="bold">A1</text>
+      <!-- 拉动手臂 -->
+      <line x1="18" y1="8" x2="55" y2="30" stroke="#1a1a2e" stroke-width="2.5" stroke-linecap="round"/>
+      <circle cx="55" cy="30" r="4" fill="#1a1a2e"/>
+    </g>
+
+    <!-- 右侧智能体 -->
+    <g transform="translate(185, 65)">
+      <circle cx="0" cy="0" r="22" fill="#409EFF" opacity="0.85"/>
+      <text x="0" y="5" text-anchor="middle" font-family="sans-serif" font-size="14" fill="white" font-weight="bold">A2</text>
+      <!-- 拉动手臂 -->
+      <line x1="-18" y1="8" x2="-55" y2="30" stroke="#1a1a2e" stroke-width="2.5" stroke-linecap="round"/>
+      <circle cx="-55" cy="30" r="4" fill="#1a1a2e"/>
+    </g>
+
+    <!-- 速率限制条 -->
+    <g transform="translate(30, 130)">
+      <rect x="0" y="0" width="170" height="18" rx="9" fill="#E8F0FE" stroke="#409EFF" stroke-width="1.2"/>
+      <rect x="0" y="0" width="110" height="18" rx="9" fill="url(#barGrad)"/>
+      <text x="85" y="13" text-anchor="middle" font-family="sans-serif" font-size="11" fill="white" font-weight="bold">已用 65%</text>
+    </g>
+
+    <!-- 仪表盘 -->
+    <g transform="translate(115, 185)">
+      <path d="M-40,30 A45,45 0 0,1 40,30" fill="none" stroke="#D0D5E0" stroke-width="6" stroke-linecap="round"/>
+      <path d="M-40,30 A45,45 0 0,1 -5,30" fill="none" stroke="#409EFF" stroke-width="6" stroke-linecap="round"/>
+      <path d="M-5,30 A45,45 0 0,1 25,30" fill="none" stroke="#F56C6C" stroke-width="6" stroke-linecap="round"/>
+      <!-- 指针 -->
+      <line x1="0" y1="0" x2="18" y2="-18" stroke="#1a1a2e" stroke-width="2" stroke-linecap="round"/>
+      <circle cx="0" cy="0" r="4" fill="#1a1a2e"/>
+      <text x="0" y="50" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#1a1a2e">负载</text>
+    </g>
+
+    <!-- 标注 -->
+    <text x="115" y="280" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#1a1a2e">争抢带宽</text>
+    <text x="115" y="300" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#1a1a2e">互相拖累</text>
+
+    <!-- 冲突箭头 -->
+    <g transform="translate(115, 330)">
+      <line x1="-30" y1="0" x2="30" y2="0" stroke="#F56C6C" stroke-width="1.8" stroke-dasharray="4,3"/>
+      <polygon points="30,0 22,-5 22,5" fill="#F56C6C"/>
+      <polygon points="-30,0 -22,-5 -22,5" fill="#F56C6C"/>
+    </g>
+  </g>
+
+  <!-- ============ 中间面板：知识共享/隐藏 ============ -->
+  <g transform="translate(285, 60)">
+    <rect x="0" y="0" width="230" height="390" rx="10" fill="white" stroke="#409EFF" stroke-width="1.5" filter="url(#shadow)"/>
+    <text x="115" y="28" text-anchor="middle" font-family="sans-serif" font-size="15" font-weight="bold" fill="#1a1a2e">知识共享困境</text>
+
+    <!-- 左侧智能体 -->
+    <g transform="translate(45, 80)">
+      <circle cx="0" cy="0" r="22" fill="#409EFF" opacity="0.85"/>
+      <text x="0" y="5" text-anchor="middle" font-family="sans-serif" font-size="14" fill="white" font-weight="bold">A1</text>
+      <!-- 知识气泡 -->
+      <ellipse cx="0" cy="-38" rx="28" ry="18" fill="#E8F4FD" stroke="#409EFF" stroke-width="1.2" stroke-dasharray="3,2"/>
+      <text x="0" y="-34" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#1a1a2e">知识</text>
+      <text x="0" y="-20" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#1a1a2e">共享</text>
+    </g>
+
+    <!-- 右侧智能体 -->
+    <g transform="translate(185, 80)">
+      <circle cx="0" cy="0" r="22" fill="#409EFF" opacity="0.85"/>
+      <text x="0" y="5" text-anchor="middle" font-family="sans-serif" font-size="14" fill="white" font-weight="bold">A2</text>
+      <!-- 知识气泡 -->
+      <ellipse cx="0" cy="-38" rx="28" ry="18" fill="#E8F4FD" stroke="#409EFF" stroke-width="1.2" stroke-dasharray="3,2"/>
+      <text x="0" y="-34" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#1a1a2e">知识</text>
+      <text x="0" y="-20" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#1a1a2e">隐藏</text>
+    </g>
+
+    <!-- 连接线（带开关） -->
+    <g transform="translate(115, 80)">
+      <!-- 水平连接线 -->
+      <line x1="-55" y1="0" x2="55" y2="0" stroke="#D0D5E0" stroke-width="2" stroke-dasharray="5,3"/>
+      <!-- 开关 -->
+      <rect x="-16" y="-10" width="32" height="20" rx="10" fill="#E8F0FE" stroke="#409EFF" stroke-width="1.2"/>
+      <circle cx="-6" cy="0" r="7" fill="#409EFF"/>
+      <text x="0" y="28" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#1a1a2e">开关</text>
+    </g>
+
+    <!-- 标注 -->
+    <text x="115" y="160" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#1a1a2e">共享收益 vs</text>
+    <text x="115" y="180" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#1a1a2e">隐藏风险</text>
+
+    <!-- 决策树示意 -->
+    <g transform="translate(40, 220)">
+      <text x="75" y="0" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#1a1a2e" font-weight="bold">决策矩阵</text>
+      <!-- 简单表格 -->
+      <rect x="5" y="12" width="140" height="80" rx="4" fill="none" stroke="#409EFF" stroke-width="1"/>
+      <line x1="5" y1="40" x2="145" y2="40" stroke="#409EFF" stroke-width="0.8"/>
+      <line x1="5" y1="68" x2="145" y2="68" stroke="#409EFF" stroke-width="0.8"/>
+      <line x1="75" y1="12" x2="75" y2="92" stroke="#409EFF" stroke-width="0.8"/>
+      <text x="40" y="30" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#1a1a2e">共享</text>
+      <text x="110" y="30" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#1a1a2e">隐藏</text>
+      <text x="40" y="58" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#1a1a2e">3,3</text>
+      <text x="110" y="58" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#1a1a2e">1,4</text>
+      <text x="40" y="84" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#1a1a2e">4,1</text>
+      <text x="110" y="84" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#1a1a2e">2,2</text>
+    </g>
+
+    <!-- 困境标注 -->
+    <text x="115" y="340" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#F56C6C">囚徒困境</text>
+  </g>
+
+  <!-- ============ 右侧面板：搭便车问题 ============ -->
+  <g transform="translate(540, 60)">
+    <rect x="0" y="0" width="230" height="390" rx="10" fill="white" stroke="#409EFF" stroke-width="1.5" filter="url(#shadow)"/>
+    <text x="115" y="28" text-anchor="middle" font-family="sans-serif" font-size="15" font-weight="bold" fill="#1a1a2e">搭便车问题</text>
+
+    <!-- 跷跷板 -->
+    <g transform="translate(115, 160)">
+      <!-- 支点 -->
+      <polygon points="0,0 -12,30 12,30" fill="#1a1a2e"/>
+      <!-- 跷跷板横梁 -->
+      <line x1="-80" y1="0" x2="80" y2="0" stroke="#1a1a2e" stroke-width="5" stroke-linecap="round"/>
+      <!-- 倾斜效果：左侧下沉 -->
+      <line x1="-80" y1="0" x2="-80" y2="10" stroke="#1a1a2e" stroke-width="5" stroke-linecap="round" transform="rotate(-12, -80, 0)"/>
+      <line x1="80" y1="0" x2="80" y2="10" stroke="#1a1a2e" stroke-width="5" stroke-linecap="round" transform="rotate(12, 80, 0)"/>
+
+      <!-- 左侧智能体（负重） -->
+      <g transform="translate(-80, -45)">
+        <circle cx="0" cy="0" r="22" fill="#409EFF" opacity="0.85"/>
+        <text x="0" y="5" text-anchor="middle" font-family="sans-serif" font-size="14" fill="white" font-weight="bold">A1</text>
+        <!-- 重物 -->
+        <rect x="-15" y="25" width="30" height="20" rx="3" fill="#F56C6C" opacity="0.7"/>
+        <text x="0" y="39" text-anchor="middle" font-family="sans-serif" font-size="10" fill="white">重负载</text>
+      </g>
+
+      <!-- 右侧智能体（轻松） -->
+      <g transform="translate(80, -15)">
+        <circle cx="0" cy="0" r="22" fill="#409EFF" opacity="0.85"/>
+        <text x="0" y="5" text-anchor="middle" font-family="sans-serif" font-size="14" fill="white" font-weight="bold">A2</text>
+        <!-- 小重物 -->
+        <rect x="-10" y="25" width="20" height="12" rx="3" fill="#67C23A" opacity="0.7"/>
+        <text x="0" y="34" text-anchor="middle" font-family="sans-serif" font-size="9" fill="white">轻负载</text>
+      </g>
+    </g>
+
+    <!-- 标注 -->
+    <text x="115" y="240" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#1a1a2e">工作量不均</text>
+    <text x="115" y="260" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#1a1a2e">贡献失衡</text>
+
+    <!-- 搭便车示意 -->
+    <g transform="translate(40, 290)">
+      <text x="75" y="0" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#1a1a2e" font-weight="bold">搭便车</text>
+      <rect x="20" y="12" width="110" height="55" rx="6" fill="#FFF3E0" stroke="#F56C6C" stroke-width="1"/>
+      <text x="75" y="32" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#1a1a2e">A1 承担 80% 工作</text>
+      <text x="75" y="50" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#1a1a2e">A2 享受同等收益</text>
+      <text x="75" y="66" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#F56C6C">不公平</text>
+    </g>
+
+    <!-- 结果标注 -->
+    <text x="115" y="370" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#1a1a2e">集体行动困境</text>
+  </g>
+
+  <!-- 底部说明 -->
+  <text x="400" y="478" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#666" font-style="italic">多智能体协作中的典型困境：资源竞争、信息不对称、贡献不均</text>
+
+</svg>

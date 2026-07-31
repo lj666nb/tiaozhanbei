@@ -1,0 +1,121 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="800" height="500">
+  <defs>
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#e8f4fd"/>
+      <stop offset="100%" stop-color="#d0eaf8"/>
+    </linearGradient>
+    <linearGradient id="boxGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#409EFF"/>
+      <stop offset="100%" stop-color="#3a8fe0"/>
+    </linearGradient>
+    <linearGradient id="cardGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="100%" stop-color="#f5f9ff"/>
+    </linearGradient>
+  </defs>
+
+  <!-- 背景 -->
+  <rect width="800" height="500" fill="url(#bgGrad)" rx="8"/>
+
+  <!-- 标题 -->
+  <text x="400" y="35" text-anchor="middle" font-family="sans-serif" font-size="18" font-weight="bold" fill="#1a1a2e">状态分类与回滚策略</text>
+
+  <!-- ===== 状态类型区域 ===== -->
+  <!-- 状态1: 不可变 -->
+  <rect x="40" y="60" width="220" height="100" rx="10" fill="url(#boxGrad)" stroke="#2d7fd0" stroke-width="1.5"/>
+  <rect x="40" y="60" width="220" height="100" rx="10" fill="white" opacity="0.15"/>
+  <!-- 锁图标 -->
+  <circle cx="75" cy="95" r="14" fill="white" opacity="0.9"/>
+  <rect x="68" y="93" width="14" height="10" rx="2" fill="#409EFF"/>
+  <rect x="71" y="96" width="8" height="4" rx="1" fill="white"/>
+  <text x="75" y="100" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#409EFF">🔒</text>
+  <text x="110" y="90" font-family="sans-serif" font-size="15" font-weight="bold" fill="white">不可变 Immutable</text>
+  <text x="110" y="112" font-family="sans-serif" font-size="11" fill="#d0e8ff">支付、已发邮件、已确认订单</text>
+  <rect x="50" y="125" width="90" height="22" rx="11" fill="white" opacity="0.25"/>
+  <text x="95" y="140" text-anchor="middle" font-family="sans-serif" font-size="11" fill="white">保留 Preserve</text>
+
+  <!-- 状态2: 可变 -->
+  <rect x="290" y="60" width="220" height="100" rx="10" fill="url(#boxGrad)" stroke="#2d7fd0" stroke-width="1.5"/>
+  <rect x="290" y="60" width="220" height="100" rx="10" fill="white" opacity="0.15"/>
+  <!-- 铅笔图标 -->
+  <circle cx="325" cy="95" r="14" fill="white" opacity="0.9"/>
+  <text x="325" y="100" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#409EFF">✏️</text>
+  <text x="360" y="90" font-family="sans-serif" font-size="15" font-weight="bold" fill="white">可变 Mutable</text>
+  <text x="360" y="112" font-family="sans-serif" font-size="11" fill="#d0e8ff">已选酒店、时间段</text>
+  <rect x="300" y="125" width="130" height="22" rx="11" fill="white" opacity="0.25"/>
+  <text x="365" y="140" text-anchor="middle" font-family="sans-serif" font-size="11" fill="white">尽量保留 Preserve if Compatible</text>
+
+  <!-- 状态3: 可撤销 -->
+  <rect x="540" y="60" width="220" height="100" rx="10" fill="url(#boxGrad)" stroke="#2d7fd0" stroke-width="1.5"/>
+  <rect x="540" y="60" width="220" height="100" rx="10" fill="white" opacity="0.15"/>
+  <!-- 撤销箭头图标 -->
+  <circle cx="575" cy="95" r="14" fill="white" opacity="0.9"/>
+  <text x="575" y="100" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#409EFF">↩️</text>
+  <text x="610" y="90" font-family="sans-serif" font-size="15" font-weight="bold" fill="white">可撤销 Revertible</text>
+  <text x="610" y="112" font-family="sans-serif" font-size="11" fill="#d0e8ff">购物车、临时会话</text>
+  <rect x="550" y="125" width="100" height="22" rx="11" fill="white" opacity="0.25"/>
+  <text x="600" y="140" text-anchor="middle" font-family="sans-serif" font-size="11" fill="white">可丢弃 Discardable</text>
+
+  <!-- ===== 回滚策略区域 ===== -->
+  <text x="400" y="200" text-anchor="middle" font-family="sans-serif" font-size="15" font-weight="bold" fill="#1a1a2e">回滚策略</text>
+
+  <!-- 5个策略卡片 -->
+  <rect x="30" y="215" width="136" height="50" rx="8" fill="url(#cardGrad)" stroke="#409EFF" stroke-width="1.5"/>
+  <text x="98" y="243" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="bold" fill="#1a1a2e">快照恢复</text>
+
+  <rect x="180" y="215" width="136" height="50" rx="8" fill="url(#cardGrad)" stroke="#409EFF" stroke-width="1.5"/>
+  <text x="248" y="243" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="bold" fill="#1a1a2e">增量提交</text>
+
+  <rect x="330" y="215" width="136" height="50" rx="8" fill="url(#cardGrad)" stroke="#409EFF" stroke-width="1.5"/>
+  <text x="398" y="243" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="bold" fill="#1a1a2e">补偿事务</text>
+
+  <rect x="480" y="215" width="136" height="50" rx="8" fill="url(#cardGrad)" stroke="#409EFF" stroke-width="1.5"/>
+  <text x="548" y="243" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="bold" fill="#1a1a2e">Saga模式</text>
+
+  <rect x="630" y="215" width="136" height="50" rx="8" fill="url(#cardGrad)" stroke="#409EFF" stroke-width="1.5"/>
+  <text x="698" y="243" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="bold" fill="#1a1a2e">乐观保留</text>
+
+  <!-- ===== 兼容性检查管道 ===== -->
+  <text x="400" y="305" text-anchor="middle" font-family="sans-serif" font-size="15" font-weight="bold" fill="#1a1a2e">兼容性检查流程</text>
+
+  <!-- 输入1: Preserved State -->
+  <rect x="80" y="325" width="160" height="45" rx="10" fill="white" stroke="#409EFF" stroke-width="1.5"/>
+  <text x="160" y="353" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="#1a1a2e">保留状态</text>
+
+  <!-- + 号 -->
+  <text x="265" y="353" text-anchor="middle" font-family="sans-serif" font-size="20" font-weight="bold" fill="#409EFF">+</text>
+
+  <!-- 输入2: New Plan -->
+  <rect x="290" y="325" width="140" height="45" rx="10" fill="white" stroke="#409EFF" stroke-width="1.5"/>
+  <text x="360" y="353" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="#1a1a2e">新计划</text>
+
+  <!-- 箭头 -->
+  <line x1="455" y1="347" x2="510" y2="347" stroke="#409EFF" stroke-width="2" marker-end="url(#arrowBlue)"/>
+  <defs>
+    <marker id="arrowBlue" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#409EFF"/>
+    </marker>
+  </defs>
+
+  <!-- 检查框 -->
+  <rect x="520" y="315" width="200" height="65" rx="10" fill="#409EFF" stroke="#2d7fd0" stroke-width="1.5"/>
+  <text x="620" y="338" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="white">兼容性检查</text>
+  <text x="620" y="358" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#d0e8ff">逻辑 · 约束 · 时间线</text>
+
+  <!-- 输出分支 -->
+  <line x1="620" y1="380" x2="620" y2="410" stroke="#409EFF" stroke-width="2"/>
+  <line x1="620" y1="410" x2="520" y2="410" stroke="#409EFF" stroke-width="2"/>
+  <line x1="620" y1="410" x2="720" y2="410" stroke="#409EFF" stroke-width="2"/>
+
+  <!-- 通过 -->
+  <rect x="440" y="400" width="80" height="30" rx="15" fill="#67c23a" opacity="0.85"/>
+  <text x="480" y="420" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="white">✅ 通过</text>
+
+  <!-- 失败 -->
+  <rect x="640" y="400" width="80" height="30" rx="15" fill="#f56c6c" opacity="0.85"/>
+  <text x="680" y="420" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="white">❌ 失败</text>
+
+  <!-- 底部说明 -->
+  <text x="400" y="470" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#666">状态管理可视化 — 状态分类与回滚策略兼容性检查</text>
+
+</svg>

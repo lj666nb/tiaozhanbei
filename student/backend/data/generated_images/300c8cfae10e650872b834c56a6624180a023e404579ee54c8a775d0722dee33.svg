@@ -1,0 +1,151 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="800" height="500">
+  <defs>
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#E8F4FD"/>
+      <stop offset="100%" stop-color="#D0EAF8"/>
+    </linearGradient>
+    <linearGradient id="agentGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#409EFF"/>
+      <stop offset="100%" stop-color="#2B7ED6"/>
+    </linearGradient>
+    <linearGradient id="chatGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#B0C4DE"/>
+      <stop offset="100%" stop-color="#8FA8C8"/>
+    </linearGradient>
+  </defs>
+
+  <!-- 背景 -->
+  <rect width="800" height="500" fill="url(#bgGrad)" rx="8"/>
+
+  <!-- 标题 -->
+  <text x="400" y="38" text-anchor="middle" font-family="sans-serif" font-size="20" font-weight="bold" fill="#1a1a2e">聊天机器人 vs AI 智能体</text>
+
+  <!-- 分隔虚线 -->
+  <line x1="400" y1="55" x2="400" y2="470" stroke="#1a1a2e" stroke-width="1.5" stroke-dasharray="8,6" opacity="0.35"/>
+
+  <!-- 中间问题 -->
+  <rect x="310" y="210" width="180" height="36" rx="18" fill="#1a1a2e" opacity="0.9"/>
+  <text x="400" y="233" text-anchor="middle" font-family="sans-serif" font-size="14" fill="white">会说话的机器人还是智能体？</text>
+
+  <!-- ===== 左侧：聊天机器人 ===== -->
+  <g transform="translate(80, 80)">
+    <!-- 聊天机器人头部（气泡） -->
+    <rect x="40" y="20" width="180" height="120" rx="60" fill="url(#chatGrad)" opacity="0.85"/>
+    <!-- 眼睛 -->
+    <circle cx="90" cy="65" r="8" fill="#1a1a2e" opacity="0.6"/>
+    <circle cx="130" cy="65" r="8" fill="#1a1a2e" opacity="0.6"/>
+    <!-- 嘴巴（微笑） -->
+    <path d="M85 95 Q110 115 135 95" stroke="#1a1a2e" stroke-width="2.5" fill="none" stroke-linecap="round" opacity="0.7"/>
+    <!-- 气泡尾巴 -->
+    <polygon points="130,140 150,165 160,135" fill="url(#chatGrad)" opacity="0.85"/>
+
+    <!-- 思考气泡 -->
+    <circle cx="230" cy="30" r="10" fill="#B0C4DE" opacity="0.6"/>
+    <circle cx="250" cy="18" r="7" fill="#B0C4DE" opacity="0.5"/>
+    <ellipse cx="275" cy="8" rx="18" ry="12" fill="#B0C4DE" opacity="0.4"/>
+
+    <!-- 思考内容：问号和回复 -->
+    <text x="268" y="12" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#1a1a2e" opacity="0.6">？</text>
+    <text x="230" y="34" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#1a1a2e" opacity="0.5">？</text>
+
+    <!-- 回复框 -->
+    <rect x="30" y="155" width="200" height="28" rx="14" fill="white" stroke="#B0C4DE" stroke-width="1" opacity="0.8"/>
+    <text x="130" y="173" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#1a1a2e" opacity="0.7">你好！有什么可以帮你？</text>
+
+    <rect x="40" y="190" width="180" height="28" rx="14" fill="white" stroke="#B0C4DE" stroke-width="1" opacity="0.7"/>
+    <text x="130" y="208" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#1a1a2e" opacity="0.6">我不太明白你的意思</text>
+
+    <rect x="55" y="225" width="150" height="28" rx="14" fill="white" stroke="#B0C4DE" stroke-width="1" opacity="0.6"/>
+    <text x="130" y="243" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#1a1a2e" opacity="0.5">请换个问题试试</text>
+
+    <!-- 标签 -->
+    <rect x="40" y="270" width="180" height="32" rx="6" fill="#1a1a2e" opacity="0.85"/>
+    <text x="130" y="291" text-anchor="middle" font-family="sans-serif" font-size="15" font-weight="bold" fill="white">🤖 聊天机器人</text>
+    <text x="130" y="315" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#8FA8C8">只能对话</text>
+  </g>
+
+  <!-- ===== 右侧：AI 智能体 ===== -->
+  <g transform="translate(440, 60)">
+    <!-- 智能体身体 -->
+    <rect x="60" y="40" width="120" height="140" rx="20" fill="url(#agentGrad)" opacity="0.9"/>
+    <!-- 头部 -->
+    <rect x="70" y="10" width="100" height="50" rx="25" fill="url(#agentGrad)" opacity="0.95"/>
+    <!-- 眼睛 -->
+    <circle cx="105" cy="32" r="6" fill="white"/>
+    <circle cx="135" cy="32" r="6" fill="white"/>
+    <circle cx="107" cy="32" r="3" fill="#1a1a2e"/>
+    <circle cx="137" cy="32" r="3" fill="#1a1a2e"/>
+    <!-- 天线 -->
+    <line x1="120" y1="10" x2="120" y2="0" stroke="#409EFF" stroke-width="2"/>
+    <circle cx="120" cy="0" r="4" fill="#409EFF"/>
+
+    <!-- 手臂 -->
+    <rect x="20" y="65" width="35" height="12" rx="6" fill="#409EFF" opacity="0.8"/>
+    <rect x="185" y="65" width="35" height="12" rx="6" fill="#409EFF" opacity="0.8"/>
+    <!-- 手（夹爪） -->
+    <rect x="15" y="60" width="10" height="22" rx="3" fill="#2B7ED6"/>
+    <rect x="215" y="60" width="10" height="22" rx="3" fill="#2B7ED6"/>
+
+    <!-- 桌面 -->
+    <rect x="10" y="185" width="220" height="8" rx="2" fill="#1a1a2e" opacity="0.15"/>
+
+    <!-- 工具 -->
+    <rect x="25" y="155" width="30" height="25" rx="4" fill="white" stroke="#409EFF" stroke-width="1.2"/>
+    <text x="40" y="172" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#409EFF">⚙️</text>
+
+    <rect x="65" y="150" width="30" height="30" rx="4" fill="white" stroke="#409EFF" stroke-width="1.2"/>
+    <text x="80" y="168" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#409EFF">🔧</text>
+
+    <rect x="185" y="155" width="30" height="25" rx="4" fill="white" stroke="#409EFF" stroke-width="1.2"/>
+    <text x="200" y="172" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#409EFF">📊</text>
+
+    <!-- 数据库图标 -->
+    <rect x="105" y="155" width="35" height="25" rx="4" fill="white" stroke="#409EFF" stroke-width="1.2"/>
+    <ellipse cx="122" cy="162" rx="10" ry="3" fill="none" stroke="#409EFF" stroke-width="1"/>
+    <ellipse cx="122" cy="172" rx="10" ry="3" fill="none" stroke="#409EFF" stroke-width="1"/>
+    <line x1="112" y1="162" x2="112" y2="172" stroke="#409EFF" stroke-width="0.8"/>
+    <line x1="132" y1="162" x2="132" y2="172" stroke="#409EFF" stroke-width="0.8"/>
+
+    <!-- API 连接 -->
+    <line x1="15" y1="80" x2="15" y2="150" stroke="#409EFF" stroke-width="1.5" stroke-dasharray="4,3" opacity="0.6"/>
+    <line x1="225" y1="80" x2="225" y2="150" stroke="#409EFF" stroke-width="1.5" stroke-dasharray="4,3" opacity="0.6"/>
+    <text x="8" y="115" font-family="sans-serif" font-size="9" fill="#409EFF" opacity="0.7" transform="rotate(-90,8,115)">API</text>
+    <text x="232" y="115" font-family="sans-serif" font-size="9" fill="#409EFF" opacity="0.7" transform="rotate(90,232,115)">API</text>
+
+    <!-- 标签 -->
+    <rect x="40" y="210" width="180" height="32" rx="6" fill="#1a1a2e" opacity="0.85"/>
+    <text x="130" y="231" text-anchor="middle" font-family="sans-serif" font-size="15" font-weight="bold" fill="white">🧠 AI 智能体</text>
+    <text x="130" y="255" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#409EFF">可以执行任务</text>
+
+    <!-- 动作项目 -->
+    <text x="130" y="278" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#1a1a2e" opacity="0.7">✓ 调用工具  ✓ 访问数据</text>
+    <text x="130" y="295" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#1a1a2e" opacity="0.7">✓ API 集成  ✓ 自主决策</text>
+  </g>
+
+  <!-- ===== 底部：转换箭头和说明 ===== -->
+  <g transform="translate(0, 390)">
+    <!-- 箭头 -->
+    <line x1="180" y1="20" x2="620" y2="20" stroke="#1a1a2e" stroke-width="2" opacity="0.4"/>
+    <polygon points="615,14 628,20 615,26" fill="#1a1a2e" opacity="0.4"/>
+
+    <!-- 左侧：聊天机器人 + 插件 -->
+    <rect x="200" y="5" width="50" height="30" rx="15" fill="url(#chatGrad)" opacity="0.7"/>
+    <text x="225" y="25" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#1a1a2e" opacity="0.7">💬</text>
+
+    <rect x="260" y="8" width="40" height="24" rx="4" fill="#409EFF" opacity="0.5"/>
+    <text x="280" y="25" text-anchor="middle" font-family="sans-serif" font-size="9" fill="white">插件</text>
+
+    <!-- 红色 X -->
+    <text x="310" y="25" font-family="sans-serif" font-size="22" font-weight="bold" fill="#E74C3C" opacity="0.8">✕</text>
+
+    <!-- 说明文字 -->
+    <text x="400" y="55" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#1a1a2e" opacity="0.75">仅添加一个 API 调用并不能成为智能体</text>
+
+    <!-- 右侧：智能体 -->
+    <rect x="530" y="5" width="50" height="30" rx="15" fill="#409EFF" opacity="0.7"/>
+    <text x="555" y="25" text-anchor="middle" font-family="sans-serif" font-size="11" fill="white">🧠</text>
+  </g>
+
+  <!-- 底部标注 -->
+  <text x="400" y="480" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#1a1a2e" opacity="0.45">智能体 = 聊天机器人 + 工具 + 数据 + 自主决策</text>
+</svg>

@@ -1,0 +1,396 @@
+================================================================================
+模块五：多智能体系统（7 关）
+================================================================================
+
+--------------------------------------------------------------------------------
+关卡 5-1：多智能体系统定义与适用场景
+所属模块：模块五 · 多智能体系统
+--------------------------------------------------------------------------------
+
+【任务描述】
+多智能体系统（MAS）由多个自主Agent组成，通过协作完成单个Agent无法完成的
+复杂任务。"单兵作战 vs 集团军作战"的关键区别：任务可分解性、通信开销、
+鲁棒性。本关实现多Agent任务分配模拟。
+
+编写函数 `assign_tasks_to_agents(tasks, agents)`：
+- 按负载均衡策略分配：每个Agent轮流领取任务
+- 返回分配结果 dict {agent_name: [task1, task2, ...]}
+
+【输入输出说明】
+输入：tasks(list[str]), agents(list[str])
+输出：dict[str, list[str]]
+
+【初始代码】
+```python
+def assign_tasks_to_agents(tasks, agents):
+    """
+    轮询（Round-Robin）策略分配任务给Agent。
+    """
+    # TODO: 实现轮询分配
+    assignment = {a: [] for a in agents}
+    for i, task in enumerate(tasks):
+        agent = agents[i % len(agents)]
+        assignment[agent].append(task)
+    return assignment
+```
+
+【评测代码】
+```python
+def evaluate_5_1(student_func):
+    r = student_func(["任务1","任务2","任务3","任务4","任务5"], ["Alice","Bob"])
+    assert len(r["Alice"]) == 3 and len(r["Bob"]) == 2
+    assert "任务1" in r["Alice"]
+    assert "任务2" in r["Bob"]
+    r2 = student_func(["单任务"], ["Solo"])
+    assert r2 == {"Solo": ["单任务"]}
+    return True, "关卡通过：正确分配任务"
+```
+
+--------------------------------------------------------------------------------
+关卡 5-2：管理者-执行者 Manager-Worker 模式
+所属模块：模块五 · 多智能体系统
+--------------------------------------------------------------------------------
+
+【任务描述】
+Manager-Worker 是多智能体系统的经典组织架构。Manager 负责任务分解与分配，
+Worker 负责执行具体任务并汇报结果。适合层级化任务。
+
+编写类 `ManagerWorkerSystem`：
+- Manager 有 `delegate(task)` 方法：将任务拆分为子任务分配给 Worker
+- Worker 有 `execute(subtask)` 方法：执行子任务并返回结果
+- `run(task)` 方法：Manager 分配 → Workers 执行 → 汇总返回
+
+【输入输出说明】
+输入：创建系统，添加 Worker，run 任务
+输出：{"assignments": dict, "results": dict, "summary": str}
+
+【初始代码】
+```python
+class ManagerWorkerSystem:
+    """Manager-Worker 多智能体架构"""
+    def __init__(self):
+        self.manager_name = "Manager"
+        self.workers = {}
+
+    def add_worker(self, name, skill):
+        self.workers[name] = {"name": name, "skill": skill}
+
+    def run(self, task):
+        # Manager 分解任务
+        subtasks = [f"子任务{i+1}: {task} (第{i+1}部分)" for i in range(len(self.workers))]
+        # 分配并执行
+        results = {}
+        for (name, worker), subtask in zip(self.workers.items(), subtasks):
+            results[name] = f"[{worker['skill']}] 完成: {subtask}"
+        return {
+            "assignments": {name: st for name, st in zip(self.workers.keys(), subtasks)},
+            "results": results,
+            "summary": f"Manager分配{len(subtasks)}个子任务给{len(self.workers)}个Worker"
+        }
+```
+
+【评测代码】
+```python
+def evaluate_5_2(module_dict):
+    MWS = module_dict.get("ManagerWorkerSystem")
+    assert MWS is not None
+    sys = MWS()
+    sys.add_worker("Worker1", "前端开发")
+    sys.add_worker("Worker2", "后端开发")
+    r = sys.run("开发Web应用")
+    assert len(r["results"]) == 2
+    assert "Manager分配2个子任务" in r["summary"]
+    return True, "关卡通过：正确实现Manager-Worker模式"
+```
+
+--------------------------------------------------------------------------------
+关卡 5-3：专家小组 Peer-to-Peer 模式
+所属模块：模块五 · 多智能体系统
+--------------------------------------------------------------------------------
+
+【任务描述】
+对等（P2P）模式中，每个Agent地位平等，通过投票或协商达成共识。适合没有
+明确层级的复杂决策场景。
+
+编写函数 `peer_voting(proposals, votes)`：
+- 每个Agent对每个提案投票（0反对~5强烈支持）
+- 汇总每个提案的总分
+- 返回按得分排序的提案列表（得分相同按字母序）
+
+【输入输出说明】
+输入：proposals(list[str]), votes(dict[str, dict[str, int]])
+     votes格式: {"AgentA": {"proposal1": 4, "proposal2": 3}, ...}
+输出：list[tuple] 如 [("方案A", 15), ("方案B", 10)]
+
+【初始代码】
+```python
+def peer_voting(proposals, votes):
+    """
+    P2P投票决策：汇总所有Agent的投票，排序返回。
+    """
+    # TODO: 计算每个提案的总分，排序
+    scores = {p: 0 for p in proposals}
+    for agent, ballot in votes.items():
+        for prop, score in ballot.items():
+            if prop in scores:
+                scores[prop] += score
+    ranked = sorted(scores.items(), key=lambda x: (-x[1], x[0]))
+    return ranked
+```
+
+【评测代码】
+```python
+def evaluate_5_3(student_func):
+    proposals = ["方案A", "方案B", "方案C"]
+    votes = {
+        "Agent1": {"方案A": 5, "方案B": 3, "方案C": 1},
+        "Agent2": {"方案A": 4, "方案B": 4, "方案C": 2},
+        "Agent3": {"方案A": 3, "方案B": 5, "方案C": 4},
+    }
+    r = student_func(proposals, votes)
+    assert r[0][0] == "方案A", f"方案A总分12应排第一, 得到{r[0][0]}"
+    assert r[0][1] == 12
+    return True, "关卡通过：正确实现P2P投票"
+```
+
+--------------------------------------------------------------------------------
+关卡 5-4：智能体间通信协议
+所属模块：模块五 · 多智能体系统
+--------------------------------------------------------------------------------
+
+【任务描述】
+多智能体间需要标准通信协议来交换信息。本关模拟简单的消息传递系统，支持
+点对点和广播两种模式。
+
+编写类 `MessageBus`：
+- `register(agent_name)`：注册Agent
+- `send(sender, receiver, content)`：发送点对点消息
+- `broadcast(sender, content)`：向所有Agent广播（除了sender）
+- `inbox(agent_name)`：返回该Agent的未读消息列表
+
+【输入输出说明】
+输入：注册Agent，发送消息，查看收件箱
+输出：消息列表
+
+【初始代码】
+```python
+class MessageBus:
+    """多智能体消息总线"""
+    def __init__(self):
+        self.agents = set()
+        self.messages = {}
+
+    def register(self, agent_name):
+        self.agents.add(agent_name)
+        if agent_name not in self.messages:
+            self.messages[agent_name] = []
+
+    def send(self, sender, receiver, content):
+        """点对点发送"""
+        # TODO
+        pass
+
+    def broadcast(self, sender, content):
+        """广播给所有其他Agent"""
+        # TODO
+        pass
+
+    def inbox(self, agent_name):
+        """返回未读消息列表"""
+        # TODO
+        pass
+```
+
+【评测代码】
+```python
+def evaluate_5_4(module_dict):
+    MB = module_dict.get("MessageBus")
+    assert MB is not None
+    bus = MB()
+    bus.register("AgentA")
+    bus.register("AgentB")
+    bus.register("AgentC")
+    bus.send("AgentA", "AgentB", "你好B")
+    bus.broadcast("AgentB", "大家好")
+    assert len(bus.inbox("AgentB")) >= 1
+    assert len(bus.inbox("AgentC")) == 1, "广播应被C收到"
+    return True, "关卡通过：正确实现消息总线"
+```
+
+--------------------------------------------------------------------------------
+关卡 5-5：公告板协调模式
+所属模块：模块五 · 多智能体系统
+--------------------------------------------------------------------------------
+
+【任务描述】
+公告板（Blackboard）模式：所有Agent共享一个公共信息空间，Agent可以写入
+信息（Post）和读取信息（Read），实现松耦合协作。
+
+编写类 `Blackboard`：
+- `post(agent, topic, data)`：发布信息到公告板
+- `read(agent, topic=None)`：读取指定topic的信息（topic=None返回全部）
+- `clear_topic(topic)`：清理某个topic
+
+【输入输出说明】
+输入：创建公告板，发布/读取信息
+输出：读取到的信息列表
+
+【初始代码】
+```python
+class Blackboard:
+    """共享公告板"""
+    def __init__(self):
+        self.board = {}
+
+    def post(self, agent, topic, data):
+        # TODO
+        pass
+
+    def read(self, agent, topic=None):
+        # TODO
+        pass
+
+    def clear_topic(self, topic):
+        # TODO
+        pass
+```
+
+【评测代码】
+```python
+def evaluate_5_5(module_dict):
+    BB = module_dict.get("Blackboard")
+    assert BB is not None
+    bb = BB()
+    bb.post("AgentA", "vision", "检测到障碍物")
+    bb.post("AgentB", "vision", "确认障碍物")
+    bb.post("AgentC", "planning", "规划绕行路线")
+    r = bb.read("AgentA", topic="vision")
+    assert len(r) == 2
+    bb.clear_topic("vision")
+    assert len(bb.read("AgentA", topic="vision")) == 0
+    return True, "关卡通过：正确实现公告板模式"
+```
+
+--------------------------------------------------------------------------------
+关卡 5-6：订阅/发布事件驱动模式
+所属模块：模块五 · 多智能体系统
+--------------------------------------------------------------------------------
+
+【任务描述】
+发布/订阅（Pub/Sub）模式：Agent 订阅感兴趣的事件类型，当事件发生时自动
+通知所有订阅者。适合事件驱动的协作场景。
+
+编写类 `PubSub`：
+- `subscribe(agent, event_type)`：订阅事件类型
+- `unsubscribe(agent, event_type)`：取消订阅
+- `publish(event_type, data)`：发布事件，通知所有订阅者
+- 返回被通知的 Agent 列表
+
+【输入输出说明】
+输入：创建PubSub，订阅/发布
+输出：{"notified": ["Agent1","Agent2"]}
+
+【初始代码】
+```python
+class PubSub:
+    """发布/订阅事件系统"""
+    def __init__(self):
+        self.subscriptions = {}
+
+    def subscribe(self, agent, event_type):
+        # TODO
+        pass
+
+    def unsubscribe(self, agent, event_type):
+        # TODO
+        pass
+
+    def publish(self, event_type, data):
+        # TODO: 通知所有订阅者
+        pass
+```
+
+【评测代码】
+```python
+def evaluate_5_6(module_dict):
+    PS = module_dict.get("PubSub")
+    assert PS is not None
+    ps = PS()
+    ps.subscribe("AgentA", "alarm")
+    ps.subscribe("AgentB", "alarm")
+    ps.subscribe("AgentC", "info")
+    r = ps.publish("alarm", "温度过高")
+    assert "AgentA" in r["notified"] and "AgentB" in r["notified"]
+    assert "AgentC" not in r["notified"]
+    ps.unsubscribe("AgentA", "alarm")
+    r2 = ps.publish("alarm", "再次告警")
+    assert "AgentA" not in r2["notified"]
+    return True, "关卡通过：正确实现Pub/Sub模式"
+```
+
+--------------------------------------------------------------------------------
+关卡 5-7：博弈论纳什均衡入门
+所属模块：模块五 · 多智能体系统
+--------------------------------------------------------------------------------
+
+【任务描述】
+纳什均衡（Nash Equilibrium）是博弈论核心概念：每个参与者在给定他人策略的
+情况下，都选择了自己的最优策略，无人愿意单方面改变策略。
+经典例子：囚徒困境（收益矩阵：双方合作各-1；一方背叛一方合作，背叛者0、
+合作者-10；双方背叛各-5）。
+
+编写函数 `find_nash_equilibrium(payoff_matrix)`：
+- payoff_matrix：2x2 字典 {(A策略,B策略): (A收益,B收益)}
+- 检测纯策略纳什均衡
+- 返回所有纯策略NE的列表
+
+【输入输出说明】
+输入：payoff_matrix(dict)
+输出：list[tuple] 如 [("confess","confess")]
+
+【初始代码】
+```python
+def find_nash_equilibrium(payoff_matrix):
+    """
+    找到2x2博弈中的所有纯策略纳什均衡。
+    payoff_matrix: {("A1","B1"): (payoffA, payoffB), ...}
+    """
+    strategies_A = list(set(k[0] for k in payoff_matrix.keys()))
+    strategies_B = list(set(k[1] for k in payoff_matrix.keys()))
+    ne_list = []
+    # TODO: 对每个策略组合检查是否为纳什均衡
+    for a in strategies_A:
+        for b in strategies_B:
+            current = payoff_matrix.get((a, b))
+            if current is None:
+                continue
+            # A是否有动机偏离？
+            a_ok = all(
+                current[0] >= payoff_matrix.get((alt_a, b), (float('-inf'),))[0]
+                for alt_a in strategies_A if alt_a != a
+            )
+            # B是否有动机偏离？
+            b_ok = all(
+                current[1] >= payoff_matrix.get((a, alt_b), (0, float('-inf')))[1]
+                for alt_b in strategies_B if alt_b != b
+            )
+            if a_ok and b_ok:
+                ne_list.append((a, b))
+    return ne_list
+```
+
+【评测代码】
+```python
+def evaluate_5_7(student_func):
+    # 囚徒困境
+    pm = {
+        ("cooperate", "cooperate"): (-1, -1),
+        ("cooperate", "confess"): (-10, 0),
+        ("confess", "cooperate"): (0, -10),
+        ("confess", "confess"): (-5, -5),
+    }
+    r = student_func(pm)
+    assert len(r) == 1, "囚徒困境只有1个纯策略NE"
+    assert r[0] == ("confess", "confess"), "相互背叛是NE"
+    return True, "关卡通过：正确找到纳什均衡"
+```

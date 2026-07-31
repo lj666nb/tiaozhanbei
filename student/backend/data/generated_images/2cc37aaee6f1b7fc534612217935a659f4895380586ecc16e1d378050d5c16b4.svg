@@ -1,0 +1,229 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="800" height="500">
+  <defs>
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#E8F4FD"/>
+      <stop offset="100%" stop-color="#F0F8FF"/>
+    </linearGradient>
+    <linearGradient id="brainGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#409EFF"/>
+      <stop offset="100%" stop-color="#2B7BE3"/>
+    </linearGradient>
+    <linearGradient id="handGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#409EFF"/>
+      <stop offset="100%" stop-color="#2B7BE3"/>
+    </linearGradient>
+    <linearGradient id="cycleGrad" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#409EFF"/>
+      <stop offset="100%" stop-color="#1a1a2e"/>
+    </linearGradient>
+    <filter id="shadow" x="-5%" y="-5%" width="115%" height="115%">
+      <feDropShadow dx="1" dy="2" stdDeviation="3" flood-opacity="0.12"/>
+    </filter>
+  </defs>
+
+  <!-- 背景 -->
+  <rect width="800" height="500" fill="url(#bgGrad)" rx="12"/>
+
+  <!-- 标题 -->
+  <text x="400" y="38" text-anchor="middle" font-family="sans-serif" font-size="20" font-weight="bold" fill="#1a1a2e">ReAct 概念：推理与行动的结合</text>
+
+  <!-- ===== 左侧：推理（大脑） ===== -->
+  <g filter="url(#shadow)">
+    <rect x="60" y="65" width="290" height="200" rx="18" fill="white" stroke="#409EFF" stroke-width="2"/>
+    <!-- 大脑图标 -->
+    <ellipse cx="205" cy="115" rx="45" ry="38" fill="url(#brainGrad)" opacity="0.15"/>
+    <ellipse cx="205" cy="115" rx="45" ry="38" fill="none" stroke="#409EFF" stroke-width="1.5" stroke-dasharray="4 3"/>
+    <!-- 大脑上半叶 -->
+    <path d="M175 115 Q185 80 205 78 Q225 80 235 115" fill="none" stroke="#409EFF" stroke-width="2.5" stroke-linecap="round"/>
+    <path d="M180 108 Q190 90 205 88 Q220 90 230 108" fill="none" stroke="#409EFF" stroke-width="2" stroke-linecap="round"/>
+    <!-- 大脑下半叶 -->
+    <path d="M175 122 Q185 145 205 148 Q225 145 235 122" fill="none" stroke="#409EFF" stroke-width="2.5" stroke-linecap="round"/>
+    <!-- 大脑中间褶皱 -->
+    <path d="M185 112 Q205 105 225 112" fill="none" stroke="#409EFF" stroke-width="1.5" stroke-linecap="round"/>
+    <path d="M188 118 Q205 112 222 118" fill="none" stroke="#409EFF" stroke-width="1.5" stroke-linecap="round"/>
+    <path d="M190 125 Q205 120 220 125" fill="none" stroke="#409EFF" stroke-width="1.5" stroke-linecap="round"/>
+
+    <!-- 思考气泡 -->
+    <g opacity="0.7">
+      <circle cx="155" cy="95" r="6" fill="#409EFF"/>
+      <circle cx="143" cy="83" r="9" fill="#409EFF"/>
+      <ellipse cx="128" cy="72" rx="18" ry="14" fill="white" stroke="#409EFF" stroke-width="1.5"/>
+      <text x="128" y="76" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#409EFF">?</text>
+    </g>
+    <g opacity="0.7">
+      <circle cx="255" cy="95" r="6" fill="#409EFF"/>
+      <circle cx="267" cy="83" r="9" fill="#409EFF"/>
+      <ellipse cx="282" cy="72" rx="18" ry="14" fill="white" stroke="#409EFF" stroke-width="1.5"/>
+      <text x="282" y="76" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#409EFF">...</text>
+    </g>
+    <g opacity="0.7">
+      <circle cx="175" cy="155" r="5" fill="#409EFF"/>
+      <circle cx="165" cy="165" r="8" fill="#409EFF"/>
+      <ellipse cx="152" cy="178" rx="16" ry="12" fill="white" stroke="#409EFF" stroke-width="1.5"/>
+      <text x="152" y="182" text-anchor="middle" font-family="sans-serif" font-size="8" fill="#409EFF">→</text>
+    </g>
+
+    <!-- 标签 -->
+    <text x="205" y="230" text-anchor="middle" font-family="sans-serif" font-size="17" font-weight="bold" fill="#1a1a2e">推理</text>
+    <text x="205" y="250" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#409EFF">Reasoning</text>
+  </g>
+
+  <!-- ===== 右侧：行动（手） ===== -->
+  <g filter="url(#shadow)">
+    <rect x="450" y="65" width="290" height="200" rx="18" fill="white" stroke="#409EFF" stroke-width="2"/>
+    <!-- 手图标 -->
+    <g transform="translate(595, 115)">
+      <rect x="-20" y="-8" width="12" height="30" rx="4" fill="url(#handGrad)" opacity="0.2" stroke="#409EFF" stroke-width="1.2"/>
+      <rect x="-8" y="-15" width="12" height="37" rx="4" fill="url(#handGrad)" opacity="0.2" stroke="#409EFF" stroke-width="1.2"/>
+      <rect x="4" y="-18" width="12" height="40" rx="4" fill="url(#handGrad)" opacity="0.2" stroke="#409EFF" stroke-width="1.2"/>
+      <rect x="16" y="-10" width="12" height="32" rx="4" fill="url(#handGrad)" opacity="0.2" stroke="#409EFF" stroke-width="1.2"/>
+      <!-- 手掌 -->
+      <rect x="-22" y="18" width="52" height="20" rx="8" fill="url(#handGrad)" opacity="0.15" stroke="#409EFF" stroke-width="1.2"/>
+    </g>
+
+    <!-- 工具图标 -->
+    <g transform="translate(555, 155)" opacity="0.7">
+      <circle cx="0" cy="0" r="10" fill="none" stroke="#409EFF" stroke-width="1.8"/>
+      <line x1="-5" y1="-5" x2="5" y2="5" stroke="#409EFF" stroke-width="1.8"/>
+      <line x1="5" y1="-5" x2="-5" y2="5" stroke="#409EFF" stroke-width="1.8"/>
+    </g>
+    <g transform="translate(635, 155)" opacity="0.7">
+      <rect x="-8" y="-8" width="16" height="16" rx="3" fill="none" stroke="#409EFF" stroke-width="1.8"/>
+      <circle cx="0" cy="0" r="4" fill="none" stroke="#409EFF" stroke-width="1.5"/>
+    </g>
+    <g transform="translate(595, 175)" opacity="0.7">
+      <path d="M-8 0 L0 -10 L8 0 Z" fill="none" stroke="#409EFF" stroke-width="1.8" stroke-linejoin="round"/>
+      <line x1="0" y1="-10" x2="0" y2="5" stroke="#409EFF" stroke-width="1.5"/>
+    </g>
+
+    <!-- 标签 -->
+    <text x="595" y="230" text-anchor="middle" font-family="sans-serif" font-size="17" font-weight="bold" fill="#1a1a2e">行动</text>
+    <text x="595" y="250" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#409EFF">Acting</text>
+  </g>
+
+  <!-- ===== 循环箭头（思考-行动-观察） ===== -->
+  <g>
+    <!-- 顶部连接弧 -->
+    <path d="M350 100 Q400 55 450 100" fill="none" stroke="#1a1a2e" stroke-width="2.5" stroke-dasharray="8 4" marker-end="url(#arrowBlue)"/>
+    <defs>
+      <marker id="arrowBlue" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto">
+        <path d="M0 0 L10 4 L0 8 Z" fill="#409EFF"/>
+      </marker>
+      <marker id="arrowDark" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto">
+        <path d="M0 0 L10 4 L0 8 Z" fill="#1a1a2e"/>
+      </marker>
+    </defs>
+
+    <!-- 底部连接弧 -->
+    <path d="M450 230 Q400 275 350 230" fill="none" stroke="#409EFF" stroke-width="2.5" stroke-dasharray="8 4" marker-end="url(#arrowDark)"/>
+
+    <!-- 顶部标签 -->
+    <text x="400" y="68" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#1a1a2e" font-weight="bold">思考</text>
+
+    <!-- 底部标签 -->
+    <text x="400" y="268" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#409EFF" font-weight="bold">观察</text>
+
+    <!-- 右侧垂直箭头 -->
+    <line x1="740" y1="130" x2="740" y2="200" stroke="#1a1a2e" stroke-width="2" marker-end="url(#arrowDark)"/>
+    <text x="755" y="170" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#1a1a2e" transform="rotate(90, 755, 170)">行动</text>
+  </g>
+
+  <!-- ===== 下方对比区域 ===== -->
+  <g>
+    <!-- 分隔线 -->
+    <line x1="60" y1="300" x2="740" y2="300" stroke="#409EFF" stroke-width="1" opacity="0.3"/>
+
+    <!-- 左侧：传统 LLM -->
+    <g filter="url(#shadow)">
+      <rect x="60" y="320" width="310" height="150" rx="14" fill="white" stroke="#1a1a2e" stroke-width="1.5" stroke-dasharray="6 3"/>
+      <text x="215" y="348" text-anchor="middle" font-family="sans-serif" font-size="15" font-weight="bold" fill="#1a1a2e">传统 LLM</text>
+
+      <!-- 大脑图标（小） -->
+      <ellipse cx="215" cy="385" rx="28" ry="24" fill="none" stroke="#1a1a2e" stroke-width="1.5" opacity="0.4"/>
+      <path d="M195 385 Q200 370 215 368 Q230 370 235 385" fill="none" stroke="#1a1a2e" stroke-width="1.8" opacity="0.5"/>
+      <path d="M198 390 Q215 400 232 390" fill="none" stroke="#1a1a2e" stroke-width="1.5" opacity="0.4"/>
+
+      <!-- 对话气泡 -->
+      <rect x="175" y="410" rx="10" ry="10" width="80" height="32" fill="#F0F0F0" stroke="#1a1a2e" stroke-width="1" opacity="0.6"/>
+      <polygon points="195,442 200,452 205,442" fill="#F0F0F0" stroke="#1a1a2e" stroke-width="1" opacity="0.6"/>
+      <text x="215" y="431" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#1a1a2e">我思考</text>
+    </g>
+
+    <!-- 右侧：ReAct 智能体 -->
+    <g filter="url(#shadow)">
+      <rect x="430" y="320" width="310" height="150" rx="14" fill="white" stroke="#409EFF" stroke-width="2"/>
+      <text x="585" y="348" text-anchor="middle" font-family="sans-serif" font-size="15" font-weight="bold" fill="#1a1a2e">ReAct 智能体</text>
+
+      <!-- 大脑+手组合图标 -->
+      <ellipse cx="570" cy="385" rx="22" ry="19" fill="none" stroke="#409EFF" stroke-width="1.5" opacity="0.5"/>
+      <path d="M555 385 Q558 373 570 371 Q582 373 585 385" fill="none" stroke="#409EFF" stroke-width="1.8" opacity="0.6"/>
+      <!-- 手 -->
+      <g transform="translate(600, 375)" opacity="0.5">
+        <rect x="-3" y="-2" width="5" height="12" rx="2" fill="none" stroke="#409EFF" stroke-width="1.2"/>
+        <rect x="2" y="-5" width="5" height="15" rx="2" fill="none" stroke="#409EFF" stroke-width="1.2"/>
+        <rect x="7" y="-3" width="5" height="13" rx="2" fill="none" stroke="#409EFF" stroke-width="1.2"/>
+      </g>
+
+      <!-- 对话气泡 -->
+      <rect x="535" y="410" rx="10" ry="10" width="100" height="32" fill="#E8F4FD" stroke="#409EFF" stroke-width="1.5"/>
+      <polygon points="555,442 560,452 565,442" fill="#E8F4FD" stroke="#409EFF" stroke-width="1.5"/>
+      <text x="585" y="431" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#1a1a2e" font-weight="bold">我思考且行动</text>
+    </g>
+  </g>
+
+  <!-- ===== 标注 ===== -->
+  <!-- 标注1：推理 -->
+  <g>
+    <line x1="120" y1="65" x2="120" y2="45" stroke="#409EFF" stroke-width="1.2"/>
+    <rect x="90" y="28" rx="6" ry="6" width="60" height="22" fill="#409EFF"/>
+    <text x="120" y="43" text-anchor="middle" font-family="sans-serif" font-size="11" fill="white" font-weight="bold">逻辑推理</text>
+  </g>
+
+  <!-- 标注2：思考气泡 -->
+  <g>
+    <line x1="128" y1="72" x2="110" y2="52" stroke="#409EFF" stroke-width="1" stroke-dasharray="3 2"/>
+  </g>
+
+  <!-- 标注3：行动 -->
+  <g>
+    <line x1="680" y1="65" x2="680" y2="45" stroke="#409EFF" stroke-width="1.2"/>
+    <rect x="650" y="28" rx="6" ry="6" width="60" height="22" fill="#409EFF"/>
+    <text x="680" y="43" text-anchor="middle" font-family="sans-serif" font-size="11" fill="white" font-weight="bold">工具调用</text>
+  </g>
+
+  <!-- 标注4：循环 -->
+  <g>
+    <line x1="400" y1="55" x2="400" y2="42" stroke="#1a1a2e" stroke-width="1.2"/>
+    <rect x="370" y="18" rx="6" ry="6" width="60" height="22" fill="#1a1a2e"/>
+    <text x="400" y="33" text-anchor="middle" font-family="sans-serif" font-size="11" fill="white" font-weight="bold">循环迭代</text>
+  </g>
+
+  <!-- 标注5：观察 -->
+  <g>
+    <line x1="400" y1="275" x2="400" y2="290" stroke="#409EFF" stroke-width="1.2"/>
+    <rect x="370" y="288" rx="6" ry="6" width="60" height="22" fill="#409EFF"/>
+    <text x="400" y="303" text-anchor="middle" font-family="sans-serif" font-size="11" fill="white" font-weight="bold">环境反馈</text>
+  </g>
+
+  <!-- 标注6：对比 -->
+  <g>
+    <line x1="310" y1="395" x2="350" y2="395" stroke="#1a1a2e" stroke-width="1" stroke-dasharray="3 2"/>
+    <line x1="490" y1="395" x2="450" y2="395" stroke="#409EFF" stroke-width="1" stroke-dasharray="3 2"/>
+    <text x="380" y="392" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#666">vs</text>
+  </g>
+
+  <!-- 标注7：ReAct 优势 -->
+  <g>
+    <line x1="585" y1="470" x2="585" y2="485" stroke="#409EFF" stroke-width="1.2"/>
+    <rect x="545" y="483" rx="6" ry="6" width="80" height="22" fill="#409EFF"/>
+    <text x="585" y="498" text-anchor="middle" font-family="sans-serif" font-size="11" fill="white" font-weight="bold">协同增效</text>
+  </g>
+
+  <!-- 标注8：传统LLM局限 -->
+  <g>
+    <line x1="215" y1="470" x2="215" y2="485" stroke="#1a1a2e" stroke-width="1.2"/>
+    <rect x="175" y="483" rx="6" ry="6" width="80" height="22" fill="#1a1a2e"/>
+    <text x="215" y="498" text-anchor="middle" font-family="sans-serif" font-size="11" fill="white" font-weight="bold">缺乏行动力</text>
+  </g>
+
+</svg>

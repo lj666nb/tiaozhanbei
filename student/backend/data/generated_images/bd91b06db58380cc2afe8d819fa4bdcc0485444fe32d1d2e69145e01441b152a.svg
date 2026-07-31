@@ -1,0 +1,139 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="800" height="500">
+  <defs>
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#f0f7ff"/>
+      <stop offset="100%" stop-color="#e8f4fd"/>
+    </linearGradient>
+    <linearGradient id="blueGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#409EFF"/>
+      <stop offset="100%" stop-color="#6ab2ff"/>
+    </linearGradient>
+    <linearGradient id="darkGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#1a1a2e"/>
+      <stop offset="100%" stop-color="#2d2d4a"/>
+    </linearGradient>
+  </defs>
+
+  <!-- 背景 -->
+  <rect width="800" height="500" fill="url(#bgGrad)" rx="8"/>
+
+  <!-- 标题 -->
+  <text x="400" y="38" text-anchor="middle" font-family="sans-serif" font-size="20" font-weight="bold" fill="#1a1a2e">架构模式对比</text>
+
+  <!-- ===== 左侧：事件驱动架构 ===== -->
+  <text x="160" y="72" text-anchor="middle" font-family="sans-serif" font-size="16" font-weight="bold" fill="#1a1a2e">事件驱动架构</text>
+
+  <!-- 事件源图标组 -->
+  <!-- 消息图标 -->
+  <rect x="40" y="95" width="70" height="50" rx="10" fill="white" stroke="#409EFF" stroke-width="1.5"/>
+  <text x="75" y="118" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#1a1a2e">📨 消息</text>
+  <text x="75" y="136" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#666">事件源</text>
+
+  <!-- 回调图标 -->
+  <rect x="40" y="160" width="70" height="50" rx="10" fill="white" stroke="#409EFF" stroke-width="1.5"/>
+  <text x="75" y="183" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#1a1a2e">🔄 回调</text>
+  <text x="75" y="201" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#666">事件源</text>
+
+  <!-- 定时器图标 -->
+  <rect x="40" y="225" width="70" height="50" rx="10" fill="white" stroke="#409EFF" stroke-width="1.5"/>
+  <text x="75" y="248" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#1a1a2e">⏱ 定时器</text>
+  <text x="75" y="266" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#666">事件源</text>
+
+  <!-- 箭头：事件源 → 事件队列 -->
+  <line x1="110" y1="120" x2="175" y2="145" stroke="#409EFF" stroke-width="1.8" marker-end="url(#arrowBlue)"/>
+  <line x1="110" y1="185" x2="175" y2="155" stroke="#409EFF" stroke-width="1.8"/>
+  <line x1="110" y1="250" x2="175" y2="165" stroke="#409EFF" stroke-width="1.8"/>
+
+  <!-- 箭头标记 -->
+  <defs>
+    <marker id="arrowBlue" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#409EFF"/>
+    </marker>
+    <marker id="arrowDark" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#1a1a2e"/>
+    </marker>
+  </defs>
+
+  <!-- 事件队列 -->
+  <rect x="180" y="110" width="100" height="80" rx="12" fill="white" stroke="#1a1a2e" stroke-width="1.8"/>
+  <text x="230" y="148" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="#1a1a2e">事件队列</text>
+  <text x="230" y="168" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#666">缓冲存储</text>
+
+  <!-- 箭头：事件队列 → 代理处理单元 -->
+  <line x1="280" y1="150" x2="345" y2="150" stroke="#409EFF" stroke-width="2" marker-end="url(#arrowBlue)"/>
+
+  <!-- 代理处理单元 -->
+  <rect x="350" y="110" width="110" height="80" rx="12" fill="url(#blueGrad)" stroke="#409EFF" stroke-width="1.8"/>
+  <text x="405" y="148" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="white">代理处理</text>
+  <text x="405" y="168" text-anchor="middle" font-family="sans-serif" font-size="10" fill="rgba(255,255,255,0.8)">事件分发</text>
+
+  <!-- 标注：事件驱动 -->
+  <text x="230" y="220" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#409EFF">异步处理</text>
+
+  <!-- ===== 右侧：轮询架构 ===== -->
+  <text x="560" y="72" text-anchor="middle" font-family="sans-serif" font-size="16" font-weight="bold" fill="#1a1a2e">轮询架构</text>
+
+  <!-- 时钟图标 -->
+  <rect x="460" y="95" width="80" height="60" rx="10" fill="white" stroke="#1a1a2e" stroke-width="1.5"/>
+  <text x="500" y="123" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#1a1a2e">🕐 时钟</text>
+  <text x="500" y="143" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#666">定时触发</text>
+
+  <!-- 连续循环箭头 -->
+  <path d="M 540 125 Q 580 95 620 125 Q 660 155 620 185 Q 580 215 540 185 Q 500 155 540 125" fill="none" stroke="#409EFF" stroke-width="1.8" stroke-dasharray="4,3"/>
+  <text x="620" y="118" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#409EFF">循环</text>
+
+  <!-- 检查消息 -->
+  <rect x="555" y="95" width="85" height="50" rx="10" fill="white" stroke="#409EFF" stroke-width="1.5"/>
+  <text x="597" y="118" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#1a1a2e">检查消息</text>
+  <text x="597" y="136" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#666">轮询</text>
+
+  <!-- 检查工具结果 -->
+  <rect x="555" y="160" width="85" height="50" rx="10" fill="white" stroke="#409EFF" stroke-width="1.5"/>
+  <text x="597" y="183" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#1a1a2e">检查结果</text>
+  <text x="597" y="201" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#666">轮询</text>
+
+  <!-- 箭头连接 -->
+  <line x1="540" y1="125" x2="555" y2="120" stroke="#409EFF" stroke-width="1.5"/>
+  <line x1="540" y1="185" x2="555" y2="185" stroke="#409EFF" stroke-width="1.5"/>
+
+  <!-- 代理处理单元（轮询） -->
+  <rect x="660" y="110" width="100" height="80" rx="12" fill="url(#darkGrad)" stroke="#1a1a2e" stroke-width="1.8"/>
+  <text x="710" y="148" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="white">代理处理</text>
+  <text x="710" y="168" text-anchor="middle" font-family="sans-serif" font-size="10" fill="rgba(255,255,255,0.8)">同步轮询</text>
+
+  <!-- 箭头：检查 → 代理 -->
+  <line x1="640" y1="120" x2="660" y2="140" stroke="#1a1a2e" stroke-width="1.5" marker-end="url(#arrowDark)"/>
+  <line x1="640" y1="185" x2="660" y2="165" stroke="#1a1a2e" stroke-width="1.5" marker-end="url(#arrowDark)"/>
+
+  <!-- 标注：轮询 -->
+  <text x="597" y="230" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#1a1a2e">同步检查</text>
+
+  <!-- ===== 底部中间：混合模型 ===== -->
+  <rect x="250" y="290" width="300" height="70" rx="14" fill="white" stroke="#409EFF" stroke-width="2"/>
+  <text x="400" y="320" text-anchor="middle" font-family="sans-serif" font-size="16" font-weight="bold" fill="#1a1a2e">混合模型（事件驱动 + 轮询）</text>
+  <text x="400" y="345" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#666">结合异步事件处理与定时轮询检查</text>
+
+  <!-- 连接线：左侧 → 混合 -->
+  <path d="M 230 190 Q 230 260 280 290" fill="none" stroke="#409EFF" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#arrowBlue)"/>
+  <!-- 连接线：右侧 → 混合 -->
+  <path d="M 570 190 Q 570 260 520 290" fill="none" stroke="#1a1a2e" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#arrowDark)"/>
+
+  <!-- 标注标签 -->
+  <text x="260" y="270" font-family="sans-serif" font-size="11" fill="#409EFF">事件驱动</text>
+  <text x="520" y="270" font-family="sans-serif" font-size="11" fill="#1a1a2e">轮询</text>
+
+  <!-- 底部说明 -->
+  <text x="400" y="400" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#888">灵活组合两种模式，平衡实时性与资源消耗</text>
+
+  <!-- 装饰性分隔线 -->
+  <line x1="400" y1="415" x2="400" y2="490" stroke="#409EFF" stroke-width="1" opacity="0.3"/>
+
+  <!-- 图例 -->
+  <rect x="100" y="430" width="12" height="12" rx="2" fill="#409EFF"/>
+  <text x="118" y="441" font-family="sans-serif" font-size="11" fill="#1a1a2e">事件流</text>
+  <rect x="200" y="430" width="12" height="12" rx="2" fill="#1a1a2e"/>
+  <text x="218" y="441" font-family="sans-serif" font-size="11" fill="#1a1a2e">控制流</text>
+  <rect x="300" y="430" width="12" height="12" rx="2" fill="white" stroke="#409EFF" stroke-width="1.5"/>
+  <text x="318" y="441" font-family="sans-serif" font-size="11" fill="#1a1a2e">组件</text>
+
+</svg>

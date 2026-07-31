@@ -1,0 +1,123 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="800" height="500">
+  <defs>
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#e8f4fd"/>
+      <stop offset="100%" stop-color="#d0ecf9"/>
+    </linearGradient>
+    <linearGradient id="cardGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="100%" stop-color="#f7faff"/>
+    </linearGradient>
+    <linearGradient id="bannerGrad" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#409EFF"/>
+      <stop offset="100%" stop-color="#2d7fd3"/>
+    </linearGradient>
+    <filter id="shadow" x="-2%" y="-2%" width="104%" height="108%">
+      <feDropShadow dx="0" dy="2" stdDeviation="4" flood-color="#409EFF" flood-opacity="0.15"/>
+    </filter>
+    <filter id="bannerShadow" x="-1%" y="-10%" width="102%" height="130%">
+      <feDropShadow dx="0" dy="3" stdDeviation="5" flood-color="#409EFF" flood-opacity="0.25"/>
+    </filter>
+  </defs>
+
+  <!-- 背景 -->
+  <rect width="800" height="500" fill="url(#bgGrad)" rx="12"/>
+
+  <!-- 标题 -->
+  <text x="400" y="38" text-anchor="middle" font-family="'Microsoft YaHei', 'PingFang SC', sans-serif" font-size="20" font-weight="700" fill="#1a1a2e">LoRA 核心原理记忆卡</text>
+  <line x1="280" y1="48" x2="520" y2="48" stroke="#409EFF" stroke-width="2" stroke-opacity="0.5"/>
+
+  <!-- ===== 卡片1 ===== -->
+  <g filter="url(#shadow)">
+    <rect x="60" y="65" width="680" height="72" rx="12" fill="url(#cardGrad)" stroke="#409EFF" stroke-width="1.2" stroke-opacity="0.3"/>
+    <!-- 编号圆 -->
+    <circle cx="95" cy="101" r="18" fill="#409EFF"/>
+    <text x="95" y="107" text-anchor="middle" font-family="'Microsoft YaHei', sans-serif" font-size="18" font-weight="700" fill="#ffffff">1</text>
+    <!-- 标题 -->
+    <text x="130" y="97" font-family="'Microsoft YaHei', 'PingFang SC', sans-serif" font-size="17" font-weight="700" fill="#1a1a2e">低秩假设</text>
+    <text x="130" y="119" font-family="'Microsoft YaHei', 'PingFang SC', sans-serif" font-size="13" fill="#5a6a7e">预训练权重矩阵具有低秩特性，可用 BA 分解近似</text>
+    <!-- 图标：BA分解 -->
+    <g transform="translate(620, 82)">
+      <rect x="0" y="0" width="18" height="18" rx="4" fill="#409EFF" fill-opacity="0.15"/>
+      <text x="9" y="14" text-anchor="middle" font-family="'Times New Roman', serif" font-size="13" font-weight="700" fill="#409EFF" font-style="italic">B</text>
+      <rect x="22" y="0" width="18" height="18" rx="4" fill="#409EFF" fill-opacity="0.15"/>
+      <text x="31" y="14" text-anchor="middle" font-family="'Times New Roman', serif" font-size="13" font-weight="700" fill="#409EFF" font-style="italic">A</text>
+      <text x="44" y="14" font-family="'Times New Roman', serif" font-size="13" fill="#1a1a2e">=ΔW</text>
+    </g>
+  </g>
+
+  <!-- ===== 卡片2 ===== -->
+  <g filter="url(#shadow)">
+    <rect x="60" y="152" width="680" height="72" rx="12" fill="url(#cardGrad)" stroke="#409EFF" stroke-width="1.2" stroke-opacity="0.3"/>
+    <circle cx="95" cy="188" r="18" fill="#409EFF"/>
+    <text x="95" y="194" text-anchor="middle" font-family="'Microsoft YaHei', sans-serif" font-size="18" font-weight="700" fill="#ffffff">2</text>
+    <text x="130" y="184" font-family="'Microsoft YaHei', 'PingFang SC', sans-serif" font-size="17" font-weight="700" fill="#1a1a2e">冻结 + 旁路</text>
+    <text x="130" y="206" font-family="'Microsoft YaHei', 'PingFang SC', sans-serif" font-size="13" fill="#5a6a7e">预训练权重冻结不更新，仅训练低秩旁路分支</text>
+    <!-- 图标：锁+旁路 -->
+    <g transform="translate(610, 173)">
+      <!-- 主路径 -->
+      <line x1="0" y1="14" x2="30" y2="14" stroke="#c0c8d4" stroke-width="3" stroke-dasharray="none"/>
+      <!-- 锁 -->
+      <rect x="10" y="6" width="10" height="8" rx="2" fill="#c0c8d4"/>
+      <circle cx="15" cy="6" r="4" fill="none" stroke="#c0c8d4" stroke-width="1.5"/>
+      <!-- 旁路 -->
+      <path d="M30,14 Q45,-8 60,14" fill="none" stroke="#409EFF" stroke-width="2.5" stroke-linecap="round"/>
+      <circle cx="60" cy="14" r="3" fill="#409EFF"/>
+      <text x="68" y="18" font-family="'Microsoft YaHei', sans-serif" font-size="11" fill="#409EFF" font-weight="600">旁路</text>
+    </g>
+  </g>
+
+  <!-- ===== 卡片3 ===== -->
+  <g filter="url(#shadow)">
+    <rect x="60" y="239" width="680" height="72" rx="12" fill="url(#cardGrad)" stroke="#409EFF" stroke-width="1.2" stroke-opacity="0.3"/>
+    <circle cx="95" cy="275" r="18" fill="#409EFF"/>
+    <text x="95" y="281" text-anchor="middle" font-family="'Microsoft YaHei', sans-serif" font-size="18" font-weight="700" fill="#ffffff">3</text>
+    <text x="130" y="271" font-family="'Microsoft YaHei', 'PingFang SC', sans-serif" font-size="17" font-weight="700" fill="#1a1a2e">可合并性</text>
+    <text x="130" y="293" font-family="'Microsoft YaHei', 'PingFang SC', sans-serif" font-size="13" fill="#5a6a7e">训练完成后可合并回原权重，推理时零额外开销</text>
+    <!-- 图标：W0+BA=W_final -->
+    <g transform="translate(590, 260)">
+      <text x="0" y="14" font-family="'Times New Roman', serif" font-size="14" font-weight="700" fill="#1a1a2e" font-style="italic">W₀</text>
+      <text x="25" y="14" font-family="'Times New Roman', serif" font-size="14" fill="#1a1a2e">+</text>
+      <rect x="35" y="2" width="16" height="16" rx="3" fill="#409EFF" fill-opacity="0.15"/>
+      <text x="43" y="15" text-anchor="middle" font-family="'Times New Roman', serif" font-size="12" font-weight="700" fill="#409EFF" font-style="italic">B</text>
+      <rect x="53" y="2" width="16" height="16" rx="3" fill="#409EFF" fill-opacity="0.15"/>
+      <text x="61" y="15" text-anchor="middle" font-family="'Times New Roman', serif" font-size="12" font-weight="700" fill="#409EFF" font-style="italic">A</text>
+      <text x="75" y="14" font-family="'Times New Roman', serif" font-size="14" fill="#1a1a2e">=</text>
+      <text x="88" y="14" font-family="'Times New Roman', serif" font-size="14" font-weight="700" fill="#409EFF" font-style="italic">W</text>
+    </g>
+  </g>
+
+  <!-- ===== 卡片4 ===== -->
+  <g filter="url(#shadow)">
+    <rect x="60" y="326" width="680" height="72" rx="12" fill="url(#cardGrad)" stroke="#409EFF" stroke-width="1.2" stroke-opacity="0.3"/>
+    <circle cx="95" cy="362" r="18" fill="#409EFF"/>
+    <text x="95" y="368" text-anchor="middle" font-family="'Microsoft YaHei', sans-serif" font-size="18" font-weight="700" fill="#ffffff">4</text>
+    <text x="130" y="358" font-family="'Microsoft YaHei', 'PingFang SC', sans-serif" font-size="17" font-weight="700" fill="#1a1a2e">可切换性</text>
+    <text x="130" y="380" font-family="'Microsoft YaHei', 'PingFang SC', sans-serif" font-size="13" fill="#5a6a7e">不同 LoRA 适配器可动态插拔，灵活切换任务</text>
+    <!-- 图标：多个插拔适配器 -->
+    <g transform="translate(600, 345)">
+      <rect x="0" y="2" width="14" height="18" rx="3" fill="#409EFF" fill-opacity="0.2" stroke="#409EFF" stroke-width="1"/>
+      <rect x="18" y="0" width="14" height="18" rx="3" fill="#409EFF" fill-opacity="0.35" stroke="#409EFF" stroke-width="1"/>
+      <rect x="36" y="4" width="14" height="18" rx="3" fill="#409EFF" fill-opacity="0.5" stroke="#409EFF" stroke-width="1"/>
+      <rect x="54" y="1" width="14" height="18" rx="3" fill="#409EFF" fill-opacity="0.65" stroke="#409EFF" stroke-width="1"/>
+      <text x="7" y="16" text-anchor="middle" font-family="'Microsoft YaHei', sans-serif" font-size="8" fill="#409EFF" font-weight="700">A</text>
+      <text x="25" y="14" text-anchor="middle" font-family="'Microsoft YaHei', sans-serif" font-size="8" fill="#409EFF" font-weight="700">B</text>
+      <text x="43" y="18" text-anchor="middle" font-family="'Microsoft YaHei', sans-serif" font-size="8" fill="#409EFF" font-weight="700">C</text>
+      <text x="61" y="15" text-anchor="middle" font-family="'Microsoft YaHei', sans-serif" font-size="8" fill="#409EFF" font-weight="700">D</text>
+    </g>
+  </g>
+
+  <!-- ===== 黄金法则横幅 ===== -->
+  <g filter="url(#bannerShadow)">
+    <rect x="100" y="420" width="600" height="56" rx="28" fill="url(#bannerGrad)"/>
+    <!-- 星星装饰 -->
+    <text x="130" y="453" text-anchor="middle" font-size="18" fill="#ffffff" fill-opacity="0.6">★</text>
+    <text x="670" y="453" text-anchor="middle" font-size="18" fill="#ffffff" fill-opacity="0.6">★</text>
+
+    <text x="400" y="443" text-anchor="middle" font-family="'Microsoft YaHei', 'PingFang SC', sans-serif" font-size="15" font-weight="700" fill="#ffffff">黄金法则</text>
+    <text x="400" y="462" text-anchor="middle" font-family="'Microsoft YaHei', 'PingFang SC', sans-serif" font-size="14" font-weight="600" fill="#ffffff" fill-opacity="0.95">r=8 起步  ·  α=2r  ·  仅 Q+V  ·  重质不重量</text>
+  </g>
+
+  <!-- 底部标注 -->
+  <text x="400" y="492" text-anchor="middle" font-family="'Microsoft YaHei', 'PingFang SC', sans-serif" font-size="11" fill="#5a6a7e" fill-opacity="0.6">LoRA 核心原理 · 记忆卡片</text>
+</svg>

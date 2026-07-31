@@ -1,0 +1,146 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="800" height="500">
+  <defs>
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#E8F4FD"/>
+      <stop offset="100%" stop-color="#D0ECF9"/>
+    </linearGradient>
+    <linearGradient id="cardGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#FFFFFF"/>
+      <stop offset="100%" stop-color="#F0F8FF"/>
+    </linearGradient>
+  </defs>
+
+  <!-- 背景 -->
+  <rect width="800" height="500" fill="url(#bgGrad)" rx="12"/>
+
+  <!-- 主卡片容器 -->
+  <rect x="40" y="30" width="720" height="440" rx="18" fill="url(#cardGrad)" stroke="#409EFF" stroke-width="2" opacity="0.95"/>
+
+  <!-- 标题 -->
+  <text x="400" y="78" text-anchor="middle" font-family="sans-serif" font-size="24" font-weight="bold" fill="#1a1a2e" letter-spacing="2">最佳实践指南</text>
+  <line x1="300" y1="92" x2="500" y2="92" stroke="#409EFF" stroke-width="2.5" stroke-linecap="round"/>
+
+  <!-- 剪贴板图标（居中顶部） -->
+  <g transform="translate(400, 130)">
+    <!-- 剪贴板主体 -->
+    <rect x="-22" y="-18" width="44" height="52" rx="5" fill="#409EFF" opacity="0.15"/>
+    <rect x="-18" y="-14" width="36" height="44" rx="3" fill="none" stroke="#409EFF" stroke-width="2"/>
+    <!-- 顶部夹子 -->
+    <rect x="-12" y="-20" width="24" height="8" rx="3" fill="#409EFF"/>
+    <circle cx="0" cy="-16" r="3" fill="#FFFFFF"/>
+    <!-- 内部线条 -->
+    <line x1="-10" y1="-2" x2="10" y2="-2" stroke="#409EFF" stroke-width="1.5" stroke-linecap="round"/>
+    <line x1="-10" y1="6" x2="10" y2="6" stroke="#409EFF" stroke-width="1.5" stroke-linecap="round"/>
+    <line x1="-10" y1="14" x2="6" y2="14" stroke="#409EFF" stroke-width="1.5" stroke-linecap="round"/>
+    <!-- 对勾 -->
+    <polyline points="-10,-2 -4,4 10,-8" fill="none" stroke="#409EFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+
+  <!-- 6个项目 - 3列2行布局 -->
+  <!-- 项目1：工具设计 -->
+  <g transform="translate(120, 210)">
+    <!-- 编号圆圈 -->
+    <circle cx="18" cy="18" r="18" fill="#1a1a2e"/>
+    <text x="18" y="24" text-anchor="middle" font-family="sans-serif" font-size="16" font-weight="bold" fill="#FFFFFF">1</text>
+    <!-- 图标：扳手 -->
+    <g transform="translate(68, 18)">
+      <circle cx="0" cy="0" r="16" fill="#409EFF" opacity="0.12"/>
+      <text x="0" y="6" text-anchor="middle" font-size="18" fill="#409EFF">🔧</text>
+    </g>
+    <!-- 文字 -->
+    <text x="108" y="23" font-family="sans-serif" font-size="15" font-weight="bold" fill="#1a1a2e">工具设计</text>
+  </g>
+
+  <!-- 项目2：从简开始 -->
+  <g transform="translate(340, 210)">
+    <circle cx="18" cy="18" r="18" fill="#1a1a2e"/>
+    <text x="18" y="24" text-anchor="middle" font-family="sans-serif" font-size="16" font-weight="bold" fill="#FFFFFF">2</text>
+    <g transform="translate(68, 18)">
+      <circle cx="0" cy="0" r="16" fill="#409EFF" opacity="0.12"/>
+      <text x="0" y="6" text-anchor="middle" font-size="18" fill="#409EFF">🌱</text>
+    </g>
+    <text x="108" y="23" font-family="sans-serif" font-size="15" font-weight="bold" fill="#1a1a2e">从简开始</text>
+  </g>
+
+  <!-- 项目3：防御限制 -->
+  <g transform="translate(560, 210)">
+    <circle cx="18" cy="18" r="18" fill="#1a1a2e"/>
+    <text x="18" y="24" text-anchor="middle" font-family="sans-serif" font-size="16" font-weight="bold" fill="#FFFFFF">3</text>
+    <g transform="translate(68, 18)">
+      <circle cx="0" cy="0" r="16" fill="#409EFF" opacity="0.12"/>
+      <text x="0" y="6" text-anchor="middle" font-size="18" fill="#409EFF">🛡️</text>
+    </g>
+    <text x="108" y="23" font-family="sans-serif" font-size="15" font-weight="bold" fill="#1a1a2e">防御限制</text>
+  </g>
+
+  <!-- 项目4：审计追踪 -->
+  <g transform="translate(120, 310)">
+    <circle cx="18" cy="18" r="18" fill="#1a1a2e"/>
+    <text x="18" y="24" text-anchor="middle" font-family="sans-serif" font-size="16" font-weight="bold" fill="#FFFFFF">4</text>
+    <g transform="translate(68, 18)">
+      <circle cx="0" cy="0" r="16" fill="#409EFF" opacity="0.12"/>
+      <text x="0" y="6" text-anchor="middle" font-size="18" fill="#409EFF">👣</text>
+    </g>
+    <text x="108" y="23" font-family="sans-serif" font-size="15" font-weight="bold" fill="#1a1a2e">审计追踪</text>
+  </g>
+
+  <!-- 项目5：少样本示例 -->
+  <g transform="translate(340, 310)">
+    <circle cx="18" cy="18" r="18" fill="#1a1a2e"/>
+    <text x="18" y="24" text-anchor="middle" font-family="sans-serif" font-size="16" font-weight="bold" fill="#FFFFFF">5</text>
+    <g transform="translate(68, 18)">
+      <circle cx="0" cy="0" r="16" fill="#409EFF" opacity="0.12"/>
+      <text x="0" y="6" text-anchor="middle" font-size="18" fill="#409EFF">📄</text>
+    </g>
+    <text x="108" y="23" font-family="sans-serif" font-size="15" font-weight="bold" fill="#1a1a2e">少样本示例</text>
+  </g>
+
+  <!-- 项目6：分层工具 -->
+  <g transform="translate(560, 310)">
+    <circle cx="18" cy="18" r="18" fill="#1a1a2e"/>
+    <text x="18" y="24" text-anchor="middle" font-family="sans-serif" font-size="16" font-weight="bold" fill="#FFFFFF">6</text>
+    <g transform="translate(68, 18)">
+      <circle cx="0" cy="0" r="16" fill="#409EFF" opacity="0.12"/>
+      <text x="0" y="6" text-anchor="middle" font-size="18" fill="#409EFF">📚</text>
+    </g>
+    <text x="108" y="23" font-family="sans-serif" font-size="15" font-weight="bold" fill="#1a1a2e">分层工具</text>
+  </g>
+
+  <!-- 对勾标记（每个项目右侧） -->
+  <g transform="translate(260, 218)">
+    <circle cx="0" cy="0" r="10" fill="#409EFF" opacity="0.15"/>
+    <polyline points="-4,-1 -1,3 5,-4" fill="none" stroke="#409EFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+  <g transform="translate(480, 218)">
+    <circle cx="0" cy="0" r="10" fill="#409EFF" opacity="0.15"/>
+    <polyline points="-4,-1 -1,3 5,-4" fill="none" stroke="#409EFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+  <g transform="translate(700, 218)">
+    <circle cx="0" cy="0" r="10" fill="#409EFF" opacity="0.15"/>
+    <polyline points="-4,-1 -1,3 5,-4" fill="none" stroke="#409EFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+  <g transform="translate(260, 318)">
+    <circle cx="0" cy="0" r="10" fill="#409EFF" opacity="0.15"/>
+    <polyline points="-4,-1 -1,3 5,-4" fill="none" stroke="#409EFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+  <g transform="translate(480, 318)">
+    <circle cx="0" cy="0" r="10" fill="#409EFF" opacity="0.15"/>
+    <polyline points="-4,-1 -1,3 5,-4" fill="none" stroke="#409EFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+  <g transform="translate(700, 318)">
+    <circle cx="0" cy="0" r="10" fill="#409EFF" opacity="0.15"/>
+    <polyline points="-4,-1 -1,3 5,-4" fill="none" stroke="#409EFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+
+  <!-- 底部装饰线 -->
+  <line x1="100" y1="400" x2="700" y2="400" stroke="#409EFF" stroke-width="1" opacity="0.3" stroke-dasharray="6,4"/>
+
+  <!-- 底部文字 -->
+  <text x="400" y="440" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#409EFF" opacity="0.7">✓ 遵循这些实践以构建可靠且可维护的系统</text>
+
+  <!-- 装饰性小点 -->
+  <circle cx="60" cy="60" r="3" fill="#409EFF" opacity="0.2"/>
+  <circle cx="740" cy="60" r="3" fill="#409EFF" opacity="0.2"/>
+  <circle cx="60" cy="440" r="3" fill="#409EFF" opacity="0.2"/>
+  <circle cx="740" cy="440" r="3" fill="#409EFF" opacity="0.2"/>
+</svg>

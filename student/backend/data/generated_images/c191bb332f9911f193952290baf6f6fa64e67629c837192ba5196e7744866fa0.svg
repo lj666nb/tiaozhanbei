@@ -1,0 +1,138 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="800" height="500">
+  <defs>
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#E8F4FD"/>
+      <stop offset="100%" stop-color="#F0F8FF"/>
+    </linearGradient>
+    <linearGradient id="boxGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#FFFFFF"/>
+      <stop offset="100%" stop-color="#F5FAFF"/>
+    </linearGradient>
+  </defs>
+
+  <!-- 背景 -->
+  <rect width="800" height="500" fill="url(#bgGrad)" rx="8"/>
+
+  <!-- 标题 -->
+  <text x="400" y="38" text-anchor="middle" font-family="Microsoft YaHei, SimHei, sans-serif" font-size="20" font-weight="bold" fill="#1a1a2e">RAG 概念对比：无 RAG vs 有 RAG</text>
+
+  <!-- ===== 左侧：无 RAG ===== -->
+  <rect x="30" y="60" width="340" height="400" rx="12" fill="url(#boxGrad)" stroke="#409EFF" stroke-width="1.5" stroke-opacity="0.3"/>
+  <text x="200" y="90" text-anchor="middle" font-family="Microsoft YaHei, SimHei, sans-serif" font-size="16" font-weight="bold" fill="#1a1a2e">❌ 无 RAG</text>
+
+  <!-- 左侧机器人 -->
+  <g transform="translate(200, 170)">
+    <!-- 机器人身体 -->
+    <rect x="-35" y="-10" width="70" height="65" rx="12" fill="#409EFF" opacity="0.15"/>
+    <rect x="-30" y="-5" width="60" height="55" rx="10" fill="#409EFF" opacity="0.25"/>
+    <!-- 机器人头 -->
+    <rect x="-22" y="-45" width="44" height="38" rx="8" fill="#409EFF" opacity="0.2"/>
+    <!-- 眼睛 -->
+    <circle cx="-8" cy="-28" r="4" fill="#1a1a2e"/>
+    <circle cx="8" cy="-28" r="4" fill="#1a1a2e"/>
+    <!-- 天线 -->
+    <line x1="0" y1="-45" x2="0" y2="-58" stroke="#409EFF" stroke-width="2"/>
+    <circle cx="0" cy="-62" r="4" fill="#409EFF"/>
+    <!-- 问号 -->
+    <text x="0" y="-72" text-anchor="middle" font-family="Microsoft YaHei, SimHei, sans-serif" font-size="22" font-weight="bold" fill="#E6A23C">?</text>
+    <!-- 标签 -->
+    <text x="0" y="75" text-anchor="middle" font-family="Microsoft YaHei, SimHei, sans-serif" font-size="13" fill="#1a1a2e">LLM 无 RAG</text>
+  </g>
+
+  <!-- 左侧三个限制 -->
+  <!-- 1. 知识截止 -->
+  <g transform="translate(65, 280)">
+    <rect x="0" y="0" width="270" height="44" rx="8" fill="#FFF2F0" stroke="#FF4D4F" stroke-width="1.2"/>
+    <text x="16" y="28" font-family="Microsoft YaHei, SimHei, sans-serif" font-size="13" fill="#FF4D4F">✕</text>
+    <text x="36" y="28" font-family="Microsoft YaHei, SimHei, sans-serif" font-size="13" fill="#1a1a2e">知识截止</text>
+    <!-- 日历图标 -->
+    <rect x="210" y="8" width="24" height="24" rx="4" fill="#FF4D4F" opacity="0.2"/>
+    <text x="222" y="25" text-anchor="middle" font-family="Microsoft YaHei, SimHei, sans-serif" font-size="11" fill="#FF4D4F">📅</text>
+  </g>
+
+  <!-- 2. 幻觉 -->
+  <g transform="translate(65, 334)">
+    <rect x="0" y="0" width="270" height="44" rx="8" fill="#FFF2F0" stroke="#FF4D4F" stroke-width="1.2"/>
+    <text x="16" y="28" font-family="Microsoft YaHei, SimHei, sans-serif" font-size="13" fill="#FF4D4F">✕</text>
+    <text x="36" y="28" font-family="Microsoft YaHei, SimHei, sans-serif" font-size="13" fill="#1a1a2e">幻觉</text>
+    <!-- 幽灵气泡 -->
+    <rect x="210" y="8" width="24" height="24" rx="12" fill="#FF4D4F" opacity="0.2"/>
+    <text x="222" y="25" text-anchor="middle" font-family="Microsoft YaHei, SimHei, sans-serif" font-size="11" fill="#FF4D4F">👻</text>
+  </g>
+
+  <!-- 3. 私密数据盲区 -->
+  <g transform="translate(65, 388)">
+    <rect x="0" y="0" width="270" height="44" rx="8" fill="#FFF2F0" stroke="#FF4D4F" stroke-width="1.2"/>
+    <text x="16" y="28" font-family="Microsoft YaHei, SimHei, sans-serif" font-size="13" fill="#FF4D4F">✕</text>
+    <text x="36" y="28" font-family="Microsoft YaHei, SimHei, sans-serif" font-size="13" fill="#1a1a2e">私密数据盲区</text>
+    <!-- 锁定文件夹 -->
+    <rect x="210" y="8" width="24" height="24" rx="4" fill="#FF4D4F" opacity="0.2"/>
+    <text x="222" y="25" text-anchor="middle" font-family="Microsoft YaHei, SimHei, sans-serif" font-size="11" fill="#FF4D4F">🔒</text>
+  </g>
+
+  <!-- ===== 中间箭头 ===== -->
+  <g transform="translate(385, 250)">
+    <text x="0" y="-20" text-anchor="middle" font-family="Microsoft YaHei, SimHei, sans-serif" font-size="13" fill="#409EFF" font-weight="bold">检索增强</text>
+    <line x1="0" y1="-8" x2="0" y2="20" stroke="#409EFF" stroke-width="2.5" marker-end="url(#arrowBlue)"/>
+    <polygon points="-6,18 0,28 6,18" fill="#409EFF"/>
+  </g>
+
+  <!-- ===== 右侧：有 RAG ===== -->
+  <rect x="430" y="60" width="340" height="400" rx="12" fill="url(#boxGrad)" stroke="#409EFF" stroke-width="1.5"/>
+  <text x="600" y="90" text-anchor="middle" font-family="Microsoft YaHei, SimHei, sans-serif" font-size="16" font-weight="bold" fill="#1a1a2e">✅ 有 RAG</text>
+
+  <!-- 右侧机器人 -->
+  <g transform="translate(600, 170)">
+    <!-- 机器人身体 -->
+    <rect x="-35" y="-10" width="70" height="65" rx="12" fill="#409EFF" opacity="0.15"/>
+    <rect x="-30" y="-5" width="60" height="55" rx="10" fill="#409EFF" opacity="0.25"/>
+    <!-- 机器人头 -->
+    <rect x="-22" y="-45" width="44" height="38" rx="8" fill="#409EFF" opacity="0.2"/>
+    <!-- 眼睛 -->
+    <circle cx="-8" cy="-28" r="4" fill="#1a1a2e"/>
+    <circle cx="8" cy="-28" r="4" fill="#1a1a2e"/>
+    <!-- 天线 -->
+    <line x1="0" y1="-45" x2="0" y2="-58" stroke="#409EFF" stroke-width="2"/>
+    <circle cx="0" cy="-62" r="4" fill="#409EFF"/>
+    <!-- 对勾 -->
+    <text x="0" y="-72" text-anchor="middle" font-family="Microsoft YaHei, SimHei, sans-serif" font-size="22" font-weight="bold" fill="#67C23A">✓</text>
+    <!-- 标签 -->
+    <text x="0" y="75" text-anchor="middle" font-family="Microsoft YaHei, SimHei, sans-serif" font-size="13" fill="#1a1a2e">LLM 有 RAG</text>
+  </g>
+
+  <!-- 右侧参考库 -->
+  <g transform="translate(540, 290)">
+    <rect x="0" y="0" width="120" height="50" rx="8" fill="#E8F4FD" stroke="#409EFF" stroke-width="1.2"/>
+    <text x="60" y="20" text-anchor="middle" font-family="Microsoft YaHei, SimHei, sans-serif" font-size="12" fill="#409EFF">📚</text>
+    <text x="60" y="40" text-anchor="middle" font-family="Microsoft YaHei, SimHei, sans-serif" font-size="12" fill="#1a1a2e">参考库</text>
+  </g>
+
+  <!-- 连接线：机器人到参考库 -->
+  <line x1="570" y1="210" x2="570" y2="290" stroke="#409EFF" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <line x1="630" y1="210" x2="630" y2="290" stroke="#409EFF" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <text x="600" y="255" text-anchor="middle" font-family="Microsoft YaHei, SimHei, sans-serif" font-size="11" fill="#409EFF">连接</text>
+
+  <!-- 右侧三个优势 -->
+  <g transform="translate(465, 360)">
+    <rect x="0" y="0" width="270" height="36" rx="8" fill="#F0FFF0" stroke="#67C23A" stroke-width="1.2"/>
+    <text x="14" y="24" font-family="Microsoft YaHei, SimHei, sans-serif" font-size="12" fill="#67C23A">✓</text>
+    <text x="34" y="24" font-family="Microsoft YaHei, SimHei, sans-serif" font-size="12" fill="#1a1a2e">知识实时更新</text>
+  </g>
+  <g transform="translate(465, 404)">
+    <rect x="0" y="0" width="270" height="36" rx="8" fill="#F0FFF0" stroke="#67C23A" stroke-width="1.2"/>
+    <text x="14" y="24" font-family="Microsoft YaHei, SimHei, sans-serif" font-size="12" fill="#67C23A">✓</text>
+    <text x="34" y="24" font-family="Microsoft YaHei, SimHei, sans-serif" font-size="12" fill="#1a1a2e">减少幻觉</text>
+  </g>
+
+  <!-- 流程标注 -->
+  <g transform="translate(370, 140)">
+    <rect x="0" y="0" width="60" height="24" rx="12" fill="#409EFF" opacity="0.15"/>
+    <text x="30" y="17" text-anchor="middle" font-family="Microsoft YaHei, SimHei, sans-serif" font-size="11" fill="#409EFF">检索</text>
+  </g>
+
+  <!-- 底部流程箭头 -->
+  <g transform="translate(400, 460)">
+    <text x="0" y="0" text-anchor="middle" font-family="Microsoft YaHei, SimHei, sans-serif" font-size="12" fill="#409EFF">问题 → 检索 → 增强 → 生成</text>
+  </g>
+
+</svg>

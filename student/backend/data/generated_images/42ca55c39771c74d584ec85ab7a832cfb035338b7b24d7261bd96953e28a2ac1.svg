@@ -1,0 +1,160 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="800" height="500">
+  <defs>
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#E8F4FD"/>
+      <stop offset="100%" stop-color="#D0EAF8"/>
+    </linearGradient>
+    <linearGradient id="managerGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#409EFF"/>
+      <stop offset="100%" stop-color="#2B7BD9"/>
+    </linearGradient>
+    <linearGradient id="workerGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#5AB0FF"/>
+      <stop offset="100%" stop-color="#409EFF"/>
+    </linearGradient>
+    <linearGradient id="userGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#1a1a2e"/>
+      <stop offset="100%" stop-color="#2d2d5e"/>
+    </linearGradient>
+  </defs>
+
+  <!-- 背景 -->
+  <rect width="800" height="500" fill="url(#bgGrad)" rx="8"/>
+
+  <!-- 标题 -->
+  <text x="400" y="32" text-anchor="middle" font-family="sans-serif" font-size="18" font-weight="bold" fill="#1a1a2e">管理者-工作者模式 — 消息流程</text>
+
+  <!-- 步骤编号标注（顶部） -->
+  <text x="70" y="62" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#409EFF" font-weight="bold">① 用户请求</text>
+  <text x="230" y="62" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#409EFF" font-weight="bold">② 分解分配</text>
+  <text x="400" y="62" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#409EFF" font-weight="bold">③ 任务分配</text>
+  <text x="570" y="62" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#409EFF" font-weight="bold">④ 状态更新</text>
+  <text x="720" y="62" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#409EFF" font-weight="bold">⑤ 结果报告</text>
+
+  <!-- 用户图标（左侧） -->
+  <rect x="20" y="110" width="80" height="50" rx="10" fill="url(#userGrad)"/>
+  <text x="60" y="140" text-anchor="middle" font-family="sans-serif" font-size="14" fill="white" font-weight="bold">用户</text>
+
+  <!-- 管理者图标（中间偏左） -->
+  <rect x="170" y="110" width="90" height="50" rx="10" fill="url(#managerGrad)"/>
+  <text x="215" y="140" text-anchor="middle" font-family="sans-serif" font-size="14" fill="white" font-weight="bold">管理者</text>
+
+  <!-- 工作者A -->
+  <rect x="340" y="85" width="80" height="40" rx="8" fill="url(#workerGrad)"/>
+  <text x="380" y="110" text-anchor="middle" font-family="sans-serif" font-size="13" fill="white" font-weight="bold">工作者 A</text>
+
+  <!-- 工作者B -->
+  <rect x="340" y="140" width="80" height="40" rx="8" fill="url(#workerGrad)"/>
+  <text x="380" y="165" text-anchor="middle" font-family="sans-serif" font-size="13" fill="white" font-weight="bold">工作者 B</text>
+
+  <!-- 工作者C -->
+  <rect x="340" y="195" width="80" height="40" rx="8" fill="url(#workerGrad)"/>
+  <text x="380" y="220" text-anchor="middle" font-family="sans-serif" font-size="13" fill="white" font-weight="bold">工作者 C</text>
+
+  <!-- 管理者（下方聚合） -->
+  <rect x="170" y="310" width="90" height="50" rx="10" fill="url(#managerGrad)"/>
+  <text x="215" y="340" text-anchor="middle" font-family="sans-serif" font-size="14" fill="white" font-weight="bold">管理者</text>
+
+  <!-- 用户（最终输出） -->
+  <rect x="20" y="310" width="80" height="50" rx="10" fill="url(#userGrad)"/>
+  <text x="60" y="340" text-anchor="middle" font-family="sans-serif" font-size="14" fill="white" font-weight="bold">用户</text>
+
+  <!-- 步骤6标注 -->
+  <text x="215" y="295" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#409EFF" font-weight="bold">⑥ 聚合结果</text>
+
+  <!-- 步骤7标注 -->
+  <text x="60" y="295" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#409EFF" font-weight="bold">⑦ 最终输出</text>
+
+  <!-- 箭头：用户 → 管理者（步骤1） -->
+  <line x1="100" y1="135" x2="168" y2="135" stroke="#1a1a2e" stroke-width="2" marker-end="url(#arrowDark)"/>
+  <polygon points="165,130 175,135 165,140" fill="#1a1a2e"/>
+
+  <!-- 箭头：管理者 → 工作者（步骤3） -->
+  <line x1="260" y1="120" x2="338" y2="105" stroke="#409EFF" stroke-width="2"/>
+  <polygon points="335,100 345,103 337,110" fill="#409EFF"/>
+  <line x1="260" y1="135" x2="338" y2="155" stroke="#409EFF" stroke-width="2"/>
+  <polygon points="335,158 345,155 337,148" fill="#409EFF"/>
+  <line x1="260" y1="150" x2="338" y2="205" stroke="#409EFF" stroke-width="2"/>
+  <polygon points="335,208 345,205 337,198" fill="#409EFF"/>
+
+  <!-- JSON信封图标 - 任务分配 -->
+  <rect x="290" y="88" width="28" height="20" rx="3" fill="#409EFF" opacity="0.3"/>
+  <text x="304" y="102" text-anchor="middle" font-family="sans-serif" font-size="8" fill="#1a1a2e">JSON</text>
+
+  <rect x="290" y="138" width="28" height="20" rx="3" fill="#409EFF" opacity="0.3"/>
+  <text x="304" y="152" text-anchor="middle" font-family="sans-serif" font-size="8" fill="#1a1a2e">JSON</text>
+
+  <rect x="290" y="188" width="28" height="20" rx="3" fill="#409EFF" opacity="0.3"/>
+  <text x="304" y="202" text-anchor="middle" font-family="sans-serif" font-size="8" fill="#1a1a2e">JSON</text>
+
+  <!-- 箭头：工作者 → 管理者（状态更新 - 步骤4） -->
+  <line x1="340" y1="100" x2="262" y2="320" stroke="#E6A23C" stroke-width="1.5" stroke-dasharray="5,3"/>
+  <polygon points="260,315 268,322 264,310" fill="#E6A23C"/>
+
+  <line x1="340" y1="155" x2="262" y2="330" stroke="#E6A23C" stroke-width="1.5" stroke-dasharray="5,3"/>
+  <polygon points="260,325 268,332 264,320" fill="#E6A23C"/>
+
+  <line x1="340" y1="210" x2="262" y2="340" stroke="#E6A23C" stroke-width="1.5" stroke-dasharray="5,3"/>
+  <polygon points="260,335 268,342 264,330" fill="#E6A23C"/>
+
+  <!-- 进度指示器 -->
+  <circle cx="310" cy="240" r="6" fill="#E6A23C" opacity="0.6"/>
+  <circle cx="310" cy="258" r="6" fill="#E6A23C" opacity="0.4"/>
+  <circle cx="310" cy="276" r="6" fill="#E6A23C" opacity="0.2"/>
+
+  <!-- 箭头：工作者 → 管理者（结果报告 - 步骤5） -->
+  <line x1="420" y1="105" x2="262" y2="325" stroke="#67C23A" stroke-width="2"/>
+  <polygon points="260,320 268,327 264,315" fill="#67C23A"/>
+
+  <line x1="420" y1="160" x2="262" y2="335" stroke="#67C23A" stroke-width="2"/>
+  <polygon points="260,330 268,337 264,325" fill="#67C23A"/>
+
+  <line x1="420" y1="215" x2="262" y2="345" stroke="#67C23A" stroke-width="2"/>
+  <polygon points="260,340 268,347 264,335" fill="#67C23A"/>
+
+  <!-- 文档图标 - 结果报告 -->
+  <rect x="425" y="90" width="22" height="28" rx="2" fill="#67C23A" opacity="0.3"/>
+  <line x1="430" y1="98" x2="442" y2="98" stroke="#67C23A" stroke-width="1.5"/>
+  <line x1="430" y1="104" x2="442" y2="104" stroke="#67C23A" stroke-width="1.5"/>
+  <line x1="430" y1="110" x2="438" y2="110" stroke="#67C23A" stroke-width="1.5"/>
+
+  <rect x="425" y="145" width="22" height="28" rx="2" fill="#67C23A" opacity="0.3"/>
+  <line x1="430" y1="153" x2="442" y2="153" stroke="#67C23A" stroke-width="1.5"/>
+  <line x1="430" y1="159" x2="442" y2="159" stroke="#67C23A" stroke-width="1.5"/>
+  <line x1="430" y1="165" x2="438" y2="165" stroke="#67C23A" stroke-width="1.5"/>
+
+  <rect x="425" y="200" width="22" height="28" rx="2" fill="#67C23A" opacity="0.3"/>
+  <line x1="430" y1="208" x2="442" y2="208" stroke="#67C23A" stroke-width="1.5"/>
+  <line x1="430" y1="214" x2="442" y2="214" stroke="#67C23A" stroke-width="1.5"/>
+  <line x1="430" y1="220" x2="438" y2="220" stroke="#67C23A" stroke-width="1.5"/>
+
+  <!-- 箭头：管理者 → 用户（最终输出 - 步骤7） -->
+  <line x1="170" y1="335" x2="102" y2="335" stroke="#1a1a2e" stroke-width="2"/>
+  <polygon points="105,330 95,335 105,340" fill="#1a1a2e"/>
+
+  <!-- 图例 -->
+  <rect x="540" y="280" width="240" height="130" rx="10" fill="white" stroke="#409EFF" stroke-width="1.5" opacity="0.9"/>
+  <text x="660" y="302" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="bold" fill="#1a1a2e">图例</text>
+
+  <!-- 任务分配 -->
+  <rect x="555" y="315" width="30" height="16" rx="3" fill="#409EFF" opacity="0.4"/>
+  <text x="555" y="326" font-family="sans-serif" font-size="12" fill="#1a1a2e">任务分配 (task_assignment)</text>
+
+  <!-- 状态更新 -->
+  <rect x="555" y="345" width="30" height="16" rx="3" fill="#E6A23C" opacity="0.4"/>
+  <text x="555" y="356" font-family="sans-serif" font-size="12" fill="#1a1a2e">状态更新 (status_update)</text>
+
+  <!-- 结果报告 -->
+  <rect x="555" y="375" width="30" height="16" rx="3" fill="#67C23A" opacity="0.4"/>
+  <text x="555" y="386" font-family="sans-serif" font-size="12" fill="#1a1a2e">结果报告 (task_result)</text>
+
+  <!-- 图例线条 -->
+  <line x1="590" y1="323" x2="610" y2="323" stroke="#409EFF" stroke-width="2"/>
+  <line x1="590" y1="353" x2="610" y2="353" stroke="#E6A23C" stroke-width="2" stroke-dasharray="5,3"/>
+  <line x1="590" y1="383" x2="610" y2="383" stroke="#67C23A" stroke-width="2"/>
+
+  <!-- 步骤2标注 - 管理者分解 -->
+  <text x="215" y="175" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#1a1a2e" opacity="0.8">分解任务</text>
+  <text x="215" y="190" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#1a1a2e" opacity="0.8">分配子任务</text>
+
+</svg>

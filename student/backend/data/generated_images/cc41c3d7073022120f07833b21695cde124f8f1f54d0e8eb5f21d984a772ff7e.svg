@@ -1,0 +1,144 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="800" height="500">
+  <defs>
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#f0f6ff"/>
+      <stop offset="100%" stop-color="#e8f0fe"/>
+    </linearGradient>
+    <linearGradient id="brokerGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#409EFF"/>
+      <stop offset="100%" stop-color="#2b7bd8"/>
+    </linearGradient>
+    <linearGradient id="agentGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1a1a2e"/>
+      <stop offset="100%" stop-color="#2a2a4e"/>
+    </linearGradient>
+    <filter id="shadow" x="-5%" y="-5%" width="115%" height="115%">
+      <feDropShadow dx="1" dy="2" stdDeviation="3" flood-color="#409EFF" flood-opacity="0.15"/>
+    </filter>
+  </defs>
+
+  <!-- 背景 -->
+  <rect width="800" height="500" fill="url(#bgGrad)" rx="8"/>
+
+  <!-- 标题 -->
+  <text x="400" y="38" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#1a1a2e">发布/订阅（Pub/Sub）消息流</text>
+
+  <!-- ===== 发布者（左侧） ===== -->
+  <g filter="url(#shadow)">
+    <rect x="40" y="100" width="140" height="160" rx="12" fill="url(#agentGrad)"/>
+    <rect x="40" y="100" width="140" height="36" rx="12" fill="#409EFF"/>
+    <rect x="40" y="124" width="140" height="12" fill="#409EFF"/>
+    <!-- 图标：发送箭头 -->
+    <circle cx="110" cy="118" r="10" fill="white" opacity="0.2"/>
+    <text x="110" y="123" text-anchor="middle" font-size="12" fill="white">📤</text>
+    <text x="110" y="150" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="white">发布者代理</text>
+    <text x="110" y="172" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#a8c8ff">Publisher</text>
+    <line x1="60" y1="190" x2="160" y2="190" stroke="#3a5a8a" stroke-width="0.5"/>
+    <text x="110" y="210" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#c0d8ff">发送消息</text>
+    <text x="110" y="230" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#c0d8ff">到消息代理</text>
+  </g>
+
+  <!-- 发布者 → 代理 箭头 -->
+  <g>
+    <line x1="180" y1="180" x2="290" y2="180" stroke="#409EFF" stroke-width="2.5" marker-end="url(#arrowBlue)"/>
+    <defs>
+      <marker id="arrowBlue" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto">
+        <path d="M0,0 L10,4 L0,8 Z" fill="#409EFF"/>
+      </marker>
+    </defs>
+    <text x="235" y="170" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#409EFF">发布消息</text>
+  </g>
+
+  <!-- ===== 消息代理（中间） ===== -->
+  <g filter="url(#shadow)">
+    <rect x="300" y="70" width="200" height="220" rx="14" fill="white" stroke="#409EFF" stroke-width="2"/>
+    <rect x="300" y="70" width="200" height="38" rx="14" fill="url(#brokerGrad)"/>
+    <rect x="300" y="96" width="200" height="12" fill="url(#brokerGrad)"/>
+    <!-- 图标：交换/路由 -->
+    <circle cx="400" cy="89" r="10" fill="white" opacity="0.25"/>
+    <text x="400" y="94" text-anchor="middle" font-size="12" fill="white">🔀</text>
+    <text x="400" y="120" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="white">消息代理</text>
+    <text x="400" y="140" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#d0e4ff">Message Broker</text>
+
+    <!-- 主题标签 -->
+    <rect x="318" y="155" width="164" height="26" rx="6" fill="#e8f4ff" stroke="#b0d4ff" stroke-width="1"/>
+    <text x="400" y="173" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#1a1a2e">📋 task.completed</text>
+
+    <rect x="318" y="188" width="164" height="26" rx="6" fill="#e8f4ff" stroke="#b0d4ff" stroke-width="1"/>
+    <text x="400" y="206" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#1a1a2e">⚠️ system.alert</text>
+
+    <rect x="318" y="221" width="164" height="26" rx="6" fill="#e8f4ff" stroke="#b0d4ff" stroke-width="1"/>
+    <text x="400" y="239" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#1a1a2e">📊 data.updated</text>
+
+    <rect x="318" y="254" width="164" height="26" rx="6" fill="#e8f4ff" stroke="#b0d4ff" stroke-width="1"/>
+    <text x="400" y="272" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#1a1a2e">🔔 user.notify</text>
+  </g>
+
+  <!-- 代理 → 订阅者 箭头 -->
+  <g>
+    <line x1="500" y1="130" x2="590" y2="130" stroke="#409EFF" stroke-width="2" marker-end="url(#arrowBlue)"/>
+    <line x1="500" y1="180" x2="590" y2="180" stroke="#409EFF" stroke-width="2" marker-end="url(#arrowBlue)"/>
+    <line x1="500" y1="230" x2="590" y2="230" stroke="#409EFF" stroke-width="2" marker-end="url(#arrowBlue)"/>
+    <text x="545" y="120" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#409EFF">匹配</text>
+    <text x="545" y="170" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#409EFF">匹配</text>
+    <text x="545" y="220" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#409EFF">匹配</text>
+  </g>
+
+  <!-- ===== 订阅者（右侧） ===== -->
+  <!-- 订阅者 1 -->
+  <g filter="url(#shadow)">
+    <rect x="600" y="90" width="160" height="70" rx="10" fill="url(#agentGrad)"/>
+    <rect x="600" y="90" width="160" height="28" rx="10" fill="#409EFF"/>
+    <rect x="600" y="108" width="160" height="10" fill="#409EFF"/>
+    <text x="680" y="111" text-anchor="middle" font-size="11" fill="white">📥</text>
+    <text x="680" y="133" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="white">订阅者 A</text>
+    <text x="680" y="150" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#a8c8ff">Subscriber</text>
+  </g>
+
+  <!-- 订阅者 2 -->
+  <g filter="url(#shadow)">
+    <rect x="600" y="175" width="160" height="70" rx="10" fill="url(#agentGrad)"/>
+    <rect x="600" y="175" width="160" height="28" rx="10" fill="#409EFF"/>
+    <rect x="600" y="193" width="160" height="10" fill="#409EFF"/>
+    <text x="680" y="196" text-anchor="middle" font-size="11" fill="white">📥</text>
+    <text x="680" y="218" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="white">订阅者 B</text>
+    <text x="680" y="235" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#a8c8ff">Subscriber</text>
+  </g>
+
+  <!-- 订阅者 3 -->
+  <g filter="url(#shadow)">
+    <rect x="600" y="260" width="160" height="70" rx="10" fill="url(#agentGrad)"/>
+    <rect x="600" y="260" width="160" height="28" rx="10" fill="#409EFF"/>
+    <rect x="600" y="278" width="160" height="10" fill="#409EFF"/>
+    <text x="680" y="281" text-anchor="middle" font-size="11" fill="white">📥</text>
+    <text x="680" y="303" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="white">订阅者 C</text>
+    <text x="680" y="320" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#a8c8ff">Subscriber</text>
+  </g>
+
+  <!-- ===== 底部注解 ===== -->
+  <rect x="40" y="370" width="720" height="55" rx="8" fill="#1a1a2e" opacity="0.06"/>
+  <text x="400" y="392" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" fill="#1a1a2e" font-weight="bold">发布者 → 代理 → 订阅者</text>
+  <text x="400" y="414" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#555">发布者不知道订阅者的存在，通过代理进行解耦通信</text>
+
+  <!-- ===== 代码片段覆盖 ===== -->
+  <g filter="url(#shadow)">
+    <rect x="40" y="435" width="720" height="55" rx="8" fill="#1a1a2e" opacity="0.92"/>
+    <text x="55" y="456" font-family="'Courier New', monospace" font-size="11" fill="#66d9ff">// 发布者</text>
+    <text x="55" y="474" font-family="'Courier New', monospace" font-size="11" fill="#a8ff80">broker.publish("task.completed", { id: 42 })</text>
+    <text x="420" y="456" font-family="'Courier New', monospace" font-size="11" fill="#66d9ff">// 订阅者</text>
+    <text x="420" y="474" font-family="'Courier New', monospace" font-size="11" fill="#ffb86c">broker.subscribe("task.completed", callback)</text>
+  </g>
+
+  <!-- 标注 1 -->
+  <text x="110" y="95" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#409EFF" font-weight="bold">① 发送消息</text>
+
+  <!-- 标注 2 -->
+  <text x="400" y="62" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#409EFF" font-weight="bold">② 管理主题</text>
+
+  <!-- 标注 3 -->
+  <text x="680" y="82" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#409EFF" font-weight="bold">③ 接收消息</text>
+
+  <!-- 标注 4 - 解耦说明 -->
+  <text x="400" y="362" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#888">发布者与订阅者解耦</text>
+
+</svg>

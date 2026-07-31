@@ -1,0 +1,100 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="800" height="500">
+  <defs>
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#f0f7ff"/>
+      <stop offset="100%" stop-color="#e8f4fd"/>
+    </linearGradient>
+    <linearGradient id="blockGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#409EFF"/>
+      <stop offset="100%" stop-color="#3a8ee6"/>
+    </linearGradient>
+    <filter id="shadow" x="-2%" y="-2%" width="104%" height="108%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#409EFF" flood-opacity="0.15"/>
+    </filter>
+  </defs>
+
+  <!-- 背景 -->
+  <rect width="800" height="500" fill="url(#bgGrad)" rx="12"/>
+
+  <!-- 标题 -->
+  <text x="400" y="38" text-anchor="middle" font-family="'Microsoft YaHei','PingFang SC',sans-serif" font-size="20" font-weight="bold" fill="#1a1a2e">残差连接与层归一化</text>
+
+  <!-- ====== 信息高速公路 ====== -->
+
+  <!-- 主路径（水平线） -->
+  <line x1="60" y1="120" x2="740" y2="120" stroke="#409EFF" stroke-width="3.5" stroke-linecap="round"/>
+
+  <!-- 输入箭头 -->
+  <polygon points="60,120 76,112 76,128" fill="#409EFF"/>
+  <text x="90" y="105" font-family="'Microsoft YaHei','PingFang SC',sans-serif" font-size="14" fill="#1a1a2e" font-weight="bold">输入 x</text>
+
+  <!-- 残差连接（旁路箭头） -->
+  <path d="M 170,120 C 170,50 400,50 400,120" stroke="#409EFF" stroke-width="2.5" fill="none" stroke-dasharray="8,4" stroke-linecap="round"/>
+  <polygon points="400,120 392,108 392,132" fill="#409EFF"/>
+  <text x="285" y="58" text-anchor="middle" font-family="'Microsoft YaHei','PingFang SC',sans-serif" font-size="14" fill="#409EFF" font-weight="bold">残差连接</text>
+
+  <!-- Sublayer 处理块 -->
+  <rect x="220" y="95" width="180" height="50" rx="10" fill="url(#blockGrad)" filter="url(#shadow)"/>
+  <text x="310" y="125" text-anchor="middle" font-family="'Microsoft YaHei','PingFang SC',sans-serif" font-size="16" fill="#ffffff" font-weight="bold">子层(x)</text>
+
+  <!-- 加法节点 -->
+  <circle cx="460" cy="120" r="16" fill="#ffffff" stroke="#409EFF" stroke-width="2.5"/>
+  <text x="460" y="125" text-anchor="middle" font-family="'Microsoft YaHei','PingFang SC',sans-serif" font-size="16" fill="#409EFF" font-weight="bold">+</text>
+
+  <!-- 层归一化块 -->
+  <rect x="520" y="95" width="140" height="50" rx="10" fill="url(#blockGrad)" filter="url(#shadow)"/>
+  <text x="590" y="125" text-anchor="middle" font-family="'Microsoft YaHei','PingFang SC',sans-serif" font-size="16" fill="#ffffff" font-weight="bold">层归一化</text>
+
+  <!-- 输出箭头 -->
+  <polygon points="740,120 724,112 724,128" fill="#409EFF"/>
+  <text x="720" y="105" text-anchor="end" font-family="'Microsoft YaHei','PingFang SC',sans-serif" font-size="14" fill="#1a1a2e" font-weight="bold">输出</text>
+
+  <!-- ====== 公式框 ====== -->
+  <rect x="200" y="175" width="400" height="44" rx="8" fill="#1a1a2e" filter="url(#shadow)"/>
+  <text x="400" y="203" text-anchor="middle" font-family="'Courier New','Consolas',monospace" font-size="17" fill="#ffffff" font-weight="bold">输出 = 层归一化(x + 子层(x))</text>
+
+  <!-- ====== 层归一化可视化 ====== -->
+
+  <!-- 区域标题 -->
+  <text x="400" y="270" text-anchor="middle" font-family="'Microsoft YaHei','PingFang SC',sans-serif" font-size="16" font-weight="bold" fill="#1a1a2e">层归一化原理</text>
+
+  <!-- 坐标轴 -->
+  <line x1="100" y1="380" x2="700" y2="380" stroke="#1a1a2e" stroke-width="2" stroke-linecap="round"/>
+  <line x1="100" y1="290" x2="100" y2="420" stroke="#1a1a2e" stroke-width="2" stroke-linecap="round"/>
+
+  <!-- 轴标签 -->
+  <text x="400" y="410" text-anchor="middle" font-family="'Microsoft YaHei','PingFang SC',sans-serif" font-size="14" fill="#1a1a2e">归一化数值</text>
+  <text x="80" y="360" text-anchor="end" font-family="'Microsoft YaHei','PingFang SC',sans-serif" font-size="13" fill="#1a1a2e">均值=0</text>
+
+  <!-- 均值线（虚线） -->
+  <line x1="100" y1="360" x2="700" y2="360" stroke="#409EFF" stroke-width="1.5" stroke-dasharray="6,4" opacity="0.6"/>
+
+  <!-- 数据点（归一化后） -->
+  <circle cx="160" cy="360" r="6" fill="#409EFF"/>
+  <circle cx="230" cy="340" r="6" fill="#409EFF"/>
+  <circle cx="300" cy="375" r="6" fill="#409EFF"/>
+  <circle cx="370" cy="350" r="6" fill="#409EFF"/>
+  <circle cx="440" cy="365" r="6" fill="#409EFF"/>
+  <circle cx="510" cy="345" r="6" fill="#409EFF"/>
+  <circle cx="580" cy="370" r="6" fill="#409EFF"/>
+  <circle cx="650" cy="355" r="6" fill="#409EFF"/>
+
+  <!-- 标准差范围标注 -->
+  <line x1="160" y1="385" x2="160" y2="395" stroke="#1a1a2e" stroke-width="1.2"/>
+  <line x1="440" y1="385" x2="440" y2="395" stroke="#1a1a2e" stroke-width="1.2"/>
+  <text x="300" y="400" text-anchor="middle" font-family="'Microsoft YaHei','PingFang SC',sans-serif" font-size="12" fill="#1a1a2e">方差=1</text>
+
+  <!-- 箭头标注：缩放 gamma -->
+  <path d="M 520,290 C 540,290 560,300 560,315" stroke="#1a1a2e" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+  <polygon points="560,315 553,307 567,307" fill="#1a1a2e"/>
+  <text x="570" y="305" font-family="'Microsoft YaHei','PingFang SC',sans-serif" font-size="13" fill="#1a1a2e" font-weight="bold">× γ（缩放）</text>
+
+  <!-- 箭头标注：平移 beta -->
+  <path d="M 520,420 C 540,420 560,410 560,395" stroke="#1a1a2e" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+  <polygon points="560,395 553,403 567,403" fill="#1a1a2e"/>
+  <text x="570" y="425" font-family="'Microsoft YaHei','PingFang SC',sans-serif" font-size="13" fill="#1a1a2e" font-weight="bold">+ β（平移）</text>
+
+  <!-- 底部说明 -->
+  <text x="400" y="470" text-anchor="middle" font-family="'Microsoft YaHei','PingFang SC',sans-serif" font-size="13" fill="#666666">数据点归一化至均值=0、方差=1，再通过 γ 缩放和 β 平移恢复表达能力</text>
+
+</svg>

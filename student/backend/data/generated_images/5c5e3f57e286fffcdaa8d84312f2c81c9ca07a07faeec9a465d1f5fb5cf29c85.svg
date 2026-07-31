@@ -1,0 +1,125 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="800" height="500">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#e8f4ff;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#f0f8ff;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="fp32Grad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#409EFF;stop-opacity:1" />
+      <stop offset="33%" style="stop-color:#5aabff;stop-opacity:1" />
+      <stop offset="66%" style="stop-color:#7bbdff;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#409EFF;stop-opacity:0.7" />
+    </linearGradient>
+    <linearGradient id="fp16Grad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#409EFF;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#5aabff;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#409EFF;stop-opacity:0.7" />
+    </linearGradient>
+    <linearGradient id="bf16Grad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#409EFF;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#5aabff;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#409EFF;stop-opacity:0.7" />
+    </linearGradient>
+  </defs>
+
+  <!-- 背景 -->
+  <rect width="800" height="500" fill="url(#bgGrad)" rx="4"/>
+
+  <!-- 标题 -->
+  <text x="400" y="30" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#1a1a2e">量化原理示意图</text>
+
+  <!-- ============ 第一部分：FP32-FP16-BF16 比特结构对比 ============ -->
+  <text x="30" y="60" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#1a1a2e">比特结构对比</text>
+
+  <!-- FP32 -->
+  <text x="30" y="85" font-family="Arial, sans-serif" font-size="12" fill="#1a1a2e">FP32</text>
+  <rect x="80" y="72" width="240" height="22" rx="3" fill="url(#fp32Grad)" opacity="0.9"/>
+  <text x="100" y="87" font-family="Arial, sans-serif" font-size="11" fill="#fff" font-weight="bold">S(1)</text>
+  <text x="170" y="87" font-family="Arial, sans-serif" font-size="11" fill="#fff" font-weight="bold">指数(8)</text>
+  <text x="260" y="87" font-family="Arial, sans-serif" font-size="11" fill="#fff" font-weight="bold">尾数(23)</text>
+
+  <!-- FP16 -->
+  <text x="30" y="115" font-family="Arial, sans-serif" font-size="12" fill="#1a1a2e">FP16</text>
+  <rect x="80" y="102" width="180" height="22" rx="3" fill="url(#fp16Grad)" opacity="0.9"/>
+  <text x="100" y="117" font-family="Arial, sans-serif" font-size="11" fill="#fff" font-weight="bold">S(1)</text>
+  <text x="145" y="117" font-family="Arial, sans-serif" font-size="11" fill="#fff" font-weight="bold">指数(5)</text>
+  <text x="210" y="117" font-family="Arial, sans-serif" font-size="11" fill="#fff" font-weight="bold">尾数(10)</text>
+
+  <!-- BF16 -->
+  <text x="30" y="145" font-family="Arial, sans-serif" font-size="12" fill="#1a1a2e">BF16</text>
+  <rect x="80" y="132" width="180" height="22" rx="3" fill="url(#bf16Grad)" opacity="0.9"/>
+  <text x="100" y="147" font-family="Arial, sans-serif" font-size="11" fill="#fff" font-weight="bold">S(1)</text>
+  <text x="145" y="147" font-family="Arial, sans-serif" font-size="11" fill="#fff" font-weight="bold">指数(8)</text>
+  <text x="210" y="147" font-family="Arial, sans-serif" font-size="11" fill="#fff" font-weight="bold">尾数(7)</text>
+
+  <!-- 标注：符号/指数/尾数 -->
+  <line x1="80" y1="72" x2="80" y2="62" stroke="#1a1a2e" stroke-width="0.8"/>
+  <text x="78" y="58" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#1a1a2e">符号</text>
+
+  <line x1="170" y1="72" x2="170" y2="62" stroke="#1a1a2e" stroke-width="0.8"/>
+  <text x="168" y="58" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#1a1a2e">指数</text>
+
+  <line x1="260" y1="72" x2="260" y2="62" stroke="#1a1a2e" stroke-width="0.8"/>
+  <text x="258" y="58" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#1a1a2e">尾数</text>
+
+  <!-- ============ 第二部分：浮点到整数的映射 ============ -->
+  <text x="30" y="175" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#1a1a2e">浮点到整数映射</text>
+
+  <!-- 对称量化 -->
+  <text x="30" y="200" font-family="Arial, sans-serif" font-size="12" fill="#1a1a2e">对称量化</text>
+  <rect x="140" y="188" width="280" height="20" rx="3" fill="#409EFF" opacity="0.15" stroke="#409EFF" stroke-width="0.8"/>
+  <text x="150" y="202" font-family="Arial, sans-serif" font-size="11" fill="#1a1a2e">范围: [-127, 127]</text>
+  <text x="290" y="202" font-family="Arial, sans-serif" font-size="11" fill="#409EFF" font-weight="bold">scale</text>
+  <text x="350" y="202" font-family="Arial, sans-serif" font-size="11" fill="#1a1a2e">zero-point=0</text>
+
+  <!-- 非对称量化 -->
+  <text x="30" y="230" font-family="Arial, sans-serif" font-size="12" fill="#1a1a2e">非对称量化</text>
+  <rect x="140" y="218" width="280" height="20" rx="3" fill="#409EFF" opacity="0.15" stroke="#409EFF" stroke-width="0.8"/>
+  <text x="150" y="232" font-family="Arial, sans-serif" font-size="11" fill="#1a1a2e">范围: [0, 255]</text>
+  <text x="290" y="232" font-family="Arial, sans-serif" font-size="11" fill="#409EFF" font-weight="bold">scale</text>
+  <text x="350" y="232" font-family="Arial, sans-serif" font-size="11" fill="#1a1a2e">zero-point=128</text>
+
+  <!-- 标注 -->
+  <line x1="140" y1="188" x2="140" y2="178" stroke="#1a1a2e" stroke-width="0.8"/>
+  <text x="138" y="175" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#1a1a2e">零中心</text>
+
+  <line x1="140" y1="218" x2="140" y2="208" stroke="#1a1a2e" stroke-width="0.8"/>
+  <text x="138" y="205" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#1a1a2e">偏移量</text>
+
+  <!-- ============ 第三部分：三种粒度级别 ============ -->
+  <text x="30" y="275" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#1a1a2e">粒度级别</text>
+
+  <!-- Per-tensor -->
+  <text x="30" y="300" font-family="Arial, sans-serif" font-size="12" fill="#1a1a2e">Per-tensor</text>
+  <rect x="140" y="288" width="200" height="20" rx="3" fill="#409EFF" opacity="0.2" stroke="#409EFF" stroke-width="0.8"/>
+  <text x="150" y="302" font-family="Arial, sans-serif" font-size="11" fill="#1a1a2e">整个矩阵一个 scale</text>
+  <text x="360" y="302" font-family="Arial, sans-serif" font-size="11" fill="#409EFF" font-weight="bold">精度: 低</text>
+
+  <!-- Per-channel -->
+  <text x="30" y="330" font-family="Arial, sans-serif" font-size="12" fill="#1a1a2e">Per-channel</text>
+  <rect x="140" y="318" width="200" height="20" rx="3" fill="#409EFF" opacity="0.2" stroke="#409EFF" stroke-width="0.8"/>
+  <text x="150" y="332" font-family="Arial, sans-serif" font-size="11" fill="#1a1a2e">每行一个 scale</text>
+  <text x="360" y="332" font-family="Arial, sans-serif" font-size="11" fill="#409EFF" font-weight="bold">精度: 中</text>
+
+  <!-- Per-group -->
+  <text x="30" y="360" font-family="Arial, sans-serif" font-size="12" fill="#1a1a2e">Per-group</text>
+  <rect x="140" y="348" width="200" height="20" rx="3" fill="#409EFF" opacity="0.2" stroke="#409EFF" stroke-width="0.8"/>
+  <text x="150" y="362" font-family="Arial, sans-serif" font-size="11" fill="#1a1a2e">小块各自 scale</text>
+  <text x="360" y="362" font-family="Arial, sans-serif" font-size="11" fill="#409EFF" font-weight="bold">精度: 高</text>
+
+  <!-- 精度指示器箭头 -->
+  <line x1="140" y1="288" x2="140" y2="278" stroke="#1a1a2e" stroke-width="0.8"/>
+  <text x="138" y="275" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#1a1a2e">粒度</text>
+
+  <!-- ============ 底部说明 ============ -->
+  <text x="400" y="420" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#1a1a2e" opacity="0.7">量化通过降低数值精度来减少模型大小和计算开销</text>
+
+  <!-- 图例 -->
+  <rect x="250" y="440" width="12" height="12" rx="2" fill="#409EFF" opacity="0.3" stroke="#409EFF" stroke-width="0.8"/>
+  <text x="268" y="451" font-family="Arial, sans-serif" font-size="11" fill="#1a1a2e">比特字段</text>
+
+  <rect x="370" y="440" width="12" height="12" rx="2" fill="#409EFF" opacity="0.15" stroke="#409EFF" stroke-width="0.8"/>
+  <text x="388" y="451" font-family="Arial, sans-serif" font-size="11" fill="#1a1a2e">映射区域</text>
+
+  <text x="510" y="451" font-family="Arial, sans-serif" font-size="11" fill="#409EFF" font-weight="bold">公式标注</text>
+</svg>

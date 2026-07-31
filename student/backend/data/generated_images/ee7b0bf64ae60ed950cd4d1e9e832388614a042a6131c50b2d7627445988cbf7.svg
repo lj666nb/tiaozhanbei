@@ -1,0 +1,156 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="800" height="500">
+  <defs>
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#E8F4FD"/>
+      <stop offset="100%" stop-color="#F0F8FF"/>
+    </linearGradient>
+    <linearGradient id="zoneLeft" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#F5F7FA"/>
+      <stop offset="100%" stop-color="#EBEEF2"/>
+    </linearGradient>
+    <linearGradient id="zoneRight" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#E6F0FF"/>
+      <stop offset="100%" stop-color="#D6E8FF"/>
+    </linearGradient>
+  </defs>
+
+  <!-- 背景 -->
+  <rect width="800" height="500" fill="url(#bgGrad)" rx="8"/>
+
+  <!-- 标题 -->
+  <text x="400" y="36" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#1a1a2e">工作流与智能体统一框架</text>
+
+  <!-- 左侧区域：工作流 = 地图导航 -->
+  <rect x="25" y="55" width="230" height="280" rx="10" fill="url(#zoneLeft)" stroke="#C0C4CC" stroke-width="1.5"/>
+  <text x="140" y="80" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#1a1a2e">工作流 = 地图导航</text>
+
+  <!-- 左侧道路 -->
+  <rect x="60" y="100" width="160" height="6" rx="3" fill="#D0D5DD"/>
+  <rect x="60" y="130" width="160" height="6" rx="3" fill="#D0D5DD"/>
+  <rect x="60" y="160" width="160" height="6" rx="3" fill="#D0D5DD"/>
+
+  <!-- 左侧路标 -->
+  <rect x="55" y="95" width="4" height="76" fill="#909399"/>
+  <rect x="55" y="92" width="20" height="8" rx="2" fill="#909399"/>
+  <rect x="55" y="122" width="20" height="8" rx="2" fill="#909399"/>
+  <rect x="55" y="152" width="20" height="8" rx="2" fill="#909399"/>
+
+  <!-- 左侧公交车 -->
+  <rect x="120" y="108" width="40" height="20" rx="4" fill="#909399"/>
+  <circle cx="130" cy="130" r="4" fill="#606266"/>
+  <circle cx="150" cy="130" r="4" fill="#606266"/>
+  <rect x="125" y="112" width="8" height="6" rx="1" fill="#C0C4CC"/>
+  <rect x="145" y="112" width="8" height="6" rx="1" fill="#C0C4CC"/>
+
+  <!-- 左侧标注 -->
+  <text x="140" y="200" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" fill="#606266">标准化流程</text>
+  <text x="140" y="220" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" fill="#606266">固定路线</text>
+  <text x="140" y="240" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" fill="#606266">确定性执行</text>
+
+  <!-- 左侧底部标签 -->
+  <rect x="65" y="265" width="150" height="28" rx="14" fill="#909399"/>
+  <text x="140" y="284" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" fill="#fff" font-weight="bold">SOP 存在 → 工作流</text>
+
+  <!-- 中间区域：混合 = 地图 + 指南针 -->
+  <rect x="280" y="55" width="240" height="280" rx="10" fill="#F0F7FF" stroke="#409EFF" stroke-width="1.5"/>
+  <text x="400" y="80" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#1a1a2e">混合 = 地图 + 指南针</text>
+
+  <!-- 中间道路 -->
+  <rect x="310" y="105" width="180" height="6" rx="3" fill="#D0D5DD"/>
+  <rect x="310" y="145" width="180" height="6" rx="3" fill="#D0D5DD"/>
+
+  <!-- 十字路口 -->
+  <rect x="385" y="100" width="6" height="56" rx="3" fill="#409EFF" opacity="0.5"/>
+
+  <!-- 中间人物 -->
+  <g transform="translate(400, 155)">
+    <!-- 身体 -->
+    <circle cx="0" cy="-18" r="10" fill="#409EFF"/>
+    <rect x="-8" y="-8" width="16" height="20" rx="5" fill="#409EFF"/>
+    <!-- 左臂 - 拿地图 -->
+    <line x1="-8" y1="-2" x2="-25" y2="-10" stroke="#409EFF" stroke-width="4" stroke-linecap="round"/>
+    <rect x="-35" y="-18" width="16" height="14" rx="2" fill="#fff" stroke="#909399" stroke-width="1"/>
+    <text x="-27" y="-8" text-anchor="middle" font-family="Arial, sans-serif" font-size="6" fill="#606266">地图</text>
+    <!-- 右臂 - 拿指南针 -->
+    <line x1="8" y1="-2" x2="25" y2="-10" stroke="#409EFF" stroke-width="4" stroke-linecap="round"/>
+    <circle cx="32" cy="-14" r="8" fill="#fff" stroke="#409EFF" stroke-width="1.5"/>
+    <line x1="32" y1="-20" x2="32" y2="-8" stroke="#409EFF" stroke-width="1.5"/>
+    <line x1="26" y1="-14" x2="38" y2="-14" stroke="#409EFF" stroke-width="1.5"/>
+    <polygon points="32,-20 30,-16 34,-16" fill="#409EFF"/>
+    <!-- 腿 -->
+    <line x1="-4" y1="12" x2="-6" y2="28" stroke="#409EFF" stroke-width="4" stroke-linecap="round"/>
+    <line x1="4" y1="12" x2="6" y2="28" stroke="#409EFF" stroke-width="4" stroke-linecap="round"/>
+  </g>
+
+  <!-- 中间标注 -->
+  <text x="400" y="210" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" fill="#606266">主流道路 + 路口决策</text>
+  <text x="400" y="230" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" fill="#606266">人机协同</text>
+  <text x="400" y="250" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" fill="#606266">实用黄金标准</text>
+
+  <!-- 中间底部标签 -->
+  <rect x="310" y="270" width="180" height="28" rx="14" fill="#409EFF"/>
+  <text x="400" y="289" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" fill="#fff" font-weight="bold">按需嵌入智能体</text>
+
+  <!-- 右侧区域：智能体 = 指南针导航 -->
+  <rect x="545" y="55" width="230" height="280" rx="10" fill="url(#zoneRight)" stroke="#409EFF" stroke-width="1.5"/>
+  <text x="660" y="80" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#1a1a2e">智能体 = 指南针导航</text>
+
+  <!-- 右侧开放地形 -->
+  <path d="M570 120 Q600 110 630 125 Q660 140 690 120 Q720 100 750 115" stroke="#B3D8FF" stroke-width="2" fill="none"/>
+  <path d="M570 150 Q610 140 650 155 Q680 165 720 145 Q740 135 750 145" stroke="#B3D8FF" stroke-width="2" fill="none"/>
+  <path d="M570 180 Q600 175 640 185 Q670 195 710 175 Q730 165 750 175" stroke="#B3D8FF" stroke-width="2" fill="none"/>
+
+  <!-- 右侧人物 -->
+  <g transform="translate(660, 155)">
+    <!-- 身体 -->
+    <circle cx="0" cy="-18" r="10" fill="#409EFF"/>
+    <rect x="-8" y="-8" width="16" height="20" rx="5" fill="#409EFF"/>
+    <!-- 左臂 -->
+    <line x1="-8" y1="-2" x2="-22" y2="-12" stroke="#409EFF" stroke-width="4" stroke-linecap="round"/>
+    <!-- 右臂 - 举指南针 -->
+    <line x1="8" y1="-2" x2="22" y2="-20" stroke="#409EFF" stroke-width="4" stroke-linecap="round"/>
+    <circle cx="26" cy="-26" r="8" fill="#fff" stroke="#409EFF" stroke-width="1.5"/>
+    <line x1="26" y1="-32" x2="26" y2="-20" stroke="#409EFF" stroke-width="1.5"/>
+    <line x1="20" y1="-26" x2="32" y2="-26" stroke="#409EFF" stroke-width="1.5"/>
+    <polygon points="26,-32 24,-28 28,-28" fill="#409EFF"/>
+    <!-- 腿 -->
+    <line x1="-4" y1="12" x2="-8" y2="28" stroke="#409EFF" stroke-width="4" stroke-linecap="round"/>
+    <line x1="4" y1="12" x2="8" y2="28" stroke="#409EFF" stroke-width="4" stroke-linecap="round"/>
+  </g>
+
+  <!-- 目标星星 -->
+  <polygon points="730,95 733,105 743,105 735,111 738,121 730,115 722,121 725,111 717,105 727,105" fill="#409EFF" opacity="0.8"/>
+
+  <!-- 右侧标注 -->
+  <text x="660" y="210" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" fill="#606266">开放地形探索</text>
+  <text x="660" y="230" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" fill="#606266">目标导向</text>
+  <text x="660" y="250" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" fill="#606266">创造性解决问题</text>
+
+  <!-- 右侧底部标签 -->
+  <rect x="585" y="270" width="150" height="28" rx="14" fill="#409EFF"/>
+  <text x="660" y="289" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" fill="#fff" font-weight="bold">全智能体 + 护栏</text>
+
+  <!-- 底部决策公式 -->
+  <rect x="80" y="355" width="640" height="55" rx="10" fill="#1a1a2e" opacity="0.9"/>
+  <text x="400" y="378" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#fff">决策公式</text>
+  <text x="400" y="398" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" fill="#B3D8FF">
+    SOP 存在 → 工作流 | 按需判断 → 嵌入智能体 | 全按需判断 → 全智能体 + 护栏
+  </text>
+
+  <!-- 底部箭头连接 -->
+  <line x1="140" y1="340" x2="140" y2="355" stroke="#909399" stroke-width="2" stroke-dasharray="4,3"/>
+  <line x1="400" y1="340" x2="400" y2="355" stroke="#409EFF" stroke-width="2" stroke-dasharray="4,3"/>
+  <line x1="660" y1="340" x2="660" y2="355" stroke="#409EFF" stroke-width="2" stroke-dasharray="4,3"/>
+
+  <!-- 底部图例 -->
+  <rect x="200" y="425" width="12" height="12" rx="2" fill="#909399"/>
+  <text x="218" y="436" font-family="Arial, sans-serif" font-size="12" fill="#606266">工作流元素</text>
+  <rect x="350" y="425" width="12" height="12" rx="2" fill="#409EFF"/>
+  <text x="368" y="436" font-family="Arial, sans-serif" font-size="12" fill="#606266">智能体元素</text>
+  <rect x="500" y="425" width="12" height="12" rx="2" fill="#1a1a2e"/>
+  <text x="518" y="436" font-family="Arial, sans-serif" font-size="12" fill="#606266">标签</text>
+
+  <!-- 底部说明 -->
+  <text x="400" y="470" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#909399">扁平化 2D 矢量插图 · 教育用途</text>
+
+</svg>

@@ -1,0 +1,135 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="800" height="500">
+  <defs>
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#E8F4FD"/>
+      <stop offset="100%" stop-color="#D0ECF9"/>
+    </linearGradient>
+    <linearGradient id="cardGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#FFFFFF"/>
+      <stop offset="100%" stop-color="#F5FAFF"/>
+    </linearGradient>
+  </defs>
+
+  <!-- 背景 -->
+  <rect width="800" height="500" fill="url(#bgGrad)" rx="8"/>
+
+  <!-- 标题 -->
+  <text x="400" y="42" text-anchor="middle" font-family="sans-serif" font-size="20" font-weight="bold" fill="#1a1a2e">ReAct 模式在主流框架中的实现</text>
+
+  <!-- 三个框架卡片 -->
+  <!-- LangChain 卡片 -->
+  <rect x="35" y="70" width="220" height="390" rx="14" fill="url(#cardGrad)" stroke="#409EFF" stroke-width="1.5"/>
+  <!-- AutoGPT 卡片 -->
+  <rect x="290" y="70" width="220" height="390" rx="14" fill="url(#cardGrad)" stroke="#409EFF" stroke-width="1.5"/>
+  <!-- BabyAGI 卡片 -->
+  <rect x="545" y="70" width="220" height="390" rx="14" fill="url(#cardGrad)" stroke="#409EFF" stroke-width="1.5"/>
+
+  <!-- LangChain 图标 - 链环 -->
+  <g transform="translate(145, 140)" fill="none" stroke="#409EFF" stroke-width="3">
+    <circle cx="0" cy="-18" r="10"/>
+    <circle cx="18" cy="0" r="10"/>
+    <circle cx="0" cy="18" r="10"/>
+    <circle cx="-18" cy="0" r="10"/>
+    <line x1="8" y1="-12" x2="12" y2="-8"/>
+    <line x1="12" y1="8" x2="8" y2="12"/>
+    <line x1="-8" y1="12" x2="-12" y2="8"/>
+    <line x1="-12" y1="-8" x2="-8" y2="-12"/>
+  </g>
+  <!-- 框架名称 -->
+  <text x="145" y="195" text-anchor="middle" font-family="sans-serif" font-size="16" font-weight="bold" fill="#1a1a2e">LangChain</text>
+
+  <!-- AutoGPT 图标 - 齿轮 -->
+  <g transform="translate(400, 140)" fill="none" stroke="#409EFF" stroke-width="2.5">
+    <circle cx="0" cy="0" r="8"/>
+    <g stroke-width="3">
+      <line x1="0" y1="-18" x2="0" y2="-12"/>
+      <line x1="0" y1="12" x2="0" y2="18"/>
+      <line x1="-18" y1="0" x2="-12" y2="0"/>
+      <line x1="12" y1="0" x2="18" y2="0"/>
+      <line x1="-13" y1="-13" x2="-9" y2="-9"/>
+      <line x1="9" y1="9" x2="13" y2="13"/>
+      <line x1="9" y1="-9" x2="13" y2="-13"/>
+      <line x1="-13" y1="13" x2="-9" y2="9"/>
+    </g>
+  </g>
+  <text x="400" y="195" text-anchor="middle" font-family="sans-serif" font-size="16" font-weight="bold" fill="#1a1a2e">AutoGPT</text>
+
+  <!-- BabyAGI 图标 - 奶瓶 -->
+  <g transform="translate(655, 140)" fill="none" stroke="#409EFF" stroke-width="2.5">
+    <rect x="-10" y="-18" width="20" height="28" rx="4"/>
+    <line x1="-10" y1="-10" x2="10" y2="-10"/>
+    <rect x="-6" y="-26" width="12" height="10" rx="3"/>
+    <line x1="-2" y1="-26" x2="-2" y2="-30"/>
+    <line x1="2" y1="-26" x2="2" y2="-30"/>
+    <circle cx="0" cy="-32" r="2" fill="#409EFF"/>
+  </g>
+  <text x="655" y="195" text-anchor="middle" font-family="sans-serif" font-size="16" font-weight="bold" fill="#1a1a2e">BabyAGI</text>
+
+  <!-- 每个卡片中的 Thought-Action-Observation 循环 -->
+
+  <!-- LangChain 循环 -->
+  <g transform="translate(145, 240)">
+    <!-- Thought -->
+    <rect x="-60" y="-12" width="120" height="24" rx="12" fill="none" stroke="#409EFF" stroke-width="1.5"/>
+    <text x="0" y="4" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#1a1a2e">思考</text>
+    <!-- 向下箭头 -->
+    <line x1="0" y1="12" x2="0" y2="28" stroke="#409EFF" stroke-width="1.5"/>
+    <polygon points="0,32 -4,26 4,26" fill="#409EFF"/>
+    <!-- Action -->
+    <rect x="-60" y="32" width="120" height="24" rx="12" fill="none" stroke="#409EFF" stroke-width="1.5"/>
+    <text x="0" y="48" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#1a1a2e">行动</text>
+    <!-- 向下箭头 -->
+    <line x1="0" y1="56" x2="0" y2="72" stroke="#409EFF" stroke-width="1.5"/>
+    <polygon points="0,76 -4,70 4,70" fill="#409EFF"/>
+    <!-- Observation -->
+    <rect x="-60" y="76" width="120" height="24" rx="12" fill="none" stroke="#409EFF" stroke-width="1.5"/>
+    <text x="0" y="92" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#1a1a2e">观察</text>
+    <!-- 回环箭头 -->
+    <path d="M-60,88 C-90,88 -90,4 -60,4" fill="none" stroke="#409EFF" stroke-width="1.2" stroke-dasharray="4,3"/>
+    <polygon points="-56,4 -62,0 -62,8" fill="#409EFF"/>
+  </g>
+
+  <!-- AutoGPT 循环 -->
+  <g transform="translate(400, 240)">
+    <rect x="-60" y="-12" width="120" height="24" rx="12" fill="none" stroke="#409EFF" stroke-width="1.5"/>
+    <text x="0" y="4" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#1a1a2e">思考</text>
+    <line x1="0" y1="12" x2="0" y2="28" stroke="#409EFF" stroke-width="1.5"/>
+    <polygon points="0,32 -4,26 4,26" fill="#409EFF"/>
+    <rect x="-60" y="32" width="120" height="24" rx="12" fill="none" stroke="#409EFF" stroke-width="1.5"/>
+    <text x="0" y="48" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#1a1a2e">行动</text>
+    <line x1="0" y1="56" x2="0" y2="72" stroke="#409EFF" stroke-width="1.5"/>
+    <polygon points="0,76 -4,70 4,70" fill="#409EFF"/>
+    <rect x="-60" y="76" width="120" height="24" rx="12" fill="none" stroke="#409EFF" stroke-width="1.5"/>
+    <text x="0" y="92" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#1a1a2e">观察</text>
+    <path d="M-60,88 C-90,88 -90,4 -60,4" fill="none" stroke="#409EFF" stroke-width="1.2" stroke-dasharray="4,3"/>
+    <polygon points="-56,4 -62,0 -62,8" fill="#409EFF"/>
+  </g>
+
+  <!-- BabyAGI 循环 -->
+  <g transform="translate(655, 240)">
+    <rect x="-60" y="-12" width="120" height="24" rx="12" fill="none" stroke="#409EFF" stroke-width="1.5"/>
+    <text x="0" y="4" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#1a1a2e">思考</text>
+    <line x1="0" y1="12" x2="0" y2="28" stroke="#409EFF" stroke-width="1.5"/>
+    <polygon points="0,32 -4,26 4,26" fill="#409EFF"/>
+    <rect x="-60" y="32" width="120" height="24" rx="12" fill="none" stroke="#409EFF" stroke-width="1.5"/>
+    <text x="0" y="48" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#1a1a2e">行动</text>
+    <line x1="0" y1="56" x2="0" y2="72" stroke="#409EFF" stroke-width="1.5"/>
+    <polygon points="0,76 -4,70 4,70" fill="#409EFF"/>
+    <rect x="-60" y="76" width="120" height="24" rx="12" fill="none" stroke="#409EFF" stroke-width="1.5"/>
+    <text x="0" y="92" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#1a1a2e">观察</text>
+    <path d="M-60,88 C-90,88 -90,4 -60,4" fill="none" stroke="#409EFF" stroke-width="1.2" stroke-dasharray="4,3"/>
+    <polygon points="-56,4 -62,0 -62,8" fill="#409EFF"/>
+  </g>
+
+  <!-- 底部标注 -->
+  <text x="400" y="480" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#1a1a2e" opacity="0.7">ReAct = 思考 + 行动 + 观察 循环迭代</text>
+
+  <!-- 卡片间的连接虚线 -->
+  <line x1="255" y1="260" x2="290" y2="260" stroke="#409EFF" stroke-width="1" stroke-dasharray="6,4" opacity="0.5"/>
+  <line x1="510" y1="260" x2="545" y2="260" stroke="#409EFF" stroke-width="1" stroke-dasharray="6,4" opacity="0.5"/>
+
+  <!-- 卡片底部小标注 -->
+  <text x="145" y="440" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#1a1a2e" opacity="0.6">链式调用</text>
+  <text x="400" y="440" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#1a1a2e" opacity="0.6">自主代理</text>
+  <text x="655" y="440" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#1a1a2e" opacity="0.6">任务循环</text>
+</svg>

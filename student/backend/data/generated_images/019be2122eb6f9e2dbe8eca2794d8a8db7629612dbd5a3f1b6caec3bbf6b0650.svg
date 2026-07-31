@@ -1,0 +1,159 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="800" height="500">
+  <defs>
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#E8F4FF"/>
+      <stop offset="100%" stop-color="#F0F8FF"/>
+    </linearGradient>
+    <linearGradient id="blueGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#409EFF"/>
+      <stop offset="100%" stop-color="#2B7BD6"/>
+    </linearGradient>
+  </defs>
+
+  <!-- 背景 -->
+  <rect width="800" height="500" fill="url(#bgGrad)" rx="8"/>
+
+  <!-- 标题 -->
+  <text x="400" y="38" text-anchor="middle" font-size="20" font-weight="bold" fill="#1a1a2e" font-family="sans-serif">重复博弈策略图示</text>
+
+  <!-- ========== 策略一：以牙还牙（左列） ========== -->
+  <rect x="30" y="60" width="220" height="180" rx="10" fill="white" stroke="#409EFF" stroke-width="1.5" opacity="0.95"/>
+  <text x="140" y="88" text-anchor="middle" font-size="15" font-weight="bold" fill="#1a1a2e" font-family="sans-serif">以牙还牙</text>
+
+  <!-- 智能体 A -->
+  <circle cx="85" cy="130" r="22" fill="#409EFF" opacity="0.9"/>
+  <text x="85" y="135" text-anchor="middle" font-size="12" fill="white" font-family="sans-serif">A</text>
+
+  <!-- 智能体 B -->
+  <circle cx="195" cy="130" r="22" fill="#409EFF" opacity="0.9"/>
+  <text x="195" y="135" text-anchor="middle" font-size="12" fill="white" font-family="sans-serif">B</text>
+
+  <!-- 合作-合作 箭头（上方） -->
+  <path d="M 95 118 Q 140 100 185 118" fill="none" stroke="#409EFF" stroke-width="2" marker-end="url(#arrowBlue)"/>
+  <path d="M 185 125 Q 140 108 95 125" fill="none" stroke="#409EFF" stroke-width="2" marker-end="url(#arrowBlue)"/>
+  <text x="140" y="105" text-anchor="middle" font-size="12" fill="#1a1a2e" font-family="sans-serif">合作↔合作</text>
+
+  <!-- 背叛-背叛 箭头（下方） -->
+  <path d="M 95 155 Q 140 170 185 155" fill="none" stroke="#1a1a2e" stroke-width="2" stroke-dasharray="4,3"/>
+  <path d="M 185 162 Q 140 177 95 162" fill="none" stroke="#1a1a2e" stroke-width="2" stroke-dasharray="4,3"/>
+  <text x="140" y="185" text-anchor="middle" font-size="12" fill="#1a1a2e" font-family="sans-serif">背叛↔背叛</text>
+
+  <!-- 标注 -->
+  <text x="140" y="225" text-anchor="middle" font-size="13" fill="#409EFF" font-family="sans-serif">镜像复制对方上轮行动</text>
+
+  <!-- ========== 策略二：冷酷触发（中列） ========== -->
+  <rect x="290" y="60" width="220" height="180" rx="10" fill="white" stroke="#409EFF" stroke-width="1.5" opacity="0.95"/>
+  <text x="400" y="88" text-anchor="middle" font-size="15" font-weight="bold" fill="#1a1a2e" font-family="sans-serif">冷酷触发</text>
+
+  <!-- 智能体 C -->
+  <circle cx="345" cy="130" r="22" fill="#409EFF" opacity="0.9"/>
+  <text x="345" y="135" text-anchor="middle" font-size="12" fill="white" font-family="sans-serif">C</text>
+
+  <!-- 智能体 D -->
+  <circle cx="455" cy="130" r="22" fill="#409EFF" opacity="0.9"/>
+  <text x="455" y="135" text-anchor="middle" font-size="12" fill="white" font-family="sans-serif">D</text>
+
+  <!-- 初始合作链 -->
+  <line x1="367" y1="130" x2="433" y2="130" stroke="#409EFF" stroke-width="3"/>
+  <text x="400" y="118" text-anchor="middle" font-size="11" fill="#1a1a2e" font-family="sans-serif">合作</text>
+
+  <!-- 断裂的链（一次背叛后） -->
+  <line x1="367" y1="165" x2="395" y2="165" stroke="#1a1a2e" stroke-width="3"/>
+  <line x1="405" y1="165" x2="433" y2="165" stroke="#1a1a2e" stroke-width="3" stroke-dasharray="2,2"/>
+  <text x="400" y="155" text-anchor="middle" font-size="11" fill="#1a1a2e" font-family="sans-serif">背叛</text>
+
+  <!-- 断裂标记 -->
+  <text x="400" y="178" text-anchor="middle" font-size="16" fill="#FF4D4F" font-family="sans-serif">✕</text>
+
+  <!-- 标注 -->
+  <text x="400" y="225" text-anchor="middle" font-size="13" fill="#409EFF" font-family="sans-serif">一次背叛后永久终止合作</text>
+
+  <!-- ========== 策略三：贝叶斯拍卖（右列） ========== -->
+  <rect x="550" y="60" width="220" height="180" rx="10" fill="white" stroke="#409EFF" stroke-width="1.5" opacity="0.95"/>
+  <text x="660" y="88" text-anchor="middle" font-size="15" font-weight="bold" fill="#1a1a2e" font-family="sans-serif">贝叶斯拍卖</text>
+
+  <!-- 拍卖师 -->
+  <rect x="630" y="105" width="60" height="30" rx="6" fill="#1a1a2e" opacity="0.8"/>
+  <text x="660" y="124" text-anchor="middle" font-size="12" fill="white" font-family="sans-serif">拍卖师</text>
+
+  <!-- 竞拍者 1 -->
+  <circle cx="590" cy="175" r="20" fill="#409EFF" opacity="0.85"/>
+  <text x="590" y="180" text-anchor="middle" font-size="12" fill="white" font-family="sans-serif">E</text>
+
+  <!-- 竞拍者 2 -->
+  <circle cx="660" cy="175" r="20" fill="#409EFF" opacity="0.85"/>
+  <text x="660" y="180" text-anchor="middle" font-size="12" fill="white" font-family="sans-serif">F</text>
+
+  <!-- 竞拍者 3 -->
+  <circle cx="730" cy="175" r="20" fill="#409EFF" opacity="0.85"/>
+  <text x="730" y="180" text-anchor="middle" font-size="12" fill="white" font-family="sans-serif">G</text>
+
+  <!-- 举牌 -->
+  <rect x="575" y="148" width="30" height="12" rx="3" fill="#1a1a2e" opacity="0.7"/>
+  <text x="590" y="157" text-anchor="middle" font-size="8" fill="white" font-family="sans-serif">60</text>
+
+  <rect x="645" y="148" width="30" height="12" rx="3" fill="#1a1a2e" opacity="0.7"/>
+  <text x="660" y="157" text-anchor="middle" font-size="8" fill="white" font-family="sans-serif">75</text>
+
+  <rect x="715" y="148" width="30" height="12" rx="3" fill="#1a1a2e" opacity="0.7"/>
+  <text x="730" y="157" text-anchor="middle" font-size="8" fill="white" font-family="sans-serif">55</text>
+
+  <!-- 隐藏价值卡（背后） -->
+  <rect x="572" y="190" width="36" height="24" rx="3" fill="white" stroke="#409EFF" stroke-width="1.5" stroke-dasharray="3,2"/>
+  <text x="590" y="206" text-anchor="middle" font-size="9" fill="#409EFF" font-family="sans-serif">?</text>
+
+  <rect x="642" y="190" width="36" height="24" rx="3" fill="white" stroke="#409EFF" stroke-width="1.5" stroke-dasharray="3,2"/>
+  <text x="660" y="206" text-anchor="middle" font-size="9" fill="#409EFF" font-family="sans-serif">?</text>
+
+  <rect x="712" y="190" width="36" height="24" rx="3" fill="white" stroke="#409EFF" stroke-width="1.5" stroke-dasharray="3,2"/>
+  <text x="730" y="206" text-anchor="middle" font-size="9" fill="#409EFF" font-family="sans-serif">?</text>
+
+  <!-- 标注 -->
+  <text x="660" y="225" text-anchor="middle" font-size="13" fill="#409EFF" font-family="sans-serif">隐藏估值 举牌竞价</text>
+
+  <!-- ========== 底部说明区域 ========== -->
+  <rect x="30" y="270" width="740" height="210" rx="10" fill="white" stroke="#409EFF" stroke-width="1.2" opacity="0.92"/>
+
+  <text x="60" y="300" font-size="14" font-weight="bold" fill="#1a1a2e" font-family="sans-serif">策略对比说明</text>
+
+  <!-- 以牙还牙说明 -->
+  <circle cx="65" cy="330" r="8" fill="#409EFF" opacity="0.8"/>
+  <text x="65" y="334" text-anchor="middle" font-size="9" fill="white" font-family="sans-serif">1</text>
+  <text x="85" y="334" font-size="13" fill="#1a1a2e" font-family="sans-serif">以牙还牙：首轮合作，之后复制对手上一轮的行动。宽恕但可被激怒。</text>
+
+  <!-- 冷酷触发说明 -->
+  <circle cx="65" cy="360" r="8" fill="#409EFF" opacity="0.8"/>
+  <text x="65" y="364" text-anchor="middle" font-size="9" fill="white" font-family="sans-serif">2</text>
+  <text x="85" y="364" font-size="13" fill="#1a1a2e" font-family="sans-serif">冷酷触发：初始合作，一旦对方背叛则永远终止合作，永不宽恕。</text>
+
+  <!-- 贝叶斯拍卖说明 -->
+  <circle cx="65" cy="390" r="8" fill="#409EFF" opacity="0.8"/>
+  <text x="65" y="394" text-anchor="middle" font-size="9" fill="white" font-family="sans-serif">3</text>
+  <text x="85" y="394" font-size="13" fill="#1a1a2e" font-family="sans-serif">贝叶斯拍卖：参与者持有私人估值信息，在不确定他人估值下策略性出价。</text>
+
+  <!-- 底部装饰线 -->
+  <line x1="60" y1="415" x2="740" y2="415" stroke="#409EFF" stroke-width="0.8" opacity="0.4"/>
+
+  <!-- 关键概念标签 -->
+  <rect x="60" y="430" width="80" height="26" rx="13" fill="#409EFF" opacity="0.15"/>
+  <text x="100" y="447" text-anchor="middle" font-size="12" fill="#409EFF" font-family="sans-serif">重复博弈</text>
+
+  <rect x="155" y="430" width="80" height="26" rx="13" fill="#409EFF" opacity="0.15"/>
+  <text x="195" y="447" text-anchor="middle" font-size="12" fill="#409EFF" font-family="sans-serif">策略互动</text>
+
+  <rect x="250" y="430" width="80" height="26" rx="13" fill="#409EFF" opacity="0.15"/>
+  <text x="290" y="447" text-anchor="middle" font-size="12" fill="#409EFF" font-family="sans-serif">信息不对称</text>
+
+  <rect x="345" y="430" width="80" height="26" rx="13" fill="#409EFF" opacity="0.15"/>
+  <text x="385" y="447" text-anchor="middle" font-size="12" fill="#409EFF" font-family="sans-serif">纳什均衡</text>
+
+  <rect x="440" y="430" width="80" height="26" rx="13" fill="#409EFF" opacity="0.15"/>
+  <text x="480" y="447" text-anchor="middle" font-size="12" fill="#409EFF" font-family="sans-serif">帕累托最优</text>
+
+  <!-- 箭头标记定义 -->
+  <defs>
+    <marker id="arrowBlue" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L8,3 L0,6 Z" fill="#409EFF"/>
+    </marker>
+  </defs>
+</svg>

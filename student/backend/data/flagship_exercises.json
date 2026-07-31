@@ -1,0 +1,311 @@
+[
+  {
+    "id": "1-1",
+    "module": "阶段一：第一段 AI 对话",
+    "title": "构造第一组对话消息",
+    "description": "先跑通再重构：在 app.py 中直接调用 ChatOpenAI 模型、看到 AI 回复后，再把消息构造逻辑提取为 build_chat_messages(system_prompt, user_input) 函数并添加输入校验。返回两个字典组成的列表（role=system 和 role=user），content 为清理空白后的文本；非法输入抛出 ValueError；不得修改传入值。",
+    "input_output": "返回两个字典组成的列表：第一项 role=system，第二项 role=user；每项 content 为清理空白后的文本。\n示例输入：('你是助教', '解释 Agent')\n示例输出：[{\"role\": \"system\", \"content\": \"你是助教\"}, {\"role\": \"user\", \"content\": \"解释 Agent\"}]",
+    "starter_code": "def build_chat_messages(system_prompt, user_input):\n    \"\"\"生成可直接交给 LangChain ChatModel 的消息列表。\"\"\"\n    # 1. 校验两个参数都是非空字符串\n    # 2. 清理首尾空白\n    # 3. 按 system、user 顺序返回消息\n    raise NotImplementedError\n",
+    "steps": [
+      "在 app.py 中跑通完整的 LLM 调用链",
+      "验证 AI 返回非空字符串",
+      "提取消息构造到 build_chat_messages",
+      "添加输入校验与边界处理",
+      "重构 app.py 接入提取的函数"
+    ],
+    "acceptance": [
+      "消息顺序与 role 正确",
+      "空白被清理",
+      "非法输入抛出 ValueError",
+      "重构后 app.py 行为不变"
+    ],
+    "skills": [
+      "LLM调用",
+      "消息协议",
+      "输入校验",
+      "不可变数据",
+      "工程重构"
+    ]
+  },
+  {
+    "id": "1-2",
+    "module": "阶段一：第一段 AI 对话",
+    "title": "维护并裁剪多轮上下文",
+    "description": "多轮聊天要把本轮 user/assistant 消息追加到历史中，但不能无限增长。实现 append_turn_and_trim(history, user_text, assistant_text, max_messages)：返回新列表，绝不能修改 history；始终保留开头的 system 消息（如果存在），并从旧到新保留最多 max_messages 条消息。max_messages 必须是大于等于 2 的整数。",
+    "input_output": "history 为消息字典列表；返回追加本轮并裁剪后的新列表。若第一条是 system，它不参与从尾部取最近消息，但计入 max_messages。消息结构非法、文本为空或 max_messages 非法时抛出 ValueError。",
+    "starter_code": "def append_turn_and_trim(history, user_text, assistant_text, max_messages):\n    \"\"\"追加一轮对话，保留 system 与最近消息，不修改原历史。\"\"\"\n    # 1. 校验并复制历史\n    # 2. 追加 user / assistant\n    # 3. 保留 system，再从尾部截取最近消息\n    raise NotImplementedError\n",
+    "steps": [
+      "验证历史消息结构",
+      "使用新列表追加本轮",
+      "分别处理有/无 system 的裁剪"
+    ],
+    "acceptance": [
+      "原 history 保持不变",
+      "system 不丢失",
+      "总长度不超过上限"
+    ],
+    "skills": [
+      "上下文窗口",
+      "历史裁剪",
+      "边界处理"
+    ]
+  },
+  {
+    "id": "1-3",
+    "module": "阶段一：第一段 AI 对话",
+    "title": "合并流式响应片段",
+    "description": "LangChain stream() 会持续产生 AIMessageChunk 迭代器，content 可能是字符串、None，或由文本块字典组成的列表。实现 normalize_stream_chunks(chunks)，按顺序抽取有效文本并拼接；必须支持一次性迭代器、消息字典和带 content 属性的真实消息片段对象；忽略 None、空字符串以及列表中非 text 类型的块。遇到完全不支持的片段结构要抛出 ValueError。",
+    "input_output": "chunks 是可迭代对象。支持字符串、None、{content: ...} 字典、带 content 属性的 LangChain 消息片段对象，以及 content 为 [{type:'text', text:'...'}] 的内容块。返回拼接后的字符串。",
+    "starter_code": "def normalize_stream_chunks(chunks):\n    \"\"\"把模型流式片段规范化为一个完整字符串。\"\"\"\n    parts = []\n    # 逐个识别字符串、消息字典和文本内容块\n    # 不要把 None 拼成字符串 'None'\n    raise NotImplementedError\n",
+    "steps": [
+      "处理最简单的字符串片段",
+      "读取消息字典 content",
+      "遍历文本块并拒绝未知顶层结构"
+    ],
+    "acceptance": [
+      "片段顺序不变",
+      "空片段被忽略",
+      "未知结构明确失败"
+    ],
+    "skills": [
+      "流式输出",
+      "数据规范化",
+      "错误处理"
+    ]
+  },
+  {
+    "id": "2-1",
+    "module": "阶段二：LangChain 工具 Agent",
+    "title": "用 SQLAlchemy 构建订单数据库",
+    "description": "工具 Agent 需要真实数据源。实现 setup_order_db(db_path) 和 query_orders(session, **filters)。用 SQLAlchemy ORM 定义 Order 模型（id, customer_name, product, amount, status），创建 SQLite 引擎和 Session，支持按 status / customer_name / min_amount 组合过滤，返回字段完整的字典列表。非法参数抛出 ValueError。",
+    "input_output": "setup_order_db(db_path) 返回 SQLAlchemy Engine；query_orders(session, **filters) 返回 [{id, customer_name, product, amount, status}, ...]。filters 可选 status / customer_name / min_amount。",
+    "starter_code": "from sqlalchemy import create_engine, Column, Integer, String, Float\nfrom sqlalchemy.orm import declarative_base, sessionmaker\n\nBase = declarative_base()\n\nclass Order(Base):\n    __tablename__ = 'orders'\n    id = Column(Integer, primary_key=True)\n    customer_name = Column(String, nullable=False)\n    product = Column(String, nullable=False)\n    amount = Column(Float, nullable=False)\n    status = Column(String, nullable=False, default='pending')\n\ndef setup_order_db(db_path='orders.db'):\n    \"\"\"创建引擎和表，返回 (engine, Session)\"\"\"\n    raise NotImplementedError\n\ndef query_orders(session, **filters):\n    \"\"\"按可选条件查询订单，返回字典列表\"\"\"\n    raise NotImplementedError\n",
+    "steps": [
+      "定义 Order 模型列",
+      "实现 setup_order_db 创建引擎和表",
+      "实现 query_orders 基础查询",
+      "补充组合过滤和空结果处理"
+    ],
+    "acceptance": [
+      "Order 模型定义完整",
+      "数据库和表可创建",
+      "过滤条件正确生效",
+      "组合过滤结果准确"
+    ],
+    "skills": [
+      "SQLAlchemy ORM",
+      "SQLite",
+      "查询过滤",
+      "数据库设计"
+    ]
+  },
+  {
+    "id": "2-2",
+    "module": "阶段二：LangChain 工具 Agent",
+    "title": "渲染可复用客服提示模板",
+    "description": "提示模板应把稳定业务规则与动态输入分开。实现 render_support_prompt(template, values)：template 使用 {name} 占位符；values 必须提供全部字段，额外字段允许存在；值统一转为字符串。缺字段、模板不是非空字符串或 values 不是字典时抛出 ValueError。禁止使用 eval。",
+    "input_output": "示例：template='用户{user_id}咨询：{question}'，values={'user_id':'U1','question':'如何退款'}，返回 '用户U1咨询：如何退款'。重复占位符应全部替换。",
+    "starter_code": "def render_support_prompt(template, values):\n    \"\"\"安全渲染客服提示模板。\"\"\"\n    # 可扫描 {field}，逐个确认 values 中存在对应字段\n    # 完成替换后返回字符串\n    raise NotImplementedError\n",
+    "steps": [
+      "校验模板和字典",
+      "扫描所有占位符",
+      "检查字段后完成稳定替换"
+    ],
+    "acceptance": [
+      "重复字段均被替换",
+      "缺字段抛 ValueError",
+      "不依赖 eval"
+    ],
+    "skills": [
+      "PromptTemplate",
+      "变量校验",
+      "安全渲染"
+    ]
+  },
+  {
+    "id": "2-3",
+    "module": "阶段二：LangChain 工具 Agent",
+    "title": "校验并执行工具调用",
+    "description": "Agent 不能直接相信模型生成的工具调用。实现 execute_tool_call(tool_call, registry)：tool_call 必须包含字符串 name、字典 args 和字符串 id；registry 中每个工具用 {required:[...], handler: callable} 描述。拒绝未知工具与缺少参数；执行成功后返回统一 ToolMessage 风格字典。handler 的异常要转成 status=error 的结果，不能让整个 Agent 崩溃。",
+    "input_output": "成功返回 {role:'tool', tool_call_id:id, name:name, status:'success', content:str(result)}；工具执行异常返回同结构但 status='error'、content 以 '工具执行失败：' 开头。契约非法抛 ValueError。",
+    "starter_code": "def execute_tool_call(tool_call, registry):\n    \"\"\"校验模型产生的工具调用，并返回统一工具消息。\"\"\"\n    # 1. 校验调用结构与工具是否注册\n    # 2. 校验 required 参数\n    # 3. 调用 handler(**args)，捕获工具自身异常\n    raise NotImplementedError\n",
+    "steps": [
+      "验证工具调用契约",
+      "核对必填参数",
+      "隔离工具异常并统一返回"
+    ],
+    "acceptance": [
+      "未知工具不会执行",
+      "工具错误不会击穿主流程",
+      "结果结构可直接写回消息历史"
+    ],
+    "skills": [
+      "Tool Calling",
+      "契约校验",
+      "异常隔离"
+    ]
+  },
+  {
+    "id": "2-4",
+    "module": "阶段二：LangChain 工具 Agent",
+    "title": "实现多步工具执行循环",
+    "description": "create_agent 的核心是模型与工具之间的循环。本关用确定性计划模拟该循环。实现 run_tool_plan(plan, registry, max_steps=5)：plan 是按顺序执行的 {name,args} 列表；每步执行 registry[name](**args)，把 {step,name,status,observation} 写入 trace。未知工具或异常记为 error 并立即停止；超过 max_steps 的剩余计划不执行，并追加 status=stopped 的轨迹。",
+    "input_output": "返回 {status:'completed'|'failed'|'stopped', trace:[...], final_observation:最后一次有效观察或None}。max_steps 必须为正整数，plan 必须是列表。",
+    "starter_code": "def run_tool_plan(plan, registry, max_steps=5):\n    \"\"\"执行多步工具计划并保留可审计轨迹。\"\"\"\n    trace = []\n    # 每轮：检查上限 → 找工具 → 执行 → 记录 observation\n    # 任何失败都应形成轨迹，而不是吞掉信息\n    raise NotImplementedError\n",
+    "steps": [
+      "先处理参数与空计划",
+      "逐步执行并记录观察",
+      "实现失败停止和步数上限"
+    ],
+    "acceptance": [
+      "轨迹步号从1开始",
+      "失败立即停止",
+      "上限可阻止无限循环"
+    ],
+    "skills": [
+      "Agent Loop",
+      "执行轨迹",
+      "停止条件"
+    ]
+  },
+  {
+    "id": "3-1",
+    "module": "阶段三：LangGraph 状态工作流",
+    "title": "合并节点产生的状态增量",
+    "description": "LangGraph 节点通常只返回自己负责更新的状态字段。实现 merge_state(current, update, reducers)：返回新状态。普通字段直接覆盖；reducers 中声明为 'append' 的字段需要把旧列表与新列表拼接。禁止修改 current/update；append 字段两侧都必须是列表，否则抛出 ValueError。",
+    "input_output": "示例：current={messages:['u1'], route:'start'}，update={messages:['a1'], route:'done'}，reducers={messages:'append'}，返回 {messages:['u1','a1'], route:'done'}。",
+    "starter_code": "def merge_state(current, update, reducers):\n    \"\"\"模拟 LangGraph 将节点增量合并进当前状态。\"\"\"\n    # 复制 current，逐字段应用 reducer 或覆盖规则\n    raise NotImplementedError\n",
+    "steps": [
+      "创建浅层安全副本",
+      "识别 append reducer",
+      "应用覆盖并返回新状态"
+    ],
+    "acceptance": [
+      "输入对象不变",
+      "追加与覆盖规则正确",
+      "错误类型明确"
+    ],
+    "skills": [
+      "StateGraph",
+      "Reducer",
+      "状态不可变"
+    ]
+  },
+  {
+    "id": "3-2",
+    "module": "阶段三：LangGraph 状态工作流",
+    "title": "设计客服请求条件路由",
+    "description": "条件边必须稳定、可测试。实现 route_support_request(state)：若 urgent=True 或 confidence<0.6，路由到 human；否则 intent=order 路由 order_tool，intent=faq 路由 knowledge，intent=chat 路由 respond。缺少字段、置信度越界、intent 未知时抛出 ValueError。注意 bool 不能被当作合法数字置信度。",
+    "input_output": "输入 state={intent, confidence, urgent}，返回 'human'、'order_tool'、'knowledge' 或 'respond'。紧急规则优先级最高。",
+    "starter_code": "def route_support_request(state):\n    \"\"\"返回 LangGraph 条件边要进入的下一个节点名。\"\"\"\n    # 先校验完整状态，再按业务优先级判断\n    raise NotImplementedError\n",
+    "steps": [
+      "验证三个状态字段",
+      "先实现人工升级规则",
+      "再映射普通意图"
+    ],
+    "acceptance": [
+      "紧急请求一定转人工",
+      "边界0.6不转人工",
+      "非法意图被拒绝"
+    ],
+    "skills": [
+      "条件边",
+      "业务路由",
+      "优先级规则"
+    ]
+  },
+  {
+    "id": "3-3",
+    "module": "阶段三：LangGraph 状态工作流",
+    "title": "实现线程检查点与恢复",
+    "description": "LangGraph checkpointer 用 thread_id 隔离会话。实现 save_checkpoint(store, thread_id, state) 和 load_checkpoint(store, thread_id)。store 是字典：每个线程保存按 version 递增的快照列表。保存时要复制 state，返回新版本号；读取返回最新快照的新副本；不存在返回 None。thread_id 必须是非空字符串，state 必须是字典，不得发生跨线程串话。",
+    "input_output": "save_checkpoint 返回整数版本号，从1开始；load_checkpoint 返回 {version, state} 或 None。修改读取结果不得影响 store 内快照。",
+    "starter_code": "def save_checkpoint(store, thread_id, state):\n    \"\"\"保存线程状态，返回递增版本号。\"\"\"\n    raise NotImplementedError\n\ndef load_checkpoint(store, thread_id):\n    \"\"\"读取最新检查点的安全副本。\"\"\"\n    raise NotImplementedError\n",
+    "steps": [
+      "校验线程和状态",
+      "按线程维护版本列表",
+      "读取时复制嵌套列表/字典"
+    ],
+    "acceptance": [
+      "版本单调递增",
+      "线程互相隔离",
+      "读写结果不共享可变对象"
+    ],
+    "skills": [
+      "Checkpointer",
+      "线程隔离",
+      "故障恢复"
+    ]
+  },
+  {
+    "id": "4-1",
+    "module": "阶段四：端到端 Agent 工程",
+    "title": "实现带阈值的 Top-K 检索",
+    "description": "RAG 不能把全部文档塞给模型。实现 retrieve_top_k(query_terms, documents, k, min_score)：documents 每项含 id、text、terms。相关度为 query_terms 与 terms 的不重复交集数量。只保留 score>=min_score 的结果，按 score 降序、id 字典序稳定排序，返回前 k 项，每项仅含 id、text、score。输入非法时抛 ValueError，且不得修改文档。",
+    "input_output": "query_terms 是非空字符串列表；k 为正整数；min_score 为非负整数。返回稳定排序后的检索结果列表。",
+    "starter_code": "def retrieve_top_k(query_terms, documents, k, min_score):\n    \"\"\"返回带来源和分数的稳定 Top-K 检索结果。\"\"\"\n    # 1. 规范化查询词集合\n    # 2. 逐文档计算交集分数并过滤\n    # 3. 按 (-score, id) 排序后截断\n    raise NotImplementedError\n",
+    "steps": [
+      "完成输入结构校验",
+      "计算去重交集分数",
+      "实现阈值过滤和稳定排序"
+    ],
+    "acceptance": [
+      "重复查询词不重复计分",
+      "同分按id排序",
+      "返回结果包含来源"
+    ],
+    "skills": [
+      "RAG",
+      "相关度",
+      "稳定排序"
+    ]
+  },
+  {
+    "id": "4-2",
+    "module": "阶段四：端到端 Agent 工程",
+    "title": "生成有引用的回答与安全降级",
+    "description": "有依据的 Agent 必须能说清答案来自哪里。实现 build_grounded_response(question, evidence)：evidence 是检索结果列表，每项含 id、text、score。没有证据时返回 needs_human=True 的固定降级结构；有证据时按现有顺序拼接最多3条 text，生成 answer，并把对应 id 放入 citations。不得引用未使用的证据，问题为空或证据结构非法时抛 ValueError。",
+    "input_output": "有证据返回 {answer:'根据资料：text1；text2', citations:[id1,id2], needs_human:false}；无证据返回 {answer:'暂未找到可靠依据，已为你转接人工客服。', citations:[], needs_human:true}。",
+    "starter_code": "def build_grounded_response(question, evidence):\n    \"\"\"只依据检索证据回答；没有证据时安全转人工。\"\"\"\n    # 校验证据 → 选前3条 → 拼接回答与 citations\n    raise NotImplementedError\n",
+    "steps": [
+      "先实现无证据降级",
+      "验证证据字段",
+      "确保答案与引用一一对应"
+    ],
+    "acceptance": [
+      "无证据不编造",
+      "最多使用3条证据",
+      "引用与答案来源一致"
+    ],
+    "skills": [
+      "Grounding",
+      "引用追踪",
+      "安全降级"
+    ]
+  },
+  {
+    "id": "4-3",
+    "module": "阶段四：端到端 Agent 工程",
+    "title": "编排端到端客服 Agent",
+    "description": "毕业项目把路由、工具、检索和人工升级组合起来。实现 handle_support_turn(request, order_db, documents)：校验 request 的 id、text、intent、confidence、urgent。紧急或低置信度请求直接转人工；order 意图按 request.order_id 查库，存在则返回订单状态，不存在转人工；faq 意图根据 request.terms 从 documents 中查找包含全部关键词的第一条文档并引用；chat 意图返回固定欢迎语。所有返回都包含 request_id、route、answer、citations、trace，且不得修改任何输入。",
+    "input_output": "route 取 human/order/knowledge/respond。trace 记录实际经过的节点名：始终从 'validate'、'route' 开始，再追加业务节点。非法结构抛 ValueError。",
+    "starter_code": "def handle_support_turn(request, order_db, documents):\n    \"\"\"端到端处理一轮客服请求，返回可审计结果。\"\"\"\n    # 1. validate：完整校验输入\n    # 2. route：按紧急度、置信度和意图选择节点\n    # 3. 执行业务节点，形成 answer/citations/trace\n    raise NotImplementedError\n",
+    "steps": [
+      "建立统一返回结构",
+      "实现人工升级与普通聊天",
+      "接入订单工具",
+      "接入知识检索并补齐执行轨迹"
+    ],
+    "acceptance": [
+      "所有分支可审计",
+      "无订单/无知识时安全转人工",
+      "输入对象保持不变"
+    ],
+    "skills": [
+      "端到端编排",
+      "容错",
+      "可审计性",
+      "复杂业务场景"
+    ]
+  }
+]

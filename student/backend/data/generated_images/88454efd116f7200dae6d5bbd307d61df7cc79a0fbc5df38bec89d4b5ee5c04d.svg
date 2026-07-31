@@ -1,0 +1,135 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="800" height="500">
+  <defs>
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#E8F4FD"/>
+      <stop offset="100%" stop-color="#F0F8FF"/>
+    </linearGradient>
+    <linearGradient id="cardGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#FFFFFF"/>
+      <stop offset="100%" stop-color="#F8FAFE"/>
+    </linearGradient>
+    <filter id="shadow" x="-5%" y="-5%" width="115%" height="115%">
+      <feDropShadow dx="0" dy="3" stdDeviation="6" flood-color="#409EFF" flood-opacity="0.12"/>
+    </filter>
+  </defs>
+
+  <!-- 背景 -->
+  <rect width="800" height="500" fill="url(#bgGrad)" rx="0"/>
+
+  <!-- 顶部装饰线 -->
+  <rect x="0" y="0" width="800" height="4" fill="#409EFF" opacity="0.3"/>
+
+  <!-- 顶部毕业帽图标 -->
+  <g transform="translate(400, 38)" fill="none" stroke="#409EFF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+    <!-- 毕业帽主体 -->
+    <path d="M-30,8 L0,-18 L30,8 L20,14 L0,4 L-20,14 Z" fill="#409EFF" opacity="0.15" stroke="#409EFF"/>
+    <!-- 帽穗 -->
+    <path d="M20,14 Q25,22 22,28" stroke="#409EFF" stroke-width="2"/>
+    <circle cx="22" cy="30" r="2" fill="#409EFF"/>
+    <!-- 帽顶装饰 -->
+    <circle cx="0" cy="-18" r="3" fill="#409EFF" opacity="0.4"/>
+  </g>
+
+  <!-- 标题 -->
+  <text x="400" y="78" text-anchor="middle" font-family="'PingFang SC','Microsoft YaHei','Noto Sans SC',sans-serif" font-size="22" font-weight="700" fill="#1a1a2e" letter-spacing="2">
+    ReAct 三大核心原则
+  </text>
+  <line x1="330" y1="90" x2="470" y2="90" stroke="#409EFF" stroke-width="2" opacity="0.3"/>
+
+  <!-- ==================== 卡片1 ==================== -->
+  <g transform="translate(60, 120)" filter="url(#shadow)">
+    <rect width="680" height="95" rx="14" fill="url(#cardGrad)" stroke="#409EFF" stroke-width="1.2" stroke-opacity="0.2"/>
+
+    <!-- 编号圆圈 -->
+    <circle cx="48" cy="47.5" r="22" fill="#409EFF" opacity="0.12"/>
+    <circle cx="48" cy="47.5" r="18" fill="none" stroke="#409EFF" stroke-width="2.2"/>
+    <text x="48" y="54" text-anchor="middle" font-family="'PingFang SC','Microsoft YaHei',sans-serif" font-size="20" font-weight="700" fill="#409EFF">1</text>
+
+    <!-- 问号 → 放大镜图标 -->
+    <g transform="translate(130, 47.5)" fill="none" stroke="#409EFF" stroke-width="2.2" stroke-linecap="round">
+      <!-- 问号 -->
+      <circle cx="-40" cy="0" r="14" stroke-width="2" opacity="0.5"/>
+      <text x="-40" y="6" text-anchor="middle" font-family="sans-serif" font-size="18" font-weight="bold" fill="#409EFF" opacity="0.5">?</text>
+      <!-- 箭头 -->
+      <line x1="-20" y1="0" x2="0" y2="0" stroke-width="2" opacity="0.4"/>
+      <polyline points="-14,-6 -20,0 -14,6" fill="none" stroke-width="2" opacity="0.4"/>
+      <!-- 放大镜 -->
+      <circle cx="18" cy="0" r="14" stroke-width="2.5"/>
+      <line x1="28" y1="10" x2="38" y2="20" stroke-width="2.5"/>
+    </g>
+
+    <!-- 标签文字 -->
+    <text x="195" y="44" font-family="'PingFang SC','Microsoft YaHei','Noto Sans SC',sans-serif" font-size="17" font-weight="600" fill="#1a1a2e">不知道？先搜索</text>
+    <text x="195" y="68" font-family="'PingFang SC','Microsoft YaHei','Noto Sans SC',sans-serif" font-size="13" fill="#5A6A7E" opacity="0.8">遇到未知问题，主动检索信息</text>
+  </g>
+
+  <!-- ==================== 卡片2 ==================== -->
+  <g transform="translate(60, 242)" filter="url(#shadow)">
+    <rect width="680" height="95" rx="14" fill="url(#cardGrad)" stroke="#409EFF" stroke-width="1.2" stroke-opacity="0.2"/>
+
+    <!-- 编号圆圈 -->
+    <circle cx="48" cy="47.5" r="22" fill="#409EFF" opacity="0.12"/>
+    <circle cx="48" cy="47.5" r="18" fill="none" stroke="#409EFF" stroke-width="2.2"/>
+    <text x="48" y="54" text-anchor="middle" font-family="'PingFang SC','Microsoft YaHei',sans-serif" font-size="20" font-weight="700" fill="#409EFF">2</text>
+
+    <!-- 大脑 + 方向箭头图标 -->
+    <g transform="translate(130, 47.5)" fill="none" stroke="#409EFF" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+      <!-- 大脑轮廓 -->
+      <path d="M-30,-12 Q-20,-22 -8,-18 Q0,-24 10,-18 Q22,-22 30,-12 Q34,-2 28,6 Q32,16 24,22 Q18,28 8,24 Q0,30 -8,24 Q-18,28 -24,22 Q-32,16 -28,6 Q-34,-2 -30,-12Z" fill="#409EFF" opacity="0.08" stroke="#409EFF"/>
+      <!-- 大脑褶皱 -->
+      <path d="M-18,-8 Q-12,-4 -6,-8" stroke-width="1.5" opacity="0.4"/>
+      <path d="M6,-8 Q12,-4 18,-8" stroke-width="1.5" opacity="0.4"/>
+      <path d="M-12,6 Q-6,10 0,6" stroke-width="1.5" opacity="0.4"/>
+      <path d="M0,6 Q6,10 12,6" stroke-width="1.5" opacity="0.4"/>
+      <!-- 方向箭头 -->
+      <line x1="38" y1="0" x2="58" y2="0" stroke-width="2.5"/>
+      <polyline points="52,-7 60,0 52,7" fill="#409EFF" fill-opacity="0.3" stroke-width="2.5"/>
+    </g>
+
+    <!-- 标签文字 -->
+    <text x="210" y="44" font-family="'PingFang SC','Microsoft YaHei','Noto Sans SC',sans-serif" font-size="17" font-weight="600" fill="#1a1a2e">先思考，再行动</text>
+    <text x="210" y="68" font-family="'PingFang SC','Microsoft YaHei','Noto Sans SC',sans-serif" font-size="13" fill="#5A6A7E" opacity="0.8">分析推理后，做出决策</text>
+  </g>
+
+  <!-- ==================== 卡片3 ==================== -->
+  <g transform="translate(60, 364)" filter="url(#shadow)">
+    <rect width="680" height="95" rx="14" fill="url(#cardGrad)" stroke="#409EFF" stroke-width="1.2" stroke-opacity="0.2"/>
+
+    <!-- 编号圆圈 -->
+    <circle cx="48" cy="47.5" r="22" fill="#409EFF" opacity="0.12"/>
+    <circle cx="48" cy="47.5" r="18" fill="none" stroke="#409EFF" stroke-width="2.2"/>
+    <text x="48" y="54" text-anchor="middle" font-family="'PingFang SC','Microsoft YaHei',sans-serif" font-size="20" font-weight="700" fill="#409EFF">3</text>
+
+    <!-- 循环反馈箭头 + 调整节点 -->
+    <g transform="translate(130, 47.5)" fill="none" stroke="#409EFF" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+      <!-- 循环箭头 -->
+      <path d="M-30,0 Q-30,-22 -8,-22 Q14,-22 14,-8" stroke-width="2.5"/>
+      <polyline points="8,-14 14,-8 8,-2" fill="#409EFF" fill-opacity="0.3" stroke-width="2.5"/>
+      <path d="M14,0 Q14,22 -8,22 Q-30,22 -30,8" stroke-width="2.5"/>
+      <polyline points="-24,14 -30,8 -24,2" fill="#409EFF" fill-opacity="0.3" stroke-width="2.5"/>
+      <!-- 调整节点 -->
+      <circle cx="-8" cy="-22" r="4" fill="#409EFF" opacity="0.3"/>
+      <circle cx="14" cy="-8" r="4" fill="#409EFF" opacity="0.3"/>
+      <circle cx="14" cy="22" r="4" fill="#409EFF" opacity="0.3"/>
+      <circle cx="-8" cy="22" r="4" fill="#409EFF" opacity="0.3"/>
+      <!-- 中心小圆 -->
+      <circle cx="0" cy="0" r="5" fill="#409EFF" opacity="0.15"/>
+      <circle cx="0" cy="0" r="2" fill="#409EFF"/>
+    </g>
+
+    <!-- 标签文字 -->
+    <text x="195" y="44" font-family="'PingFang SC','Microsoft YaHei','Noto Sans SC',sans-serif" font-size="17" font-weight="600" fill="#1a1a2e">根据结果调整</text>
+    <text x="195" y="68" font-family="'PingFang SC','Microsoft YaHei','Noto Sans SC',sans-serif" font-size="13" fill="#5A6A7E" opacity="0.8">观察反馈，持续优化策略</text>
+  </g>
+
+  <!-- 底部连接线 -->
+  <g stroke="#409EFF" stroke-width="1.2" stroke-dasharray="4,4" opacity="0.2">
+    <line x1="400" y1="215" x2="400" y2="242"/>
+    <line x1="400" y1="337" x2="400" y2="364"/>
+  </g>
+
+  <!-- 底部标注 -->
+  <text x="400" y="490" text-anchor="middle" font-family="'PingFang SC','Microsoft YaHei','Noto Sans SC',sans-serif" font-size="12" fill="#5A6A7E" opacity="0.5">
+    ReAct · 推理与行动协同框架
+  </text>
+</svg>

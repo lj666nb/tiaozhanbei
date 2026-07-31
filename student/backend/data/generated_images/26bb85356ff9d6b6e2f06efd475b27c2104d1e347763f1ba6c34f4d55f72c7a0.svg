@@ -1,0 +1,133 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" font-family="'Microsoft YaHei', 'PingFang SC', 'Noto Sans SC', sans-serif">
+  <defs>
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#E8F4FD"/>
+      <stop offset="100%" stop-color="#F0F8FF"/>
+    </linearGradient>
+    <linearGradient id="slotGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#FFFFFF"/>
+      <stop offset="100%" stop-color="#F2F8FF"/>
+    </linearGradient>
+    <filter id="shadow" x="-2%" y="-2%" width="104%" height="108%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#409EFF" flood-opacity="0.15"/>
+    </filter>
+    <filter id="shadowLight" x="-2%" y="-2%" width="104%" height="106%">
+      <feDropShadow dx="0" dy="1" stdDeviation="2" flood-color="#409EFF" flood-opacity="0.10"/>
+    </filter>
+  </defs>
+
+  <!-- 背景 -->
+  <rect width="800" height="500" fill="url(#bgGrad)"/>
+
+  <!-- 标题 -->
+  <text x="400" y="38" text-anchor="middle" font-size="20" font-weight="bold" fill="#1a1a2e">📋 提示词模板填充流程</text>
+  <line x1="180" y1="48" x2="620" y2="48" stroke="#409EFF" stroke-width="2" stroke-opacity="0.3"/>
+
+  <!-- ============ 左上方：模板块 ============ -->
+  <rect x="60" y="70" width="320" height="170" rx="12" fill="#FFFFFF" stroke="#409EFF" stroke-width="2" filter="url(#shadow)"/>
+  <rect x="60" y="70" width="320" height="36" rx="12" fill="#409EFF"/>
+  <rect x="60" y="92" width="320" height="14" fill="#409EFF"/>
+  <text x="220" y="94" text-anchor="middle" font-size="15" font-weight="bold" fill="#FFFFFF">🧩 参数化模板</text>
+
+  <!-- 模板内容区域 -->
+  <rect x="80" y="118" width="280" height="44" rx="8" fill="#F5F9FF" stroke="#409EFF" stroke-width="1.5" stroke-dasharray="6,3"/>
+  <text x="96" y="140" font-size="14" fill="#1a1a2e" font-weight="bold">system: 你是一位</text>
+  <text x="96" y="158" font-size="14" fill="#1a1a2e" font-weight="bold">代码审查专家</text>
+
+  <!-- 占位槽 {{language}} -->
+  <rect x="80" y="172" width="280" height="42" rx="8" fill="url(#slotGrad)" stroke="#409EFF" stroke-width="1.5"/>
+  <text x="96" y="196" font-size="14" fill="#1a1a2e">user: 请审查这段</text>
+  <rect x="178" y="182" width="70" height="22" rx="4" fill="#FFF3E0" stroke="#FFB74D" stroke-width="1"/>
+  <text x="213" y="197" text-anchor="middle" font-size="13" fill="#E65100" font-weight="bold">{{language}}</text>
+  <text x="260" y="196" font-size="14" fill="#1a1a2e">代码：</text>
+
+  <!-- 占位槽 {{code}} -->
+  <rect x="80" y="220" width="280" height="42" rx="8" fill="url(#slotGrad)" stroke="#409EFF" stroke-width="1.5"/>
+  <rect x="96" y="230" width="248" height="22" rx="4" fill="#FFF3E0" stroke="#FFB74D" stroke-width="1"/>
+  <text x="220" y="245" text-anchor="middle" font-size="13" fill="#E65100" font-weight="bold">{{code}}</text>
+
+  <!-- 标签：模板 -->
+  <rect x="60" y="248" width="60" height="22" rx="11" fill="#409EFF" fill-opacity="0.12"/>
+  <text x="90" y="263" text-anchor="middle" font-size="12" fill="#409EFF" font-weight="bold">模板</text>
+
+  <!-- ============ 右侧：输入参数 ============ -->
+  <!-- 参数1：language -->
+  <rect x="460" y="80" width="280" height="60" rx="10" fill="#FFFFFF" stroke="#409EFF" stroke-width="1.5" filter="url(#shadowLight)"/>
+  <rect x="460" y="80" width="280" height="28" rx="10" fill="#409EFF" fill-opacity="0.08"/>
+  <text x="476" y="99" font-size="14" fill="#1a1a2e" font-weight="bold">📥 参数输入 ①</text>
+  <text x="476" y="125" font-size="14" fill="#1a1a2e">语言：</text>
+  <rect x="530" y="112" width="100" height="22" rx="4" fill="#E8F4FD" stroke="#409EFF" stroke-width="1"/>
+  <text x="580" y="127" text-anchor="middle" font-size="14" fill="#409EFF" font-weight="bold">Python</text>
+
+  <!-- 参数2：code -->
+  <rect x="460" y="155" width="280" height="60" rx="10" fill="#FFFFFF" stroke="#409EFF" stroke-width="1.5" filter="url(#shadowLight)"/>
+  <rect x="460" y="155" width="280" height="28" rx="10" fill="#409EFF" fill-opacity="0.08"/>
+  <text x="476" y="174" font-size="14" fill="#1a1a2e" font-weight="bold">📥 参数输入 ②</text>
+  <text x="476" y="200" font-size="14" fill="#1a1a2e">代码：</text>
+  <rect x="530" y="187" width="190" height="22" rx="4" fill="#E8F4FD" stroke="#409EFF" stroke-width="1"/>
+  <text x="625" y="202" text-anchor="middle" font-size="13" fill="#409EFF" font-weight="bold">def hello(): ...</text>
+
+  <!-- 标签：输入 -->
+  <rect x="460" y="220" width="60" height="22" rx="11" fill="#409EFF" fill-opacity="0.12"/>
+  <text x="490" y="235" text-anchor="middle" font-size="12" fill="#409EFF" font-weight="bold">输入</text>
+
+  <!-- ============ 箭头：从参数到模板 ============ -->
+  <!-- 箭头1：language -->
+  <line x1="380" y1="110" x2="455" y2="110" stroke="#409EFF" stroke-width="2" stroke-dasharray="6,3" marker-end="url(#arrowBlue)"/>
+  <polygon points="455,105 465,110 455,115" fill="#409EFF"/>
+
+  <!-- 箭头2：code -->
+  <line x1="380" y1="185" x2="455" y2="185" stroke="#409EFF" stroke-width="2" stroke-dasharray="6,3"/>
+  <polygon points="455,180 465,185 455,190" fill="#409EFF"/>
+
+  <!-- 箭头标签 -->
+  <text x="418" y="103" text-anchor="middle" font-size="11" fill="#409EFF">填充</text>
+  <text x="418" y="178" text-anchor="middle" font-size="11" fill="#409EFF">填充</text>
+
+  <!-- ============ 下方：填充后的消息对象 ============ -->
+  <!-- 向下箭头 -->
+  <line x1="220" y1="262" x2="220" y2="310" stroke="#409EFF" stroke-width="2"/>
+  <polygon points="215,308 220,318 225,308" fill="#409EFF"/>
+  <text x="232" y="290" font-size="12" fill="#409EFF">填充后</text>
+
+  <!-- 消息对象卡片 -->
+  <rect x="140" y="320" width="520" height="150" rx="14" fill="#FFFFFF" stroke="#1a1a2e" stroke-width="2" filter="url(#shadow)"/>
+
+  <!-- 消息头部 -->
+  <rect x="140" y="320" width="520" height="38" rx="14" fill="#1a1a2e"/>
+  <rect x="140" y="344" width="520" height="14" fill="#1a1a2e"/>
+  <text x="400" y="346" text-anchor="middle" font-size="15" font-weight="bold" fill="#FFFFFF">📨 填充后的消息对象</text>
+
+  <!-- 名称徽章 -->
+  <rect x="160" y="366" width="100" height="24" rx="12" fill="#409EFF"/>
+  <text x="210" y="383" text-anchor="middle" font-size="13" fill="#FFFFFF" font-weight="bold">code_review</text>
+
+  <!-- role 行 -->
+  <text x="160" y="412" font-size="14" fill="#1a1a2e">
+    <tspan font-weight="bold" fill="#409EFF">role</tspan>
+    <tspan fill="#666">: </tspan>
+    <tspan fill="#1a1a2e">"user"</tspan>
+  </text>
+
+  <!-- content 行 -->
+  <text x="160" y="438" font-size="14" fill="#1a1a2e">
+    <tspan font-weight="bold" fill="#409EFF">content</tspan>
+    <tspan fill="#666">: { </tspan>
+    <tspan font-weight="bold" fill="#E65100">type</tspan>
+    <tspan fill="#666">: </tspan>
+    <tspan fill="#1a1a2e">"text"</tspan>
+    <tspan fill="#666">, </tspan>
+    <tspan font-weight="bold" fill="#E65100">text</tspan>
+    <tspan fill="#666">: </tspan>
+  </text>
+
+  <!-- 文本内容框 -->
+  <rect x="160" y="446" width="470" height="20" rx="4" fill="#F5F9FF" stroke="#409EFF" stroke-width="1"/>
+  <text x="176" y="460" font-size="13" fill="#1a1a2e">"你是一位代码审查专家，请审查这段 Python 代码：def hello(): ..."</text>
+
+  <!-- 闭合括号 -->
+  <text x="160" y="466" font-size="14" fill="#666">}</text>
+
+  <!-- 底部标注 -->
+  <text x="400" y="488" text-anchor="middle" font-size="12" fill="#999">提示词模板 → 参数填充 → 结构化消息</text>
+</svg>

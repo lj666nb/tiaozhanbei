@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>资源测试</title>
+<style>
+body { font-family: sans-serif; padding: 20px; background: #f0f2f5; }
+.card { background: white; padding: 16px; margin: 12px 0; border-radius: 8px; cursor: pointer; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+.card:hover { box-shadow: 0 4px 16px rgba(0,0,0,0.2); }
+.overlay { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.5); z-index: 9999; padding: 3vh 5%; }
+.overlay.open { display: flex; justify-content: center; }
+.dialog { background: white; border-radius: 8px; width: 100%; max-width: 1000px; max-height: 90vh; display: flex; flex-direction: column; }
+.dialog-header { display: flex; justify-content: space-between; padding: 16px 24px; border-bottom: 1px solid #eee; }
+.dialog-body { flex:1; overflow-y: auto; padding: 20px 24px; line-height:1.8; }
+.dialog-body h1 { font-size: 22px; border-bottom: 2px solid #409EFF; padding-bottom: 8px; }
+.dialog-body h2 { font-size: 18px; border-left: 4px solid #409EFF; padding-left: 12px; }
+.dialog-body pre { background: #1a1a2e; color: #f8f8f2; padding: 12px; border-radius: 6px; overflow-x: auto; }
+.dialog-body code { background: #f0f2f5; padding: 2px 6px; border-radius: 4px; color: #e83e8c; }
+.dialog-body table { width: 100%; border-collapse: collapse; }
+.dialog-body th, .dialog-body td { border: 1px solid #ddd; padding: 8px 12px; text-align: left; }
+.dialog-body th { background: #f5f7fa; }
+.close-btn { background: none; border: none; font-size: 28px; cursor: pointer; color: #999; }
+.close-btn:hover { color: red; }
+.loading { text-align: center; padding: 40px; color: #409EFF; }
+.error { color: #f56c6c; text-align: center; padding: 40px; }
+</style>
+</head>
+<body>
+<h1>资源测试页面（独立于Vue）</h1>
+<p>点击下方卡片直接测试API</p>
+<div id="cards"></div>
+
+<div class="overlay" id="overlay">
+  <div class="dialog">
+    <div class="dialog-header">
+      <h2 id="dtitle">标题</h2>
+      <button class="close-btn" onclick="closeDialog()">&times;</button>
+    </div>
+    <div class="dialog-body">
+      <div class="loading" id="loading">正在加载...</div>
+      <div id="content"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+async function login() {
+  const r = await fetch('/api/auth/login', {
+    method: 'POST',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify({username:'demo',password:'demo123'})
+  });
+  const d = await r.json();
+  return d.data.access_token;
+}
+
+async function loadResources(token) {
+  const r = await fetch('/api/resources/list?page=1&page_size=100', {
+    headers: {'Authorization': 'Bearer ' + token}
+  });
+  const d = await r.json();
+  return d.data.items;
+}
+
+async function loadResource(token, id) {
+  const r = await fetch('/api/resources/learn/' + id, {
+    headers: {'Authorization': 'Bearer ' + token}
+  });
+  const d = await r.json();
+  return d.data;
+}
+
+async function openResource(id, title) {
+  document.getElementById('overlay').classList.add('open');
+  document.getElementById('dtitle').textContent = title;
+  document.getElementById('loading').style.display = 'block';
+  document.getElementById('content').innerHTML = '';
+
+  const token = await login();
+  const data = await loadResource(token, id);
+
+  document.getElementById('loading').style.display = 'none';
+  if (data && data.content) {
+    document.getElementById('content').innerHTML = marked.parse(data.content);
+  } else {
+    document.getElementById('content').innerHTML = '<div class="error">内容为空</div>';
+  }
+}
+
+function closeDialog() {
+  document.getElementById('overlay').classList.remove('open');
+}
+
+// marked library via CDN
+const markedScript = document.createElement('script');
+markedScript.src = 'https://cdn.jsdelivr.net/npm/marked/marked.min.js';
+markedScript.onload = async () => {
+  const token = await login();
+  const items = await loadResources(token);
+  const cards = document.getElementById('cards');
+  items.forEach(item => {
+    const card = document.createElement('div');
+    card.className = 'card';
+    card.innerHTML = '<strong>[' + item.category + ']</strong> ' + item.title + ' <span style="color:#999">(' + item.difficulty + ')</span>';
+    card.onclick = () => openResource(item.id, item.title);
+    cards.appendChild(card);
+  });
+};
+document.head.appendChild(markedScript);
+</script>
+</body>
+</html>

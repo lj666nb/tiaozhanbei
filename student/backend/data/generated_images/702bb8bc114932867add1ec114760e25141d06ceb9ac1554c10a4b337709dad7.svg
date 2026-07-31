@@ -1,0 +1,137 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="800" height="500">
+  <defs>
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#EBF5FF"/>
+      <stop offset="100%" stop-color="#D6EAF8"/>
+    </linearGradient>
+    <linearGradient id="arrowGrad" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#409EFF"/>
+      <stop offset="100%" stop-color="#2D7FE0"/>
+    </linearGradient>
+  </defs>
+
+  <!-- 背景 -->
+  <rect x="0" y="0" width="800" height="500" rx="12" ry="12" fill="url(#bgGrad)"/>
+
+  <!-- 标题 -->
+  <text x="400" y="40" text-anchor="middle" font-family="sans-serif" font-size="20" font-weight="bold" fill="#1a1a2e">大语言模型训练流程</text>
+
+  <!-- ============ 左侧：预训练阶段 ============ -->
+  <!-- 左侧面板 -->
+  <rect x="50" y="70" width="300" height="360" rx="16" ry="16" fill="white" stroke="#409EFF" stroke-width="2" opacity="0.95"/>
+  <rect x="50" y="70" width="300" height="42" rx="16" ry="16" fill="#409EFF" opacity="0.12"/>
+  <rect x="50" y="96" width="300" height="16" fill="#409EFF" opacity="0.12"/>
+
+  <!-- 阶段标题 -->
+  <text x="200" y="98" text-anchor="middle" font-family="sans-serif" font-size="17" font-weight="bold" fill="#1a1a2e">预训练阶段</text>
+
+  <!-- 大书本图标 -->
+  <g transform="translate(200, 175)">
+    <!-- 书本 -->
+    <rect x="-55" y="-40" width="110" height="80" rx="6" ry="6" fill="none" stroke="#409EFF" stroke-width="2.5"/>
+    <line x1="0" y1="-40" x2="0" y2="40" stroke="#409EFF" stroke-width="2.5"/>
+    <!-- 书页线 -->
+    <line x1="-40" y1="-25" x2="-12" y2="-25" stroke="#409EFF" stroke-width="1.5" opacity="0.6"/>
+    <line x1="-40" y1="-12" x2="-12" y2="-12" stroke="#409EFF" stroke-width="1.5" opacity="0.6"/>
+    <line x1="-40" y1="1" x2="-12" y2="1" stroke="#409EFF" stroke-width="1.5" opacity="0.6"/>
+    <line x1="-40" y1="14" x2="-12" y2="14" stroke="#409EFF" stroke-width="1.5" opacity="0.6"/>
+    <line x1="12" y1="-25" x2="40" y2="-25" stroke="#409EFF" stroke-width="1.5" opacity="0.6"/>
+    <line x1="12" y1="-12" x2="40" y2="-12" stroke="#409EFF" stroke-width="1.5" opacity="0.6"/>
+    <line x1="12" y1="1" x2="40" y2="1" stroke="#409EFF" stroke-width="1.5" opacity="0.6"/>
+    <line x1="12" y1="14" x2="40" y2="14" stroke="#409EFF" stroke-width="1.5" opacity="0.6"/>
+  </g>
+
+  <!-- 数据来源符号 -->
+  <!-- 网页 -->
+  <g transform="translate(120, 130)">
+    <rect x="-18" y="-12" width="36" height="24" rx="3" ry="3" fill="none" stroke="#409EFF" stroke-width="1.8"/>
+    <line x1="-12" y1="-4" x2="12" y2="-4" stroke="#409EFF" stroke-width="1.5"/>
+    <line x1="-12" y1="3" x2="12" y2="3" stroke="#409EFF" stroke-width="1.5"/>
+    <line x1="-12" y1="10" x2="12" y2="10" stroke="#409EFF" stroke-width="1.5"/>
+    <circle cx="0" cy="-4" r="2" fill="#409EFF"/>
+  </g>
+
+  <!-- 代码符号 -->
+  <g transform="translate(280, 130)">
+    <text x="0" y="0" text-anchor="middle" font-family="monospace" font-size="18" fill="#409EFF" font-weight="bold">&lt;/&gt;</text>
+  </g>
+
+  <!-- 百科符号 -->
+  <g transform="translate(120, 260)">
+    <circle cx="0" cy="0" r="16" fill="none" stroke="#409EFF" stroke-width="1.8"/>
+    <text x="0" y="5" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#409EFF" font-weight="bold">W</text>
+  </g>
+
+  <!-- 书籍符号 -->
+  <g transform="translate(280, 260)">
+    <rect x="-14" y="-10" width="28" height="20" rx="2" ry="2" fill="none" stroke="#409EFF" stroke-width="1.8"/>
+    <line x1="-8" y1="-3" x2="8" y2="-3" stroke="#409EFF" stroke-width="1.2"/>
+    <line x1="-8" y1="3" x2="8" y2="3" stroke="#409EFF" stroke-width="1.2"/>
+  </g>
+
+  <!-- 基础模型图标 -->
+  <g transform="translate(200, 340)">
+    <rect x="-30" y="-20" width="60" height="40" rx="10" ry="10" fill="#409EFF" opacity="0.15" stroke="#409EFF" stroke-width="2"/>
+    <text x="0" y="5" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#409EFF" font-weight="bold">基础模型</text>
+  </g>
+
+  <!-- 标签：通识教育 -->
+  <rect x="140" y="395" width="120" height="28" rx="14" ry="14" fill="#1a1a2e"/>
+  <text x="200" y="414" text-anchor="middle" font-family="sans-serif" font-size="14" fill="white" font-weight="bold">通识教育</text>
+
+  <!-- ============ 连接箭头 ============ -->
+  <g transform="translate(365, 250)">
+    <line x1="0" y1="0" x2="60" y2="0" stroke="url(#arrowGrad)" stroke-width="4" stroke-linecap="round"/>
+    <polygon points="60,-8 75,0 60,8" fill="#409EFF"/>
+  </g>
+
+  <!-- 箭头上的小标签 -->
+  <text x="395" y="235" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#1a1a2e" opacity="0.7">大规模数据</text>
+
+  <!-- ============ 右侧：微调阶段 ============ -->
+  <rect x="450" y="70" width="300" height="360" rx="16" ry="16" fill="white" stroke="#409EFF" stroke-width="2" opacity="0.95"/>
+  <rect x="450" y="70" width="300" height="42" rx="16" ry="16" fill="#409EFF" opacity="0.12"/>
+  <rect x="450" y="96" width="300" height="16" fill="#409EFF" opacity="0.12"/>
+
+  <text x="600" y="98" text-anchor="middle" font-family="sans-serif" font-size="17" font-weight="bold" fill="#1a1a2e">微调阶段</text>
+
+  <!-- 放大镜图标 -->
+  <g transform="translate(600, 175)">
+    <circle cx="0" cy="0" r="32" fill="none" stroke="#409EFF" stroke-width="2.5"/>
+    <line x1="22" y1="22" x2="40" y2="40" stroke="#409EFF" stroke-width="3" stroke-linecap="round"/>
+    <!-- 放大镜内的目标靶心 -->
+    <circle cx="0" cy="0" r="12" fill="none" stroke="#409EFF" stroke-width="1.5" opacity="0.5"/>
+    <circle cx="0" cy="0" r="4" fill="#409EFF" opacity="0.3"/>
+  </g>
+
+  <!-- 目标任务图标 -->
+  <g transform="translate(600, 270)">
+    <rect x="-35" y="-18" width="70" height="36" rx="8" ry="8" fill="none" stroke="#409EFF" stroke-width="2"/>
+    <text x="0" y="5" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#409EFF">目标任务</text>
+  </g>
+
+  <!-- 微调数据图标 -->
+  <g transform="translate(530, 340)">
+    <rect x="-20" y="-14" width="40" height="28" rx="4" ry="4" fill="none" stroke="#409EFF" stroke-width="1.8"/>
+    <text x="0" y="5" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#409EFF">数据</text>
+  </g>
+
+  <g transform="translate(670, 340)">
+    <rect x="-20" y="-14" width="40" height="28" rx="4" ry="4" fill="none" stroke="#409EFF" stroke-width="1.8"/>
+    <text x="0" y="5" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#409EFF">反馈</text>
+  </g>
+
+  <!-- 精炼模型图标 -->
+  <g transform="translate(600, 395)">
+    <rect x="-30" y="-18" width="60" height="36" rx="10" ry="10" fill="#409EFF" opacity="0.15" stroke="#409EFF" stroke-width="2"/>
+    <text x="0" y="5" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#409EFF" font-weight="bold">精炼模型</text>
+  </g>
+
+  <!-- 标签：专业训练 -->
+  <rect x="540" y="440" width="120" height="28" rx="14" ry="14" fill="#1a1a2e"/>
+  <text x="600" y="459" text-anchor="middle" font-family="sans-serif" font-size="14" fill="white" font-weight="bold">专业训练</text>
+
+  <!-- ============ 底部说明 ============ -->
+  <text x="400" y="490" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#1a1a2e" opacity="0.6">从广泛知识到专业能力</text>
+
+</svg>

@@ -1,0 +1,180 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="800" height="500">
+  <defs>
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#E8F4FD"/>
+      <stop offset="100%" stop-color="#D0EBF9"/>
+    </linearGradient>
+    <linearGradient id="glowGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#409EFF"/>
+      <stop offset="100%" stop-color="#60B0FF"/>
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="4" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <filter id="shadow">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#409EFF" flood-opacity="0.15"/>
+    </filter>
+  </defs>
+
+  <!-- 背景 -->
+  <rect x="0" y="0" width="800" height="500" fill="url(#bgGrad)" rx="0"/>
+
+  <!-- 标题 -->
+  <text x="400" y="38" text-anchor="middle" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#1a1a2e">三种推理模式对比</text>
+
+  <!-- 左侧面板：仅 CoT -->
+  <rect x="30" y="60" width="220" height="400" rx="14" fill="white" filter="url(#shadow)" stroke="#E0E8F0" stroke-width="1"/>
+  <rect x="30" y="60" width="220" height="36" rx="14" fill="#1a1a2e"/>
+  <rect x="30" y="82" width="220" height="14" fill="#1a1a2e"/>
+  <text x="140" y="84" text-anchor="middle" font-family="Arial, sans-serif" font-size="15" font-weight="bold" fill="white">仅 CoT</text>
+
+  <!-- CoT 思维气泡链 -->
+  <ellipse cx="140" cy="130" rx="60" ry="22" fill="#E8F4FD" stroke="#409EFF" stroke-width="1.5"/>
+  <text x="140" y="134" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" fill="#1a1a2e">思考步骤1</text>
+
+  <!-- 箭头1 -->
+  <polygon points="140,157 135,167 145,167" fill="#409EFF"/>
+  <line x1="140" y1="155" x2="140" y2="167" stroke="#409EFF" stroke-width="2"/>
+
+  <ellipse cx="140" cy="195" rx="60" ry="22" fill="#E8F4FD" stroke="#409EFF" stroke-width="1.5"/>
+  <text x="140" y="199" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" fill="#1a1a2e">思考步骤2</text>
+
+  <!-- 箭头2 -->
+  <polygon points="140,222 135,232 145,232" fill="#409EFF"/>
+  <line x1="140" y1="220" x2="140" y2="232" stroke="#409EFF" stroke-width="2"/>
+
+  <ellipse cx="140" cy="260" rx="60" ry="22" fill="#E8F4FD" stroke="#409EFF" stroke-width="1.5"/>
+  <text x="140" y="264" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" fill="#1a1a2e">思考步骤3</text>
+
+  <!-- 箭头3 -->
+  <polygon points="140,287 135,297 145,297" fill="#409EFF"/>
+  <line x1="140" y1="285" x2="140" y2="297" stroke="#409EFF" stroke-width="2"/>
+
+  <ellipse cx="140" cy="325" rx="60" ry="22" fill="#E8F4FD" stroke="#409EFF" stroke-width="1.5"/>
+  <text x="140" y="329" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" fill="#1a1a2e">思考步骤4</text>
+
+  <!-- 箭头4 -->
+  <polygon points="140,352 135,362 145,362" fill="#409EFF"/>
+  <line x1="140" y1="350" x2="140" y2="362" stroke="#409EFF" stroke-width="2"/>
+
+  <!-- 结果框 -->
+  <rect x="85" y="375" width="110" height="30" rx="12" fill="#1a1a2e"/>
+  <text x="140" y="395" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="white">最终答案</text>
+
+  <!-- 中间面板：仅工具 -->
+  <rect x="290" y="60" width="220" height="400" rx="14" fill="white" filter="url(#shadow)" stroke="#E0E8F0" stroke-width="1"/>
+  <rect x="290" y="60" width="220" height="36" rx="14" fill="#1a1a2e"/>
+  <rect x="290" y="82" width="220" height="14" fill="#1a1a2e"/>
+  <text x="400" y="84" text-anchor="middle" font-family="Arial, sans-serif" font-size="15" font-weight="bold" fill="white">仅工具</text>
+
+  <!-- 工具图标 - 分散排列 -->
+  <!-- 搜索工具 -->
+  <rect x="320" y="120" width="50" height="50" rx="10" fill="#E8F4FD" stroke="#409EFF" stroke-width="1.5"/>
+  <circle cx="345" cy="140" r="10" fill="none" stroke="#409EFF" stroke-width="2"/>
+  <line x1="352" y1="147" x2="358" y2="153" stroke="#409EFF" stroke-width="2.5" stroke-linecap="round"/>
+
+  <!-- 计算器 -->
+  <rect x="400" y="120" width="50" height="50" rx="10" fill="#E8F4FD" stroke="#409EFF" stroke-width="1.5"/>
+  <rect x="410" y="130" width="30" height="8" rx="2" fill="#409EFF"/>
+  <text x="425" y="150" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#409EFF">+−×÷</text>
+
+  <!-- 数据库 -->
+  <rect x="320" y="195" width="50" height="50" rx="10" fill="#E8F4FD" stroke="#409EFF" stroke-width="1.5"/>
+  <ellipse cx="345" cy="210" rx="18" ry="6" fill="none" stroke="#409EFF" stroke-width="1.5"/>
+  <line x1="327" y1="210" x2="327" y2="232" stroke="#409EFF" stroke-width="1.5"/>
+  <line x1="363" y1="210" x2="363" y2="232" stroke="#409EFF" stroke-width="1.5"/>
+  <ellipse cx="345" cy="232" rx="18" ry="6" fill="none" stroke="#409EFF" stroke-width="1.5"/>
+
+  <!-- 代码 -->
+  <rect x="400" y="195" width="50" height="50" rx="10" fill="#E8F4FD" stroke="#409EFF" stroke-width="1.5"/>
+  <text x="425" y="218" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#409EFF">&lt;/&gt;</text>
+  <line x1="410" y1="228" x2="440" y2="228" stroke="#409EFF" stroke-width="1.5"/>
+
+  <!-- 文档 -->
+  <rect x="320" y="270" width="50" height="50" rx="10" fill="#E8F4FD" stroke="#409EFF" stroke-width="1.5"/>
+  <line x1="335" y1="285" x2="355" y2="285" stroke="#409EFF" stroke-width="1.5"/>
+  <line x1="335" y1="293" x2="355" y2="293" stroke="#409EFF" stroke-width="1.5"/>
+  <line x1="335" y1="301" x2="350" y2="301" stroke="#409EFF" stroke-width="1.5"/>
+
+  <!-- 图像 -->
+  <rect x="400" y="270" width="50" height="50" rx="10" fill="#E8F4FD" stroke="#409EFF" stroke-width="1.5"/>
+  <circle cx="420" cy="285" r="5" fill="none" stroke="#409EFF" stroke-width="1.5"/>
+  <polygon points="405,310 420,295 435,310" fill="none" stroke="#409EFF" stroke-width="1.5"/>
+
+  <!-- 工具标签 -->
+  <text x="345" y="340" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#1a1a2e">搜索</text>
+  <text x="425" y="340" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#1a1a2e">计算</text>
+  <text x="345" y="400" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#1a1a2e">知识库</text>
+  <text x="425" y="400" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#1a1a2e">代码</text>
+
+  <!-- 右侧面板：ReAct（高亮） -->
+  <rect x="550" y="60" width="220" height="400" rx="14" fill="white" filter="url(#glow)" stroke="#409EFF" stroke-width="2"/>
+  <rect x="550" y="60" width="220" height="36" rx="14" fill="#409EFF"/>
+  <rect x="550" y="82" width="220" height="14" fill="#409EFF"/>
+  <text x="660" y="84" text-anchor="middle" font-family="Arial, sans-serif" font-size="15" font-weight="bold" fill="white">ReAct 循环</text>
+
+  <!-- ReAct 循环：思考→工具→思考→工具→思考→答案 -->
+  <!-- 思考1 -->
+  <ellipse cx="660" cy="125" rx="55" ry="20" fill="#E8F4FD" stroke="#409EFF" stroke-width="1.5"/>
+  <text x="660" y="129" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#1a1a2e">思考步骤1</text>
+
+  <!-- 箭头 思考→工具 -->
+  <polygon points="715,130 725,125 725,135" fill="#409EFF"/>
+  <line x1="715" y1="125" x2="725" y2="125" stroke="#409EFF" stroke-width="2"/>
+
+  <!-- 工具1 -->
+  <rect x="600" y="160" width="40" height="40" rx="8" fill="#E8F4FD" stroke="#409EFF" stroke-width="1.5"/>
+  <text x="620" y="185" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#409EFF">🔍</text>
+
+  <!-- 箭头 工具→思考 -->
+  <polygon points="605,200 595,205 605,210" fill="#409EFF"/>
+  <line x1="605" y1="200" x2="595" y2="200" stroke="#409EFF" stroke-width="2"/>
+
+  <!-- 思考2 -->
+  <ellipse cx="660" cy="225" rx="55" ry="20" fill="#E8F4FD" stroke="#409EFF" stroke-width="1.5"/>
+  <text x="660" y="229" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#1a1a2e">思考步骤2</text>
+
+  <!-- 箭头 思考→工具 -->
+  <polygon points="715,230 725,225 725,235" fill="#409EFF"/>
+  <line x1="715" y1="225" x2="725" y2="225" stroke="#409EFF" stroke-width="2"/>
+
+  <!-- 工具2 -->
+  <rect x="680" y="255" width="40" height="40" rx="8" fill="#E8F4FD" stroke="#409EFF" stroke-width="1.5"/>
+  <text x="700" y="280" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#409EFF">📊</text>
+
+  <!-- 箭头 工具→思考 -->
+  <polygon points="675,295 665,300 675,305" fill="#409EFF"/>
+  <line x1="675" y1="295" x2="665" y2="295" stroke="#409EFF" stroke-width="2"/>
+
+  <!-- 思考3 -->
+  <ellipse cx="660" cy="320" rx="55" ry="20" fill="#E8F4FD" stroke="#409EFF" stroke-width="1.5"/>
+  <text x="660" y="324" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#1a1a2e">思考步骤3</text>
+
+  <!-- 箭头 思考→答案 -->
+  <polygon points="660,345 655,355 665,355" fill="#409EFF"/>
+  <line x1="660" y1="340" x2="660" y2="355" stroke="#409EFF" stroke-width="2"/>
+
+  <!-- 答案 -->
+  <rect x="605" y="365" width="110" height="30" rx="12" fill="#409EFF"/>
+  <text x="660" y="385" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="white">最终答案</text>
+
+  <!-- 循环箭头指示 -->
+  <path d="M 730 130 Q 745 130 745 175 Q 745 220 730 225" fill="none" stroke="#409EFF" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <polygon points="730,225 738,220 738,230" fill="#409EFF"/>
+
+  <path d="M 590 230 Q 575 230 575 275 Q 575 295 590 295" fill="none" stroke="#409EFF" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <polygon points="590,295 582,290 582,300" fill="#409EFF"/>
+
+  <!-- 底部标注 -->
+  <text x="140" y="450" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#1a1a2e" opacity="0.7">线性推理链</text>
+  <text x="400" y="450" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#1a1a2e" opacity="0.7">独立工具调用</text>
+  <text x="660" y="450" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#409EFF" font-weight="bold">思考+工具交替循环</text>
+
+  <!-- 高亮标签 -->
+  <rect x="590" y="470" width="140" height="22" rx="11" fill="#409EFF" opacity="0.15"/>
+  <text x="660" y="485" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#409EFF" font-weight="bold">✓ 推荐模式</text>
+</svg>

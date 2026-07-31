@@ -1,0 +1,94 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="800" height="500">
+  <defs>
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#E8F4FD"/>
+      <stop offset="100%" stop-color="#D0ECFA"/>
+    </linearGradient>
+    <linearGradient id="cardGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#FFFFFF"/>
+      <stop offset="100%" stop-color="#F5FAFF"/>
+    </linearGradient>
+  </defs>
+
+  <!-- 背景 -->
+  <rect width="800" height="500" fill="url(#bgGrad)" rx="0"/>
+
+  <!-- 标题 -->
+  <text x="400" y="48" text-anchor="middle" font-family="Arial, sans-serif" font-size="22" font-weight="bold" fill="#1a1a2e">ReAct 常见局限性</text>
+
+  <!-- 卡片1：工具错误 -->
+  <rect x="40" y="80" width="220" height="340" rx="16" fill="url(#cardGrad)" stroke="#409EFF" stroke-width="2" filter="drop-shadow(0 2px 8px rgba(64,158,255,0.15))"/>
+  <!-- 图标区域 -->
+  <rect x="40" y="80" width="220" height="160" rx="16" fill="#F0F7FF"/>
+  <rect x="40" y="224" width="220" height="16" fill="#F0F7FF"/>
+  <!-- 扳手图标（断裂） -->
+  <g transform="translate(150, 160)">
+    <!-- 扳手柄 -->
+    <rect x="-8" y="-40" width="16" height="50" rx="4" fill="#1a1a2e"/>
+    <!-- 扳手头 -->
+    <path d="M-20,-40 Q-20,-60 0,-60 Q20,-60 20,-40 L20,-30 Q20,-20 10,-20 L-10,-20 Q-20,-20 -20,-30 Z" fill="#1a1a2e"/>
+    <!-- 断裂线 -->
+    <line x1="-4" y1="-20" x2="4" y2="-10" stroke="#FF6B6B" stroke-width="3" stroke-linecap="round"/>
+    <line x1="4" y1="-10" x2="-2" y2="0" stroke="#FF6B6B" stroke-width="3" stroke-linecap="round"/>
+    <!-- 重试箭头 -->
+    <path d="M18,10 Q28,0 18,-10" fill="none" stroke="#409EFF" stroke-width="2.5" stroke-linecap="round"/>
+    <polygon points="18,-14 12,-6 24,-6" fill="#409EFF"/>
+  </g>
+  <text x="150" y="210" text-anchor="middle" font-family="Arial, sans-serif" font-size="15" font-weight="bold" fill="#1a1a2e">工具错误</text>
+  <text x="150" y="240" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" fill="#5A5A7A">工具调用失败或</text>
+  <text x="150" y="260" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" fill="#5A5A7A">返回异常结果</text>
+  <!-- 解决方案指示器 -->
+  <rect x="90" y="360" width="120" height="32" rx="16" fill="#409EFF" opacity="0.1"/>
+  <text x="150" y="380" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" fill="#409EFF">✓ 重试机制</text>
+
+  <!-- 卡片2：无限循环 -->
+  <rect x="290" y="80" width="220" height="340" rx="16" fill="url(#cardGrad)" stroke="#409EFF" stroke-width="2" filter="drop-shadow(0 2px 8px rgba(64,158,255,0.15))"/>
+  <rect x="290" y="80" width="220" height="160" rx="16" fill="#F0F7FF"/>
+  <rect x="290" y="224" width="220" height="16" fill="#F0F7FF"/>
+  <!-- 无限符号 -->
+  <g transform="translate(400, 155)">
+    <path d="M-30,0 C-30,-25 30,-25 30,0 C30,25 -30,25 -30,0" fill="none" stroke="#1a1a2e" stroke-width="5" stroke-linecap="round"/>
+    <!-- 斜线 -->
+    <line x1="-35" y1="-30" x2="35" y2="30" stroke="#FF6B6B" stroke-width="4" stroke-linecap="round"/>
+    <!-- 停止标志 -->
+    <rect x="18" y="10" width="22" height="22" rx="4" fill="#FF6B6B"/>
+    <line x1="22" y1="21" x2="36" y2="21" stroke="white" stroke-width="3" stroke-linecap="round"/>
+  </g>
+  <text x="400" y="210" text-anchor="middle" font-family="Arial, sans-serif" font-size="15" font-weight="bold" fill="#1a1a2e">无限循环</text>
+  <text x="400" y="240" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" fill="#5A5A7A">推理陷入重复</text>
+  <text x="400" y="260" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" fill="#5A5A7A">无法终止</text>
+  <rect x="340" y="360" width="120" height="32" rx="16" fill="#409EFF" opacity="0.1"/>
+  <text x="400" y="380" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" fill="#409EFF">✓ 最大步数限制</text>
+
+  <!-- 卡片3：上下文溢出 -->
+  <rect x="540" y="80" width="220" height="340" rx="16" fill="url(#cardGrad)" stroke="#409EFF" stroke-width="2" filter="drop-shadow(0 2px 8px rgba(64,158,255,0.15))"/>
+  <rect x="540" y="80" width="220" height="160" rx="16" fill="#F0F7FF"/>
+  <rect x="540" y="224" width="220" height="16" fill="#F0F7FF"/>
+  <!-- 文本溢出图标 -->
+  <g transform="translate(650, 150)">
+    <!-- 文本框 -->
+    <rect x="-35" y="-30" width="70" height="60" rx="6" fill="none" stroke="#1a1a2e" stroke-width="3"/>
+    <!-- 文本行 -->
+    <rect x="-25" y="-18" width="50" height="4" rx="2" fill="#1a1a2e"/>
+    <rect x="-25" y="-8" width="40" height="4" rx="2" fill="#1a1a2e"/>
+    <rect x="-25" y="2" width="45" height="4" rx="2" fill="#1a1a2e"/>
+    <rect x="-25" y="12" width="35" height="4" rx="2" fill="#1a1a2e"/>
+    <!-- 溢出省略号 -->
+    <text x="28" y="18" font-family="Arial" font-size="14" fill="#FF6B6B" font-weight="bold">…</text>
+    <!-- 压缩漏斗 -->
+    <path d="M-15,38 L15,38 L10,50 L-10,50 Z" fill="#409EFF" opacity="0.6"/>
+    <line x1="-8" y1="44" x2="8" y2="44" stroke="white" stroke-width="1.5"/>
+  </g>
+  <text x="650" y="210" text-anchor="middle" font-family="Arial, sans-serif" font-size="15" font-weight="bold" fill="#1a1a2e">上下文溢出</text>
+  <text x="650" y="240" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" fill="#5A5A7A">超出上下文窗口</text>
+  <text x="650" y="260" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" fill="#5A5A7A">限制</text>
+  <rect x="590" y="360" width="120" height="32" rx="16" fill="#409EFF" opacity="0.1"/>
+  <text x="650" y="380" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" fill="#409EFF">✓ 压缩策略</text>
+
+  <!-- 底部说明 -->
+  <text x="400" y="460" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" fill="#7A7A9A">解决方案建议以蓝色标注在每张卡片底部</text>
+
+  <!-- 装饰性连接线 -->
+  <line x1="260" y1="250" x2="290" y2="250" stroke="#409EFF" stroke-width="1.5" stroke-dasharray="4,4" opacity="0.3"/>
+  <line x1="510" y1="250" x2="540" y2="250" stroke="#409EFF" stroke-width="1.5" stroke-dasharray="4,4" opacity="0.3"/>
+</svg>

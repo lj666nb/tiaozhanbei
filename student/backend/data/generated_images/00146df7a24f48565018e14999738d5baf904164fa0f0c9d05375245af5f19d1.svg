@@ -1,0 +1,117 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="800" height="500">
+  <defs>
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#e8f4fd"/>
+      <stop offset="100%" stop-color="#f0f8ff"/>
+    </linearGradient>
+    <linearGradient id="ring1Grad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#d4eaf7"/>
+      <stop offset="100%" stop-color="#b8dff0"/>
+    </linearGradient>
+    <linearGradient id="ring2Grad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#7ec8e3"/>
+      <stop offset="100%" stop-color="#5ab0d4"/>
+    </linearGradient>
+    <linearGradient id="ring3Grad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#60b8ff"/>
+      <stop offset="100%" stop-color="#409EFF"/>
+    </linearGradient>
+  </defs>
+
+  <!-- 背景 -->
+  <rect width="800" height="500" fill="url(#bgGrad)" rx="8"/>
+
+  <!-- 标题 -->
+  <text x="400" y="38" text-anchor="middle" font-family="'Microsoft YaHei', 'PingFang SC', sans-serif" font-size="20" font-weight="bold" fill="#1a1a2e">网络安全防御架构 — 四层同心防护模型</text>
+
+  <!-- 最外层（第四层）—— 权限模型 -->
+  <circle cx="400" cy="260" r="195" fill="none" stroke="#90c8e0" stroke-width="28" opacity="0.35"/>
+  <circle cx="400" cy="260" r="195" fill="none" stroke="#7ab8d4" stroke-width="2" opacity="0.5"/>
+
+  <!-- 第三层 —— 权限提升检测 -->
+  <circle cx="400" cy="260" r="155" fill="none" stroke="#5ab0d4" stroke-width="26" opacity="0.4"/>
+  <circle cx="400" cy="260" r="155" fill="none" stroke="#4a9fc0" stroke-width="2" opacity="0.5"/>
+
+  <!-- 第二层 —— 提示注入防御 -->
+  <circle cx="400" cy="260" r="115" fill="none" stroke="#409EFF" stroke-width="24" opacity="0.5"/>
+  <circle cx="400" cy="260" r="115" fill="none" stroke="#3080d0" stroke-width="2" opacity="0.5"/>
+
+  <!-- 核心层 —— 审计追踪 -->
+  <circle cx="400" cy="260" r="70" fill="#1a1a2e" opacity="0.85"/>
+  <circle cx="400" cy="260" r="70" fill="none" stroke="#2a2a4e" stroke-width="3"/>
+
+  <!-- 核心图标：文档/日志 -->
+  <g transform="translate(400, 260)" fill="none" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round">
+    <rect x="-18" y="-22" width="20" height="26" rx="3" fill="#2a2a4e" stroke="#8ab8ff"/>
+    <line x1="-12" y1="-12" x2="-4" y2="-12" stroke="#8ab8ff" stroke-width="1.5"/>
+    <line x1="-12" y1="-6" x2="-4" y2="-6" stroke="#8ab8ff" stroke-width="1.5"/>
+    <line x1="-12" y1="0" x2="-4" y2="0" stroke="#8ab8ff" stroke-width="1.5"/>
+    <rect x="2" y="-22" width="20" height="26" rx="3" fill="#2a2a4e" stroke="#8ab8ff"/>
+    <line x1="8" y1="-12" x2="16" y2="-12" stroke="#8ab8ff" stroke-width="1.5"/>
+    <line x1="8" y1="-6" x2="16" y2="-6" stroke="#8ab8ff" stroke-width="1.5"/>
+    <line x1="8" y1="0" x2="16" y2="0" stroke="#8ab8ff" stroke-width="1.5"/>
+  </g>
+
+  <!-- 第二层图标：盾牌/防御 -->
+  <g transform="translate(400, 260)" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M0,-90 L-25,-75 L-25,-45 Q-25,-15 0,10 Q25,-15 25,-45 L25,-75 Z" stroke="#409EFF" stroke-width="2.5" fill="none" opacity="0.6"/>
+    <path d="M-12,-55 L-4,-45 L12,-60" stroke="#409EFF" stroke-width="2.5" fill="none" opacity="0.6"/>
+  </g>
+
+  <!-- 第三层图标：眼睛/检测 -->
+  <g transform="translate(400, 260)" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round">
+    <ellipse cx="0" cy="-130" rx="22" ry="14" stroke="#5ab0d4" stroke-width="2.5" fill="none" opacity="0.5"/>
+    <circle cx="0" cy="-130" r="5" fill="#5ab0d4" opacity="0.5"/>
+    <path d="M-30,-130 Q-15,-145 0,-145 Q15,-145 30,-130" stroke="#5ab0d4" stroke-width="1.5" fill="none" opacity="0.4"/>
+    <path d="M-30,-130 Q-15,-115 0,-115 Q15,-115 30,-130" stroke="#5ab0d4" stroke-width="1.5" fill="none" opacity="0.4"/>
+  </g>
+
+  <!-- 最外层图标：钥匙/权限 -->
+  <g transform="translate(400, 260)" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round">
+    <circle cx="0" cy="-175" r="10" stroke="#90c8e0" stroke-width="2.5" fill="none" opacity="0.5"/>
+    <line x1="8" y1="-175" x2="20" y2="-175" stroke="#90c8e0" stroke-width="2.5" opacity="0.5"/>
+    <line x1="20" y1="-175" x2="20" y2="-165" stroke="#90c8e0" stroke-width="2.5" opacity="0.5"/>
+    <line x1="20" y1="-165" x2="24" y2="-165" stroke="#90c8e0" stroke-width="2" opacity="0.5"/>
+    <line x1="14" y1="-175" x2="14" y2="-168" stroke="#90c8e0" stroke-width="2" opacity="0.5"/>
+  </g>
+
+  <!-- 标签：最外层 —— 权限模型 -->
+  <rect x="590" y="68" width="178" height="36" rx="18" fill="#d4eaf7" stroke="#90c8e0" stroke-width="1.5"/>
+  <text x="679" y="91" text-anchor="middle" font-family="'Microsoft YaHei', 'PingFang SC', sans-serif" font-size="14" font-weight="bold" fill="#3a7a9a">权限模型 (RBAC + 最小权限)</text>
+
+  <!-- 标签：第三层 —— 权限提升检测 -->
+  <rect x="590" y="118" width="160" height="36" rx="18" fill="#c0e0f0" stroke="#5ab0d4" stroke-width="1.5"/>
+  <text x="670" y="141" text-anchor="middle" font-family="'Microsoft YaHei', 'PingFang SC', sans-serif" font-size="14" font-weight="bold" fill="#3a7a9a">权限提升检测</text>
+
+  <!-- 标签：第二层 —— 提示注入防御 -->
+  <rect x="590" y="168" width="148" height="36" rx="18" fill="#a8d4f0" stroke="#409EFF" stroke-width="1.5"/>
+  <text x="664" y="191" text-anchor="middle" font-family="'Microsoft YaHei', 'PingFang SC', sans-serif" font-size="14" font-weight="bold" fill="#2a5a8a">提示注入防御</text>
+
+  <!-- 标签：核心层 —— 审计追踪 -->
+  <rect x="590" y="218" width="120" height="36" rx="18" fill="#1a1a2e" stroke="#4a4a6e" stroke-width="1.5"/>
+  <text x="650" y="241" text-anchor="middle" font-family="'Microsoft YaHei', 'PingFang SC', sans-serif" font-size="14" font-weight="bold" fill="#ffffff">审计追踪</text>
+
+  <!-- 连接线：标签到各层 -->
+  <line x1="590" y1="86" x2="540" y2="120" stroke="#90c8e0" stroke-width="1.5" stroke-dasharray="4,3" opacity="0.6"/>
+  <line x1="590" y1="136" x2="530" y2="160" stroke="#5ab0d4" stroke-width="1.5" stroke-dasharray="4,3" opacity="0.6"/>
+  <line x1="590" y1="186" x2="520" y2="200" stroke="#409EFF" stroke-width="1.5" stroke-dasharray="4,3" opacity="0.6"/>
+  <line x1="590" y1="236" x2="475" y2="250" stroke="#4a4a6e" stroke-width="1.5" stroke-dasharray="4,3" opacity="0.6"/>
+
+  <!-- 左侧说明标注 -->
+  <rect x="30" y="380" width="320" height="44" rx="10" fill="#ffffff" stroke="#d0e4f0" stroke-width="1.5" opacity="0.85"/>
+  <text x="190" y="400" text-anchor="middle" font-family="'Microsoft YaHei', 'PingFang SC', sans-serif" font-size="13" fill="#3a5a7a">纵深防御：从外到内逐层收缩权限与信任</text>
+  <text x="190" y="416" text-anchor="middle" font-family="'Microsoft YaHei', 'PingFang SC', sans-serif" font-size="12" fill="#6a8aaa">每层独立检测，阻断攻击链传播</text>
+
+  <!-- 右侧说明标注 -->
+  <rect x="460" y="380" width="310" height="44" rx="10" fill="#ffffff" stroke="#d0e4f0" stroke-width="1.5" opacity="0.85"/>
+  <text x="615" y="400" text-anchor="middle" font-family="'Microsoft YaHei', 'PingFang SC', sans-serif" font-size="13" fill="#3a5a7a">核心资产受多层防护，审计追踪全链路</text>
+  <text x="615" y="416" text-anchor="middle" font-family="'Microsoft YaHei', 'PingFang SC', sans-serif" font-size="12" fill="#6a8aaa">零信任架构 + 持续验证</text>
+
+  <!-- 层间距离标注 -->
+  <text x="540" y="310" font-family="'Microsoft YaHei', 'PingFang SC', sans-serif" font-size="11" fill="#8a9aaa" opacity="0.7">层间距 40px</text>
+  <line x1="520" y1="305" x2="520" y2="285" stroke="#8a9aaa" stroke-width="1" opacity="0.4"/>
+  <line x1="520" y1="305" x2="520" y2="325" stroke="#8a9aaa" stroke-width="1" opacity="0.4"/>
+
+  <!-- 底部装饰线 -->
+  <line x1="200" y1="460" x2="600" y2="460" stroke="#c0d8e8" stroke-width="1" opacity="0.5"/>
+</svg>

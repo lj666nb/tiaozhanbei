@@ -1,0 +1,166 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="800" height="500">
+  <defs>
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#E8F4FD"/>
+      <stop offset="100%" stop-color="#F0F8FF"/>
+    </linearGradient>
+    <linearGradient id="blueGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#409EFF"/>
+      <stop offset="100%" stop-color="#2B7BDE"/>
+    </linearGradient>
+    <linearGradient id="darkBlue" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1a1a2e"/>
+      <stop offset="100%" stop-color="#2d2d4e"/>
+    </linearGradient>
+  </defs>
+
+  <!-- 背景 -->
+  <rect width="800" height="500" fill="url(#bgGrad)" rx="8"/>
+
+  <!-- 标题 -->
+  <text x="400" y="32" text-anchor="middle" font-family="sans-serif" font-size="18" font-weight="bold" fill="#1a1a2e">部署策略与发布管理</text>
+  <line x1="280" y1="40" x2="520" y2="40" stroke="#409EFF" stroke-width="2" opacity="0.5"/>
+
+  <!-- ==================== 第一行：容器化部署 ==================== -->
+  <text x="30" y="72" font-family="sans-serif" font-size="14" font-weight="bold" fill="#1a1a2e">容器化部署</text>
+
+  <!-- Docker 容器图标 -->
+  <rect x="30" y="82" width="100" height="70" rx="8" fill="white" stroke="#409EFF" stroke-width="2"/>
+  <!-- 容器内 Agent -->
+  <circle cx="80" cy="110" r="14" fill="#409EFF" opacity="0.8"/>
+  <circle cx="80" cy="110" r="8" fill="white" opacity="0.9"/>
+  <text x="80" y="114" text-anchor="middle" font-family="sans-serif" font-size="8" fill="#1a1a2e">A</text>
+  <!-- Docker 标签 -->
+  <text x="80" y="168" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#409EFF">Docker</text>
+  <text x="80" y="182" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#666">容器</text>
+
+  <!-- 箭头 -->
+  <line x1="135" y1="117" x2="165" y2="117" stroke="#1a1a2e" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <defs>
+    <marker id="arrow" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L8,3 L0,6 Z" fill="#1a1a2e"/>
+    </marker>
+  </defs>
+
+  <!-- Kubernetes 集群 -->
+  <rect x="170" y="82" width="180" height="70" rx="8" fill="white" stroke="#409EFF" stroke-width="2"/>
+  <text x="260" y="100" text-anchor="middle" font-family="sans-serif" font-size="11" font-weight="bold" fill="#1a1a2e">Kubernetes 集群</text>
+
+  <!-- Pod 1 -->
+  <rect x="185" y="108" width="40" height="30" rx="4" fill="#409EFF" opacity="0.15" stroke="#409EFF" stroke-width="1"/>
+  <circle cx="205" cy="120" r="6" fill="#409EFF" opacity="0.6"/>
+  <text x="205" y="123" text-anchor="middle" font-family="sans-serif" font-size="7" fill="white">A</text>
+  <text x="205" y="140" text-anchor="middle" font-family="sans-serif" font-size="8" fill="#409EFF">Pod</text>
+
+  <!-- Pod 2 -->
+  <rect x="235" y="108" width="40" height="30" rx="4" fill="#409EFF" opacity="0.15" stroke="#409EFF" stroke-width="1"/>
+  <circle cx="255" cy="120" r="6" fill="#409EFF" opacity="0.6"/>
+  <text x="255" y="123" text-anchor="middle" font-family="sans-serif" font-size="7" fill="white">A</text>
+  <text x="255" y="140" text-anchor="middle" font-family="sans-serif" font-size="8" fill="#409EFF">Pod</text>
+
+  <!-- Pod 3 -->
+  <rect x="285" y="108" width="50" height="30" rx="4" fill="#409EFF" opacity="0.15" stroke="#409EFF" stroke-width="1"/>
+  <circle cx="310" cy="120" r="6" fill="#409EFF" opacity="0.6"/>
+  <text x="310" y="123" text-anchor="middle" font-family="sans-serif" font-size="7" fill="white">A</text>
+  <text x="310" y="140" text-anchor="middle" font-family="sans-serif" font-size="8" fill="#409EFF">Pod</text>
+
+  <!-- 副本数标签 -->
+  <text x="260" y="162" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#666">副本数 ×3</text>
+
+  <!-- ==================== 第二行：发布策略 ==================== -->
+  <text x="30" y="225" font-family="sans-serif" font-size="14" font-weight="bold" fill="#1a1a2e">发布策略</text>
+
+  <!-- 金丝雀发布 -->
+  <rect x="30" y="240" width="220" height="80" rx="8" fill="white" stroke="#409EFF" stroke-width="1.5"/>
+  <text x="140" y="260" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="#1a1a2e">金丝雀发布</text>
+
+  <!-- 流量条 -->
+  <rect x="50" y="272" width="180" height="12" rx="6" fill="#E8F4FD"/>
+  <rect x="50" y="272" width="160" height="12" rx="6" fill="#409EFF" opacity="0.7"/>
+  <rect x="210" y="272" width="20" height="12" rx="6" fill="#FFB347"/>
+
+  <!-- 标签 -->
+  <text x="130" y="286" text-anchor="middle" font-family="sans-serif" font-size="9" fill="white">90% 旧版本</text>
+  <text x="220" y="286" text-anchor="middle" font-family="sans-serif" font-size="8" fill="#FFB347">10% 新</text>
+
+  <text x="140" y="310" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#666">逐步放量，监控反馈</text>
+
+  <!-- 蓝绿部署 -->
+  <rect x="280" y="240" width="220" height="80" rx="8" fill="white" stroke="#409EFF" stroke-width="1.5"/>
+  <text x="390" y="260" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="#1a1a2e">蓝绿部署</text>
+
+  <!-- 蓝环境 -->
+  <rect x="295" y="272" width="80" height="30" rx="4" fill="#409EFF" opacity="0.2" stroke="#409EFF" stroke-width="1.5"/>
+  <text x="335" y="292" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#409EFF">蓝色环境</text>
+
+  <!-- 绿环境 -->
+  <rect x="405" y="272" width="80" height="30" rx="4" fill="#67C23A" opacity="0.2" stroke="#67C23A" stroke-width="1.5"/>
+  <text x="445" y="292" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#67C23A">绿色环境</text>
+
+  <!-- 切换箭头 -->
+  <text x="390" y="310" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#666">流量一键切换</text>
+
+  <!-- 功能开关 -->
+  <rect x="530" y="240" width="220" height="80" rx="8" fill="white" stroke="#409EFF" stroke-width="1.5"/>
+  <text x="640" y="260" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="#1a1a2e">功能开关</text>
+
+  <!-- 开关 1 -->
+  <rect x="550" y="275" width="80" height="20" rx="10" fill="#409EFF"/>
+  <circle cx="622" cy="285" r="7" fill="white"/>
+  <text x="640" y="289" font-family="sans-serif" font-size="9" fill="#666">搜索功能</text>
+
+  <!-- 开关 2 -->
+  <rect x="550" y="300" width="80" height="20" rx="10" fill="#E8F4FD" stroke="#ccc" stroke-width="1"/>
+  <circle cx="558" cy="310" r="7" fill="#ccc"/>
+  <text x="640" y="314" font-family="sans-serif" font-size="9" fill="#666">推荐算法</text>
+
+  <!-- ==================== 第三行：环境层级 ==================== -->
+  <text x="30" y="380" font-family="sans-serif" font-size="14" font-weight="bold" fill="#1a1a2e">环境层级</text>
+
+  <!-- Dev 环境 -->
+  <rect x="30" y="395" width="220" height="70" rx="8" fill="white" stroke="#409EFF" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <text x="140" y="418" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="#1a1a2e">开发环境</text>
+
+  <!-- 试管 -->
+  <rect x="60" y="430" width="12" height="25" rx="6" fill="#409EFF" opacity="0.3"/>
+  <rect x="90" y="430" width="12" height="25" rx="6" fill="#409EFF" opacity="0.5"/>
+  <rect x="120" y="430" width="12" height="25" rx="6" fill="#409EFF" opacity="0.4"/>
+  <rect x="150" y="430" width="12" height="25" rx="6" fill="#67C23A" opacity="0.4"/>
+  <rect x="180" y="430" width="12" height="25" rx="6" fill="#FFB347" opacity="0.4"/>
+
+  <text x="140" y="460" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#666">快速验证</text>
+
+  <!-- 箭头 -->
+  <line x1="255" y1="430" x2="275" y2="430" stroke="#1a1a2e" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <!-- Staging 环境 -->
+  <rect x="280" y="395" width="220" height="70" rx="8" fill="white" stroke="#409EFF" stroke-width="1.5"/>
+  <text x="390" y="418" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="#1a1a2e">预发布环境</text>
+
+  <!-- 齿轮 -->
+  <circle cx="320" cy="442" r="12" fill="none" stroke="#409EFF" stroke-width="2"/>
+  <circle cx="320" cy="442" r="5" fill="#409EFF" opacity="0.5"/>
+  <circle cx="370" cy="442" r="12" fill="none" stroke="#409EFF" stroke-width="2"/>
+  <circle cx="370" cy="442" r="5" fill="#409EFF" opacity="0.5"/>
+  <circle cx="420" cy="442" r="12" fill="none" stroke="#409EFF" stroke-width="2"/>
+  <circle cx="420" cy="442" r="5" fill="#409EFF" opacity="0.5"/>
+
+  <text x="390" y="460" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#666">集成测试</text>
+
+  <!-- 箭头 -->
+  <line x1="505" y1="430" x2="525" y2="430" stroke="#1a1a2e" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <!-- Production 环境 -->
+  <rect x="530" y="395" width="220" height="70" rx="8" fill="white" stroke="#409EFF" stroke-width="2"/>
+  <text x="640" y="418" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="#1a1a2e">生产环境</text>
+
+  <!-- 盾牌 -->
+  <path d="M640,430 L660,438 L660,458 Q640,465 640,465 Q620,465 620,458 L620,438 Z" fill="#409EFF" opacity="0.2" stroke="#409EFF" stroke-width="1.5"/>
+  <text x="640" y="452" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#409EFF">✓</text>
+
+  <text x="640" y="460" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#666">稳定运行</text>
+
+  <!-- 底部说明 -->
+  <text x="400" y="490" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#999">部署策略与发布管理 · 从开发到生产的完整流程</text>
+
+</svg>

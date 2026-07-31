@@ -1,0 +1,143 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="800" height="500">
+  <defs>
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#e8f4ff"/>
+      <stop offset="100%" stop-color="#f0f8ff"/>
+    </linearGradient>
+    <linearGradient id="layerGrad1" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#409EFF"/>
+      <stop offset="100%" stop-color="#3a8fe0"/>
+    </linearGradient>
+    <linearGradient id="layerGrad2" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#5ab0ff"/>
+      <stop offset="100%" stop-color="#409EFF"/>
+    </linearGradient>
+    <linearGradient id="layerGrad3" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#6bb8ff"/>
+      <stop offset="100%" stop-color="#50a8ff"/>
+    </linearGradient>
+    <filter id="shadow" x="-2%" y="-2%" width="104%" height="108%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#1a1a2e" flood-opacity="0.12"/>
+    </filter>
+    <filter id="shadowLight" x="-2%" y="-2%" width="104%" height="106%">
+      <feDropShadow dx="0" dy="1" stdDeviation="2" flood-color="#1a1a2e" flood-opacity="0.08"/>
+    </filter>
+  </defs>
+
+  <!-- 背景 -->
+  <rect width="800" height="500" fill="url(#bgGrad)" rx="8"/>
+
+  <!-- 标题 -->
+  <text x="400" y="32" text-anchor="middle" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#1a1a2e">智能客服平台 — 生产级多智能体系统架构</text>
+
+  <!-- ===== 上层：用户入口层 ===== -->
+  <rect x="40" y="52" width="720" height="90" rx="10" fill="#1a1a2e" opacity="0.06"/>
+  <text x="55" y="72" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#1a1a2e" opacity="0.7">用户入口层</text>
+
+  <!-- 三个入口 -->
+  <rect x="80" y="80" width="120" height="44" rx="8" fill="url(#layerGrad1)" filter="url(#shadow)"/>
+  <text x="140" y="107" text-anchor="middle" font-family="Arial, sans-serif" font-size="15" font-weight="bold" fill="#fff">Web 端</text>
+
+  <rect x="240" y="80" width="120" height="44" rx="8" fill="url(#layerGrad1)" filter="url(#shadow)"/>
+  <text x="300" y="107" text-anchor="middle" font-family="Arial, sans-serif" font-size="15" font-weight="bold" fill="#fff">移动端</text>
+
+  <rect x="400" y="80" width="120" height="44" rx="8" fill="url(#layerGrad1)" filter="url(#shadow)"/>
+  <text x="460" y="107" text-anchor="middle" font-family="Arial, sans-serif" font-size="15" font-weight="bold" fill="#fff">API 接口</text>
+
+  <!-- 箭头：入口 → API网关 -->
+  <line x1="560" y1="102" x2="640" y2="102" stroke="#409EFF" stroke-width="2.5" marker-end="url(#arrowBlue)"/>
+  <defs>
+    <marker id="arrowBlue" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#409EFF"/>
+    </marker>
+    <marker id="arrowDown" markerWidth="10" markerHeight="7" refX="5" refY="7" orient="auto">
+      <polygon points="0 0, 5 7, 10 0" fill="#409EFF"/>
+    </marker>
+    <marker id="arrowDownDark" markerWidth="10" markerHeight="7" refX="5" refY="7" orient="auto">
+      <polygon points="0 0, 5 7, 10 0" fill="#1a1a2e"/>
+    </marker>
+  </defs>
+
+  <!-- API 网关 -->
+  <rect x="640" y="78" width="130" height="48" rx="10" fill="#1a1a2e" filter="url(#shadow)"/>
+  <text x="705" y="100" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#fff">API 网关</text>
+  <text x="705" y="116" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#aabbcc">认证·限流·路由</text>
+
+  <!-- 层间连接箭头 -->
+  <line x1="400" y1="142" x2="400" y2="170" stroke="#409EFF" stroke-width="2" marker-end="url(#arrowDown)"/>
+
+  <!-- ===== 中层：会话管理与智能体集群 ===== -->
+  <rect x="40" y="175" width="720" height="155" rx="10" fill="#1a1a2e" opacity="0.04"/>
+  <text x="55" y="195" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#1a1a2e" opacity="0.7">服务层</text>
+
+  <!-- 会话管理 -->
+  <rect x="60" y="205" width="160" height="50" rx="8" fill="url(#layerGrad2)" filter="url(#shadow)"/>
+  <text x="140" y="228" text-anchor="middle" font-family="Arial, sans-serif" font-size="15" font-weight="bold" fill="#fff">会话管理</text>
+  <text x="140" y="246" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#dce8ff">Session 服务</text>
+
+  <!-- 连接线：会话管理 → 智能体集群 -->
+  <line x1="220" y1="230" x2="280" y2="230" stroke="#409EFF" stroke-width="2" marker-end="url(#arrowBlue)"/>
+
+  <!-- 智能体集群标签 -->
+  <text x="420" y="200" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#1a1a2e" opacity="0.6">智能体集群（独立弹性伸缩）</text>
+
+  <!-- 路由智能体 x3 -->
+  <rect x="290" y="210" width="130" height="44" rx="8" fill="#409EFF" filter="url(#shadowLight)"/>
+  <text x="355" y="232" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#fff">路由智能体</text>
+  <text x="355" y="248" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#dce8ff">× 3 实例</text>
+
+  <!-- 业务智能体 x10 -->
+  <rect x="440" y="210" width="130" height="44" rx="8" fill="#409EFF" filter="url(#shadowLight)"/>
+  <text x="505" y="232" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#fff">业务智能体</text>
+  <text x="505" y="248" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#dce8ff">× 10 实例</text>
+
+  <!-- 监控智能体 x2 -->
+  <rect x="590" y="210" width="130" height="44" rx="8" fill="#409EFF" filter="url(#shadowLight)"/>
+  <text x="655" y="232" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#fff">监控智能体</text>
+  <text x="655" y="248" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#dce8ff">× 2 实例</text>
+
+  <!-- 智能体间连接线 -->
+  <line x1="420" y1="232" x2="440" y2="232" stroke="#fff" stroke-width="1.5" opacity="0.6"/>
+  <line x1="570" y1="232" x2="590" y2="232" stroke="#fff" stroke-width="1.5" opacity="0.6"/>
+
+  <!-- 弹性伸缩指示 -->
+  <rect x="290" y="262" width="430" height="28" rx="6" fill="#1a1a2e" opacity="0.08"/>
+  <text x="505" y="280" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#1a1a2e" opacity="0.6">← 弹性伸缩（按负载自动扩缩容） →</text>
+
+  <!-- 层间连接箭头 -->
+  <line x1="400" y1="330" x2="400" y2="358" stroke="#409EFF" stroke-width="2" marker-end="url(#arrowDown)"/>
+
+  <!-- ===== 下层：消息队列与存储 ===== -->
+  <rect x="40" y="363" width="720" height="120" rx="10" fill="#1a1a2e" opacity="0.05"/>
+  <text x="55" y="383" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#1a1a2e" opacity="0.7">数据与存储层</text>
+
+  <!-- 消息队列 -->
+  <rect x="60" y="395" width="160" height="50" rx="8" fill="#1a1a2e" filter="url(#shadow)"/>
+  <text x="140" y="418" text-anchor="middle" font-family="Arial, sans-serif" font-size="15" font-weight="bold" fill="#fff">消息队列</text>
+  <text x="140" y="436" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#aabbcc">RabbitMQ</text>
+
+  <!-- 连接线：MQ → 存储 -->
+  <line x1="220" y1="420" x2="280" y2="420" stroke="#1a1a2e" stroke-width="2" marker-end="url(#arrowDownDark)"/>
+
+  <!-- Redis 缓存 -->
+  <rect x="290" y="395" width="140" height="50" rx="8" fill="url(#layerGrad3)" filter="url(#shadowLight)"/>
+  <text x="360" y="418" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#fff">Redis 缓存</text>
+  <text x="360" y="436" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#dce8ff">高速数据缓存</text>
+
+  <!-- PostgreSQL -->
+  <rect x="450" y="395" width="140" height="50" rx="8" fill="url(#layerGrad3)" filter="url(#shadowLight)"/>
+  <text x="520" y="418" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#fff">PostgreSQL</text>
+  <text x="520" y="436" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#dce8ff">持久化存储</text>
+
+  <!-- 向量数据库 -->
+  <rect x="610" y="395" width="140" height="50" rx="8" fill="url(#layerGrad3)" filter="url(#shadowLight)"/>
+  <text x="680" y="418" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#fff">向量数据库</text>
+  <text x="680" y="436" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#dce8ff">知识库检索</text>
+
+  <!-- 存储间连接 -->
+  <line x1="430" y1="420" x2="450" y2="420" stroke="#409EFF" stroke-width="1.5" opacity="0.5"/>
+  <line x1="590" y1="420" x2="610" y2="420" stroke="#409EFF" stroke-width="1.5" opacity="0.5"/>
+
+  <!-- 底部标注 -->
+  <text x="400" y="488" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#1a1a2e" opacity="0.4">生产级架构 · 所有组件支持水平扩展 · 高可用部署</text>
+</svg>

@@ -1,0 +1,107 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="800" height="500">
+  <defs>
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#E8F4FD"/>
+      <stop offset="100%" stop-color="#F0F8FF"/>
+    </linearGradient>
+    <linearGradient id="blueGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#60B0FF"/>
+      <stop offset="100%" stop-color="#409EFF"/>
+    </linearGradient>
+    <linearGradient id="darkBlueGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#2a2a4e"/>
+      <stop offset="100%" stop-color="#1a1a2e"/>
+    </linearGradient>
+    <filter id="shadow" x="-4%" y="-4%" width="108%" height="112%">
+      <feDropShadow dx="1" dy="2" stdDeviation="3" flood-color="#1a1a2e" flood-opacity="0.12"/>
+    </filter>
+  </defs>
+
+  <!-- 背景 -->
+  <rect width="800" height="500" fill="url(#bgGrad)" rx="8"/>
+
+  <!-- 标题 -->
+  <text x="400" y="32" text-anchor="middle" font-family="sans-serif" font-size="18" font-weight="bold" fill="#1a1a2e">对等专家组架构（Peer-to-Peer）</text>
+
+  <!-- ===== 主架构 ===== -->
+
+  <!-- 用户输入 -->
+  <rect x="320" y="52" width="160" height="40" rx="20" fill="url(#blueGrad)" filter="url(#shadow)"/>
+  <text x="400" y="77" text-anchor="middle" font-family="sans-serif" font-size="15" fill="#fff" font-weight="bold">用户输入</text>
+
+  <!-- 箭头：用户输入 → 协调者 -->
+  <line x1="400" y1="92" x2="400" y2="118" stroke="#409EFF" stroke-width="2.5" marker-end="url(#arrowBlue)"/>
+  <defs>
+    <marker id="arrowBlue" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto">
+      <path d="M0,0 L10,4 L0,8 Z" fill="#409EFF"/>
+    </marker>
+    <marker id="arrowDark" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto">
+      <path d="M0,0 L10,4 L0,8 Z" fill="#1a1a2e"/>
+    </marker>
+  </defs>
+
+  <!-- 协调者 -->
+  <rect x="290" y="120" width="220" height="44" rx="22" fill="url(#darkBlueGrad)" filter="url(#shadow)"/>
+  <text x="400" y="147" text-anchor="middle" font-family="sans-serif" font-size="15" fill="#fff" font-weight="bold">协调者 / 促进者</text>
+
+  <!-- 箭头：协调者 → 专家组 -->
+  <line x1="340" y1="164" x2="200" y2="210" stroke="#409EFF" stroke-width="2"/>
+  <line x1="400" y1="164" x2="400" y2="210" stroke="#409EFF" stroke-width="2"/>
+  <line x1="460" y1="164" x2="600" y2="210" stroke="#409EFF" stroke-width="2"/>
+
+  <!-- 专家A - 技术 -->
+  <rect x="110" y="215" width="180" height="50" rx="10" fill="#fff" stroke="#409EFF" stroke-width="2.5" filter="url(#shadow)"/>
+  <text x="200" y="236" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#1a1a2e" font-weight="bold">专家 A</text>
+  <text x="200" y="254" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#409EFF">技术领域</text>
+
+  <!-- 专家B - 商业 -->
+  <rect x="310" y="215" width="180" height="50" rx="10" fill="#fff" stroke="#409EFF" stroke-width="2.5" filter="url(#shadow)"/>
+  <text x="400" y="236" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#1a1a2e" font-weight="bold">专家 B</text>
+  <text x="400" y="254" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#409EFF">商业领域</text>
+
+  <!-- 专家C - 法律 -->
+  <rect x="510" y="215" width="180" height="50" rx="10" fill="#fff" stroke="#409EFF" stroke-width="2.5" filter="url(#shadow)"/>
+  <text x="600" y="236" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#1a1a2e" font-weight="bold">专家 C</text>
+  <text x="600" y="254" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#409EFF">法律领域</text>
+
+  <!-- 全连接网格线（专家之间互相连接） -->
+  <!-- A ↔ B -->
+  <line x1="290" y1="240" x2="310" y2="240" stroke="#409EFF" stroke-width="1.5" stroke-dasharray="5,3"/>
+  <!-- B ↔ C -->
+  <line x1="490" y1="240" x2="510" y2="240" stroke="#409EFF" stroke-width="1.5" stroke-dasharray="5,3"/>
+  <!-- A ↔ C（跨接） -->
+  <line x1="290" y1="235" x2="510" y2="245" stroke="#409EFF" stroke-width="1.5" stroke-dasharray="5,3"/>
+  <line x1="290" y1="245" x2="510" y2="235" stroke="#409EFF" stroke-width="1.5" stroke-dasharray="5,3"/>
+
+  <!-- 网格标注 -->
+  <text x="400" y="200" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#1a1a2e" opacity="0.6">全连接网格</text>
+
+  <!-- 箭头：专家 → 投票/综合 -->
+  <line x1="200" y1="265" x2="300" y2="320" stroke="#409EFF" stroke-width="2"/>
+  <line x1="400" y1="265" x2="400" y2="320" stroke="#409EFF" stroke-width="2"/>
+  <line x1="600" y1="265" x2="500" y2="320" stroke="#409EFF" stroke-width="2"/>
+
+  <!-- 投票/综合 -->
+  <rect x="280" y="325" width="240" height="44" rx="22" fill="url(#blueGrad)" filter="url(#shadow)"/>
+  <text x="400" y="352" text-anchor="middle" font-family="sans-serif" font-size="15" fill="#fff" font-weight="bold">投票 / 综合</text>
+
+  <!-- 箭头：投票 → 最终决策 -->
+  <line x1="400" y1="369" x2="400" y2="395" stroke="#1a1a2e" stroke-width="2.5" marker-end="url(#arrowDark)"/>
+
+  <!-- 最终决策 -->
+  <rect x="320" y="398" width="160" height="40" rx="20" fill="url(#darkBlueGrad)" filter="url(#shadow)"/>
+  <text x="400" y="423" text-anchor="middle" font-family="sans-serif" font-size="15" fill="#fff" font-weight="bold">最终决策</text>
+
+  <!-- ===== 对比插框 ===== -->
+  <rect x="30" y="448" width="740" height="44" rx="8" fill="#fff" stroke="#409EFF" stroke-width="1.5" opacity="0.95"/>
+  <text x="50" y="474" font-family="sans-serif" font-size="13" fill="#1a1a2e" font-weight="bold">对比：</text>
+  <text x="130" y="474" font-family="sans-serif" font-size="13" fill="#409EFF">对等模式：所有专家平等，集体决策</text>
+  <text x="430" y="474" font-family="sans-serif" font-size="13" fill="#1a1a2e">|</text>
+  <text x="450" y="474" font-family="sans-serif" font-size="13" fill="#1a1a2e">管理者-工作者模式：层级清晰，管理者决策</text>
+
+  <!-- 标注 -->
+  <text x="160" y="308" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#1a1a2e" opacity="0.5">平等参与</text>
+  <text x="640" y="308" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#1a1a2e" opacity="0.5">平等参与</text>
+  <text x="400" y="316" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#1a1a2e" opacity="0.5">意见汇总</text>
+
+</svg>

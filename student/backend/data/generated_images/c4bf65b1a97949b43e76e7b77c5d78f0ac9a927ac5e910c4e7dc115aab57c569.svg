@@ -1,0 +1,204 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="800" height="500">
+  <defs>
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#E8F4FD"/>
+      <stop offset="100%" stop-color="#F0F8FF"/>
+    </linearGradient>
+    <linearGradient id="cardGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#FFFFFF"/>
+      <stop offset="100%" stop-color="#F7FBFF"/>
+    </linearGradient>
+  </defs>
+
+  <!-- 背景 -->
+  <rect width="800" height="500" fill="url(#bgGrad)"/>
+
+  <!-- 标题 -->
+  <text x="400" y="45" text-anchor="middle" font-family="Arial, sans-serif" font-size="22" font-weight="bold" fill="#1a1a2e">人机协同交互模式对比</text>
+
+  <!-- 三列卡片背景 -->
+  <!-- 始终模式 -->
+  <rect x="30" y="70" width="230" height="390" rx="12" fill="url(#cardGrad)" stroke="#409EFF" stroke-width="1.5" opacity="0.5"/>
+  <!-- 终止模式 -->
+  <rect x="285" y="70" width="230" height="390" rx="12" fill="url(#cardGrad)" stroke="#409EFF" stroke-width="1.5" opacity="0.5"/>
+  <!-- 从不模式 -->
+  <rect x="540" y="70" width="230" height="390" rx="12" fill="url(#cardGrad)" stroke="#409EFF" stroke-width="1.5" opacity="0.5"/>
+
+  <!-- 列标题 -->
+  <rect x="30" y="70" width="230" height="40" rx="12" fill="#409EFF"/>
+  <rect x="30" y="98" width="230" height="12" fill="#409EFF"/>
+  <text x="145" y="96" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#FFFFFF">始终模式</text>
+
+  <rect x="285" y="70" width="230" height="40" rx="12" fill="#409EFF"/>
+  <rect x="285" y="98" width="230" height="12" fill="#409EFF"/>
+  <text x="400" y="96" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#FFFFFF">终止模式</text>
+
+  <rect x="540" y="70" width="230" height="40" rx="12" fill="#409EFF"/>
+  <rect x="540" y="98" width="230" height="12" fill="#409EFF"/>
+  <text x="655" y="96" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#FFFFFF">从不模式</text>
+
+  <!-- 模式标签 -->
+  <text x="145" y="140" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="#1a1a2e" font-weight="bold">ALWAYS</text>
+  <text x="400" y="140" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="#1a1a2e" font-weight="bold">TERMINATE</text>
+  <text x="655" y="140" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="#1a1a2e" font-weight="bold">NEVER</text>
+
+  <!-- ============ 第一列：始终模式 ============ -->
+  <!-- 人类图标 -->
+  <g transform="translate(145, 200)">
+    <!-- 头 -->
+    <circle cx="0" cy="-18" r="10" fill="none" stroke="#409EFF" stroke-width="2"/>
+    <!-- 身体 -->
+    <line x1="0" y1="-8" x2="0" y2="15" stroke="#409EFF" stroke-width="2" stroke-linecap="round"/>
+    <!-- 左臂 -->
+    <line x1="0" y1="-3" x2="-14" y2="8" stroke="#409EFF" stroke-width="2" stroke-linecap="round"/>
+    <!-- 右臂 -->
+    <line x1="0" y1="-3" x2="14" y2="8" stroke="#409EFF" stroke-width="2" stroke-linecap="round"/>
+    <!-- 左腿 -->
+    <line x1="0" y1="15" x2="-12" y2="32" stroke="#409EFF" stroke-width="2" stroke-linecap="round"/>
+    <!-- 右腿 -->
+    <line x1="0" y1="15" x2="12" y2="32" stroke="#409EFF" stroke-width="2" stroke-linecap="round"/>
+  </g>
+
+  <!-- 实心连接线 -->
+  <line x1="145" y1="245" x2="145" y2="290" stroke="#409EFF" stroke-width="3"/>
+  <!-- 箭头 -->
+  <polygon points="145,295 138,282 152,282" fill="#409EFF"/>
+
+  <!-- 智能体图标 -->
+  <g transform="translate(145, 320)">
+    <!-- 机器人头 -->
+    <rect x="-14" y="-20" width="28" height="22" rx="5" fill="none" stroke="#409EFF" stroke-width="2"/>
+    <!-- 天线 -->
+    <line x1="0" y1="-20" x2="0" y2="-28" stroke="#409EFF" stroke-width="2" stroke-linecap="round"/>
+    <circle cx="0" cy="-30" r="3" fill="#409EFF"/>
+    <!-- 眼睛 -->
+    <circle cx="-5" cy="-12" r="2.5" fill="#409EFF"/>
+    <circle cx="5" cy="-12" r="2.5" fill="#409EFF"/>
+    <!-- 嘴巴 -->
+    <line x1="-4" y1="-5" x2="4" y2="-5" stroke="#409EFF" stroke-width="1.5" stroke-linecap="round"/>
+    <!-- 身体 -->
+    <rect x="-12" y="2" width="24" height="20" rx="3" fill="none" stroke="#409EFF" stroke-width="2"/>
+    <!-- 左臂 -->
+    <line x1="-12" y1="6" x2="-20" y2="14" stroke="#409EFF" stroke-width="2" stroke-linecap="round"/>
+    <!-- 右臂 -->
+    <line x1="12" y1="6" x2="20" y2="14" stroke="#409EFF" stroke-width="2" stroke-linecap="round"/>
+    <!-- 轮子 -->
+    <rect x="-10" y="22" width="8" height="6" rx="2" fill="#409EFF"/>
+    <rect x="2" y="22" width="8" height="6" rx="2" fill="#409EFF"/>
+  </g>
+
+  <!-- 标注：持续连接 -->
+  <rect x="85" y="262" width="120" height="24" rx="12" fill="#409EFF" opacity="0.15"/>
+  <text x="145" y="278" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" fill="#409EFF" font-weight="bold">持续连接</text>
+
+  <!-- ============ 第二列：终止模式 ============ -->
+  <!-- 人类图标 -->
+  <g transform="translate(400, 200)">
+    <circle cx="0" cy="-18" r="10" fill="none" stroke="#409EFF" stroke-width="2"/>
+    <line x1="0" y1="-8" x2="0" y2="15" stroke="#409EFF" stroke-width="2" stroke-linecap="round"/>
+    <line x1="0" y1="-3" x2="-14" y2="8" stroke="#409EFF" stroke-width="2" stroke-linecap="round"/>
+    <line x1="0" y1="-3" x2="14" y2="8" stroke="#409EFF" stroke-width="2" stroke-linecap="round"/>
+    <line x1="0" y1="15" x2="-12" y2="32" stroke="#409EFF" stroke-width="2" stroke-linecap="round"/>
+    <line x1="0" y1="15" x2="12" y2="32" stroke="#409EFF" stroke-width="2" stroke-linecap="round"/>
+  </g>
+
+  <!-- 虚线连接（条件性） -->
+  <line x1="400" y1="245" x2="400" y2="290" stroke="#409EFF" stroke-width="2.5" stroke-dasharray="6,5"/>
+  <!-- 条件判断菱形 -->
+  <polygon points="400,300 390,310 400,320 410,310" fill="none" stroke="#409EFF" stroke-width="2"/>
+  <text x="400" y="314" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#409EFF">?</text>
+
+  <!-- 智能体图标 -->
+  <g transform="translate(400, 340)">
+    <rect x="-14" y="-20" width="28" height="22" rx="5" fill="none" stroke="#409EFF" stroke-width="2"/>
+    <line x1="0" y1="-20" x2="0" y2="-28" stroke="#409EFF" stroke-width="2" stroke-linecap="round"/>
+    <circle cx="0" cy="-30" r="3" fill="#409EFF"/>
+    <circle cx="-5" cy="-12" r="2.5" fill="#409EFF"/>
+    <circle cx="5" cy="-12" r="2.5" fill="#409EFF"/>
+    <line x1="-4" y1="-5" x2="4" y2="-5" stroke="#409EFF" stroke-width="1.5" stroke-linecap="round"/>
+    <rect x="-12" y="2" width="24" height="20" rx="3" fill="none" stroke="#409EFF" stroke-width="2"/>
+    <line x1="-12" y1="6" x2="-20" y2="14" stroke="#409EFF" stroke-width="2" stroke-linecap="round"/>
+    <line x1="12" y1="6" x2="20" y2="14" stroke="#409EFF" stroke-width="2" stroke-linecap="round"/>
+    <rect x="-10" y="22" width="8" height="6" rx="2" fill="#409EFF"/>
+    <rect x="2" y="22" width="8" height="6" rx="2" fill="#409EFF"/>
+  </g>
+
+  <!-- 标注：条件终止 -->
+  <rect x="340" y="262" width="120" height="24" rx="12" fill="#409EFF" opacity="0.15"/>
+  <text x="400" y="278" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" fill="#409EFF" font-weight="bold">条件终止</text>
+
+  <!-- 标注：判断节点 -->
+  <rect x="340" y="305" width="120" height="20" rx="10" fill="#409EFF" opacity="0.1"/>
+  <text x="400" y="319" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#1a1a2e">人工判断节点</text>
+
+  <!-- ============ 第三列：从不模式 ============ -->
+  <!-- 人类图标（灰色，表示不参与） -->
+  <g transform="translate(655, 180)" opacity="0.35">
+    <circle cx="0" cy="-18" r="10" fill="none" stroke="#1a1a2e" stroke-width="2"/>
+    <line x1="0" y1="-8" x2="0" y2="15" stroke="#1a1a2e" stroke-width="2" stroke-linecap="round"/>
+    <line x1="0" y1="-3" x2="-14" y2="8" stroke="#1a1a2e" stroke-width="2" stroke-linecap="round"/>
+    <line x1="0" y1="-3" x2="14" y2="8" stroke="#1a1a2e" stroke-width="2" stroke-linecap="round"/>
+    <line x1="0" y1="15" x2="-12" y2="32" stroke="#1a1a2e" stroke-width="2" stroke-linecap="round"/>
+    <line x1="0" y1="15" x2="12" y2="32" stroke="#1a1a2e" stroke-width="2" stroke-linecap="round"/>
+  </g>
+
+  <!-- 禁止符号 -->
+  <g transform="translate(655, 215)">
+    <circle cx="0" cy="0" r="16" fill="none" stroke="#FF6B6B" stroke-width="2.5"/>
+    <line x1="-11" y1="-11" x2="11" y2="11" stroke="#FF6B6B" stroke-width="2.5" stroke-linecap="round"/>
+  </g>
+
+  <!-- 智能体图标（带齿轮，自主运行） -->
+  <g transform="translate(655, 310)">
+    <!-- 齿轮 -->
+    <g transform="translate(-22, -8)">
+      <circle cx="0" cy="0" r="10" fill="none" stroke="#409EFF" stroke-width="1.5"/>
+      <line x1="0" y1="-12" x2="0" y2="-7" stroke="#409EFF" stroke-width="2" stroke-linecap="round"/>
+      <line x1="0" y1="7" x2="0" y2="12" stroke="#409EFF" stroke-width="2" stroke-linecap="round"/>
+      <line x1="-12" y1="0" x2="-7" y2="0" stroke="#409EFF" stroke-width="2" stroke-linecap="round"/>
+      <line x1="7" y1="0" x2="12" y2="0" stroke="#409EFF" stroke-width="2" stroke-linecap="round"/>
+      <line x1="-8.5" y1="-8.5" x2="-5" y2="-5" stroke="#409EFF" stroke-width="1.5" stroke-linecap="round"/>
+      <line x1="5" y1="5" x2="8.5" y2="8.5" stroke="#409EFF" stroke-width="1.5" stroke-linecap="round"/>
+      <line x1="8.5" y1="-8.5" x2="5" y2="-5" stroke="#409EFF" stroke-width="1.5" stroke-linecap="round"/>
+      <line x1="-5" y1="5" x2="-8.5" y2="8.5" stroke="#409EFF" stroke-width="1.5" stroke-linecap="round"/>
+    </g>
+    <!-- 机器人头 -->
+    <rect x="-14" y="-20" width="28" height="22" rx="5" fill="none" stroke="#409EFF" stroke-width="2"/>
+    <line x1="0" y1="-20" x2="0" y2="-28" stroke="#409EFF" stroke-width="2" stroke-linecap="round"/>
+    <circle cx="0" cy="-30" r="3" fill="#409EFF"/>
+    <circle cx="-5" cy="-12" r="2.5" fill="#409EFF"/>
+    <circle cx="5" cy="-12" r="2.5" fill="#409EFF"/>
+    <line x1="-4" y1="-5" x2="4" y2="-5" stroke="#409EFF" stroke-width="1.5" stroke-linecap="round"/>
+    <rect x="-12" y="2" width="24" height="20" rx="3" fill="none" stroke="#409EFF" stroke-width="2"/>
+    <line x1="-12" y1="6" x2="-20" y2="14" stroke="#409EFF" stroke-width="2" stroke-linecap="round"/>
+    <line x1="12" y1="6" x2="20" y2="14" stroke="#409EFF" stroke-width="2" stroke-linecap="round"/>
+    <rect x="-10" y="22" width="8" height="6" rx="2" fill="#409EFF"/>
+    <rect x="2" y="22" width="8" height="6" rx="2" fill="#409EFF"/>
+  </g>
+
+  <!-- 自动化齿轮图标（右侧） -->
+  <g transform="translate(685, 310)">
+    <circle cx="0" cy="0" r="10" fill="none" stroke="#409EFF" stroke-width="1.5"/>
+    <line x1="0" y1="-12" x2="0" y2="-7" stroke="#409EFF" stroke-width="2" stroke-linecap="round"/>
+    <line x1="0" y1="7" x2="0" y2="12" stroke="#409EFF" stroke-width="2" stroke-linecap="round"/>
+    <line x1="-12" y1="0" x2="-7" y2="0" stroke="#409EFF" stroke-width="2" stroke-linecap="round"/>
+    <line x1="7" y1="0" x2="12" y2="0" stroke="#409EFF" stroke-width="2" stroke-linecap="round"/>
+    <line x1="-8.5" y1="-8.5" x2="-5" y2="-5" stroke="#409EFF" stroke-width="1.5" stroke-linecap="round"/>
+    <line x1="5" y1="5" x2="8.5" y2="8.5" stroke="#409EFF" stroke-width="1.5" stroke-linecap="round"/>
+    <line x1="8.5" y1="-8.5" x2="5" y2="-5" stroke="#409EFF" stroke-width="1.5" stroke-linecap="round"/>
+    <line x1="-5" y1="5" x2="-8.5" y2="8.5" stroke="#409EFF" stroke-width="1.5" stroke-linecap="round"/>
+  </g>
+
+  <!-- 标注：人机分离 -->
+  <rect x="595" y="230" width="120" height="24" rx="12" fill="#FF6B6B" opacity="0.15"/>
+  <text x="655" y="246" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" fill="#FF6B6B" font-weight="bold">人机分离</text>
+
+  <!-- 标注：自主运行 -->
+  <rect x="595" y="355" width="120" height="24" rx="12" fill="#409EFF" opacity="0.15"/>
+  <text x="655" y="371" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" fill="#409EFF" font-weight="bold">自主运行</text>
+
+  <!-- ============ 底部说明 ============ -->
+  <rect x="200" y="475" width="400" height="1" fill="#409EFF" opacity="0.3"/>
+  <text x="400" y="490" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#1a1a2e" opacity="0.6">三种人机协同模式：持续协作 · 条件终止 · 完全自动化</text>
+
+</svg>

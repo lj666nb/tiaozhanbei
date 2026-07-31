@@ -1,0 +1,172 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="800" height="500">
+  <defs>
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#f0f7ff"/>
+      <stop offset="100%" stop-color="#e8f2fc"/>
+    </linearGradient>
+    <linearGradient id="cardGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="100%" stop-color="#fafcff"/>
+    </linearGradient>
+  </defs>
+
+  <!-- 背景 -->
+  <rect width="800" height="500" fill="url(#bgGrad)" rx="8"/>
+
+  <!-- 标题 -->
+  <text x="400" y="32" text-anchor="middle" font-family="sans-serif" font-size="18" font-weight="bold" fill="#1a1a2e">字符与 Token 对比</text>
+
+  <!-- ============================================ -->
+  <!-- 左侧：中文示例 -->
+  <!-- ============================================ -->
+
+  <!-- 中文面板 -->
+  <rect x="25" y="55" width="230" height="150" rx="12" fill="url(#cardGrad)" stroke="#e0e8f0" stroke-width="1.2"/>
+
+  <!-- 中文标签 -->
+  <text x="140" y="80" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="bold" fill="#1a1a2e">中文示例</text>
+
+  <!-- 中文文本 -->
+  <text x="140" y="108" text-anchor="middle" font-family="sans-serif" font-size="16" fill="#1a1a2e" letter-spacing="2">人工智能正在改变世界</text>
+
+  <!-- 每个字符的框 -->
+  <rect x="40" y="118" width="18" height="18" fill="none" stroke="#409EFF" stroke-width="1" rx="2"/>
+  <rect x="60" y="118" width="18" height="18" fill="none" stroke="#409EFF" stroke-width="1" rx="2"/>
+  <rect x="80" y="118" width="18" height="18" fill="none" stroke="#409EFF" stroke-width="1" rx="2"/>
+  <rect x="100" y="118" width="18" height="18" fill="none" stroke="#409EFF" stroke-width="1" rx="2"/>
+  <rect x="120" y="118" width="18" height="18" fill="none" stroke="#409EFF" stroke-width="1" rx="2"/>
+  <rect x="140" y="118" width="18" height="18" fill="none" stroke="#409EFF" stroke-width="1" rx="2"/>
+  <rect x="160" y="118" width="18" height="18" fill="none" stroke="#409EFF" stroke-width="1" rx="2"/>
+  <rect x="180" y="118" width="18" height="18" fill="none" stroke="#409EFF" stroke-width="1" rx="2"/>
+  <rect x="200" y="118" width="18" height="18" fill="none" stroke="#409EFF" stroke-width="1" rx="2"/>
+
+  <!-- 字符计数 -->
+  <text x="140" y="152" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#666">共 9 个字符</text>
+
+  <!-- 箭头 -->
+  <line x1="255" y1="120" x2="295" y2="120" stroke="#409EFF" stroke-width="1.5" marker-end="url(#arrowBlue)"/>
+  <defs>
+    <marker id="arrowBlue" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#409EFF"/>
+    </marker>
+  </defs>
+
+  <!-- Token 计数器 -->
+  <rect x="300" y="105" width="110" height="30" rx="15" fill="#409EFF" opacity="0.9"/>
+  <text x="355" y="124" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="#fff">约 15-20 tokens</text>
+
+  <!-- ============================================ -->
+  <!-- 中间：英文示例 -->
+  <!-- ============================================ -->
+
+  <rect x="285" y="55" width="230" height="150" rx="12" fill="url(#cardGrad)" stroke="#e0e8f0" stroke-width="1.2"/>
+
+  <text x="400" y="80" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="bold" fill="#1a1a2e">英文示例</text>
+
+  <text x="400" y="108" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#1a1a2e">Artificial intelligence</text>
+  <text x="400" y="128" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#1a1a2e">is changing</text>
+
+  <!-- 单词框 -->
+  <rect x="310" y="136" width="60" height="16" fill="none" stroke="#409EFF" stroke-width="1" rx="2"/>
+  <rect x="375" y="136" width="18" height="16" fill="none" stroke="#409EFF" stroke-width="1" rx="2"/>
+  <rect x="398" y="136" width="50" height="16" fill="none" stroke="#409EFF" stroke-width="1" rx="2"/>
+
+  <text x="400" y="168" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#666">共 4 个单词</text>
+
+  <!-- 箭头 -->
+  <line x1="515" y1="120" x2="555" y2="120" stroke="#409EFF" stroke-width="1.5" marker-end="url(#arrowBlue)"/>
+
+  <!-- Token 计数器 -->
+  <rect x="560" y="105" width="100" height="30" rx="15" fill="#409EFF" opacity="0.9"/>
+  <text x="610" y="124" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="#fff">约 6-8 tokens</text>
+
+  <!-- ============================================ -->
+  <!-- 右侧：代码示例 -->
+  <!-- ============================================ -->
+
+  <rect x="545" y="55" width="230" height="150" rx="12" fill="url(#cardGrad)" stroke="#e0e8f0" stroke-width="1.2"/>
+
+  <text x="660" y="80" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="bold" fill="#1a1a2e">代码示例</text>
+
+  <!-- 代码文本 -->
+  <text x="660" y="105" text-anchor="middle" font-family="monospace" font-size="12" fill="#1a1a2e">def hello():</text>
+  <text x="660" y="123" text-anchor="middle" font-family="monospace" font-size="12" fill="#1a1a2e">    print('world')</text>
+
+  <!-- 字符框 -->
+  <rect x="575" y="132" width="12" height="14" fill="none" stroke="#409EFF" stroke-width="0.8" rx="1"/>
+  <rect x="588" y="132" width="12" height="14" fill="none" stroke="#409EFF" stroke-width="0.8" rx="1"/>
+  <rect x="601" y="132" width="12" height="14" fill="none" stroke="#409EFF" stroke-width="0.8" rx="1"/>
+  <rect x="614" y="132" width="12" height="14" fill="none" stroke="#409EFF" stroke-width="0.8" rx="1"/>
+  <rect x="627" y="132" width="12" height="14" fill="none" stroke="#409EFF" stroke-width="0.8" rx="1"/>
+  <rect x="640" y="132" width="12" height="14" fill="none" stroke="#409EFF" stroke-width="0.8" rx="1"/>
+  <rect x="653" y="132" width="12" height="14" fill="none" stroke="#409EFF" stroke-width="0.8" rx="1"/>
+  <rect x="666" y="132" width="12" height="14" fill="none" stroke="#409EFF" stroke-width="0.8" rx="1"/>
+  <rect x="679" y="132" width="12" height="14" fill="none" stroke="#409EFF" stroke-width="0.8" rx="1"/>
+  <rect x="692" y="132" width="12" height="14" fill="none" stroke="#409EFF" stroke-width="0.8" rx="1"/>
+  <rect x="705" y="132" width="12" height="14" fill="none" stroke="#409EFF" stroke-width="0.8" rx="1"/>
+  <rect x="718" y="132" width="12" height="14" fill="none" stroke="#409EFF" stroke-width="0.8" rx="1"/>
+  <rect x="731" y="132" width="12" height="14" fill="none" stroke="#409EFF" stroke-width="0.8" rx="1"/>
+  <rect x="744" y="132" width="12" height="14" fill="none" stroke="#409EFF" stroke-width="0.8" rx="1"/>
+  <rect x="757" y="132" width="12" height="14" fill="none" stroke="#409EFF" stroke-width="0.8" rx="1"/>
+
+  <text x="660" y="165" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#666">约 25 个字符</text>
+
+  <!-- 箭头 -->
+  <line x1="660" y1="175" x2="660" y2="205" stroke="#409EFF" stroke-width="1.5" marker-end="url(#arrowBlue)"/>
+
+  <!-- Token 计数器 -->
+  <rect x="605" y="210" width="110" height="30" rx="15" fill="#409EFF" opacity="0.9"/>
+  <text x="660" y="229" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="#fff">约 12 tokens</text>
+
+  <!-- ============================================ -->
+  <!-- 底部：对比总结卡片 -->
+  <!-- ============================================ -->
+
+  <rect x="50" y="270" width="700" height="210" rx="14" fill="url(#cardGrad)" stroke="#d0dce8" stroke-width="1.2"/>
+
+  <text x="400" y="300" text-anchor="middle" font-family="sans-serif" font-size="16" font-weight="bold" fill="#1a1a2e">对比总结：字符与 Token 比例</text>
+
+  <!-- 表头 -->
+  <rect x="80" y="315" width="160" height="32" rx="6" fill="#1a1a2e" opacity="0.08"/>
+  <text x="160" y="336" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="#1a1a2e">语言</text>
+
+  <rect x="260" y="315" width="200" height="32" rx="6" fill="#1a1a2e" opacity="0.08"/>
+  <text x="360" y="336" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="#1a1a2e">字符数</text>
+
+  <rect x="480" y="315" width="200" height="32" rx="6" fill="#1a1a2e" opacity="0.08"/>
+  <text x="580" y="336" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="#1a1a2e">Token 数</text>
+
+  <!-- 行1：中文 -->
+  <rect x="80" y="355" width="160" height="36" rx="6" fill="#409EFF" opacity="0.1"/>
+  <text x="160" y="378" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#1a1a2e">中文</text>
+
+  <rect x="260" y="355" width="200" height="36" rx="6" fill="#409EFF" opacity="0.05"/>
+  <text x="360" y="378" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#1a1a2e">9 字符</text>
+
+  <rect x="480" y="355" width="200" height="36" rx="6" fill="#409EFF" opacity="0.05"/>
+  <text x="580" y="378" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#1a1a2e">15-20 tokens</text>
+
+  <!-- 行2：英文 -->
+  <rect x="80" y="398" width="160" height="36" rx="6" fill="#409EFF" opacity="0.1"/>
+  <text x="160" y="421" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#1a1a2e">英文</text>
+
+  <rect x="260" y="398" width="200" height="36" rx="6" fill="#409EFF" opacity="0.05"/>
+  <text x="360" y="421" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#1a1a2e">4 单词 / 25 字符</text>
+
+  <rect x="480" y="398" width="200" height="36" rx="6" fill="#409EFF" opacity="0.05"/>
+  <text x="580" y="421" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#1a1a2e">6-8 tokens</text>
+
+  <!-- 行3：代码 -->
+  <rect x="80" y="441" width="160" height="36" rx="6" fill="#409EFF" opacity="0.1"/>
+  <text x="160" y="464" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#1a1a2e">代码</text>
+
+  <rect x="260" y="441" width="200" height="36" rx="6" fill="#409EFF" opacity="0.05"/>
+  <text x="360" y="464" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#1a1a2e">约 25 字符</text>
+
+  <rect x="480" y="441" width="200" height="36" rx="6" fill="#409EFF" opacity="0.05"/>
+  <text x="580" y="464" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#1a1a2e">约 12 tokens</text>
+
+  <!-- 底部说明 -->
+  <text x="400" y="498" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#999">* Token 数量为近似值，实际因分词器不同而异</text>
+
+</svg>

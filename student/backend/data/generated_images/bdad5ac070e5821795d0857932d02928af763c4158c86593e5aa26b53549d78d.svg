@@ -1,0 +1,118 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="800" height="500">
+  <defs>
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#E8F4FD"/>
+      <stop offset="100%" stop-color="#F0F8FF"/>
+    </linearGradient>
+    <linearGradient id="stepGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#409EFF"/>
+      <stop offset="100%" stop-color="#2B7FE0"/>
+    </linearGradient>
+    <linearGradient id="arrowGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1a1a2e"/>
+      <stop offset="100%" stop-color="#2d2d5e"/>
+    </linearGradient>
+  </defs>
+
+  <!-- 背景 -->
+  <rect width="800" height="500" fill="url(#bgGrad)" rx="8"/>
+
+  <!-- 标题 -->
+  <text x="400" y="38" text-anchor="middle" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#1a1a2e">单智能体到多智能体演化路径</text>
+
+  <!-- 阶梯式连接线 -->
+  <polyline points="130,420 130,380 270,380 270,340 410,340 410,300 550,300 550,260 690,260 690,220"
+    fill="none" stroke="#409EFF" stroke-width="3" stroke-dasharray="6,4" opacity="0.5"/>
+
+  <!-- 箭头1 -->
+  <line x1="130" y1="370" x2="130" y2="350" stroke="url(#arrowGrad)" stroke-width="2.5" marker-end="url(#arrow1)"/>
+  <defs>
+    <marker id="arrow1" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0,0 8,3 0,6" fill="#1a1a2e"/>
+    </marker>
+  </defs>
+  <rect x="88" y="352" width="84" height="20" rx="10" fill="#1a1a2e" opacity="0.85"/>
+  <text x="130" y="366" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#fff">基础功能完成</text>
+
+  <!-- 箭头2 -->
+  <line x1="270" y1="330" x2="270" y2="310" stroke="url(#arrowGrad)" stroke-width="2.5"/>
+  <polygon points="264,312 270,304 276,312" fill="#1a1a2e"/>
+  <rect x="228" y="312" width="84" height="20" rx="10" fill="#1a1a2e" opacity="0.85"/>
+  <text x="270" y="326" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#fff">工具扩展需求</text>
+
+  <!-- 箭头3 -->
+  <line x1="410" y1="290" x2="410" y2="270" stroke="url(#arrowGrad)" stroke-width="2.5"/>
+  <polygon points="404,272 410,264 416,272" fill="#1a1a2e"/>
+  <rect x="364" y="272" width="92" height="20" rx="10" fill="#1a1a2e" opacity="0.85"/>
+  <text x="410" y="286" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#fff">协作效率提升</text>
+
+  <!-- 箭头4 -->
+  <line x1="550" y1="250" x2="550" y2="230" stroke="url(#arrowGrad)" stroke-width="2.5"/>
+  <polygon points="544,232 550,224 556,232" fill="#1a1a2e"/>
+  <rect x="504" y="232" width="92" height="20" rx="10" fill="#1a1a2e" opacity="0.85"/>
+  <text x="550" y="246" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#fff">结构化管理</text>
+
+  <!-- 箭头5 -->
+  <line x1="690" y1="210" x2="690" y2="190" stroke="url(#arrowGrad)" stroke-width="2.5"/>
+  <polygon points="684,192 690,184 696,192" fill="#1a1a2e"/>
+  <rect x="644" y="192" width="92" height="20" rx="10" fill="#1a1a2e" opacity="0.85"/>
+  <text x="690" y="206" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#fff">成本优化分析</text>
+
+  <!-- 步骤1 - 单智能体原型 -->
+  <rect x="80" y="400" width="100" height="70" rx="12" fill="#fff" stroke="#409EFF" stroke-width="2" filter="drop-shadow(0 2px 6px rgba(64,158,255,0.2))"/>
+  <circle cx="130" cy="420" r="14" fill="url(#stepGrad)"/>
+  <rect x="122" y="434" width="16" height="10" rx="3" fill="#409EFF" opacity="0.7"/>
+  <rect x="126" y="444" width="8" height="6" rx="2" fill="#409EFF" opacity="0.5"/>
+  <text x="130" y="462" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#1a1a2e">单智能体</text>
+  <text x="130" y="476" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#666">原型</text>
+
+  <!-- 步骤2 - 智能体+增强工具 -->
+  <rect x="220" y="360" width="100" height="70" rx="12" fill="#fff" stroke="#409EFF" stroke-width="2" filter="drop-shadow(0 2px 6px rgba(64,158,255,0.2))"/>
+  <circle cx="270" cy="380" r="14" fill="url(#stepGrad)"/>
+  <rect x="262" y="394" width="16" height="10" rx="3" fill="#409EFF" opacity="0.7"/>
+  <rect x="266" y="404" width="8" height="6" rx="2" fill="#409EFF" opacity="0.5"/>
+  <!-- 工具腰带 -->
+  <rect x="258" y="392" width="24" height="4" rx="2" fill="#FFB347" opacity="0.8"/>
+  <rect x="260" y="390" width="4" height="6" rx="1" fill="#FFB347" opacity="0.6"/>
+  <rect x="270" y="390" width="4" height="6" rx="1" fill="#FFB347" opacity="0.6"/>
+  <text x="270" y="422" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#1a1a2e">智能体+</text>
+  <text x="270" y="436" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#666">增强工具</text>
+
+  <!-- 步骤3 - 添加辅助智能体 -->
+  <rect x="360" y="320" width="100" height="70" rx="12" fill="#fff" stroke="#409EFF" stroke-width="2" filter="drop-shadow(0 2px 6px rgba(64,158,255,0.2))"/>
+  <circle cx="410" cy="340" r="14" fill="url(#stepGrad)"/>
+  <rect x="402" y="354" width="16" height="10" rx="3" fill="#409EFF" opacity="0.7"/>
+  <rect x="406" y="364" width="8" height="6" rx="2" fill="#409EFF" opacity="0.5"/>
+  <!-- 辅助智能体 -->
+  <circle cx="394" cy="348" r="6" fill="#409EFF" opacity="0.5"/>
+  <circle cx="426" cy="348" r="6" fill="#409EFF" opacity="0.5"/>
+  <text x="410" y="382" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#1a1a2e">添加1-2个</text>
+  <text x="410" y="396" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#666">辅助智能体</text>
+
+  <!-- 步骤4 - 正式多智能体设计 -->
+  <rect x="500" y="280" width="100" height="70" rx="12" fill="#fff" stroke="#409EFF" stroke-width="2" filter="drop-shadow(0 2px 6px rgba(64,158,255,0.2))"/>
+  <circle cx="550" cy="300" r="14" fill="url(#stepGrad)"/>
+  <rect x="542" y="314" width="16" height="10" rx="3" fill="#409EFF" opacity="0.7"/>
+  <rect x="546" y="324" width="8" height="6" rx="2" fill="#409EFF" opacity="0.5"/>
+  <!-- 管理者和专家 -->
+  <rect x="534" y="306" width="6" height="10" rx="2" fill="#1a1a2e" opacity="0.7"/>
+  <rect x="548" y="306" width="6" height="10" rx="2" fill="#409EFF" opacity="0.6"/>
+  <rect x="558" y="306" width="6" height="10" rx="2" fill="#409EFF" opacity="0.6"/>
+  <text x="550" y="342" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#1a1a2e">正式多智能体</text>
+  <text x="550" y="356" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#666">管理者+专家</text>
+
+  <!-- 步骤5 - 优化精简 -->
+  <rect x="640" y="240" width="100" height="70" rx="12" fill="#fff" stroke="#409EFF" stroke-width="2" filter="drop-shadow(0 2px 6px rgba(64,158,255,0.2))"/>
+  <circle cx="690" cy="260" r="14" fill="url(#stepGrad)"/>
+  <rect x="682" y="274" width="16" height="10" rx="3" fill="#409EFF" opacity="0.7"/>
+  <rect x="686" y="284" width="8" height="6" rx="2" fill="#409EFF" opacity="0.5"/>
+  <!-- 精简团队 -->
+  <circle cx="682" cy="266" r="5" fill="#1a1a2e" opacity="0.7"/>
+  <circle cx="698" cy="266" r="5" fill="#409EFF" opacity="0.7"/>
+  <text x="690" y="302" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#1a1a2e">优化精简</text>
+  <text x="690" y="316" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#666">高效团队</text>
+
+  <!-- 底部说明 -->
+  <text x="400" y="485" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#888">演化方向：从简单到复杂，再回归精简高效</text>
+
+</svg>

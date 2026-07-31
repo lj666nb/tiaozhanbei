@@ -1,0 +1,58 @@
+[
+  {
+    "username": "demo",
+    "filename": "be44db5668d3443db2b768bf078268b4.pdf",
+    "original_name": "AI Agent 开发全书 原理、框架与企业落地 (李希沅, 王甲君, 武天富, 解敏) (z-library.sk, 1lib.sk, z-lib.sk).pdf",
+    "file_size": 62951211,
+    "cover": "be44db5668d3443db2b768bf078268b4.png",
+    "created_at": "2026-07-13 03:00:15"
+  },
+  {
+    "username": "demo",
+    "filename": "d8cac9a3436f43149f65f9402a2130a3.pdf",
+    "original_name": "AI Agent开发实战 从基础原理到企业级应用 (郑天民) (z-library.sk, 1lib.sk, z-lib.sk).pdf",
+    "file_size": 62924676,
+    "cover": "d8cac9a3436f43149f65f9402a2130a3.png",
+    "created_at": "2026-07-13 03:00:16"
+  },
+  {
+    "username": "demo",
+    "filename": "2b9ee012e1a84d66917417527d983e3b.pdf",
+    "original_name": "AI Agent开发与应用基于大模型的智能体构建 [转换版] (凌峰) (z-library.sk, 1lib.sk, z-lib.sk).pdf",
+    "file_size": 17710519,
+    "cover": "2b9ee012e1a84d66917417527d983e3b.png",
+    "created_at": "2026-07-13 03:00:16"
+  },
+  {
+    "username": "demo",
+    "filename": "c4cdc941af9d4e9ca0ba9df4365051aa.pdf",
+    "original_name": "扣子开发AI Agent智能体应用 (宋立桓 王东健 陈铭毅 程东升) (z-library.sk, 1lib.sk, z-lib.sk).pdf",
+    "file_size": 24332401,
+    "cover": "c4cdc941af9d4e9ca0ba9df4365051aa.png",
+    "created_at": "2026-07-13 03:00:17"
+  },
+  {
+    "username": "demo",
+    "filename": "60a670503c2e454fbc9f66eb956b0184.pdf",
+    "original_name": "零基础开发AI Agent (叶涛管锴杨霆辉) (z-library.sk, 1lib.sk, z-lib.sk).pdf",
+    "file_size": 72011413,
+    "cover": "60a670503c2e454fbc9f66eb956b0184.png",
+    "created_at": "2026-07-13 03:00:18"
+  },
+  {
+    "username": "demo",
+    "filename": "a9d67c16aa7d42d992b90bb4b8fd79d1.pdf",
+    "original_name": "零基础开发AI Agent——手把手教你用扣子做智能体_叶涛等-202501 (叶涛管锴 张心雨著) (z-library.sk, 1lib.sk, z-lib.sk).pdf",
+    "file_size": 63512921,
+    "cover": "a9d67c16aa7d42d992b90bb4b8fd79d1.png",
+    "created_at": "2026-07-13 03:00:18"
+  },
+  {
+    "username": "demo",
+    "filename": "aad39619eba14e1cb0f03d6f2339ee0a.pdf",
+    "original_name": "智能体设计模式智能系统构建实战指南 (Antonio Gulli) (z-library.sk, 1lib.sk, z-lib.sk).pdf",
+    "file_size": 5816522,
+    "cover": "aad39619eba14e1cb0f03d6f2339ee0a.png",
+    "created_at": "2026-07-13 03:00:19"
+  }
+]

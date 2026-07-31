@@ -1,0 +1,186 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="800" height="500">
+  <defs>
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#e8f4ff"/>
+      <stop offset="100%" stop-color="#f0f8ff"/>
+    </linearGradient>
+    <linearGradient id="blueGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#4db8ff"/>
+      <stop offset="100%" stop-color="#409EFF"/>
+    </linearGradient>
+    <linearGradient id="darkGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#2a2a4e"/>
+      <stop offset="100%" stop-color="#1a1a2e"/>
+    </linearGradient>
+  </defs>
+
+  <!-- 背景 -->
+  <rect width="800" height="500" fill="url(#bgGrad)" rx="8"/>
+
+  <!-- 标题 -->
+  <text x="400" y="30" text-anchor="middle" font-family="sans-serif" font-size="18" font-weight="bold" fill="#1a1a2e">管理者-工作者 三种模式对比</text>
+
+  <!-- ====== 模式1：层级管理 ====== -->
+  <text x="30" y="62" font-family="sans-serif" font-size="14" font-weight="bold" fill="#1a1a2e">模式1：层级管理</text>
+
+  <!-- 顶部管理者 -->
+  <rect x="340" y="75" width="120" height="36" rx="18" fill="url(#blueGrad)" stroke="#409EFF" stroke-width="1.5"/>
+  <text x="400" y="97" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#fff" font-weight="bold">总管理者</text>
+
+  <!-- 连线：总管理者 → 子管理者A/B/C -->
+  <line x1="370" y1="111" x2="220" y2="145" stroke="#409EFF" stroke-width="1.5"/>
+  <line x1="400" y1="111" x2="400" y2="145" stroke="#409EFF" stroke-width="1.5"/>
+  <line x1="430" y1="111" x2="580" y2="145" stroke="#409EFF" stroke-width="1.5"/>
+
+  <!-- 子管理者A -->
+  <rect x="150" y="145" width="140" height="32" rx="16" fill="#e0f0ff" stroke="#409EFF" stroke-width="1.2"/>
+  <text x="220" y="165" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#1a1a2e">子管理者 A</text>
+
+  <!-- 子管理者B -->
+  <rect x="330" y="145" width="140" height="32" rx="16" fill="#e0f0ff" stroke="#409EFF" stroke-width="1.2"/>
+  <text x="400" y="165" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#1a1a2e">子管理者 B</text>
+
+  <!-- 子管理者C -->
+  <rect x="510" y="145" width="140" height="32" rx="16" fill="#e0f0ff" stroke="#409EFF" stroke-width="1.2"/>
+  <text x="580" y="165" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#1a1a2e">子管理者 C</text>
+
+  <!-- 连线：子管理者A → 工作者 -->
+  <line x1="190" y1="177" x2="140" y2="210" stroke="#409EFF" stroke-width="1.2"/>
+  <line x1="220" y1="177" x2="220" y2="210" stroke="#409EFF" stroke-width="1.2"/>
+  <line x1="250" y1="177" x2="300" y2="210" stroke="#409EFF" stroke-width="1.2"/>
+
+  <!-- 工作者（子管理者A下） -->
+  <rect x="95" y="210" width="90" height="28" rx="14" fill="#f5f9ff" stroke="#a0cfff" stroke-width="1"/>
+  <text x="140" y="228" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#1a1a2e">工作者 1</text>
+  <rect x="195" y="210" width="90" height="28" rx="14" fill="#f5f9ff" stroke="#a0cfff" stroke-width="1"/>
+  <text x="240" y="228" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#1a1a2e">工作者 2</text>
+  <rect x="295" y="210" width="90" height="28" rx="14" fill="#f5f9ff" stroke="#a0cfff" stroke-width="1"/>
+  <text x="340" y="228" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#1a1a2e">工作者 3</text>
+
+  <!-- 连线：子管理者B → 工作者 -->
+  <line x1="370" y1="177" x2="350" y2="210" stroke="#409EFF" stroke-width="1.2"/>
+  <line x1="400" y1="177" x2="400" y2="210" stroke="#409EFF" stroke-width="1.2"/>
+  <line x1="430" y1="177" x2="450" y2="210" stroke="#409EFF" stroke-width="1.2"/>
+
+  <!-- 工作者（子管理者B下） -->
+  <rect x="310" y="210" width="80" height="28" rx="14" fill="#f5f9ff" stroke="#a0cfff" stroke-width="1"/>
+  <text x="350" y="228" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#1a1a2e">工作者 4</text>
+  <rect x="400" y="210" width="80" height="28" rx="14" fill="#f5f9ff" stroke="#a0cfff" stroke-width="1"/>
+  <text x="440" y="228" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#1a1a2e">工作者 5</text>
+
+  <!-- 连线：子管理者C → 工作者 -->
+  <line x1="550" y1="177" x2="530" y2="210" stroke="#409EFF" stroke-width="1.2"/>
+  <line x1="580" y1="177" x2="580" y2="210" stroke="#409EFF" stroke-width="1.2"/>
+  <line x1="610" y1="177" x2="630" y2="210" stroke="#409EFF" stroke-width="1.2"/>
+
+  <!-- 工作者（子管理者C下） -->
+  <rect x="490" y="210" width="80" height="28" rx="14" fill="#f5f9ff" stroke="#a0cfff" stroke-width="1"/>
+  <text x="530" y="228" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#1a1a2e">工作者 6</text>
+  <rect x="580" y="210" width="80" height="28" rx="14" fill="#f5f9ff" stroke="#a0cfff" stroke-width="1"/>
+  <text x="620" y="228" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#1a1a2e">工作者 7</text>
+  <rect x="670" y="210" width="80" height="28" rx="14" fill="#f5f9ff" stroke="#a0cfff" stroke-width="1"/>
+  <text x="710" y="228" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#1a1a2e">工作者 8</text>
+
+  <!-- 标注 -->
+  <text x="30" y="260" font-family="sans-serif" font-size="12" fill="#666">三层树状结构</text>
+
+  <!-- ====== 模式2：管理者-评审者-工作者 ====== -->
+  <line x1="30" y1="278" x2="770" y2="278" stroke="#d0e4f5" stroke-width="1" stroke-dasharray="4,4"/>
+
+  <text x="30" y="300" font-family="sans-serif" font-size="14" font-weight="bold" fill="#1a1a2e">模式2：管理者-评审者-工作者</text>
+
+  <!-- 管理者 -->
+  <rect x="80" y="315" width="120" height="36" rx="18" fill="url(#blueGrad)" stroke="#409EFF" stroke-width="1.5"/>
+  <text x="140" y="337" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#fff" font-weight="bold">管理者</text>
+
+  <!-- 箭头：管理者 → 工作者 -->
+  <line x1="200" y1="333" x2="290" y2="333" stroke="#409EFF" stroke-width="1.5"/>
+  <polygon points="290,327 302,333 290,339" fill="#409EFF"/>
+
+  <!-- 工作者 -->
+  <rect x="302" y="315" width="120" height="36" rx="18" fill="#e0f0ff" stroke="#409EFF" stroke-width="1.5"/>
+  <text x="362" y="337" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#1a1a2e">工作者</text>
+
+  <!-- 箭头：工作者 → 评审者 -->
+  <line x1="422" y1="333" x2="512" y2="333" stroke="#409EFF" stroke-width="1.5"/>
+  <polygon points="512,327 524,333 512,339" fill="#409EFF"/>
+
+  <!-- 评审者 -->
+  <rect x="524" y="315" width="120" height="36" rx="18" fill="#fff5e6" stroke="#ffb347" stroke-width="1.5"/>
+  <text x="584" y="337" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#1a1a2e">评审者</text>
+
+  <!-- 评审者下方：✓ 和 ✗ 门 -->
+  <rect x="544" y="360" width="30" height="22" rx="4" fill="#52c41a" opacity="0.8"/>
+  <text x="559" y="375" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#fff">✓</text>
+
+  <rect x="594" y="360" width="30" height="22" rx="4" fill="#ff4d4f" opacity="0.8"/>
+  <text x="609" y="375" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#fff">✗</text>
+
+  <!-- 返回箭头：✗ → 工作者 -->
+  <path d="M609,382 L609,400 L362,400 L362,351" stroke="#ff4d4f" stroke-width="1.2" fill="none" stroke-dasharray="5,3"/>
+  <polygon points="356,351 362,345 368,351" fill="#ff4d4f"/>
+  <text x="480" y="415" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#ff4d4f">退回修改</text>
+
+  <!-- 前进箭头：✓ → 管理者 -->
+  <path d="M559,382 L559,420 L140,420 L140,351" stroke="#52c41a" stroke-width="1.2" fill="none" stroke-dasharray="5,3"/>
+  <polygon points="134,351 140,345 146,351" fill="#52c41a"/>
+  <text x="350" y="435" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#52c41a">通过</text>
+
+  <!-- 标注 -->
+  <text x="30" y="460" font-family="sans-serif" font-size="12" fill="#666">带评审反馈回路</text>
+
+  <!-- ====== 模式3：轮换管理者 ====== -->
+  <line x1="30" y1="470" x2="770" y2="470" stroke="#d0e4f5" stroke-width="1" stroke-dasharray="4,4"/>
+
+  <!-- 这部分放在底部区域，但为了不重叠，我们重新安排布局 -->
+  <!-- 实际上我们需要在剩余空间绘制，但SVG高度已固定，所以调整 -->
+  <!-- 由于高度限制，模式3将绘制在模式2下方紧凑位置 -->
+
+  <!-- 清除之前的模式3尝试，重新绘制 -->
+
+  <!-- 重设：模式3 轮换管理者 - 放在底部区域 -->
+  <text x="30" y="490" font-family="sans-serif" font-size="14" font-weight="bold" fill="#1a1a2e">模式3：轮换管理者</text>
+
+  <!-- 由于高度不足，模式3将绘制在模式2的评审者下方空白处 -->
+  <!-- 实际上我们需要在SVG中重新安排，但为了不破坏已有内容，我们调整模式3的位置 -->
+
+  <!-- 重新绘制整个模式3在底部 -->
+  <!-- 清除之前的模式3内容 -->
+
+  <!-- 实际上模式3应该从y=490开始绘制，但空间不够，我们重新调整 -->
+  <!-- 由于SVG高度500，模式2结束在460，模式3从470开始，有30px空间 -->
+  <!-- 我们重新设计模式3为紧凑圆形 -->
+
+  <!-- 圆形布局 -->
+  <circle cx="400" cy="485" r="12" fill="none" stroke="#409EFF" stroke-width="1.5" stroke-dasharray="4,3"/>
+
+  <!-- 三个节点 -->
+  <rect x="310" y="475" width="100" height="24" rx="12" fill="#e0f0ff" stroke="#409EFF" stroke-width="1"/>
+  <text x="360" y="491" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#1a1a2e">战略分析师</text>
+
+  <rect x="440" y="475" width="80" height="24" rx="12" fill="#e0f0ff" stroke="#409EFF" stroke-width="1"/>
+  <text x="480" y="491" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#1a1a2e">技术主管</text>
+
+  <rect x="540" y="475" width="80" height="24" rx="12" fill="#e0f0ff" stroke="#409EFF" stroke-width="1"/>
+  <text x="580" y="491" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#1a1a2e">编辑</text>
+
+  <!-- 轮换箭头 -->
+  <path d="M410,487 C430,480 440,480 450,487" stroke="#409EFF" stroke-width="1" fill="none" marker-end="url(#arrowSmall)"/>
+  <path d="M520,487 C540,480 550,480 560,487" stroke="#409EFF" stroke-width="1" fill="none"/>
+  <path d="M620,487 C640,480 650,480 660,487" stroke="#409EFF" stroke-width="1" fill="none"/>
+
+  <defs>
+    <marker id="arrowSmall" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M0,0 L10,5 L0,10 Z" fill="#409EFF"/>
+    </marker>
+  </defs>
+
+  <!-- 旋转箭头标注 -->
+  <text x="430" y="473" font-family="sans-serif" font-size="9" fill="#409EFF">→</text>
+  <text x="540" y="473" font-family="sans-serif" font-size="9" fill="#409EFF">→</text>
+  <text x="640" y="473" font-family="sans-serif" font-size="9" fill="#409EFF">→</text>
+
+  <!-- 底部标注 -->
+  <text x="30" y="498" font-family="sans-serif" font-size="11" fill="#666">角色轮换</text>
+
+</svg>

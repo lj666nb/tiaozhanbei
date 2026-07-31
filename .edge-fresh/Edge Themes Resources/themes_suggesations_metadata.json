@@ -1,0 +1,84 @@
+{
+	"themes" : [
+		{
+			"id":"1",
+			"prompt" : "A close-up shot of a peacock's feathers",
+			"url": "https://assets.msn.com/staticsb/statics/latest/softfre/Images/1/ai_theme_background.jpg",
+			"thumbnail_url": "https://assets.msn.com/staticsb/statics/latest/softfre/Images/1/thumbnail_peacock.webp",
+			"prominent_color": "0xff255351",
+			"frame_color": "0xff1b3d3d",
+			"active_tab_color": "0xff2a5f5f",
+			"omnibox_color": "0x0"
+		},
+		{
+			"id":"2",
+			"prompt" : "A dog helping a cat climb over a fence",
+			"url": "https://assets.msn.com/staticsb/statics/latest/softfre/Images/2/ai_theme_background.jpg",
+			"thumbnail_url": "https://assets.msn.com/staticsb/statics/latest/softfre/Images/2/thumbnail_dogcat.webp",
+			"prominent_color": "0xff765d35",
+			"frame_color": "0xff6c5531",
+			"active_tab_color": "0xffb39057",
+			"omnibox_color": "0x0"
+		},
+		{
+			"id":"3",
+			"prompt" : "Hot air balloon flying over the Great Pyramid of Giza",
+			"url": "https://assets.msn.com/staticsb/statics/latest/softfre/Images/3/ai_theme_background.jpg",
+			"thumbnail_url": "https://assets.msn.com/staticsb/statics/latest/softfre/Images/3/thumbnail_airballon.webp",
+			"prominent_color": "0xff2b2622",
+			"frame_color": "0xff2b2622",
+			"active_tab_color": "0xff50463e",
+			"omnibox_color": "0x0"
+		},
+		{
+			"id":"4",
+			"prompt" : "A glistening spider web during sundown in a forest that overlooks the mountains; wide shot",
+			"url": "https://assets.msn.com/staticsb/statics/latest/softfre/Images/4/ai_theme_background.jpg",
+			"thumbnail_url": "https://assets.msn.com/staticsb/statics/latest/softfre/Images/4/thumbnail_spider.webp",
+			"prominent_color": "0xff472712",
+			"frame_color": "0xff472712",
+			"active_tab_color": "0xff75401d",
+			"omnibox_color": "0x0"
+		},
+		{
+			"id":"5",
+			"prompt" : "A herd of seahorses; photorealistic",
+			"url": "https://assets.msn.com/staticsb/statics/latest/softfre/Images/5/ai_theme_background.jpg",
+			"thumbnail_url": "https://assets.msn.com/staticsb/statics/latest/softfre/Images/5/thumbnail_seahorses.webp",
+			"prominent_color": "0xff421e10",
+			"frame_color": "0xff421e10",
+			"active_tab_color": "0xff76351c",
+			"omnibox_color": "0x0"
+		},
+		{
+			"id":"6",
+			"prompt" : "A scenic view of a snow-covered lake at night; long shot",
+			"url": "https://assets.msn.com/staticsb/statics/latest/softfre/Images/6/ai_theme_background.jpg",
+			"thumbnail_url": "https://assets.msn.com/staticsb/statics/latest/softfre/Images/6/thumbnail_snowlake.webp",
+			"prominent_color": "0xff1e2631",
+			"frame_color": "0xff1e2631",
+			"active_tab_color": "0xff39485d",
+			"omnibox_color": "0x0"
+		},
+		{
+			"id":"7",
+			"prompt" : "A top-down view of Evergreen trees",
+			"url": "https://assets.msn.com/staticsb/statics/latest/softfre/Images/7/ai_theme_background.jpg",
+			"thumbnail_url": "https://assets.msn.com/staticsb/statics/latest/softfre/Images/7/thumbnail_topdowntrees.webp",
+			"prominent_color": "0xff263e30",
+			"frame_color": "0xff263e30",
+			"active_tab_color": "0xff3a5f49",
+			"omnibox_color": "0x0"
+		},
+		{
+			"id":"8",
+			"prompt" : "An alien-filled spaceship landing on Earth depicted in a pixelated-style",
+			"url": "https://assets.msn.com/staticsb/statics/latest/softfre/Images/8/ai_theme_background.jpg",
+			"thumbnail_url": "https://assets.msn.com/staticsb/statics/latest/softfre/Images/8/thumbnail_alien.webp",
+			"prominent_color": "0xff384a78",
+			"frame_color": "0xff29385a",
+			"active_tab_color": "0xff3f568a",
+			"omnibox_color": "0x0"
+		}		
+	]
+}

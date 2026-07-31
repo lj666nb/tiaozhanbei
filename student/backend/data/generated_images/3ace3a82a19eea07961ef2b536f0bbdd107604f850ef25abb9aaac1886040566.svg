@@ -1,0 +1,149 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="800" height="500">
+  <defs>
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#E8F4FD"/>
+      <stop offset="100%" stop-color="#F0F8FF"/>
+    </linearGradient>
+    <linearGradient id="leftGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#409EFF"/>
+      <stop offset="100%" stop-color="#2b7cd0"/>
+    </linearGradient>
+    <linearGradient id="rightGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#409EFF"/>
+      <stop offset="100%" stop-color="#2b7cd0"/>
+    </linearGradient>
+    <linearGradient id="bridgeGrad" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#409EFF" stop-opacity="0.3"/>
+      <stop offset="50%" stop-color="#409EFF" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#409EFF" stop-opacity="0.3"/>
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <filter id="shadow">
+      <feDropShadow dx="2" dy="2" stdDeviation="3" flood-color="#1a1a2e" flood-opacity="0.1"/>
+    </filter>
+  </defs>
+
+  <!-- 背景 -->
+  <rect width="800" height="500" fill="url(#bgGrad)" rx="8"/>
+
+  <!-- 标题 -->
+  <text x="400" y="38" text-anchor="middle" font-family="sans-serif" font-size="20" font-weight="bold" fill="#1a1a2e">纳什均衡：纯策略与混合策略</text>
+
+  <!-- 左侧区域：纯策略纳什均衡 -->
+  <rect x="40" y="60" width="340" height="400" rx="12" fill="white" stroke="#409EFF" stroke-width="1.5" filter="url(#shadow)" opacity="0.95"/>
+  <text x="210" y="95" text-anchor="middle" font-family="sans-serif" font-size="16" font-weight="bold" fill="#1a1a2e">纯策略纳什均衡</text>
+
+  <!-- 协调博弈矩阵 -->
+  <rect x="65" y="115" width="290" height="220" rx="6" fill="#F5F9FF" stroke="#409EFF" stroke-width="1"/>
+
+  <!-- 矩阵标签 -->
+  <text x="145" y="140" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#1a1a2e" font-weight="bold">玩家 B</text>
+  <text x="80" y="175" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#1a1a2e" font-weight="bold">玩</text>
+  <text x="80" y="192" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#1a1a2e" font-weight="bold">家</text>
+  <text x="80" y="209" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#1a1a2e" font-weight="bold">A</text>
+
+  <!-- 策略标签 -->
+  <text x="145" y="163" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#409EFF">左</text>
+  <text x="260" y="163" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#409EFF">右</text>
+  <text x="100" y="240" text-anchor="end" font-family="sans-serif" font-size="13" fill="#409EFF">上</text>
+  <text x="100" y="300" text-anchor="end" font-family="sans-serif" font-size="13" fill="#409EFF">下</text>
+
+  <!-- 矩阵单元格 -->
+  <rect x="115" y="170" width="100" height="55" rx="4" fill="white" stroke="#B0D4FF" stroke-width="1"/>
+  <rect x="225" y="170" width="100" height="55" rx="4" fill="white" stroke="#B0D4FF" stroke-width="1"/>
+  <rect x="115" y="235" width="100" height="55" rx="4" fill="white" stroke="#B0D4FF" stroke-width="1"/>
+  <rect x="225" y="235" width="100" height="55" rx="4" fill="white" stroke="#B0D4FF" stroke-width="1"/>
+
+  <!-- 左上单元格：均衡 -->
+  <rect x="115" y="170" width="100" height="55" rx="4" fill="#E8F4FD" stroke="#409EFF" stroke-width="2"/>
+  <text x="165" y="195" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#1a1a2e">(2, 2)</text>
+  <text x="165" y="215" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#409EFF">✓ 均衡</text>
+  <circle cx="165" cy="170" r="5" fill="#409EFF" filter="url(#glow)"/>
+
+  <!-- 右上 -->
+  <text x="275" y="195" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#1a1a2e">(0, 0)</text>
+
+  <!-- 左下 -->
+  <text x="165" y="260" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#1a1a2e">(0, 0)</text>
+
+  <!-- 右下：均衡 -->
+  <rect x="225" y="235" width="100" height="55" rx="4" fill="#E8F4FD" stroke="#409EFF" stroke-width="2"/>
+  <text x="275" y="260" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#1a1a2e">(2, 2)</text>
+  <text x="275" y="280" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#409EFF">✓ 均衡</text>
+  <circle cx="275" cy="235" r="5" fill="#409EFF" filter="url(#glow)"/>
+
+  <!-- 标注 -->
+  <rect x="80" y="350" width="260" height="36" rx="18" fill="#E8F4FD" stroke="#409EFF" stroke-width="1"/>
+  <text x="210" y="373" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#1a1a2e">均衡点：左-左 与 右-右</text>
+
+  <rect x="80" y="400" width="260" height="36" rx="18" fill="#F0F8FF" stroke="#B0D4FF" stroke-width="1"/>
+  <text x="210" y="423" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#1a1a2e">双方无单方偏离动机</text>
+
+  <!-- 右侧区域：混合策略纳什均衡 -->
+  <rect x="420" y="60" width="340" height="400" rx="12" fill="white" stroke="#409EFF" stroke-width="1.5" filter="url(#shadow)" opacity="0.95"/>
+  <text x="590" y="95" text-anchor="middle" font-family="sans-serif" font-size="16" font-weight="bold" fill="#1a1a2e">混合策略纳什均衡</text>
+
+  <!-- 饼图：石头剪刀布 -->
+  <g transform="translate(590, 270)">
+    <!-- 饼图背景 -->
+    <circle cx="0" cy="0" r="95" fill="white" stroke="#409EFF" stroke-width="1.5"/>
+
+    <!-- 三分之一扇形：石头 -->
+    <path d="M0,0 L0,-95 A95,95 0 0,1 82.27,-47.5 Z" fill="#409EFF" opacity="0.85"/>
+    <!-- 三分之一扇形：布 -->
+    <path d="M0,0 L82.27,-47.5 A95,95 0 0,1 82.27,47.5 Z" fill="#2b7cd0" opacity="0.85"/>
+    <!-- 三分之一扇形：剪刀 -->
+    <path d="M0,0 L82.27,47.5 A95,95 0 0,1 0,95 Z" fill="#1a1a2e" opacity="0.7"/>
+
+    <!-- 分隔线 -->
+    <line x1="0" y1="0" x2="0" y2="-95" stroke="white" stroke-width="1.5"/>
+    <line x1="0" y1="0" x2="82.27" y2="-47.5" stroke="white" stroke-width="1.5"/>
+    <line x1="0" y1="0" x2="82.27" y2="47.5" stroke="white" stroke-width="1.5"/>
+
+    <!-- 标签 -->
+    <text x="20" y="-55" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="bold" fill="white">石头</text>
+    <text x="55" y="0" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="bold" fill="white">布</text>
+    <text x="20" y="60" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="bold" fill="white">剪刀</text>
+
+    <!-- 概率标注 -->
+    <text x="-50" y="-70" text-anchor="middle" font-family="sans-serif" font-size="12" fill="white" opacity="0.9">1/3</text>
+    <text x="70" y="-25" text-anchor="middle" font-family="sans-serif" font-size="12" fill="white" opacity="0.9">1/3</text>
+    <text x="55" y="55" text-anchor="middle" font-family="sans-serif" font-size="12" fill="white" opacity="0.9">1/3</text>
+
+    <!-- 中心节点 -->
+    <circle cx="0" cy="0" r="6" fill="#409EFF" filter="url(#glow)"/>
+  </g>
+
+  <!-- 标注 -->
+  <rect x="455" y="380" width="270" height="36" rx="18" fill="#E8F4FD" stroke="#409EFF" stroke-width="1"/>
+  <text x="590" y="403" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#1a1a2e">等概率混合：1/3 随机化</text>
+
+  <rect x="455" y="425" width="270" height="28" rx="14" fill="#F0F8FF" stroke="#B0D4FF" stroke-width="1"/>
+  <text x="590" y="444" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#1a1a2e">对手无法预测策略</text>
+
+  <!-- 桥接：纳什均衡 -->
+  <g>
+    <!-- 桥接线 -->
+    <line x1="380" y1="260" x2="420" y2="260" stroke="url(#bridgeGrad)" stroke-width="4" stroke-dasharray="8,4"/>
+    <line x1="380" y1="260" x2="420" y2="260" stroke="#409EFF" stroke-width="2" stroke-dasharray="8,4" opacity="0.5"/>
+
+    <!-- 桥接标签 -->
+    <rect x="370" y="240" width="60" height="28" rx="14" fill="#1a1a2e" stroke="#409EFF" stroke-width="1.5"/>
+    <text x="400" y="259" text-anchor="middle" font-family="sans-serif" font-size="12" font-weight="bold" fill="white">纳什均衡</text>
+
+    <!-- 箭头 -->
+    <polygon points="420,255 430,260 420,265" fill="#409EFF"/>
+    <polygon points="380,255 370,260 380,265" fill="#409EFF"/>
+  </g>
+
+  <!-- 底部说明 -->
+  <rect x="250" y="470" width="300" height="22" rx="11" fill="#1a1a2e" opacity="0.08"/>
+  <text x="400" y="485" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#1a1a2e" opacity="0.6">纯策略均衡是确定性的 · 混合策略均衡涉及概率分布</text>
+
+</svg>

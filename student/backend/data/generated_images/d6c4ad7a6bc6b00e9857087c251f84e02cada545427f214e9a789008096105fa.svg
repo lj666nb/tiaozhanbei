@@ -1,0 +1,157 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="800" height="500">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#e8f4fd;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#d0eafc;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="cardGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#ffffff;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#f5f9ff;stop-opacity:1" />
+    </linearGradient>
+    <filter id="shadow" x="-5%" y="-5%" width="115%" height="115%">
+      <feDropShadow dx="1" dy="2" stdDeviation="3" flood-color="#409EFF" flood-opacity="0.15"/>
+    </filter>
+    <filter id="shadowDeep" x="-5%" y="-5%" width="115%" height="115%">
+      <feDropShadow dx="2" dy="3" stdDeviation="4" flood-color="#1a1a2e" flood-opacity="0.12"/>
+    </filter>
+  </defs>
+
+  <!-- 背景 -->
+  <rect x="0" y="0" width="800" height="500" fill="url(#bgGrad)" rx="0"/>
+
+  <!-- 标题 -->
+  <text x="400" y="32" text-anchor="middle" font-family="'Microsoft YaHei','PingFang SC',sans-serif" font-size="18" font-weight="bold" fill="#1a1a2e">智能体角色定义规范</text>
+
+  <!-- ==================== 左侧：角色卡片 ==================== -->
+  <g filter="url(#shadowDeep)">
+    <rect x="30" y="50" width="340" height="430" rx="12" fill="url(#cardGrad)" stroke="#409EFF" stroke-width="1.5"/>
+  </g>
+
+  <!-- 卡片标题 -->
+  <rect x="30" y="50" width="340" height="36" rx="12" fill="#409EFF"/>
+  <rect x="30" y="74" width="340" height="12" fill="#409EFF"/>
+  <text x="200" y="74" text-anchor="middle" font-family="'Microsoft YaHei','PingFang SC',sans-serif" font-size="16" font-weight="bold" fill="#ffffff">智能体角色卡片</text>
+
+  <!-- 1. 角色名称 -->
+  <rect x="50" y="100" width="300" height="44" rx="6" fill="#f0f7ff" stroke="#409EFF" stroke-width="0.8"/>
+  <rect x="50" y="100" width="80" height="44" rx="6" fill="#409EFF"/>
+  <rect x="118" y="100" width="12" height="44" fill="#409EFF"/>
+  <text x="90" y="126" text-anchor="middle" font-family="'Microsoft YaHei','PingFang SC',sans-serif" font-size="13" font-weight="bold" fill="#ffffff">角色名称</text>
+  <text x="145" y="126" font-family="'Microsoft YaHei','PingFang SC',sans-serif" font-size="14" fill="#1a1a2e">数据分析师</text>
+
+  <!-- 2. 核心目标 -->
+  <rect x="50" y="154" width="300" height="44" rx="6" fill="#f0f7ff" stroke="#409EFF" stroke-width="0.8"/>
+  <rect x="50" y="154" width="80" height="44" rx="6" fill="#409EFF"/>
+  <rect x="118" y="154" width="12" height="44" fill="#409EFF"/>
+  <text x="90" y="180" text-anchor="middle" font-family="'Microsoft YaHei','PingFang SC',sans-serif" font-size="13" font-weight="bold" fill="#ffffff">核心目标</text>
+  <!-- 靶心图标 -->
+  <circle cx="145" cy="176" r="10" fill="none" stroke="#e74c3c" stroke-width="1.5"/>
+  <circle cx="145" cy="176" r="5" fill="none" stroke="#e74c3c" stroke-width="1.5"/>
+  <circle cx="145" cy="176" r="2" fill="#e74c3c"/>
+  <text x="162" y="180" font-family="'Microsoft YaHei','PingFang SC',sans-serif" font-size="13" fill="#1a1a2e">从数据中提取可执行洞察</text>
+
+  <!-- 3. 专业领域 -->
+  <rect x="50" y="208" width="300" height="44" rx="6" fill="#f0f7ff" stroke="#409EFF" stroke-width="0.8"/>
+  <rect x="50" y="208" width="80" height="44" rx="6" fill="#409EFF"/>
+  <rect x="118" y="208" width="12" height="44" fill="#409EFF"/>
+  <text x="90" y="234" text-anchor="middle" font-family="'Microsoft YaHei','PingFang SC',sans-serif" font-size="13" font-weight="bold" fill="#ffffff">专业领域</text>
+  <!-- 雷达图标 -->
+  <polygon points="145,218 152,232 140,232" fill="none" stroke="#409EFF" stroke-width="1.2"/>
+  <polygon points="145,218 152,232 140,232" fill="#409EFF" fill-opacity="0.2"/>
+  <text x="162" y="234" font-family="'Microsoft YaHei','PingFang SC',sans-serif" font-size="13" fill="#1a1a2e">统计学 · 机器学习 · 可视化</text>
+
+  <!-- 4. 背景故事 -->
+  <rect x="50" y="262" width="300" height="52" rx="6" fill="#f0f7ff" stroke="#409EFF" stroke-width="0.8"/>
+  <rect x="50" y="262" width="80" height="52" rx="6" fill="#409EFF"/>
+  <rect x="118" y="262" width="12" height="52" fill="#409EFF"/>
+  <text x="90" y="288" text-anchor="middle" font-family="'Microsoft YaHei','PingFang SC',sans-serif" font-size="13" font-weight="bold" fill="#ffffff">背景故事</text>
+  <text x="145" y="282" font-family="'Microsoft YaHei','PingFang SC',sans-serif" font-size="11" fill="#555">5年电商数据分析经验</text>
+  <text x="145" y="298" font-family="'Microsoft YaHei','PingFang SC',sans-serif" font-size="11" fill="#555">擅长用户行为分析与预测建模</text>
+
+  <!-- 5. 能力边界 -->
+  <rect x="50" y="324" width="300" height="52" rx="6" fill="#f0f7ff" stroke="#409EFF" stroke-width="0.8"/>
+  <rect x="50" y="324" width="80" height="52" rx="6" fill="#409EFF"/>
+  <rect x="118" y="324" width="12" height="52" fill="#409EFF"/>
+  <text x="90" y="350" text-anchor="middle" font-family="'Microsoft YaHei','PingFang SC',sans-serif" font-size="13" font-weight="bold" fill="#ffffff">能力边界</text>
+  <!-- 虚线边界 -->
+  <line x1="145" y1="340" x2="240" y2="340" stroke="#e74c3c" stroke-width="1.2" stroke-dasharray="4,3"/>
+  <text x="145" y="356" font-family="'Microsoft YaHei','PingFang SC',sans-serif" font-size="11" fill="#555">✅ 数据清洗/建模/可视化</text>
+  <text x="145" y="370" font-family="'Microsoft YaHei','PingFang SC',sans-serif" font-size="11" fill="#e74c3c">❌ 不处理非结构化文本</text>
+
+  <!-- 6. 输出格式 -->
+  <rect x="50" y="386" width="300" height="44" rx="6" fill="#f0f7ff" stroke="#409EFF" stroke-width="0.8"/>
+  <rect x="50" y="386" width="80" height="44" rx="6" fill="#409EFF"/>
+  <rect x="118" y="386" width="12" height="44" fill="#409EFF"/>
+  <text x="90" y="412" text-anchor="middle" font-family="'Microsoft YaHei','PingFang SC',sans-serif" font-size="13" font-weight="bold" fill="#ffffff">输出格式</text>
+  <!-- 文档图标 -->
+  <rect x="142" y="398" width="12" height="16" rx="2" fill="none" stroke="#409EFF" stroke-width="1.2"/>
+  <line x1="145" y1="403" x2="151" y2="403" stroke="#409EFF" stroke-width="0.8"/>
+  <line x1="145" y1="407" x2="151" y2="407" stroke="#409EFF" stroke-width="0.8"/>
+  <text x="162" y="412" font-family="'Microsoft YaHei','PingFang SC',sans-serif" font-size="13" fill="#1a1a2e">结构化报告（PDF/HTML）</text>
+
+  <!-- ==================== 右侧：对比 ==================== -->
+  <!-- 好的定义 -->
+  <g filter="url(#shadow)">
+    <rect x="410" y="55" width="170" height="200" rx="10" fill="#ffffff" stroke="#27ae60" stroke-width="1.5"/>
+  </g>
+  <rect x="410" y="55" width="170" height="28" rx="10" fill="#27ae60"/>
+  <rect x="410" y="71" width="170" height="12" fill="#27ae60"/>
+  <text x="495" y="74" text-anchor="middle" font-family="'Microsoft YaHei','PingFang SC',sans-serif" font-size="12" font-weight="bold" fill="#ffffff">✅ 良好定义</text>
+
+  <text x="422" y="100" font-family="'Microsoft YaHei','PingFang SC',sans-serif" font-size="12" font-weight="bold" fill="#1a1a2e">角色：数据分析师</text>
+  <text x="422" y="118" font-family="'Microsoft YaHei','PingFang SC',sans-serif" font-size="10" fill="#555">目标：提取可执行洞察</text>
+  <text x="422" y="134" font-family="'Microsoft YaHei','PingFang SC',sans-serif" font-size="10" fill="#555">领域：统计学/ML/可视化</text>
+  <text x="422" y="150" font-family="'Microsoft YaHei','PingFang SC',sans-serif" font-size="10" fill="#555">背景：5年电商数据分析</text>
+  <text x="422" y="166" font-family="'Microsoft YaHei','PingFang SC',sans-serif" font-size="10" fill="#555">边界：结构化数据</text>
+  <text x="422" y="182" font-family="'Microsoft YaHei','PingFang SC',sans-serif" font-size="10" fill="#555">输出：结构化报告</text>
+
+  <!-- 分隔箭头 -->
+  <text x="495" y="220" text-anchor="middle" font-family="'Microsoft YaHei','PingFang SC',sans-serif" font-size="20" fill="#409EFF">⬇</text>
+
+  <!-- 差的定义 -->
+  <g filter="url(#shadow)">
+    <rect x="410" y="240" width="170" height="200" rx="10" fill="#ffffff" stroke="#e74c3c" stroke-width="1.5"/>
+  </g>
+  <rect x="410" y="240" width="170" height="28" rx="10" fill="#e74c3c"/>
+  <rect x="410" y="256" width="170" height="12" fill="#e74c3c"/>
+  <text x="495" y="259" text-anchor="middle" font-family="'Microsoft YaHei','PingFang SC',sans-serif" font-size="12" font-weight="bold" fill="#ffffff">❌ 糟糕定义</text>
+
+  <text x="422" y="285" font-family="'Microsoft YaHei','PingFang SC',sans-serif" font-size="12" font-weight="bold" fill="#1a1a2e">角色：通用助手</text>
+  <text x="422" y="305" font-family="'Microsoft YaHei','PingFang SC',sans-serif" font-size="10" fill="#888">目标：帮助用户解决问题</text>
+  <text x="422" y="325" font-family="'Microsoft YaHei','PingFang SC',sans-serif" font-size="10" fill="#888">领域：通用知识</text>
+  <text x="422" y="345" font-family="'Microsoft YaHei','PingFang SC',sans-serif" font-size="10" fill="#888">背景：无特定背景</text>
+  <text x="422" y="365" font-family="'Microsoft YaHei','PingFang SC',sans-serif" font-size="10" fill="#888">边界：不明确</text>
+  <text x="422" y="385" font-family="'Microsoft YaHei','PingFang SC',sans-serif" font-size="10" fill="#888">输出：文本回复</text>
+
+  <!-- 右侧标注 -->
+  <g filter="url(#shadow)">
+    <rect x="610" y="100" width="170" height="340" rx="10" fill="#ffffff" stroke="#409EFF" stroke-width="1.2"/>
+  </g>
+  <rect x="610" y="100" width="170" height="32" rx="10" fill="#409EFF"/>
+  <rect x="610" y="120" width="170" height="12" fill="#409EFF"/>
+  <text x="695" y="121" text-anchor="middle" font-family="'Microsoft YaHei','PingFang SC',sans-serif" font-size="13" font-weight="bold" fill="#ffffff">设计要点</text>
+
+  <circle cx="628" cy="152" r="6" fill="#409EFF"/>
+  <text x="640" y="156" font-family="'Microsoft YaHei','PingFang SC',sans-serif" font-size="12" fill="#1a1a2e">明确角色定位</text>
+
+  <circle cx="628" cy="192" r="6" fill="#409EFF"/>
+  <text x="640" y="196" font-family="'Microsoft YaHei','PingFang SC',sans-serif" font-size="12" fill="#1a1a2e">具体可衡量目标</text>
+
+  <circle cx="628" cy="232" r="6" fill="#409EFF"/>
+  <text x="640" y="236" font-family="'Microsoft YaHei','PingFang SC',sans-serif" font-size="12" fill="#1a1a2e">限定专业领域</text>
+
+  <circle cx="628" cy="272" r="6" fill="#409EFF"/>
+  <text x="640" y="276" font-family="'Microsoft YaHei','PingFang SC',sans-serif" font-size="12" fill="#1a1a2e">提供背景故事</text>
+
+  <circle cx="628" cy="312" r="6" fill="#409EFF"/>
+  <text x="640" y="316" font-family="'Microsoft YaHei','PingFang SC',sans-serif" font-size="12" fill="#1a1a2e">清晰能力边界</text>
+
+  <circle cx="628" cy="352" r="6" fill="#409EFF"/>
+  <text x="640" y="356" font-family="'Microsoft YaHei','PingFang SC',sans-serif" font-size="12" fill="#1a1a2e">规范输出格式</text>
+
+  <circle cx="628" cy="392" r="6" fill="#409EFF"/>
+  <text x="640" y="396" font-family="'Microsoft YaHei','PingFang SC',sans-serif" font-size="12" fill="#1a1a2e">避免通用定义</text>
+
+  <!-- 底部信息 -->
+  <text x="400" y="490" text-anchor="middle" font-family="'Microsoft YaHei','PingFang SC',sans-serif" font-size="11" fill="#888">智能体角色定义规范 · 六要素卡片设计</text>
+</svg>

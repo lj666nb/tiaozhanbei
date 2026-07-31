@@ -1,0 +1,111 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="800" height="500">
+  <defs>
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#f0f7ff"/>
+      <stop offset="100%" stop-color="#e0f0fe"/>
+    </linearGradient>
+    <linearGradient id="headerGrad" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#1a1a2e"/>
+      <stop offset="100%" stop-color="#2d2d5e"/>
+    </linearGradient>
+  </defs>
+
+  <!-- 背景 -->
+  <rect width="800" height="500" fill="url(#bgGrad)" rx="12"/>
+
+  <!-- 主文档边框 -->
+  <rect x="40" y="30" width="720" height="440" rx="16" fill="white" stroke="#409EFF" stroke-width="2.5" opacity="0.95"/>
+  <rect x="40" y="30" width="720" height="440" rx="16" fill="none" stroke="#1a1a2e" stroke-width="1" opacity="0.08"/>
+
+  <!-- 标题栏 -->
+  <rect x="40" y="30" width="720" height="44" rx="16" fill="url(#headerGrad)"/>
+  <rect x="40" y="58" width="720" height="16" fill="url(#headerGrad)"/>
+  <text x="400" y="58" text-anchor="middle" fill="white" font-family="sans-serif" font-size="18" font-weight="bold">系统提示词结构解剖图</text>
+
+  <!-- ============ 第1部分：角色设定 ============ -->
+  <rect x="60" y="88" width="680" height="72" rx="10" fill="#f5f9ff" stroke="#409EFF" stroke-width="1.5"/>
+  <!-- 序号 -->
+  <circle cx="78" cy="106" r="12" fill="#409EFF"/>
+  <text x="78" y="111" text-anchor="middle" fill="white" font-family="sans-serif" font-size="12" font-weight="bold">1</text>
+  <!-- 角色图标 -->
+  <circle cx="130" cy="124" r="18" fill="#e8f2ff" stroke="#409EFF" stroke-width="1.2"/>
+  <circle cx="130" cy="116" r="6" fill="#409EFF"/>
+  <ellipse cx="130" cy="132" rx="10" ry="6" fill="#409EFF"/>
+  <!-- 标签 -->
+  <text x="162" y="112" fill="#1a1a2e" font-family="sans-serif" font-size="15" font-weight="bold">角色设定 / Persona</text>
+  <text x="162" y="134" fill="#666" font-family="sans-serif" font-size="13">身份 + 专业领域 + 沟通风格</text>
+  <!-- 徽章 -->
+  <rect x="580" y="100" width="140" height="24" rx="12" fill="#409EFF" opacity="0.15"/>
+  <text x="650" y="116" text-anchor="middle" fill="#409EFF" font-family="sans-serif" font-size="12" font-weight="bold">🎭 角色锚点</text>
+
+  <!-- 连接线 1→2 -->
+  <line x1="400" y1="160" x2="400" y2="172" stroke="#409EFF" stroke-width="1.5" stroke-dasharray="4,3"/>
+
+  <!-- ============ 第2部分：行为约束 ============ -->
+  <rect x="60" y="174" width="680" height="72" rx="10" fill="#f5f9ff" stroke="#409EFF" stroke-width="1.5"/>
+  <circle cx="78" cy="192" r="12" fill="#409EFF"/>
+  <text x="78" y="197" text-anchor="middle" fill="white" font-family="sans-serif" font-size="12" font-weight="bold">2</text>
+  <!-- 规则书图标 -->
+  <rect x="112" y="182" width="22" height="28" rx="3" fill="#e8f2ff" stroke="#409EFF" stroke-width="1.2"/>
+  <line x1="118" y1="190" x2="128" y2="190" stroke="#409EFF" stroke-width="1.2"/>
+  <line x1="118" y1="195" x2="128" y2="195" stroke="#409EFF" stroke-width="1.2"/>
+  <line x1="118" y1="200" x2="125" y2="200" stroke="#409EFF" stroke-width="1.2"/>
+  <!-- 对号/错号 -->
+  <text x="150" y="198" fill="#22a559" font-family="sans-serif" font-size="16">✓</text>
+  <text x="170" y="198" fill="#e74c3c" font-family="sans-serif" font-size="16">✗</text>
+  <text x="162" y="198" fill="#1a1a2e" font-family="sans-serif" font-size="15" font-weight="bold"> 行为约束 / Behavioral Constraints</text>
+  <text x="162" y="220" fill="#666" font-family="sans-serif" font-size="13">应该做的 vs 不应该做的</text>
+  <!-- 标注 -->
+  <rect x="580" y="186" width="140" height="24" rx="12" fill="#22a559" opacity="0.12"/>
+  <text x="650" y="202" text-anchor="middle" fill="#22a559" font-family="sans-serif" font-size="12" font-weight="bold">⚖️ 边界规则</text>
+
+  <!-- 连接线 2→3 -->
+  <line x1="400" y1="246" x2="400" y2="258" stroke="#409EFF" stroke-width="1.5" stroke-dasharray="4,3"/>
+
+  <!-- ============ 第3部分：能力边界 ============ -->
+  <rect x="60" y="260" width="680" height="72" rx="10" fill="#f5f9ff" stroke="#409EFF" stroke-width="1.5"/>
+  <circle cx="78" cy="278" r="12" fill="#409EFF"/>
+  <text x="78" y="283" text-anchor="middle" fill="white" font-family="sans-serif" font-size="12" font-weight="bold">3</text>
+  <!-- 边界圆 -->
+  <circle cx="130" cy="296" r="18" fill="none" stroke="#409EFF" stroke-width="1.5" stroke-dasharray="4,2"/>
+  <circle cx="130" cy="296" r="8" fill="#e8f2ff" stroke="#409EFF" stroke-width="1"/>
+  <text x="130" y="300" text-anchor="middle" fill="#409EFF" font-family="sans-serif" font-size="9">界</text>
+  <!-- 圈内/外标记 -->
+  <text x="158" y="288" fill="#409EFF" font-family="sans-serif" font-size="11">● 圈内：可处理</text>
+  <text x="158" y="308" fill="#e74c3c" font-family="sans-serif" font-size="11">○ 圈外：不可处理</text>
+  <text x="162" y="284" fill="#1a1a2e" font-family="sans-serif" font-size="15" font-weight="bold"> 能力边界 / Capability Boundaries</text>
+  <text x="162" y="306" fill="#666" font-family="sans-serif" font-size="13">明确能力范围与限制</text>
+  <!-- 标注 -->
+  <rect x="580" y="272" width="140" height="24" rx="12" fill="#e74c3c" opacity="0.1"/>
+  <text x="650" y="288" text-anchor="middle" fill="#e74c3c" font-family="sans-serif" font-size="12" font-weight="bold">🎯 能力圈定</text>
+
+  <!-- 连接线 3→4 -->
+  <line x1="400" y1="332" x2="400" y2="344" stroke="#409EFF" stroke-width="1.5" stroke-dasharray="4,3"/>
+
+  <!-- ============ 第4部分：背景知识注入 ============ -->
+  <rect x="60" y="346" width="680" height="72" rx="10" fill="#f5f9ff" stroke="#409EFF" stroke-width="1.5"/>
+  <circle cx="78" cy="364" r="12" fill="#409EFF"/>
+  <text x="78" y="369" text-anchor="middle" fill="white" font-family="sans-serif" font-size="12" font-weight="bold">4</text>
+  <!-- 书本图标 -->
+  <rect x="112" y="354" width="24" height="20" rx="2" fill="#e8f2ff" stroke="#409EFF" stroke-width="1.2"/>
+  <line x1="124" y1="354" x2="124" y2="374" stroke="#409EFF" stroke-width="1"/>
+  <!-- 知识注入图标 -->
+  <text x="146" y="370" fill="#409EFF" font-family="sans-serif" font-size="14">📘</text>
+  <text x="164" y="370" fill="#409EFF" font-family="sans-serif" font-size="14">📗</text>
+  <text x="182" y="370" fill="#409EFF" font-family="sans-serif" font-size="14">📙</text>
+  <text x="162" y="370" fill="#1a1a2e" font-family="sans-serif" font-size="15" font-weight="bold"> 背景知识注入 / Knowledge Injection</text>
+  <text x="162" y="392" fill="#666" font-family="sans-serif" font-size="13">术语 · 业务规则 · 文档</text>
+  <!-- 标注 -->
+  <rect x="580" y="358" width="140" height="24" rx="12" fill="#409EFF" opacity="0.12"/>
+  <text x="650" y="374" text-anchor="middle" fill="#409EFF" font-family="sans-serif" font-size="12" font-weight="bold">📚 知识库</text>
+
+  <!-- ============ 底部警告 ============ -->
+  <rect x="60" y="432" width="680" height="28" rx="6" fill="#fff3cd" stroke="#ffc107" stroke-width="1"/>
+  <text x="400" y="450" text-anchor="middle" fill="#856404" font-family="sans-serif" font-size="12" font-weight="bold">⚠️ “Lost-in-the-Middle” 警告：最重要的约束应放在顶部和底部</text>
+
+  <!-- 装饰性侧边标注 -->
+  <text x="52" y="300" text-anchor="middle" fill="#409EFF" font-family="sans-serif" font-size="10" opacity="0.4" transform="rotate(-90,52,300)">系统提示词结构</text>
+
+  <!-- 底部装饰线 -->
+  <line x1="200" y1="468" x2="600" y2="468" stroke="#409EFF" stroke-width="1" opacity="0.2"/>
+</svg>

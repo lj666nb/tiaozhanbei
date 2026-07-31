@@ -1,0 +1,163 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="800" height="500">
+  <defs>
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#E8F4FD"/>
+      <stop offset="100%" stop-color="#D0ECFA"/>
+    </linearGradient>
+    <linearGradient id="cardGradL" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#F5F7FA"/>
+      <stop offset="100%" stop-color="#EBEEF5"/>
+    </linearGradient>
+    <linearGradient id="cardGradR" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#E6F1FF"/>
+      <stop offset="100%" stop-color="#D4E8FF"/>
+    </linearGradient>
+  </defs>
+
+  <!-- 背景 -->
+  <rect width="800" height="500" fill="url(#bgGrad)"/>
+
+  <!-- 标题 -->
+  <text x="400" y="38" text-anchor="middle" font-family="sans-serif" font-size="20" font-weight="bold" fill="#1a1a2e">AI 智能体：破除迷思，认识真相</text>
+
+  <!-- 分割线 -->
+  <line x1="400" y1="52" x2="400" y2="480" stroke="#B0D4F1" stroke-width="1" stroke-dasharray="4,4"/>
+
+  <!-- ===== 左侧：迷思 ===== -->
+  <rect x="30" y="55" width="340" height="30" rx="4" fill="#E0E6ED"/>
+  <text x="200" y="75" text-anchor="middle" font-family="sans-serif" font-size="16" font-weight="bold" fill="#666">❌ 常见迷思</text>
+
+  <!-- 迷思卡片 1 -->
+  <rect x="30" y="95" width="340" height="60" rx="8" fill="url(#cardGradL)" stroke="#CCC" stroke-width="1"/>
+  <circle cx="55" cy="125" r="14" fill="#E74C3C" opacity="0.8"/>
+  <text x="55" y="130" text-anchor="middle" font-family="sans-serif" font-size="16" fill="white" font-weight="bold">✕</text>
+  <text x="80" y="118" font-family="sans-serif" font-size="14" fill="#333" font-weight="bold">迷思 1：聊天机器人 = 智能体</text>
+  <text x="80" y="140" font-family="sans-serif" font-size="12" fill="#888">仅有对话功能的简单聊天界面</text>
+  <!-- 插头图标 -->
+  <rect x="310" y="108" width="20" height="14" rx="2" fill="#999"/>
+  <rect x="316" y="122" width="8" height="6" fill="#999"/>
+  <line x1="320" y1="128" x2="320" y2="134" stroke="#999" stroke-width="2"/>
+
+  <!-- 迷思卡片 2 -->
+  <rect x="30" y="165" width="340" height="60" rx="8" fill="url(#cardGradL)" stroke="#CCC" stroke-width="1"/>
+  <circle cx="55" cy="195" r="14" fill="#E74C3C" opacity="0.8"/>
+  <text x="55" y="200" text-anchor="middle" font-family="sans-serif" font-size="16" fill="white" font-weight="bold">✕</text>
+  <text x="80" y="188" font-family="sans-serif" font-size="14" fill="#333" font-weight="bold">迷思 2：智能体必须体型巨大</text>
+  <text x="80" y="210" font-family="sans-serif" font-size="12" fill="#888">庞大笨重、资源消耗惊人的机器</text>
+  <!-- 大机器人 -->
+  <circle cx="330" cy="190" r="18" fill="#AAA"/>
+  <rect x="320" y="208" width="20" height="12" rx="3" fill="#AAA"/>
+  <circle cx="324" cy="186" r="3" fill="#666"/>
+  <circle cx="336" cy="186" r="3" fill="#666"/>
+
+  <!-- 迷思卡片 3 -->
+  <rect x="30" y="235" width="340" height="60" rx="8" fill="url(#cardGradL)" stroke="#CCC" stroke-width="1"/>
+  <circle cx="55" cy="265" r="14" fill="#E74C3C" opacity="0.8"/>
+  <text x="55" y="270" text-anchor="middle" font-family="sans-serif" font-size="16" fill="white" font-weight="bold">✕</text>
+  <text x="80" y="258" font-family="sans-serif" font-size="14" fill="#333" font-weight="bold">迷思 3：智能体完全自主运行</text>
+  <text x="80" y="280" font-family="sans-serif" font-size="12" fill="#888">无需人类监督的独立运行</text>
+  <!-- 跑步机器人 -->
+  <circle cx="325" cy="258" r="10" fill="#AAA"/>
+  <line x1="320" y1="268" x2="315" y2="282" stroke="#AAA" stroke-width="3"/>
+  <line x1="330" y1="268" x2="335" y2="282" stroke="#AAA" stroke-width="3"/>
+  <line x1="315" y1="282" x2="310" y2="290" stroke="#AAA" stroke-width="2"/>
+  <line x1="335" y1="282" x2="340" y2="290" stroke="#AAA" stroke-width="2"/>
+
+  <!-- 迷思卡片 4 -->
+  <rect x="30" y="305" width="340" height="60" rx="8" fill="url(#cardGradL)" stroke="#CCC" stroke-width="1"/>
+  <circle cx="55" cy="335" r="14" fill="#E74C3C" opacity="0.8"/>
+  <text x="55" y="340" text-anchor="middle" font-family="sans-serif" font-size="16" fill="white" font-weight="bold">✕</text>
+  <text x="80" y="328" font-family="sans-serif" font-size="14" fill="#333" font-weight="bold">迷思 4：大脑强大 = 身体弱小</text>
+  <text x="80" y="350" font-family="sans-serif" font-size="12" fill="#888">巨大智能与微小躯体的失衡</text>
+  <!-- 大脑 + 小身体 -->
+  <ellipse cx="330" cy="325" rx="18" ry="12" fill="#DDD"/>
+  <path d="M312,325 Q330,310 348,325" fill="none" stroke="#AAA" stroke-width="2"/>
+  <rect x="324" y="337" width="12" height="18" rx="3" fill="#AAA"/>
+  <line x1="324" y1="355" x2="320" y2="362" stroke="#AAA" stroke-width="2"/>
+  <line x1="336" y1="355" x2="340" y2="362" stroke="#AAA" stroke-width="2"/>
+
+  <!-- 迷思卡片 5 -->
+  <rect x="30" y="375" width="340" height="60" rx="8" fill="url(#cardGradL)" stroke="#CCC" stroke-width="1"/>
+  <circle cx="55" cy="405" r="14" fill="#E74C3C" opacity="0.8"/>
+  <text x="55" y="410" text-anchor="middle" font-family="sans-serif" font-size="16" fill="white" font-weight="bold">✕</text>
+  <text x="80" y="398" font-family="sans-serif" font-size="14" fill="#333" font-weight="bold">迷思 5：智能体取代传统软件</text>
+  <text x="80" y="420" font-family="sans-serif" font-size="12" fill="#888">完全摧毁并替代现有系统</text>
+  <!-- 压碎软件盒子 -->
+  <rect x="315" y="390" width="14" height="14" fill="#CCC" stroke="#999" stroke-width="1"/>
+  <rect x="332" y="390" width="14" height="14" fill="#CCC" stroke="#999" stroke-width="1"/>
+  <rect x="323" y="402" width="14" height="14" fill="#CCC" stroke="#999" stroke-width="1"/>
+  <circle cx="340" cy="395" r="12" fill="#E74C3C" opacity="0.5"/>
+
+  <!-- ===== 右侧：真相 ===== -->
+  <rect x="430" y="55" width="340" height="30" rx="4" fill="#D4E8FF"/>
+  <text x="600" y="75" text-anchor="middle" font-family="sans-serif" font-size="16" font-weight="bold" fill="#409EFF">✅ 真实情况</text>
+
+  <!-- 真相卡片 1 -->
+  <rect x="430" y="95" width="340" height="60" rx="8" fill="url(#cardGradR)" stroke="#409EFF" stroke-width="1.5"/>
+  <circle cx="455" cy="125" r="14" fill="#409EFF"/>
+  <text x="455" y="130" text-anchor="middle" font-family="sans-serif" font-size="16" fill="white" font-weight="bold">✓</text>
+  <text x="480" y="118" font-family="sans-serif" font-size="14" fill="#1a1a2e" font-weight="bold">真相 1：具备规划/记忆/工具</text>
+  <text x="480" y="140" font-family="sans-serif" font-size="12" fill="#666">完整的智能体核心能力组件</text>
+  <!-- 完整智能体图标 -->
+  <circle cx="740" cy="120" r="8" fill="#409EFF" opacity="0.3"/>
+  <rect x="732" y="128" width="16" height="8" rx="2" fill="#409EFF" opacity="0.3"/>
+  <line x1="732" y1="128" x2="728" y2="120" stroke="#409EFF" stroke-width="1" opacity="0.5"/>
+  <line x1="748" y1="128" x2="752" y2="120" stroke="#409EFF" stroke-width="1" opacity="0.5"/>
+  <rect x="735" y="136" width="4" height="4" fill="#409EFF" opacity="0.3"/>
+  <rect x="741" y="136" width="4" height="4" fill="#409EFF" opacity="0.3"/>
+
+  <!-- 真相卡片 2 -->
+  <rect x="430" y="165" width="340" height="60" rx="8" fill="url(#cardGradR)" stroke="#409EFF" stroke-width="1.5"/>
+  <circle cx="455" cy="195" r="14" fill="#409EFF"/>
+  <text x="455" y="200" text-anchor="middle" font-family="sans-serif" font-size="16" fill="white" font-weight="bold">✓</text>
+  <text x="480" y="188" font-family="sans-serif" font-size="14" fill="#1a1a2e" font-weight="bold">真相 2：规模适中、高效运行</text>
+  <text x="480" y="210" font-family="sans-serif" font-size="12" fill="#666">合理资源消耗的优化设计</text>
+  <!-- 适中机器人 -->
+  <circle cx="740" cy="190" r="10" fill="#409EFF" opacity="0.4"/>
+  <rect x="734" y="200" width="12" height="8" rx="2" fill="#409EFF" opacity="0.4"/>
+  <circle cx="736" cy="187" r="2" fill="#409EFF"/>
+  <circle cx="744" cy="187" r="2" fill="#409EFF"/>
+
+  <!-- 真相卡片 3 -->
+  <rect x="430" y="235" width="340" height="60" rx="8" fill="url(#cardGradR)" stroke="#409EFF" stroke-width="1.5"/>
+  <circle cx="455" cy="265" r="14" fill="#409EFF"/>
+  <text x="455" y="270" text-anchor="middle" font-family="sans-serif" font-size="16" fill="white" font-weight="bold">✓</text>
+  <text x="480" y="258" font-family="sans-serif" font-size="14" fill="#1a1a2e" font-weight="bold">真相 3：人类监督 + 人机协作</text>
+  <text x="480" y="280" font-family="sans-serif" font-size="12" fill="#666">人类与智能体协同工作</text>
+  <!-- 人监督机器人 -->
+  <circle cx="730" cy="258" r="8" fill="#409EFF" opacity="0.3"/>
+  <line x1="730" y1="266" x2="730" y2="278" stroke="#409EFF" stroke-width="2" opacity="0.3"/>
+  <line x1="722" y1="270" x2="738" y2="270" stroke="#409EFF" stroke-width="2" opacity="0.3"/>
+  <circle cx="748" cy="268" r="5" fill="#409EFF" opacity="0.5"/>
+  <rect x="745" y="273" width="6" height="6" rx="1" fill="#409EFF" opacity="0.5"/>
+  <line x1="745" y1="279" x2="743" y2="284" stroke="#409EFF" stroke-width="1" opacity="0.5"/>
+  <line x1="751" y1="279" x2="753" y2="284" stroke="#409EFF" stroke-width="1" opacity="0.5"/>
+
+  <!-- 真相卡片 4 -->
+  <rect x="430" y="305" width="340" height="60" rx="8" fill="url(#cardGradR)" stroke="#409EFF" stroke-width="1.5"/>
+  <circle cx="455" cy="335" r="14" fill="#409EFF"/>
+  <text x="455" y="340" text-anchor="middle" font-family="sans-serif" font-size="16" fill="white" font-weight="bold">✓</text>
+  <text x="480" y="328" font-family="sans-serif" font-size="14" fill="#1a1a2e" font-weight="bold">真相 4：智能与躯体均衡发展</text>
+  <text x="480" y="350" font-family="sans-serif" font-size="12" fill="#666">平衡的智能与物理形态</text>
+  <!-- 均衡大脑身体 -->
+  <ellipse cx="740" cy="325" rx="10" ry="7" fill="#409EFF" opacity="0.3"/>
+  <rect x="735" y="332" width="10" height="14" rx="2" fill="#409EFF" opacity="0.4"/>
+  <line x1="735" y1="346" x2="733" y2="352" stroke="#409EFF" stroke-width="1.5" opacity="0.4"/>
+  <line x1="745" y1="346" x2="747" y2="352" stroke="#409EFF" stroke-width="1.5" opacity="0.4"/>
+
+  <!-- 真相卡片 5 -->
+  <rect x="430" y="375" width="340" height="60" rx="8" fill="url(#cardGradR)" stroke="#409EFF" stroke-width="1.5"/>
+  <circle cx="455" cy="405" r="14" fill="#409EFF"/>
+  <text x="455" y="410" text-anchor="middle" font-family="sans-serif" font-size="16" fill="white" font-weight="bold">✓</text>
+  <text x="480" y="398" font-family="sans-serif" font-size="14" fill="#1a1a2e" font-weight="bold">真相 5：与传统软件协同共存</text>
+  <text x="480" y="420" font-family="sans-serif" font-size="12" fill="#666">智能体与现有系统互补协作</text>
+  <!-- 共存图标 -->
+  <rect x="730" y="392" width="12" height="12" rx="1" fill="#409EFF" opacity="0.3"/>
+  <rect x="744" y="392" width="12" height="12" rx="1" fill="#409EFF" opacity="0.3"/>
+  <rect x="737" y="404" width="12" height="12" rx="1" fill="#409EFF" opacity="0.3"/>
+  <circle cx="755" cy="400" r="6" fill="#409EFF" opacity="0.2"/>
+
+  <!-- 底部说明 -->
+  <text x="400" y="475" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#999">了解 AI 智能体的真实能力，做出更明智的技术决策</text>
+
+</svg>

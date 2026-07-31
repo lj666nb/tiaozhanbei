@@ -1,0 +1,207 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" font-family="'Microsoft YaHei', 'PingFang SC', sans-serif">
+  <defs>
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#E8F4FD"/>
+      <stop offset="100%" stop-color="#F0F8FF"/>
+    </linearGradient>
+    <linearGradient id="cardGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="100%" stop-color="#F5FAFF"/>
+    </linearGradient>
+    <linearGradient id="blueGrad" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#409EFF"/>
+      <stop offset="100%" stop-color="#6BB5FF"/>
+    </linearGradient>
+    <filter id="shadow" x="-5%" y="-5%" width="115%" height="115%">
+      <feDropShadow dx="0" dy="2" stdDeviation="4" flood-color="#409EFF" flood-opacity="0.15"/>
+    </filter>
+  </defs>
+
+  <!-- 背景 -->
+  <rect width="800" height="500" fill="url(#bgGrad)" rx="8"/>
+
+  <!-- 标题 -->
+  <text x="400" y="38" text-anchor="middle" font-size="20" font-weight="bold" fill="#1a1a2e">A2A（智能体间通信）协议概念图</text>
+  <line x1="280" y1="48" x2="520" y2="48" stroke="#409EFF" stroke-width="2" stroke-linecap="round"/>
+
+  <!-- ============================================ -->
+  <!-- 左侧：智能体卡片 -->
+  <!-- ============================================ -->
+  <g transform="translate(30, 65)">
+    <rect x="0" y="0" width="210" height="400" rx="12" fill="url(#cardGrad)" stroke="#409EFF" stroke-width="1.5" filter="url(#shadow)"/>
+    
+    <!-- 卡片标题 -->
+    <rect x="0" y="0" width="210" height="36" rx="12" fill="#409EFF"/>
+    <rect x="0" y="18" width="210" height="18" fill="#409EFF"/>
+    <text x="105" y="24" text-anchor="middle" font-size="14" font-weight="bold" fill="#ffffff">智能体卡片</text>
+
+    <!-- JSON 内容 -->
+    <g font-size="11" fill="#1a1a2e">
+      <!-- name -->
+      <text x="14" y="58" font-weight="bold" fill="#409EFF">name</text>
+      <text x="14" y="74" fill="#333">"客服助手"</text>
+
+      <!-- description -->
+      <text x="14" y="96" font-weight="bold" fill="#409EFF">description</text>
+      <text x="14" y="112" fill="#333">"智能客服与工单处理"</text>
+
+      <!-- URL -->
+      <text x="14" y="134" font-weight="bold" fill="#409EFF">URL</text>
+      <text x="14" y="150" fill="#333">"https://agent.example"</text>
+
+      <!-- capabilities -->
+      <text x="14" y="174" font-weight="bold" fill="#409EFF">capabilities</text>
+      <text x="14" y="190" fill="#555">├ streaming: true</text>
+      <text x="14" y="206" fill="#555">└ tools: ["查询", "通知"]</text>
+
+      <!-- skills -->
+      <text x="14" y="232" font-weight="bold" fill="#409EFF">skills</text>
+      <g fill="#555">
+        <text x="14" y="248">├ id: "sk-001"</text>
+        <text x="14" y="264">├ name: "工单处理"</text>
+        <text x="14" y="280">└ description: "创建/跟踪工单"</text>
+        <text x="14" y="300">├ id: "sk-002"</text>
+        <text x="14" y="316">├ name: "知识问答"</text>
+        <text x="14" y="332">└ description: "基于知识库回答"</text>
+      </g>
+
+      <!-- endpoints -->
+      <text x="14" y="356" font-weight="bold" fill="#409EFF">endpoints</text>
+      <text x="14" y="372" fill="#555">├ task: /api/task</text>
+      <text x="14" y="388" fill="#555">├ status: /api/status</text>
+      <text x="14" y="404" fill="#555">└ cancel: /api/cancel</text>
+    </g>
+  </g>
+
+  <!-- 标注 1：智能体卡片 -->
+  <g transform="translate(30, 65)">
+    <rect x="0" y="410" width="210" height="24" rx="12" fill="#1a1a2e" opacity="0.85"/>
+    <text x="105" y="426" text-anchor="middle" font-size="13" fill="#fff" font-weight="bold">📋 智能体卡片</text>
+  </g>
+
+  <!-- ============================================ -->
+  <!-- 中间：任务生命周期 -->
+  <!-- ============================================ -->
+  <g transform="translate(270, 65)">
+    <rect x="0" y="0" width="260" height="400" rx="12" fill="url(#cardGrad)" stroke="#409EFF" stroke-width="1.5" filter="url(#shadow)"/>
+    
+    <!-- 标题 -->
+    <rect x="0" y="0" width="260" height="36" rx="12" fill="#409EFF"/>
+    <rect x="0" y="18" width="260" height="18" fill="#409EFF"/>
+    <text x="130" y="24" text-anchor="middle" font-size="14" font-weight="bold" fill="#ffffff">任务生命周期</text>
+
+    <!-- 状态机图 -->
+    <!-- 创建 -->
+    <rect x="75" y="60" width="110" height="40" rx="20" fill="#E8F4FD" stroke="#409EFF" stroke-width="2"/>
+    <text x="130" y="85" text-anchor="middle" font-size="14" font-weight="bold" fill="#409EFF">已创建</text>
+
+    <!-- 箭头 1 -->
+    <line x1="130" y1="100" x2="130" y2="130" stroke="#409EFF" stroke-width="2" marker-end="url(#arrowBlue)"/>
+    <polygon points="126,128 130,138 134,128" fill="#409EFF"/>
+
+    <!-- 处理中 -->
+    <rect x="65" y="140" width="130" height="40" rx="20" fill="#409EFF"/>
+    <text x="130" y="165" text-anchor="middle" font-size="14" font-weight="bold" fill="#fff">处理中</text>
+
+    <!-- 分叉箭头 -->
+    <line x1="130" y1="180" x2="130" y2="210" stroke="#409EFF" stroke-width="2"/>
+    
+    <!-- 左箭头 -->
+    <line x1="130" y1="200" x2="50" y2="240" stroke="#409EFF" stroke-width="2"/>
+    <polygon points="52,236 42,244 54,246" fill="#409EFF"/>
+
+    <!-- 中箭头 -->
+    <line x1="130" y1="200" x2="130" y2="240" stroke="#409EFF" stroke-width="2"/>
+    <polygon points="126,238 130,248 134,238" fill="#409EFF"/>
+
+    <!-- 右箭头 -->
+    <line x1="130" y1="200" x2="210" y2="240" stroke="#409EFF" stroke-width="2"/>
+    <polygon points="208,236 218,244 206,246" fill="#409EFF"/>
+
+    <!-- 完成 -->
+    <rect x="10" y="250" width="80" height="36" rx="18" fill="#67C23A" opacity="0.9"/>
+    <text x="50" y="273" text-anchor="middle" font-size="13" font-weight="bold" fill="#fff">✓ 完成</text>
+
+    <!-- 失败 -->
+    <rect x="90" y="250" width="80" height="36" rx="18" fill="#F56C6C" opacity="0.9"/>
+    <text x="130" y="273" text-anchor="middle" font-size="13" font-weight="bold" fill="#fff">✗ 失败</text>
+
+    <!-- 取消 -->
+    <rect x="170" y="250" width="80" height="36" rx="18" fill="#909399" opacity="0.9"/>
+    <text x="210" y="273" text-anchor="middle" font-size="13" font-weight="bold" fill="#fff">○ 取消</text>
+
+    <!-- 循环箭头（处理中→已创建） -->
+    <path d="M 65 160 Q 30 160 30 130 Q 30 100 75 80" fill="none" stroke="#409EFF" stroke-width="1.5" stroke-dasharray="4,3"/>
+    <polygon points="73,76 68,86 80,82" fill="#409EFF"/>
+
+    <!-- 底部说明 -->
+    <text x="130" y="320" text-anchor="middle" font-size="12" fill="#666">状态转换：</text>
+    <text x="130" y="338" text-anchor="middle" font-size="12" fill="#666">已创建 → 处理中 → 完成/失败/取消</text>
+    
+    <!-- 状态标注 -->
+    <rect x="40" y="355" width="180" height="28" rx="14" fill="#1a1a2e" opacity="0.85"/>
+    <text x="130" y="373" text-anchor="middle" font-size="13" fill="#fff" font-weight="bold">🔄 状态机流转</text>
+  </g>
+
+  <!-- ============================================ -->
+  <!-- 右侧：三大优势 -->
+  <!-- ============================================ -->
+  <g transform="translate(560, 65)">
+    <rect x="0" y="0" width="210" height="400" rx="12" fill="url(#cardGrad)" stroke="#409EFF" stroke-width="1.5" filter="url(#shadow)"/>
+    
+    <!-- 标题 -->
+    <rect x="0" y="0" width="210" height="36" rx="12" fill="#409EFF"/>
+    <rect x="0" y="18" width="210" height="18" fill="#409EFF"/>
+    <text x="105" y="24" text-anchor="middle" font-size="14" font-weight="bold" fill="#ffffff">三大核心优势</text>
+
+    <!-- 优势 1：互操作性 -->
+    <g transform="translate(15, 60)">
+      <rect x="0" y="0" width="180" height="90" rx="10" fill="#F0F8FF" stroke="#409EFF" stroke-width="1" stroke-dasharray="3,2"/>
+      <circle cx="90" cy="28" r="18" fill="#409EFF" opacity="0.15"/>
+      <text x="90" y="34" text-anchor="middle" font-size="18">🔗</text>
+      <text x="90" y="58" text-anchor="middle" font-size="14" font-weight="bold" fill="#1a1a2e">互操作性</text>
+      <text x="90" y="76" text-anchor="middle" font-size="11" fill="#666">不同厂商智能体互联</text>
+    </g>
+
+    <!-- 优势 2：发现 -->
+    <g transform="translate(15, 170)">
+      <rect x="0" y="0" width="180" height="90" rx="10" fill="#F0F8FF" stroke="#409EFF" stroke-width="1" stroke-dasharray="3,2"/>
+      <circle cx="90" cy="28" r="18" fill="#409EFF" opacity="0.15"/>
+      <text x="90" y="34" text-anchor="middle" font-size="18">🔍</text>
+      <text x="90" y="58" text-anchor="middle" font-size="14" font-weight="bold" fill="#1a1a2e">发现机制</text>
+      <text x="90" y="76" text-anchor="middle" font-size="11" fill="#666">搜索智能体卡片</text>
+    </g>
+
+    <!-- 优势 3：标准化 -->
+    <g transform="translate(15, 280)">
+      <rect x="0" y="0" width="180" height="90" rx="10" fill="#F0F8FF" stroke="#409EFF" stroke-width="1" stroke-dasharray="3,2"/>
+      <circle cx="90" cy="28" r="18" fill="#409EFF" opacity="0.15"/>
+      <text x="90" y="34" text-anchor="middle" font-size="18">🏅</text>
+      <text x="90" y="58" text-anchor="middle" font-size="14" font-weight="bold" fill="#1a1a2e">标准化</text>
+      <text x="90" y="76" text-anchor="middle" font-size="11" fill="#666">统一协议规范</text>
+    </g>
+
+    <!-- 底部标注 -->
+    <rect x="15" y="390" width="180" height="24" rx="12" fill="#1a1a2e" opacity="0.85"/>
+    <text x="105" y="406" text-anchor="middle" font-size="13" fill="#fff" font-weight="bold">💡 核心优势</text>
+  </g>
+
+  <!-- ============================================ -->
+  <!-- 连接箭头（左→中） -->
+  <!-- ============================================ -->
+  <line x1="240" y1="265" x2="268" y2="265" stroke="#409EFF" stroke-width="2" stroke-dasharray="5,3"/>
+  <polygon points="266,261 276,265 266,269" fill="#409EFF"/>
+
+  <!-- 连接箭头（中→右） -->
+  <line x1="530" y1="265" x2="558" y2="265" stroke="#409EFF" stroke-width="2" stroke-dasharray="5,3"/>
+  <polygon points="556,261 566,265 556,269" fill="#409EFF"/>
+
+  <!-- ============================================ -->
+  <!-- 底部说明栏 -->
+  <!-- ============================================ -->
+  <g transform="translate(0, 480)">
+    <rect x="200" y="-20" width="400" height="28" rx="14" fill="#1a1a2e" opacity="0.8"/>
+    <text x="400" y="-2" text-anchor="middle" font-size="12" fill="#fff">A2A 协议：智能体之间通过标准卡片发现、通信与协作</text>
+  </g>
+
+</svg>

@@ -1,0 +1,15 @@
+__pycache__
+*.pyc
+*.pyo
+*.db
+.env
+.venv
+venv
+.git
+.gitignore
+README.md
+# RAG 向量库 + 模型文件（体积大，通过 volume 挂载或本地运行）
+data/chroma_db
+data/hub
+*.bin
+*.pickle

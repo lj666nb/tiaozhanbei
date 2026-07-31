@@ -1,0 +1,42 @@
+services:
+  backend:
+    build: ./backend
+    container_name: ai-learning-backend
+    ports:
+      - 127.0.0.1:8001:8000
+    volumes:
+      - backend_data:/app/data
+      # Keep the persistent volume, but seed it from the checked-out revision
+      # before each backend start so newly committed resources are not hidden.
+      - ./backend/data:/app/seed-data:ro
+      - ./learning_materials:/learning_materials:ro
+      - ./pdf:/pdf:ro
+    environment:
+      # 未配置时使用容器卷中的 SQLite；生产 PostgreSQL 凭据只能从本机 .env 注入。
+      - DATABASE_URL=${DATABASE_URL:-}
+      - JWT_SECRET_KEY=${JWT_SECRET_KEY:-}
+      - CORS_ORIGIN=${CORS_ORIGIN:-}
+      # 学生 app.py 的真实执行默认关闭；接入独立沙箱后才应显式开启。
+      - LAB_RUNTIME_EXECUTION_ENABLED=${LAB_RUNTIME_EXECUTION_ENABLED:-false}
+      # 可由服务器环境注入；未配置时前端明确提示 Tavily 高级搜索不可用
+      - TAVILY_API_KEY=${TAVILY_API_KEY:-}
+      # Docker/云端不加载本地模型，只调用同向量空间的 SiliconFlow BGE API。
+      - EMBEDDING_RUNTIME_MODE=siliconflow
+      - SILICONFLOW_API_KEY=${SILICONFLOW_API_KEY:-}
+      - SILICONFLOW_BASE_URL=https://api.siliconflow.cn/v1
+      - EMBEDDING_MEMORY_CACHE_SIZE=256
+    command: ["sh", "/app/docker-entrypoint.sh"]
+    restart: unless-stopped
+
+  frontend:
+    build: ./frontend
+    container_name: ai-learning-frontend
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+    restart: unless-stopped
+
+volumes:
+  backend_data:
+    driver: local

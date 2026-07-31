@@ -1,0 +1,716 @@
+{
+  "completed_stages": [
+    "structure",
+    "environment",
+    "dependencies",
+    "implementation",
+    "integration",
+    "acceptance"
+  ],
+  "commands": [
+    {
+      "command": "python -m venv .venv",
+      "exit_code": 0
+    },
+    {
+      "command": ".venv/Scripts/activate",
+      "exit_code": 0
+    },
+    {
+      "command": "tree",
+      "exit_code": 0
+    },
+    {
+      "command": "python -m venv .venv",
+      "exit_code": 1
+    },
+    {
+      "command": "pip install -r requirements.txt",
+      "exit_code": 0
+    },
+    {
+      "command": "python app.py",
+      "exit_code": 1
+    },
+    {
+      "command": "python app.py",
+      "exit_code": 1
+    },
+    {
+      "command": "python app.py",
+      "exit_code": 0
+    },
+    {
+      "command": "python app.py",
+      "exit_code": 0
+    },
+    {
+      "command": "python app.py",
+      "exit_code": 0
+    }
+  ],
+  "project_state": "passed",
+  "last_terminal": {
+    "exit_code": 0,
+    "output": "订单1: 张三 - Python教程 ¥99.0\n"
+  },
+  "active_env": ".venv",
+  "stage_results": {
+    "structure": {
+      "title": "搭好项目骨架",
+      "passed": true,
+      "summary": "检查通过，可以进入下一步",
+      "checks": [
+        {
+          "label": "requirements.txt",
+          "passed": true,
+          "detail": "文件存在，名称完全一致"
+        },
+        {
+          "label": ".env",
+          "passed": true,
+          "detail": "文件存在，名称完全一致"
+        },
+        {
+          "label": "solution.py",
+          "passed": true,
+          "detail": "文件存在，名称完全一致"
+        },
+        {
+          "label": "app.py",
+          "passed": true,
+          "detail": "文件存在，名称完全一致"
+        }
+      ]
+    },
+    "environment": {
+      "title": "创建虚拟环境",
+      "passed": true,
+      "summary": "检查通过，可以进入下一步",
+      "checks": [
+        {
+          "label": "虚拟环境目录",
+          "passed": true,
+          "detail": "检测到 .venv/pyvenv.cfg"
+        },
+        {
+          "label": "Python 版本",
+          "passed": true,
+          "detail": "当前沙箱 Python 3.11.9"
+        }
+      ]
+    },
+    "dependencies": {
+      "title": "声明 LangChain + SQLAlchemy 依赖",
+      "passed": true,
+      "summary": "检查通过，可以进入下一步",
+      "checks": [
+        {
+          "label": "langchain",
+          "passed": true,
+          "detail": "已在 requirements.txt 声明"
+        },
+        {
+          "label": "langchain-openai",
+          "passed": true,
+          "detail": "已在 requirements.txt 声明"
+        },
+        {
+          "label": "python-dotenv",
+          "passed": true,
+          "detail": "已在 requirements.txt 声明"
+        },
+        {
+          "label": "sqlalchemy",
+          "passed": true,
+          "detail": "已在 requirements.txt 声明"
+        },
+        {
+          "label": "虚拟环境依赖",
+          "passed": true,
+          "detail": "当前 requirements.txt 已成功安装"
+        }
+      ]
+    },
+    "implementation": {
+      "title": "实现订单数据库与查询函数",
+      "passed": true,
+      "summary": "检查通过，可以进入下一步",
+      "checks": [
+        {
+          "label": "Python 语法",
+          "passed": true,
+          "detail": "AST 解析成功"
+        },
+        {
+          "label": "setup_order_db",
+          "passed": true,
+          "detail": "目标函数已定义"
+        },
+        {
+          "label": "核心函数行为",
+          "passed": true,
+          "detail": "通过 6/6 个业务场景，函数已有可运行的真实行为",
+          "cases": [
+            {
+              "label": "按状态过滤订单",
+              "passed": true,
+              "detail": "通过",
+              "category": "业务逻辑",
+              "next_action": "",
+              "duration_ms": 1.17
+            },
+            {
+              "label": "按客户名查询",
+              "passed": true,
+              "detail": "通过",
+              "category": "业务逻辑",
+              "next_action": "",
+              "duration_ms": 0.68
+            },
+            {
+              "label": "按最小金额过滤",
+              "passed": true,
+              "detail": "通过",
+              "category": "业务逻辑",
+              "next_action": "",
+              "duration_ms": 0.69
+            },
+            {
+              "label": "组合过滤条件",
+              "passed": true,
+              "detail": "通过",
+              "category": "业务逻辑",
+              "next_action": "",
+              "duration_ms": 0.65
+            },
+            {
+              "label": "无匹配时返回空列表",
+              "passed": true,
+              "detail": "通过",
+              "category": "输入边界",
+              "next_action": "",
+              "duration_ms": 0.31
+            },
+            {
+              "label": "无过滤条件返回全部订单",
+              "passed": true,
+              "detail": "通过",
+              "category": "输出契约",
+              "next_action": "",
+              "duration_ms": 0.29
+            }
+          ]
+        }
+      ]
+    },
+    "integration": {
+      "title": "接入可运行应用",
+      "passed": true,
+      "summary": "检查通过，可以进入下一步",
+      "checks": [
+        {
+          "label": "核心模块业务测试",
+          "passed": true,
+          "detail": "通过 6/6 个业务场景，函数已有可运行的真实行为",
+          "cases": [
+            {
+              "label": "按状态过滤订单",
+              "passed": true,
+              "detail": "通过",
+              "category": "业务逻辑",
+              "next_action": "",
+              "duration_ms": 1.11
+            },
+            {
+              "label": "按客户名查询",
+              "passed": true,
+              "detail": "通过",
+              "category": "业务逻辑",
+              "next_action": "",
+              "duration_ms": 0.73
+            },
+            {
+              "label": "按最小金额过滤",
+              "passed": true,
+              "detail": "通过",
+              "category": "业务逻辑",
+              "next_action": "",
+              "duration_ms": 0.59
+            },
+            {
+              "label": "组合过滤条件",
+              "passed": true,
+              "detail": "通过",
+              "category": "业务逻辑",
+              "next_action": "",
+              "duration_ms": 0.73
+            },
+            {
+              "label": "无匹配时返回空列表",
+              "passed": true,
+              "detail": "通过",
+              "category": "输入边界",
+              "next_action": "",
+              "duration_ms": 0.35
+            },
+            {
+              "label": "无过滤条件返回全部订单",
+              "passed": true,
+              "detail": "通过",
+              "category": "输出契约",
+              "next_action": "",
+              "duration_ms": 0.3
+            }
+          ]
+        },
+        {
+          "label": "app.py 语法",
+          "passed": true,
+          "detail": "可正常解析"
+        },
+        {
+          "label": "框架接入",
+          "passed": true,
+          "detail": "检测到：dotenv, json, langchain.schema, langchain_openai, os, solution, sqlalchemy"
+        },
+        {
+          "label": "核心模块接入",
+          "passed": true,
+          "detail": "已导入 solution"
+        },
+        {
+          "label": "密钥安全",
+          "passed": true,
+          "detail": "未发现硬编码密钥"
+        },
+        {
+          "label": "项目 API Key",
+          "passed": true,
+          "detail": "当前项目 .env 中已配置 API Key（仅校验存在性，不会显示或保存密钥）"
+        }
+      ]
+    },
+    "acceptance": {
+      "title": "AI 工程验收",
+      "passed": true,
+      "summary": "检查通过，可以进入下一步",
+      "checks": [
+        {
+          "label": "搭好项目骨架",
+          "passed": true,
+          "detail": "检查通过，可以进入下一步"
+        },
+        {
+          "label": "创建虚拟环境",
+          "passed": true,
+          "detail": "检查通过，可以进入下一步"
+        },
+        {
+          "label": "声明 LangChain + SQLAlchemy 依赖",
+          "passed": true,
+          "detail": "检查通过，可以进入下一步"
+        },
+        {
+          "label": "实现订单数据库与查询函数",
+          "passed": true,
+          "detail": "检查通过，可以进入下一步"
+        },
+        {
+          "label": "接入可运行应用",
+          "passed": true,
+          "detail": "检查通过，可以进入下一步"
+        },
+        {
+          "label": "私有业务场景",
+          "passed": true,
+          "detail": "通过 6/6 个业务场景，函数已有可运行的真实行为",
+          "cases": [
+            {
+              "label": "按状态过滤订单",
+              "passed": true,
+              "detail": "通过",
+              "category": "业务逻辑",
+              "next_action": "",
+              "duration_ms": 1.0
+            },
+            {
+              "label": "按客户名查询",
+              "passed": true,
+              "detail": "通过",
+              "category": "业务逻辑",
+              "next_action": "",
+              "duration_ms": 0.71
+            },
+            {
+              "label": "按最小金额过滤",
+              "passed": true,
+              "detail": "通过",
+              "category": "业务逻辑",
+              "next_action": "",
+              "duration_ms": 0.62
+            },
+            {
+              "label": "组合过滤条件",
+              "passed": true,
+              "detail": "通过",
+              "category": "业务逻辑",
+              "next_action": "",
+              "duration_ms": 0.66
+            },
+            {
+              "label": "无匹配时返回空列表",
+              "passed": true,
+              "detail": "通过",
+              "category": "输入边界",
+              "next_action": "",
+              "duration_ms": 0.42
+            },
+            {
+              "label": "无过滤条件返回全部订单",
+              "passed": true,
+              "detail": "通过",
+              "category": "输出契约",
+              "next_action": "",
+              "duration_ms": 0.36
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "installed_requirements_hash": "87df76d7ff6f98f622db71d70b06eed7fabaaf8ed8bc1dc1076fc2522f4db1a9",
+  "acceptance_ever_passed": true,
+  "passed_solution_code": "from sqlalchemy import create_engine, Column, Integer, String, Float\nfrom sqlalchemy.orm import declarative_base, sessionmaker\n\nBase = declarative_base()\n\nclass Order(Base):\n    __tablename__ = 'orders'\n\n    id = Column(Integer, primary_key=True)\n    customer_name = Column(String, nullable=False)\n    product = Column(String, nullable=False)\n    amount = Column(Float, nullable=False)\n    status = Column(String, nullable=False, default='pending')\n\n\ndef setup_order_db(db_path='orders.db'):\n    \"\"\"创建 SQLite 引擎和表，返回 engine 和 Session 类。\"\"\"\n    engine = create_engine(f'sqlite:///{db_path}')\n    Base.metadata.create_all(engine)\n    Session = sessionmaker(bind=engine)\n    return engine, Session\n\ndef query_orders(session, **filters):\n    \"\"\"按可选条件查询订单。\n    \n    支持的过滤器:\n        status: 订单状态 ('paid', 'pending', 'cancelled')\n        customer_name: 客户名\n        min_amount: 最小金额\n    \n    Returns:\n        list[dict]: 订单字典列表\n    \"\"\"\n    query = session.query(Order)\n    \n    if 'status' in filters:\n        query = query.filter(Order.status == filters['status'])\n    if 'customer_name' in filters:\n        query = query.filter(Order.customer_name == filters['customer_name'])\n    if 'min_amount' in filters:\n        query = query.filter(Order.amount >= filters['min_amount'])\n    \n    return [\n        {\n            'id': order.id,\n            'customer_name': order.customer_name,\n            'product': order.product,\n            'amount': order.amount,\n            'status': order.status,\n        }\n        for order in query.all()\n    ]",
+  "passed_project_files": {
+    ".gitignore": ".venv/\n.env\n__pycache__/\n.pytest_cache/\n",
+    "app.py": "import os, json\nimport sqlalchemy\nfrom dotenv import load_dotenv\nfrom langchain_openai import ChatOpenAI\nfrom langchain.schema import SystemMessage, HumanMessage\nfrom solution import setup_order_db, query_orders, Order\n\nload_dotenv()\n\n# ── 初始化数据库 ──\nengine, Session = setup_order_db(\"orders.db\")\nsession = Session()\n\n# 插入测试数据（仅首次运行）\nif session.query(Order).count() == 0:\n    session.add_all([\n        Order(customer_name=\"张三\", product=\"Python教程\", amount=99.0, status=\"paid\"),\n        Order(customer_name=\"李四\", product=\"AI入门\", amount=199.0, status=\"pending\"),\n        Order(customer_name=\"王五\", product=\"数据分析\", amount=149.0, status=\"paid\"),\n        Order(customer_name=\"赵六\", product=\"机器学习实战\", amount=259.0, status=\"paid\"),\n        Order(customer_name=\"孙七\", product=\"深度学习\", amount=89.0, status=\"cancelled\"),\n    ])\n    session.commit()\n    print(\"测试数据已插入\")\n\n# ── LangChain 模型 ──\nmodel = ChatOpenAI(\n    model=os.getenv(\"DEEPSEEK_MODEL\", \"deepseek-chat\"),\n    api_key=os.getenv(\"DEEPSEEK_API_KEY\") or os.getenv(\"API_KEY\"),\n    base_url=os.getenv(\"DEEPSEEK_BASE_URL\", \"https://api.deepseek.com\"),\n    temperature=0.2,\n)\n\n# ── AI 辅助查询 ──\nmessages = [\n    SystemMessage(content=\"你是一个订单查询助手。请根据用户输入，输出 JSON 格式的过滤条件：{\\\"status\\\": \\\"...\\\"}、{\\\"customer_name\\\": \\\"...\\\"}、{\\\"min_amount\\\": ...} 或 {}。只输出 JSON。\"),\n    HumanMessage(content=\"查询已支付的订单\"),\n]\nresponse = model.invoke(messages)\nprint(\"AI 解析过滤条件:\", response.content)\n\n# 用 solution 的 query_orders 实际查询数据库\npaid_orders = query_orders(session, status=\"paid\")\nfor o in paid_orders:\n    print(f\"  订单{o['id']}: {o['customer_name']} - {o['product']} ¥{o['amount']}\")\n\nsession.close()\n",
+    "README.md": "# 渲染可复用客服提示模板\n\n这是你的独立实验项目。请跟随左侧阶段清单，从创建文件开始完成项目。\n\n## 项目目标\n\n提示模板应把稳定业务规则与动态输入分开。实现 render_support_prompt(template, values)：template 使用 {name} 占位符；values 必须提供全部字段，额外字段允许存在；值统一转为字符串。缺字段、模板不是非空字符串或 values 不是字典时抛出 ValueError。禁止使用 eval。\n\n## 约定\n\n- 核心可测试逻辑写在 `solution.py`\n- 可运行的 LangChain 应用写在 `app.py`\n- 真实 API Key 只放在本地 `.env`，不要提交\n",
+    "requirements.txt": "langchain\nlangchain-openai\npython-dotenv\nsqlalchemy\n",
+    "solution.py": "from sqlalchemy import create_engine, Column, Integer, String, Float\nfrom sqlalchemy.orm import declarative_base, sessionmaker\n\nBase = declarative_base()\n\nclass Order(Base):\n    __tablename__ = 'orders'\n\n    id = Column(Integer, primary_key=True)\n    customer_name = Column(String, nullable=False)\n    product = Column(String, nullable=False)\n    amount = Column(Float, nullable=False)\n    status = Column(String, nullable=False, default='pending')\n\n\ndef setup_order_db(db_path='orders.db'):\n    \"\"\"创建 SQLite 引擎和表，返回 engine 和 Session 类。\"\"\"\n    engine = create_engine(f'sqlite:///{db_path}')\n    Base.metadata.create_all(engine)\n    Session = sessionmaker(bind=engine)\n    return engine, Session\n\ndef query_orders(session, **filters):\n    \"\"\"按可选条件查询订单。\n    \n    支持的过滤器:\n        status: 订单状态 ('paid', 'pending', 'cancelled')\n        customer_name: 客户名\n        min_amount: 最小金额\n    \n    Returns:\n        list[dict]: 订单字典列表\n    \"\"\"\n    query = session.query(Order)\n    \n    if 'status' in filters:\n        query = query.filter(Order.status == filters['status'])\n    if 'customer_name' in filters:\n        query = query.filter(Order.customer_name == filters['customer_name'])\n    if 'min_amount' in filters:\n        query = query.filter(Order.amount >= filters['min_amount'])\n    \n    return [\n        {\n            'id': order.id,\n            'customer_name': order.customer_name,\n            'product': order.product,\n            'amount': order.amount,\n            'status': order.status,\n        }\n        for order in query.all()\n    ]"
+  },
+  "passed_stage_results": {
+    "structure": {
+      "title": "搭好项目骨架",
+      "passed": true,
+      "summary": "检查通过，可以进入下一步",
+      "checks": [
+        {
+          "label": "requirements.txt",
+          "passed": true,
+          "detail": "文件存在，名称完全一致"
+        },
+        {
+          "label": ".env",
+          "passed": true,
+          "detail": "文件存在，名称完全一致"
+        },
+        {
+          "label": "solution.py",
+          "passed": true,
+          "detail": "文件存在，名称完全一致"
+        },
+        {
+          "label": "app.py",
+          "passed": true,
+          "detail": "文件存在，名称完全一致"
+        }
+      ]
+    },
+    "environment": {
+      "title": "创建虚拟环境",
+      "passed": true,
+      "summary": "检查通过，可以进入下一步",
+      "checks": [
+        {
+          "label": "虚拟环境目录",
+          "passed": true,
+          "detail": "检测到 .venv/pyvenv.cfg"
+        },
+        {
+          "label": "Python 版本",
+          "passed": true,
+          "detail": "当前沙箱 Python 3.11.9"
+        }
+      ]
+    },
+    "dependencies": {
+      "title": "声明 LangChain + SQLAlchemy 依赖",
+      "passed": true,
+      "summary": "检查通过，可以进入下一步",
+      "checks": [
+        {
+          "label": "langchain",
+          "passed": true,
+          "detail": "已在 requirements.txt 声明"
+        },
+        {
+          "label": "langchain-openai",
+          "passed": true,
+          "detail": "已在 requirements.txt 声明"
+        },
+        {
+          "label": "python-dotenv",
+          "passed": true,
+          "detail": "已在 requirements.txt 声明"
+        },
+        {
+          "label": "sqlalchemy",
+          "passed": true,
+          "detail": "已在 requirements.txt 声明"
+        },
+        {
+          "label": "虚拟环境依赖",
+          "passed": true,
+          "detail": "当前 requirements.txt 已成功安装"
+        }
+      ]
+    },
+    "implementation": {
+      "title": "实现订单数据库与查询函数",
+      "passed": true,
+      "summary": "检查通过，可以进入下一步",
+      "checks": [
+        {
+          "label": "Python 语法",
+          "passed": true,
+          "detail": "AST 解析成功"
+        },
+        {
+          "label": "setup_order_db",
+          "passed": true,
+          "detail": "目标函数已定义"
+        },
+        {
+          "label": "核心函数行为",
+          "passed": true,
+          "detail": "通过 6/6 个业务场景，函数已有可运行的真实行为",
+          "cases": [
+            {
+              "label": "按状态过滤订单",
+              "passed": true,
+              "detail": "通过",
+              "category": "业务逻辑",
+              "next_action": "",
+              "duration_ms": 1.17
+            },
+            {
+              "label": "按客户名查询",
+              "passed": true,
+              "detail": "通过",
+              "category": "业务逻辑",
+              "next_action": "",
+              "duration_ms": 0.68
+            },
+            {
+              "label": "按最小金额过滤",
+              "passed": true,
+              "detail": "通过",
+              "category": "业务逻辑",
+              "next_action": "",
+              "duration_ms": 0.69
+            },
+            {
+              "label": "组合过滤条件",
+              "passed": true,
+              "detail": "通过",
+              "category": "业务逻辑",
+              "next_action": "",
+              "duration_ms": 0.65
+            },
+            {
+              "label": "无匹配时返回空列表",
+              "passed": true,
+              "detail": "通过",
+              "category": "输入边界",
+              "next_action": "",
+              "duration_ms": 0.31
+            },
+            {
+              "label": "无过滤条件返回全部订单",
+              "passed": true,
+              "detail": "通过",
+              "category": "输出契约",
+              "next_action": "",
+              "duration_ms": 0.29
+            }
+          ]
+        }
+      ]
+    },
+    "integration": {
+      "title": "接入可运行应用",
+      "passed": true,
+      "summary": "检查通过，可以进入下一步",
+      "checks": [
+        {
+          "label": "核心模块业务测试",
+          "passed": true,
+          "detail": "通过 6/6 个业务场景，函数已有可运行的真实行为",
+          "cases": [
+            {
+              "label": "按状态过滤订单",
+              "passed": true,
+              "detail": "通过",
+              "category": "业务逻辑",
+              "next_action": "",
+              "duration_ms": 1.11
+            },
+            {
+              "label": "按客户名查询",
+              "passed": true,
+              "detail": "通过",
+              "category": "业务逻辑",
+              "next_action": "",
+              "duration_ms": 0.73
+            },
+            {
+              "label": "按最小金额过滤",
+              "passed": true,
+              "detail": "通过",
+              "category": "业务逻辑",
+              "next_action": "",
+              "duration_ms": 0.59
+            },
+            {
+              "label": "组合过滤条件",
+              "passed": true,
+              "detail": "通过",
+              "category": "业务逻辑",
+              "next_action": "",
+              "duration_ms": 0.73
+            },
+            {
+              "label": "无匹配时返回空列表",
+              "passed": true,
+              "detail": "通过",
+              "category": "输入边界",
+              "next_action": "",
+              "duration_ms": 0.35
+            },
+            {
+              "label": "无过滤条件返回全部订单",
+              "passed": true,
+              "detail": "通过",
+              "category": "输出契约",
+              "next_action": "",
+              "duration_ms": 0.3
+            }
+          ]
+        },
+        {
+          "label": "app.py 语法",
+          "passed": true,
+          "detail": "可正常解析"
+        },
+        {
+          "label": "框架接入",
+          "passed": true,
+          "detail": "检测到：dotenv, json, langchain.schema, langchain_openai, os, solution, sqlalchemy"
+        },
+        {
+          "label": "核心模块接入",
+          "passed": true,
+          "detail": "已导入 solution"
+        },
+        {
+          "label": "密钥安全",
+          "passed": true,
+          "detail": "未发现硬编码密钥"
+        },
+        {
+          "label": "项目 API Key",
+          "passed": true,
+          "detail": "当前项目 .env 中已配置 API Key（仅校验存在性，不会显示或保存密钥）"
+        }
+      ]
+    },
+    "acceptance": {
+      "title": "AI 工程验收",
+      "passed": true,
+      "summary": "检查通过，可以进入下一步",
+      "checks": [
+        {
+          "label": "搭好项目骨架",
+          "passed": true,
+          "detail": "检查通过，可以进入下一步"
+        },
+        {
+          "label": "创建虚拟环境",
+          "passed": true,
+          "detail": "检查通过，可以进入下一步"
+        },
+        {
+          "label": "声明 LangChain + SQLAlchemy 依赖",
+          "passed": true,
+          "detail": "检查通过，可以进入下一步"
+        },
+        {
+          "label": "实现订单数据库与查询函数",
+          "passed": true,
+          "detail": "检查通过，可以进入下一步"
+        },
+        {
+          "label": "接入可运行应用",
+          "passed": true,
+          "detail": "检查通过，可以进入下一步"
+        },
+        {
+          "label": "私有业务场景",
+          "passed": true,
+          "detail": "通过 6/6 个业务场景，函数已有可运行的真实行为",
+          "cases": [
+            {
+              "label": "按状态过滤订单",
+              "passed": true,
+              "detail": "通过",
+              "category": "业务逻辑",
+              "next_action": "",
+              "duration_ms": 1.0
+            },
+            {
+              "label": "按客户名查询",
+              "passed": true,
+              "detail": "通过",
+              "category": "业务逻辑",
+              "next_action": "",
+              "duration_ms": 0.71
+            },
+            {
+              "label": "按最小金额过滤",
+              "passed": true,
+              "detail": "通过",
+              "category": "业务逻辑",
+              "next_action": "",
+              "duration_ms": 0.62
+            },
+            {
+              "label": "组合过滤条件",
+              "passed": true,
+              "detail": "通过",
+              "category": "业务逻辑",
+              "next_action": "",
+              "duration_ms": 0.66
+            },
+            {
+              "label": "无匹配时返回空列表",
+              "passed": true,
+              "detail": "通过",
+              "category": "输入边界",
+              "next_action": "",
+              "duration_ms": 0.42
+            },
+            {
+              "label": "无过滤条件返回全部订单",
+              "passed": true,
+              "detail": "通过",
+              "category": "输出契约",
+              "next_action": "",
+              "duration_ms": 0.36
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

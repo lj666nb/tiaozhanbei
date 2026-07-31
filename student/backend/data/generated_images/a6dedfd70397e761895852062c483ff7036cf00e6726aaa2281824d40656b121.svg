@@ -1,0 +1,152 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="800" height="500">
+  <defs>
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#E8F4FD"/>
+      <stop offset="100%" stop-color="#F0F8FF"/>
+    </linearGradient>
+    <linearGradient id="cardGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#FFFFFF"/>
+      <stop offset="100%" stop-color="#F5FAFF"/>
+    </linearGradient>
+  </defs>
+
+  <!-- 背景 -->
+  <rect width="800" height="500" fill="url(#bgGrad)"/>
+
+  <!-- 标题 -->
+  <text x="400" y="32" text-anchor="middle" font-family="sans-serif" font-size="20" font-weight="bold" fill="#1a1a2e">三种 CrewAI 角色设计模式</text>
+
+  <!-- ==================== 模式1：专家团队 ==================== -->
+  <rect x="20" y="50" width="240" height="200" rx="10" fill="url(#cardGrad)" stroke="#409EFF" stroke-width="1.5"/>
+  <rect x="20" y="50" width="240" height="28" rx="10" fill="#409EFF"/>
+  <rect x="20" y="68" width="240" height="10" fill="#409EFF"/>
+  <text x="140" y="70" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="bold" fill="#FFFFFF">模式1：专家团队</text>
+
+  <!-- 会计 -->
+  <rect x="35" y="90" width="46" height="46" rx="8" fill="#E8F4FD" stroke="#409EFF" stroke-width="1"/>
+  <text x="58" y="112" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#1a1a2e">📊</text>
+  <text x="58" y="128" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#1a1a2e">会计</text>
+
+  <!-- 市场分析师 -->
+  <rect x="93" y="90" width="46" height="46" rx="8" fill="#E8F4FD" stroke="#409EFF" stroke-width="1"/>
+  <text x="116" y="112" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#1a1a2e">📈</text>
+  <text x="116" y="128" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#1a1a2e">市场分析</text>
+
+  <!-- 风险经理 -->
+  <rect x="151" y="90" width="46" height="46" rx="8" fill="#E8F4FD" stroke="#409EFF" stroke-width="1"/>
+  <text x="174" y="112" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#1a1a2e">🛡️</text>
+  <text x="174" y="128" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#1a1a2e">风险经理</text>
+
+  <!-- 综合员 -->
+  <rect x="209" y="90" width="46" height="46" rx="8" fill="#E8F4FD" stroke="#409EFF" stroke-width="1"/>
+  <text x="232" y="112" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#1a1a2e">🧩</text>
+  <text x="232" y="128" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#1a1a2e">综合员</text>
+
+  <!-- 团队排列连线 -->
+  <line x1="81" y1="115" x2="93" y2="115" stroke="#409EFF" stroke-width="0.8" stroke-dasharray="3,2"/>
+  <line x1="139" y1="115" x2="151" y2="115" stroke="#409EFF" stroke-width="0.8" stroke-dasharray="3,2"/>
+  <line x1="197" y1="115" x2="209" y2="115" stroke="#409EFF" stroke-width="0.8" stroke-dasharray="3,2"/>
+
+  <!-- 团队标签 -->
+  <rect x="55" y="148" width="170" height="22" rx="6" fill="#409EFF" opacity="0.15"/>
+  <text x="140" y="163" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#409EFF">各领域专家协同工作</text>
+
+  <!-- 输出箭头 -->
+  <path d="M140 175 L140 195 L200 195" stroke="#409EFF" stroke-width="1.5" fill="none" marker-end="url(#arrowBlue)"/>
+  <text x="160" y="208" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#1a1a2e">综合输出</text>
+
+  <!-- ==================== 模式2：生成-批评 ==================== -->
+  <rect x="280" y="50" width="240" height="200" rx="10" fill="url(#cardGrad)" stroke="#409EFF" stroke-width="1.5"/>
+  <rect x="280" y="50" width="240" height="28" rx="10" fill="#409EFF"/>
+  <rect x="280" y="68" width="240" height="10" fill="#409EFF"/>
+  <text x="400" y="70" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="bold" fill="#FFFFFF">模式2：生成-批评</text>
+
+  <!-- 写手 -->
+  <rect x="300" y="95" width="70" height="60" rx="8" fill="#E8F4FD" stroke="#409EFF" stroke-width="1.5"/>
+  <text x="335" y="120" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#1a1a2e">✏️</text>
+  <text x="335" y="142" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="#1a1a2e">写手</text>
+
+  <!-- 批评者 -->
+  <rect x="430" y="95" width="70" height="60" rx="8" fill="#FFF0F0" stroke="#E05050" stroke-width="1.5"/>
+  <text x="465" y="120" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#1a1a2e">🔍</text>
+  <text x="465" y="142" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="#E05050">批评者</text>
+
+  <!-- 生成箭头 -->
+  <path d="M370 115 L420 115" stroke="#409EFF" stroke-width="1.8" fill="none" marker-end="url(#arrowBlue)"/>
+  <text x="395" y="108" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#409EFF">生成</text>
+
+  <!-- 反馈回路 -->
+  <path d="M465 155 L465 175 L335 175 L335 160" stroke="#E05050" stroke-width="1.8" fill="none" stroke-dasharray="5,3" marker-end="url(#arrowRed)"/>
+  <text x="400" y="192" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#E05050">反馈循环</text>
+
+  <!-- 循环图标 -->
+  <path d="M380 170 Q380 200 400 200 Q420 200 420 180" stroke="#409EFF" stroke-width="1.2" fill="none"/>
+
+  <!-- ==================== 模式3：导师-学徒 ==================== -->
+  <rect x="540" y="50" width="240" height="200" rx="10" fill="url(#cardGrad)" stroke="#409EFF" stroke-width="1.5"/>
+  <rect x="540" y="50" width="240" height="28" rx="10" fill="#409EFF"/>
+  <rect x="540" y="68" width="240" height="10" fill="#409EFF"/>
+  <text x="660" y="70" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="bold" fill="#FFFFFF">模式3：导师-学徒</text>
+
+  <!-- 高级开发者 -->
+  <rect x="560" y="95" width="65" height="65" rx="10" fill="#E8F4FD" stroke="#409EFF" stroke-width="2"/>
+  <text x="592" y="120" text-anchor="middle" font-family="sans-serif" font-size="16" fill="#1a1a2e">👨‍💻</text>
+  <text x="592" y="140" text-anchor="middle" font-family="sans-serif" font-size="12" font-weight="bold" fill="#1a1a2e">高级</text>
+  <text x="592" y="153" text-anchor="middle" font-family="sans-serif" font-size="12" font-weight="bold" fill="#1a1a2e">开发者</text>
+
+  <!-- 指导箭头 -->
+  <path d="M625 115 L655 115" stroke="#409EFF" stroke-width="2" fill="none" marker-end="url(#arrowBlue)"/>
+  <text x="640" y="108" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#409EFF">指导</text>
+
+  <!-- 初级开发者 -->
+  <rect x="665" y="100" width="55" height="55" rx="8" fill="#F0F8FF" stroke="#409EFF" stroke-width="1.5"/>
+  <text x="692" y="122" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#1a1a2e">🧑‍💻</text>
+  <text x="692" y="142" text-anchor="middle" font-family="sans-serif" font-size="12" font-weight="bold" fill="#1a1a2e">初级</text>
+
+  <!-- 代码传递 -->
+  <rect x="600" y="175" width="120" height="18" rx="4" fill="#1a1a2e" opacity="0.08"/>
+  <text x="660" y="188" text-anchor="middle" font-family="monospace" font-size="10" fill="#1a1a2e">代码传递 →</text>
+
+  <!-- 指导标注 -->
+  <rect x="575" y="205" width="170" height="20" rx="6" fill="#409EFF" opacity="0.12"/>
+  <text x="660" y="219" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#409EFF">知识传承与成长</text>
+
+  <!-- ==================== 底部说明区 ==================== -->
+  <rect x="20" y="270" width="760" height="210" rx="10" fill="url(#cardGrad)" stroke="#409EFF" stroke-width="1.2"/>
+
+  <!-- 模式1 详解 -->
+  <rect x="40" y="285" width="220" height="80" rx="8" fill="#E8F4FD"/>
+  <text x="150" y="305" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="#1a1a2e">🏆 专家团队模式</text>
+  <text x="55" y="325" font-family="sans-serif" font-size="11" fill="#333">多个专业智能体组成团队</text>
+  <text x="55" y="342" font-family="sans-serif" font-size="11" fill="#333">各自负责不同领域任务</text>
+  <text x="55" y="359" font-family="sans-serif" font-size="11" fill="#333">协同完成复杂工作流</text>
+
+  <!-- 模式2 详解 -->
+  <rect x="290" y="285" width="220" height="80" rx="8" fill="#FFF5F5"/>
+  <text x="400" y="305" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="#E05050">🔄 生成-批评模式</text>
+  <text x="305" y="325" font-family="sans-serif" font-size="11" fill="#333">写手生成初始内容</text>
+  <text x="305" y="342" font-family="sans-serif" font-size="11" fill="#333">批评者审核并提供反馈</text>
+  <text x="305" y="359" font-family="sans-serif" font-size="11" fill="#333">迭代优化直至满意</text>
+
+  <!-- 模式3 详解 -->
+  <rect x="540" y="285" width="220" height="80" rx="8" fill="#E8F4FD"/>
+  <text x="650" y="305" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="#1a1a2e">🎓 导师-学徒模式</text>
+  <text x="555" y="325" font-family="sans-serif" font-size="11" fill="#333">高级开发者指导初级开发者</text>
+  <text x="555" y="342" font-family="sans-serif" font-size="11" fill="#333">传递代码知识与经验</text>
+  <text x="555" y="359" font-family="sans-serif" font-size="11" fill="#333">加速成长与技能传承</text>
+
+  <!-- 底部总结 -->
+  <rect x="40" y="380" width="720" height="40" rx="8" fill="#409EFF" opacity="0.08"/>
+  <text x="400" y="400" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#1a1a2e">💡 三种模式可组合使用，根据任务需求灵活选择最合适的角色协作方式</text>
+  <text x="400" y="418" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#666">CrewAI 角色设计模式 · 扁平化 2D 矢量插图 · 科技蓝主题</text>
+
+  <!-- 箭头标记 -->
+  <defs>
+    <marker id="arrowBlue" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#409EFF"/>
+    </marker>
+    <marker id="arrowRed" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#E05050"/>
+    </marker>
+  </defs>
+</svg>

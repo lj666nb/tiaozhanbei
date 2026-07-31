@@ -1,0 +1,208 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="800" height="500">
+  <defs>
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#E8F4FD"/>
+      <stop offset="100%" stop-color="#F0F8FF"/>
+    </linearGradient>
+    <linearGradient id="colGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#409EFF" stop-opacity="0.15"/>
+      <stop offset="100%" stop-color="#409EFF" stop-opacity="0.05"/>
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <marker id="arrowBlue" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L8,3 L0,6 Z" fill="#409EFF"/>
+    </marker>
+    <marker id="arrowDeep" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L8,3 L0,6 Z" fill="#1a1a2e"/>
+    </marker>
+  </defs>
+
+  <!-- 背景 -->
+  <rect width="800" height="500" fill="url(#bgGrad)" rx="8"/>
+
+  <!-- 标题 -->
+  <text x="400" y="38" text-anchor="middle" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#1a1a2e">三种推理模式对比</text>
+
+  <!-- 三个列的背景区域 -->
+  <!-- 左列 CoT -->
+  <rect x="30" y="55" width="230" height="310" rx="10" fill="url(#colGrad)" stroke="#409EFF" stroke-width="1" stroke-opacity="0.3"/>
+  <!-- 中列 ToT（高亮） -->
+  <rect x="285" y="55" width="230" height="310" rx="10" fill="#409EFF" fill-opacity="0.08" stroke="#409EFF" stroke-width="2" filter="url(#glow)"/>
+  <!-- 右列 ReAct -->
+  <rect x="540" y="55" width="230" height="310" rx="10" fill="url(#colGrad)" stroke="#409EFF" stroke-width="1" stroke-opacity="0.3"/>
+
+  <!-- 列标题 -->
+  <text x="145" y="82" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#1a1a2e">CoT</text>
+  <text x="400" y="82" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#409EFF">ToT</text>
+  <text x="655" y="82" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#1a1a2e">ReAct</text>
+
+  <!-- 副标题 -->
+  <text x="145" y="100" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#1a1a2e" fill-opacity="0.6">思维链</text>
+  <text x="400" y="100" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#409EFF" fill-opacity="0.8">思维树</text>
+  <text x="655" y="100" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#1a1a2e" fill-opacity="0.6">推理+行动</text>
+
+  <!-- ========== CoT 列（左） ========== -->
+  <!-- 水平箭头链 -->
+  <!-- 圆圈1 -->
+  <circle cx="80" cy="150" r="14" fill="#409EFF" fill-opacity="0.2" stroke="#409EFF" stroke-width="1.5"/>
+  <text x="80" y="154" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#1a1a2e">Q</text>
+
+  <!-- 箭头 -->
+  <line x1="96" y1="150" x2="118" y2="150" stroke="#409EFF" stroke-width="1.5" marker-end="url(#arrowBlue)"/>
+
+  <!-- 圆圈2 -->
+  <circle cx="130" cy="150" r="14" fill="#409EFF" fill-opacity="0.2" stroke="#409EFF" stroke-width="1.5"/>
+  <text x="130" y="154" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#1a1a2e">S1</text>
+
+  <!-- 箭头 -->
+  <line x1="146" y1="150" x2="168" y2="150" stroke="#409EFF" stroke-width="1.5" marker-end="url(#arrowBlue)"/>
+
+  <!-- 圆圈3 -->
+  <circle cx="180" cy="150" r="14" fill="#409EFF" fill-opacity="0.2" stroke="#409EFF" stroke-width="1.5"/>
+  <text x="180" y="154" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#1a1a2e">S2</text>
+
+  <!-- 箭头 -->
+  <line x1="196" y1="150" x2="218" y2="150" stroke="#409EFF" stroke-width="1.5" marker-end="url(#arrowBlue)"/>
+
+  <!-- 圆圈4 -->
+  <circle cx="230" cy="150" r="14" fill="#409EFF" fill-opacity="0.4" stroke="#409EFF" stroke-width="1.5"/>
+  <text x="230" y="154" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#1a1a2e">A</text>
+
+  <!-- 线性路径标注 -->
+  <text x="145" y="200" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#1a1a2e" fill-opacity="0.7">线性推理路径</text>
+
+  <!-- 步骤标注 -->
+  <text x="145" y="225" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#1a1a2e" fill-opacity="0.7">逐步推导</text>
+
+  <!-- 底部标签 -->
+  <rect x="60" y="310" width="170" height="28" rx="14" fill="#1a1a2e" fill-opacity="0.06"/>
+  <text x="145" y="329" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#1a1a2e">单一路径</text>
+
+  <!-- ========== ToT 列（中） ========== -->
+  <!-- 树状分支结构 -->
+  <!-- 根节点 -->
+  <circle cx="400" cy="130" r="14" fill="#409EFF" fill-opacity="0.3" stroke="#409EFF" stroke-width="2"/>
+  <text x="400" y="134" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#1a1a2e">Q</text>
+
+  <!-- 第一层分支 -->
+  <!-- 左分支线 -->
+  <line x1="388" y1="142" x2="355" y2="175" stroke="#409EFF" stroke-width="1.2" stroke-opacity="0.5"/>
+  <!-- 中分支线（高亮） -->
+  <line x1="400" y1="142" x2="400" y2="175" stroke="#409EFF" stroke-width="2"/>
+  <!-- 右分支线 -->
+  <line x1="412" y1="142" x2="445" y2="175" stroke="#409EFF" stroke-width="1.2" stroke-opacity="0.5"/>
+
+  <!-- 左节点 -->
+  <circle cx="350" cy="185" r="11" fill="#409EFF" fill-opacity="0.12" stroke="#409EFF" stroke-width="1" stroke-opacity="0.5"/>
+  <text x="350" y="189" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#1a1a2e">S1</text>
+
+  <!-- 中节点（高亮） -->
+  <circle cx="400" cy="185" r="12" fill="#409EFF" fill-opacity="0.3" stroke="#409EFF" stroke-width="2"/>
+  <text x="400" y="189" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#1a1a2e">S1</text>
+
+  <!-- 右节点 -->
+  <circle cx="450" cy="185" r="11" fill="#409EFF" fill-opacity="0.12" stroke="#409EFF" stroke-width="1" stroke-opacity="0.5"/>
+  <text x="450" y="189" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#1a1a2e">S1</text>
+
+  <!-- 第二层分支（从中间节点） -->
+  <!-- 左分支线 -->
+  <line x1="392" y1="195" x2="370" y2="225" stroke="#409EFF" stroke-width="1.2" stroke-opacity="0.5"/>
+  <!-- 中分支线（高亮） -->
+  <line x1="400" y1="195" x2="400" y2="225" stroke="#409EFF" stroke-width="2"/>
+  <!-- 右分支线 -->
+  <line x1="408" y1="195" x2="430" y2="225" stroke="#409EFF" stroke-width="1.2" stroke-opacity="0.5"/>
+
+  <!-- 左节点 -->
+  <circle cx="365" cy="235" r="11" fill="#409EFF" fill-opacity="0.12" stroke="#409EFF" stroke-width="1" stroke-opacity="0.5"/>
+  <text x="365" y="239" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#1a1a2e">S2</text>
+
+  <!-- 中节点（高亮） -->
+  <circle cx="400" cy="235" r="12" fill="#409EFF" fill-opacity="0.3" stroke="#409EFF" stroke-width="2"/>
+  <text x="400" y="239" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#1a1a2e">S2</text>
+
+  <!-- 右节点 -->
+  <circle cx="435" cy="235" r="11" fill="#409EFF" fill-opacity="0.12" stroke="#409EFF" stroke-width="1" stroke-opacity="0.5"/>
+  <text x="435" y="239" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#1a1a2e">S2</text>
+
+  <!-- 第三层（答案节点，高亮路径） -->
+  <line x1="400" y1="245" x2="400" y2="270" stroke="#409EFF" stroke-width="2"/>
+  <circle cx="400" cy="280" r="14" fill="#409EFF" fill-opacity="0.4" stroke="#409EFF" stroke-width="2"/>
+  <text x="400" y="284" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#1a1a2e">A</text>
+
+  <!-- 高亮路径标注 -->
+  <text x="400" y="315" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#409EFF" font-weight="bold">★ 最优路径</text>
+
+  <!-- 底部标签 -->
+  <rect x="315" y="310" width="170" height="28" rx="14" fill="#409EFF" fill-opacity="0.12" stroke="#409EFF" stroke-width="1"/>
+  <text x="400" y="329" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#409EFF">多路径探索</text>
+
+  <!-- ========== ReAct 列（右） ========== -->
+  <!-- 交替的大脑和齿轮图标 -->
+  <!-- 大脑图标（用圆形+弧线表示） -->
+  <circle cx="600" cy="135" r="16" fill="#409EFF" fill-opacity="0.2" stroke="#409EFF" stroke-width="1.5"/>
+  <path d="M592,130 Q600,125 608,130" stroke="#1a1a2e" stroke-width="1.2" fill="none"/>
+  <path d="M594,138 Q600,142 606,138" stroke="#1a1a2e" stroke-width="1.2" fill="none"/>
+  <text x="600" y="134" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#1a1a2e">推理</text>
+
+  <!-- 向下箭头 -->
+  <line x1="600" y1="153" x2="600" y2="178" stroke="#1a1a2e" stroke-width="1.5" marker-end="url(#arrowDeep)"/>
+
+  <!-- 齿轮图标 -->
+  <circle cx="600" cy="195" r="16" fill="#409EFF" fill-opacity="0.2" stroke="#409EFF" stroke-width="1.5"/>
+  <circle cx="600" cy="195" r="6" fill="none" stroke="#1a1a2e" stroke-width="1.2"/>
+  <line x1="600" y1="179" x2="600" y2="185" stroke="#1a1a2e" stroke-width="1.2"/>
+  <line x1="600" y1="205" x2="600" y2="211" stroke="#1a1a2e" stroke-width="1.2"/>
+  <line x1="584" y1="195" x2="590" y2="195" stroke="#1a1a2e" stroke-width="1.2"/>
+  <line x1="610" y1="195" x2="616" y2="195" stroke="#1a1a2e" stroke-width="1.2"/>
+  <text x="600" y="198" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#1a1a2e">行动</text>
+
+  <!-- 向下箭头 -->
+  <line x1="600" y1="213" x2="600" y2="238" stroke="#1a1a2e" stroke-width="1.5" marker-end="url(#arrowDeep)"/>
+
+  <!-- 大脑图标2 -->
+  <circle cx="600" cy="255" r="16" fill="#409EFF" fill-opacity="0.2" stroke="#409EFF" stroke-width="1.5"/>
+  <path d="M592,250 Q600,245 608,250" stroke="#1a1a2e" stroke-width="1.2" fill="none"/>
+  <path d="M594,258 Q600,262 606,258" stroke="#1a1a2e" stroke-width="1.2" fill="none"/>
+  <text x="600" y="254" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#1a1a2e">推理</text>
+
+  <!-- 反馈箭头（从行动回到推理） -->
+  <path d="M618,195 Q640,195 640,175 Q640,155 618,145" stroke="#409EFF" stroke-width="1.2" fill="none" stroke-dasharray="4,3" marker-end="url(#arrowBlue)"/>
+  <text x="648" y="172" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#409EFF" transform="rotate(90,648,172)">反馈</text>
+
+  <!-- 底部标签 -->
+  <rect x="570" y="310" width="170" height="28" rx="14" fill="#1a1a2e" fill-opacity="0.06"/>
+  <text x="655" y="329" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#1a1a2e">推理↔行动</text>
+
+  <!-- ========== 底部韦恩图 ========== -->
+  <rect x="30" y="380" width="740" height="105" rx="10" fill="#1a1a2e" fill-opacity="0.03" stroke="#1a1a2e" stroke-width="0.5" stroke-opacity="0.1"/>
+
+  <text x="400" y="400" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#1a1a2e">三种模式互补关系</text>
+
+  <!-- 韦恩图三个圆圈 -->
+  <!-- CoT 圈（左） -->
+  <circle cx="310" cy="445" r="38" fill="#409EFF" fill-opacity="0.12" stroke="#409EFF" stroke-width="1.5"/>
+  <text x="310" y="440" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#1a1a2e" font-weight="bold">CoT</text>
+  <text x="310" y="455" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#1a1a2e" fill-opacity="0.7">线性推理</text>
+
+  <!-- ToT 圈（中上） -->
+  <circle cx="400" cy="435" r="38" fill="#409EFF" fill-opacity="0.18" stroke="#409EFF" stroke-width="1.5"/>
+  <text x="400" y="430" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#1a1a2e" font-weight="bold">ToT</text>
+  <text x="400" y="445" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#1a1a2e" fill-opacity="0.7">分支探索</text>
+
+  <!-- ReAct 圈（右） -->
+  <circle cx="490" cy="445" r="38" fill="#409EFF" fill-opacity="0.12" stroke="#409EFF" stroke-width="1.5"/>
+  <text x="490" y="440" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#1a1a2e" font-weight="bold">ReAct</text>
+  <text x="490" y="455" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#1a1a2e" fill-opacity="0.7">交互反馈</text>
+
+  <!-- 交集标注 -->
+  <text x="355" y="458" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#1a1a2e" fill-opacity="0.5">推理</text>
+  <text x="445" y="458" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#1a1a2e" fill-opacity="0.5">行动</text>
+  <text x="400" y="465" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#409EFF" fill-opacity="0.6">协同</text>
+
+</svg>

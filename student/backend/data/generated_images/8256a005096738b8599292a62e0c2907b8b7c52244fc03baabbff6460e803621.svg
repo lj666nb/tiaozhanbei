@@ -1,0 +1,123 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="800" height="500">
+  <defs>
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#E8F4FD"/>
+      <stop offset="100%" stop-color="#F0F8FF"/>
+    </linearGradient>
+    <linearGradient id="cacheGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#409EFF"/>
+      <stop offset="100%" stop-color="#6BB5FF"/>
+    </linearGradient>
+    <linearGradient id="noCacheGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#FF6B6B"/>
+      <stop offset="100%" stop-color="#FF8E8E"/>
+    </linearGradient>
+  </defs>
+
+  <!-- 背景 -->
+  <rect width="800" height="500" fill="url(#bgGrad)" rx="8"/>
+
+  <!-- 标题 -->
+  <text x="400" y="38" text-anchor="middle" font-family="sans-serif" font-size="20" font-weight="bold" fill="#1a1a2e">KV Cache 优化对比</text>
+
+  <!-- ===== 左侧：无缓存 ===== -->
+  <rect x="30" y="55" width="350" height="420" rx="10" fill="white" stroke="#E0E0E0" stroke-width="1.5" opacity="0.95"/>
+  <rect x="30" y="55" width="350" height="40" rx="10" fill="#FF6B6B" opacity="0.15"/>
+  <text x="205" y="80" text-anchor="middle" font-family="sans-serif" font-size="16" font-weight="bold" fill="#CC3333">❌ 无 KV Cache</text>
+
+  <!-- 时间线 - Token 1 -->
+  <rect x="50" y="110" width="310" height="55" rx="8" fill="#FFF0F0" stroke="#FFCCCC" stroke-width="1"/>
+  <text x="65" y="132" font-family="sans-serif" font-size="14" font-weight="bold" fill="#1a1a2e">Token 1</text>
+  <text x="65" y="152" font-family="sans-serif" font-size="12" fill="#666">计算 K₁, V₁</text>
+  <text x="310" y="142" font-family="sans-serif" font-size="16" fill="#FF4444">✗</text>
+
+  <!-- 时间线 - Token 2 -->
+  <rect x="50" y="180" width="310" height="70" rx="8" fill="#FFF0F0" stroke="#FFCCCC" stroke-width="1"/>
+  <text x="65" y="202" font-family="sans-serif" font-size="14" font-weight="bold" fill="#1a1a2e">Token 2</text>
+  <text x="65" y="222" font-family="sans-serif" font-size="12" fill="#666">重新计算 K₁, V₁ + K₂, V₂</text>
+  <text x="310" y="212" font-family="sans-serif" font-size="16" fill="#FF4444">✗</text>
+
+  <!-- 时间线 - Token 3 -->
+  <rect x="50" y="265" width="310" height="70" rx="8" fill="#FFF0F0" stroke="#FFCCCC" stroke-width="1"/>
+  <text x="65" y="287" font-family="sans-serif" font-size="14" font-weight="bold" fill="#1a1a2e">Token 3</text>
+  <text x="65" y="307" font-family="sans-serif" font-size="12" fill="#666">重新计算 K₁, V₁ + K₂, V₂ + K₃, V₃</text>
+  <text x="310" y="297" font-family="sans-serif" font-size="16" fill="#FF4444">✗</text>
+
+  <!-- 乌龟图标 -->
+  <g transform="translate(180, 355)">
+    <ellipse cx="0" cy="0" rx="30" ry="20" fill="#88B04B" opacity="0.7"/>
+    <ellipse cx="0" cy="-5" rx="18" ry="12" fill="#6B8E23"/>
+    <circle cx="0" cy="-8" r="6" fill="#4A6B1A"/>
+    <circle cx="-3" cy="-10" r="1.5" fill="#1a1a2e"/>
+    <circle cx="3" cy="-10" r="1.5" fill="#1a1a2e"/>
+    <path d="M-20,5 Q-30,15 -25,20" stroke="#6B8E23" stroke-width="2.5" fill="none"/>
+    <path d="M20,5 Q30,15 25,20" stroke="#6B8E23" stroke-width="2.5" fill="none"/>
+    <path d="M-10,15 Q-12,25 -8,28" stroke="#6B8E23" stroke-width="2" fill="none"/>
+    <path d="M10,15 Q12,25 8,28" stroke="#6B8E23" stroke-width="2" fill="none"/>
+  </g>
+  <text x="205" y="400" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#666">计算缓慢</text>
+
+  <!-- 复杂度标注 -->
+  <text x="205" y="445" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#CC3333" font-weight="bold">O(n²) 重复计算</text>
+
+  <!-- ===== 右侧：有缓存 ===== -->
+  <rect x="420" y="55" width="350" height="420" rx="10" fill="white" stroke="#E0E0E0" stroke-width="1.5" opacity="0.95"/>
+  <rect x="420" y="55" width="350" height="40" rx="10" fill="#409EFF" opacity="0.12"/>
+  <text x="595" y="80" text-anchor="middle" font-family="sans-serif" font-size="16" font-weight="bold" fill="#1a6EB0">✅ 有 KV Cache</text>
+
+  <!-- 缓存银行图标 -->
+  <g transform="translate(595, 125)">
+    <rect x="-65" y="-25" width="130" height="50" rx="8" fill="url(#cacheGrad)" opacity="0.2" stroke="#409EFF" stroke-width="1.5"/>
+    <rect x="-55" y="-18" width="40" height="18" rx="3" fill="#409EFF" opacity="0.3"/>
+    <rect x="-10" y="-18" width="40" height="18" rx="3" fill="#409EFF" opacity="0.3"/>
+    <rect x="15" y="-18" width="40" height="18" rx="3" fill="#409EFF" opacity="0.3"/>
+    <rect x="-55" y="5" width="40" height="18" rx="3" fill="#409EFF" opacity="0.3"/>
+    <rect x="-10" y="5" width="40" height="18" rx="3" fill="#409EFF" opacity="0.3"/>
+    <rect x="15" y="5" width="40" height="18" rx="3" fill="#409EFF" opacity="0.3"/>
+    <text x="0" y="3" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#409EFF" font-weight="bold">缓存 K,V</text>
+  </g>
+  <text x="595" y="170" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#409EFF">已缓存 K₁V₁ K₂V₂ ...</text>
+
+  <!-- Token 1 -->
+  <rect x="440" y="190" width="310" height="50" rx="8" fill="#F0F8FF" stroke="#B3D8FF" stroke-width="1"/>
+  <text x="455" y="212" font-family="sans-serif" font-size="14" font-weight="bold" fill="#1a1a2e">Token 1</text>
+  <text x="455" y="230" font-family="sans-serif" font-size="12" fill="#666">计算 Q₁, K₁, V₁ → 存入缓存</text>
+  <text x="700" y="220" font-family="sans-serif" font-size="16" fill="#67C23A">✓</text>
+
+  <!-- Token 2 -->
+  <rect x="440" y="255" width="310" height="50" rx="8" fill="#F0F8FF" stroke="#B3D8FF" stroke-width="1"/>
+  <text x="455" y="277" font-family="sans-serif" font-size="14" font-weight="bold" fill="#1a1a2e">Token 2</text>
+  <text x="455" y="295" font-family="sans-serif" font-size="12" fill="#666">仅计算 Q₂, K₂, V₂ → 存入缓存</text>
+  <text x="700" y="285" font-family="sans-serif" font-size="16" fill="#67C23A">✓</text>
+
+  <!-- Token 3 -->
+  <rect x="440" y="320" width="310" height="50" rx="8" fill="#F0F8FF" stroke="#B3D8FF" stroke-width="1"/>
+  <text x="455" y="342" font-family="sans-serif" font-size="14" font-weight="bold" fill="#1a1a2e">Token 3</text>
+  <text x="455" y="360" font-family="sans-serif" font-size="12" fill="#666">仅计算 Q₃, K₃, V₃ → 存入缓存</text>
+  <text x="700" y="350" font-family="sans-serif" font-size="16" fill="#67C23A">✓</text>
+
+  <!-- 兔子/火箭图标 -->
+  <g transform="translate(595, 390)">
+    <ellipse cx="0" cy="0" rx="25" ry="18" fill="#E8F4FD" stroke="#409EFF" stroke-width="1.5"/>
+    <path d="M-5,-10 L0,-22 L5,-10" fill="#409EFF" opacity="0.7"/>
+    <circle cx="-4" cy="-6" r="3" fill="#1a1a2e"/>
+    <circle cx="4" cy="-6" r="3" fill="#1a1a2e"/>
+    <ellipse cx="0" cy="0" rx="6" ry="3" fill="#FFB6C1"/>
+    <path d="M-20,5 Q-28,12 -22,18" stroke="#409EFF" stroke-width="2" fill="none"/>
+    <path d="M20,5 Q28,12 22,18" stroke="#409EFF" stroke-width="2" fill="none"/>
+    <!-- 火箭尾焰 -->
+    <path d="M-8,15 L-12,28 L-4,22 L0,30 L4,22 L12,28 L8,15" fill="#FFA500" opacity="0.6"/>
+  </g>
+  <text x="595" y="435" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#409EFF" font-weight="bold">快速推理</text>
+
+  <!-- 复杂度标注 -->
+  <text x="595" y="460" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#1a6EB0" font-weight="bold">O(n) 增量计算</text>
+
+  <!-- ===== 底部对比条 ===== -->
+  <rect x="50" y="480" width="330" height="16" rx="8" fill="#FF6B6B" opacity="0.2"/>
+  <text x="215" y="492" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#CC3333">无 KV Cache: O(n²) 重复计算</text>
+
+  <rect x="420" y="480" width="330" height="16" rx="8" fill="#409EFF" opacity="0.2"/>
+  <text x="585" y="492" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#1a6EB0">有 KV Cache: O(n) 增量计算</text>
+
+</svg>

@@ -1,0 +1,135 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="800" height="500">
+  <defs>
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#E8F4FD"/>
+      <stop offset="100%" stop-color="#D0EBF9"/>
+    </linearGradient>
+    <linearGradient id="cardGrad1" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#409EFF"/>
+      <stop offset="100%" stop-color="#2B7ED6"/>
+    </linearGradient>
+    <linearGradient id="cardGrad2" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#5AB0FF"/>
+      <stop offset="100%" stop-color="#409EFF"/>
+    </linearGradient>
+    <linearGradient id="cardGrad3" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#60B8FF"/>
+      <stop offset="100%" stop-color="#4AA0E8"/>
+    </linearGradient>
+    <linearGradient id="cardGrad4" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#55B0FF"/>
+      <stop offset="100%" stop-color="#3D96E0"/>
+    </linearGradient>
+    <filter id="shadow" x="-5%" y="-5%" width="115%" height="115%">
+      <feDropShadow dx="0" dy="2" stdDeviation="4" flood-color="#1a1a2e" flood-opacity="0.12"/>
+    </filter>
+    <filter id="shadowLight" x="-5%" y="-5%" width="115%" height="115%">
+      <feDropShadow dx="0" dy="1" stdDeviation="2" flood-color="#1a1a2e" flood-opacity="0.08"/>
+    </filter>
+    <marker id="arrowBlue" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#409EFF"/>
+    </marker>
+    <marker id="arrowDark" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#1a1a2e"/>
+    </marker>
+  </defs>
+
+  <!-- 背景 -->
+  <rect width="800" height="500" fill="url(#bgGrad)"/>
+
+  <!-- 标题 -->
+  <text x="400" y="38" text-anchor="middle" font-family="Arial, sans-serif" font-size="22" font-weight="bold" fill="#1a1a2e">电商客服智能体团队架构</text>
+  <line x1="280" y1="48" x2="520" y2="48" stroke="#409EFF" stroke-width="2" opacity="0.5"/>
+
+  <!-- ============ 路由智能体（顶部中央） ============ -->
+  <rect x="290" y="72" width="220" height="80" rx="12" fill="url(#cardGrad1)" filter="url(#shadow)"/>
+  <text x="400" y="100" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#FFFFFF">意图路由智能体</text>
+  <text x="400" y="122" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" fill="#D0E8FF">GPT-4 · 意图分类</text>
+  <text x="400" y="140" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#B0D4FF">一线分流 · 客户请求入口</text>
+
+  <!-- 路由图标 -->
+  <circle cx="290" cy="112" r="14" fill="#1a1a2e" opacity="0.15"/>
+  <text x="290" y="117" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="#FFFFFF" font-weight="bold">↗</text>
+
+  <!-- ============ 从路由到三个专员的箭头 ============ -->
+  <!-- 到订单专员 -->
+  <line x1="340" y1="152" x2="160" y2="218" stroke="#409EFF" stroke-width="2" marker-end="url(#arrowBlue)" stroke-dasharray="6,3"/>
+  <!-- 到技术专员 -->
+  <line x1="400" y1="152" x2="400" y2="218" stroke="#1a1a2e" stroke-width="2" marker-end="url(#arrowDark)"/>
+  <!-- 到满意度专员 -->
+  <line x1="460" y1="152" x2="640" y2="218" stroke="#409EFF" stroke-width="2" marker-end="url(#arrowBlue)" stroke-dasharray="6,3"/>
+
+  <!-- ============ 订单专员（左下） ============ -->
+  <rect x="55" y="230" width="210" height="95" rx="12" fill="url(#cardGrad2)" filter="url(#shadow)"/>
+  <text x="160" y="258" text-anchor="middle" font-family="Arial, sans-serif" font-size="15" font-weight="bold" fill="#FFFFFF">订单专员智能体</text>
+  <text x="160" y="280" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" fill="#D0E8FF">GPT-3.5 · 订单/物流/退货</text>
+  <text x="160" y="300" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#B0D4FF">工具：订单系统 · 物流查询</text>
+  <circle cx="55" cy="277" r="12" fill="#1a1a2e" opacity="0.12"/>
+  <text x="55" y="282" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#FFFFFF">📦</text>
+
+  <!-- ============ 技术专员（中下） ============ -->
+  <rect x="295" y="230" width="210" height="95" rx="12" fill="url(#cardGrad3)" filter="url(#shadow)"/>
+  <text x="400" y="258" text-anchor="middle" font-family="Arial, sans-serif" font-size="15" font-weight="bold" fill="#FFFFFF">技术专员智能体</text>
+  <text x="400" y="280" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" fill="#D0E8FF">GPT-4 · 知识库+诊断工具</text>
+  <text x="400" y="300" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#B0D4FF">工具：知识库 · 诊断系统</text>
+  <circle cx="295" cy="277" r="12" fill="#1a1a2e" opacity="0.12"/>
+  <text x="295" y="282" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#FFFFFF">🔧</text>
+
+  <!-- ============ 满意度专员（右下） ============ -->
+  <rect x="535" y="230" width="210" height="95" rx="12" fill="url(#cardGrad4)" filter="url(#shadow)"/>
+  <text x="640" y="258" text-anchor="middle" font-family="Arial, sans-serif" font-size="15" font-weight="bold" fill="#FFFFFF">满意度监控智能体</text>
+  <text x="640" y="280" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" fill="#D0E8FF">GPT-3.5 · 情绪检测+升级</text>
+  <text x="640" y="300" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#B0D4FF">工具：情绪分析 · 升级通道</text>
+  <circle cx="535" cy="277" r="12" fill="#1a1a2e" opacity="0.12"/>
+  <text x="535" y="282" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#FFFFFF">📊</text>
+
+  <!-- ============ 标注 ============ -->
+  <!-- 标注1：模型选择 -->
+  <rect x="530" y="72" width="130" height="28" rx="14" fill="#1a1a2e" opacity="0.85" filter="url(#shadowLight)"/>
+  <text x="595" y="91" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" fill="#FFFFFF" font-weight="bold">模型按任务选择</text>
+  <line x1="530" y1="86" x2="400" y2="100" stroke="#1a1a2e" stroke-width="1" stroke-dasharray="3,3" opacity="0.4"/>
+
+  <!-- 标注2：责任边界 -->
+  <rect x="55" y="340" width="130" height="28" rx="14" fill="#1a1a2e" opacity="0.85" filter="url(#shadowLight)"/>
+  <text x="120" y="359" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" fill="#FFFFFF" font-weight="bold">职责边界清晰</text>
+  <line x1="120" y1="340" x2="160" y2="325" stroke="#1a1a2e" stroke-width="1" stroke-dasharray="3,3" opacity="0.4"/>
+
+  <!-- 标注3：委托控制 -->
+  <rect x="295" y="340" width="130" height="28" rx="14" fill="#1a1a2e" opacity="0.85" filter="url(#shadowLight)"/>
+  <text x="360" y="359" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" fill="#FFFFFF" font-weight="bold">委托控制设置</text>
+  <line x1="360" y1="340" x2="400" y2="325" stroke="#1a1a2e" stroke-width="1" stroke-dasharray="3,3" opacity="0.4"/>
+
+  <!-- 标注4：情绪检测 -->
+  <rect x="535" y="340" width="130" height="28" rx="14" fill="#1a1a2e" opacity="0.85" filter="url(#shadowLight)"/>
+  <text x="600" y="359" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" fill="#FFFFFF" font-weight="bold">情绪检测+升级</text>
+  <line x1="600" y1="340" x2="640" y2="325" stroke="#1a1a2e" stroke-width="1" stroke-dasharray="3,3" opacity="0.4"/>
+
+  <!-- 标注5：一线分流 -->
+  <rect x="140" y="72" width="110" height="28" rx="14" fill="#1a1a2e" opacity="0.85" filter="url(#shadowLight)"/>
+  <text x="195" y="91" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" fill="#FFFFFF" font-weight="bold">一线分流入口</text>
+  <line x1="250" y1="86" x2="290" y2="100" stroke="#1a1a2e" stroke-width="1" stroke-dasharray="3,3" opacity="0.4"/>
+
+  <!-- 标注6：GPT-4路由 -->
+  <rect x="660" y="110" width="110" height="28" rx="14" fill="#409EFF" opacity="0.9" filter="url(#shadowLight)"/>
+  <text x="715" y="129" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" fill="#FFFFFF" font-weight="bold">GPT-4 路由</text>
+  <line x1="660" y1="124" x2="510" y2="120" stroke="#409EFF" stroke-width="1" stroke-dasharray="3,3" opacity="0.5"/>
+
+  <!-- 底部信息栏 -->
+  <rect x="200" y="400" width="400" height="40" rx="8" fill="#1a1a2e" opacity="0.08"/>
+  <text x="400" y="425" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#1a1a2e" opacity="0.6">团队架构 · 智能路由 · 专业分工 · 满意度闭环</text>
+
+  <!-- 装饰性连接点 -->
+  <circle cx="160" cy="218" r="4" fill="#409EFF" opacity="0.6"/>
+  <circle cx="400" cy="218" r="4" fill="#1a1a2e" opacity="0.6"/>
+  <circle cx="640" cy="218" r="4" fill="#409EFF" opacity="0.6"/>
+
+  <!-- 卡片底部小标签 -->
+  <rect x="100" y="315" width="120" height="18" rx="9" fill="#1a1a2e" opacity="0.06"/>
+  <text x="160" y="328" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#1a1a2e" opacity="0.5">订单/物流/退货</text>
+
+  <rect x="340" y="315" width="120" height="18" rx="9" fill="#1a1a2e" opacity="0.06"/>
+  <text x="400" y="328" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#1a1a2e" opacity="0.5">知识库/诊断工具</text>
+
+  <rect x="580" y="315" width="120" height="18" rx="9" fill="#1a1a2e" opacity="0.06"/>
+  <text x="640" y="328" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#1a1a2e" opacity="0.5">情绪检测/升级通道</text>
+</svg>

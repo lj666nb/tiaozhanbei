@@ -1,0 +1,169 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="800" height="500">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#f0f7ff;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#e0f0ff;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="panelGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#ffffff;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#f5faff;stop-opacity:1" />
+    </linearGradient>
+    <filter id="shadow" x="-2%" y="-2%" width="104%" height="108%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#409EFF" flood-opacity="0.12"/>
+    </filter>
+  </defs>
+
+  <!-- 背景 -->
+  <rect width="800" height="500" fill="url(#bgGrad)" rx="8"/>
+
+  <!-- 标题 -->
+  <text x="400" y="32" text-anchor="middle" font-family="Microsoft YaHei, SimHei, sans-serif" font-size="20" font-weight="bold" fill="#1a1a2e">三种协作模式</text>
+
+  <!-- ==================== 面板1：顺序协作 ==================== -->
+  <rect x="30" y="52" width="740" height="120" rx="10" fill="url(#panelGrad)" stroke="#409EFF" stroke-width="1.5" filter="url(#shadow)"/>
+
+  <!-- 面板1标签 -->
+  <rect x="30" y="52" width="100" height="26" rx="10" fill="#409EFF"/>
+  <text x="80" y="70" text-anchor="middle" font-family="Microsoft YaHei, SimHei, sans-serif" font-size="13" fill="#ffffff" font-weight="bold">顺序协作</text>
+
+  <!-- 顺序流程：Agent A → Agent B → Agent C -->
+  <!-- Agent A -->
+  <rect x="80" y="95" width="100" height="36" rx="18" fill="#409EFF" opacity="0.9"/>
+  <text x="130" y="118" text-anchor="middle" font-family="Microsoft YaHei, SimHei, sans-serif" font-size="14" fill="#ffffff" font-weight="bold">智能体 A</text>
+
+  <!-- 文档图标 A→B -->
+  <rect x="195" y="100" width="24" height="28" rx="3" fill="#1a1a2e" opacity="0.7"/>
+  <line x1="200" y1="108" x2="214" y2="108" stroke="#ffffff" stroke-width="1.5"/>
+  <line x1="200" y1="114" x2="214" y2="114" stroke="#ffffff" stroke-width="1.5"/>
+  <line x1="200" y1="120" x2="210" y2="120" stroke="#ffffff" stroke-width="1.5"/>
+
+  <!-- 箭头 A→B -->
+  <line x1="224" y1="114" x2="250" y2="114" stroke="#409EFF" stroke-width="2" marker-end="url(#arrowBlue)"/>
+  <polygon points="248,108 258,114 248,120" fill="#409EFF"/>
+
+  <!-- Agent B -->
+  <rect x="260" y="95" width="100" height="36" rx="18" fill="#409EFF" opacity="0.9"/>
+  <text x="310" y="118" text-anchor="middle" font-family="Microsoft YaHei, SimHei, sans-serif" font-size="14" fill="#ffffff" font-weight="bold">智能体 B</text>
+
+  <!-- 文档图标 B→C -->
+  <rect x="375" y="100" width="24" height="28" rx="3" fill="#1a1a2e" opacity="0.7"/>
+  <line x1="380" y1="108" x2="394" y2="108" stroke="#ffffff" stroke-width="1.5"/>
+  <line x1="380" y1="114" x2="394" y2="114" stroke="#ffffff" stroke-width="1.5"/>
+  <line x1="380" y1="120" x2="390" y2="120" stroke="#ffffff" stroke-width="1.5"/>
+
+  <!-- 箭头 B→C -->
+  <line x1="404" y1="114" x2="430" y2="114" stroke="#409EFF" stroke-width="2"/>
+  <polygon points="428,108 438,114 428,120" fill="#409EFF"/>
+
+  <!-- Agent C -->
+  <rect x="440" y="95" width="100" height="36" rx="18" fill="#409EFF" opacity="0.9"/>
+  <text x="490" y="118" text-anchor="middle" font-family="Microsoft YaHei, SimHei, sans-serif" font-size="14" fill="#ffffff" font-weight="bold">智能体 C</text>
+
+  <!-- 输出文档 -->
+  <rect x="560" y="100" width="24" height="28" rx="3" fill="#1a1a2e" opacity="0.7"/>
+  <line x1="565" y1="108" x2="579" y2="108" stroke="#ffffff" stroke-width="1.5"/>
+  <line x1="565" y1="114" x2="579" y2="114" stroke="#ffffff" stroke-width="1.5"/>
+  <line x1="565" y1="120" x2="575" y2="120" stroke="#ffffff" stroke-width="1.5"/>
+
+  <!-- 箭头 C→输出 -->
+  <line x1="589" y1="114" x2="610" y2="114" stroke="#409EFF" stroke-width="2"/>
+  <polygon points="608,108 618,114 608,120" fill="#409EFF"/>
+
+  <!-- 输出结果 -->
+  <rect x="620" y="93" width="80" height="40" rx="8" fill="#e8f4ff" stroke="#409EFF" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <text x="660" y="118" text-anchor="middle" font-family="Microsoft YaHei, SimHei, sans-serif" font-size="13" fill="#409EFF">最终结果</text>
+
+  <!-- 最佳标注 -->
+  <text x="720" y="70" text-anchor="end" font-family="Microsoft YaHei, SimHei, sans-serif" font-size="12" fill="#1a1a2e" opacity="0.8">最佳：流水线任务</text>
+
+  <!-- ==================== 面板2：并行协作 ==================== -->
+  <rect x="30" y="190" width="740" height="130" rx="10" fill="url(#panelGrad)" stroke="#409EFF" stroke-width="1.5" filter="url(#shadow)"/>
+
+  <!-- 面板2标签 -->
+  <rect x="30" y="190" width="100" height="26" rx="10" fill="#409EFF"/>
+  <text x="80" y="208" text-anchor="middle" font-family="Microsoft YaHei, SimHei, sans-serif" font-size="13" fill="#ffffff" font-weight="bold">并行协作</text>
+
+  <!-- 中心任务 -->
+  <rect x="80" y="237" width="100" height="36" rx="18" fill="#1a1a2e" opacity="0.85"/>
+  <text x="130" y="260" text-anchor="middle" font-family="Microsoft YaHei, SimHei, sans-serif" font-size="14" fill="#ffffff" font-weight="bold">中心任务</text>
+
+  <!-- 从中心发散的线条 -->
+  <!-- 到A -->
+  <line x1="180" y1="245" x2="260" y2="225" stroke="#409EFF" stroke-width="1.8"/>
+  <polygon points="258,222 268,224 260,232" fill="#409EFF"/>
+  <!-- 到B -->
+  <line x1="180" y1="255" x2="260" y2="255" stroke="#409EFF" stroke-width="1.8"/>
+  <polygon points="258,249 268,255 258,261" fill="#409EFF"/>
+  <!-- 到C -->
+  <line x1="180" y1="265" x2="260" y2="285" stroke="#409EFF" stroke-width="1.8"/>
+  <polygon points="258,278 268,286 260,288" fill="#409EFF"/>
+
+  <!-- Agent A -->
+  <rect x="270" y="210" width="90" height="34" rx="17" fill="#409EFF" opacity="0.85"/>
+  <text x="315" y="232" text-anchor="middle" font-family="Microsoft YaHei, SimHei, sans-serif" font-size="13" fill="#ffffff">智能体 A</text>
+
+  <!-- Agent B -->
+  <rect x="270" y="238" width="90" height="34" rx="17" fill="#409EFF" opacity="0.85"/>
+  <text x="315" y="260" text-anchor="middle" font-family="Microsoft YaHei, SimHei, sans-serif" font-size="13" fill="#ffffff">智能体 B</text>
+
+  <!-- Agent C -->
+  <rect x="270" y="266" width="90" height="34" rx="17" fill="#409EFF" opacity="0.85"/>
+  <text x="315" y="288" text-anchor="middle" font-family="Microsoft YaHei, SimHei, sans-serif" font-size="13" fill="#ffffff">智能体 C</text>
+
+  <!-- 汇聚箭头 -->
+  <line x1="360" y1="227" x2="440" y2="255" stroke="#409EFF" stroke-width="1.5" stroke-dasharray="5,3"/>
+  <line x1="360" y1="255" x2="440" y2="255" stroke="#409EFF" stroke-width="1.5" stroke-dasharray="5,3"/>
+  <line x1="360" y1="283" x2="440" y2="255" stroke="#409EFF" stroke-width="1.5" stroke-dasharray="5,3"/>
+
+  <!-- 汇聚点 -->
+  <polygon points="438,249 448,255 438,261" fill="#409EFF"/>
+
+  <!-- 汇总智能体 -->
+  <rect x="455" y="237" width="100" height="36" rx="18" fill="#1a1a2e" opacity="0.85"/>
+  <text x="505" y="260" text-anchor="middle" font-family="Microsoft YaHei, SimHei, sans-serif" font-size="14" fill="#ffffff" font-weight="bold">汇总智能体</text>
+
+  <!-- 输出文档 -->
+  <rect x="570" y="243" width="20" height="24" rx="3" fill="#409EFF" opacity="0.6"/>
+  <line x1="574" y1="250" x2="586" y2="250" stroke="#ffffff" stroke-width="1.2"/>
+  <line x1="574" y1="255" x2="586" y2="255" stroke="#ffffff" stroke-width="1.2"/>
+
+  <!-- 最佳标注 -->
+  <text x="720" y="208" text-anchor="end" font-family="Microsoft YaHei, SimHei, sans-serif" font-size="12" fill="#1a1a2e" opacity="0.8">最佳：多角度分析</text>
+
+  <!-- ==================== 面板3：层级协作 ==================== -->
+  <rect x="30" y="338" width="740" height="130" rx="10" fill="url(#panelGrad)" stroke="#409EFF" stroke-width="1.5" filter="url(#shadow)"/>
+
+  <!-- 面板3标签 -->
+  <rect x="30" y="338" width="100" height="26" rx="10" fill="#409EFF"/>
+  <text x="80" y="356" text-anchor="middle" font-family="Microsoft YaHei, SimHei, sans-serif" font-size="13" fill="#ffffff" font-weight="bold">层级协作</text>
+
+  <!-- 管理器 -->
+  <rect x="310" y="360" width="120" height="38" rx="19" fill="#1a1a2e" opacity="0.9"/>
+  <text x="370" y="384" text-anchor="middle" font-family="Microsoft YaHei, SimHei, sans-serif" font-size="15" fill="#ffffff" font-weight="bold">管理者</text>
+
+  <!-- 连接线向下 -->
+  <line x1="340" y1="398" x2="200" y2="440" stroke="#409EFF" stroke-width="1.8"/>
+  <line x1="370" y1="398" x2="370" y2="440" stroke="#409EFF" stroke-width="1.8"/>
+  <line x1="400" y1="398" x2="540" y2="440" stroke="#409EFF" stroke-width="1.8"/>
+
+  <!-- 箭头 -->
+  <polygon points="198,434 200,446 208,438" fill="#409EFF"/>
+  <polygon points="368,434 370,446 378,438" fill="#409EFF"/>
+  <polygon points="538,434 540,446 548,438" fill="#409EFF"/>
+
+  <!-- Worker A -->
+  <rect x="140" y="440" width="100" height="34" rx="17" fill="#409EFF" opacity="0.85"/>
+  <text x="190" y="462" text-anchor="middle" font-family="Microsoft YaHei, SimHei, sans-serif" font-size="13" fill="#ffffff">工作者 A</text>
+
+  <!-- Worker B -->
+  <rect x="320" y="440" width="100" height="34" rx="17" fill="#409EFF" opacity="0.85"/>
+  <text x="370" y="462" text-anchor="middle" font-family="Microsoft YaHei, SimHei, sans-serif" font-size="13" fill="#ffffff">工作者 B</text>
+
+  <!-- Worker C -->
+  <rect x="500" y="440" width="100" height="34" rx="17" fill="#409EFF" opacity="0.85"/>
+  <text x="550" y="462" text-anchor="middle" font-family="Microsoft YaHei, SimHei, sans-serif" font-size="13" fill="#ffffff">工作者 C</text>
+
+  <!-- 最佳标注 -->
+  <text x="720" y="356" text-anchor="end" font-family="Microsoft YaHei, SimHei, sans-serif" font-size="12" fill="#1a1a2e" opacity="0.8">最佳：复杂动态任务</text>
+
+</svg>

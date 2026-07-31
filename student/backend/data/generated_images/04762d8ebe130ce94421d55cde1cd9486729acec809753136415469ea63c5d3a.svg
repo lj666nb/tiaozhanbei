@@ -1,0 +1,147 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="800" height="500">
+  <defs>
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#E8F4FD"/>
+      <stop offset="100%" stop-color="#F0F8FF"/>
+    </linearGradient>
+    <linearGradient id="cycleGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#409EFF"/>
+      <stop offset="100%" stop-color="#2B7FE0"/>
+    </linearGradient>
+    <filter id="shadow" x="-5%" y="-5%" width="115%" height="115%">
+      <feDropShadow dx="0" dy="2" stdDeviation="4" flood-color="#409EFF" flood-opacity="0.15"/>
+    </filter>
+  </defs>
+
+  <!-- 背景 -->
+  <rect width="800" height="500" fill="url(#bgGrad)" rx="8"/>
+
+  <!-- 标题 -->
+  <text x="400" y="42" text-anchor="middle" font-family="'Microsoft YaHei','PingFang SC',sans-serif" font-size="22" font-weight="bold" fill="#1a1a2e">AI 智能体核心能力循环</text>
+
+  <!-- 四个象限之间的循环箭头（弧形） -->
+  <!-- 从感知到推理（左上到右上） -->
+  <path d="M 340 130 Q 400 100 460 130" fill="none" stroke="#409EFF" stroke-width="2.5" stroke-dasharray="8,4" marker-end="url(#arrowRight)"/>
+  <!-- 从推理到规划（右上到右下） -->
+  <path d="M 530 240 Q 560 300 530 360" fill="none" stroke="#409EFF" stroke-width="2.5" stroke-dasharray="8,4" marker-end="url(#arrowDown)"/>
+  <!-- 从规划到行动（右下到左下） -->
+  <path d="M 460 370 Q 400 400 340 370" fill="none" stroke="#409EFF" stroke-width="2.5" stroke-dasharray="8,4" marker-end="url(#arrowLeft)"/>
+  <!-- 从行动到感知（左下到左上） -->
+  <path d="M 270 360 Q 240 300 270 240" fill="none" stroke="#409EFF" stroke-width="2.5" stroke-dasharray="8,4" marker-end="url(#arrowUp)"/>
+
+  <!-- 箭头标记 -->
+  <defs>
+    <marker id="arrowRight" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto">
+      <path d="M0,0 L10,4 L0,8 Z" fill="#409EFF"/>
+    </marker>
+    <marker id="arrowDown" markerWidth="10" markerHeight="8" refX="5" refY="8" orient="auto">
+      <path d="M0,0 L10,0 L5,8 Z" fill="#409EFF"/>
+    </marker>
+    <marker id="arrowLeft" markerWidth="10" markerHeight="8" refX="1" refY="4" orient="auto">
+      <path d="M10,0 L0,4 L10,8 Z" fill="#409EFF"/>
+    </marker>
+    <marker id="arrowUp" markerWidth="10" markerHeight="8" refX="5" refY="0" orient="auto">
+      <path d="M0,8 L10,8 L5,0 Z" fill="#409EFF"/>
+    </marker>
+  </defs>
+
+  <!-- 中央圆形 -->
+  <circle cx="400" cy="250" r="45" fill="white" stroke="#409EFF" stroke-width="2" opacity="0.9" filter="url(#shadow)"/>
+  <text x="400" y="244" text-anchor="middle" font-family="'Microsoft YaHei','PingFang SC',sans-serif" font-size="13" font-weight="bold" fill="#409EFF">AI</text>
+  <text x="400" y="262" text-anchor="middle" font-family="'Microsoft YaHei','PingFang SC',sans-serif" font-size="13" font-weight="bold" fill="#409EFF">智能体</text>
+
+  <!-- ====== 象限1：感知（左上） ====== -->
+  <g transform="translate(200, 130)">
+    <rect x="-65" y="-55" width="130" height="110" rx="14" fill="white" stroke="#409EFF" stroke-width="1.8" filter="url(#shadow)"/>
+    <!-- 眼睛图标 -->
+    <g transform="translate(0, -18)">
+      <ellipse cx="0" cy="0" rx="18" ry="12" fill="none" stroke="#409EFF" stroke-width="2.2"/>
+      <circle cx="0" cy="0" r="5" fill="#409EFF"/>
+      <!-- 信号波 -->
+      <path d="M-28,-8 Q-22,-18 -16,-8" fill="none" stroke="#409EFF" stroke-width="1.5" opacity="0.6"/>
+      <path d="M-34,-12 Q-26,-26 -18,-12" fill="none" stroke="#409EFF" stroke-width="1.2" opacity="0.4"/>
+      <path d="M16,-8 Q22,-18 28,-8" fill="none" stroke="#409EFF" stroke-width="1.5" opacity="0.6"/>
+      <path d="M18,-12 Q26,-26 34,-12" fill="none" stroke="#409EFF" stroke-width="1.2" opacity="0.4"/>
+    </g>
+    <text x="0" y="28" text-anchor="middle" font-family="'Microsoft YaHei','PingFang SC',sans-serif" font-size="15" font-weight="bold" fill="#1a1a2e">感知</text>
+    <text x="0" y="46" text-anchor="middle" font-family="'Microsoft YaHei','PingFang SC',sans-serif" font-size="11" fill="#5A5A7A">信息接收与理解</text>
+  </g>
+
+  <!-- ====== 象限2：推理（右上） ====== -->
+  <g transform="translate(600, 130)">
+    <rect x="-65" y="-55" width="130" height="110" rx="14" fill="white" stroke="#409EFF" stroke-width="1.8" filter="url(#shadow)"/>
+    <!-- 大脑/思维图标 -->
+    <g transform="translate(0, -18)">
+      <ellipse cx="0" cy="-3" rx="16" ry="12" fill="none" stroke="#409EFF" stroke-width="2"/>
+      <ellipse cx="-6" cy="2" rx="8" ry="6" fill="none" stroke="#409EFF" stroke-width="1.5"/>
+      <ellipse cx="6" cy="2" rx="8" ry="6" fill="none" stroke="#409EFF" stroke-width="1.5"/>
+      <!-- 思维气泡 -->
+      <circle cx="22" cy="-16" r="6" fill="none" stroke="#409EFF" stroke-width="1.3" opacity="0.7"/>
+      <circle cx="30" cy="-24" r="4" fill="none" stroke="#409EFF" stroke-width="1" opacity="0.5"/>
+      <text x="20" y="-14" font-family="'Microsoft YaHei','PingFang SC',sans-serif" font-size="7" fill="#409EFF" text-anchor="middle">∧</text>
+      <circle cx="-22" cy="-16" r="6" fill="none" stroke="#409EFF" stroke-width="1.3" opacity="0.7"/>
+      <circle cx="-30" cy="-24" r="4" fill="none" stroke="#409EFF" stroke-width="1" opacity="0.5"/>
+      <text x="-24" y="-14" font-family="'Microsoft YaHei','PingFang SC',sans-serif" font-size="7" fill="#409EFF" text-anchor="middle">∨</text>
+    </g>
+    <text x="0" y="28" text-anchor="middle" font-family="'Microsoft YaHei','PingFang SC',sans-serif" font-size="15" font-weight="bold" fill="#1a1a2e">推理</text>
+    <text x="0" y="46" text-anchor="middle" font-family="'Microsoft YaHei','PingFang SC',sans-serif" font-size="11" fill="#5A5A7A">逻辑分析与判断</text>
+  </g>
+
+  <!-- ====== 象限3：规划（右下） ====== -->
+  <g transform="translate(600, 370)">
+    <rect x="-65" y="-55" width="130" height="110" rx="14" fill="white" stroke="#409EFF" stroke-width="1.8" filter="url(#shadow)"/>
+    <!-- 路线图/树形图标 -->
+    <g transform="translate(0, -18)">
+      <!-- 目标节点 -->
+      <circle cx="0" cy="-10" r="6" fill="#409EFF" opacity="0.8"/>
+      <!-- 分支 -->
+      <line x1="-2" y1="-4" x2="-14" y2="6" stroke="#409EFF" stroke-width="1.5"/>
+      <line x1="2" y1="-4" x2="14" y2="6" stroke="#409EFF" stroke-width="1.5"/>
+      <line x1="-2" y1="-4" x2="0" y2="8" stroke="#409EFF" stroke-width="1.5"/>
+      <!-- 子节点 -->
+      <circle cx="-14" cy="8" r="4" fill="none" stroke="#409EFF" stroke-width="1.3"/>
+      <circle cx="14" cy="8" r="4" fill="none" stroke="#409EFF" stroke-width="1.3"/>
+      <circle cx="0" cy="10" r="4" fill="none" stroke="#409EFF" stroke-width="1.3"/>
+      <!-- 更多分支 -->
+      <line x1="-14" y1="12" x2="-20" y2="18" stroke="#409EFF" stroke-width="1" opacity="0.6"/>
+      <line x1="14" y1="12" x2="20" y2="18" stroke="#409EFF" stroke-width="1" opacity="0.6"/>
+    </g>
+    <text x="0" y="28" text-anchor="middle" font-family="'Microsoft YaHei','PingFang SC',sans-serif" font-size="15" font-weight="bold" fill="#1a1a2e">规划</text>
+    <text x="0" y="46" text-anchor="middle" font-family="'Microsoft YaHei','PingFang SC',sans-serif" font-size="11" fill="#5A5A7A">目标分解与路径</text>
+  </g>
+
+  <!-- ====== 象限4：行动（左下） ====== -->
+  <g transform="translate(200, 370)">
+    <rect x="-65" y="-55" width="130" height="110" rx="14" fill="white" stroke="#409EFF" stroke-width="1.8" filter="url(#shadow)"/>
+    <!-- 齿轮/手图标 -->
+    <g transform="translate(0, -18)">
+      <!-- 齿轮 -->
+      <circle cx="0" cy="0" r="12" fill="none" stroke="#409EFF" stroke-width="2"/>
+      <circle cx="0" cy="0" r="5" fill="#409EFF" opacity="0.6"/>
+      <!-- 齿轮齿 -->
+      <g stroke="#409EFF" stroke-width="2" stroke-linecap="round">
+        <line x1="0" y1="-14" x2="0" y2="-18"/>
+        <line x1="12" y1="-7" x2="15" y2="-9"/>
+        <line x1="12" y1="7" x2="15" y2="9"/>
+        <line x1="0" y1="14" x2="0" y2="18"/>
+        <line x1="-12" y1="7" x2="-15" y2="9"/>
+        <line x1="-12" y1="-7" x2="-15" y2="-9"/>
+      </g>
+      <!-- 向外辐射的工具 -->
+      <line x1="18" y1="0" x2="26" y2="0" stroke="#409EFF" stroke-width="1.3" opacity="0.5"/>
+      <line x1="-18" y1="0" x2="-26" y2="0" stroke="#409EFF" stroke-width="1.3" opacity="0.5"/>
+      <line x1="0" y1="18" x2="0" y2="26" stroke="#409EFF" stroke-width="1.3" opacity="0.5"/>
+    </g>
+    <text x="0" y="28" text-anchor="middle" font-family="'Microsoft YaHei','PingFang SC',sans-serif" font-size="15" font-weight="bold" fill="#1a1a2e">行动</text>
+    <text x="0" y="46" text-anchor="middle" font-family="'Microsoft YaHei','PingFang SC',sans-serif" font-size="11" fill="#5A5A7A">工具执行与反馈</text>
+  </g>
+
+  <!-- 循环连接标注 -->
+  <text x="400" y="115" text-anchor="middle" font-family="'Microsoft YaHei','PingFang SC',sans-serif" font-size="11" fill="#409EFF" opacity="0.7">信息传递</text>
+  <text x="560" y="250" text-anchor="middle" font-family="'Microsoft YaHei','PingFang SC',sans-serif" font-size="11" fill="#409EFF" opacity="0.7" transform="rotate(90,560,250)">决策输出</text>
+  <text x="400" y="405" text-anchor="middle" font-family="'Microsoft YaHei','PingFang SC',sans-serif" font-size="11" fill="#409EFF" opacity="0.7">执行反馈</text>
+  <text x="240" y="250" text-anchor="middle" font-family="'Microsoft YaHei','PingFang SC',sans-serif" font-size="11" fill="#409EFF" opacity="0.7" transform="rotate(-90,240,250)">数据输入</text>
+
+  <!-- 底部说明 -->
+  <text x="400" y="475" text-anchor="middle" font-family="'Microsoft YaHei','PingFang SC',sans-serif" font-size="12" fill="#5A5A7A" opacity="0.7">感知 → 推理 → 规划 → 行动 → 感知（持续循环）</text>
+</svg>

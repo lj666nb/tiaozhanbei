@@ -1,0 +1,121 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="800" height="500">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#f0f7ff;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#e0efff;stop-opacity:1" />
+    </linearGradient>
+    <filter id="shadow" x="-5%" y="-5%" width="115%" height="115%">
+      <feDropShadow dx="0" dy="2" stdDeviation="4" flood-color="#409EFF" flood-opacity="0.15"/>
+    </filter>
+  </defs>
+
+  <!-- 背景 -->
+  <rect width="800" height="500" fill="url(#bgGrad)" rx="12"/>
+
+  <!-- 标题 -->
+  <text x="400" y="38" text-anchor="middle" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#1a1a2e">算法公平性持续改进循环</text>
+
+  <!-- 循环箭头曲线（连接5个节点） -->
+  <!-- 箭头1: 检测偏差 -> 衡量差异 -->
+  <path d="M 340 120 Q 400 60 460 120" fill="none" stroke="#409EFF" stroke-width="2.5" marker-end="url(#arrowBlue)"/>
+  <!-- 箭头2: 衡量差异 -> 应用缓解 -->
+  <path d="M 520 200 Q 580 260 520 320" fill="none" stroke="#409EFF" stroke-width="2.5" marker-end="url(#arrowBlue)"/>
+  <!-- 箭头3: 应用缓解 -> 监控生产 -->
+  <path d="M 460 380 Q 400 440 340 380" fill="none" stroke="#409EFF" stroke-width="2.5" marker-end="url(#arrowBlue)"/>
+  <!-- 箭头4: 监控生产 -> 迭代改进 -->
+  <path d="M 280 320 Q 220 260 280 200" fill="none" stroke="#409EFF" stroke-width="2.5" marker-end="url(#arrowBlue)"/>
+  <!-- 箭头5: 迭代改进 -> 检测偏差 -->
+  <path d="M 340 170 Q 370 140 400 130 Q 430 140 460 170" fill="none" stroke="#409EFF" stroke-width="2.5" marker-end="url(#arrowBlue)" opacity="0.3"/>
+
+  <defs>
+    <marker id="arrowBlue" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto">
+      <path d="M0,0 L10,4 L0,8 Z" fill="#409EFF"/>
+    </marker>
+  </defs>
+
+  <!-- 节点1: 检测偏差（顶部偏左） -->
+  <g transform="translate(280, 100)">
+    <rect x="-60" y="-45" width="120" height="90" rx="14" fill="white" filter="url(#shadow)" stroke="#409EFF" stroke-width="1.5"/>
+    <!-- 放大镜图标 -->
+    <circle cx="0" cy="-12" r="14" fill="none" stroke="#409EFF" stroke-width="2"/>
+    <line x1="10" y1="2" x2="22" y2="14" stroke="#409EFF" stroke-width="2.5" stroke-linecap="round"/>
+    <line x1="-6" y1="-12" x2="6" y2="-12" stroke="#409EFF" stroke-width="1.5" stroke-linecap="round"/>
+    <line x1="0" y1="-18" x2="0" y2="-6" stroke="#409EFF" stroke-width="1.5" stroke-linecap="round"/>
+    <text x="0" y="30" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#1a1a2e">检测偏差</text>
+  </g>
+
+  <!-- 节点2: 衡量差异（顶部偏右） -->
+  <g transform="translate(520, 100)">
+    <rect x="-60" y="-45" width="120" height="90" rx="14" fill="white" filter="url(#shadow)" stroke="#409EFF" stroke-width="1.5"/>
+    <!-- 尺子图标 -->
+    <rect x="-18" y="-18" width="36" height="12" rx="2" fill="none" stroke="#409EFF" stroke-width="2"/>
+    <line x1="-12" y1="-14" x2="-12" y2="-8" stroke="#409EFF" stroke-width="1.5"/>
+    <line x1="-4" y1="-14" x2="-4" y2="-8" stroke="#409EFF" stroke-width="1.5"/>
+    <line x1="4" y1="-14" x2="4" y2="-8" stroke="#409EFF" stroke-width="1.5"/>
+    <line x1="12" y1="-14" x2="12" y2="-8" stroke="#409EFF" stroke-width="1.5"/>
+    <!-- 人群图标 -->
+    <circle cx="-8" cy="6" r="5" fill="none" stroke="#409EFF" stroke-width="1.5"/>
+    <circle cx="8" cy="6" r="5" fill="none" stroke="#409EFF" stroke-width="1.5"/>
+    <circle cx="0" cy="6" r="5" fill="none" stroke="#409EFF" stroke-width="1.5"/>
+    <text x="0" y="30" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#1a1a2e">衡量差异</text>
+  </g>
+
+  <!-- 节点3: 应用缓解（右侧） -->
+  <g transform="translate(600, 250)">
+    <rect x="-60" y="-45" width="120" height="90" rx="14" fill="white" filter="url(#shadow)" stroke="#409EFF" stroke-width="1.5"/>
+    <!-- 扳手图标 -->
+    <circle cx="-4" cy="-6" r="10" fill="none" stroke="#409EFF" stroke-width="2"/>
+    <line x1="4" y1="2" x2="16" y2="14" stroke="#409EFF" stroke-width="2.5" stroke-linecap="round"/>
+    <!-- 齿轮图标 -->
+    <circle cx="10" cy="-10" r="6" fill="none" stroke="#409EFF" stroke-width="1.8"/>
+    <line x1="10" y1="-18" x2="10" y2="-14" stroke="#409EFF" stroke-width="1.5"/>
+    <line x1="10" y1="-6" x2="10" y2="-2" stroke="#409EFF" stroke-width="1.5"/>
+    <line x1="2" y1="-10" x2="6" y2="-10" stroke="#409EFF" stroke-width="1.5"/>
+    <line x1="14" y1="-10" x2="18" y2="-10" stroke="#409EFF" stroke-width="1.5"/>
+    <text x="0" y="30" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#1a1a2e">应用缓解</text>
+  </g>
+
+  <!-- 节点4: 监控生产（底部偏右） -->
+  <g transform="translate(520, 400)">
+    <rect x="-60" y="-45" width="120" height="90" rx="14" fill="white" filter="url(#shadow)" stroke="#409EFF" stroke-width="1.5"/>
+    <!-- 仪表盘图标 -->
+    <rect x="-16" y="-18" width="32" height="22" rx="3" fill="none" stroke="#409EFF" stroke-width="2"/>
+    <line x1="-10" y1="-8" x2="-4" y2="-8" stroke="#409EFF" stroke-width="1.5"/>
+    <line x1="-4" y1="-8" x2="-4" y2="-2" stroke="#409EFF" stroke-width="1.5"/>
+    <line x1="0" y1="-2" x2="0" y2="-12" stroke="#409EFF" stroke-width="1.5"/>
+    <line x1="4" y1="-12" x2="4" y2="-2" stroke="#409EFF" stroke-width="1.5"/>
+    <line x1="8" y1="-2" x2="8" y2="-6" stroke="#409EFF" stroke-width="1.5"/>
+    <!-- 趋势线 -->
+    <polyline points="-10,6 -4,2 2,8 8,4 12,10" fill="none" stroke="#409EFF" stroke-width="1.5" stroke-linecap="round"/>
+    <text x="0" y="30" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#1a1a2e">监控生产</text>
+  </g>
+
+  <!-- 节点5: 迭代改进（底部偏左） -->
+  <g transform="translate(280, 400)">
+    <rect x="-60" y="-45" width="120" height="90" rx="14" fill="white" filter="url(#shadow)" stroke="#409EFF" stroke-width="1.5"/>
+    <!-- 向上箭头螺旋图标 -->
+    <path d="M -8 10 Q -16 4 -8 -2 Q 0 -8 8 -2 Q 16 4 8 10" fill="none" stroke="#409EFF" stroke-width="2"/>
+    <line x1="8" y1="-2" x2="14" y2="-8" stroke="#409EFF" stroke-width="2.5" stroke-linecap="round"/>
+    <line x1="14" y1="-8" x2="8" y2="-10" stroke="#409EFF" stroke-width="2" stroke-linecap="round"/>
+    <text x="0" y="30" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#1a1a2e">迭代改进</text>
+  </g>
+
+  <!-- 中心说明文字 -->
+  <g transform="translate(400, 250)">
+    <rect x="-80" y="-30" width="160" height="60" rx="20" fill="white" opacity="0.9" stroke="#409EFF" stroke-width="1" stroke-dasharray="4,3"/>
+    <text x="0" y="-4" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="#1a1a2e" font-weight="bold">持续改进</text>
+    <text x="0" y="18" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#409EFF">公平性循环</text>
+  </g>
+
+  <!-- 步骤标注 -->
+  <g font-family="Arial, sans-serif" font-size="12" fill="#409EFF">
+    <text x="400" y="72" text-anchor="middle">步骤 1</text>
+    <text x="570" y="88" text-anchor="middle">步骤 2</text>
+    <text x="660" y="240" text-anchor="middle">步骤 3</text>
+    <text x="570" y="500" text-anchor="middle">步骤 4</text>
+    <text x="230" y="500" text-anchor="middle">步骤 5</text>
+  </g>
+
+  <!-- 底部说明 -->
+  <text x="400" y="485" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#666">算法公平性持续改进循环 — 检测偏差 → 衡量差异 → 应用缓解 → 监控生产 → 迭代改进</text>
+</svg>

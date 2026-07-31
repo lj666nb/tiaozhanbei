@@ -1,0 +1,107 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="800" height="500">
+  <defs>
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#e8f4ff"/>
+      <stop offset="100%" stop-color="#d0ebff"/>
+    </linearGradient>
+    <linearGradient id="baseGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#2a2a4e"/>
+      <stop offset="100%" stop-color="#1a1a2e"/>
+    </linearGradient>
+    <filter id="shadow" x="-5%" y="-5%" width="115%" height="115%">
+      <feDropShadow dx="2" dy="3" stdDeviation="4" flood-opacity="0.15"/>
+    </filter>
+  </defs>
+
+  <!-- 背景 -->
+  <rect width="800" height="500" fill="url(#bgGrad)" rx="8"/>
+
+  <!-- 中心：基础模型 -->
+  <rect x="290" y="185" width="220" height="130" rx="20" fill="url(#baseGrad)" filter="url(#shadow)"/>
+  <text x="400" y="240" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif" font-size="22" font-weight="bold">基础模型</text>
+  <text x="400" y="270" text-anchor="middle" fill="#88aaff" font-family="Arial, sans-serif" font-size="16">(7B 参数)</text>
+
+  <!-- 连接线（虚线） -->
+  <line x1="290" y1="220" x2="195" y2="140" stroke="#409EFF" stroke-width="1.5" stroke-dasharray="6,4" opacity="0.6"/>
+  <line x1="290" y1="250" x2="175" y2="320" stroke="#409EFF" stroke-width="1.5" stroke-dasharray="6,4" opacity="0.6"/>
+  <line x1="510" y1="220" x2="605" y2="140" stroke="#409EFF" stroke-width="1.5" stroke-dasharray="6,4" opacity="0.6"/>
+  <line x1="510" y1="250" x2="625" y2="320" stroke="#409EFF" stroke-width="1.5" stroke-dasharray="6,4" opacity="0.6"/>
+  <line x1="400" y1="185" x2="400" y2="75" stroke="#409EFF" stroke-width="1.5" stroke-dasharray="6,4" opacity="0.6"/>
+  <line x1="400" y1="315" x2="400" y2="415" stroke="#409EFF" stroke-width="1.5" stroke-dasharray="6,4" opacity="0.6"/>
+
+  <!-- 适配器 1：中文专家（上左） -->
+  <g transform="translate(130, 95)">
+    <rect x="0" y="0" width="110" height="50" rx="25" fill="#409EFF" filter="url(#shadow)"/>
+    <text x="55" y="30" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif" font-size="15" font-weight="bold">中文专家</text>
+    <!-- 插头图标 -->
+    <rect x="40" y="-12" width="30" height="12" rx="3" fill="#66b1ff"/>
+    <rect x="48" y="-18" width="14" height="8" rx="2" fill="#66b1ff"/>
+  </g>
+
+  <!-- 适配器 2：代码专家（上右） -->
+  <g transform="translate(560, 95)">
+    <rect x="0" y="0" width="110" height="50" rx="25" fill="#5aa9ff" filter="url(#shadow)"/>
+    <text x="55" y="30" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif" font-size="15" font-weight="bold">代码专家</text>
+    <rect x="40" y="-12" width="30" height="12" rx="3" fill="#8ac4ff"/>
+    <rect x="48" y="-18" width="14" height="8" rx="2" fill="#8ac4ff"/>
+  </g>
+
+  <!-- 适配器 3：法律专家（下左） -->
+  <g transform="translate(110, 300)">
+    <rect x="0" y="0" width="110" height="50" rx="25" fill="#3399ff" filter="url(#shadow)"/>
+    <text x="55" y="30" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif" font-size="15" font-weight="bold">法律专家</text>
+    <rect x="40" y="-12" width="30" height="12" rx="3" fill="#66b1ff"/>
+    <rect x="48" y="-18" width="14" height="8" rx="2" fill="#66b1ff"/>
+  </g>
+
+  <!-- 适配器 4：医疗专家（下右） -->
+  <g transform="translate(560, 300)">
+    <rect x="0" y="0" width="110" height="50" rx="25" fill="#4da6ff" filter="url(#shadow)"/>
+    <text x="55" y="30" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif" font-size="15" font-weight="bold">医疗专家</text>
+    <rect x="40" y="-12" width="30" height="12" rx="3" fill="#80c4ff"/>
+    <rect x="48" y="-18" width="14" height="8" rx="2" fill="#80c4ff"/>
+  </g>
+
+  <!-- 适配器 5：数学专家（上中） -->
+  <g transform="translate(345, 30)">
+    <rect x="0" y="0" width="110" height="50" rx="25" fill="#2e8cff" filter="url(#shadow)"/>
+    <text x="55" y="30" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif" font-size="15" font-weight="bold">数学专家</text>
+    <rect x="40" y="-12" width="30" height="12" rx="3" fill="#5aa9ff"/>
+    <rect x="48" y="-18" width="14" height="8" rx="2" fill="#5aa9ff"/>
+  </g>
+
+  <!-- 适配器 6：翻译专家（下中） -->
+  <g transform="translate(345, 400)">
+    <rect x="0" y="0" width="110" height="50" rx="25" fill="#3d99ff" filter="url(#shadow)"/>
+    <text x="55" y="30" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif" font-size="15" font-weight="bold">翻译专家</text>
+    <rect x="40" y="-12" width="30" height="12" rx="3" fill="#70b8ff"/>
+    <rect x="48" y="-18" width="14" height="8" rx="2" fill="#70b8ff"/>
+  </g>
+
+  <!-- 标注：约16MB每个 -->
+  <g transform="translate(160, 160)">
+    <rect x="0" y="0" width="100" height="24" rx="12" fill="#ffffff" stroke="#409EFF" stroke-width="1" opacity="0.9"/>
+    <text x="50" y="17" text-anchor="middle" fill="#409EFF" font-family="Arial, sans-serif" font-size="13" font-weight="bold">约 16MB/个</text>
+  </g>
+
+  <!-- 标注：零切换成本 -->
+  <g transform="translate(540, 160)">
+    <rect x="0" y="0" width="120" height="24" rx="12" fill="#ffffff" stroke="#409EFF" stroke-width="1" opacity="0.9"/>
+    <text x="60" y="17" text-anchor="middle" fill="#409EFF" font-family="Arial, sans-serif" font-size="13" font-weight="bold">零切换成本 ✓</text>
+  </g>
+
+  <!-- 标注：即插即用 -->
+  <g transform="translate(160, 370)">
+    <rect x="0" y="0" width="90" height="24" rx="12" fill="#ffffff" stroke="#409EFF" stroke-width="1" opacity="0.9"/>
+    <text x="45" y="17" text-anchor="middle" fill="#409EFF" font-family="Arial, sans-serif" font-size="13" font-weight="bold">即插即用 ✓</text>
+  </g>
+
+  <!-- 标注：多任务支持 -->
+  <g transform="translate(550, 370)">
+    <rect x="0" y="0" width="100" height="24" rx="12" fill="#ffffff" stroke="#409EFF" stroke-width="1" opacity="0.9"/>
+    <text x="50" y="17" text-anchor="middle" fill="#409EFF" font-family="Arial, sans-serif" font-size="13" font-weight="bold">多任务支持 ✓</text>
+  </g>
+
+  <!-- 标题 -->
+  <text x="400" y="480" text-anchor="middle" fill="#1a1a2e" font-family="Arial, sans-serif" font-size="16" opacity="0.6">多 LoRA 适配器架构 — 灵活扩展，零成本切换</text>
+</svg>

@@ -1,0 +1,121 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="800" height="500">
+  <defs>
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#f0f7ff"/>
+      <stop offset="100%" stop-color="#e8f4fd"/>
+    </linearGradient>
+    <linearGradient id="ringGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#409EFF" stop-opacity="0.3"/>
+      <stop offset="100%" stop-color="#409EFF" stop-opacity="0.6"/>
+    </linearGradient>
+  </defs>
+
+  <!-- 背景 -->
+  <rect width="800" height="500" fill="url(#bgGrad)" rx="12"/>
+
+  <!-- 标题 -->
+  <text x="400" y="38" text-anchor="middle" font-family="sans-serif" font-size="20" font-weight="bold" fill="#1a1a2e">AI 智能体工作流程</text>
+
+  <!-- ========== 左侧：用户 ========== -->
+  <!-- 用户剪影 -->
+  <g transform="translate(95, 250)">
+    <!-- 头部 -->
+    <circle cx="0" cy="-50" r="22" fill="#1a1a2e" opacity="0.85"/>
+    <!-- 身体 -->
+    <ellipse cx="0" cy="10" rx="28" ry="38" fill="#1a1a2e" opacity="0.85"/>
+    <!-- 任务气泡 -->
+    <g transform="translate(50, -70)">
+      <path d="M0,0 Q-8,-35 20,-45 Q48,-55 60,-35 Q72,-15 55,-5 L30,5 L20,-10 Q10,-8 0,0Z" fill="#409EFF" opacity="0.9"/>
+      <text x="30" y="-22" text-anchor="middle" font-family="sans-serif" font-size="13" fill="white" font-weight="bold">任务</text>
+      <!-- 箭头 -->
+      <line x1="55" y1="-20" x2="80" y2="-15" stroke="#409EFF" stroke-width="2.5" stroke-linecap="round"/>
+      <polygon points="80,-15 72,-20 74,-10" fill="#409EFF"/>
+    </g>
+    <!-- 标注 -->
+    <text x="0" y="80" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#1a1a2e" font-weight="bold">用户</text>
+  </g>
+
+  <!-- ========== 中间：AI 机器人 ========== -->
+  <g transform="translate(350, 250)">
+    <!-- 外环 - 感知 -->
+    <ellipse cx="0" cy="0" rx="105" ry="95" fill="none" stroke="#409EFF" stroke-width="2.5" stroke-dasharray="6,4" opacity="0.5"/>
+    <text x="0" y="-108" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#409EFF" font-weight="bold">感知</text>
+
+    <!-- 中环 - 规划 -->
+    <ellipse cx="0" cy="0" rx="80" ry="72" fill="none" stroke="#409EFF" stroke-width="2" stroke-dasharray="4,4" opacity="0.4"/>
+    <text x="0" y="-82" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#409EFF" font-weight="bold">规划</text>
+
+    <!-- 内环 - 行动 -->
+    <ellipse cx="0" cy="0" rx="55" ry="50" fill="none" stroke="#409EFF" stroke-width="2" stroke-dasharray="3,3" opacity="0.35"/>
+    <text x="0" y="-58" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#409EFF" font-weight="bold">行动</text>
+
+    <!-- 机器人头部 -->
+    <rect x="-28" y="-38" width="56" height="50" rx="14" fill="#409EFF" opacity="0.9"/>
+    <!-- 眼睛 -->
+    <circle cx="-10" cy="-18" r="6" fill="white"/>
+    <circle cx="10" cy="-18" r="6" fill="white"/>
+    <circle cx="-10" cy="-18" r="3" fill="#1a1a2e"/>
+    <circle cx="10" cy="-18" r="3" fill="#1a1a2e"/>
+    <!-- 嘴巴 -->
+    <rect x="-10" y="-4" width="20" height="4" rx="2" fill="white"/>
+    <!-- 天线 -->
+    <line x1="0" y1="-38" x2="0" y2="-52" stroke="#409EFF" stroke-width="2.5" stroke-linecap="round"/>
+    <circle cx="0" cy="-55" r="5" fill="#409EFF"/>
+    <!-- 身体 -->
+    <rect x="-20" y="14" width="40" height="36" rx="8" fill="#409EFF" opacity="0.7"/>
+    <!-- 身体细节 -->
+    <circle cx="0" cy="28" r="4" fill="white" opacity="0.6"/>
+    <circle cx="0" cy="40" r="4" fill="white" opacity="0.6"/>
+
+    <!-- 标注 -->
+    <text x="0" y="95" text-anchor="middle" font-family="sans-serif" font-size="15" fill="#1a1a2e" font-weight="bold">AI 智能体</text>
+  </g>
+
+  <!-- ========== 右侧：API/工具图标 ========== -->
+  <g transform="translate(600, 250)">
+    <!-- 齿轮图标 -->
+    <g transform="translate(0, -60)">
+      <circle cx="0" cy="0" r="18" fill="none" stroke="#409EFF" stroke-width="2.5"/>
+      <circle cx="0" cy="0" r="8" fill="none" stroke="#409EFF" stroke-width="2"/>
+      <line x1="0" y1="-18" x2="0" y2="-24" stroke="#409EFF" stroke-width="2.5" stroke-linecap="round"/>
+      <line x1="0" y1="18" x2="0" y2="24" stroke="#409EFF" stroke-width="2.5" stroke-linecap="round"/>
+      <line x1="-18" y1="0" x2="-24" y2="0" stroke="#409EFF" stroke-width="2.5" stroke-linecap="round"/>
+      <line x1="18" y1="0" x2="24" y2="0" stroke="#409EFF" stroke-width="2.5" stroke-linecap="round"/>
+      <text x="0" y="38" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#1a1a2e">API</text>
+    </g>
+
+    <!-- 数据库图标 -->
+    <g transform="translate(0, 30)">
+      <ellipse cx="0" cy="-12" rx="20" ry="8" fill="none" stroke="#409EFF" stroke-width="2.5"/>
+      <line x1="-20" y1="-12" x2="-20" y2="12" stroke="#409EFF" stroke-width="2.5"/>
+      <line x1="20" y1="-12" x2="20" y2="12" stroke="#409EFF" stroke-width="2.5"/>
+      <ellipse cx="0" cy="12" rx="20" ry="8" fill="none" stroke="#409EFF" stroke-width="2.5"/>
+      <text x="0" y="32" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#1a1a2e">数据</text>
+    </g>
+
+    <!-- 工具图标 -->
+    <g transform="translate(0, 100)">
+      <rect x="-16" y="-12" width="32" height="24" rx="4" fill="none" stroke="#409EFF" stroke-width="2.5"/>
+      <circle cx="0" cy="0" r="5" fill="#409EFF" opacity="0.5"/>
+      <text x="0" y="30" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#1a1a2e">工具</text>
+    </g>
+
+    <!-- 标注 -->
+    <text x="0" y="150" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#1a1a2e" font-weight="bold">服务接口</text>
+  </g>
+
+  <!-- ========== 箭头连接 ========== -->
+  <!-- 用户到机器人 -->
+  <line x1="175" y1="250" x2="240" y2="250" stroke="#409EFF" stroke-width="2" stroke-dasharray="5,3" opacity="0.6"/>
+  <polygon points="240,250 232,245 232,255" fill="#409EFF" opacity="0.6"/>
+
+  <!-- 机器人到 API -->
+  <line x1="455" y1="250" x2="530" y2="250" stroke="#409EFF" stroke-width="2" stroke-dasharray="5,3" opacity="0.6"/>
+  <polygon points="530,250 522,245 522,255" fill="#409EFF" opacity="0.6"/>
+
+  <!-- ========== 底部说明 ========== -->
+  <g transform="translate(400, 460)">
+    <text x="0" y="0" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#1a1a2e" opacity="0.7">用户发送任务 → AI 智能体感知、规划、行动 → 调用服务接口</text>
+  </g>
+
+</svg>

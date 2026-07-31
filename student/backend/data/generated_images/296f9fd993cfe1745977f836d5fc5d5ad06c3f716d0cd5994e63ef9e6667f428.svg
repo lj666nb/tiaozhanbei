@@ -1,0 +1,144 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="800" height="500">
+  <defs>
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#E8F4FD"/>
+      <stop offset="100%" stop-color="#F0F8FF"/>
+    </linearGradient>
+    <linearGradient id="blueGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#409EFF"/>
+      <stop offset="100%" stop-color="#2B7BDB"/>
+    </linearGradient>
+    <linearGradient id="lightBlue" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#D9EFFF"/>
+      <stop offset="100%" stop-color="#B3D9FF"/>
+    </linearGradient>
+  </defs>
+
+  <!-- 背景 -->
+  <rect width="800" height="500" fill="url(#bgGrad)" rx="8"/>
+
+  <!-- 标题 -->
+  <text x="400" y="32" text-anchor="middle" font-family="sans-serif" font-size="18" font-weight="bold" fill="#1a1a2e">静态 vs 动态角色分配对比</text>
+
+  <!-- ===== 左侧：静态 ===== -->
+  <rect x="30" y="50" width="350" height="200" rx="10" fill="white" stroke="#409EFF" stroke-width="1.5" opacity="0.95"/>
+  <rect x="30" y="50" width="350" height="32" rx="10" fill="#409EFF"/>
+  <rect x="30" y="70" width="350" height="12" fill="#409EFF"/>
+  <text x="205" y="72" text-anchor="middle" font-family="sans-serif" font-size="15" font-weight="bold" fill="white">静态分配</text>
+
+  <!-- 三个智能体角色徽章 -->
+  <rect x="60" y="100" width="90" height="36" rx="18" fill="#D9EFFF" stroke="#409EFF" stroke-width="1.2"/>
+  <text x="105" y="123" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#1a1a2e">🔬 研究员</text>
+
+  <rect x="175" y="100" width="85" height="36" rx="18" fill="#D9EFFF" stroke="#409EFF" stroke-width="1.2"/>
+  <text x="217" y="123" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#1a1a2e">✍️ 写作者</text>
+
+  <rect x="285" y="100" width="80" height="36" rx="18" fill="#D9EFFF" stroke="#409EFF" stroke-width="1.2"/>
+  <text x="325" y="123" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#1a1a2e">📋 编辑</text>
+
+  <!-- 固定箭头 -->
+  <line x1="105" y1="145" x2="105" y2="170" stroke="#409EFF" stroke-width="1.5" marker-end="url(#arrowBlue)"/>
+  <line x1="217" y1="145" x2="217" y2="170" stroke="#409EFF" stroke-width="1.5"/>
+  <line x1="325" y1="145" x2="325" y2="170" stroke="#409EFF" stroke-width="1.5"/>
+
+  <!-- 固定任务图标 -->
+  <rect x="65" y="175" width="280" height="50" rx="8" fill="#F5F9FF" stroke="#B3D9FF" stroke-width="1" stroke-dasharray="4,3"/>
+  <text x="205" y="198" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#666">固定任务 · 角色不变</text>
+  <text x="205" y="216" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#999">启动时分配，全程固定</text>
+
+  <!-- 静态标注 -->
+  <text x="205" y="265" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#1a1a2e">✅ 固定任务 · 可预测行为 · 简单调试</text>
+
+  <!-- ===== 右侧：动态 ===== -->
+  <rect x="420" y="50" width="350" height="200" rx="10" fill="white" stroke="#409EFF" stroke-width="1.5" opacity="0.95"/>
+  <rect x="420" y="50" width="350" height="32" rx="10" fill="#409EFF"/>
+  <rect x="420" y="70" width="350" height="12" fill="#409EFF"/>
+  <text x="595" y="72" text-anchor="middle" font-family="sans-serif" font-size="15" font-weight="bold" fill="white">动态分配</text>
+
+  <!-- 任务分析 -->
+  <rect x="445" y="95" width="120" height="30" rx="15" fill="#409EFF" opacity="0.85"/>
+  <text x="505" y="115" text-anchor="middle" font-family="sans-serif" font-size="12" fill="white">📊 任务分析</text>
+
+  <!-- 箭头 -->
+  <line x1="565" y1="110" x2="590" y2="110" stroke="#409EFF" stroke-width="1.5" marker-end="url(#arrowBlue)"/>
+
+  <!-- 决策框 -->
+  <rect x="595" y="95" width="150" height="30" rx="15" fill="#1a1a2e" opacity="0.85"/>
+  <text x="670" y="115" text-anchor="middle" font-family="sans-serif" font-size="11" fill="white">需要 3 分析 + 1 合成</text>
+
+  <!-- 向下箭头 -->
+  <line x1="505" y1="130" x2="505" y2="155" stroke="#409EFF" stroke-width="1.5"/>
+  <line x1="670" y1="130" x2="670" y2="155" stroke="#409EFF" stroke-width="1.5"/>
+
+  <!-- 动态创建的角色 -->
+  <rect x="445" y="160" width="70" height="30" rx="15" fill="#D9EFFF" stroke="#409EFF" stroke-width="1"/>
+  <text x="480" y="179" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#1a1a2e">分析 A</text>
+
+  <rect x="525" y="160" width="70" height="30" rx="15" fill="#D9EFFF" stroke="#409EFF" stroke-width="1"/>
+  <text x="560" y="179" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#1a1a2e">分析 B</text>
+
+  <rect x="605" y="160" width="70" height="30" rx="15" fill="#D9EFFF" stroke="#409EFF" stroke-width="1"/>
+  <text x="640" y="179" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#1a1a2e">分析 C</text>
+
+  <rect x="685" y="160" width="70" height="30" rx="15" fill="#D9EFFF" stroke="#409EFF" stroke-width="1"/>
+  <text x="720" y="179" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#1a1a2e">合成 D</text>
+
+  <!-- 动态标注 -->
+  <text x="595" y="210" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#1a1a2e">🔄 任务完成后角色释放</text>
+  <text x="595" y="265" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#1a1a2e">✅ 多样任务 · 灵活响应 · 复杂管理</text>
+
+  <!-- ===== 对比表格 ===== -->
+  <rect x="30" y="290" width="740" height="195" rx="10" fill="white" stroke="#409EFF" stroke-width="1.5" opacity="0.95"/>
+
+  <!-- 表头 -->
+  <rect x="30" y="290" width="740" height="32" rx="10" fill="#409EFF"/>
+  <rect x="30" y="310" width="740" height="12" fill="#409EFF"/>
+  <text x="400" y="312" text-anchor="middle" font-family="sans-serif" font-size="15" font-weight="bold" fill="white">对比维度</text>
+
+  <!-- 表头列 -->
+  <text x="200" y="312" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="bold" fill="white">静态分配</text>
+  <text x="600" y="312" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="bold" fill="white">动态分配</text>
+
+  <!-- 分隔线 -->
+  <line x1="30" y1="335" x2="770" y2="335" stroke="#E0E0E0" stroke-width="1"/>
+  <line x1="400" y1="290" x2="400" y2="485" stroke="#E0E0E0" stroke-width="1"/>
+
+  <!-- 行1：复杂性 -->
+  <text x="120" y="358" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="#1a1a2e">复杂性</text>
+  <text x="200" y="358" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#666">低</text>
+  <text x="600" y="358" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#666">高</text>
+
+  <!-- 行2：灵活性 -->
+  <text x="120" y="388" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="#1a1a2e">灵活性</text>
+  <text x="200" y="388" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#666">低</text>
+  <text x="600" y="388" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#666">高</text>
+
+  <!-- 行3：可预测性 -->
+  <text x="120" y="418" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="#1a1a2e">可预测性</text>
+  <text x="200" y="418" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#666">高</text>
+  <text x="600" y="418" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#666">低</text>
+
+  <!-- 行4：调试难度 -->
+  <text x="120" y="448" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="#1a1a2e">调试难度</text>
+  <text x="200" y="448" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#666">低</text>
+  <text x="600" y="448" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#666">高</text>
+
+  <!-- 行5：资源效率 -->
+  <text x="120" y="478" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="#1a1a2e">资源效率</text>
+  <text x="200" y="478" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#666">中等</text>
+  <text x="600" y="478" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#666">高</text>
+
+  <!-- 行分隔线 -->
+  <line x1="30" y1="365" x2="770" y2="365" stroke="#E8E8E8" stroke-width="0.5"/>
+  <line x1="30" y1="395" x2="770" y2="395" stroke="#E8E8E8" stroke-width="0.5"/>
+  <line x1="30" y1="425" x2="770" y2="425" stroke="#E8E8E8" stroke-width="0.5"/>
+  <line x1="30" y1="455" x2="770" y2="455" stroke="#E8E8E8" stroke-width="0.5"/>
+
+  <!-- 箭头标记定义 -->
+  <defs>
+    <marker id="arrowBlue" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L8,3 L0,6 Z" fill="#409EFF"/>
+    </marker>
+  </defs>
+
+</svg>

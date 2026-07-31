@@ -1,0 +1,134 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="800" height="500">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#e8f4ff;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#f0f8ff;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="boxGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#409EFF;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#3a8ee6;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="bdiGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#409EFF;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#5aadff;stop-opacity:1" />
+    </linearGradient>
+    <filter id="shadow" x="-5%" y="-5%" width="110%" height="110%">
+      <feDropShadow dx="1" dy="2" stdDeviation="3" flood-color="#1a1a2e" flood-opacity="0.12"/>
+    </filter>
+  </defs>
+
+  <!-- 背景 -->
+  <rect width="800" height="500" fill="url(#bgGrad)" rx="8"/>
+
+  <!-- 标题 -->
+  <text x="400" y="32" text-anchor="middle" font-family="Arial, 'Microsoft YaHei', sans-serif" font-size="18" font-weight="bold" fill="#1a1a2e">慎思智能体处理架构</text>
+
+  <!-- ===== 第1层：感知输入 ===== -->
+  <rect x="300" y="50" width="200" height="44" rx="10" fill="url(#boxGrad)" filter="url(#shadow)"/>
+  <text x="400" y="77" text-anchor="middle" font-family="Arial, 'Microsoft YaHei', sans-serif" font-size="15" font-weight="bold" fill="#ffffff">感知输入</text>
+  <!-- 传感器图标 -->
+  <circle cx="318" cy="72" r="8" fill="none" stroke="#ffffff" stroke-width="1.5"/>
+  <line x1="314" y1="76" x2="322" y2="68" stroke="#ffffff" stroke-width="1.5"/>
+  <line x1="312" y1="78" x2="324" y2="66" stroke="#ffffff" stroke-width="1"/>
+  <line x1="310" y1="80" x2="326" y2="64" stroke="#ffffff" stroke-width="0.8"/>
+
+  <!-- 箭头1 -->
+  <polygon points="400,94 394,104 406,104" fill="#1a1a2e" opacity="0.5"/>
+
+  <!-- ===== 第2层：世界模型 ===== -->
+  <rect x="280" y="108" width="240" height="52" rx="10" fill="#ffffff" stroke="#409EFF" stroke-width="2" filter="url(#shadow)"/>
+  <text x="400" y="130" text-anchor="middle" font-family="Arial, 'Microsoft YaHei', sans-serif" font-size="15" font-weight="bold" fill="#1a1a2e">世界模型</text>
+  <!-- 简化地球 -->
+  <circle cx="320" cy="146" r="9" fill="none" stroke="#409EFF" stroke-width="1.5"/>
+  <ellipse cx="320" cy="146" rx="9" ry="4" fill="none" stroke="#409EFF" stroke-width="0.8"/>
+  <line x1="311" y1="146" x2="329" y2="146" stroke="#409EFF" stroke-width="0.8"/>
+  <!-- 连接节点 -->
+  <circle cx="345" cy="140" r="3" fill="#409EFF"/>
+  <circle cx="355" cy="148" r="3" fill="#409EFF"/>
+  <circle cx="365" cy="140" r="3" fill="#409EFF"/>
+  <line x1="345" y1="140" x2="355" y2="148" stroke="#409EFF" stroke-width="0.6"/>
+  <line x1="355" y1="148" x2="365" y2="140" stroke="#409EFF" stroke-width="0.6"/>
+  <line x1="345" y1="140" x2="365" y2="140" stroke="#409EFF" stroke-width="0.6"/>
+
+  <!-- 箭头2 -->
+  <polygon points="400,160 394,170 406,170" fill="#1a1a2e" opacity="0.5"/>
+
+  <!-- ===== 第3层：BDI三元组 ===== -->
+  <!-- 信念 -->
+  <rect x="100" y="178" width="180" height="52" rx="10" fill="url(#bdiGrad)" filter="url(#shadow)"/>
+  <text x="190" y="200" text-anchor="middle" font-family="Arial, 'Microsoft YaHei', sans-serif" font-size="15" font-weight="bold" fill="#ffffff">信念</text>
+  <!-- 信息图标 -->
+  <circle cx="120" cy="210" r="7" fill="none" stroke="#ffffff" stroke-width="1.2"/>
+  <text x="120" y="213" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#ffffff">i</text>
+  <text x="145" y="214" font-family="Arial, sans-serif" font-size="11" fill="#ffffff" opacity="0.9">92%</text>
+
+  <!-- 愿望 -->
+  <rect x="310" y="178" width="180" height="52" rx="10" fill="url(#bdiGrad)" filter="url(#shadow)"/>
+  <text x="400" y="200" text-anchor="middle" font-family="Arial, 'Microsoft YaHei', sans-serif" font-size="15" font-weight="bold" fill="#ffffff">愿望</text>
+  <!-- 星形图标 -->
+  <polygon points="330,206 333,200 338,200 335,206 338,212 333,209 328,212 331,206" fill="#ffffff"/>
+  <text x="355" y="214" font-family="Arial, sans-serif" font-size="11" fill="#ffffff" opacity="0.9">P1</text>
+
+  <!-- 意图 -->
+  <rect x="520" y="178" width="180" height="52" rx="10" fill="url(#bdiGrad)" filter="url(#shadow)"/>
+  <text x="610" y="200" text-anchor="middle" font-family="Arial, 'Microsoft YaHei', sans-serif" font-size="15" font-weight="bold" fill="#ffffff">意图</text>
+  <!-- 对勾图标 -->
+  <path d="M538,208 L544,214 L554,204" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round"/>
+  <text x="565" y="214" font-family="Arial, sans-serif" font-size="11" fill="#ffffff" opacity="0.9">目标</text>
+
+  <!-- BDI标签 -->
+  <text x="400" y="244" text-anchor="middle" font-family="Arial, 'Microsoft YaHei', sans-serif" font-size="12" fill="#1a1a2e" opacity="0.6">BDI 三元组</text>
+
+  <!-- 箭头3（从BDI向下） -->
+  <polygon points="400,252 394,262 406,262" fill="#1a1a2e" opacity="0.5"/>
+
+  <!-- ===== 第4层：推理引擎 ===== -->
+  <rect x="290" y="270" width="220" height="48" rx="10" fill="#ffffff" stroke="#409EFF" stroke-width="2" filter="url(#shadow)"/>
+  <text x="400" y="294" text-anchor="middle" font-family="Arial, 'Microsoft YaHei', sans-serif" font-size="15" font-weight="bold" fill="#1a1a2e">推理引擎</text>
+  <!-- 齿轮+大脑图标 -->
+  <circle cx="310" cy="300" r="8" fill="none" stroke="#409EFF" stroke-width="1.5"/>
+  <circle cx="310" cy="300" r="3" fill="#409EFF"/>
+  <line x1="310" y1="292" x2="310" y2="294" stroke="#409EFF" stroke-width="1.2"/>
+  <line x1="310" y1="306" x2="310" y2="308" stroke="#409EFF" stroke-width="1.2"/>
+  <line x1="302" y1="300" x2="304" y2="300" stroke="#409EFF" stroke-width="1.2"/>
+  <line x1="316" y1="300" x2="318" y2="300" stroke="#409EFF" stroke-width="1.2"/>
+
+  <!-- 箭头4 -->
+  <polygon points="400,318 394,328 406,328" fill="#1a1a2e" opacity="0.5"/>
+
+  <!-- ===== 第5层：规划器 ===== -->
+  <rect x="290" y="336" width="220" height="48" rx="10" fill="#ffffff" stroke="#409EFF" stroke-width="2" filter="url(#shadow)"/>
+  <text x="400" y="360" text-anchor="middle" font-family="Arial, 'Microsoft YaHei', sans-serif" font-size="15" font-weight="bold" fill="#1a1a2e">规划器</text>
+  <!-- 分支路径图标 -->
+  <line x1="315" y1="366" x2="325" y2="358" stroke="#409EFF" stroke-width="1.5"/>
+  <line x1="325" y1="358" x2="330" y2="366" stroke="#409EFF" stroke-width="1.5"/>
+  <line x1="325" y1="358" x2="335" y2="352" stroke="#409EFF" stroke-width="1.5"/>
+  <circle cx="330" cy="366" r="2" fill="#409EFF"/>
+  <circle cx="335" cy="352" r="2" fill="#409EFF"/>
+
+  <!-- 箭头5 -->
+  <polygon points="400,384 394,394 406,394" fill="#1a1a2e" opacity="0.5"/>
+
+  <!-- ===== 第6层：执行器 ===== -->
+  <rect x="300" y="402" width="200" height="44" rx="10" fill="url(#boxGrad)" filter="url(#shadow)"/>
+  <text x="400" y="429" text-anchor="middle" font-family="Arial, 'Microsoft YaHei', sans-serif" font-size="15" font-weight="bold" fill="#ffffff">执行器</text>
+  <!-- 执行图标 -->
+  <polygon points="318,420 316,414 322,414" fill="#ffffff"/>
+  <rect x="324" y="412" width="6" height="8" rx="1" fill="#ffffff"/>
+  <rect x="332" y="412" width="6" height="8" rx="1" fill="#ffffff"/>
+
+  <!-- 底部标注 -->
+  <text x="400" y="470" text-anchor="middle" font-family="Arial, 'Microsoft YaHei', sans-serif" font-size="12" fill="#1a1a2e" opacity="0.5">数据流方向</text>
+
+  <!-- 左侧标注 -->
+  <text x="60" y="80" font-family="Arial, 'Microsoft YaHei', sans-serif" font-size="13" fill="#1a1a2e" opacity="0.7">① 环境</text>
+  <text x="60" y="135" font-family="Arial, 'Microsoft YaHei', sans-serif" font-size="13" fill="#1a1a2e" opacity="0.7">② 知识</text>
+  <text x="60" y="205" font-family="Arial, 'Microsoft YaHei', sans-serif" font-size="13" fill="#1a1a2e" opacity="0.7">③ 心理</text>
+  <text x="60" y="295" font-family="Arial, 'Microsoft YaHei', sans-serif" font-size="13" fill="#1a1a2e" opacity="0.7">④ 逻辑</text>
+  <text x="60" y="360" font-family="Arial, 'Microsoft YaHei', sans-serif" font-size="13" fill="#1a1a2e" opacity="0.7">⑤ 路径</text>
+  <text x="60" y="425" font-family="Arial, 'Microsoft YaHei', sans-serif" font-size="13" fill="#1a1a2e" opacity="0.7">⑥ 动作</text>
+
+  <!-- 右侧装饰线 -->
+  <line x1="720" y1="65" x2="720" y2="440" stroke="#409EFF" stroke-width="1" opacity="0.15" stroke-dasharray="4,4"/>
+  <text x="730" y="260" font-family="Arial, 'Microsoft YaHei', sans-serif" font-size="11" fill="#409EFF" opacity="0.3" transform="rotate(90,730,260)">慎思智能体处理流程</text>
+</svg>

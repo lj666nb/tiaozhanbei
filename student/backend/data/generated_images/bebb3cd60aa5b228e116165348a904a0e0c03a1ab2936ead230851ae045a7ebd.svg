@@ -1,0 +1,213 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="800" height="500">
+  <defs>
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#E8F4FD"/>
+      <stop offset="100%" stop-color="#F0F8FF"/>
+    </linearGradient>
+    <linearGradient id="headerGrad" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#409EFF"/>
+      <stop offset="100%" stop-color="#6BB5FF"/>
+    </linearGradient>
+    <filter id="shadow" x="-2%" y="-2%" width="104%" height="104%">
+      <feDropShadow dx="1" dy="2" stdDeviation="3" flood-opacity="0.12" flood-color="#1a1a2e"/>
+    </filter>
+  </defs>
+
+  <!-- 背景 -->
+  <rect width="800" height="500" fill="url(#bgGrad)" rx="6"/>
+
+  <!-- 标题栏 -->
+  <rect x="0" y="0" width="800" height="42" fill="url(#headerGrad)" rx="6"/>
+  <rect x="0" y="36" width="800" height="6" fill="url(#headerGrad)"/>
+  <text x="400" y="28" text-anchor="middle" fill="#fff" font-size="18" font-weight="bold" font-family="sans-serif">可观测性三大支柱</text>
+
+  <!-- ==================== 面板 1：指标 ==================== -->
+  <g filter="url(#shadow)">
+    <rect x="20" y="58" width="240" height="420" rx="8" fill="#fff" stroke="#409EFF" stroke-width="1.5"/>
+    <rect x="20" y="58" width="240" height="34" rx="8" fill="#409EFF"/>
+    <rect x="20" y="84" width="240" height="8" fill="#409EFF"/>
+    <text x="140" y="80" text-anchor="middle" fill="#fff" font-size="15" font-weight="bold" font-family="sans-serif">📊 指标</text>
+  </g>
+
+  <!-- 仪表盘模拟 -->
+  <!-- 半圆仪表 -->
+  <path d="M60 130 A50 50 0 0 1 160 130" fill="none" stroke="#E0E6ED" stroke-width="8" stroke-linecap="round"/>
+  <path d="M60 130 A50 50 0 0 1 130 88" fill="none" stroke="#409EFF" stroke-width="8" stroke-linecap="round"/>
+  <text x="110" y="148" text-anchor="middle" fill="#1a1a2e" font-size="11" font-family="sans-serif">P50 延迟</text>
+  <text x="110" y="162" text-anchor="middle" fill="#409EFF" font-size="13" font-weight="bold" font-family="sans-serif">42ms</text>
+
+  <!-- 柱状图 -->
+  <rect x="55" y="180" width="22" height="40" rx="2" fill="#409EFF" opacity="0.7"/>
+  <rect x="82" y="170" width="22" height="50" rx="2" fill="#409EFF"/>
+  <rect x="109" y="185" width="22" height="35" rx="2" fill="#6BB5FF"/>
+  <rect x="136" y="175" width="22" height="45" rx="2" fill="#409EFF" opacity="0.85"/>
+  <text x="55" y="232" font-size="9" fill="#1a1a2e" font-family="sans-serif">P95</text>
+  <text x="82" y="232" font-size="9" fill="#1a1a2e" font-family="sans-serif">P99</text>
+  <text x="105" y="232" font-size="9" fill="#1a1a2e" font-family="sans-serif">吞吐</text>
+
+  <!-- 指标行 -->
+  <g font-size="11" fill="#1a1a2e" font-family="sans-serif">
+    <text x="40" y="260">成功率</text>
+    <rect x="120" y="248" width="80" height="14" rx="7" fill="#E8F4FD"/>
+    <rect x="120" y="248" width="72" height="14" rx="7" fill="#67C23A"/>
+    <text x="200" y="260" fill="#67C23A" font-weight="bold">99.2%</text>
+
+    <text x="40" y="290">任务成本</text>
+    <text x="200" y="290" fill="#409EFF" font-weight="bold">$0.023</text>
+
+    <text x="40" y="320">队列长度</text>
+    <rect x="120" y="308" width="80" height="14" rx="7" fill="#E8F4FD"/>
+    <rect x="120" y="308" width="24" height="14" rx="7" fill="#E6A23C"/>
+    <text x="200" y="320" fill="#E6A23C" font-weight="bold">7</text>
+  </g>
+
+  <!-- 折线图 -->
+  <polyline points="40,350 70,340 100,355 130,330 160,345 190,325 220,335" fill="none" stroke="#409EFF" stroke-width="2"/>
+  <circle cx="40" cy="350" r="2.5" fill="#409EFF"/>
+  <circle cx="70" cy="340" r="2.5" fill="#409EFF"/>
+  <circle cx="100" cy="355" r="2.5" fill="#409EFF"/>
+  <circle cx="130" cy="330" r="2.5" fill="#409EFF"/>
+  <circle cx="160" cy="345" r="2.5" fill="#409EFF"/>
+  <circle cx="190" cy="325" r="2.5" fill="#409EFF"/>
+  <circle cx="220" cy="335" r="2.5" fill="#409EFF"/>
+  <text x="40" y="375" font-size="10" fill="#1a1a2e" font-family="sans-serif">延迟趋势</text>
+
+  <!-- ==================== 面板 2：日志 ==================== -->
+  <g filter="url(#shadow)">
+    <rect x="280" y="58" width="240" height="420" rx="8" fill="#fff" stroke="#409EFF" stroke-width="1.5"/>
+    <rect x="280" y="58" width="240" height="34" rx="8" fill="#409EFF"/>
+    <rect x="280" y="84" width="240" height="8" fill="#409EFF"/>
+    <text x="400" y="80" text-anchor="middle" fill="#fff" font-size="15" font-weight="bold" font-family="sans-serif">📝 日志</text>
+  </g>
+
+  <!-- 日志条目 -->
+  <g font-family="monospace" font-size="9">
+    <!-- 条目 1 -->
+    <rect x="295" y="108" width="210" height="52" rx="4" fill="#F5F7FA" stroke="#E0E6ED" stroke-width="0.8"/>
+    <text x="300" y="122" fill="#409EFF" font-weight="bold">{</text>
+    <text x="305" y="135" fill="#1a1a2e">"timestamp": "2025-01-15T10:30:22Z"</text>
+    <text x="305" y="148" fill="#1a1a2e">"agent_id": "router-01"</text>
+    <text x="300" y="158" fill="#409EFF" font-weight="bold">}</text>
+
+    <!-- 条目 2 -->
+    <rect x="295" y="168" width="210" height="52" rx="4" fill="#F5F7FA" stroke="#E0E6ED" stroke-width="0.8"/>
+    <text x="300" y="182" fill="#409EFF" font-weight="bold">{</text>
+    <text x="305" y="195" fill="#1a1a2e">"action": "search", "tool": "web"</text>
+    <text x="305" y="208" fill="#1a1a2e">"duration": 320, "tokens": 1450</text>
+    <text x="300" y="218" fill="#409EFF" font-weight="bold">}</text>
+
+    <!-- 条目 3 -->
+    <rect x="295" y="228" width="210" height="52" rx="4" fill="#F5F7FA" stroke="#E0E6ED" stroke-width="0.8"/>
+    <text x="300" y="242" fill="#409EFF" font-weight="bold">{</text>
+    <text x="305" y="255" fill="#1a1a2e">"agent_id": "research-02"</text>
+    <text x="305" y="268" fill="#1a1a2e">"action": "analyze", "status": "ok"</text>
+    <text x="300" y="278" fill="#409EFF" font-weight="bold">}</text>
+
+    <!-- 条目 4 -->
+    <rect x="295" y="288" width="210" height="52" rx="4" fill="#F5F7FA" stroke="#E0E6ED" stroke-width="0.8"/>
+    <text x="300" y="302" fill="#409EFF" font-weight="bold">{</text>
+    <text x="305" y="315" fill="#1a1a2e">"tool": "vector-db", "query": "..."</text>
+    <text x="305" y="328" fill="#1a1a2e">"duration": 180, "tokens": 890</text>
+    <text x="300" y="338" fill="#409EFF" font-weight="bold">}</text>
+  </g>
+
+  <!-- 日志流箭头 -->
+  <text x="400" y="370" text-anchor="middle" fill="#409EFF" font-size="20">↓</text>
+  <text x="400" y="390" text-anchor="middle" fill="#1a1a2e" font-size="10" font-family="sans-serif">结构化日志流</text>
+
+  <!-- 代理图标 -->
+  <g transform="translate(320, 410)">
+    <circle cx="0" cy="0" r="10" fill="#409EFF" opacity="0.2"/>
+    <circle cx="0" cy="0" r="6" fill="#409EFF"/>
+    <text x="0" y="20" text-anchor="middle" font-size="9" fill="#1a1a2e" font-family="sans-serif">Agent A</text>
+  </g>
+  <g transform="translate(400, 410)">
+    <circle cx="0" cy="0" r="10" fill="#409EFF" opacity="0.2"/>
+    <circle cx="0" cy="0" r="6" fill="#409EFF"/>
+    <text x="0" y="20" text-anchor="middle" font-size="9" fill="#1a1a2e" font-family="sans-serif">Agent B</text>
+  </g>
+  <g transform="translate(480, 410)">
+    <circle cx="0" cy="0" r="10" fill="#409EFF" opacity="0.2"/>
+    <circle cx="0" cy="0" r="6" fill="#409EFF"/>
+    <text x="0" y="20" text-anchor="middle" font-size="9" fill="#1a1a2e" font-family="sans-serif">Agent C</text>
+  </g>
+
+  <!-- ==================== 面板 3：分布式追踪 ==================== -->
+  <g filter="url(#shadow)">
+    <rect x="540" y="58" width="240" height="420" rx="8" fill="#fff" stroke="#409EFF" stroke-width="1.5"/>
+    <rect x="540" y="58" width="240" height="34" rx="8" fill="#409EFF"/>
+    <rect x="540" y="84" width="240" height="8" fill="#409EFF"/>
+    <text x="660" y="80" text-anchor="middle" fill="#fff" font-size="15" font-weight="bold" font-family="sans-serif">🔗 分布式追踪</text>
+  </g>
+
+  <!-- 追踪跨度 -->
+  <g font-family="sans-serif">
+    <!-- 用户 → 路由器 -->
+    <text x="555" y="120" font-size="10" fill="#1a1a2e">用户</text>
+    <rect x="595" y="108" width="80" height="16" rx="4" fill="#409EFF" opacity="0.7"/>
+    <text x="635" y="119" text-anchor="middle" font-size="9" fill="#fff">12ms</text>
+    <line x1="555" y1="116" x2="595" y2="116" stroke="#1a1a2e" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+    <!-- 路由器 → 研究代理 -->
+    <text x="555" y="150" font-size="10" fill="#1a1a2e">路由器</text>
+    <rect x="595" y="138" width="120" height="16" rx="4" fill="#409EFF"/>
+    <text x="655" y="149" text-anchor="middle" font-size="9" fill="#fff">45ms</text>
+    <line x1="555" y1="146" x2="595" y2="146" stroke="#1a1a2e" stroke-width="1.5"/>
+
+    <!-- 研究代理 → 搜索工具 -->
+    <text x="555" y="180" font-size="10" fill="#1a1a2e">研究代理</text>
+    <rect x="595" y="168" width="100" height="16" rx="4" fill="#6BB5FF"/>
+    <text x="645" y="179" text-anchor="middle" font-size="9" fill="#fff">320ms</text>
+    <line x1="555" y1="176" x2="595" y2="176" stroke="#1a1a2e" stroke-width="1.5"/>
+
+    <!-- 搜索工具 → 数据库 -->
+    <text x="555" y="210" font-size="10" fill="#1a1a2e">Web搜索</text>
+    <rect x="595" y="198" width="70" height="16" rx="4" fill="#409EFF" opacity="0.85"/>
+    <text x="630" y="209" text-anchor="middle" font-size="9" fill="#fff">180ms</text>
+    <line x1="555" y1="206" x2="595" y2="206" stroke="#1a1a2e" stroke-width="1.5"/>
+
+    <!-- 数据库响应 -->
+    <text x="555" y="240" font-size="10" fill="#1a1a2e">数据库</text>
+    <rect x="595" y="228" width="55" height="16" rx="4" fill="#6BB5FF"/>
+    <text x="622" y="239" text-anchor="middle" font-size="9" fill="#fff">95ms</text>
+    <line x1="555" y1="236" x2="595" y2="236" stroke="#1a1a2e" stroke-width="1.5"/>
+  </g>
+
+  <!-- 时间线 -->
+  <line x1="555" y1="260" x2="770" y2="260" stroke="#E0E6ED" stroke-width="1"/>
+  <text x="555" y="275" font-size="9" fill="#909399" font-family="sans-serif">0ms</text>
+  <text x="660" y="275" font-size="9" fill="#909399" font-family="sans-serif">200ms</text>
+  <text x="760" y="275" font-size="9" fill="#909399" font-family="sans-serif">400ms</text>
+
+  <!-- 追踪总览 -->
+  <rect x="555" y="290" width="200" height="40" rx="6" fill="#F5F7FA" stroke="#E0E6ED" stroke-width="0.8"/>
+  <text x="565" y="308" font-size="10" fill="#1a1a2e" font-family="sans-serif">总耗时</text>
+  <text x="565" y="322" font-size="12" fill="#409EFF" font-weight="bold" font-family="sans-serif">652ms</text>
+  <text x="680" y="322" font-size="9" fill="#909399" font-family="sans-serif">5 个跨度</text>
+
+  <!-- 跨度详情 -->
+  <g font-family="sans-serif" font-size="9">
+    <rect x="555" y="340" width="200" height="18" rx="3" fill="#E8F4FD"/>
+    <text x="565" y="353" fill="#1a1a2e">span: user→router</text>
+    <text x="720" y="353" fill="#409EFF">12ms</text>
+
+    <rect x="555" y="362" width="200" height="18" rx="3" fill="#F5F7FA"/>
+    <text x="565" y="375" fill="#1a1a2e">span: router→research</text>
+    <text x="720" y="375" fill="#409EFF">45ms</text>
+
+    <rect x="555" y="384" width="200" height="18" rx="3" fill="#E8F4FD"/>
+    <text x="565" y="397" fill="#1a1a2e">span: research→search</text>
+    <text x="720" y="397" fill="#409EFF">320ms</text>
+
+    <rect x="555" y="406" width="200" height="18" rx="3" fill="#F5F7FA"/>
+    <text x="565" y="419" fill="#1a1a2e">span: search→db</text>
+    <text x="720" y="419" fill="#409EFF">180ms</text>
+
+    <rect x="555" y="428" width="200" height="18" rx="3" fill="#E8F4FD"/>
+    <text x="565" y="441" fill="#1a1a2e">span: db→response</text>
+    <text x="720" y="441" fill="#409EFF">95ms</text>
+  </g>
+
+  <!-- 底部标注 -->
+  <text x="400" y="485" text-anchor="middle" fill="#909399" font-size="12" font-family="sans-serif">可观测性三大支柱：指标 · 日志 · 分布式追踪</text>
+</svg>

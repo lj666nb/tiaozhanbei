@@ -1,0 +1,143 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="800" height="500">
+  <defs>
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#f0f6ff"/>
+      <stop offset="100%" stop-color="#e0edff"/>
+    </linearGradient>
+    <linearGradient id="cardGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#e8f4ff"/>
+      <stop offset="100%" stop-color="#d0ebff"/>
+    </linearGradient>
+  </defs>
+
+  <!-- 背景 -->
+  <rect width="800" height="500" fill="url(#bgGrad)" rx="8"/>
+
+  <!-- 标题 -->
+  <text x="400" y="42" text-anchor="middle" font-family="sans-serif" font-size="22" font-weight="bold" fill="#1a1a2e">设计模式集</text>
+
+  <!-- 四个卡片区域：2x2 网格 -->
+  <!-- 卡片1：提示链（左上） -->
+  <rect x="30" y="70" width="355" height="185" rx="12" fill="white" stroke="#409EFF" stroke-width="1.5" opacity="0.95"/>
+  <rect x="30" y="70" width="355" height="36" rx="12" fill="#409EFF" opacity="0.15"/>
+  <text x="207" y="94" text-anchor="middle" font-family="sans-serif" font-size="16" font-weight="bold" fill="#1a1a2e">提示链 Prompt Chaining</text>
+
+  <!-- 提示链箭头：A→B→C→D -->
+  <rect x="65" y="130" width="40" height="28" rx="6" fill="#409EFF" opacity="0.7"/>
+  <text x="85" y="149" text-anchor="middle" font-family="sans-serif" font-size="14" fill="white" font-weight="bold">A</text>
+
+  <line x1="108" y1="144" x2="138" y2="144" stroke="#409EFF" stroke-width="2" marker-end="url(#arrowBlue)"/>
+  <polygon points="138,140 148,144 138,148" fill="#409EFF"/>
+
+  <rect x="150" y="130" width="40" height="28" rx="6" fill="#409EFF" opacity="0.7"/>
+  <text x="170" y="149" text-anchor="middle" font-family="sans-serif" font-size="14" fill="white" font-weight="bold">B</text>
+
+  <line x1="193" y1="144" x2="223" y2="144" stroke="#409EFF" stroke-width="2"/>
+  <polygon points="223,140 233,144 223,148" fill="#409EFF"/>
+
+  <rect x="235" y="130" width="40" height="28" rx="6" fill="#409EFF" opacity="0.7"/>
+  <text x="255" y="149" text-anchor="middle" font-family="sans-serif" font-size="14" fill="white" font-weight="bold">C</text>
+
+  <line x1="278" y1="144" x2="308" y2="144" stroke="#409EFF" stroke-width="2"/>
+  <polygon points="308,140 318,144 308,148" fill="#409EFF"/>
+
+  <rect x="320" y="130" width="40" height="28" rx="6" fill="#409EFF" opacity="0.7"/>
+  <text x="340" y="149" text-anchor="middle" font-family="sans-serif" font-size="14" fill="white" font-weight="bold">D</text>
+
+  <!-- 说明文字 -->
+  <text x="207" y="195" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#1a1a2e" opacity="0.7">线性顺序执行，逐步传递</text>
+  <text x="207" y="218" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#1a1a2e" opacity="0.7">前一步输出为后一步输入</text>
+
+  <!-- 卡片2：路由（右上） -->
+  <rect x="415" y="70" width="355" height="185" rx="12" fill="white" stroke="#409EFF" stroke-width="1.5" opacity="0.95"/>
+  <rect x="415" y="70" width="355" height="36" rx="12" fill="#409EFF" opacity="0.15"/>
+  <text x="592" y="94" text-anchor="middle" font-family="sans-serif" font-size="16" font-weight="bold" fill="#1a1a2e">路由 Routing</text>
+
+  <!-- 路由中心节点 -->
+  <circle cx="592" cy="148" r="22" fill="#409EFF" opacity="0.8"/>
+  <text x="592" y="153" text-anchor="middle" font-family="sans-serif" font-size="13" fill="white" font-weight="bold">路由</text>
+
+  <!-- 分支线 -->
+  <line x1="572" y1="138" x2="480" y2="115" stroke="#409EFF" stroke-width="1.5"/>
+  <polygon points="480,113 472,112 478,118" fill="#409EFF"/>
+  <line x1="572" y1="158" x2="480" y2="180" stroke="#409EFF" stroke-width="1.5"/>
+  <polygon points="480,182 472,183 478,177" fill="#409EFF"/>
+  <line x1="612" y1="138" x2="700" y2="115" stroke="#409EFF" stroke-width="1.5"/>
+  <polygon points="700,113 708,112 702,118" fill="#409EFF"/>
+  <line x1="612" y1="158" x2="700" y2="180" stroke="#409EFF" stroke-width="1.5"/>
+  <polygon points="700,182 708,183 702,177" fill="#409EFF"/>
+
+  <!-- 四个处理节点 -->
+  <rect x="440" y="100" width="36" height="24" rx="5" fill="#409EFF" opacity="0.5"/>
+  <text x="458" y="116" text-anchor="middle" font-family="sans-serif" font-size="11" fill="white">处理1</text>
+  <rect x="440" y="168" width="36" height="24" rx="5" fill="#409EFF" opacity="0.5"/>
+  <text x="458" y="184" text-anchor="middle" font-family="sans-serif" font-size="11" fill="white">处理2</text>
+  <rect x="700" y="100" width="36" height="24" rx="5" fill="#409EFF" opacity="0.5"/>
+  <text x="718" y="116" text-anchor="middle" font-family="sans-serif" font-size="11" fill="white">处理3</text>
+  <rect x="700" y="168" width="36" height="24" rx="5" fill="#409EFF" opacity="0.5"/>
+  <text x="718" y="184" text-anchor="middle" font-family="sans-serif" font-size="11" fill="white">处理4</text>
+
+  <text x="592" y="210" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#1a1a2e" opacity="0.7">根据输入分类，分发到</text>
+  <text x="592" y="228" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#1a1a2e" opacity="0.7">不同专用处理器</text>
+
+  <!-- 卡片3：并行化（左下） -->
+  <rect x="30" y="280" width="355" height="190" rx="12" fill="white" stroke="#409EFF" stroke-width="1.5" opacity="0.95"/>
+  <rect x="30" y="280" width="355" height="36" rx="12" fill="#409EFF" opacity="0.15"/>
+  <text x="207" y="304" text-anchor="middle" font-family="sans-serif" font-size="16" font-weight="bold" fill="#1a1a2e">并行化 Parallelization</text>
+
+  <!-- 子模式：分段 -->
+  <text x="55" y="335" font-family="sans-serif" font-size="13" font-weight="bold" fill="#409EFF">分段</text>
+  <rect x="55" y="345" width="28" height="20" rx="4" fill="#409EFF" opacity="0.6"/>
+  <text x="69" y="359" text-anchor="middle" font-family="sans-serif" font-size="10" fill="white">块1</text>
+  <rect x="95" y="345" width="28" height="20" rx="4" fill="#409EFF" opacity="0.6"/>
+  <text x="109" y="359" text-anchor="middle" font-family="sans-serif" font-size="10" fill="white">块2</text>
+  <rect x="135" y="345" width="28" height="20" rx="4" fill="#409EFF" opacity="0.6"/>
+  <text x="149" y="359" text-anchor="middle" font-family="sans-serif" font-size="10" fill="white">块3</text>
+  <rect x="175" y="345" width="28" height="20" rx="4" fill="#409EFF" opacity="0.6"/>
+  <text x="189" y="359" text-anchor="middle" font-family="sans-serif" font-size="10" fill="white">块4</text>
+  <text x="55" y="385" font-family="sans-serif" font-size="12" fill="#1a1a2e" opacity="0.7">数据分块并行处理</text>
+
+  <!-- 子模式：投票 -->
+  <text x="55" y="415" font-family="sans-serif" font-size="13" font-weight="bold" fill="#409EFF">投票</text>
+  <circle cx="75" cy="435" r="10" fill="#409EFF" opacity="0.5"/>
+  <text x="75" y="439" text-anchor="middle" font-family="sans-serif" font-size="10" fill="white">审1</text>
+  <circle cx="110" cy="435" r="10" fill="#409EFF" opacity="0.5"/>
+  <text x="110" y="439" text-anchor="middle" font-family="sans-serif" font-size="10" fill="white">审2</text>
+  <circle cx="145" cy="435" r="10" fill="#409EFF" opacity="0.5"/>
+  <text x="145" y="439" text-anchor="middle" font-family="sans-serif" font-size="10" fill="white">审3</text>
+  <text x="180" y="439" font-family="sans-serif" font-size="12" fill="#1a1a2e" opacity="0.7">→ 多数表决</text>
+
+  <!-- 卡片4：自我反思（右下） -->
+  <rect x="415" y="280" width="355" height="190" rx="12" fill="white" stroke="#409EFF" stroke-width="1.5" opacity="0.95"/>
+  <rect x="415" y="280" width="355" height="36" rx="12" fill="#409EFF" opacity="0.15"/>
+  <text x="592" y="304" text-anchor="middle" font-family="sans-serif" font-size="16" font-weight="bold" fill="#1a1a2e">自我反思 Reflection</text>
+
+  <!-- 循环图：生成器→评审→修订 -->
+  <ellipse cx="530" cy="370" rx="38" ry="22" fill="#409EFF" opacity="0.6"/>
+  <text x="530" y="374" text-anchor="middle" font-family="sans-serif" font-size="13" fill="white" font-weight="bold">生成器</text>
+
+  <ellipse cx="650" cy="370" rx="38" ry="22" fill="#409EFF" opacity="0.6"/>
+  <text x="650" y="374" text-anchor="middle" font-family="sans-serif" font-size="13" fill="white" font-weight="bold">评审</text>
+
+  <!-- 箭头：生成器→评审 -->
+  <line x1="570" y1="370" x2="608" y2="370" stroke="#409EFF" stroke-width="2"/>
+  <polygon points="608,366 618,370 608,374" fill="#409EFF"/>
+
+  <!-- 箭头：评审→修订（向下） -->
+  <line x1="650" y1="392" x2="650" y2="425" stroke="#409EFF" stroke-width="2"/>
+  <polygon points="646,425 650,435 654,425" fill="#409EFF"/>
+
+  <ellipse cx="650" cy="445" rx="38" ry="18" fill="#409EFF" opacity="0.4"/>
+  <text x="650" y="449" text-anchor="middle" font-family="sans-serif" font-size="13" fill="white" font-weight="bold">修订</text>
+
+  <!-- 箭头：修订→生成器（向左） -->
+  <line x1="612" y1="445" x2="568" y2="445" stroke="#409EFF" stroke-width="1.5" stroke-dasharray="5,3"/>
+  <polygon points="568,441 558,445 568,449" fill="#409EFF"/>
+
+  <!-- 箭头：修订→生成器（向上） -->
+  <line x1="558" y1="445" x2="530" y2="395" stroke="#409EFF" stroke-width="1.5" stroke-dasharray="5,3"/>
+  <polygon points="526,395 530,405 534,395" fill="#409EFF"/>
+
+  <text x="592" y="475" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#1a1a2e" opacity="0.7">循环迭代，持续优化输出</text>
+
+</svg>

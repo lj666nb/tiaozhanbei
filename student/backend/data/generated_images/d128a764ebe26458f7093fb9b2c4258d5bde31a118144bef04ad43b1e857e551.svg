@@ -1,0 +1,125 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="800" height="500">
+  <defs>
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#E8F4FD"/>
+      <stop offset="100%" stop-color="#D0ECFA"/>
+    </linearGradient>
+    <linearGradient id="arrowGrad" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#409EFF"/>
+      <stop offset="100%" stop-color="#409EFF"/>
+    </linearGradient>
+  </defs>
+
+  <!-- 背景 -->
+  <rect width="800" height="500" fill="url(#bgGrad)" rx="8"/>
+
+  <!-- 标题 -->
+  <text x="400" y="38" text-anchor="middle" font-family="sans-serif" font-size="20" font-weight="bold" fill="#1a1a2e">动态重规划流程</text>
+
+  <!-- ===== 主流程（圆形布局） ===== -->
+
+  <!-- 1. 初始计划 - 顶部 -->
+  <rect x="330" y="60" width="140" height="44" rx="10" fill="white" stroke="#409EFF" stroke-width="2"/>
+  <text x="400" y="87" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#1a1a2e">初始计划</text>
+
+  <!-- 箭头 1→2 -->
+  <line x1="400" y1="104" x2="400" y2="138" stroke="#409EFF" stroke-width="2.5" marker-end="url(#arrowBlue)"/>
+  <defs>
+    <marker id="arrowBlue" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto">
+      <polygon points="0 0, 10 4, 0 8" fill="#409EFF"/>
+    </marker>
+  </defs>
+
+  <!-- 2. 执行步骤N - 中上 -->
+  <rect x="330" y="140" width="140" height="44" rx="10" fill="white" stroke="#409EFF" stroke-width="2"/>
+  <text x="400" y="167" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#1a1a2e">执行步骤N</text>
+
+  <!-- 箭头 2→3 -->
+  <line x1="400" y1="184" x2="400" y2="218" stroke="#409EFF" stroke-width="2.5" marker-end="url(#arrowBlue)"/>
+
+  <!-- 3. 监测反馈 - 中 -->
+  <rect x="330" y="220" width="140" height="44" rx="10" fill="white" stroke="#409EFF" stroke-width="2"/>
+  <text x="400" y="247" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#1a1a2e">监测反馈</text>
+
+  <!-- 箭头 3→4 -->
+  <line x1="400" y1="264" x2="400" y2="298" stroke="#409EFF" stroke-width="2.5" marker-end="url(#arrowBlue)"/>
+
+  <!-- 4. 菱形决策 - 中下 -->
+  <polygon points="400,300 480,340 400,380 320,340" fill="white" stroke="#409EFF" stroke-width="2"/>
+  <text x="400" y="338" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#1a1a2e">偏差?</text>
+  <text x="400" y="354" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#409EFF">检测</text>
+
+  <!-- 是 → 重规划子目标（向右） -->
+  <line x1="480" y1="340" x2="560" y2="340" stroke="#409EFF" stroke-width="2.5" marker-end="url(#arrowBlue)"/>
+  <text x="515" y="332" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#409EFF">是</text>
+
+  <!-- 5. 重规划子目标 - 右侧 -->
+  <rect x="562" y="318" width="140" height="44" rx="10" fill="white" stroke="#409EFF" stroke-width="2"/>
+  <text x="632" y="345" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#1a1a2e">重规划子目标</text>
+
+  <!-- 箭头 5→6（向下再向左） -->
+  <line x1="632" y1="362" x2="632" y2="420" stroke="#409EFF" stroke-width="2.5"/>
+  <line x1="632" y1="420" x2="400" y2="420" stroke="#409EFF" stroke-width="2.5"/>
+  <line x1="400" y1="420" x2="400" y2="400" stroke="#409EFF" stroke-width="2.5" marker-end="url(#arrowBlue)"/>
+
+  <!-- 6. 恢复执行 - 在重规划下方 -->
+  <rect x="562" y="400" width="140" height="44" rx="10" fill="white" stroke="#409EFF" stroke-width="2"/>
+  <text x="632" y="427" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#1a1a2e">恢复执行</text>
+
+  <!-- 否 → 回到执行步骤N（向左上） -->
+  <line x1="320" y1="340" x2="180" y2="340" stroke="#409EFF" stroke-width="2.5"/>
+  <line x1="180" y1="340" x2="180" y2="162" stroke="#409EFF" stroke-width="2.5"/>
+  <line x1="180" y1="162" x2="328" y2="162" stroke="#409EFF" stroke-width="2.5" marker-end="url(#arrowBlue)"/>
+  <text x="250" y="332" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#409EFF">否</text>
+
+  <!-- ===== 四个挑战图标（四角） ===== -->
+
+  <!-- 左上：时机选择 -->
+  <g transform="translate(40, 80)">
+    <rect x="0" y="0" width="120" height="100" rx="12" fill="white" stroke="#409EFF" stroke-width="1.5" stroke-opacity="0.5"/>
+    <!-- 时钟图标 -->
+    <circle cx="60" cy="35" r="18" fill="none" stroke="#1a1a2e" stroke-width="2"/>
+    <line x1="60" y1="35" x2="60" y2="25" stroke="#1a1a2e" stroke-width="2"/>
+    <line x1="60" y1="35" x2="68" y2="35" stroke="#1a1a2e" stroke-width="2"/>
+    <text x="60" y="58" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#409EFF">?</text>
+    <text x="60" y="82" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#1a1a2e">时机选择</text>
+  </g>
+
+  <!-- 右上：范围确定 -->
+  <g transform="translate(640, 80)">
+    <rect x="0" y="0" width="120" height="100" rx="12" fill="white" stroke="#409EFF" stroke-width="1.5" stroke-opacity="0.5"/>
+    <!-- 放大镜图标 -->
+    <circle cx="55" cy="32" r="14" fill="none" stroke="#1a1a2e" stroke-width="2"/>
+    <line x1="65" y1="42" x2="76" y2="53" stroke="#1a1a2e" stroke-width="2.5"/>
+    <!-- 缩放箭头 -->
+    <line x1="45" y1="28" x2="45" y2="18" stroke="#409EFF" stroke-width="1.5"/>
+    <line x1="45" y1="18" x2="52" y2="18" stroke="#409EFF" stroke-width="1.5"/>
+    <text x="60" y="82" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#1a1a2e">范围确定</text>
+  </g>
+
+  <!-- 左下：状态保持 -->
+  <g transform="translate(40, 370)">
+    <rect x="0" y="0" width="120" height="100" rx="12" fill="white" stroke="#409EFF" stroke-width="1.5" stroke-opacity="0.5"/>
+    <!-- 保存/快照图标 -->
+    <rect x="42" y="18" width="36" height="30" rx="4" fill="none" stroke="#1a1a2e" stroke-width="2"/>
+    <rect x="48" y="24" width="12" height="10" rx="2" fill="#409EFF"/>
+    <line x1="48" y1="40" x2="72" y2="40" stroke="#1a1a2e" stroke-width="1.5"/>
+    <text x="60" y="82" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#1a1a2e">状态保持</text>
+  </g>
+
+  <!-- 右下：一致性保证 -->
+  <g transform="translate(640, 370)">
+    <rect x="0" y="0" width="120" height="100" rx="12" fill="white" stroke="#409EFF" stroke-width="1.5" stroke-opacity="0.5"/>
+    <!-- 拼图块图标 -->
+    <path d="M45,28 L55,28 Q55,22 60,22 Q65,22 65,28 L75,28 L75,48 L65,48 Q65,42 60,42 Q55,42 55,48 L45,48 Z" fill="none" stroke="#1a1a2e" stroke-width="2"/>
+    <circle cx="60" cy="35" r="3" fill="#409EFF"/>
+    <text x="60" y="82" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#1a1a2e">一致性保证</text>
+  </g>
+
+  <!-- 装饰性连接线（从挑战指向流程） -->
+  <line x1="160" y1="130" x2="328" y2="162" stroke="#409EFF" stroke-width="1" stroke-dasharray="4,4" opacity="0.3"/>
+  <line x1="640" y1="130" x2="472" y2="162" stroke="#409EFF" stroke-width="1" stroke-dasharray="4,4" opacity="0.3"/>
+  <line x1="160" y1="420" x2="328" y2="380" stroke="#409EFF" stroke-width="1" stroke-dasharray="4,4" opacity="0.3"/>
+  <line x1="640" y1="420" x2="562" y2="380" stroke="#409EFF" stroke-width="1" stroke-dasharray="4,4" opacity="0.3"/>
+
+</svg>

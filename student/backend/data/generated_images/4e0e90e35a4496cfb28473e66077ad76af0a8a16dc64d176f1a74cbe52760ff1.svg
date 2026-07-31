@@ -1,0 +1,216 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="800" height="500">
+  <defs>
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#E8F4FD"/>
+      <stop offset="100%" stop-color="#F0F8FF"/>
+    </linearGradient>
+    <linearGradient id="podiumGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#409EFF"/>
+      <stop offset="100%" stop-color="#2B7BD9"/>
+    </linearGradient>
+    <linearGradient id="agentGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#FFFFFF"/>
+      <stop offset="100%" stop-color="#E8F4FD"/>
+    </linearGradient>
+    <linearGradient id="blockGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#409EFF"/>
+      <stop offset="100%" stop-color="#2B7BD9"/>
+    </linearGradient>
+  </defs>
+
+  <!-- 背景 -->
+  <rect width="800" height="500" fill="url(#bgGrad)"/>
+
+  <!-- 地板线 -->
+  <line x1="30" y1="420" x2="770" y2="420" stroke="#C0D9E8" stroke-width="1.5" stroke-dasharray="6,4"/>
+
+  <!-- 标题 -->
+  <text x="400" y="38" text-anchor="middle" font-family="sans-serif" font-size="20" font-weight="bold" fill="#1a1a2e">拍卖机制与VCG资源分配</text>
+  <line x1="280" y1="48" x2="520" y2="48" stroke="#409EFF" stroke-width="2"/>
+
+  <!-- ============ 拍卖台（中央） ============ -->
+  <!-- 拍卖台底座 -->
+  <rect x="345" y="340" width="110" height="80" rx="6" fill="url(#podiumGrad)" stroke="#2B7BD9" stroke-width="1.5"/>
+  <!-- 拍卖台顶部 -->
+  <rect x="335" y="330" width="130" height="16" rx="4" fill="#409EFF" stroke="#2B7BD9" stroke-width="1.5"/>
+  <!-- 拍卖台装饰线 -->
+  <line x1="355" y1="370" x2="445" y2="370" stroke="#FFFFFF" stroke-width="1" opacity="0.4"/>
+  <line x1="355" y1="390" x2="445" y2="390" stroke="#FFFFFF" stroke-width="1" opacity="0.4"/>
+
+  <!-- 拍卖师（简化人形） -->
+  <circle cx="400" cy="290" r="18" fill="#1a1a2e" stroke="#409EFF" stroke-width="2"/>
+  <rect x="388" y="308" width="24" height="30" rx="5" fill="#1a1a2e" stroke="#409EFF" stroke-width="1.5"/>
+  <!-- 拍卖师手臂 -->
+  <line x1="400" y1="318" x2="430" y2="300" stroke="#1a1a2e" stroke-width="3" stroke-linecap="round"/>
+  <!-- 拍卖槌 -->
+  <rect x="425" y="290" width="20" height="8" rx="3" fill="#409EFF" stroke="#2B7BD9" stroke-width="1"/>
+  <circle cx="435" cy="294" r="5" fill="#2B7BD9"/>
+
+  <!-- 拍卖台标注 -->
+  <text x="400" y="445" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#1a1a2e" font-weight="bold">拍卖师</text>
+
+  <!-- ============ 价格显示（双层级） ============ -->
+  <rect x="290" y="60" width="220" height="90" rx="8" fill="#FFFFFF" stroke="#409EFF" stroke-width="1.5" opacity="0.95"/>
+  <text x="400" y="82" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#1a1a2e" font-weight="bold">价格显示</text>
+  <line x1="310" y1="90" x2="490" y2="90" stroke="#E0E8F0" stroke-width="1"/>
+
+  <!-- 中标价 -->
+  <rect x="305" y="100" width="90" height="36" rx="4" fill="#409EFF" opacity="0.15" stroke="#409EFF" stroke-width="1"/>
+  <text x="350" y="123" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#409EFF" font-weight="bold">中标价</text>
+  <text x="350" y="123" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#1a1a2e" font-weight="bold">30</text>
+
+  <!-- 第二高价 -->
+  <rect x="405" y="100" width="90" height="36" rx="4" fill="#1a1a2e" opacity="0.08" stroke="#1a1a2e" stroke-width="1"/>
+  <text x="450" y="123" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#1a1a2e" font-weight="bold">第二高价</text>
+  <text x="450" y="123" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#1a1a2e" font-weight="bold">22</text>
+
+  <!-- 连接线：价格显示 → 拍卖台 -->
+  <line x1="400" y1="150" x2="400" y2="290" stroke="#409EFF" stroke-width="1.5" stroke-dasharray="4,3" opacity="0.5"/>
+
+  <!-- ============ 智能体（左侧3个） ============ -->
+  <!-- 智能体 1 -->
+  <g transform="translate(60, 200)">
+    <rect x="0" y="0" width="70" height="90" rx="8" fill="url(#agentGrad)" stroke="#409EFF" stroke-width="1.5"/>
+    <circle cx="35" cy="25" r="12" fill="#1a1a2e" opacity="0.8"/>
+    <rect x="23" y="38" width="24" height="20" rx="4" fill="#1a1a2e" opacity="0.6"/>
+    <!-- 举牌 -->
+    <rect x="55" y="5" width="28" height="22" rx="3" fill="#FFFFFF" stroke="#409EFF" stroke-width="1.2"/>
+    <text x="69" y="20" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#409EFF" font-weight="bold">25</text>
+    <line x1="69" y1="27" x2="69" y2="50" stroke="#409EFF" stroke-width="1.5"/>
+    <text x="35" y="80" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#1a1a2e">智能体A</text>
+  </g>
+
+  <!-- 智能体 2 -->
+  <g transform="translate(160, 210)">
+    <rect x="0" y="0" width="70" height="90" rx="8" fill="url(#agentGrad)" stroke="#409EFF" stroke-width="1.5"/>
+    <circle cx="35" cy="25" r="12" fill="#1a1a2e" opacity="0.8"/>
+    <rect x="23" y="38" width="24" height="20" rx="4" fill="#1a1a2e" opacity="0.6"/>
+    <rect x="55" y="5" width="28" height="22" rx="3" fill="#FFFFFF" stroke="#409EFF" stroke-width="1.2"/>
+    <text x="69" y="20" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#409EFF" font-weight="bold">30</text>
+    <line x1="69" y1="27" x2="69" y2="50" stroke="#409EFF" stroke-width="1.5"/>
+    <text x="35" y="80" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#1a1a2e">智能体B</text>
+  </g>
+
+  <!-- 智能体 3 -->
+  <g transform="translate(260, 220)">
+    <rect x="0" y="0" width="70" height="90" rx="8" fill="url(#agentGrad)" stroke="#409EFF" stroke-width="1.5"/>
+    <circle cx="35" cy="25" r="12" fill="#1a1a2e" opacity="0.8"/>
+    <rect x="23" y="38" width="24" height="20" rx="4" fill="#1a1a2e" opacity="0.6"/>
+    <rect x="55" y="5" width="28" height="22" rx="3" fill="#FFFFFF" stroke="#409EFF" stroke-width="1.2"/>
+    <text x="69" y="20" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#409EFF" font-weight="bold">18</text>
+    <line x1="69" y1="27" x2="69" y2="50" stroke="#409EFF" stroke-width="1.5"/>
+    <text x="35" y="80" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#1a1a2e">智能体C</text>
+  </g>
+
+  <!-- ============ 智能体（右侧3个） ============ -->
+  <!-- 智能体 4 -->
+  <g transform="translate(470, 220)">
+    <rect x="0" y="0" width="70" height="90" rx="8" fill="url(#agentGrad)" stroke="#409EFF" stroke-width="1.5"/>
+    <circle cx="35" cy="25" r="12" fill="#1a1a2e" opacity="0.8"/>
+    <rect x="23" y="38" width="24" height="20" rx="4" fill="#1a1a2e" opacity="0.6"/>
+    <rect x="55" y="5" width="28" height="22" rx="3" fill="#FFFFFF" stroke="#409EFF" stroke-width="1.2"/>
+    <text x="69" y="20" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#409EFF" font-weight="bold">20</text>
+    <line x1="69" y1="27" x2="69" y2="50" stroke="#409EFF" stroke-width="1.5"/>
+    <text x="35" y="80" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#1a1a2e">智能体D</text>
+  </g>
+
+  <!-- 智能体 5 -->
+  <g transform="translate(570, 210)">
+    <rect x="0" y="0" width="70" height="90" rx="8" fill="url(#agentGrad)" stroke="#409EFF" stroke-width="1.5"/>
+    <circle cx="35" cy="25" r="12" fill="#1a1a2e" opacity="0.8"/>
+    <rect x="23" y="38" width="24" height="20" rx="4" fill="#1a1a2e" opacity="0.6"/>
+    <rect x="55" y="5" width="28" height="22" rx="3" fill="#FFFFFF" stroke="#409EFF" stroke-width="1.2"/>
+    <text x="69" y="20" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#409EFF" font-weight="bold">15</text>
+    <line x1="69" y1="27" x2="69" y2="50" stroke="#409EFF" stroke-width="1.5"/>
+    <text x="35" y="80" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#1a1a2e">智能体E</text>
+  </g>
+
+  <!-- 智能体 6 -->
+  <g transform="translate(670, 200)">
+    <rect x="0" y="0" width="70" height="90" rx="8" fill="url(#agentGrad)" stroke="#409EFF" stroke-width="1.5"/>
+    <circle cx="35" cy="25" r="12" fill="#1a1a2e" opacity="0.8"/>
+    <rect x="23" y="38" width="24" height="20" rx="4" fill="#1a1a2e" opacity="0.6"/>
+    <rect x="55" y="5" width="28" height="22" rx="3" fill="#FFFFFF" stroke="#409EFF" stroke-width="1.2"/>
+    <text x="69" y="20" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#409EFF" font-weight="bold">22</text>
+    <line x1="69" y1="27" x2="69" y2="50" stroke="#409EFF" stroke-width="1.5"/>
+    <text x="35" y="80" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#1a1a2e">智能体F</text>
+  </g>
+
+  <!-- ============ VCG资源分配（底部） ============ -->
+  <g transform="translate(130, 440)">
+    <rect x="0" y="0" width="540" height="50" rx="8" fill="#FFFFFF" stroke="#409EFF" stroke-width="1.5" opacity="0.9"/>
+    <text x="270" y="20" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#1a1a2e" font-weight="bold">VCG资源分配</text>
+    <line x1="20" y1="28" x2="520" y2="28" stroke="#E0E8F0" stroke-width="1"/>
+
+    <!-- 资源块 -->
+    <rect x="30" y="32" width="24" height="14" rx="2" fill="url(#blockGrad)" stroke="#2B7BD9" stroke-width="1"/>
+    <text x="42" y="43" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#FFFFFF">R1</text>
+
+    <rect x="70" y="32" width="24" height="14" rx="2" fill="url(#blockGrad)" stroke="#2B7BD9" stroke-width="1"/>
+    <text x="82" y="43" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#FFFFFF">R2</text>
+
+    <rect x="110" y="32" width="24" height="14" rx="2" fill="url(#blockGrad)" stroke="#2B7BD9" stroke-width="1"/>
+    <text x="122" y="43" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#FFFFFF">R3</text>
+
+    <rect x="150" y="32" width="24" height="14" rx="2" fill="url(#blockGrad)" stroke="#2B7BD9" stroke-width="1"/>
+    <text x="162" y="43" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#FFFFFF">R4</text>
+
+    <!-- 箭头 -->
+    <text x="200" y="43" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#409EFF">→</text>
+
+    <!-- 分配目标 -->
+    <rect x="230" y="32" width="40" height="14" rx="3" fill="#1a1a2e" opacity="0.1" stroke="#1a1a2e" stroke-width="1"/>
+    <text x="250" y="43" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#1a1a2e">智能体A</text>
+
+    <rect x="290" y="32" width="40" height="14" rx="3" fill="#1a1a2e" opacity="0.1" stroke="#1a1a2e" stroke-width="1"/>
+    <text x="310" y="43" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#1a1a2e">智能体B</text>
+
+    <rect x="350" y="32" width="40" height="14" rx="3" fill="#1a1a2e" opacity="0.1" stroke="#1a1a2e" stroke-width="1"/>
+    <text x="370" y="43" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#1a1a2e">智能体D</text>
+
+    <rect x="410" y="32" width="40" height="14" rx="3" fill="#1a1a2e" opacity="0.1" stroke="#1a1a2e" stroke-width="1"/>
+    <text x="430" y="43" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#1a1a2e">智能体F</text>
+
+    <text x="500" y="43" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#409EFF" opacity="0.7">...</text>
+  </g>
+
+  <!-- ============ 连接线：智能体 → 拍卖台 ============ -->
+  <line x1="130" y1="290" x2="345" y2="330" stroke="#C0D9E8" stroke-width="1" stroke-dasharray="3,3" opacity="0.5"/>
+  <line x1="230" y1="300" x2="345" y2="330" stroke="#C0D9E8" stroke-width="1" stroke-dasharray="3,3" opacity="0.5"/>
+  <line x1="330" y1="310" x2="345" y2="330" stroke="#C0D9E8" stroke-width="1" stroke-dasharray="3,3" opacity="0.5"/>
+  <line x1="470" y1="310" x2="455" y2="330" stroke="#C0D9E8" stroke-width="1" stroke-dasharray="3,3" opacity="0.5"/>
+  <line x1="570" y1="300" x2="455" y2="330" stroke="#C0D9E8" stroke-width="1" stroke-dasharray="3,3" opacity="0.5"/>
+  <line x1="670" y1="290" x2="455" y2="330" stroke="#C0D9E8" stroke-width="1" stroke-dasharray="3,3" opacity="0.5"/>
+
+  <!-- ============ 标注 ============ -->
+  <!-- 标注1：维克里拍卖 -->
+  <rect x="30" y="55" width="120" height="28" rx="6" fill="#1a1a2e" opacity="0.85"/>
+  <text x="90" y="73" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#FFFFFF" font-weight="bold">维克里拍卖</text>
+  <line x1="90" y1="83" x2="90" y2="100" stroke="#1a1a2e" stroke-width="1.5" stroke-dasharray="3,2"/>
+
+  <!-- 标注2：第二价格密封 -->
+  <rect x="520" y="55" width="120" height="28" rx="6" fill="#1a1a2e" opacity="0.85"/>
+  <text x="580" y="73" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#FFFFFF" font-weight="bold">第二价格密封</text>
+  <line x1="580" y1="83" x2="580" y2="100" stroke="#1a1a2e" stroke-width="1.5" stroke-dasharray="3,2"/>
+
+  <!-- 标注3：VCG机制 -->
+  <rect x="30" y="125" width="100" height="28" rx="6" fill="#409EFF" opacity="0.9"/>
+  <text x="80" y="143" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#FFFFFF" font-weight="bold">VCG机制</text>
+  <line x1="80" y1="153" x2="80" y2="170" stroke="#409EFF" stroke-width="1.5" stroke-dasharray="3,2"/>
+
+  <!-- 标注4：资源块 -->
+  <rect x="660" y="125" width="100" height="28" rx="6" fill="#409EFF" opacity="0.9"/>
+  <text x="710" y="143" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#FFFFFF" font-weight="bold">资源分配</text>
+  <line x1="710" y1="153" x2="710" y2="170" stroke="#409EFF" stroke-width="1.5" stroke-dasharray="3,2"/>
+
+  <!-- 标注5：出价牌 -->
+  <rect x="660" y="310" width="100" height="28" rx="6" fill="#1a1a2e" opacity="0.85"/>
+  <text x="710" y="328" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#FFFFFF" font-weight="bold">出价牌</text>
+  <line x1="710" y1="338" x2="710" y2="350" stroke="#1a1a2e" stroke-width="1.5" stroke-dasharray="3,2"/>
+
+  <!-- 标注6：分配效率 -->
+  <rect x="30" y="380" width="100" height="28" rx="6" fill="#409EFF" opacity="0.9"/>
+  <text x="80" y="398" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#FFFFFF" font-weight="bold">分配效率</text>
+  <line x1="80" y1="408" x2="80" y2="420" stroke="#409EFF" stroke-width="1.5" stroke-dasharray="3,2"/>
+
+</svg>

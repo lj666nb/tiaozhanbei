@@ -1,0 +1,167 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="800" height="500">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#e8f4ff;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#d0eaff;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="centerGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#409EFF;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#2b7ed9;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="cardGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#ffffff;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#f0f8ff;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+
+  <!-- 背景 -->
+  <rect x="0" y="0" width="800" height="500" fill="url(#bgGrad)" rx="8"/>
+
+  <!-- 标题 -->
+  <text x="400" y="38" text-anchor="middle" font-family="sans-serif" font-size="22" font-weight="bold" fill="#1a1a2e">死锁处理策略</text>
+
+  <!-- 中心死锁警告图标 -->
+  <g transform="translate(400, 230)">
+    <!-- 圆形背景 -->
+    <circle cx="0" cy="0" r="58" fill="url(#centerGrad)" stroke="#1a1a2e" stroke-width="2"/>
+    <circle cx="0" cy="0" r="50" fill="none" stroke="#ffffff" stroke-width="1.5" opacity="0.3"/>
+
+    <!-- 警告三角 -->
+    <polygon points="0,-32 -22,22 22,22" fill="#ff6b6b" stroke="#cc0000" stroke-width="1.5"/>
+    <text x="0" y="8" text-anchor="middle" font-family="sans-serif" font-size="16" font-weight="bold" fill="#ffffff">!</text>
+
+    <!-- 两个对顶箭头 -->
+    <g transform="translate(0, -8)">
+      <!-- 左箭头 -->
+      <line x1="-38" y1="0" x2="-10" y2="0" stroke="#ffffff" stroke-width="3" stroke-linecap="round"/>
+      <polygon points="-10,0 -18,-6 -18,6" fill="#ffffff"/>
+      <!-- 右箭头 -->
+      <line x1="10" y1="0" x2="38" y2="0" stroke="#ffffff" stroke-width="3" stroke-linecap="round"/>
+      <polygon points="10,0 18,-6 18,6" fill="#ffffff"/>
+    </g>
+
+    <!-- 标签 -->
+    <text x="0" y="72" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="bold" fill="#1a1a2e">死锁</text>
+  </g>
+
+  <!-- 策略1：人工干预（上方） -->
+  <g transform="translate(400, 110)">
+    <rect x="-95" y="-40" width="190" height="80" rx="12" fill="url(#cardGrad)" stroke="#409EFF" stroke-width="2"/>
+    <!-- 推荐标签 -->
+    <rect x="-95" y="-40" width="190" height="22" rx="12" fill="#409EFF"/>
+    <rect x="-95" y="-29" width="190" height="2" fill="#409EFF"/>
+    <text x="0" y="-24" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#ffffff" font-weight="bold">★ 推荐</text>
+
+    <!-- 手图标 -->
+    <g transform="translate(-50, 5)">
+      <rect x="-8" y="-12" width="16" height="24" rx="4" fill="#409EFF"/>
+      <rect x="-10" y="-16" width="20" height="8" rx="4" fill="#409EFF"/>
+      <rect x="-12" y="-20" width="24" height="8" rx="4" fill="#409EFF"/>
+    </g>
+    <text x="30" y="5" text-anchor="middle" font-family="sans-serif" font-size="15" font-weight="bold" fill="#1a1a2e">人工干预</text>
+    <text x="30" y="24" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#666">手动解除死锁</text>
+
+    <!-- 连接线 -->
+    <line x1="0" y1="-40" x2="0" y2="-68" stroke="#409EFF" stroke-width="2" stroke-dasharray="5,3"/>
+    <polygon points="0,-68 -5,-60 5,-60" fill="#409EFF"/>
+  </g>
+
+  <!-- 策略2：安全默认（右侧） -->
+  <g transform="translate(590, 230)">
+    <rect x="-95" y="-40" width="190" height="80" rx="12" fill="url(#cardGrad)" stroke="#409EFF" stroke-width="2"/>
+
+    <!-- 盾牌图标 -->
+    <g transform="translate(-50, 5)">
+      <path d="M0,-18 L-14,-12 L-14,4 Q-14,14 0,18 Q14,14 14,4 L14,-12 Z" fill="#409EFF" stroke="#2b7ed9" stroke-width="1"/>
+      <text x="0" y="4" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#ffffff">✓</text>
+    </g>
+    <text x="30" y="2" text-anchor="middle" font-family="sans-serif" font-size="15" font-weight="bold" fill="#1a1a2e">安全默认</text>
+    <text x="30" y="22" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#666">保守选项优先</text>
+
+    <!-- 连接线 -->
+    <line x1="95" y1="0" x2="135" y2="0" stroke="#409EFF" stroke-width="2" stroke-dasharray="5,3"/>
+    <polygon points="135,0 125,-5 125,5" fill="#409EFF"/>
+  </g>
+
+  <!-- 策略3：分解重构（左侧） -->
+  <g transform="translate(210, 230)">
+    <rect x="-95" y="-40" width="190" height="80" rx="12" fill="url(#cardGrad)" stroke="#409EFF" stroke-width="2"/>
+
+    <!-- 分解图标 -->
+    <g transform="translate(-50, 5)">
+      <rect x="-10" y="-10" width="20" height="20" rx="3" fill="none" stroke="#409EFF" stroke-width="2"/>
+      <line x1="-10" y1="0" x2="10" y2="0" stroke="#409EFF" stroke-width="1.5"/>
+      <line x1="0" y1="-10" x2="0" y2="10" stroke="#409EFF" stroke-width="1.5"/>
+      <circle cx="-5" cy="-5" r="3" fill="#409EFF"/>
+      <circle cx="5" cy="-5" r="3" fill="#409EFF"/>
+      <circle cx="-5" cy="5" r="3" fill="#409EFF"/>
+      <circle cx="5" cy="5" r="3" fill="#409EFF"/>
+    </g>
+    <text x="30" y="2" text-anchor="middle" font-family="sans-serif" font-size="15" font-weight="bold" fill="#1a1a2e">分解重构</text>
+    <text x="30" y="22" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#666">拆分为子问题</text>
+
+    <!-- 连接线 -->
+    <line x1="-95" y1="0" x2="-135" y2="0" stroke="#409EFF" stroke-width="2" stroke-dasharray="5,3"/>
+    <polygon points="-135,0 -125,-5 -125,5" fill="#409EFF"/>
+  </g>
+
+  <!-- 策略4：外部验证（下方） -->
+  <g transform="translate(400, 370)">
+    <rect x="-95" y="-40" width="190" height="80" rx="12" fill="url(#cardGrad)" stroke="#409EFF" stroke-width="2"/>
+
+    <!-- 数据库/API图标 -->
+    <g transform="translate(-50, 5)">
+      <ellipse cx="0" cy="-8" rx="14" ry="5" fill="#409EFF" opacity="0.3"/>
+      <ellipse cx="0" cy="-8" rx="14" ry="5" fill="none" stroke="#409EFF" stroke-width="1.5"/>
+      <ellipse cx="0" cy="0" rx="14" ry="5" fill="none" stroke="#409EFF" stroke-width="1.5"/>
+      <ellipse cx="0" cy="8" rx="14" ry="5" fill="none" stroke="#409EFF" stroke-width="1.5"/>
+      <line x1="-14" y1="-8" x2="-14" y2="8" stroke="#409EFF" stroke-width="1.5"/>
+      <line x1="14" y1="-8" x2="14" y2="8" stroke="#409EFF" stroke-width="1.5"/>
+    </g>
+    <text x="30" y="2" text-anchor="middle" font-family="sans-serif" font-size="15" font-weight="bold" fill="#1a1a2e">外部验证</text>
+    <text x="30" y="22" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#666">客观事实裁决</text>
+
+    <!-- 连接线 -->
+    <line x1="0" y1="-40" x2="0" y2="-68" stroke="#409EFF" stroke-width="2" stroke-dasharray="5,3"/>
+    <polygon points="0,-68 -5,-60 5,-60" fill="#409EFF"/>
+  </g>
+
+  <!-- 检测条件面板 -->
+  <g transform="translate(30, 420)">
+    <rect x="0" y="0" width="740" height="65" rx="10" fill="#1a1a2e" opacity="0.85"/>
+    <text x="370" y="20" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="#409EFF">检测条件</text>
+
+    <!-- 条件1 -->
+    <g transform="translate(30, 32)">
+      <rect x="0" y="-8" width="155" height="22" rx="11" fill="#409EFF" opacity="0.2"/>
+      <text x="78" y="7" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#ffffff">最大轮次超限</text>
+    </g>
+
+    <!-- 条件2 -->
+    <g transform="translate(210, 32)">
+      <rect x="0" y="-8" width="155" height="22" rx="11" fill="#409EFF" opacity="0.2"/>
+      <text x="78" y="7" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#ffffff">连续相同投票</text>
+    </g>
+
+    <!-- 条件3 -->
+    <g transform="translate(390, 32)">
+      <rect x="0" y="-8" width="155" height="22" rx="11" fill="#409EFF" opacity="0.2"/>
+      <text x="78" y="7" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#ffffff">共识低于阈值</text>
+    </g>
+
+    <!-- 条件4 -->
+    <g transform="translate(570, 32)">
+      <rect x="0" y="-8" width="155" height="22" rx="11" fill="#409EFF" opacity="0.2"/>
+      <text x="78" y="7" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#ffffff">时间预算耗尽</text>
+    </g>
+  </g>
+
+  <!-- 装饰性连接点 -->
+  <circle cx="400" cy="162" r="4" fill="#409EFF"/>
+  <circle cx="400" cy="298" r="4" fill="#409EFF"/>
+  <circle cx="495" cy="230" r="4" fill="#409EFF"/>
+  <circle cx="305" cy="230" r="4" fill="#409EFF"/>
+
+  <!-- 底部说明 -->
+  <text x="400" y="498" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#999">扁平化 2D 矢量插图 · 死锁处理策略概览</text>
+</svg>

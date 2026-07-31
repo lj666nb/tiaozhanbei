@@ -1,0 +1,147 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="800" height="500">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#E8F4FD"/>
+      <stop offset="100%" stop-color="#D0EAF8"/>
+    </linearGradient>
+    <linearGradient id="cardGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#409EFF"/>
+      <stop offset="100%" stop-color="#3A8FE0"/>
+    </linearGradient>
+    <filter id="shadow" x="-5%" y="-5%" width="110%" height="115%">
+      <feDropShadow dx="1" dy="2" stdDeviation="3" flood-color="#1a1a2e" flood-opacity="0.12"/>
+    </filter>
+  </defs>
+
+  <!-- 背景 -->
+  <rect width="800" height="500" fill="url(#bg)" rx="0"/>
+
+  <!-- 标题 -->
+  <text x="400" y="38" text-anchor="middle" font-family="Microsoft YaHei, SimHei, sans-serif" font-size="20" font-weight="bold" fill="#1a1a2e">长上下文处理技术</text>
+
+  <!-- ===== 左上：滑动窗口 ===== -->
+  <g filter="url(#shadow)">
+    <rect x="30" y="60" width="355" height="185" rx="14" fill="white" stroke="#409EFF" stroke-width="1.5"/>
+    <rect x="30" y="60" width="355" height="36" rx="14" fill="url(#cardGrad)"/>
+    <rect x="30" y="82" width="355" height="14" fill="url(#cardGrad)"/>
+    <text x="207" y="84" text-anchor="middle" font-family="Microsoft YaHei, SimHei, sans-serif" font-size="15" font-weight="bold" fill="white">滑动窗口 (Sliding Window)</text>
+
+    <!-- 长文本条 -->
+    <rect x="55" y="115" width="310" height="22" rx="6" fill="#E8F4FD" stroke="#B0D4F0" stroke-width="1"/>
+    <text x="210" y="130" text-anchor="middle" font-family="Microsoft YaHei, SimHei, sans-serif" font-size="11" fill="#1a1a2e">文档内容文档内容文档内容文档内容</text>
+
+    <!-- 窗口块 -->
+    <rect x="65" y="148" width="80" height="22" rx="5" fill="#409EFF" opacity="0.7"/>
+    <text x="105" y="163" text-anchor="middle" font-family="Microsoft YaHei, SimHei, sans-serif" font-size="10" fill="white">窗口1</text>
+
+    <rect x="135" y="148" width="80" height="22" rx="5" fill="#409EFF" opacity="0.55"/>
+    <text x="175" y="163" text-anchor="middle" font-family="Microsoft YaHei, SimHei, sans-serif" font-size="10" fill="white">窗口2</text>
+
+    <rect x="205" y="148" width="80" height="22" rx="5" fill="#409EFF" opacity="0.4"/>
+    <text x="245" y="163" text-anchor="middle" font-family="Microsoft YaHei, SimHei, sans-serif" font-size="10" fill="white">窗口3</text>
+
+    <!-- 重叠高亮 -->
+    <rect x="135" y="148" width="10" height="22" rx="2" fill="#FFB347" opacity="0.6"/>
+    <rect x="205" y="148" width="10" height="22" rx="2" fill="#FFB347" opacity="0.6"/>
+
+    <!-- 标注 -->
+    <text x="145" y="190" text-anchor="middle" font-family="Microsoft YaHei, SimHei, sans-serif" font-size="11" fill="#FF8C00">重叠区域</text>
+    <line x1="140" y1="186" x2="140" y2="172" stroke="#FF8C00" stroke-width="1" stroke-dasharray="3,2"/>
+    <line x1="150" y1="186" x2="150" y2="172" stroke="#FF8C00" stroke-width="1" stroke-dasharray="3,2"/>
+  </g>
+
+  <!-- ===== 右上：摘要递归 ===== -->
+  <g filter="url(#shadow)">
+    <rect x="415" y="60" width="355" height="185" rx="14" fill="white" stroke="#409EFF" stroke-width="1.5"/>
+    <rect x="415" y="60" width="355" height="36" rx="14" fill="url(#cardGrad)"/>
+    <rect x="415" y="82" width="355" height="14" fill="url(#cardGrad)"/>
+    <text x="592" y="84" text-anchor="middle" font-family="Microsoft YaHei, SimHei, sans-serif" font-size="15" font-weight="bold" fill="white">摘要递归 (Recursive Summarization)</text>
+
+    <!-- 金字塔 -->
+    <rect x="470" y="112" width="245" height="18" rx="4" fill="#409EFF" opacity="0.25"/>
+    <text x="592" y="125" text-anchor="middle" font-family="Microsoft YaHei, SimHei, sans-serif" font-size="10" fill="#1a1a2e">原始长文本内容段落</text>
+
+    <rect x="490" y="140" width="205" height="18" rx="4" fill="#409EFF" opacity="0.4"/>
+    <text x="592" y="153" text-anchor="middle" font-family="Microsoft YaHei, SimHei, sans-serif" font-size="10" fill="#1a1a2e">摘要层1 — 压缩50%</text>
+
+    <rect x="510" y="168" width="165" height="18" rx="4" fill="#409EFF" opacity="0.55"/>
+    <text x="592" y="181" text-anchor="middle" font-family="Microsoft YaHei, SimHei, sans-serif" font-size="10" fill="white">摘要层2 — 压缩30%</text>
+
+    <rect x="530" y="196" width="125" height="18" rx="4" fill="#409EFF" opacity="0.75"/>
+    <text x="592" y="209" text-anchor="middle" font-family="Microsoft YaHei, SimHei, sans-serif" font-size="10" fill="white">最终摘要</text>
+
+    <!-- 箭头 -->
+    <line x1="592" y1="130" x2="592" y2="138" stroke="#1a1a2e" stroke-width="1.5" marker-end="url(#arrow)"/>
+    <line x1="592" y1="158" x2="592" y2="166" stroke="#1a1a2e" stroke-width="1.5"/>
+    <line x1="592" y1="186" x2="592" y2="194" stroke="#1a1a2e" stroke-width="1.5"/>
+  </g>
+
+  <!-- ===== 左下：RAG检索增强 ===== -->
+  <g filter="url(#shadow)">
+    <rect x="30" y="270" width="355" height="200" rx="14" fill="white" stroke="#409EFF" stroke-width="1.5"/>
+    <rect x="30" y="270" width="355" height="36" rx="14" fill="url(#cardGrad)"/>
+    <rect x="30" y="292" width="355" height="14" fill="url(#cardGrad)"/>
+    <text x="207" y="294" text-anchor="middle" font-family="Microsoft YaHei, SimHei, sans-serif" font-size="15" font-weight="bold" fill="white">RAG检索增强 (Retrieval Augmented Generation)</text>
+
+    <!-- 查询 -->
+    <rect x="55" y="322" width="90" height="28" rx="8" fill="#E8F4FD" stroke="#409EFF" stroke-width="1.2"/>
+    <text x="100" y="340" text-anchor="middle" font-family="Microsoft YaHei, SimHei, sans-serif" font-size="12" fill="#1a1a2e">用户查询</text>
+
+    <!-- 箭头 -->
+    <line x1="145" y1="336" x2="175" y2="336" stroke="#1a1a2e" stroke-width="1.5"/>
+    <polygon points="173,331 183,336 173,341" fill="#1a1a2e"/>
+
+    <!-- 搜索图标 -->
+    <circle cx="210" cy="336" r="16" fill="none" stroke="#409EFF" stroke-width="2.5"/>
+    <line x1="222" y1="348" x2="232" y2="358" stroke="#409EFF" stroke-width="2.5" stroke-linecap="round"/>
+
+    <!-- 数据库 -->
+    <rect x="55" y="370" width="310" height="40" rx="6" fill="#F0F7FF" stroke="#B0D4F0" stroke-width="1"/>
+    <text x="210" y="385" text-anchor="middle" font-family="Microsoft YaHei, SimHei, sans-serif" font-size="11" fill="#1a1a2e">文档数据库</text>
+    <text x="210" y="400" text-anchor="middle" font-family="Microsoft YaHei, SimHei, sans-serif" font-size="10" fill="#666">文档1 | 文档2 | 文档3 | 文档4</text>
+
+    <!-- 检索结果 -->
+    <rect x="180" y="420" width="100" height="24" rx="6" fill="#409EFF" opacity="0.2" stroke="#409EFF" stroke-width="1"/>
+    <text x="230" y="436" text-anchor="middle" font-family="Microsoft YaHei, SimHei, sans-serif" font-size="10" fill="#1a1a2e">相关片段</text>
+
+    <!-- LLM -->
+    <rect x="300" y="420" width="60" height="24" rx="6" fill="#1a1a2e"/>
+    <text x="330" y="436" text-anchor="middle" font-family="Microsoft YaHei, SimHei, sans-serif" font-size="10" fill="white">LLM</text>
+
+    <line x1="280" y1="432" x2="298" y2="432" stroke="#1a1a2e" stroke-width="1.2"/>
+    <polygon points="296,427 306,432 296,437" fill="#1a1a2e"/>
+  </g>
+
+  <!-- ===== 右下：上下文压缩 ===== -->
+  <g filter="url(#shadow)">
+    <rect x="415" y="270" width="355" height="200" rx="14" fill="white" stroke="#409EFF" stroke-width="1.5"/>
+    <rect x="415" y="270" width="355" height="36" rx="14" fill="url(#cardGrad)"/>
+    <rect x="415" y="292" width="355" height="14" fill="url(#cardGrad)"/>
+    <text x="592" y="294" text-anchor="middle" font-family="Microsoft YaHei, SimHei, sans-serif" font-size="15" font-weight="bold" fill="white">上下文压缩 (Context Compression)</text>
+
+    <!-- 对话气泡 -->
+    <rect x="445" y="320" width="140" height="22" rx="10" fill="#E8F4FD" stroke="#B0D4F0" stroke-width="1"/>
+    <text x="515" y="335" text-anchor="middle" font-family="Microsoft YaHei, SimHei, sans-serif" font-size="10" fill="#1a1a2e">用户：你好，我想了解...</text>
+
+    <rect x="465" y="348" width="140" height="22" rx="10" fill="#D0EAF8" stroke="#B0D4F0" stroke-width="1"/>
+    <text x="535" y="363" text-anchor="middle" font-family="Microsoft YaHei, SimHei, sans-serif" font-size="10" fill="#1a1a2e">助手：好的，我可以...</text>
+
+    <rect x="445" y="376" width="130" height="22" rx="10" fill="#E8F4FD" stroke="#B0D4F0" stroke-width="1"/>
+    <text x="510" y="391" text-anchor="middle" font-family="Microsoft YaHei, SimHei, sans-serif" font-size="10" fill="#1a1a2e">用户：具体来说...</text>
+
+    <rect x="470" y="404" width="120" height="22" rx="10" fill="#D0EAF8" stroke="#B0D4F0" stroke-width="1"/>
+    <text x="530" y="419" text-anchor="middle" font-family="Microsoft YaHei, SimHei, sans-serif" font-size="10" fill="#1a1a2e">助手：关于这个...</text>
+
+    <!-- 压缩箭头 -->
+    <line x1="600" y1="330" x2="640" y2="360" stroke="#1a1a2e" stroke-width="1.5"/>
+    <polygon points="638,355 648,362 636,367" fill="#1a1a2e"/>
+
+    <!-- 压缩卡片 -->
+    <rect x="630" y="350" width="125" height="70" rx="8" fill="#409EFF" opacity="0.15" stroke="#409EFF" stroke-width="1.5"/>
+    <text x="692" y="372" text-anchor="middle" font-family="Microsoft YaHei, SimHei, sans-serif" font-size="11" font-weight="bold" fill="#1a1a2e">压缩摘要</text>
+    <text x="692" y="390" text-anchor="middle" font-family="Microsoft YaHei, SimHei, sans-serif" font-size="9" fill="#1a1a2e">关键信息1</text>
+    <text x="692" y="404" text-anchor="middle" font-family="Microsoft YaHei, SimHei, sans-serif" font-size="9" fill="#1a1a2e">关键信息2</text>
+    <text x="692" y="416" text-anchor="middle" font-family="Microsoft YaHei, SimHei, sans-serif" font-size="9" fill="#1a1a2e">关键信息3</text>
+  </g>
+
+</svg>

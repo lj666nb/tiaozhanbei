@@ -1,0 +1,125 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="800" height="500">
+  <defs>
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#e8f4fd"/>
+      <stop offset="100%" stop-color="#f0f8ff"/>
+    </linearGradient>
+    <linearGradient id="trunkGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#409EFF"/>
+      <stop offset="100%" stop-color="#2b7ed4"/>
+    </linearGradient>
+    <linearGradient id="branchGradL" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#409EFF"/>
+      <stop offset="100%" stop-color="#7ec3ff"/>
+    </linearGradient>
+    <linearGradient id="branchGradC" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#409EFF"/>
+      <stop offset="100%" stop-color="#6bb8ff"/>
+    </linearGradient>
+    <linearGradient id="branchGradR" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#409EFF"/>
+      <stop offset="100%" stop-color="#8ac9ff"/>
+    </linearGradient>
+  </defs>
+
+  <!-- 背景 -->
+  <rect width="800" height="500" fill="url(#bgGrad)" rx="8"/>
+
+  <!-- 标题 -->
+  <text x="400" y="38" text-anchor="middle" font-family="sans-serif" font-size="20" font-weight="bold" fill="#1a1a2e">LoRA 变体演化树</text>
+
+  <!-- 树干：LoRA (2021) -->
+  <rect x="375" y="55" width="50" height="120" rx="8" fill="url(#trunkGrad)" stroke="#2b7ed4" stroke-width="1.5"/>
+  <text x="400" y="100" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="bold" fill="#fff">LoRA</text>
+  <text x="400" y="120" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#e0f0ff">(2021)</text>
+  <text x="400" y="145" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#d0e8ff">低秩 BA</text>
+  <text x="400" y="162" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#d0e8ff">分解</text>
+
+  <!-- 分支线 -->
+  <!-- 左分支 -->
+  <path d="M375 110 C300 110, 260 110, 230 110" stroke="#7ec3ff" stroke-width="3" fill="none" stroke-linecap="round"/>
+  <path d="M230 110 L230 140" stroke="#7ec3ff" stroke-width="3" fill="none" stroke-linecap="round"/>
+
+  <!-- 中分支 -->
+  <path d="M400 55 C400 30, 400 20, 400 10" stroke="#6bb8ff" stroke-width="3" fill="none" stroke-linecap="round"/>
+  <path d="M400 10 L400 10" stroke="#6bb8ff" stroke-width="3" fill="none" stroke-linecap="round"/>
+
+  <!-- 右分支 -->
+  <path d="M425 110 C500 110, 540 110, 570 110" stroke="#8ac9ff" stroke-width="3" fill="none" stroke-linecap="round"/>
+  <path d="M570 110 L570 140" stroke="#8ac9ff" stroke-width="3" fill="none" stroke-linecap="round"/>
+
+  <!-- ====== QLoRA（左） ====== -->
+  <rect x="155" y="140" width="150" height="130" rx="10" fill="#e0f2ff" stroke="#7ec3ff" stroke-width="1.5"/>
+  <rect x="155" y="140" width="150" height="32" rx="10" fill="#7ec3ff"/>
+  <rect x="155" y="162" width="150" height="10" fill="#7ec3ff"/>
+  <text x="230" y="162" text-anchor="middle" font-family="sans-serif" font-size="15" font-weight="bold" fill="#fff">QLoRA</text>
+
+  <!-- 4-bit 量化网格图标 -->
+  <rect x="185" y="185" width="40" height="40" rx="4" fill="#fff" stroke="#409EFF" stroke-width="1.2"/>
+  <line x1="195" y1="185" x2="195" y2="225" stroke="#409EFF" stroke-width="0.8"/>
+  <line x1="205" y1="185" x2="205" y2="225" stroke="#409EFF" stroke-width="0.8"/>
+  <line x1="215" y1="185" x2="215" y2="225" stroke="#409EFF" stroke-width="0.8"/>
+  <line x1="185" y1="195" x2="225" y2="195" stroke="#409EFF" stroke-width="0.8"/>
+  <line x1="185" y1="205" x2="225" y2="205" stroke="#409EFF" stroke-width="0.8"/>
+  <line x1="185" y1="215" x2="225" y2="215" stroke="#409EFF" stroke-width="0.8"/>
+  <text x="205" y="202" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#409EFF" font-weight="bold">4</text>
+  <text x="205" y="214" text-anchor="middle" font-family="sans-serif" font-size="8" fill="#409EFF">bit</text>
+
+  <text x="240" y="200" font-family="sans-serif" font-size="12" fill="#1a1a2e">NF4 +</text>
+  <text x="240" y="218" font-family="sans-serif" font-size="12" fill="#1a1a2e">双量化</text>
+
+  <!-- 标注 -->
+  <text x="180" y="258" font-family="sans-serif" font-size="11" fill="#1a1a2e" opacity="0.8">4-bit 量化</text>
+
+  <!-- ====== AdaLoRA（中上） ====== -->
+  <rect x="325" y="10" width="150" height="130" rx="10" fill="#e0f2ff" stroke="#6bb8ff" stroke-width="1.5"/>
+  <rect x="325" y="10" width="150" height="32" rx="10" fill="#6bb8ff"/>
+  <rect x="325" y="32" width="150" height="10" fill="#6bb8ff"/>
+  <text x="400" y="32" text-anchor="middle" font-family="sans-serif" font-size="15" font-weight="bold" fill="#fff">AdaLoRA</text>
+
+  <!-- 自适应秩柱状图 -->
+  <rect x="350" y="55" width="12" height="35" rx="2" fill="#409EFF" opacity="0.7"/>
+  <rect x="368" y="45" width="12" height="45" rx="2" fill="#409EFF" opacity="0.85"/>
+  <rect x="386" y="50" width="12" height="40" rx="2" fill="#409EFF"/>
+  <rect x="404" y="55" width="12" height="35" rx="2" fill="#409EFF" opacity="0.75"/>
+  <rect x="422" y="48" width="12" height="42" rx="2" fill="#409EFF" opacity="0.9"/>
+  <rect x="440" y="58" width="12" height="32" rx="2" fill="#409EFF" opacity="0.65"/>
+
+  <text x="400" y="108" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#1a1a2e">自适应秩</text>
+  <text x="400" y="124" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#1a1a2e" opacity="0.7">SVD 基础</text>
+
+  <!-- ====== DoRA（右） ====== -->
+  <rect x="495" y="140" width="150" height="130" rx="10" fill="#e0f2ff" stroke="#8ac9ff" stroke-width="1.5"/>
+  <rect x="495" y="140" width="150" height="32" rx="10" fill="#8ac9ff"/>
+  <rect x="495" y="162" width="150" height="10" fill="#8ac9ff"/>
+  <text x="570" y="162" text-anchor="middle" font-family="sans-serif" font-size="15" font-weight="bold" fill="#fff">DoRA</text>
+
+  <!-- 权重分解：幅度和方向箭头 -->
+  <circle cx="545" cy="200" r="18" fill="none" stroke="#409EFF" stroke-width="1.5"/>
+  <line x1="545" y1="200" x2="560" y2="185" stroke="#409EFF" stroke-width="1.5" marker-end="url(#arrowBlue)"/>
+  <line x1="545" y1="200" x2="530" y2="215" stroke="#409EFF" stroke-width="1.5" stroke-dasharray="3,2"/>
+
+  <!-- 箭头标记 -->
+  <defs>
+    <marker id="arrowBlue" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
+      <path d="M0,0 L6,3 L0,6 Z" fill="#409EFF"/>
+    </marker>
+    <marker id="arrowDark" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
+      <path d="M0,0 L6,3 L0,6 Z" fill="#1a1a2e"/>
+    </marker>
+  </defs>
+
+  <text x="575" y="195" font-family="sans-serif" font-size="11" fill="#1a1a2e">幅度</text>
+  <text x="575" y="212" font-family="sans-serif" font-size="11" fill="#1a1a2e">方向</text>
+
+  <!-- 标注 -->
+  <text x="510" y="258" font-family="sans-serif" font-size="11" fill="#1a1a2e" opacity="0.8">权重分解</text>
+
+  <!-- 底部说明 -->
+  <text x="400" y="470" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#1a1a2e" opacity="0.5">LoRA 变体演化关系示意图</text>
+
+  <!-- 连接标签 -->
+  <text x="310" y="105" text-anchor="end" font-family="sans-serif" font-size="11" fill="#7ec3ff" font-weight="bold">量化</text>
+  <text x="490" y="105" text-anchor="start" font-family="sans-serif" font-size="11" fill="#8ac9ff" font-weight="bold">分解</text>
+
+</svg>

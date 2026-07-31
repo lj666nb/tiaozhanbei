@@ -1,0 +1,150 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="800" height="500">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#f0f7ff;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#e8f4f8;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="sensorGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#409EFF;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#2b7ed6;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="actionGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#409EFF;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#2b7ed6;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="ruleGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#ffffff;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#f5f9ff;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+
+  <!-- 背景 -->
+  <rect x="0" y="0" width="800" height="500" fill="url(#bgGrad)" rx="0"/>
+
+  <!-- 标题 -->
+  <text x="400" y="38" text-anchor="middle" font-family="'Microsoft YaHei', 'PingFang SC', sans-serif" font-size="18" font-weight="bold" fill="#1a1a2e">反应式智能体架构</text>
+
+  <!-- ===== 传感器输入（左侧） ===== -->
+  <rect x="60" y="100" width="140" height="140" rx="16" fill="white" stroke="#409EFF" stroke-width="2.5"/>
+  <rect x="60" y="100" width="140" height="140" rx="16" fill="url(#sensorGrad)" opacity="0.08"/>
+
+  <!-- 卫星天线图标 -->
+  <g transform="translate(130,145)">
+    <!-- 底座 -->
+    <rect x="-8" y="18" width="16" height="6" rx="2" fill="#1a1a2e"/>
+    <!-- 支架 -->
+    <line x1="0" y1="18" x2="0" y2="6" stroke="#1a1a2e" stroke-width="2.5"/>
+    <!-- 碟形天线 -->
+    <path d="M-18,6 Q0,-18 18,6" fill="none" stroke="#409EFF" stroke-width="3" stroke-linecap="round"/>
+    <!-- 馈源 -->
+    <circle cx="0" cy="0" r="3" fill="#409EFF"/>
+    <!-- 信号波纹 -->
+    <path d="M-10,-4 Q-6,-8 -2,-4" fill="none" stroke="#409EFF" stroke-width="1.5" stroke-linecap="round" opacity="0.6"/>
+    <path d="M-14,-1 Q-8,-7 -2,-1" fill="none" stroke="#409EFF" stroke-width="1.5" stroke-linecap="round" opacity="0.4"/>
+  </g>
+
+  <text x="130" y="190" text-anchor="middle" font-family="'Microsoft YaHei', 'PingFang SC', sans-serif" font-size="15" font-weight="bold" fill="#1a1a2e">传感器输入</text>
+
+  <!-- 箭头 1：传感器 → 规则 -->
+  <g>
+    <line x1="200" y1="170" x2="290" y2="170" stroke="#409EFF" stroke-width="2.5" stroke-linecap="round"/>
+    <polygon points="290,162 305,170 290,178" fill="#409EFF"/>
+  </g>
+
+  <!-- ===== 规则引擎（中间） ===== -->
+  <rect x="305" y="80" width="190" height="180" rx="14" fill="white" stroke="#1a1a2e" stroke-width="2.5"/>
+  <rect x="305" y="80" width="190" height="180" rx="14" fill="url(#ruleGrad)" opacity="0.5"/>
+
+  <text x="400" y="108" text-anchor="middle" font-family="'Microsoft YaHei', 'PingFang SC', sans-serif" font-size="14" font-weight="bold" fill="#1a1a2e">IF-THEN 规则</text>
+
+  <!-- 规则卡片 1 -->
+  <rect x="320" y="120" width="160" height="38" rx="8" fill="#f0f7ff" stroke="#409EFF" stroke-width="1.5"/>
+  <text x="335" y="140" font-family="'Microsoft YaHei', 'PingFang SC', sans-serif" font-size="12" fill="#1a1a2e">如果 检测到障碍物</text>
+  <text x="335" y="155" font-family="'Microsoft YaHei', 'PingFang SC', sans-serif" font-size="12" fill="#409EFF">→ 则 停止移动</text>
+
+  <!-- 规则卡片 2 -->
+  <rect x="320" y="168" width="160" height="38" rx="8" fill="#f0f7ff" stroke="#409EFF" stroke-width="1.5"/>
+  <text x="335" y="188" font-family="'Microsoft YaHei', 'PingFang SC', sans-serif" font-size="12" fill="#1a1a2e">如果 到达目标点</text>
+  <text x="335" y="203" font-family="'Microsoft YaHei', 'PingFang SC', sans-serif" font-size="12" fill="#409EFF">→ 则 执行任务</text>
+
+  <!-- 规则卡片 3 -->
+  <rect x="320" y="216" width="160" height="38" rx="8" fill="#f0f7ff" stroke="#409EFF" stroke-width="1.5"/>
+  <text x="335" y="236" font-family="'Microsoft YaHei', 'PingFang SC', sans-serif" font-size="12" fill="#1a1a2e">如果 电量低于阈值</text>
+  <text x="335" y="251" font-family="'Microsoft YaHei', 'PingFang SC', sans-serif" font-size="12" fill="#409EFF">→ 则 返回充电</text>
+
+  <!-- 箭头 2：规则 → 执行器 -->
+  <g>
+    <line x1="495" y1="170" x2="585" y2="170" stroke="#409EFF" stroke-width="2.5" stroke-linecap="round"/>
+    <polygon points="585,162 600,170 585,178" fill="#409EFF"/>
+  </g>
+
+  <!-- ===== 动作输出（右侧） ===== -->
+  <rect x="600" y="100" width="140" height="140" rx="16" fill="white" stroke="#409EFF" stroke-width="2.5"/>
+  <rect x="600" y="100" width="140" height="140" rx="16" fill="url(#actionGrad)" opacity="0.08"/>
+
+  <!-- 齿轮图标 -->
+  <g transform="translate(670,145)">
+    <circle cx="0" cy="0" r="14" fill="none" stroke="#1a1a2e" stroke-width="2.5"/>
+    <circle cx="0" cy="0" r="5" fill="#1a1a2e"/>
+    <!-- 齿轮齿 -->
+    <rect x="-3" y="-18" width="6" height="8" rx="1.5" fill="#1a1a2e"/>
+    <rect x="-3" y="10" width="6" height="8" rx="1.5" fill="#1a1a2e"/>
+    <rect x="-18" y="-3" width="8" height="6" rx="1.5" fill="#1a1a2e"/>
+    <rect x="10" y="-3" width="8" height="6" rx="1.5" fill="#1a1a2e"/>
+    <rect x="10" y="-13" width="6" height="8" rx="1.5" fill="#1a1a2e" transform="rotate(45,13,-9)"/>
+    <rect x="-16" y="-13" width="6" height="8" rx="1.5" fill="#1a1a2e" transform="rotate(-45,-13,-9)"/>
+    <rect x="10" y="5" width="6" height="8" rx="1.5" fill="#1a1a2e" transform="rotate(-45,13,9)"/>
+    <rect x="-16" y="5" width="6" height="8" rx="1.5" fill="#1a1a2e" transform="rotate(45,-13,9)"/>
+  </g>
+
+  <text x="670" y="190" text-anchor="middle" font-family="'Microsoft YaHei', 'PingFang SC', sans-serif" font-size="15" font-weight="bold" fill="#1a1a2e">动作输出</text>
+
+  <!-- ===== 底部：无内部状态区域 ===== -->
+  <!-- 分隔线 -->
+  <line x1="80" y1="310" x2="720" y2="310" stroke="#d0d8e8" stroke-width="1" stroke-dasharray="6,4"/>
+
+  <!-- 无内部状态标签 -->
+  <text x="400" y="340" text-anchor="middle" font-family="'Microsoft YaHei', 'PingFang SC', sans-serif" font-size="15" font-weight="bold" fill="#999" letter-spacing="2">无内部状态</text>
+
+  <!-- 被划掉的图标：记忆 -->
+  <g transform="translate(200,390)">
+    <rect x="-30" y="-30" width="60" height="60" rx="10" fill="white" stroke="#ddd" stroke-width="1.5"/>
+    <!-- 记忆图标（大脑/芯片） -->
+    <path d="M-12,-8 Q-12,-20 0,-20 Q12,-20 12,-8 Q12,0 8,5 L8,15 L-8,15 L-8,5 Q-12,0 -12,-8Z" fill="none" stroke="#ccc" stroke-width="2"/>
+    <path d="M-5,5 L-5,12 M0,5 L0,12 M5,5 L5,12" stroke="#ccc" stroke-width="1.5" stroke-linecap="round"/>
+    <!-- 删除线 -->
+    <line x1="-22" y1="-22" x2="22" y2="22" stroke="#e74c3c" stroke-width="2.5" stroke-linecap="round" opacity="0.7"/>
+    <text x="0" y="40" text-anchor="middle" font-family="'Microsoft YaHei', 'PingFang SC', sans-serif" font-size="13" fill="#bbb">记忆</text>
+  </g>
+
+  <!-- 被划掉的图标：规划 -->
+  <g transform="translate(400,390)">
+    <rect x="-30" y="-30" width="60" height="60" rx="10" fill="white" stroke="#ddd" stroke-width="1.5"/>
+    <!-- 规划图标（地图/路线） -->
+    <rect x="-12" y="-15" width="24" height="30" rx="3" fill="none" stroke="#ccc" stroke-width="2"/>
+    <path d="M-8,-5 L0,-12 L8,-5 L0,2Z" fill="none" stroke="#ccc" stroke-width="1.5"/>
+    <circle cx="0" cy="-5" r="2" fill="#ccc"/>
+    <path d="M-8,5 L8,5 M-8,10 L8,10" stroke="#ccc" stroke-width="1.5" stroke-linecap="round"/>
+    <!-- 删除线 -->
+    <line x1="-22" y1="-22" x2="22" y2="22" stroke="#e74c3c" stroke-width="2.5" stroke-linecap="round" opacity="0.7"/>
+    <text x="0" y="40" text-anchor="middle" font-family="'Microsoft YaHei', 'PingFang SC', sans-serif" font-size="13" fill="#bbb">规划</text>
+  </g>
+
+  <!-- 被划掉的图标：世界模型 -->
+  <g transform="translate(600,390)">
+    <rect x="-30" y="-30" width="60" height="60" rx="10" fill="white" stroke="#ddd" stroke-width="1.5"/>
+    <!-- 世界模型图标（地球/网络） -->
+    <circle cx="0" cy="-5" r="14" fill="none" stroke="#ccc" stroke-width="2"/>
+    <ellipse cx="0" cy="-5" rx="14" ry="6" fill="none" stroke="#ccc" stroke-width="1.5"/>
+    <line x1="-14" y1="-5" x2="14" y2="-5" stroke="#ccc" stroke-width="1.5"/>
+    <line x1="0" y1="-19" x2="0" y2="9" stroke="#ccc" stroke-width="1.5"/>
+    <path d="M-10,-12 Q0,-2 10,-12 M-10,2 Q0,8 10,2" fill="none" stroke="#ccc" stroke-width="1.5"/>
+    <!-- 删除线 -->
+    <line x1="-22" y1="-22" x2="22" y2="22" stroke="#e74c3c" stroke-width="2.5" stroke-linecap="round" opacity="0.7"/>
+    <text x="0" y="40" text-anchor="middle" font-family="'Microsoft YaHei', 'PingFang SC', sans-serif" font-size="13" fill="#bbb">世界模型</text>
+  </g>
+
+  <!-- 底部说明 -->
+  <text x="400" y="480" text-anchor="middle" font-family="'Microsoft YaHei', 'PingFang SC', sans-serif" font-size="12" fill="#aaa">反应式智能体仅根据当前感知做出决策，不维护内部状态</text>
+
+</svg>

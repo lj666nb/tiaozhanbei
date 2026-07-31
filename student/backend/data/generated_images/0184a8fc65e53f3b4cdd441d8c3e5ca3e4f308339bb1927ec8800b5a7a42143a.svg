@@ -1,0 +1,186 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="800" height="500">
+  <defs>
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#f0f7ff"/>
+      <stop offset="100%" stop-color="#e8f4f8"/>
+    </linearGradient>
+    <linearGradient id="glowGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#409EFF" stop-opacity="0.15"/>
+      <stop offset="100%" stop-color="#409EFF" stop-opacity="0.05"/>
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="4" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- 背景 -->
+  <rect width="800" height="500" fill="url(#bgGrad)" rx="8"/>
+
+  <!-- 标题 -->
+  <text x="400" y="38" text-anchor="middle" font-family="'Microsoft YaHei', 'PingFang SC', sans-serif" font-size="20" font-weight="bold" fill="#1a1a2e">ReAct 逐步执行流程</text>
+
+  <!-- 步骤 1 -->
+  <g transform="translate(120, 60)">
+    <rect x="0" y="0" width="560" height="68" rx="10" fill="white" stroke="#409EFF" stroke-width="1.5" opacity="0.9"/>
+    <!-- 编号 -->
+    <rect x="12" y="18" width="32" height="32" rx="16" fill="#1a1a2e"/>
+    <text x="28" y="39" text-anchor="middle" font-family="'Microsoft YaHei', sans-serif" font-size="16" font-weight="bold" fill="white">1</text>
+    <!-- 思考图标 -->
+    <g transform="translate(62, 20)">
+      <circle cx="12" cy="12" r="10" fill="none" stroke="#409EFF" stroke-width="1.5"/>
+      <path d="M12 6v6l4 4" fill="none" stroke="#409EFF" stroke-width="1.5" stroke-linecap="round"/>
+    </g>
+    <text x="90" y="30" font-family="'Microsoft YaHei', sans-serif" font-size="14" fill="#1a1a2e" font-weight="bold">思考：</text>
+    <text x="145" y="30" font-family="'Microsoft YaHei', sans-serif" font-size="13" fill="#555">分析当前问题，确定目标</text>
+    <!-- 行动图标 -->
+    <g transform="translate(62, 42)">
+      <circle cx="12" cy="12" r="10" fill="none" stroke="#409EFF" stroke-width="1.5"/>
+      <path d="M6 12h12M12 6v12" fill="none" stroke="#409EFF" stroke-width="1.5" stroke-linecap="round"/>
+    </g>
+    <text x="90" y="52" font-family="'Microsoft YaHei', sans-serif" font-size="14" fill="#1a1a2e" font-weight="bold">行动：</text>
+    <text x="145" y="52" font-family="'Microsoft YaHei', sans-serif" font-size="13" fill="#555">搜索相关知识库</text>
+  </g>
+
+  <!-- 箭头 1→2 -->
+  <g transform="translate(400, 128)">
+    <polygon points="0,0 -6,8 6,8" fill="#409EFF"/>
+    <rect x="-2" y="-12" width="4" height="12" fill="#409EFF"/>
+  </g>
+
+  <!-- 步骤 2 -->
+  <g transform="translate(120, 145)">
+    <rect x="0" y="0" width="560" height="68" rx="10" fill="white" stroke="#409EFF" stroke-width="1.5" opacity="0.9"/>
+    <rect x="12" y="18" width="32" height="32" rx="16" fill="#1a1a2e"/>
+    <text x="28" y="39" text-anchor="middle" font-family="'Microsoft YaHei', sans-serif" font-size="16" font-weight="bold" fill="white">2</text>
+    <g transform="translate(62, 20)">
+      <circle cx="12" cy="12" r="10" fill="none" stroke="#409EFF" stroke-width="1.5"/>
+      <path d="M12 6v6l4 4" fill="none" stroke="#409EFF" stroke-width="1.5" stroke-linecap="round"/>
+    </g>
+    <text x="90" y="30" font-family="'Microsoft YaHei', sans-serif" font-size="14" fill="#1a1a2e" font-weight="bold">思考：</text>
+    <text x="145" y="30" font-family="'Microsoft YaHei', sans-serif" font-size="13" fill="#555">评估已有信息</text>
+    <g transform="translate(62, 42)">
+      <circle cx="12" cy="12" r="10" fill="none" stroke="#409EFF" stroke-width="1.5"/>
+      <path d="M6 12h12M12 6v12" fill="none" stroke="#409EFF" stroke-width="1.5" stroke-linecap="round"/>
+    </g>
+    <text x="90" y="52" font-family="'Microsoft YaHei', sans-serif" font-size="14" fill="#1a1a2e" font-weight="bold">行动：</text>
+    <text x="145" y="52" font-family="'Microsoft YaHei', sans-serif" font-size="13" fill="#555">提取关键信息</text>
+  </g>
+
+  <!-- 箭头 2→3 -->
+  <g transform="translate(400, 213)">
+    <polygon points="0,0 -6,8 6,8" fill="#409EFF"/>
+    <rect x="-2" y="-12" width="4" height="12" fill="#409EFF"/>
+  </g>
+
+  <!-- 步骤 3 -->
+  <g transform="translate(120, 230)">
+    <rect x="0" y="0" width="560" height="68" rx="10" fill="white" stroke="#409EFF" stroke-width="1.5" opacity="0.9"/>
+    <rect x="12" y="18" width="32" height="32" rx="16" fill="#1a1a2e"/>
+    <text x="28" y="39" text-anchor="middle" font-family="'Microsoft YaHei', sans-serif" font-size="16" font-weight="bold" fill="white">3</text>
+    <g transform="translate(62, 20)">
+      <circle cx="12" cy="12" r="10" fill="none" stroke="#409EFF" stroke-width="1.5"/>
+      <path d="M12 6v6l4 4" fill="none" stroke="#409EFF" stroke-width="1.5" stroke-linecap="round"/>
+    </g>
+    <text x="90" y="30" font-family="'Microsoft YaHei', sans-serif" font-size="14" fill="#1a1a2e" font-weight="bold">思考：</text>
+    <text x="145" y="30" font-family="'Microsoft YaHei', sans-serif" font-size="13" fill="#555">推理下一步行动</text>
+    <g transform="translate(62, 42)">
+      <circle cx="12" cy="12" r="10" fill="none" stroke="#409EFF" stroke-width="1.5"/>
+      <path d="M6 12h12M12 6v12" fill="none" stroke="#409EFF" stroke-width="1.5" stroke-linecap="round"/>
+    </g>
+    <text x="90" y="52" font-family="'Microsoft YaHei', sans-serif" font-size="14" fill="#1a1a2e" font-weight="bold">行动：</text>
+    <text x="145" y="52" font-family="'Microsoft YaHei', sans-serif" font-size="13" fill="#555">验证假设</text>
+  </g>
+
+  <!-- 箭头 3→4 -->
+  <g transform="translate(400, 298)">
+    <polygon points="0,0 -6,8 6,8" fill="#409EFF"/>
+    <rect x="-2" y="-12" width="4" height="12" fill="#409EFF"/>
+  </g>
+
+  <!-- 步骤 4 -->
+  <g transform="translate(120, 315)">
+    <rect x="0" y="0" width="560" height="68" rx="10" fill="white" stroke="#409EFF" stroke-width="1.5" opacity="0.9"/>
+    <rect x="12" y="18" width="32" height="32" rx="16" fill="#1a1a2e"/>
+    <text x="28" y="39" text-anchor="middle" font-family="'Microsoft YaHei', sans-serif" font-size="16" font-weight="bold" fill="white">4</text>
+    <g transform="translate(62, 20)">
+      <circle cx="12" cy="12" r="10" fill="none" stroke="#409EFF" stroke-width="1.5"/>
+      <path d="M12 6v6l4 4" fill="none" stroke="#409EFF" stroke-width="1.5" stroke-linecap="round"/>
+    </g>
+    <text x="90" y="30" font-family="'Microsoft YaHei', sans-serif" font-size="14" fill="#1a1a2e" font-weight="bold">思考：</text>
+    <text x="145" y="30" font-family="'Microsoft YaHei', sans-serif" font-size="13" fill="#555">整合所有信息</text>
+    <g transform="translate(62, 42)">
+      <circle cx="12" cy="12" r="10" fill="none" stroke="#409EFF" stroke-width="1.5"/>
+      <path d="M6 12h12M12 6v12" fill="none" stroke="#409EFF" stroke-width="1.5" stroke-linecap="round"/>
+    </g>
+    <text x="90" y="52" font-family="'Microsoft YaHei', sans-serif" font-size="14" fill="#1a1a2e" font-weight="bold">行动：</text>
+    <text x="145" y="52" font-family="'Microsoft YaHei', sans-serif" font-size="13" fill="#555">整理推理结果</text>
+  </g>
+
+  <!-- 箭头 4→5 -->
+  <g transform="translate(400, 383)">
+    <polygon points="0,0 -6,8 6,8" fill="#409EFF"/>
+    <rect x="-2" y="-12" width="4" height="12" fill="#409EFF"/>
+  </g>
+
+  <!-- 步骤 5（高亮） -->
+  <g transform="translate(120, 400)">
+    <rect x="0" y="0" width="560" height="68" rx="10" fill="white" stroke="#409EFF" stroke-width="2" filter="url(#glow)"/>
+    <rect x="0" y="0" width="560" height="68" rx="10" fill="url(#glowGrad)"/>
+    <rect x="12" y="18" width="32" height="32" rx="16" fill="#409EFF"/>
+    <text x="28" y="39" text-anchor="middle" font-family="'Microsoft YaHei', sans-serif" font-size="16" font-weight="bold" fill="white">5</text>
+    <g transform="translate(62, 20)">
+      <circle cx="12" cy="12" r="10" fill="none" stroke="#409EFF" stroke-width="1.5"/>
+      <path d="M12 6v6l4 4" fill="none" stroke="#409EFF" stroke-width="1.5" stroke-linecap="round"/>
+    </g>
+    <text x="90" y="30" font-family="'Microsoft YaHei', sans-serif" font-size="14" fill="#1a1a2e" font-weight="bold">思考：</text>
+    <text x="145" y="30" font-family="'Microsoft YaHei', sans-serif" font-size="13" fill="#409EFF" font-weight="bold">得出最终答案</text>
+    <g transform="translate(62, 42)">
+      <circle cx="12" cy="12" r="10" fill="none" stroke="#409EFF" stroke-width="1.5"/>
+      <path d="M6 12h12M12 6v12" fill="none" stroke="#409EFF" stroke-width="1.5" stroke-linecap="round"/>
+    </g>
+    <text x="90" y="52" font-family="'Microsoft YaHei', sans-serif" font-size="14" fill="#1a1a2e" font-weight="bold">结果：</text>
+    <text x="145" y="52" font-family="'Microsoft YaHei', sans-serif" font-size="13" fill="#409EFF" font-weight="bold">✓ 最终答案已生成</text>
+  </g>
+
+  <!-- 标注 1 -->
+  <g transform="translate(690, 85)">
+    <rect x="0" y="0" width="95" height="26" rx="13" fill="#1a1a2e" opacity="0.85"/>
+    <text x="47" y="18" text-anchor="middle" font-family="'Microsoft YaHei', sans-serif" font-size="12" fill="white">思考-行动-观察</text>
+  </g>
+
+  <!-- 标注 2 -->
+  <g transform="translate(690, 170)">
+    <rect x="0" y="0" width="95" height="26" rx="13" fill="#1a1a2e" opacity="0.85"/>
+    <text x="47" y="18" text-anchor="middle" font-family="'Microsoft YaHei', sans-serif" font-size="12" fill="white">循环迭代</text>
+  </g>
+
+  <!-- 标注 3 -->
+  <g transform="translate(690, 255)">
+    <rect x="0" y="0" width="95" height="26" rx="13" fill="#1a1a2e" opacity="0.85"/>
+    <text x="47" y="18" text-anchor="middle" font-family="'Microsoft YaHei', sans-serif" font-size="12" fill="white">逐步推理</text>
+  </g>
+
+  <!-- 标注 4 -->
+  <g transform="translate(690, 340)">
+    <rect x="0" y="0" width="95" height="26" rx="13" fill="#1a1a2e" opacity="0.85"/>
+    <text x="47" y="18" text-anchor="middle" font-family="'Microsoft YaHei', sans-serif" font-size="12" fill="white">信息整合</text>
+  </g>
+
+  <!-- 标注 5 -->
+  <g transform="translate(690, 425)">
+    <rect x="0" y="0" width="95" height="26" rx="13" fill="#409EFF" opacity="0.9"/>
+    <text x="47" y="18" text-anchor="middle" font-family="'Microsoft YaHei', sans-serif" font-size="12" fill="white">最终答案</text>
+  </g>
+
+  <!-- 左侧标注线 -->
+  <line x1="685" y1="98" x2="680" y2="94" stroke="#1a1a2e" stroke-width="1" opacity="0.4"/>
+  <line x1="685" y1="183" x2="680" y2="179" stroke="#1a1a2e" stroke-width="1" opacity="0.4"/>
+  <line x1="685" y1="268" x2="680" y2="264" stroke="#1a1a2e" stroke-width="1" opacity="0.4"/>
+  <line x1="685" y1="353" x2="680" y2="349" stroke="#1a1a2e" stroke-width="1" opacity="0.4"/>
+  <line x1="685" y1="438" x2="680" y2="434" stroke="#409EFF" stroke-width="1" opacity="0.6"/>
+
+</svg>

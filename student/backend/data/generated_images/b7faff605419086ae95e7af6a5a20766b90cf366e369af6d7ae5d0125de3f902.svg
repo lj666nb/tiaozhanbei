@@ -1,0 +1,119 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="800" height="500">
+  <defs>
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#E8F4FD"/>
+      <stop offset="100%" stop-color="#D0ECFA"/>
+    </linearGradient>
+    <linearGradient id="panelGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#FFFFFF"/>
+      <stop offset="100%" stop-color="#F0F8FF"/>
+    </linearGradient>
+  </defs>
+
+  <!-- 背景 -->
+  <rect width="800" height="500" fill="url(#bgGrad)" rx="8"/>
+
+  <!-- 标题 -->
+  <text x="400" y="38" text-anchor="middle" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#1a1a2e">LoRA 应用场景与秩选择指南</text>
+
+  <!-- ===== 面板1：领域问答 ===== -->
+  <rect x="40" y="60" width="520" height="100" rx="12" fill="url(#panelGrad)" stroke="#409EFF" stroke-width="1.5"/>
+  <!-- 图标：FAQ文档 -->
+  <rect x="60" y="80" width="36" height="44" rx="4" fill="#409EFF" opacity="0.15"/>
+  <rect x="64" y="84" width="28" height="36" rx="3" fill="none" stroke="#409EFF" stroke-width="1.8"/>
+  <line x1="72" y1="92" x2="84" y2="92" stroke="#409EFF" stroke-width="1.5"/>
+  <line x1="72" y1="98" x2="84" y2="98" stroke="#409EFF" stroke-width="1.5"/>
+  <line x1="72" y1="104" x2="80" y2="104" stroke="#409EFF" stroke-width="1.5"/>
+  <rect x="86" y="108" width="6" height="6" rx="1" fill="#409EFF"/>
+  <!-- 文字 -->
+  <text x="115" y="100" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#1a1a2e">领域问答</text>
+  <text x="115" y="122" font-family="Arial, sans-serif" font-size="13" fill="#5a5a7a">Domain Q&A</text>
+  <text x="115" y="142" font-family="Arial, sans-serif" font-size="13" fill="#409EFF">专有知识库问答，FAQ 文档处理</text>
+  <!-- r=8 标签 -->
+  <rect x="440" y="95" width="80" height="32" rx="16" fill="#409EFF"/>
+  <text x="480" y="116" text-anchor="middle" font-family="Arial, sans-serif" font-size="15" font-weight="bold" fill="#FFFFFF">r=8</text>
+
+  <!-- ===== 面板2：指令微调 ===== -->
+  <rect x="40" y="180" width="520" height="100" rx="12" fill="url(#panelGrad)" stroke="#409EFF" stroke-width="1.5"/>
+  <!-- 图标：聊天气泡 -->
+  <circle cx="78" cy="215" r="22" fill="#409EFF" opacity="0.12"/>
+  <path d="M66 208 Q66 198 78 198 L90 198 Q102 198 102 208 L102 218 Q102 228 90 228 L84 228 L76 234 L78 228 L66 228 Q66 218 66 218 Z" fill="none" stroke="#409EFF" stroke-width="1.8"/>
+  <line x1="74" y1="210" x2="94" y2="210" stroke="#409EFF" stroke-width="1.3"/>
+  <line x1="74" y1="216" x2="88" y2="216" stroke="#409EFF" stroke-width="1.3"/>
+  <!-- 文字 -->
+  <text x="115" y="218" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#1a1a2e">指令微调</text>
+  <text x="115" y="240" font-family="Arial, sans-serif" font-size="13" fill="#5a5a7a">Instruction Tuning</text>
+  <text x="115" y="260" font-family="Arial, sans-serif" font-size="13" fill="#409EFF">对话指令对齐，任务泛化训练</text>
+  <!-- r=16 标签 -->
+  <rect x="440" y="213" width="80" height="32" rx="16" fill="#409EFF"/>
+  <text x="480" y="234" text-anchor="middle" font-family="Arial, sans-serif" font-size="15" font-weight="bold" fill="#FFFFFF">r=16</text>
+
+  <!-- ===== 面板3：风格迁移 ===== -->
+  <rect x="40" y="300" width="520" height="100" rx="12" fill="url(#panelGrad)" stroke="#409EFF" stroke-width="1.5"/>
+  <!-- 图标：画笔 -->
+  <circle cx="78" cy="335" r="22" fill="#409EFF" opacity="0.12"/>
+  <line x1="68" y1="345" x2="92" y2="321" stroke="#409EFF" stroke-width="2.5" stroke-linecap="round"/>
+  <circle cx="92" cy="321" r="4" fill="#409EFF"/>
+  <path d="M66 347 L70 343" stroke="#409EFF" stroke-width="1.8" stroke-linecap="round"/>
+  <!-- 文字 -->
+  <text x="115" y="338" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#1a1a2e">风格迁移</text>
+  <text x="115" y="360" font-family="Arial, sans-serif" font-size="13" fill="#5a5a7a">Style Transfer</text>
+  <text x="115" y="380" font-family="Arial, sans-serif" font-size="13" fill="#409EFF">图像风格转换，艺术效果迁移</text>
+  <!-- r=4 标签 -->
+  <rect x="440" y="333" width="80" height="32" rx="16" fill="#409EFF"/>
+  <text x="480" y="354" text-anchor="middle" font-family="Arial, sans-serif" font-size="15" font-weight="bold" fill="#FFFFFF">r=4</text>
+
+  <!-- ===== 右侧：秩选择指南 ===== -->
+  <rect x="590" y="60" width="180" height="340" rx="12" fill="url(#panelGrad)" stroke="#409EFF" stroke-width="1.5"/>
+  <text x="680" y="88" text-anchor="middle" font-family="Arial, sans-serif" font-size="15" font-weight="bold" fill="#1a1a2e">秩选择指南</text>
+
+  <!-- 标尺 -->
+  <rect x="620" y="108" width="120" height="8" rx="4" fill="#E0E0E0"/>
+  <!-- 刻度标记 -->
+  <line x1="620" y1="108" x2="620" y2="100" stroke="#1a1a2e" stroke-width="1.2"/>
+  <line x1="650" y1="108" x2="650" y2="100" stroke="#1a1a2e" stroke-width="1.2"/>
+  <line x1="680" y1="108" x2="680" y2="96" stroke="#409EFF" stroke-width="2.5"/>
+  <line x1="710" y1="108" x2="710" y2="100" stroke="#1a1a2e" stroke-width="1.2"/>
+  <line x1="740" y1="108" x2="740" y2="100" stroke="#1a1a2e" stroke-width="1.2"/>
+
+  <!-- 标尺标签 -->
+  <text x="620" y="130" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#1a1a2e">r=2</text>
+  <text x="650" y="130" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#1a1a2e">r=4</text>
+  <text x="680" y="130" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#409EFF">r=8</text>
+  <text x="710" y="130" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#1a1a2e">r=16</text>
+  <text x="740" y="130" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#1a1a2e">r=32</text>
+
+  <!-- 额外刻度 -->
+  <line x1="760" y1="108" x2="760" y2="100" stroke="#1a1a2e" stroke-width="1.2"/>
+  <text x="760" y="130" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#1a1a2e">r=64</text>
+
+  <!-- 分类标签 -->
+  <rect x="610" y="150" width="140" height="28" rx="14" fill="#E8F4FD" stroke="#409EFF" stroke-width="1" stroke-dasharray="4,3"/>
+  <text x="680" y="169" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#409EFF">简单任务</text>
+
+  <rect x="610" y="190" width="140" height="28" rx="14" fill="#409EFF"/>
+  <text x="680" y="209" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#FFFFFF">标准推荐</text>
+
+  <rect x="610" y="230" width="140" height="28" rx="14" fill="#E8F4FD" stroke="#409EFF" stroke-width="1" stroke-dasharray="4,3"/>
+  <text x="680" y="249" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#409EFF">复杂任务</text>
+
+  <rect x="610" y="270" width="140" height="28" rx="14" fill="#E8F4FD" stroke="#409EFF" stroke-width="1" stroke-dasharray="4,3"/>
+  <text x="680" y="289" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#409EFF">接近全量微调</text>
+
+  <!-- 说明文字 -->
+  <text x="680" y="325" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#5a5a7a">r=2-4 简单</text>
+  <text x="680" y="345" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#5a5a7a">r=8 标准</text>
+  <text x="680" y="365" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#5a5a7a">r=16-32 复杂</text>
+  <text x="680" y="385" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#5a5a7a">r=64+ 近全量</text>
+
+  <!-- 底部说明 -->
+  <text x="400" y="440" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#5a5a7a">选择合适的秩（rank）在模型适配效果与训练效率之间取得平衡</text>
+
+  <!-- 装饰线 -->
+  <line x1="300" y1="460" x2="500" y2="460" stroke="#409EFF" stroke-width="1" opacity="0.3"/>
+
+  <!-- 圆点装饰 -->
+  <circle cx="320" cy="460" r="3" fill="#409EFF" opacity="0.4"/>
+  <circle cx="400" cy="460" r="3" fill="#409EFF" opacity="0.4"/>
+  <circle cx="480" cy="460" r="3" fill="#409EFF" opacity="0.4"/>
+</svg>

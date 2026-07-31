@@ -1,0 +1,190 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" font-family="Microsoft YaHei, PingFang SC, sans-serif">
+  <defs>
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#E8F4FD"/>
+      <stop offset="100%" stop-color="#D0ECFA"/>
+    </linearGradient>
+    <linearGradient id="cardGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="100%" stop-color="#F0F8FF"/>
+    </linearGradient>
+  </defs>
+
+  <!-- 背景 -->
+  <rect width="800" height="500" fill="url(#bgGrad)" rx="8"/>
+
+  <!-- 标题 -->
+  <text x="400" y="36" text-anchor="middle" font-size="20" font-weight="bold" fill="#1a1a2e">三种投票机制对比</text>
+
+  <!-- ========== 第一部分：多数投票 ========== -->
+  <g transform="translate(0, 0)">
+    <!-- 卡片背景 -->
+    <rect x="30" y="52" width="740" height="118" rx="10" fill="url(#cardGrad)" stroke="#409EFF" stroke-width="1.5" opacity="0.9"/>
+
+    <!-- 标签 -->
+    <rect x="30" y="52" width="120" height="28" rx="10" fill="#409EFF"/>
+    <text x="90" y="71" text-anchor="middle" font-size="14" font-weight="bold" fill="#ffffff">① 多数投票</text>
+
+    <!-- 三张选票 -->
+    <!-- 选票A -->
+    <rect x="80" y="95" width="70" height="50" rx="4" fill="#ffffff" stroke="#409EFF" stroke-width="1.5"/>
+    <text x="115" y="118" text-anchor="middle" font-size="18" font-weight="bold" fill="#409EFF">✓ A</text>
+    <text x="115" y="138" text-anchor="middle" font-size="11" fill="#666">选票1</text>
+
+    <!-- 选票B -->
+    <rect x="180" y="95" width="70" height="50" rx="4" fill="#ffffff" stroke="#409EFF" stroke-width="1.5"/>
+    <text x="215" y="118" text-anchor="middle" font-size="18" font-weight="bold" fill="#409EFF">✓ A</text>
+    <text x="215" y="138" text-anchor="middle" font-size="11" fill="#666">选票2</text>
+
+    <!-- 选票C -->
+    <rect x="280" y="95" width="70" height="50" rx="4" fill="#ffffff" stroke="#E0E0E0" stroke-width="1.5"/>
+    <text x="315" y="118" text-anchor="middle" font-size="18" font-weight="bold" fill="#999">B</text>
+    <text x="315" y="138" text-anchor="middle" font-size="11" fill="#666">选票3</text>
+
+    <!-- 结果箭头 -->
+    <text x="385" y="125" text-anchor="middle" font-size="22" fill="#1a1a2e">→</text>
+
+    <!-- 获胜者 -->
+    <rect x="420" y="95" width="80" height="50" rx="8" fill="#409EFF" opacity="0.15"/>
+    <text x="460" y="125" text-anchor="middle" font-size="18" font-weight="bold" fill="#409EFF">A 获胜</text>
+
+    <!-- 优劣标签 -->
+    <text x="560" y="108" font-size="12" fill="#2ecc71">✓ 简单直观</text>
+    <text x="560" y="132" font-size="12" fill="#e74c3c">✗ 忽略少数</text>
+
+    <!-- 票数统计 -->
+    <text x="700" y="108" font-size="12" fill="#666">A: 2票</text>
+    <text x="700" y="132" font-size="12" fill="#666">B: 1票</text>
+  </g>
+
+  <!-- ========== 第二部分：加权投票 ========== -->
+  <g transform="translate(0, 0)">
+    <!-- 卡片背景 -->
+    <rect x="30" y="188" width="740" height="118" rx="10" fill="url(#cardGrad)" stroke="#409EFF" stroke-width="1.5" opacity="0.9"/>
+
+    <!-- 标签 -->
+    <rect x="30" y="188" width="120" height="28" rx="10" fill="#409EFF"/>
+    <text x="90" y="207" text-anchor="middle" font-size="14" font-weight="bold" fill="#ffffff">② 加权投票</text>
+
+    <!-- 三个投票者 -->
+    <!-- 高级分析师 - 大 -->
+    <rect x="65" y="228" width="80" height="60" rx="6" fill="#ffffff" stroke="#409EFF" stroke-width="2"/>
+    <text x="105" y="252" text-anchor="middle" font-size="12" font-weight="bold" fill="#1a1a2e">高级分析师</text>
+    <text x="105" y="272" text-anchor="middle" font-size="16" font-weight="bold" fill="#409EFF">2.0</text>
+
+    <!-- 初级 - 中 -->
+    <rect x="175" y="238" width="70" height="50" rx="6" fill="#ffffff" stroke="#409EFF" stroke-width="1.5"/>
+    <text x="210" y="258" text-anchor="middle" font-size="12" font-weight="bold" fill="#1a1a2e">初级</text>
+    <text x="210" y="276" text-anchor="middle" font-size="14" font-weight="bold" fill="#409EFF">1.0</text>
+
+    <!-- 实习生 - 小 -->
+    <rect x="275" y="248" width="60" height="40" rx="6" fill="#ffffff" stroke="#409EFF" stroke-width="1"/>
+    <text x="305" y="264" text-anchor="middle" font-size="11" font-weight="bold" fill="#1a1a2e">实习生</text>
+    <text x="305" y="280" text-anchor="middle" font-size="12" font-weight="bold" fill="#409EFF">0.5</text>
+
+    <!-- 天平图标 -->
+    <g transform="translate(400, 252)">
+      <!-- 天平杆 -->
+      <line x1="-30" y1="0" x2="30" y2="0" stroke="#1a1a2e" stroke-width="2"/>
+      <!-- 中心支点 -->
+      <polygon points="0,-8 -6,0 6,0" fill="#1a1a2e"/>
+      <line x1="0" y1="0" x2="0" y2="18" stroke="#1a1a2e" stroke-width="2"/>
+      <rect x="-4" y="18" width="8" height="4" rx="1" fill="#1a1a2e"/>
+      <!-- 左边托盘 -->
+      <line x1="-30" y1="0" x2="-30" y2="12" stroke="#1a1a2e" stroke-width="1.5"/>
+      <rect x="-38" y="12" width="16" height="4" rx="2" fill="#409EFF"/>
+      <text x="-30" y="24" text-anchor="middle" font-size="9" fill="#409EFF">2.0</text>
+      <!-- 右边托盘 -->
+      <line x1="30" y1="0" x2="30" y2="12" stroke="#1a1a2e" stroke-width="1.5"/>
+      <rect x="22" y="12" width="16" height="4" rx="2" fill="#409EFF"/>
+      <text x="30" y="24" text-anchor="middle" font-size="9" fill="#409EFF">1.5</text>
+    </g>
+
+    <!-- 加权总计 -->
+    <rect x="490" y="235" width="90" height="40" rx="8" fill="#409EFF" opacity="0.15"/>
+    <text x="535" y="260" text-anchor="middle" font-size="14" font-weight="bold" fill="#409EFF">加权总计</text>
+
+    <!-- 优劣标签 -->
+    <text x="610" y="248" font-size="12" fill="#2ecc71">✓ 体现专业度</text>
+    <text x="610" y="272" font-size="12" fill="#e74c3c">✗ 权重难界定</text>
+  </g>
+
+  <!-- ========== 第三部分：排序投票 ========== -->
+  <g transform="translate(0, 0)">
+    <!-- 卡片背景 -->
+    <rect x="30" y="324" width="740" height="118" rx="10" fill="url(#cardGrad)" stroke="#409EFF" stroke-width="1.5" opacity="0.9"/>
+
+    <!-- 标签 -->
+    <rect x="30" y="324" width="120" height="28" rx="10" fill="#409EFF"/>
+    <text x="90" y="343" text-anchor="middle" font-size="14" font-weight="bold" fill="#ffffff">③ 排序投票</text>
+
+    <!-- 排名表格 -->
+    <g transform="translate(60, 358)">
+      <!-- 表头 -->
+      <rect x="0" y="0" width="60" height="24" rx="3" fill="#409EFF"/>
+      <text x="30" y="16" text-anchor="middle" font-size="11" font-weight="bold" fill="#fff">选项</text>
+      <rect x="62" y="0" width="50" height="24" rx="3" fill="#409EFF"/>
+      <text x="87" y="16" text-anchor="middle" font-size="11" font-weight="bold" fill="#fff">投票者1</text>
+      <rect x="114" y="0" width="50" height="24" rx="3" fill="#409EFF"/>
+      <text x="139" y="16" text-anchor="middle" font-size="11" font-weight="bold" fill="#fff">投票者2</text>
+      <rect x="166" y="0" width="50" height="24" rx="3" fill="#409EFF"/>
+      <text x="191" y="16" text-anchor="middle" font-size="11" font-weight="bold" fill="#fff">投票者3</text>
+      <rect x="218" y="0" width="60" height="24" rx="3" fill="#409EFF"/>
+      <text x="248" y="16" text-anchor="middle" font-size="11" font-weight="bold" fill="#fff">总分</text>
+
+      <!-- 行1 - A -->
+      <rect x="0" y="26" width="60" height="22" rx="2" fill="#ffffff" stroke="#E0E0E0" stroke-width="0.5"/>
+      <text x="30" y="41" text-anchor="middle" font-size="12" font-weight="bold" fill="#1a1a2e">A</text>
+      <rect x="62" y="26" width="50" height="22" rx="2" fill="#ffffff" stroke="#E0E0E0" stroke-width="0.5"/>
+      <text x="87" y="41" text-anchor="middle" font-size="11" fill="#333">3</text>
+      <rect x="114" y="26" width="50" height="22" rx="2" fill="#ffffff" stroke="#E0E0E0" stroke-width="0.5"/>
+      <text x="139" y="41" text-anchor="middle" font-size="11" fill="#333">2</text>
+      <rect x="166" y="26" width="50" height="22" rx="2" fill="#ffffff" stroke="#E0E0E0" stroke-width="0.5"/>
+      <text x="191" y="41" text-anchor="middle" font-size="11" fill="#333">1</text>
+      <rect x="218" y="26" width="60" height="22" rx="2" fill="#E8F4FD" stroke="#409EFF" stroke-width="0.5"/>
+      <text x="248" y="41" text-anchor="middle" font-size="12" font-weight="bold" fill="#409EFF">6</text>
+
+      <!-- 行2 - B -->
+      <rect x="0" y="50" width="60" height="22" rx="2" fill="#ffffff" stroke="#E0E0E0" stroke-width="0.5"/>
+      <text x="30" y="65" text-anchor="middle" font-size="12" font-weight="bold" fill="#1a1a2e">B</text>
+      <rect x="62" y="50" width="50" height="22" rx="2" fill="#ffffff" stroke="#E0E0E0" stroke-width="0.5"/>
+      <text x="87" y="65" text-anchor="middle" font-size="11" fill="#333">1</text>
+      <rect x="114" y="50" width="50" height="22" rx="2" fill="#ffffff" stroke="#E0E0E0" stroke-width="0.5"/>
+      <text x="139" y="65" text-anchor="middle" font-size="11" fill="#333">3</text>
+      <rect x="166" y="50" width="50" height="22" rx="2" fill="#ffffff" stroke="#E0E0E0" stroke-width="0.5"/>
+      <text x="191" y="65" text-anchor="middle" font-size="11" fill="#333">2</text>
+      <rect x="218" y="50" width="60" height="22" rx="2" fill="#ffffff" stroke="#E0E0E0" stroke-width="0.5"/>
+      <text x="248" y="65" text-anchor="middle" font-size="12" fill="#333">6</text>
+
+      <!-- 行3 - C -->
+      <rect x="0" y="74" width="60" height="22" rx="2" fill="#ffffff" stroke="#E0E0E0" stroke-width="0.5"/>
+      <text x="30" y="89" text-anchor="middle" font-size="12" font-weight="bold" fill="#1a1a2e">C</text>
+      <rect x="62" y="74" width="50" height="22" rx="2" fill="#ffffff" stroke="#E0E0E0" stroke-width="0.5"/>
+      <text x="87" y="89" text-anchor="middle" font-size="11" fill="#333">2</text>
+      <rect x="114" y="74" width="50" height="22" rx="2" fill="#ffffff" stroke="#E0E0E0" stroke-width="0.5"/>
+      <text x="139" y="89" text-anchor="middle" font-size="11" fill="#333">1</text>
+      <rect x="166" y="74" width="50" height="22" rx="2" fill="#ffffff" stroke="#E0E0E0" stroke-width="0.5"/>
+      <text x="191" y="89" text-anchor="middle" font-size="11" fill="#333">3</text>
+      <rect x="218" y="74" width="60" height="22" rx="2" fill="#ffffff" stroke="#E0E0E0" stroke-width="0.5"/>
+      <text x="248" y="89" text-anchor="middle" font-size="12" fill="#333">6</text>
+    </g>
+
+    <!-- 获胜者高亮 -->
+    <g transform="translate(370, 375)">
+      <rect x="0" y="0" width="100" height="28" rx="14" fill="#409EFF" opacity="0.2"/>
+      <text x="50" y="19" text-anchor="middle" font-size="13" font-weight="bold" fill="#409EFF">🏆 A 获胜</text>
+    </g>
+
+    <!-- 优劣标签 -->
+    <text x="530" y="380" font-size="12" fill="#2ecc71">✓ 反映偏好强度</text>
+    <text x="530" y="404" font-size="12" fill="#e74c3c">✗ 计算较复杂</text>
+
+    <!-- 排序说明 -->
+    <text x="660" y="380" font-size="11" fill="#666">排序分: 1(低)→3(高)</text>
+    <text x="660" y="404" font-size="11" fill="#666">总分最高者胜出</text>
+  </g>
+
+  <!-- 底部装饰线 -->
+  <line x1="200" y1="460" x2="600" y2="460" stroke="#409EFF" stroke-width="1" opacity="0.3"/>
+  <text x="400" y="480" text-anchor="middle" font-size="11" fill="#999">教育插画 · 投票机制图解</text>
+</svg>

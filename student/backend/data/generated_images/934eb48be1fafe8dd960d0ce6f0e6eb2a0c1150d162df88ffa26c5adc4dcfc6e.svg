@@ -1,0 +1,113 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="800" height="500">
+  <defs>
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#E8F4FD"/>
+      <stop offset="100%" stop-color="#F0F8FF"/>
+    </linearGradient>
+    <linearGradient id="boxGrad1" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#409EFF"/>
+      <stop offset="100%" stop-color="#2B7BE3"/>
+    </linearGradient>
+    <linearGradient id="boxGrad2" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#1a1a2e"/>
+      <stop offset="100%" stop-color="#2d2d4e"/>
+    </linearGradient>
+    <filter id="shadow" x="-5%" y="-5%" width="115%" height="115%">
+      <feDropShadow dx="2" dy="3" stdDeviation="4" flood-color="#1a1a2e" flood-opacity="0.12"/>
+    </filter>
+  </defs>
+
+  <!-- 背景 -->
+  <rect width="800" height="500" fill="url(#bgGrad)" rx="8"/>
+
+  <!-- 标题 -->
+  <text x="400" y="38" text-anchor="middle" font-family="sans-serif" font-size="20" font-weight="bold" fill="#1a1a2e">订阅生命周期流程</text>
+
+  <!-- ====== 步骤1：订阅 ====== -->
+  <rect x="40" y="60" width="130" height="70" rx="10" fill="url(#boxGrad1)" filter="url(#shadow)"/>
+  <text x="105" y="90" text-anchor="middle" font-family="sans-serif" font-size="15" font-weight="bold" fill="#fff">步骤1：订阅</text>
+  <text x="105" y="112" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#E0F0FF">代理 → 代理服务器</text>
+  <text x="105" y="128" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#C0DFFF">主题模式 + 回调函数</text>
+
+  <!-- 标注1 -->
+  <rect x="175" y="65" width="80" height="22" rx="11" fill="#1a1a2e" opacity="0.8"/>
+  <text x="215" y="80" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#fff">订阅请求</text>
+  <line x1="170" y1="88" x2="175" y2="76" stroke="#1a1a2e" stroke-width="1.2" opacity="0.5"/>
+
+  <!-- 箭头1 → 2 -->
+  <line x1="170" y1="95" x2="220" y2="95" stroke="#409EFF" stroke-width="2" marker-end="url(#arrowBlue)"/>
+  <defs>
+    <marker id="arrowBlue" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#409EFF"/>
+    </marker>
+  </defs>
+
+  <!-- ====== 步骤2：事件发布 ====== -->
+  <rect x="230" y="60" width="130" height="70" rx="10" fill="url(#boxGrad1)" filter="url(#shadow)"/>
+  <text x="295" y="90" text-anchor="middle" font-family="sans-serif" font-size="15" font-weight="bold" fill="#fff">步骤2：发布事件</text>
+  <text x="295" y="112" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#E0F0FF">发布者 → 代理服务器</text>
+  <text x="295" y="128" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#C0DFFF">主题 + 负载 + 来源</text>
+
+  <!-- 标注2 -->
+  <rect x="365" y="65" width="80" height="22" rx="11" fill="#1a1a2e" opacity="0.8"/>
+  <text x="405" y="80" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#fff">事件发布</text>
+  <line x1="360" y1="88" x2="365" y2="76" stroke="#1a1a2e" stroke-width="1.2" opacity="0.5"/>
+
+  <!-- 箭头2 → 3 -->
+  <line x1="360" y1="95" x2="410" y2="95" stroke="#409EFF" stroke-width="2" marker-end="url(#arrowBlue)"/>
+
+  <!-- ====== 步骤3：代理匹配 ====== -->
+  <rect x="420" y="60" width="140" height="70" rx="10" fill="url(#boxGrad2)" filter="url(#shadow)"/>
+  <text x="490" y="90" text-anchor="middle" font-family="sans-serif" font-size="15" font-weight="bold" fill="#fff">步骤3：代理匹配</text>
+  <text x="490" y="112" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#C8C8E0">主题模式匹配</text>
+  <text x="490" y="128" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#A8A8C8">内容过滤</text>
+
+  <!-- 标注3 -->
+  <rect x="565" y="65" width="90" height="22" rx="11" fill="#1a1a2e" opacity="0.8"/>
+  <text x="610" y="80" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#fff">匹配检查</text>
+  <line x1="560" y1="88" x2="565" y2="76" stroke="#1a1a2e" stroke-width="1.2" opacity="0.5"/>
+
+  <!-- 箭头3 → 4 -->
+  <line x1="560" y1="95" x2="610" y2="95" stroke="#409EFF" stroke-width="2" marker-end="url(#arrowBlue)"/>
+
+  <!-- ====== 步骤4：事件投递 ====== -->
+  <rect x="620" y="60" width="140" height="70" rx="10" fill="url(#boxGrad1)" filter="url(#shadow)"/>
+  <text x="690" y="90" text-anchor="middle" font-family="sans-serif" font-size="15" font-weight="bold" fill="#fff">步骤4：事件投递</text>
+  <text x="690" y="112" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#E0F0FF">订阅者接收事件</text>
+  <text x="690" y="128" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#C0DFFF">事件队列</text>
+
+  <!-- 标注4 -->
+  <rect x="700" y="45" width="80" height="22" rx="11" fill="#1a1a2e" opacity="0.8"/>
+  <text x="740" y="60" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#fff">事件投递</text>
+
+  <!-- ====== 步骤5：取消订阅（底部） ====== -->
+  <rect x="40" y="200" width="130" height="65" rx="10" fill="#E74C3C" opacity="0.85" filter="url(#shadow)"/>
+  <text x="105" y="228" text-anchor="middle" font-family="sans-serif" font-size="15" font-weight="bold" fill="#fff">步骤5：取消订阅</text>
+  <text x="105" y="250" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#FFD0D0">代理 → 代理服务器</text>
+
+  <!-- 标注5 -->
+  <rect x="175" y="205" width="80" height="22" rx="11" fill="#1a1a2e" opacity="0.8"/>
+  <text x="215" y="220" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#fff">取消请求</text>
+  <line x1="170" y1="228" x2="175" y2="216" stroke="#1a1a2e" stroke-width="1.2" opacity="0.5"/>
+
+  <!-- 从步骤5到步骤1的虚线箭头（循环） -->
+  <path d="M 105 265 L 105 300 Q 105 310 115 310 L 380 310 Q 390 310 390 300 L 390 200" stroke="#409EFF" stroke-width="1.5" stroke-dasharray="6,4" fill="none" marker-end="url(#arrowBlue)" opacity="0.5"/>
+  <text x="248" y="325" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#409EFF" opacity="0.7">生命周期循环</text>
+
+  <!-- ====== 底部信息框 ====== -->
+  <rect x="40" y="350" width="720" height="120" rx="12" fill="#fff" stroke="#409EFF" stroke-width="1.5" filter="url(#shadow)" opacity="0.95"/>
+  <text x="60" y="378" font-family="sans-serif" font-size="14" font-weight="bold" fill="#1a1a2e">事件结构</text>
+  <text x="60" y="400" font-family="sans-serif" font-size="12" fill="#333">主题 | 负载 | 来源 | 事件ID | 时间戳 | 关联ID</text>
+  <line x1="60" y1="410" x2="740" y2="410" stroke="#E0E0E0" stroke-width="1"/>
+  <text x="60" y="432" font-family="sans-serif" font-size="14" font-weight="bold" fill="#1a1a2e">订阅结构</text>
+  <text x="60" y="454" font-family="sans-serif" font-size="12" fill="#333">主题模式 | 回调函数 | 过滤函数（可选）</text>
+
+  <!-- 图例 -->
+  <circle cx="620" cy="378" r="6" fill="#409EFF"/>
+  <text x="632" y="382" font-family="sans-serif" font-size="11" fill="#555">代理服务器</text>
+  <circle cx="720" cy="378" r="6" fill="#1a1a2e"/>
+  <text x="732" y="382" font-family="sans-serif" font-size="11" fill="#555">匹配逻辑</text>
+
+  <!-- 装饰性连接线 -->
+  <line x1="105" y1="130" x2="105" y2="200" stroke="#409EFF" stroke-width="1" stroke-dasharray="4,3" opacity="0.3"/>
+</svg>

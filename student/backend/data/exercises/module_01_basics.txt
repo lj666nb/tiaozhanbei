@@ -1,0 +1,419 @@
+================================================================================
+模块一：智能体基础通识（9 关）
+================================================================================
+
+--------------------------------------------------------------------------------
+关卡 1-1：理解 AI 智能体的官方学术定义
+所属模块：模块一 · 智能体基础通识
+--------------------------------------------------------------------------------
+
+【任务描述】
+AI 智能体（Agent）的经典学术定义源自 Michael Wooldridge 和 Nicholas Jennings（1995）：
+智能体是一个位于环境中、能够通过传感器感知环境状态、并通过效应器对环境施加
+行动的计算机系统。
+
+本关要求你编写一个函数 `agent_definition_demo()`，返回一个包含 AI 智能体四大
+核心要素的字典：感知（perception）、决策（decision）、行动（action）、环境（environment）。
+每个要素对应一段简明解释。
+
+【输入输出说明】
+输入：无
+输出：返回一个 dict，包含 perception、decision、action、environment 四个键
+
+【初始代码】
+```python
+def agent_definition_demo():
+    """
+    返回 AI 智能体四大核心要素及其解释。
+    """
+    # TODO: 构建并返回字典
+    pass
+```
+
+【评测代码】
+```python
+def evaluate_1_1(student_func):
+    result = student_func()
+    required_keys = {"perception", "decision", "action", "environment"}
+    assert isinstance(result, dict), "返回值必须是字典"
+    assert required_keys.issubset(set(result.keys())), f"缺少必要键: {required_keys - set(result.keys())}"
+    for k in required_keys:
+        assert isinstance(result[k], str) and len(result[k]) > 5, f"键'{k}'的解释太短"
+    return True, "关卡通过：正确理解智能体四要素"
+```
+
+--------------------------------------------------------------------------------
+关卡 1-2：智能体 vs 传统 AI 应用的被动应答
+所属模块：模块一 · 智能体基础通识
+--------------------------------------------------------------------------------
+
+【任务描述】
+传统 AI 应用（如推荐系统）是"被动应答"模式：用户请求 → 系统响应。
+AI 智能体则是"主动决策"模式：感知环境 → 自主规划 → 执行行动 → 观察反馈。
+
+本关要求你编写函数 `compare_passive_vs_agent(scenario)`，接收场景字符串参数
+"recommend" 或 "agent"，分别返回传统被动应答和智能体主动决策的处理流程列表。
+
+【输入输出说明】
+输入：scenario（字符串，取值 "recommend" 或 "agent"）
+输出：返回一个 list[str]，每步一个字符串描述
+样例输入："recommend"
+样例输出：["用户发出请求", "系统检索数据库", "返回推荐结果"]
+
+【初始代码】
+```python
+def compare_passive_vs_agent(scenario):
+    """
+    scenario="recommend": 返回被动应答流程
+    scenario="agent":    返回智能体主动决策流程
+    """
+    # TODO: 根据 scenario 返回对应的流程步骤列表
+    pass
+```
+
+【评测代码】
+```python
+def evaluate_1_2(student_func):
+    r = student_func("recommend")
+    assert isinstance(r, list) and len(r) >= 3, "推荐场景至少3步流程"
+    a = student_func("agent")
+    assert isinstance(a, list) and len(a) >= 4, "智能体场景至少4步流程"
+    # 被动应答第一步应为用户请求
+    assert "用户" in r[0] or "请求" in r[0], "被动应答应从用户请求开始"
+    # 智能体流程应包含感知
+    assert any("感知" in step or "观察" in step for step in a), "智能体流程需包含感知环节"
+    return True, "关卡通过：正确区分被动应答与主动决策"
+```
+
+--------------------------------------------------------------------------------
+关卡 1-3：智能体 vs 聊天机器人的核心分界线
+所属模块：模块一 · 智能体基础通识
+--------------------------------------------------------------------------------
+
+【任务描述】
+聊天机器人（ChatBot）和智能体的核心区别在于：ChatBot 只有"对话"一个能力
+通道，而智能体可以主动调用工具、执行代码、操控外部系统。
+
+编写函数 `classify_ai_system(features)`，接收一个特征集合（set），根据是否有
+工具调用（tool_calling）和环境操作（env_manipulation）能力来分类。返回 "ChatBot"
+或 "Agent"。
+
+【输入输出说明】
+输入：features（set[str]，包含 tool_calling、env_manipulation、dialogue 等）
+输出：返回 "ChatBot" 或 "Agent"
+样例输入：{"dialogue", "tool_calling"}
+样例输出："Agent"
+
+【初始代码】
+```python
+def classify_ai_system(features):
+    """
+    features: set[str] 包含系统的能力特征
+    返回: "ChatBot" 或 "Agent"
+    """
+    # TODO: 根据特征判断系统类型
+    pass
+```
+
+【评测代码】
+```python
+def evaluate_1_3(student_func):
+    assert student_func({"dialogue"}) == "ChatBot", "只有对话功能应为ChatBot"
+    assert student_func({"dialogue", "tool_calling"}) == "Agent", "有工具调用应为Agent"
+    assert student_func({"dialogue", "env_manipulation"}) == "Agent", "有环境操作应为Agent"
+    assert student_func({"dialogue", "tool_calling", "env_manipulation"}) == "Agent"
+    return True, "关卡通过：正确区分ChatBot与Agent"
+```
+
+--------------------------------------------------------------------------------
+关卡 1-4：智能体 vs 工作流的适用场景
+所属模块：模块一 · 智能体基础通识
+--------------------------------------------------------------------------------
+
+【任务描述】
+工作流（Workflow）是预定义的固定步骤流程，智能体则能根据环境反馈动态调整。
+两者适用场景不同：工作流适合标准化任务，智能体适合需要灵活决策的开放任务。
+
+编写函数 `recommend_approach(task_type)`，根据任务类型推荐使用 Workflow 或 Agent。
+规则：
+- 如果 task_type 为 "invoice_processing"（发票处理）或 "data_etl"，返回 "Workflow"
+- 如果 task_type 为 "customer_service" 或 "research"，返回 "Agent"
+- 其他情况返回 "Unknown"
+
+【输入输出说明】
+输入：task_type（字符串）
+输出："Workflow" / "Agent" / "Unknown"
+样例输入："research"
+样例输出："Agent"
+
+【初始代码】
+```python
+def recommend_approach(task_type):
+    """
+    根据任务类型推荐 Workflow 或 Agent。
+    """
+    # TODO: 实现映射逻辑
+    pass
+```
+
+【评测代码】
+```python
+def evaluate_1_4(student_func):
+    assert student_func("invoice_processing") == "Workflow"
+    assert student_func("data_etl") == "Workflow"
+    assert student_func("customer_service") == "Agent"
+    assert student_func("research") == "Agent"
+    assert student_func("unknown_task") == "Unknown"
+    return True, "关卡通过：正确区分配置场景"
+```
+
+--------------------------------------------------------------------------------
+关卡 1-5：智能体的五大核心特征
+所属模块：模块一 · 智能体基础通识
+--------------------------------------------------------------------------------
+
+【任务描述】
+AI 智能体有五大核心特征：自主性（Autonomy）、感知力（Perception）、推理力
+（Reasoning）、规划力（Planning）、行动力（Action）。
+
+编写函数 `validate_agent_features(agent_config)`，接收一个包含 feature_scores
+的字典，检查五大特征是否都 >= 60 分（满分100）。返回通过的特征列表和未通过的
+特征列表。
+
+【输入输出说明】
+输入：agent_config，格式 {"feature_scores": {"Autonomy": 80, "Perception": 70, ...}}
+输出：{"passed": [...], "failed": [...]}
+样例输入：{"feature_scores": {"Autonomy": 80, "Perception": 50, "Reasoning": 90, "Planning": 40, "Action": 75}}
+样例输出：{"passed": ["Autonomy", "Reasoning", "Action"], "failed": ["Perception", "Planning"]}
+
+【初始代码】
+```python
+def validate_agent_features(agent_config):
+    """
+    检查五大核心特征是否达标（>=60）。
+    返回 {"passed": [...], "failed": [...]}
+    """
+    required = ["Autonomy", "Perception", "Reasoning", "Planning", "Action"]
+    # TODO: 遍历检查并分类
+    pass
+```
+
+【评测代码】
+```python
+def evaluate_1_5(student_func):
+    # 全部通过
+    r1 = student_func({"feature_scores": {"Autonomy": 80, "Perception": 70, "Reasoning": 90, "Planning": 65, "Action": 75}})
+    assert r1["passed"] == ["Autonomy", "Perception", "Reasoning", "Planning", "Action"]
+    assert r1["failed"] == []
+    # 部分失败
+    r2 = student_func({"feature_scores": {"Autonomy": 50, "Perception": 90, "Reasoning": 30, "Planning": 80, "Action": 55}})
+    assert set(r2["failed"]) == {"Autonomy", "Reasoning", "Action"}
+    return True, "关卡通过：正确识别五大核心特征"
+```
+
+--------------------------------------------------------------------------------
+关卡 1-6：智能体的辅助特征：记忆能力与学习能力
+所属模块：模块一 · 智能体基础通识
+--------------------------------------------------------------------------------
+
+【任务描述】
+除五大核心特征外，高级智能体还具备：记忆能力（Memory）—— 存储历史交互以便
+未来检索；学习能力（Learning）—— 从经验中改进策略。
+
+编写函数 `assess_agent_level(features_dict)`，接收特征评分字典，判断智能体等级：
+- 五大核心特征全 >= 60 且 Memory >= 60 且 Learning >= 60 → "L3-高级"
+- 五大核心特征全 >= 60 → "L2-标准"
+- 否则 → "L1-基础"
+
+【输入输出说明】
+输入：features_dict（dict，键为特征名，值为 0-100 的整数）
+输出："L3-高级" / "L2-标准" / "L1-基础"
+
+【初始代码】
+```python
+def assess_agent_level(features_dict):
+    """
+    根据所有特征评分判断智能体等级。
+    """
+    core = ["Autonomy", "Perception", "Reasoning", "Planning", "Action"]
+    # TODO: 实现等级判断逻辑
+    pass
+```
+
+【评测代码】
+```python
+def evaluate_1_6(student_func):
+    # L3
+    f1 = {"Autonomy": 80, "Perception": 75, "Reasoning": 90, "Planning": 65, "Action": 70, "Memory": 80, "Learning": 75}
+    assert student_func(f1) == "L3-高级"
+    # L2
+    f2 = {"Autonomy": 80, "Perception": 75, "Reasoning": 90, "Planning": 65, "Action": 70, "Memory": 30, "Learning": 20}
+    assert student_func(f2) == "L2-标准"
+    # L1
+    f3 = {"Autonomy": 40, "Perception": 75, "Reasoning": 90, "Planning": 65, "Action": 70}
+    assert student_func(f3) == "L1-基础"
+    return True, "关卡通过：正确评估智能体等级"
+```
+
+--------------------------------------------------------------------------------
+关卡 1-7：反应式智能体的工作原理
+所属模块：模块一 · 智能体基础通识
+--------------------------------------------------------------------------------
+
+【任务描述】
+反应式智能体（Simple Reflex Agent）不维护内部状态，仅根据当前感知直接映射
+到行动。核心是"条件-动作规则"（Condition-Action Rule）。
+
+编写函数 `reflex_agent(percept, rules)`，实现反应式智能体：
+- percept：当前感知（字符串）
+- rules：条件-动作规则字典，如 {"dirty": "Suck", "clean": "Move"}
+- 返回对应的动作字符串，若无匹配规则返回 "NoOp"
+
+【输入输出说明】
+输入：percept（字符串），rules（dict[str, str]）
+输出：动作字符串
+样例输入：percept="dirty", rules={"dirty": "Suck", "clean": "Move"}
+样例输出："Suck"
+
+【初始代码】
+```python
+def reflex_agent(percept, rules):
+    """
+    简单反应式智能体：根据当前感知查表返回动作。
+    percept: 当前感知（str）
+    rules:   条件-动作规则（dict）
+    返回:    对应的动作（str），无匹配则返回 "NoOp"
+    """
+    # TODO: 实现条件-动作映射
+    pass
+```
+
+【评测代码】
+```python
+def evaluate_1_7(student_func):
+    rules = {"dirty": "Suck", "clean": "Move", "obstacle": "Avoid"}
+    assert student_func("dirty", rules) == "Suck"
+    assert student_func("clean", rules) == "Move"
+    assert student_func("obstacle", rules) == "Avoid"
+    assert student_func("unknown", rules) == "NoOp"
+    return True, "关卡通过：正确实现反应式智能体"
+```
+
+--------------------------------------------------------------------------------
+关卡 1-8：基于记忆与目标导向智能体的工作原理
+所属模块：模块一 · 智能体基础通识
+--------------------------------------------------------------------------------
+
+【任务描述】
+目标导向智能体（Goal-based Agent）维护内部状态记忆，根据当前状态和目标选择
+最优行动。比反应式智能体更高级，能考虑未来行动的后果。
+
+编写类 `GoalBasedAgent`：
+- `__init__(self, initial_state, goal_state)`：初始化状态和目标
+- `perceive(self, observation)`：更新内部状态记忆（history 列表追加）
+- `decide(self)`：如果当前状态不等于目标状态，返回向目标靠近的行动；否则返回 "Stay"
+- `act(self, action)`：模拟执行行动，更新当前状态
+
+【输入输出说明】
+输入：创建 agent = GoalBasedAgent("A", "C")，调用 perceive() 和 decide()
+输出：decide() 返回下一步行动描述字符串
+
+【初始代码】
+```python
+class GoalBasedAgent:
+    def __init__(self, initial_state, goal_state):
+        self.state = initial_state
+        self.goal = goal_state
+        self.history = []
+
+    def perceive(self, observation):
+        """将观察加入历史"""
+        # TODO: 追加到 history
+        pass
+
+    def decide(self):
+        """根据当前状态和目标决定行动"""
+        # TODO: 如果 state != goal，返回行动描述
+        pass
+
+    def act(self, action):
+        """执行行动，更新状态"""
+        # TODO: 更新 self.state
+        pass
+```
+
+【评测代码】
+```python
+def evaluate_1_8(module_dict):
+    GoalBasedAgent = module_dict.get("GoalBasedAgent")
+    assert GoalBasedAgent is not None, "未找到 GoalBasedAgent 类"
+    agent = GoalBasedAgent("A", "C")
+    agent.perceive("at A")
+    assert agent.state == "A"
+    assert len(agent.history) == 1
+    decision = agent.decide()
+    assert decision != "Stay", "状态A和目标C不同，应该行动"
+    agent.act("Move to B")
+    assert agent.state != "A", "状态应已改变"
+    return True, "关卡通过：正确实现目标导向智能体"
+```
+
+--------------------------------------------------------------------------------
+关卡 1-9：智能体的基本运行闭环 Observe→Think→Act
+所属模块：模块一 · 智能体基础通识
+--------------------------------------------------------------------------------
+
+【任务描述】
+AI 智能体的核心运行闭环：观察（Observe）→ 思考（Think）→ 行动（Act），
+简称 OTA 循环。每一步都依赖上一步的输出作为输入。
+
+编写函数 `ota_loop(environment, max_steps=5)`，模拟 OTA 循环：
+- Observe：读取环境当前状态
+- Think：根据状态生成计划（plan）
+- Act：执行计划中的行动，更新环境
+- 循环直到目标达成或达到 max_steps
+- 返回执行日志列表，每步格式："Step N: Observe=X → Think=Y → Act=Z"
+
+【输入输出说明】
+输入：environment（dict，包含 "state" 和 "goal"），max_steps（int）
+输出：list[str]，每步的日志记录
+样例输入：{"state": "idle", "goal": "completed"}, max_steps=3
+样例输出：["Step 1: Observe=idle → Think=start → Act=processing", "Step 2: Observe=processing → Think=finish → Act=completed"]
+
+【初始代码】
+```python
+def ota_loop(environment, max_steps=5):
+    """
+    模拟 Observe → Think → Act 循环。
+    environment: {"state": ..., "goal": ...}
+    返回日志列表
+    """
+    log = []
+    for step in range(1, max_steps + 1):
+        # 1. Observe
+        observed = environment.get("state", "unknown")
+        # 2. Think: 根据观察和目标决定计划
+        if observed == environment.get("goal"):
+            break
+        plan = "advance" if observed != environment.get("goal") else "stay"
+        # 3. Act: 执行计划
+        environment["state"] = environment.get("goal") if plan == "advance" else observed
+        # TODO: 完善上述逻辑并生成日志字符串
+        log.append(f"Step {step}: Observe={observed} → Think={plan} → Act={environment['state']}")
+    return log
+```
+
+【评测代码】
+```python
+def evaluate_1_9(student_func):
+    env = {"state": "idle", "goal": "completed"}
+    log = student_func(env, max_steps=3)
+    assert len(log) >= 1, "至少应有1步日志"
+    assert "Observe" in log[0] and "Think" in log[0] and "Act" in log[0]
+    assert env.get("state") == "completed", "最终应达成目标"
+    # 测试已达成目标的情况
+    env2 = {"state": "done", "goal": "done"}
+    log2 = student_func(env2, max_steps=3)
+    assert len(log2) == 0, "已达成目标不应有步骤"
+    return True, "关卡通过：正确实现OTA闭环"
+```

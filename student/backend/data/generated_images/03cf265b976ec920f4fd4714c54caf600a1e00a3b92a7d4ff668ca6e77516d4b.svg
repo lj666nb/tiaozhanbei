@@ -1,0 +1,156 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="800" height="500">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#e8f4ff;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#f0f8ff;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="managerGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#409EFF;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#2b7fd6;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="workerGradA" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#5a9eff;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#409EFF;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="workerGradB" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#4d97f5;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#358ae8;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="workerGradC" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#6aacff;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#409EFF;stop-opacity:1" />
+    </linearGradient>
+    <filter id="shadow" x="-5%" y="-5%" width="110%" height="115%">
+      <feDropShadow dx="0" dy="3" stdDeviation="4" flood-color="#1a1a2e" flood-opacity="0.12"/>
+    </filter>
+    <filter id="shadowLight" x="-5%" y="-5%" width="110%" height="115%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#1a1a2e" flood-opacity="0.08"/>
+    </filter>
+  </defs>
+
+  <!-- 背景 -->
+  <rect width="800" height="500" fill="url(#bgGrad)" rx="8"/>
+  
+  <!-- 标题 -->
+  <text x="400" y="38" text-anchor="middle" font-family="'Microsoft YaHei','PingFang SC',sans-serif" font-size="20" font-weight="bold" fill="#1a1a2e">管理者-工作者架构图</text>
+  <line x1="280" y1="48" x2="520" y2="48" stroke="#409EFF" stroke-width="2" stroke-opacity="0.5"/>
+
+  <!-- ==================== 管理者模块 ==================== -->
+  <!-- 管理者主框 -->
+  <rect x="300" y="65" width="200" height="50" rx="10" fill="url(#managerGrad)" filter="url(#shadow)"/>
+  <text x="400" y="95" text-anchor="middle" font-family="'Microsoft YaHei','PingFang SC',sans-serif" font-size="18" font-weight="bold" fill="#ffffff">管理者代理</text>
+
+  <!-- 管理者标签 - 围绕管理者排列 -->
+  <!-- 1. 任务分解（左上） -->
+  <rect x="95" y="58" width="130" height="36" rx="8" fill="#ffffff" stroke="#409EFF" stroke-width="1.5" filter="url(#shadowLight)"/>
+  <text x="120" y="80" font-family="'Microsoft YaHei','PingFang SC',sans-serif" font-size="13" fill="#1a1a2e">🧩 任务分解</text>
+
+  <!-- 2. 工作者调度（右上） -->
+  <rect x="575" y="58" width="140" height="36" rx="8" fill="#ffffff" stroke="#409EFF" stroke-width="1.5" filter="url(#shadowLight)"/>
+  <text x="600" y="80" font-family="'Microsoft YaHei','PingFang SC',sans-serif" font-size="13" fill="#1a1a2e">📅 工作者调度</text>
+
+  <!-- 3. 进度跟踪（左中） -->
+  <rect x="95" y="108" width="130" height="36" rx="8" fill="#ffffff" stroke="#409EFF" stroke-width="1.5" filter="url(#shadowLight)"/>
+  <text x="120" y="130" font-family="'Microsoft YaHei','PingFang SC',sans-serif" font-size="13" fill="#1a1a2e">📊 进度跟踪</text>
+
+  <!-- 4. 结果聚合（右中） -->
+  <rect x="575" y="108" width="130" height="36" rx="8" fill="#ffffff" stroke="#409EFF" stroke-width="1.5" filter="url(#shadowLight)"/>
+  <text x="600" y="130" font-family="'Microsoft YaHei','PingFang SC',sans-serif" font-size="13" fill="#1a1a2e">🔀 结果聚合</text>
+
+  <!-- 5. 异常处理（左下） -->
+  <rect x="95" y="158" width="130" height="36" rx="8" fill="#ffffff" stroke="#409EFF" stroke-width="1.5" filter="url(#shadowLight)"/>
+  <text x="120" y="180" font-family="'Microsoft YaHei','PingFang SC',sans-serif" font-size="13" fill="#1a1a2e">⚠️ 异常处理</text>
+
+  <!-- 连接线：管理者到标签 -->
+  <!-- 管理者到左上 -->
+  <line x1="300" y1="80" x2="225" y2="76" stroke="#409EFF" stroke-width="1.2" stroke-dasharray="4,3" opacity="0.5"/>
+  <!-- 管理者到右上 -->
+  <line x1="500" y1="80" x2="575" y2="76" stroke="#409EFF" stroke-width="1.2" stroke-dasharray="4,3" opacity="0.5"/>
+  <!-- 管理者到左中 -->
+  <line x1="300" y1="100" x2="225" y2="126" stroke="#409EFF" stroke-width="1.2" stroke-dasharray="4,3" opacity="0.5"/>
+  <!-- 管理者到右中 -->
+  <line x1="500" y1="100" x2="575" y2="126" stroke="#409EFF" stroke-width="1.2" stroke-dasharray="4,3" opacity="0.5"/>
+  <!-- 管理者到左下 -->
+  <line x1="300" y1="110" x2="225" y2="176" stroke="#409EFF" stroke-width="1.2" stroke-dasharray="4,3" opacity="0.5"/>
+
+  <!-- ==================== 连接线：管理者到工作者 ==================== -->
+  <!-- 到工作者A -->
+  <line x1="350" y1="115" x2="200" y2="235" stroke="#409EFF" stroke-width="2" opacity="0.7"/>
+  <polygon points="200,235 210,228 208,240" fill="#409EFF" opacity="0.8"/>
+  <!-- 反向箭头 -->
+  <line x1="200" y1="240" x2="340" y2="120" stroke="#409EFF" stroke-width="1.5" stroke-dasharray="5,3" opacity="0.5"/>
+  <polygon points="340,120 330,125 333,114" fill="#409EFF" opacity="0.5"/>
+
+  <!-- 到工作者B -->
+  <line x1="400" y1="115" x2="400" y2="235" stroke="#409EFF" stroke-width="2" opacity="0.7"/>
+  <polygon points="400,235 408,228 392,228" fill="#409EFF" opacity="0.8"/>
+  <!-- 反向箭头 -->
+  <line x1="400" y1="240" x2="400" y2="125" stroke="#409EFF" stroke-width="1.5" stroke-dasharray="5,3" opacity="0.5"/>
+  <polygon points="400,125 408,132 392,132" fill="#409EFF" opacity="0.5"/>
+
+  <!-- 到工作者C -->
+  <line x1="450" y1="115" x2="600" y2="235" stroke="#409EFF" stroke-width="2" opacity="0.7"/>
+  <polygon points="600,235 590,228 592,240" fill="#409EFF" opacity="0.8"/>
+  <!-- 反向箭头 -->
+  <line x1="600" y1="240" x2="460" y2="120" stroke="#409EFF" stroke-width="1.5" stroke-dasharray="5,3" opacity="0.5"/>
+  <polygon points="460,120 468,127 465,115" fill="#409EFF" opacity="0.5"/>
+
+  <!-- 任务分配标签 -->
+  <text x="260" y="168" text-anchor="middle" font-family="'Microsoft YaHei','PingFang SC',sans-serif" font-size="11" fill="#409EFF" opacity="0.7">任务分配</text>
+  <text x="540" y="168" text-anchor="middle" font-family="'Microsoft YaHei','PingFang SC',sans-serif" font-size="11" fill="#409EFF" opacity="0.7">结果汇报</text>
+
+  <!-- ==================== 工作者A ==================== -->
+  <rect x="100" y="245" width="220" height="105" rx="12" fill="#ffffff" stroke="#409EFF" stroke-width="2" filter="url(#shadow)"/>
+  <rect x="100" y="245" width="220" height="35" rx="12" fill="url(#workerGradA)"/>
+  <rect x="100" y="268" width="220" height="12" fill="url(#workerGradA)"/>
+  <text x="210" y="268" text-anchor="middle" font-family="'Microsoft YaHei','PingFang SC',sans-serif" font-size="16" font-weight="bold" fill="#ffffff">工作者 A</text>
+  
+  <text x="120" y="300" font-family="'Microsoft YaHei','PingFang SC',sans-serif" font-size="13" fill="#1a1a2e">🎯 领域：数据处理</text>
+  <text x="120" y="325" font-family="'Microsoft YaHei','PingFang SC',sans-serif" font-size="13" fill="#1a1a2e">🔧 工具：Python · SQL · Spark</text>
+  
+  <rect x="120" y="335" width="60" height="8" rx="4" fill="#409EFF" opacity="0.3"/>
+  <rect x="120" y="335" width="42" height="8" rx="4" fill="#409EFF" opacity="0.8"/>
+
+  <!-- ==================== 工作者B ==================== -->
+  <rect x="340" y="245" width="220" height="105" rx="12" fill="#ffffff" stroke="#409EFF" stroke-width="2" filter="url(#shadow)"/>
+  <rect x="340" y="245" width="220" height="35" rx="12" fill="url(#workerGradB)"/>
+  <rect x="340" y="268" width="220" height="12" fill="url(#workerGradB)"/>
+  <text x="450" y="268" text-anchor="middle" font-family="'Microsoft YaHei','PingFang SC',sans-serif" font-size="16" font-weight="bold" fill="#ffffff">工作者 B</text>
+  
+  <text x="360" y="300" font-family="'Microsoft YaHei','PingFang SC',sans-serif" font-size="13" fill="#1a1a2e">🎯 领域：模型训练</text>
+  <text x="360" y="325" font-family="'Microsoft YaHei','PingFang SC',sans-serif" font-size="13" fill="#1a1a2e">🔧 工具：PyTorch · TensorFlow</text>
+  
+  <rect x="360" y="335" width="60" height="8" rx="4" fill="#409EFF" opacity="0.3"/>
+  <rect x="360" y="335" width="50" height="8" rx="4" fill="#409EFF" opacity="0.8"/>
+
+  <!-- ==================== 工作者C ==================== -->
+  <rect x="580" y="245" width="200" height="105" rx="12" fill="#ffffff" stroke="#409EFF" stroke-width="2" filter="url(#shadow)"/>
+  <rect x="580" y="245" width="200" height="35" rx="12" fill="url(#workerGradC)"/>
+  <rect x="580" y="268" width="200" height="12" fill="url(#workerGradC)"/>
+  <text x="680" y="268" text-anchor="middle" font-family="'Microsoft YaHei','PingFang SC',sans-serif" font-size="16" font-weight="bold" fill="#ffffff">工作者 C</text>
+  
+  <text x="600" y="300" font-family="'Microsoft YaHei','PingFang SC',sans-serif" font-size="13" fill="#1a1a2e">🎯 领域：结果验证</text>
+  <text x="600" y="325" font-family="'Microsoft YaHei','PingFang SC',sans-serif" font-size="13" fill="#1a1a2e">🔧 工具：测试框架 · CI/CD</text>
+  
+  <rect x="600" y="335" width="60" height="8" rx="4" fill="#409EFF" opacity="0.3"/>
+  <rect x="600" y="335" width="38" height="8" rx="4" fill="#409EFF" opacity="0.8"/>
+
+  <!-- ==================== 底部图例 ==================== -->
+  <rect x="240" y="380" width="320" height="95" rx="10" fill="#ffffff" stroke="#409EFF" stroke-width="1" stroke-opacity="0.3" filter="url(#shadowLight)"/>
+  <text x="400" y="405" text-anchor="middle" font-family="'Microsoft YaHei','PingFang SC',sans-serif" font-size="14" font-weight="bold" fill="#1a1a2e">图例</text>
+  
+  <line x1="270" y1="425" x2="320" y2="425" stroke="#409EFF" stroke-width="2"/>
+  <polygon points="320,425 314,420 314,430" fill="#409EFF"/>
+  <text x="330" y="429" font-family="'Microsoft YaHei','PingFang SC',sans-serif" font-size="12" fill="#1a1a2e">任务分配</text>
+
+  <line x1="460" y1="425" x2="510" y2="425" stroke="#409EFF" stroke-width="1.5" stroke-dasharray="5,3"/>
+  <polygon points="460,425 466,420 466,430" fill="#409EFF" opacity="0.6"/>
+  <text x="330" y="449" font-family="'Microsoft YaHei','PingFang SC',sans-serif" font-size="12" fill="#1a1a2e">结果汇报</text>
+
+  <rect x="270" y="455" width="50" height="12" rx="4" fill="url(#managerGrad)"/>
+  <text x="330" y="465" font-family="'Microsoft YaHei','PingFang SC',sans-serif" font-size="12" fill="#1a1a2e">管理者</text>
+
+  <rect x="460" y="455" width="50" height="12" rx="4" fill="url(#workerGradA)"/>
+  <text x="520" y="465" font-family="'Microsoft YaHei','PingFang SC',sans-serif" font-size="12" fill="#1a1a2e">工作者</text>
+
+</svg>

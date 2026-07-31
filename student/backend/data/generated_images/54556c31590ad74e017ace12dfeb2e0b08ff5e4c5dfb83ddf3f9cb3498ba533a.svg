@@ -1,0 +1,114 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="800" height="500">
+  <defs>
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#f0f7ff"/>
+      <stop offset="100%" stop-color="#e8f4f8"/>
+    </linearGradient>
+    <linearGradient id="stepGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#409EFF"/>
+      <stop offset="100%" stop-color="#3a8fe0"/>
+    </linearGradient>
+    <linearGradient id="starGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#FFD700"/>
+      <stop offset="100%" stop-color="#FFA500"/>
+    </linearGradient>
+  </defs>
+
+  <!-- 背景 -->
+  <rect width="800" height="500" fill="url(#bgGrad)" rx="8"/>
+
+  <!-- 标题 -->
+  <text x="400" y="42" text-anchor="middle" font-family="sans-serif" font-size="22" font-weight="bold" fill="#1a1a2e">LangGraph 开发复杂度递进</text>
+
+  <!-- 侧边箭头（Graph Thinking） -->
+  <g transform="translate(60, 80)">
+    <line x1="0" y1="0" x2="0" y2="340" stroke="#409EFF" stroke-width="2.5" marker-end="url(#arrowUp)"/>
+    <polygon points="-6,340 0,355 6,340" fill="#409EFF"/>
+    <text x="-12" y="170" text-anchor="middle" font-family="sans-serif" font-size="15" fill="#409EFF" font-weight="bold" transform="rotate(-90, -12, 170)">图思维</text>
+  </g>
+
+  <!-- 台阶 1：Simple Chain -->
+  <g transform="translate(130, 420)">
+    <rect x="0" y="0" width="480" height="36" rx="6" fill="url(#stepGrad)" opacity="0.9"/>
+    <text x="240" y="24" text-anchor="middle" font-family="sans-serif" font-size="15" fill="#fff" font-weight="bold">步骤 1：简单链</text>
+    <!-- 链节图标 -->
+    <g transform="translate(490, 8)">
+      <ellipse cx="0" cy="0" rx="8" ry="5" fill="none" stroke="#409EFF" stroke-width="2"/>
+      <ellipse cx="0" cy="10" rx="8" ry="5" fill="none" stroke="#409EFF" stroke-width="2"/>
+      <line x1="0" y1="5" x2="0" y2="5" stroke="#409EFF" stroke-width="2"/>
+    </g>
+  </g>
+
+  <!-- 台阶 2：Add Conditions -->
+  <g transform="translate(110, 340)">
+    <rect x="0" y="0" width="500" height="36" rx="6" fill="url(#stepGrad)" opacity="0.85"/>
+    <text x="250" y="24" text-anchor="middle" font-family="sans-serif" font-size="15" fill="#fff" font-weight="bold">步骤 2：添加条件</text>
+    <!-- 菱形分支图标 -->
+    <g transform="translate(510, 8)">
+      <polygon points="0,-10 12,0 0,10 -12,0" fill="none" stroke="#409EFF" stroke-width="2"/>
+      <line x1="0" y1="-10" x2="0" y2="-18" stroke="#409EFF" stroke-width="1.5"/>
+      <line x1="12" y1="0" x2="20" y2="0" stroke="#409EFF" stroke-width="1.5"/>
+      <line x1="0" y1="10" x2="0" y2="18" stroke="#409EFF" stroke-width="1.5"/>
+      <line x1="-12" y1="0" x2="-20" y2="0" stroke="#409EFF" stroke-width="1.5"/>
+    </g>
+  </g>
+
+  <!-- 台阶 3：Add Loops -->
+  <g transform="translate(90, 260)">
+    <rect x="0" y="0" width="520" height="36" rx="6" fill="url(#stepGrad)" opacity="0.8"/>
+    <text x="260" y="24" text-anchor="middle" font-family="sans-serif" font-size="15" fill="#fff" font-weight="bold">步骤 3：添加循环</text>
+    <!-- 循环箭头图标 -->
+    <g transform="translate(530, 8)">
+      <path d="M0,-10 A12,12 0 1,1 -10,2" fill="none" stroke="#409EFF" stroke-width="2"/>
+      <polygon points="-10,2 -4,-4 -2,4" fill="#409EFF"/>
+    </g>
+  </g>
+
+  <!-- 台阶 4：Add Checkpoints -->
+  <g transform="translate(70, 180)">
+    <rect x="0" y="0" width="540" height="36" rx="6" fill="url(#stepGrad)" opacity="0.75"/>
+    <text x="270" y="24" text-anchor="middle" font-family="sans-serif" font-size="15" fill="#fff" font-weight="bold">步骤 4：添加检查点</text>
+    <!-- 保存点旗帜图标 -->
+    <g transform="translate(550, 8)">
+      <line x1="0" y1="-12" x2="0" y2="12" stroke="#409EFF" stroke-width="2"/>
+      <polygon points="0,-12 14,-8 0,-4" fill="#409EFF"/>
+      <circle cx="0" cy="14" r="2" fill="#409EFF"/>
+    </g>
+  </g>
+
+  <!-- 台阶 5：Multi-Agent Graph -->
+  <g transform="translate(50, 100)">
+    <rect x="0" y="0" width="560" height="36" rx="6" fill="url(#stepGrad)" opacity="0.7"/>
+    <text x="280" y="24" text-anchor="middle" font-family="sans-serif" font-size="15" fill="#fff" font-weight="bold">步骤 5：多智能体图</text>
+    <!-- 网络节点图标 -->
+    <g transform="translate(570, 8)">
+      <circle cx="-8" cy="-6" r="4" fill="none" stroke="#409EFF" stroke-width="1.5"/>
+      <circle cx="8" cy="-6" r="4" fill="none" stroke="#409EFF" stroke-width="1.5"/>
+      <circle cx="0" cy="8" r="4" fill="none" stroke="#409EFF" stroke-width="1.5"/>
+      <line x1="-8" y1="-6" x2="8" y2="-6" stroke="#409EFF" stroke-width="1.2"/>
+      <line x1="-8" y1="-6" x2="0" y2="8" stroke="#409EFF" stroke-width="1.2"/>
+      <line x1="8" y1="-6" x2="0" y2="8" stroke="#409EFF" stroke-width="1.2"/>
+    </g>
+  </g>
+
+  <!-- 顶部星星图标 -->
+  <g transform="translate(400, 55)">
+    <polygon points="0,-18 5,-6 18,-6 8,3 12,16 0,9 -12,16 -8,3 -18,-6 -5,-6" fill="url(#starGrad)" stroke="#FFA500" stroke-width="1"/>
+  </g>
+
+  <!-- 台阶之间的连接线（上升箭头感） -->
+  <line x1="370" y1="420" x2="370" y2="376" stroke="#409EFF" stroke-width="1.5" stroke-dasharray="4,3" opacity="0.5"/>
+  <line x1="370" y1="340" x2="370" y2="296" stroke="#409EFF" stroke-width="1.5" stroke-dasharray="4,3" opacity="0.5"/>
+  <line x1="370" y1="260" x2="370" y2="216" stroke="#409EFF" stroke-width="1.5" stroke-dasharray="4,3" opacity="0.5"/>
+  <line x1="370" y1="180" x2="370" y2="136" stroke="#409EFF" stroke-width="1.5" stroke-dasharray="4,3" opacity="0.5"/>
+
+  <!-- 复杂度标注 -->
+  <text x="660" y="438" font-family="sans-serif" font-size="13" fill="#1a1a2e" opacity="0.7">低复杂度</text>
+  <text x="660" y="118" font-family="sans-serif" font-size="13" fill="#1a1a2e" opacity="0.7">高复杂度</text>
+
+  <!-- 底部装饰线 -->
+  <line x1="100" y1="478" x2="700" y2="478" stroke="#409EFF" stroke-width="1" opacity="0.3"/>
+
+  <!-- 图例 / 底部说明 -->
+  <text x="400" y="490" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#1a1a2e" opacity="0.5">从简单链到多智能体图的渐进式复杂度</text>
+</svg>

@@ -1,0 +1,1339 @@
+{
+  "completed_stages": [
+    "structure",
+    "environment",
+    "dependencies",
+    "first_llm_call",
+    "implementation",
+    "integration",
+    "acceptance"
+  ],
+  "commands": [
+    {
+      "command": "python -m venv .venv",
+      "exit_code": 0
+    },
+    {
+      "command": ".venv/Scripts/activate",
+      "exit_code": 0
+    },
+    {
+      "command": "pip install -r requirements.txt",
+      "exit_code": 0
+    },
+    {
+      "command": "python app.py",
+      "exit_code": 0
+    },
+    {
+      "command": "python app.py",
+      "exit_code": 0
+    }
+  ],
+  "project_state": "repair",
+  "stage_results": {
+    "structure": {
+      "title": "搭好项目骨架",
+      "passed": true,
+      "summary": "检查通过，可以进入下一步",
+      "checks": [
+        {
+          "label": "requirements.txt",
+          "passed": true,
+          "detail": "文件存在，名称完全一致"
+        },
+        {
+          "label": ".env",
+          "passed": true,
+          "detail": "文件存在，名称完全一致"
+        },
+        {
+          "label": "solution.py",
+          "passed": true,
+          "detail": "文件存在，名称完全一致"
+        },
+        {
+          "label": "app.py",
+          "passed": true,
+          "detail": "文件存在，名称完全一致"
+        }
+      ]
+    },
+    "environment": {
+      "title": "创建虚拟环境",
+      "passed": true,
+      "summary": "检查通过，可以进入下一步",
+      "checks": [
+        {
+          "label": "虚拟环境目录",
+          "passed": true,
+          "detail": "检测到 .venv/pyvenv.cfg"
+        },
+        {
+          "label": "Python 版本",
+          "passed": true,
+          "detail": "当前沙箱 Python 3.11.9"
+        }
+      ]
+    },
+    "dependencies": {
+      "title": "声明 LangChain 依赖",
+      "passed": true,
+      "summary": "检查通过，可以进入下一步",
+      "checks": [
+        {
+          "label": "langchain",
+          "passed": true,
+          "detail": "已在 requirements.txt 声明"
+        },
+        {
+          "label": "langchain-openai",
+          "passed": true,
+          "detail": "已在 requirements.txt 声明"
+        },
+        {
+          "label": "python-dotenv",
+          "passed": true,
+          "detail": "已在 requirements.txt 声明"
+        },
+        {
+          "label": "虚拟环境依赖",
+          "passed": true,
+          "detail": "当前 requirements.txt 已成功安装"
+        }
+      ]
+    },
+    "first_llm_call": {
+      "title": "跑通第一段 AI 对话",
+      "passed": true,
+      "summary": "检查通过，可以进入下一步",
+      "checks": [
+        {
+          "label": "app.py 语法",
+          "passed": true,
+          "detail": "AST 解析成功"
+        },
+        {
+          "label": "加载环境变量",
+          "passed": true,
+          "detail": "已调用 load_dotenv()"
+        },
+        {
+          "label": "创建模型客户端",
+          "passed": true,
+          "detail": "已创建 ChatOpenAI 实例"
+        },
+        {
+          "label": "发起模型调用",
+          "passed": true,
+          "detail": "已调用 model.invoke(messages)"
+        },
+        {
+          "label": "读取响应正文",
+          "passed": true,
+          "detail": "已输出 AI 回复"
+        },
+        {
+          "label": "密钥安全",
+          "passed": true,
+          "detail": "未发现硬编码密钥"
+        },
+        {
+          "label": "项目 API Key",
+          "passed": true,
+          "detail": "当前项目 .env 中已配置 API Key（仅校验存在性，不会显示或保存密钥）"
+        }
+      ]
+    },
+    "implementation": {
+      "title": "提取消息构造函数",
+      "passed": true,
+      "summary": "检查通过，可以进入下一步",
+      "checks": [
+        {
+          "label": "Python 语法",
+          "passed": true,
+          "detail": "AST 解析成功"
+        },
+        {
+          "label": "build_chat_messages",
+          "passed": true,
+          "detail": "目标函数已定义"
+        },
+        {
+          "label": "核心函数行为",
+          "passed": true,
+          "detail": "通过 17/17 个业务场景，函数已有可运行的真实行为",
+          "cases": [
+            {
+              "label": "基础消息顺序",
+              "passed": true,
+              "detail": "通过",
+              "category": "输出契约",
+              "next_action": "",
+              "duration_ms": 0.02
+            },
+            {
+              "label": "保留个性化对话指令",
+              "passed": true,
+              "detail": "通过",
+              "category": "业务逻辑",
+              "next_action": "",
+              "duration_ms": 0.01
+            },
+            {
+              "label": "清理首尾空白",
+              "passed": true,
+              "detail": "通过",
+              "category": "输入边界",
+              "next_action": "",
+              "duration_ms": 0.0
+            },
+            {
+              "label": "保留消息内部格式",
+              "passed": true,
+              "detail": "通过",
+              "category": "业务逻辑",
+              "next_action": "",
+              "duration_ms": 0.0
+            },
+            {
+              "label": "每次调用返回独立消息对象",
+              "passed": true,
+              "detail": "通过",
+              "category": "输出契约",
+              "next_action": "",
+              "duration_ms": 0.01
+            },
+            {
+              "label": "拒绝空系统提示",
+              "passed": true,
+              "detail": "通过",
+              "category": "输入边界",
+              "next_action": "",
+              "duration_ms": 0.0
+            },
+            {
+              "label": "拒绝空用户消息",
+              "passed": true,
+              "detail": "通过",
+              "category": "输入边界",
+              "next_action": "",
+              "duration_ms": 0.0
+            },
+            {
+              "label": "拒绝非字符串系统提示",
+              "passed": true,
+              "detail": "通过",
+              "category": "输入边界",
+              "next_action": "",
+              "duration_ms": 0.01
+            },
+            {
+              "label": "拒绝非字符串用户消息",
+              "passed": true,
+              "detail": "通过",
+              "category": "输入边界",
+              "next_action": "",
+              "duration_ms": 0.0
+            },
+            {
+              "label": "处理仅含空白字符的输入（全角空格与制表符）",
+              "passed": true,
+              "detail": "通过",
+              "category": "输入边界",
+              "next_action": "",
+              "duration_ms": 0.0
+            },
+            {
+              "label": "拒绝布尔值输入",
+              "passed": true,
+              "detail": "通过",
+              "category": "输入边界",
+              "next_action": "",
+              "duration_ms": 0.0
+            },
+            {
+              "label": "拒绝列表类型输入",
+              "passed": true,
+              "detail": "通过",
+              "category": "输入边界",
+              "next_action": "",
+              "duration_ms": 0.0
+            },
+            {
+              "label": "拒绝数字类型系统提示",
+              "passed": true,
+              "detail": "通过",
+              "category": "输入边界",
+              "next_action": "",
+              "duration_ms": 0.0
+            },
+            {
+              "label": "处理含引号和特殊字符的输入",
+              "passed": true,
+              "detail": "通过",
+              "category": "业务逻辑",
+              "next_action": "",
+              "duration_ms": 0.0
+            },
+            {
+              "label": "处理含 emoji 的用户消息",
+              "passed": true,
+              "detail": "通过",
+              "category": "业务逻辑",
+              "next_action": "",
+              "duration_ms": 0.0
+            },
+            {
+              "label": "处理极长系统提示（200+字符）",
+              "passed": true,
+              "detail": "通过",
+              "category": "业务逻辑",
+              "next_action": "",
+              "duration_ms": 0.0
+            },
+            {
+              "label": "连续3次调用返回独立对象且不相互污染",
+              "passed": true,
+              "detail": "通过",
+              "category": "输出契约",
+              "next_action": "",
+              "duration_ms": 0.01
+            }
+          ]
+        }
+      ]
+    },
+    "integration": {
+      "title": "接入可运行应用",
+      "passed": true,
+      "summary": "检查通过，可以进入下一步",
+      "checks": [
+        {
+          "label": "核心模块业务测试",
+          "passed": true,
+          "detail": "通过 17/17 个业务场景，函数已有可运行的真实行为",
+          "cases": [
+            {
+              "label": "基础消息顺序",
+              "passed": true,
+              "detail": "通过",
+              "category": "输出契约",
+              "next_action": "",
+              "duration_ms": 0.01
+            },
+            {
+              "label": "保留个性化对话指令",
+              "passed": true,
+              "detail": "通过",
+              "category": "业务逻辑",
+              "next_action": "",
+              "duration_ms": 0.01
+            },
+            {
+              "label": "清理首尾空白",
+              "passed": true,
+              "detail": "通过",
+              "category": "输入边界",
+              "next_action": "",
+              "duration_ms": 0.0
+            },
+            {
+              "label": "保留消息内部格式",
+              "passed": true,
+              "detail": "通过",
+              "category": "业务逻辑",
+              "next_action": "",
+              "duration_ms": 0.0
+            },
+            {
+              "label": "每次调用返回独立消息对象",
+              "passed": true,
+              "detail": "通过",
+              "category": "输出契约",
+              "next_action": "",
+              "duration_ms": 0.01
+            },
+            {
+              "label": "拒绝空系统提示",
+              "passed": true,
+              "detail": "通过",
+              "category": "输入边界",
+              "next_action": "",
+              "duration_ms": 0.0
+            },
+            {
+              "label": "拒绝空用户消息",
+              "passed": true,
+              "detail": "通过",
+              "category": "输入边界",
+              "next_action": "",
+              "duration_ms": 0.0
+            },
+            {
+              "label": "拒绝非字符串系统提示",
+              "passed": true,
+              "detail": "通过",
+              "category": "输入边界",
+              "next_action": "",
+              "duration_ms": 0.01
+            },
+            {
+              "label": "拒绝非字符串用户消息",
+              "passed": true,
+              "detail": "通过",
+              "category": "输入边界",
+              "next_action": "",
+              "duration_ms": 0.0
+            },
+            {
+              "label": "处理仅含空白字符的输入（全角空格与制表符）",
+              "passed": true,
+              "detail": "通过",
+              "category": "输入边界",
+              "next_action": "",
+              "duration_ms": 0.0
+            },
+            {
+              "label": "拒绝布尔值输入",
+              "passed": true,
+              "detail": "通过",
+              "category": "输入边界",
+              "next_action": "",
+              "duration_ms": 0.0
+            },
+            {
+              "label": "拒绝列表类型输入",
+              "passed": true,
+              "detail": "通过",
+              "category": "输入边界",
+              "next_action": "",
+              "duration_ms": 0.0
+            },
+            {
+              "label": "拒绝数字类型系统提示",
+              "passed": true,
+              "detail": "通过",
+              "category": "输入边界",
+              "next_action": "",
+              "duration_ms": 0.0
+            },
+            {
+              "label": "处理含引号和特殊字符的输入",
+              "passed": true,
+              "detail": "通过",
+              "category": "业务逻辑",
+              "next_action": "",
+              "duration_ms": 0.0
+            },
+            {
+              "label": "处理含 emoji 的用户消息",
+              "passed": true,
+              "detail": "通过",
+              "category": "业务逻辑",
+              "next_action": "",
+              "duration_ms": 0.0
+            },
+            {
+              "label": "处理极长系统提示（200+字符）",
+              "passed": true,
+              "detail": "通过",
+              "category": "业务逻辑",
+              "next_action": "",
+              "duration_ms": 0.0
+            },
+            {
+              "label": "连续3次调用返回独立对象且不相互污染",
+              "passed": true,
+              "detail": "通过",
+              "category": "输出契约",
+              "next_action": "",
+              "duration_ms": 0.01
+            }
+          ]
+        },
+        {
+          "label": "app.py 语法",
+          "passed": true,
+          "detail": "可正常解析"
+        },
+        {
+          "label": "框架接入",
+          "passed": true,
+          "detail": "检测到：dotenv, langchain_openai, os, solution"
+        },
+        {
+          "label": "核心模块接入",
+          "passed": true,
+          "detail": "已导入 solution"
+        },
+        {
+          "label": "聊天模型调用",
+          "passed": true,
+          "detail": "已调用 model.invoke()"
+        },
+        {
+          "label": "个性化消息接入",
+          "passed": true,
+          "detail": "build_chat_messages 的结果已传入模型"
+        },
+        {
+          "label": "密钥安全",
+          "passed": true,
+          "detail": "未发现硬编码密钥"
+        },
+        {
+          "label": "项目 API Key",
+          "passed": true,
+          "detail": "当前项目 .env 中已配置 API Key（仅校验存在性，不会显示或保存密钥）"
+        }
+      ]
+    },
+    "acceptance": {
+      "title": "AI 工程验收",
+      "passed": true,
+      "summary": "检查通过，可以进入下一步",
+      "checks": [
+        {
+          "label": "搭好项目骨架",
+          "passed": true,
+          "detail": "检查通过，可以进入下一步"
+        },
+        {
+          "label": "创建虚拟环境",
+          "passed": true,
+          "detail": "检查通过，可以进入下一步"
+        },
+        {
+          "label": "声明 LangChain 依赖",
+          "passed": true,
+          "detail": "检查通过，可以进入下一步"
+        },
+        {
+          "label": "跑通第一段 AI 对话",
+          "passed": true,
+          "detail": "检查通过，可以进入下一步"
+        },
+        {
+          "label": "提取消息构造函数",
+          "passed": true,
+          "detail": "检查通过，可以进入下一步"
+        },
+        {
+          "label": "接入可运行应用",
+          "passed": true,
+          "detail": "检查通过，可以进入下一步"
+        },
+        {
+          "label": "私有业务场景",
+          "passed": true,
+          "detail": "通过 17/17 个业务场景，函数已有可运行的真实行为",
+          "cases": [
+            {
+              "label": "基础消息顺序",
+              "passed": true,
+              "detail": "通过",
+              "category": "输出契约",
+              "next_action": "",
+              "duration_ms": 0.01
+            },
+            {
+              "label": "保留个性化对话指令",
+              "passed": true,
+              "detail": "通过",
+              "category": "业务逻辑",
+              "next_action": "",
+              "duration_ms": 0.01
+            },
+            {
+              "label": "清理首尾空白",
+              "passed": true,
+              "detail": "通过",
+              "category": "输入边界",
+              "next_action": "",
+              "duration_ms": 0.0
+            },
+            {
+              "label": "保留消息内部格式",
+              "passed": true,
+              "detail": "通过",
+              "category": "业务逻辑",
+              "next_action": "",
+              "duration_ms": 0.0
+            },
+            {
+              "label": "每次调用返回独立消息对象",
+              "passed": true,
+              "detail": "通过",
+              "category": "输出契约",
+              "next_action": "",
+              "duration_ms": 0.01
+            },
+            {
+              "label": "拒绝空系统提示",
+              "passed": true,
+              "detail": "通过",
+              "category": "输入边界",
+              "next_action": "",
+              "duration_ms": 0.0
+            },
+            {
+              "label": "拒绝空用户消息",
+              "passed": true,
+              "detail": "通过",
+              "category": "输入边界",
+              "next_action": "",
+              "duration_ms": 0.0
+            },
+            {
+              "label": "拒绝非字符串系统提示",
+              "passed": true,
+              "detail": "通过",
+              "category": "输入边界",
+              "next_action": "",
+              "duration_ms": 0.0
+            },
+            {
+              "label": "拒绝非字符串用户消息",
+              "passed": true,
+              "detail": "通过",
+              "category": "输入边界",
+              "next_action": "",
+              "duration_ms": 0.0
+            },
+            {
+              "label": "处理仅含空白字符的输入（全角空格与制表符）",
+              "passed": true,
+              "detail": "通过",
+              "category": "输入边界",
+              "next_action": "",
+              "duration_ms": 0.0
+            },
+            {
+              "label": "拒绝布尔值输入",
+              "passed": true,
+              "detail": "通过",
+              "category": "输入边界",
+              "next_action": "",
+              "duration_ms": 0.0
+            },
+            {
+              "label": "拒绝列表类型输入",
+              "passed": true,
+              "detail": "通过",
+              "category": "输入边界",
+              "next_action": "",
+              "duration_ms": 0.0
+            },
+            {
+              "label": "拒绝数字类型系统提示",
+              "passed": true,
+              "detail": "通过",
+              "category": "输入边界",
+              "next_action": "",
+              "duration_ms": 0.0
+            },
+            {
+              "label": "处理含引号和特殊字符的输入",
+              "passed": true,
+              "detail": "通过",
+              "category": "业务逻辑",
+              "next_action": "",
+              "duration_ms": 0.0
+            },
+            {
+              "label": "处理含 emoji 的用户消息",
+              "passed": true,
+              "detail": "通过",
+              "category": "业务逻辑",
+              "next_action": "",
+              "duration_ms": 0.0
+            },
+            {
+              "label": "处理极长系统提示（200+字符）",
+              "passed": true,
+              "detail": "通过",
+              "category": "业务逻辑",
+              "next_action": "",
+              "duration_ms": 0.0
+            },
+            {
+              "label": "连续3次调用返回独立对象且不相互污染",
+              "passed": true,
+              "detail": "通过",
+              "category": "输出契约",
+              "next_action": "",
+              "duration_ms": 0.01
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "last_terminal": {
+    "exit_code": 0,
+    "output": "想象你有个智能管家。你告诉它“周末想和朋友聚餐”，它会自动查天气、订餐厅、发邀请、规划路线，甚至提醒你带伞。它不只是回答，而是主动执行一系列任务，像个小助手。这就是AI Agent——能理解目标、做决策并行动的程序。\n"
+  },
+  "active_env": ".venv",
+  "installed_requirements_hash": "253a15b12f73a71708b147b87584695647426fd7cb4aae903ff4472f3bd1f6a7",
+  "acceptance_ever_passed": true,
+  "passed_solution_code": "# solution.py —— 消息构造函数（可独立测试，无需联网）\ndef build_chat_messages(system_prompt, user_input):\n    \"\"\"生成可直接交给 LangChain ChatModel 的消息列表。\n\n    参数：\n        system_prompt (str): 系统指令，定义 AI 的角色和边界\n        user_input (str): 用户本轮的问题\n\n    返回：\n        list[dict]: 两个字典组成的列表，按 system → user 顺序排列。\n        每项包含 role 和 content 字段，content 已清理首尾空白。\n\n    异常：\n        ValueError: 任一参数不是非空字符串（含仅由空白组成的情况）\n    \"\"\"\n    # 1. 校验：两个参数都必须是 str 类型\n    #    这是「输入门禁」——在数据进入处理逻辑之前先过滤掉非法值\n    if not isinstance(system_prompt, str):\n        raise ValueError(\"system_prompt 必须是字符串\")\n    if not isinstance(user_input, str):\n        raise ValueError(\"user_input 必须是字符串\")\n\n    # 2. 清理首尾空白（空格、换行、制表符等）\n    #    .strip() 返回新字符串，不改变调用方传入的原变量\n    system_clean = system_prompt.strip()\n    user_clean = user_input.strip()\n\n    # 3. 校验：清理后不能是空字符串\n    #    必须放在 .strip() 之后——\"   \" 看起来有内容，实际是空的\n    if not system_clean:\n        raise ValueError(\"system_prompt 不能为空（仅含空白字符也不行）\")\n    if not user_clean:\n        raise ValueError(\"user_input 不能为空（仅含空白字符也不行）\")\n\n    # 4. 返回全新的消息列表\n    #    每次调用都创建新列表——如果用缓存或全局变量，\n    #    第二次调用会混入上一次的数据（这是 Python 新手最常见的坑之一）\n    return [\n        {\"role\": \"system\", \"content\": system_clean},\n        {\"role\": \"user\", \"content\": user_clean},\n    ]",
+  "passed_project_files": {
+    ".gitignore": ".venv/\n.env\n__pycache__/\n.pytest_cache/\n",
+    "app.py": "# app.py —— 重构版：使用提取出的消息构造函数\nimport os\nfrom dotenv import load_dotenv\nfrom langchain_openai import ChatOpenAI\nfrom solution import build_chat_messages   # ← 新增：导入我们提取的函数\n\nload_dotenv()\n\napi_key = os.getenv(\"LLM_API_KEY\")\nif not api_key:\n    raise RuntimeError(\"缺少 LLM_API_KEY，请先在 .env 中填写你的 API Key\")\n\nmodel = ChatOpenAI(\n    model=os.getenv(\"LLM_MODEL\", \"deepseek-chat\"),\n    api_key=api_key,\n    base_url=os.getenv(\"LLM_BASE_URL\", \"https://api.deepseek.com\"),\n    temperature=0.2,\n    timeout=30,\n    max_retries=2,\n)\n\n# ← 重构点：用函数调用替代原来写死的消息列表\n#   原来：messages = [{\"role\": \"system\", \"content\": \"...\"}, {\"role\": \"user\", ...}]\n#   现在：一行函数调用，system_prompt 和 user_input 作为参数传入\nmessages = build_chat_messages(\n    \"你是一位耐心的 Python 助教，回答控制在 120 字以内。\",\n    \"请用一个生活例子解释 AI Agent。\",\n)\n\nresponse = model.invoke(messages)\nprint(response.content)",
+    "README.md": "# 构造第一组对话消息\n\n这是你的独立实验项目。请跟随左侧阶段清单，从创建文件开始完成项目。\n\n## 项目目标\n\n先跑通再重构：在 app.py 中直接调用 ChatOpenAI 模型、看到 AI 回复后，再把消息构造逻辑提取为 build_chat_messages(system_prompt, user_input) 函数并添加输入校验。返回两个字典组成的列表（role=system 和 role=user），content 为清理空白后的文本；非法输入抛出 ValueError；不得修改传入值。\n\n## 约定\n\n- 核心可测试逻辑写在 `solution.py`\n- 可运行的 LangChain 应用写在 `app.py`\n- 真实 API Key 只放在本地 `.env`，不要提交\n",
+    "requirements.txt": "langchain\nlangchain-openai\npython-dotenv",
+    "solution.py": "# solution.py —— 消息构造函数（可独立测试，无需联网）\ndef build_chat_messages(system_prompt, user_input):\n    \"\"\"生成可直接交给 LangChain ChatModel 的消息列表。\n\n    参数：\n        system_prompt (str): 系统指令，定义 AI 的角色和边界\n        user_input (str): 用户本轮的问题\n\n    返回：\n        list[dict]: 两个字典组成的列表，按 system → user 顺序排列。\n        每项包含 role 和 content 字段，content 已清理首尾空白。\n\n    异常：\n        ValueError: 任一参数不是非空字符串（含仅由空白组成的情况）\n    \"\"\"\n    # 1. 校验：两个参数都必须是 str 类型\n    #    这是「输入门禁」——在数据进入处理逻辑之前先过滤掉非法值\n    if not isinstance(system_prompt, str):\n        raise ValueError(\"system_prompt 必须是字符串\")\n    if not isinstance(user_input, str):\n        raise ValueError(\"user_input 必须是字符串\")\n\n    # 2. 清理首尾空白（空格、换行、制表符等）\n    #    .strip() 返回新字符串，不改变调用方传入的原变量\n    system_clean = system_prompt.strip()\n    user_clean = user_input.strip()\n\n    # 3. 校验：清理后不能是空字符串\n    #    必须放在 .strip() 之后——\"   \" 看起来有内容，实际是空的\n    if not system_clean:\n        raise ValueError(\"system_prompt 不能为空（仅含空白字符也不行）\")\n    if not user_clean:\n        raise ValueError(\"user_input 不能为空（仅含空白字符也不行）\")\n\n    # 4. 返回全新的消息列表\n    #    每次调用都创建新列表——如果用缓存或全局变量，\n    #    第二次调用会混入上一次的数据（这是 Python 新手最常见的坑之一）\n    return [\n        {\"role\": \"system\", \"content\": system_clean},\n        {\"role\": \"user\", \"content\": user_clean},\n    ]"
+  },
+  "passed_stage_results": {
+    "structure": {
+      "title": "搭好项目骨架",
+      "passed": true,
+      "summary": "检查通过，可以进入下一步",
+      "checks": [
+        {
+          "label": "requirements.txt",
+          "passed": true,
+          "detail": "文件存在，名称完全一致"
+        },
+        {
+          "label": ".env",
+          "passed": true,
+          "detail": "文件存在，名称完全一致"
+        },
+        {
+          "label": "solution.py",
+          "passed": true,
+          "detail": "文件存在，名称完全一致"
+        },
+        {
+          "label": "app.py",
+          "passed": true,
+          "detail": "文件存在，名称完全一致"
+        }
+      ]
+    },
+    "environment": {
+      "title": "创建虚拟环境",
+      "passed": true,
+      "summary": "检查通过，可以进入下一步",
+      "checks": [
+        {
+          "label": "虚拟环境目录",
+          "passed": true,
+          "detail": "检测到 .venv/pyvenv.cfg"
+        },
+        {
+          "label": "Python 版本",
+          "passed": true,
+          "detail": "当前沙箱 Python 3.11.9"
+        }
+      ]
+    },
+    "dependencies": {
+      "title": "声明 LangChain 依赖",
+      "passed": true,
+      "summary": "检查通过，可以进入下一步",
+      "checks": [
+        {
+          "label": "langchain",
+          "passed": true,
+          "detail": "已在 requirements.txt 声明"
+        },
+        {
+          "label": "langchain-openai",
+          "passed": true,
+          "detail": "已在 requirements.txt 声明"
+        },
+        {
+          "label": "python-dotenv",
+          "passed": true,
+          "detail": "已在 requirements.txt 声明"
+        },
+        {
+          "label": "虚拟环境依赖",
+          "passed": true,
+          "detail": "当前 requirements.txt 已成功安装"
+        }
+      ]
+    },
+    "first_llm_call": {
+      "title": "跑通第一段 AI 对话",
+      "passed": true,
+      "summary": "检查通过，可以进入下一步",
+      "checks": [
+        {
+          "label": "app.py 语法",
+          "passed": true,
+          "detail": "AST 解析成功"
+        },
+        {
+          "label": "加载环境变量",
+          "passed": true,
+          "detail": "已调用 load_dotenv()"
+        },
+        {
+          "label": "创建模型客户端",
+          "passed": true,
+          "detail": "已创建 ChatOpenAI 实例"
+        },
+        {
+          "label": "发起模型调用",
+          "passed": true,
+          "detail": "已调用 model.invoke(messages)"
+        },
+        {
+          "label": "读取响应正文",
+          "passed": true,
+          "detail": "已输出 AI 回复"
+        },
+        {
+          "label": "密钥安全",
+          "passed": true,
+          "detail": "未发现硬编码密钥"
+        },
+        {
+          "label": "项目 API Key",
+          "passed": true,
+          "detail": "当前项目 .env 中已配置 API Key（仅校验存在性，不会显示或保存密钥）"
+        }
+      ]
+    },
+    "implementation": {
+      "title": "提取消息构造函数",
+      "passed": true,
+      "summary": "检查通过，可以进入下一步",
+      "checks": [
+        {
+          "label": "Python 语法",
+          "passed": true,
+          "detail": "AST 解析成功"
+        },
+        {
+          "label": "build_chat_messages",
+          "passed": true,
+          "detail": "目标函数已定义"
+        },
+        {
+          "label": "核心函数行为",
+          "passed": true,
+          "detail": "通过 17/17 个业务场景，函数已有可运行的真实行为",
+          "cases": [
+            {
+              "label": "基础消息顺序",
+              "passed": true,
+              "detail": "通过",
+              "category": "输出契约",
+              "next_action": "",
+              "duration_ms": 0.02
+            },
+            {
+              "label": "保留个性化对话指令",
+              "passed": true,
+              "detail": "通过",
+              "category": "业务逻辑",
+              "next_action": "",
+              "duration_ms": 0.01
+            },
+            {
+              "label": "清理首尾空白",
+              "passed": true,
+              "detail": "通过",
+              "category": "输入边界",
+              "next_action": "",
+              "duration_ms": 0.0
+            },
+            {
+              "label": "保留消息内部格式",
+              "passed": true,
+              "detail": "通过",
+              "category": "业务逻辑",
+              "next_action": "",
+              "duration_ms": 0.0
+            },
+            {
+              "label": "每次调用返回独立消息对象",
+              "passed": true,
+              "detail": "通过",
+              "category": "输出契约",
+              "next_action": "",
+              "duration_ms": 0.01
+            },
+            {
+              "label": "拒绝空系统提示",
+              "passed": true,
+              "detail": "通过",
+              "category": "输入边界",
+              "next_action": "",
+              "duration_ms": 0.0
+            },
+            {
+              "label": "拒绝空用户消息",
+              "passed": true,
+              "detail": "通过",
+              "category": "输入边界",
+              "next_action": "",
+              "duration_ms": 0.0
+            },
+            {
+              "label": "拒绝非字符串系统提示",
+              "passed": true,
+              "detail": "通过",
+              "category": "输入边界",
+              "next_action": "",
+              "duration_ms": 0.01
+            },
+            {
+              "label": "拒绝非字符串用户消息",
+              "passed": true,
+              "detail": "通过",
+              "category": "输入边界",
+              "next_action": "",
+              "duration_ms": 0.0
+            },
+            {
+              "label": "处理仅含空白字符的输入（全角空格与制表符）",
+              "passed": true,
+              "detail": "通过",
+              "category": "输入边界",
+              "next_action": "",
+              "duration_ms": 0.0
+            },
+            {
+              "label": "拒绝布尔值输入",
+              "passed": true,
+              "detail": "通过",
+              "category": "输入边界",
+              "next_action": "",
+              "duration_ms": 0.0
+            },
+            {
+              "label": "拒绝列表类型输入",
+              "passed": true,
+              "detail": "通过",
+              "category": "输入边界",
+              "next_action": "",
+              "duration_ms": 0.0
+            },
+            {
+              "label": "拒绝数字类型系统提示",
+              "passed": true,
+              "detail": "通过",
+              "category": "输入边界",
+              "next_action": "",
+              "duration_ms": 0.0
+            },
+            {
+              "label": "处理含引号和特殊字符的输入",
+              "passed": true,
+              "detail": "通过",
+              "category": "业务逻辑",
+              "next_action": "",
+              "duration_ms": 0.0
+            },
+            {
+              "label": "处理含 emoji 的用户消息",
+              "passed": true,
+              "detail": "通过",
+              "category": "业务逻辑",
+              "next_action": "",
+              "duration_ms": 0.0
+            },
+            {
+              "label": "处理极长系统提示（200+字符）",
+              "passed": true,
+              "detail": "通过",
+              "category": "业务逻辑",
+              "next_action": "",
+              "duration_ms": 0.0
+            },
+            {
+              "label": "连续3次调用返回独立对象且不相互污染",
+              "passed": true,
+              "detail": "通过",
+              "category": "输出契约",
+              "next_action": "",
+              "duration_ms": 0.01
+            }
+          ]
+        }
+      ]
+    },
+    "integration": {
+      "title": "接入可运行应用",
+      "passed": true,
+      "summary": "检查通过，可以进入下一步",
+      "checks": [
+        {
+          "label": "核心模块业务测试",
+          "passed": true,
+          "detail": "通过 17/17 个业务场景，函数已有可运行的真实行为",
+          "cases": [
+            {
+              "label": "基础消息顺序",
+              "passed": true,
+              "detail": "通过",
+              "category": "输出契约",
+              "next_action": "",
+              "duration_ms": 0.01
+            },
+            {
+              "label": "保留个性化对话指令",
+              "passed": true,
+              "detail": "通过",
+              "category": "业务逻辑",
+              "next_action": "",
+              "duration_ms": 0.01
+            },
+            {
+              "label": "清理首尾空白",
+              "passed": true,
+              "detail": "通过",
+              "category": "输入边界",
+              "next_action": "",
+              "duration_ms": 0.0
+            },
+            {
+              "label": "保留消息内部格式",
+              "passed": true,
+              "detail": "通过",
+              "category": "业务逻辑",
+              "next_action": "",
+              "duration_ms": 0.0
+            },
+            {
+              "label": "每次调用返回独立消息对象",
+              "passed": true,
+              "detail": "通过",
+              "category": "输出契约",
+              "next_action": "",
+              "duration_ms": 0.01
+            },
+            {
+              "label": "拒绝空系统提示",
+              "passed": true,
+              "detail": "通过",
+              "category": "输入边界",
+              "next_action": "",
+              "duration_ms": 0.0
+            },
+            {
+              "label": "拒绝空用户消息",
+              "passed": true,
+              "detail": "通过",
+              "category": "输入边界",
+              "next_action": "",
+              "duration_ms": 0.0
+            },
+            {
+              "label": "拒绝非字符串系统提示",
+              "passed": true,
+              "detail": "通过",
+              "category": "输入边界",
+              "next_action": "",
+              "duration_ms": 0.01
+            },
+            {
+              "label": "拒绝非字符串用户消息",
+              "passed": true,
+              "detail": "通过",
+              "category": "输入边界",
+              "next_action": "",
+              "duration_ms": 0.0
+            },
+            {
+              "label": "处理仅含空白字符的输入（全角空格与制表符）",
+              "passed": true,
+              "detail": "通过",
+              "category": "输入边界",
+              "next_action": "",
+              "duration_ms": 0.0
+            },
+            {
+              "label": "拒绝布尔值输入",
+              "passed": true,
+              "detail": "通过",
+              "category": "输入边界",
+              "next_action": "",
+              "duration_ms": 0.0
+            },
+            {
+              "label": "拒绝列表类型输入",
+              "passed": true,
+              "detail": "通过",
+              "category": "输入边界",
+              "next_action": "",
+              "duration_ms": 0.0
+            },
+            {
+              "label": "拒绝数字类型系统提示",
+              "passed": true,
+              "detail": "通过",
+              "category": "输入边界",
+              "next_action": "",
+              "duration_ms": 0.0
+            },
+            {
+              "label": "处理含引号和特殊字符的输入",
+              "passed": true,
+              "detail": "通过",
+              "category": "业务逻辑",
+              "next_action": "",
+              "duration_ms": 0.0
+            },
+            {
+              "label": "处理含 emoji 的用户消息",
+              "passed": true,
+              "detail": "通过",
+              "category": "业务逻辑",
+              "next_action": "",
+              "duration_ms": 0.0
+            },
+            {
+              "label": "处理极长系统提示（200+字符）",
+              "passed": true,
+              "detail": "通过",
+              "category": "业务逻辑",
+              "next_action": "",
+              "duration_ms": 0.0
+            },
+            {
+              "label": "连续3次调用返回独立对象且不相互污染",
+              "passed": true,
+              "detail": "通过",
+              "category": "输出契约",
+              "next_action": "",
+              "duration_ms": 0.01
+            }
+          ]
+        },
+        {
+          "label": "app.py 语法",
+          "passed": true,
+          "detail": "可正常解析"
+        },
+        {
+          "label": "框架接入",
+          "passed": true,
+          "detail": "检测到：dotenv, langchain_openai, os, solution"
+        },
+        {
+          "label": "核心模块接入",
+          "passed": true,
+          "detail": "已导入 solution"
+        },
+        {
+          "label": "聊天模型调用",
+          "passed": true,
+          "detail": "已调用 model.invoke()"
+        },
+        {
+          "label": "个性化消息接入",
+          "passed": true,
+          "detail": "build_chat_messages 的结果已传入模型"
+        },
+        {
+          "label": "密钥安全",
+          "passed": true,
+          "detail": "未发现硬编码密钥"
+        },
+        {
+          "label": "项目 API Key",
+          "passed": true,
+          "detail": "当前项目 .env 中已配置 API Key（仅校验存在性，不会显示或保存密钥）"
+        }
+      ]
+    },
+    "acceptance": {
+      "title": "AI 工程验收",
+      "passed": true,
+      "summary": "检查通过，可以进入下一步",
+      "checks": [
+        {
+          "label": "搭好项目骨架",
+          "passed": true,
+          "detail": "检查通过，可以进入下一步"
+        },
+        {
+          "label": "创建虚拟环境",
+          "passed": true,
+          "detail": "检查通过，可以进入下一步"
+        },
+        {
+          "label": "声明 LangChain 依赖",
+          "passed": true,
+          "detail": "检查通过，可以进入下一步"
+        },
+        {
+          "label": "跑通第一段 AI 对话",
+          "passed": true,
+          "detail": "检查通过，可以进入下一步"
+        },
+        {
+          "label": "提取消息构造函数",
+          "passed": true,
+          "detail": "检查通过，可以进入下一步"
+        },
+        {
+          "label": "接入可运行应用",
+          "passed": true,
+          "detail": "检查通过，可以进入下一步"
+        },
+        {
+          "label": "私有业务场景",
+          "passed": true,
+          "detail": "通过 17/17 个业务场景，函数已有可运行的真实行为",
+          "cases": [
+            {
+              "label": "基础消息顺序",
+              "passed": true,
+              "detail": "通过",
+              "category": "输出契约",
+              "next_action": "",
+              "duration_ms": 0.01
+            },
+            {
+              "label": "保留个性化对话指令",
+              "passed": true,
+              "detail": "通过",
+              "category": "业务逻辑",
+              "next_action": "",
+              "duration_ms": 0.01
+            },
+            {
+              "label": "清理首尾空白",
+              "passed": true,
+              "detail": "通过",
+              "category": "输入边界",
+              "next_action": "",
+              "duration_ms": 0.0
+            },
+            {
+              "label": "保留消息内部格式",
+              "passed": true,
+              "detail": "通过",
+              "category": "业务逻辑",
+              "next_action": "",
+              "duration_ms": 0.0
+            },
+            {
+              "label": "每次调用返回独立消息对象",
+              "passed": true,
+              "detail": "通过",
+              "category": "输出契约",
+              "next_action": "",
+              "duration_ms": 0.01
+            },
+            {
+              "label": "拒绝空系统提示",
+              "passed": true,
+              "detail": "通过",
+              "category": "输入边界",
+              "next_action": "",
+              "duration_ms": 0.0
+            },
+            {
+              "label": "拒绝空用户消息",
+              "passed": true,
+              "detail": "通过",
+              "category": "输入边界",
+              "next_action": "",
+              "duration_ms": 0.0
+            },
+            {
+              "label": "拒绝非字符串系统提示",
+              "passed": true,
+              "detail": "通过",
+              "category": "输入边界",
+              "next_action": "",
+              "duration_ms": 0.0
+            },
+            {
+              "label": "拒绝非字符串用户消息",
+              "passed": true,
+              "detail": "通过",
+              "category": "输入边界",
+              "next_action": "",
+              "duration_ms": 0.0
+            },
+            {
+              "label": "处理仅含空白字符的输入（全角空格与制表符）",
+              "passed": true,
+              "detail": "通过",
+              "category": "输入边界",
+              "next_action": "",
+              "duration_ms": 0.0
+            },
+            {
+              "label": "拒绝布尔值输入",
+              "passed": true,
+              "detail": "通过",
+              "category": "输入边界",
+              "next_action": "",
+              "duration_ms": 0.0
+            },
+            {
+              "label": "拒绝列表类型输入",
+              "passed": true,
+              "detail": "通过",
+              "category": "输入边界",
+              "next_action": "",
+              "duration_ms": 0.0
+            },
+            {
+              "label": "拒绝数字类型系统提示",
+              "passed": true,
+              "detail": "通过",
+              "category": "输入边界",
+              "next_action": "",
+              "duration_ms": 0.0
+            },
+            {
+              "label": "处理含引号和特殊字符的输入",
+              "passed": true,
+              "detail": "通过",
+              "category": "业务逻辑",
+              "next_action": "",
+              "duration_ms": 0.0
+            },
+            {
+              "label": "处理含 emoji 的用户消息",
+              "passed": true,
+              "detail": "通过",
+              "category": "业务逻辑",
+              "next_action": "",
+              "duration_ms": 0.0
+            },
+            {
+              "label": "处理极长系统提示（200+字符）",
+              "passed": true,
+              "detail": "通过",
+              "category": "业务逻辑",
+              "next_action": "",
+              "duration_ms": 0.0
+            },
+            {
+              "label": "连续3次调用返回独立对象且不相互污染",
+              "passed": true,
+              "detail": "通过",
+              "category": "输出契约",
+              "next_action": "",
+              "duration_ms": 0.01
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "tutor_history": [
+    {
+      "role": "user",
+      "content": "build_chat_messages 接收什么输入、经过哪些关键步骤、最终返回什么。\n\n结合具体函数、文件或调用流程回答\n\n请选择一个关键条件分支，说明它为什么存在；去掉这个分支会导致哪个具体用例失败？\n\n结合具体函数、文件或调用流程回答\n\nmodel.invoke() 返回的是 AIMessage 对象而非字符串。请说明这个设计的好处，以及如果你直接用 str(response) 或 print(response) 会看到什么？（提示：除了正文，响应对象还可能包含哪些信息？）\n\n结合具体函数、文件或调用流程回答"
+    },
+    {
+      "role": "assistant",
+      "content": "现在我已经看到了完整的代码。让我逐一回答你的三个问题。\n\n---\n\n## 1. `build_chat_messages` 的输入、步骤与输出\n\n**输入**：两个字符串参数 —— `system_prompt`（系统指令）和 `user_input`（用户问题）。\n\n**关键步骤**：\n1. **类型校验**：确保两个参数都是 `str`，否则抛出 `ValueError`\n2. **清理空白**：对两个字符串分别调用 `.strip()`，去掉首尾空格/换行/制表符\n3. **空值校验**：清理后若为空字符串，抛出 `ValueError`\n4. **构造返回**：创建全新的 `list[dict]`，按 system → user 顺序排列\n\n**输出**：`list[dict]`，形如：\n```python\n[\n    {\"role\": \"system\", \"content\": \"你是一位耐心的 Python 助教...\"},\n    {\"role\": \"user\", \"content\": \"请用一个生活例子解释 AI Agent。\"}\n]\n```\n\n---\n\n## 2. 关键条件分支：`isinstance` 类型校验\n\n```python\nif not isinstance(system_prompt, str):\n    raise ValueError(\"system_prompt 必须是字符串\")\n```\n\n**为什么存在？** 这是「输入门禁」——在数据进入处理逻辑之前先过滤非法类型。如果去掉这个分支，当调用者传入 `None`、`123` 或 `[\"hello\"]` 时，代码会继续执行到 `.strip()` 那行，Python 会抛出 `AttributeError: 'NoneType' object has no attribute 'strip'` 或类似的底层异常，错误信息晦涩，调用者难以定位问题。\n\n**去掉会导致哪个用例失败？** 比如 `build_chat_messages(None, \"你好\")` —— 没有类型校验时，会在 `system_prompt.strip()` 处抛出 `AttributeError`，而非清晰的 `ValueError(\"system_prompt 必须是字符串\")`。测试用例中如果有 `pytest.raises(ValueError)` 的断言就会失败。\n\n---\n\n## 3. `model.invoke()` 返回 `AIMessage` 而非字符串的设计好处\n\n**设计好处**：`AIMessage` 是一个结构化对象，除了正文（`.content`），还携带：\n\n| 属性 | 含义 |\n|------|------|\n| `.content` | 模型回复的正文文本 |\n| `.response_metadata` | token 用量、模型名称、finish_reason 等 |\n| `.id` | 消息唯一标识 |\n| `.tool_calls` | 模型请求调用的工具列表（function calling 场景） |\n| `.usage_metadata` | 输入/输出 token 计数 |\n\n这种设计让你可以**按需取用**不同维度的信息，而不是被迫解析一个字符串。\n\n**`str(response)` 或 `print(response)` 会看到什么？** 你会看到 LangChain 的 `AIMessage` 的 repr 形式，类似：\n\n```\ncontent='AI Agent 就像餐厅服务员...' response_metadata={'token_usage': {...}, 'model_name': 'deepseek-chat', 'finish_reason': 'stop'} id='run-xxx-xxx'\n```\n\n它会把所有字段都打印出来，而不仅仅是正文。这就是为什么 `app.py` 里用的是 `print(response.content)` 而不是 `print(response)` —— 用户只想看到回复文本。\n\n---\n\n现在我想反过来问你一个问题：你注意到 `solution.py` 中第 4 步的注释提到「每次调用都创建新列表」是为了避免「第二次调用会混入上一次的数据」。你能想出一个具体的代码场景，说明如果不这样做（比如用了缓存或全局变量），会导致什么 bug 吗？"
+    }
+  ]
+}

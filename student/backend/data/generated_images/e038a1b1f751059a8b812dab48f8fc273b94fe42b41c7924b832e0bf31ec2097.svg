@@ -1,0 +1,152 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="800" height="500">
+  <defs>
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#E8F4FD"/>
+      <stop offset="100%" stop-color="#F0F8FF"/>
+    </linearGradient>
+    <linearGradient id="blueGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#409EFF"/>
+      <stop offset="100%" stop-color="#2B7BD9"/>
+    </linearGradient>
+    <linearGradient id="darkGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#1a1a2e"/>
+      <stop offset="100%" stop-color="#2a2a4e"/>
+    </linearGradient>
+    <filter id="shadow" x="-5%" y="-5%" width="115%" height="115%">
+      <feDropShadow dx="1" dy="2" stdDeviation="3" flood-opacity="0.12" flood-color="#1a1a2e"/>
+    </filter>
+  </defs>
+
+  <!-- 背景 -->
+  <rect width="800" height="500" fill="url(#bgGrad)" rx="8"/>
+
+  <!-- 标题 -->
+  <text x="400" y="38" text-anchor="middle" font-family="sans-serif" font-size="20" font-weight="bold" fill="#1a1a2e">分块质量在 RAG 流程中的放大效应</text>
+
+  <!-- 级联箭头 - 从左到右的管道 -->
+  <!-- 第1级：分块质量 -->
+  <rect x="50" y="65" width="130" height="44" rx="22" fill="url(#blueGrad)" filter="url(#shadow)"/>
+  <text x="115" y="93" text-anchor="middle" font-family="sans-serif" font-size="15" font-weight="bold" fill="#fff">分块质量</text>
+
+  <!-- 箭头1 -->
+  <path d="M180 87 L220 87" stroke="#409EFF" stroke-width="2.5" marker-end="url(#arrowBlue)"/>
+  <defs>
+    <marker id="arrowBlue" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto">
+      <path d="M0,0 L10,4 L0,8 Z" fill="#409EFF"/>
+    </marker>
+  </defs>
+
+  <!-- 第2级：检索精度 -->
+  <rect x="225" y="65" width="130" height="44" rx="22" fill="#4A8BC2" filter="url(#shadow)"/>
+  <text x="290" y="93" text-anchor="middle" font-family="sans-serif" font-size="15" font-weight="bold" fill="#fff">检索精度</text>
+
+  <!-- 箭头2 -->
+  <path d="M355 87 L395 87" stroke="#409EFF" stroke-width="2.5"/>
+  <polygon points="395,80 408,87 395,94" fill="#409EFF"/>
+
+  <!-- 第3级：上下文完整性 -->
+  <rect x="410" y="65" width="150" height="44" rx="22" fill="#5A9BD5" filter="url(#shadow)"/>
+  <text x="485" y="93" text-anchor="middle" font-family="sans-serif" font-size="15" font-weight="bold" fill="#fff">上下文完整性</text>
+
+  <!-- 箭头3 -->
+  <path d="M560 87 L600 87" stroke="#409EFF" stroke-width="2.5"/>
+  <polygon points="600,80 613,87 600,94" fill="#409EFF"/>
+
+  <!-- 第4级：答案质量 -->
+  <rect x="615" y="65" width="130" height="44" rx="22" fill="url(#darkGrad)" filter="url(#shadow)"/>
+  <text x="680" y="93" text-anchor="middle" font-family="sans-serif" font-size="15" font-weight="bold" fill="#fff">答案质量</text>
+
+  <!-- 放大效应标注 -->
+  <rect x="320" y="118" width="160" height="26" rx="13" fill="#1a1a2e" opacity="0.85"/>
+  <text x="400" y="136" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="#FFD700">放大效应</text>
+  <path d="M400 118 L400 109" stroke="#1a1a2e" stroke-width="1.5" stroke-dasharray="3,3"/>
+
+  <!-- 三个分块示例并排 -->
+  <!-- 小分块 -->
+  <g filter="url(#shadow)">
+    <rect x="50" y="175" width="200" height="145" rx="10" fill="#fff" stroke="#409EFF" stroke-width="1.5"/>
+    <rect x="50" y="175" width="200" height="32" rx="10" fill="#409EFF"/>
+    <rect x="50" y="195" width="200" height="12" fill="#409EFF"/>
+    <text x="150" y="197" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="bold" fill="#fff">小分块（100-300 tokens）</text>
+
+    <!-- 小拼图块 -->
+    <g transform="translate(75, 225)">
+      <rect x="0" y="0" width="22" height="22" rx="3" fill="#409EFF" opacity="0.7"/>
+      <rect x="28" y="0" width="22" height="22" rx="3" fill="#409EFF" opacity="0.5"/>
+      <rect x="56" y="0" width="22" height="22" rx="3" fill="#409EFF" opacity="0.6"/>
+      <rect x="84" y="0" width="22" height="22" rx="3" fill="#409EFF" opacity="0.4"/>
+      <rect x="0" y="28" width="22" height="22" rx="3" fill="#409EFF" opacity="0.5"/>
+      <rect x="28" y="28" width="22" height="22" rx="3" fill="#409EFF" opacity="0.8"/>
+      <rect x="56" y="28" width="22" height="22" rx="3" fill="#409EFF" opacity="0.4"/>
+      <rect x="84" y="28" width="22" height="22" rx="3" fill="#409EFF" opacity="0.6"/>
+    </g>
+
+    <!-- 标注 -->
+    <text x="150" y="300" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#1a1a2e">高精度 · 低召回</text>
+  </g>
+
+  <!-- 中分块（最佳） -->
+  <g filter="url(#shadow)">
+    <rect x="300" y="175" width="200" height="145" rx="10" fill="#fff" stroke="#409EFF" stroke-width="2.5"/>
+    <rect x="300" y="175" width="200" height="32" rx="10" fill="url(#blueGrad)"/>
+    <rect x="300" y="195" width="200" height="12" fill="url(#blueGrad)"/>
+    <text x="400" y="197" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="bold" fill="#fff">中分块（500-1000 tokens）</text>
+
+    <!-- 平衡拼图块 -->
+    <g transform="translate(325, 225)">
+      <rect x="0" y="0" width="32" height="22" rx="4" fill="#409EFF" opacity="0.8"/>
+      <rect x="38" y="0" width="32" height="22" rx="4" fill="#409EFF" opacity="0.7"/>
+      <rect x="76" y="0" width="32" height="22" rx="4" fill="#409EFF" opacity="0.9"/>
+      <rect x="0" y="28" width="32" height="22" rx="4" fill="#409EFF" opacity="0.7"/>
+      <rect x="38" y="28" width="32" height="22" rx="4" fill="#409EFF" opacity="0.85"/>
+      <rect x="76" y="28" width="32" height="22" rx="4" fill="#409EFF" opacity="0.75"/>
+    </g>
+
+    <!-- 最佳标注 -->
+    <rect x="355" y="295" width="90" height="20" rx="10" fill="#FFD700"/>
+    <text x="400" y="310" text-anchor="middle" font-family="sans-serif" font-size="12" font-weight="bold" fill="#1a1a2e">★ 最佳选择</text>
+  </g>
+
+  <!-- 大分块 -->
+  <g filter="url(#shadow)">
+    <rect x="550" y="175" width="200" height="145" rx="10" fill="#fff" stroke="#409EFF" stroke-width="1.5"/>
+    <rect x="550" y="175" width="200" height="32" rx="10" fill="#4A8BC2"/>
+    <rect x="550" y="195" width="200" height="12" fill="#4A8BC2"/>
+    <text x="650" y="197" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="bold" fill="#fff">大分块（1500-3000 tokens）</text>
+
+    <!-- 大拼图块 -->
+    <g transform="translate(575, 225)">
+      <rect x="0" y="0" width="45" height="22" rx="5" fill="#4A8BC2" opacity="0.6"/>
+      <rect x="0" y="28" width="45" height="22" rx="5" fill="#4A8BC2" opacity="0.5"/>
+      <rect x="52" y="0" width="45" height="22" rx="5" fill="#4A8BC2" opacity="0.55"/>
+      <rect x="52" y="28" width="45" height="22" rx="5" fill="#4A8BC2" opacity="0.45"/>
+    </g>
+
+    <text x="650" y="300" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#1a1a2e">高召回 · 低精度</text>
+  </g>
+
+  <!-- 重叠可视化 -->
+  <g>
+    <text x="400" y="360" text-anchor="middle" font-family="sans-serif" font-size="15" font-weight="bold" fill="#1a1a2e">分块重叠可视化</text>
+
+    <!-- 分块A -->
+    <rect x="120" y="375" width="250" height="40" rx="8" fill="#409EFF" opacity="0.25" stroke="#409EFF" stroke-width="1.5"/>
+    <text x="245" y="400" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#409EFF" font-weight="bold">分块 A</text>
+
+    <!-- 重叠区域 -->
+    <rect x="310" y="375" width="80" height="40" rx="4" fill="#409EFF" opacity="0.55" stroke="#409EFF" stroke-width="2"/>
+    <text x="350" y="400" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#fff" font-weight="bold">重叠</text>
+
+    <!-- 分块B -->
+    <rect x="370" y="375" width="250" height="40" rx="8" fill="#4A8BC2" opacity="0.25" stroke="#4A8BC2" stroke-width="1.5"/>
+    <text x="495" y="400" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#4A8BC2" font-weight="bold">分块 B</text>
+
+    <!-- 重叠标注 -->
+    <path d="M350 415 L350 435" stroke="#409EFF" stroke-width="1.5" stroke-dasharray="3,3"/>
+    <rect x="295" y="435" width="110" height="22" rx="11" fill="#409EFF" opacity="0.85"/>
+    <text x="350" y="451" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#fff">上下文连续性</text>
+  </g>
+
+  <!-- 底部说明 -->
+  <text x="400" y="485" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#666">分块质量直接影响检索精度、上下文完整性和最终答案质量</text>
+</svg>

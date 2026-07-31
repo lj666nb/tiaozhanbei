@@ -1,0 +1,148 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="800" height="500">
+  <defs>
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#E8F4FF"/>
+      <stop offset="100%" stop-color="#F0F8FF"/>
+    </linearGradient>
+    <linearGradient id="blueGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#409EFF"/>
+      <stop offset="100%" stop-color="#6BB5FF"/>
+    </linearGradient>
+    <filter id="shadow" x="-2" y="-2" width="8" height="8">
+      <feDropShadow dx="1" dy="1" stdDeviation="2" flood-opacity="0.1"/>
+    </filter>
+  </defs>
+
+  <!-- 背景 -->
+  <rect width="800" height="500" fill="url(#bgGrad)" rx="8"/>
+
+  <!-- 标题 -->
+  <text x="400" y="38" text-anchor="middle" font-family="sans-serif" font-size="20" font-weight="bold" fill="#1a1a2e">Agent 执行：实时图构建过程</text>
+
+  <!-- ====== 时间 1 ====== -->
+  <rect x="30" y="60" width="220" height="180" rx="10" fill="white" stroke="#409EFF" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="140" y="85" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="bold" fill="#1a1a2e">时间 1</text>
+
+  <!-- 节点 A -->
+  <circle cx="140" cy="120" r="18" fill="#409EFF"/>
+  <text x="140" y="125" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="bold" fill="white">A</text>
+
+  <!-- 未知节点 B, C, D（灰色） -->
+  <circle cx="70" cy="190" r="14" fill="#D0D0D0" stroke="#B0B0B0" stroke-width="1"/>
+  <text x="70" y="194" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#888">B</text>
+
+  <circle cx="140" cy="210" r="14" fill="#D0D0D0" stroke="#B0B0B0" stroke-width="1"/>
+  <text x="140" y="214" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#888">C</text>
+
+  <circle cx="210" cy="190" r="14" fill="#D0D0D0" stroke="#B0B0B0" stroke-width="1"/>
+  <text x="210" y="194" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#888">D</text>
+
+  <!-- 闪电决策线 -->
+  <line x1="140" y1="138" x2="70" y2="178" stroke="#FFB800" stroke-width="2" stroke-dasharray="4,3"/>
+  <line x1="140" y1="138" x2="140" y2="196" stroke="#FFB800" stroke-width="2" stroke-dasharray="4,3"/>
+  <line x1="140" y1="138" x2="210" y2="178" stroke="#FFB800" stroke-width="2" stroke-dasharray="4,3"/>
+
+  <!-- 问号 -->
+  <text x="95" y="165" font-family="sans-serif" font-size="12" fill="#FFB800">?</text>
+  <text x="148" y="175" font-family="sans-serif" font-size="12" fill="#FFB800">?</text>
+  <text x="185" y="165" font-family="sans-serif" font-size="12" fill="#FFB800">?</text>
+
+  <!-- 标签 -->
+  <text x="140" y="240" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#666">Agent 面临三个未知选项</text>
+
+  <!-- ====== 时间 2 ====== -->
+  <rect x="290" y="60" width="220" height="180" rx="10" fill="white" stroke="#409EFF" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="400" y="85" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="bold" fill="#1a1a2e">时间 2</text>
+
+  <!-- 节点 A（已探索） -->
+  <circle cx="320" cy="120" r="14" fill="#409EFF"/>
+  <text x="320" y="124" text-anchor="middle" font-family="sans-serif" font-size="12" font-weight="bold" fill="white">A</text>
+
+  <!-- 路径 A→C -->
+  <line x1="334" y1="120" x2="386" y2="120" stroke="#409EFF" stroke-width="2.5"/>
+
+  <!-- 节点 C（已选择） -->
+  <circle cx="400" cy="120" r="18" fill="#409EFF"/>
+  <text x="400" y="125" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="bold" fill="white">C</text>
+
+  <!-- 新发现节点 E, F -->
+  <circle cx="360" cy="190" r="14" fill="#6BB5FF" stroke="#409EFF" stroke-width="1"/>
+  <text x="360" y="194" text-anchor="middle" font-family="sans-serif" font-size="12" fill="white">E</text>
+
+  <circle cx="440" cy="190" r="14" fill="#6BB5FF" stroke="#409EFF" stroke-width="1"/>
+  <text x="440" y="194" text-anchor="middle" font-family="sans-serif" font-size="12" fill="white">F</text>
+
+  <!-- 连接线 -->
+  <line x1="400" y1="138" x2="360" y2="178" stroke="#409EFF" stroke-width="2"/>
+  <line x1="400" y1="138" x2="440" y2="178" stroke="#409EFF" stroke-width="2"/>
+
+  <!-- 发现闪光 -->
+  <text x="330" y="160" font-family="sans-serif" font-size="14" fill="#FFB800">✦</text>
+  <text x="420" y="160" font-family="sans-serif" font-size="14" fill="#FFB800">✦</text>
+
+  <text x="400" y="240" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#666">选择 C，发现新节点 E、F</text>
+
+  <!-- ====== 时间 3 ====== -->
+  <rect x="550" y="60" width="220" height="180" rx="10" fill="white" stroke="#409EFF" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="660" y="85" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="bold" fill="#1a1a2e">时间 3</text>
+
+  <!-- 路径 A→C→F→Goal -->
+  <line x1="580" y1="120" x2="620" y2="120" stroke="#409EFF" stroke-width="2.5"/>
+  <line x1="638" y1="120" x2="660" y2="170" stroke="#409EFF" stroke-width="2.5"/>
+
+  <circle cx="580" cy="120" r="14" fill="#409EFF"/>
+  <text x="580" y="124" text-anchor="middle" font-family="sans-serif" font-size="12" font-weight="bold" fill="white">A</text>
+
+  <circle cx="634" cy="120" r="14" fill="#409EFF"/>
+  <text x="634" y="124" text-anchor="middle" font-family="sans-serif" font-size="12" font-weight="bold" fill="white">C</text>
+
+  <circle cx="660" cy="185" r="14" fill="#409EFF"/>
+  <text x="660" y="189" text-anchor="middle" font-family="sans-serif" font-size="12" font-weight="bold" fill="white">F</text>
+
+  <!-- 目标节点 -->
+  <circle cx="710" cy="185" r="20" fill="#FFB800" stroke="#E6A800" stroke-width="2"/>
+  <text x="710" y="190" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="bold" fill="white">目标</text>
+
+  <line x1="674" y1="185" x2="690" y2="185" stroke="#FFB800" stroke-width="2.5"/>
+
+  <text x="660" y="240" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#666">Agent 成功到达目标</text>
+
+  <!-- ====== 迷雾效果标注 ====== -->
+  <rect x="30" y="270" width="740" height="50" rx="8" fill="white" stroke="#D0D0D0" stroke-width="1" filter="url(#shadow)"/>
+  <text x="50" y="300" font-family="sans-serif" font-size="14" font-weight="bold" fill="#1a1a2e">迷雾效果：</text>
+  <rect x="160" y="288" width="20" height="16" rx="3" fill="#D0D0D0"/>
+  <text x="185" y="301" font-family="sans-serif" font-size="13" fill="#666">= 未探索路径</text>
+  <rect x="310" y="288" width="20" height="16" rx="3" fill="#409EFF"/>
+  <text x="335" y="301" font-family="sans-serif" font-size="13" fill="#666">= 已探索路径</text>
+  <text x="480" y="301" font-family="sans-serif" font-size="13" fill="#1a1a2e">| 动态发现新节点</text>
+
+  <!-- ====== 四个特性徽章 ====== -->
+  <rect x="30" y="340" width="160" height="36" rx="18" fill="#409EFF" filter="url(#shadow)"/>
+  <text x="110" y="363" text-anchor="middle" font-family="sans-serif" font-size="15" font-weight="bold" fill="white">动态</text>
+
+  <rect x="220" y="340" width="160" height="36" rx="18" fill="#409EFF" filter="url(#shadow)"/>
+  <text x="300" y="363" text-anchor="middle" font-family="sans-serif" font-size="15" font-weight="bold" fill="white">自适应</text>
+
+  <rect x="410" y="340" width="170" height="36" rx="18" fill="#409EFF" filter="url(#shadow)"/>
+  <text x="495" y="363" text-anchor="middle" font-family="sans-serif" font-size="15" font-weight="bold" fill="white">非确定性</text>
+
+  <rect x="610" y="340" width="160" height="36" rx="18" fill="#409EFF" filter="url(#shadow)"/>
+  <text x="690" y="363" text-anchor="middle" font-family="sans-serif" font-size="15" font-weight="bold" fill="white">目标驱动</text>
+
+  <!-- ====== 对比区域 ====== -->
+  <rect x="30" y="400" width="740" height="85" rx="10" fill="white" stroke="#409EFF" stroke-width="1.5" filter="url(#shadow)"/>
+
+  <!-- 左侧：传统工作流 -->
+  <rect x="50" y="415" width="320" height="55" rx="8" fill="#F5F7FA"/>
+  <text x="210" y="435" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="bold" fill="#1a1a2e">工作流 = 遍历已知地图</text>
+  <text x="210" y="458" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#888">路径固定，按预设步骤执行</text>
+
+  <!-- VS -->
+  <text x="400" y="450" text-anchor="middle" font-family="sans-serif" font-size="20" font-weight="bold" fill="#409EFF">VS</text>
+
+  <!-- 右侧：Agent -->
+  <rect x="430" y="415" width="320" height="55" rx="8" fill="#E8F4FF" stroke="#409EFF" stroke-width="1"/>
+  <text x="590" y="435" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="bold" fill="#409EFF">Agent = 边走边建图</text>
+  <text x="590" y="458" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#409EFF">实时探索，动态发现新路径</text>
+
+</svg>

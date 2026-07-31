@@ -1,0 +1,171 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="800" height="500">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#e8f4fd;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#d0ecfb;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="brokerGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#409EFF;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#2b7ed4;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="treeGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#ffffff;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#f0f7ff;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="subGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#ffffff;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#f0f7ff;stop-opacity:1" />
+    </linearGradient>
+    <filter id="shadow" x="-5%" y="-5%" width="115%" height="115%">
+      <feDropShadow dx="1" dy="2" stdDeviation="3" flood-color="#1a1a2e" flood-opacity="0.12"/>
+    </filter>
+  </defs>
+
+  <!-- 背景 -->
+  <rect width="800" height="500" fill="url(#bgGrad)" rx="8"/>
+
+  <!-- 标题 -->
+  <text x="400" y="32" text-anchor="middle" font-family="Microsoft YaHei, SimHei, sans-serif" font-size="18" font-weight="bold" fill="#1a1a2e">基于主题的发布/订阅模式 — 分层主题命名与通配符匹配</text>
+
+  <!-- ==================== 左侧：主题层次树 ==================== -->
+  <rect x="20" y="50" width="240" height="420" rx="10" fill="url(#treeGrad)" stroke="#409EFF" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="140" y="78" text-anchor="middle" font-family="Microsoft YaHei, SimHei, sans-serif" font-size="14" font-weight="bold" fill="#1a1a2e">主题层次树</text>
+
+  <!-- 树形结构线 -->
+  <line x1="55" y1="95" x2="55" y2="440" stroke="#409EFF" stroke-width="1.5" stroke-dasharray="4,3" opacity="0.4"/>
+
+  <!-- 根节点 -->
+  <circle cx="55" cy="105" r="6" fill="#409EFF"/>
+  <text x="70" y="109" font-family="Microsoft YaHei, SimHei, sans-serif" font-size="13" fill="#1a1a2e" font-weight="bold">根 (root)</text>
+
+  <!-- task 分支 -->
+  <line x1="55" y1="105" x2="55" y2="140" stroke="#409EFF" stroke-width="1.5"/>
+  <line x1="55" y1="140" x2="70" y2="140" stroke="#409EFF" stroke-width="1.5"/>
+  <circle cx="55" cy="140" r="5" fill="#409EFF"/>
+  <text x="70" y="144" font-family="Microsoft YaHei, SimHei, sans-serif" font-size="13" fill="#1a1a2e">task</text>
+
+  <!-- task.research -->
+  <line x1="55" y1="140" x2="55" y2="175" stroke="#409EFF" stroke-width="1.5"/>
+  <line x1="55" y1="175" x2="70" y2="175" stroke="#409EFF" stroke-width="1.5"/>
+  <circle cx="55" cy="175" r="5" fill="#409EFF"/>
+  <text x="70" y="179" font-family="Microsoft YaHei, SimHei, sans-serif" font-size="13" fill="#1a1a2e">research</text>
+
+  <!-- task.research.completed -->
+  <line x1="55" y1="175" x2="55" y2="210" stroke="#409EFF" stroke-width="1.5"/>
+  <line x1="55" y1="210" x2="70" y2="210" stroke="#409EFF" stroke-width="1.5"/>
+  <circle cx="55" cy="210" r="5" fill="#409EFF"/>
+  <text x="70" y="214" font-family="Microsoft YaHei, SimHei, sans-serif" font-size="13" fill="#1a1a2e">completed</text>
+  <text x="180" y="214" text-anchor="end" font-family="Consolas, monospace" font-size="11" fill="#409EFF" opacity="0.8">task.research.completed</text>
+
+  <!-- task.research.failed -->
+  <line x1="55" y1="210" x2="55" y2="245" stroke="#409EFF" stroke-width="1.5"/>
+  <line x1="55" y1="245" x2="70" y2="245" stroke="#409EFF" stroke-width="1.5"/>
+  <circle cx="55" cy="245" r="5" fill="#409EFF"/>
+  <text x="70" y="249" font-family="Microsoft YaHei, SimHei, sans-serif" font-size="13" fill="#1a1a2e">failed</text>
+  <text x="180" y="249" text-anchor="end" font-family="Consolas, monospace" font-size="11" fill="#409EFF" opacity="0.8">task.research.failed</text>
+
+  <!-- system 分支 -->
+  <line x1="55" y1="245" x2="55" y2="285" stroke="#409EFF" stroke-width="1.5"/>
+  <line x1="55" y1="285" x2="70" y2="285" stroke="#409EFF" stroke-width="1.5"/>
+  <circle cx="55" cy="285" r="5" fill="#409EFF"/>
+  <text x="70" y="289" font-family="Microsoft YaHei, SimHei, sans-serif" font-size="13" fill="#1a1a2e">system</text>
+
+  <!-- system.alert -->
+  <line x1="55" y1="285" x2="55" y2="320" stroke="#409EFF" stroke-width="1.5"/>
+  <line x1="55" y1="320" x2="70" y2="320" stroke="#409EFF" stroke-width="1.5"/>
+  <circle cx="55" cy="320" r="5" fill="#409EFF"/>
+  <text x="70" y="324" font-family="Microsoft YaHei, SimHei, sans-serif" font-size="13" fill="#1a1a2e">alert</text>
+
+  <!-- system.alert.critical -->
+  <line x1="55" y1="320" x2="55" y2="355" stroke="#409EFF" stroke-width="1.5"/>
+  <line x1="55" y1="355" x2="70" y2="355" stroke="#409EFF" stroke-width="1.5"/>
+  <circle cx="55" cy="355" r="5" fill="#409EFF"/>
+  <text x="70" y="359" font-family="Microsoft YaHei, SimHei, sans-serif" font-size="13" fill="#1a1a2e">critical</text>
+  <text x="180" y="359" text-anchor="end" font-family="Consolas, monospace" font-size="11" fill="#409EFF" opacity="0.8">system.alert.critical</text>
+
+  <!-- data 分支 -->
+  <line x1="55" y1="355" x2="55" y2="395" stroke="#409EFF" stroke-width="1.5"/>
+  <line x1="55" y1="395" x2="70" y2="395" stroke="#409EFF" stroke-width="1.5"/>
+  <circle cx="55" cy="395" r="5" fill="#409EFF"/>
+  <text x="70" y="399" font-family="Microsoft YaHei, SimHei, sans-serif" font-size="13" fill="#1a1a2e">data</text>
+
+  <!-- data.updated -->
+  <line x1="55" y1="395" x2="55" y2="430" stroke="#409EFF" stroke-width="1.5"/>
+  <line x1="55" y1="430" x2="70" y2="430" stroke="#409EFF" stroke-width="1.5"/>
+  <circle cx="55" cy="430" r="5" fill="#409EFF"/>
+  <text x="70" y="434" font-family="Microsoft YaHei, SimHei, sans-serif" font-size="13" fill="#1a1a2e">updated</text>
+  <text x="180" y="434" text-anchor="end" font-family="Consolas, monospace" font-size="11" fill="#409EFF" opacity="0.8">data.updated.knowledge_base</text>
+
+  <!-- agent 分支 -->
+  <line x1="55" y1="430" x2="55" y2="455" stroke="#409EFF" stroke-width="1.5"/>
+  <line x1="55" y1="455" x2="70" y2="455" stroke="#409EFF" stroke-width="1.5"/>
+  <circle cx="55" cy="455" r="5" fill="#409EFF"/>
+  <text x="70" y="459" font-family="Microsoft YaHei, SimHei, sans-serif" font-size="13" fill="#1a1a2e">agent</text>
+  <text x="180" y="459" text-anchor="end" font-family="Consolas, monospace" font-size="11" fill="#409EFF" opacity="0.8">agent.status.online</text>
+
+  <!-- ==================== 中间：Broker ==================== -->
+  <rect x="290" y="130" width="180" height="240" rx="14" fill="url(#brokerGrad)" filter="url(#shadow)"/>
+  <text x="380" y="165" text-anchor="middle" font-family="Microsoft YaHei, SimHei, sans-serif" font-size="16" font-weight="bold" fill="#ffffff">消息代理</text>
+  <text x="380" y="190" text-anchor="middle" font-family="Microsoft YaHei, SimHei, sans-serif" font-size="13" fill="#ffffff" opacity="0.9">主题匹配引擎</text>
+
+  <!-- 匹配逻辑图示 -->
+  <rect x="310" y="210" width="140" height="36" rx="6" fill="#ffffff" opacity="0.2"/>
+  <text x="380" y="233" text-anchor="middle" font-family="Consolas, monospace" font-size="12" fill="#ffffff">topic → subscriber</text>
+
+  <rect x="310" y="256" width="140" height="36" rx="6" fill="#ffffff" opacity="0.2"/>
+  <text x="380" y="279" text-anchor="middle" font-family="Consolas, monospace" font-size="12" fill="#ffffff">模式匹配</text>
+
+  <rect x="310" y="302" width="140" height="36" rx="6" fill="#ffffff" opacity="0.2"/>
+  <text x="380" y="325" text-anchor="middle" font-family="Consolas, monospace" font-size="12" fill="#ffffff">路由分发</text>
+
+  <!-- 箭头：左 → 中 -->
+  <line x1="260" y1="250" x2="290" y2="250" stroke="#409EFF" stroke-width="2" marker-end="url(#arrowBlue)"/>
+  <defs>
+    <marker id="arrowBlue" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#409EFF"/>
+    </marker>
+    <marker id="arrowBlue2" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#409EFF"/>
+    </marker>
+  </defs>
+
+  <!-- 箭头：中 → 右 -->
+  <line x1="470" y1="250" x2="500" y2="250" stroke="#409EFF" stroke-width="2" marker-end="url(#arrowBlue2)"/>
+
+  <!-- ==================== 右侧：订阅者模式 ==================== -->
+  <rect x="510" y="50" width="270" height="420" rx="10" fill="url(#subGrad)" stroke="#409EFF" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="645" y="78" text-anchor="middle" font-family="Microsoft YaHei, SimHei, sans-serif" font-size="14" font-weight="bold" fill="#1a1a2e">订阅者模式</text>
+
+  <!-- 通配符说明 -->
+  <rect x="530" y="95" width="230" height="50" rx="6" fill="#f0f7ff" stroke="#409EFF" stroke-width="1"/>
+  <text x="645" y="115" text-anchor="middle" font-family="Consolas, monospace" font-size="13" fill="#1a1a2e" font-weight="bold">* 单级通配符</text>
+  <text x="645" y="135" text-anchor="middle" font-family="Microsoft YaHei, SimHei, sans-serif" font-size="11" fill="#666">匹配一个层级</text>
+
+  <!-- * 匹配示例 -->
+  <rect x="530" y="155" width="230" height="80" rx="6" fill="#ffffff" stroke="#e0e0e0" stroke-width="1"/>
+  <text x="540" y="175" font-family="Consolas, monospace" font-size="12" fill="#1a1a2e">task.*.completed</text>
+  <text x="540" y="195" font-family="Consolas, monospace" font-size="11" fill="#333">→ task.research.completed</text>
+  <text x="740" y="195" text-anchor="end" font-family="Microsoft YaHei, SimHei, sans-serif" font-size="14" fill="#67C23A">✓</text>
+  <text x="540" y="218" font-family="Consolas, monospace" font-size="11" fill="#333">→ task.research.sub.completed</text>
+  <text x="740" y="218" text-anchor="end" font-family="Microsoft YaHei, SimHei, sans-serif" font-size="14" fill="#F56C6C">✗</text>
+
+  <!-- # 通配符说明 -->
+  <rect x="530" y="248" width="230" height="50" rx="6" fill="#f0f7ff" stroke="#409EFF" stroke-width="1"/>
+  <text x="645" y="268" text-anchor="middle" font-family="Consolas, monospace" font-size="13" fill="#1a1a2e" font-weight="bold"># 多级通配符</text>
+  <text x="645" y="288" text-anchor="middle" font-family="Microsoft YaHei, SimHei, sans-serif" font-size="11" fill="#666">匹配多个层级</text>
+
+  <!-- # 匹配示例 -->
+  <rect x="530" y="308" width="230" height="80" rx="6" fill="#ffffff" stroke="#e0e0e0" stroke-width="1"/>
+  <text x="540" y="328" font-family="Consolas, monospace" font-size="12" fill="#1a1a2e">task.#</text>
+  <text x="540" y="348" font-family="Consolas, monospace" font-size="11" fill="#333">→ task.research.completed</text>
+  <text x="740" y="348" text-anchor="end" font-family="Microsoft YaHei, SimHei, sans-serif" font-size="14" fill="#67C23A">✓</text>
+  <text x="540" y="371" font-family="Consolas, monospace" font-size="11" fill="#333">→ task.research.failed</text>
+  <text x="740" y="371" text-anchor="end" font-family="Microsoft YaHei, SimHei, sans-serif" font-size="14" fill="#67C23A">✓</text>
+
+  <!-- 额外说明 -->
+  <rect x="530" y="400" width="230" height="55" rx="6" fill="#fef0f0" stroke="#F56C6C" stroke-width="1"/>
+  <text x="645" y="420" text-anchor="middle" font-family="Microsoft YaHei, SimHei, sans-serif" font-size="11" fill="#F56C6C" font-weight="bold">注意</text>
+  <text x="645" y="440" text-anchor="middle" font-family="Microsoft YaHei, SimHei, sans-serif" font-size="10" fill="#666">* 不匹配子层级主题</text>
+  <text x="645" y="452" text-anchor="middle" font-family="Microsoft YaHei, SimHei, sans-serif" font-size="10" fill="#666"># 匹配所有子层级主题</text>
+
+</svg>

@@ -1,0 +1,121 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="800" height="500">
+  <defs>
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#E8F4FD"/>
+      <stop offset="100%" stop-color="#D0EAF8"/>
+    </linearGradient>
+    <linearGradient id="rootGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#1a1a2e"/>
+      <stop offset="100%" stop-color="#2a2a4e"/>
+    </linearGradient>
+    <linearGradient id="loraGlow" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#409EFF"/>
+      <stop offset="100%" stop-color="#2070C0"/>
+    </linearGradient>
+    <filter id="shadow" x="-5%" y="-5%" width="115%" height="115%">
+      <feDropShadow dx="1" dy="2" stdDeviation="3" flood-color="#1a1a2e" flood-opacity="0.15"/>
+    </filter>
+    <filter id="loraShadow" x="-10%" y="-10%" width="130%" height="130%">
+      <feDropShadow dx="0" dy="0" stdDeviation="6" flood-color="#409EFF" flood-opacity="0.4"/>
+    </filter>
+  </defs>
+
+  <!-- 背景 -->
+  <rect width="800" height="500" fill="url(#bgGrad)" rx="8"/>
+
+  <!-- 标题 -->
+  <text x="400" y="42" text-anchor="middle" font-family="'Microsoft YaHei','PingFang SC',sans-serif" font-size="22" font-weight="bold" fill="#1a1a2e">PEFT 方法家族树状图</text>
+
+  <!-- 连接线：根节点到子节点 -->
+  <!-- 根到适配器 -->
+  <line x1="400" y1="90" x2="400" y2="130" stroke="#1a1a2e" stroke-width="2.5" opacity="0.6"/>
+  <line x1="400" y1="130" x2="140" y2="130" stroke="#1a1a2e" stroke-width="2.5" opacity="0.6"/>
+  <line x1="140" y1="130" x2="140" y2="165" stroke="#1a1a2e" stroke-width="2.5" opacity="0.6"/>
+
+  <!-- 根到前缀微调 -->
+  <line x1="400" y1="130" x2="310" y2="130" stroke="#1a1a2e" stroke-width="2.5" opacity="0.6"/>
+  <line x1="310" y1="130" x2="310" y2="165" stroke="#1a1a2e" stroke-width="2.5" opacity="0.6"/>
+
+  <!-- 根到提示微调 -->
+  <line x1="400" y1="130" x2="490" y2="130" stroke="#1a1a2e" stroke-width="2.5" opacity="0.6"/>
+  <line x1="490" y1="130" x2="490" y2="165" stroke="#1a1a2e" stroke-width="2.5" opacity="0.6"/>
+
+  <!-- 根到LoRA -->
+  <line x1="400" y1="130" x2="660" y2="130" stroke="#1a1a2e" stroke-width="2.5" opacity="0.6"/>
+  <line x1="660" y1="130" x2="660" y2="165" stroke="#1a1a2e" stroke-width="2.5" opacity="0.6"/>
+
+  <!-- 根节点 -->
+  <rect x="320" y="55" width="160" height="38" rx="19" fill="url(#rootGrad)" filter="url(#shadow)"/>
+  <text x="400" y="80" text-anchor="middle" font-family="'Microsoft YaHei','PingFang SC',sans-serif" font-size="16" font-weight="bold" fill="#FFFFFF">PEFT 方法</text>
+
+  <!-- ===== 适配器节点 ===== -->
+  <rect x="90" y="168" width="100" height="36" rx="18" fill="#FFFFFF" stroke="#1a1a2e" stroke-width="1.8" filter="url(#shadow)"/>
+  <text x="140" y="191" text-anchor="middle" font-family="'Microsoft YaHei','PingFang SC',sans-serif" font-size="15" font-weight="bold" fill="#1a1a2e">适配器</text>
+  <!-- 插头图标 -->
+  <rect x="105" y="174" width="8" height="12" rx="2" fill="#808080" opacity="0.7"/>
+  <rect x="107" y="170" width="4" height="6" rx="1" fill="#808080" opacity="0.7"/>
+
+  <!-- ===== 前缀微调节点 ===== -->
+  <rect x="260" y="168" width="100" height="36" rx="18" fill="#FFFFFF" stroke="#1a1a2e" stroke-width="1.8" filter="url(#shadow)"/>
+  <text x="310" y="191" text-anchor="middle" font-family="'Microsoft YaHei','PingFang SC',sans-serif" font-size="15" font-weight="bold" fill="#1a1a2e">前缀微调</text>
+  <!-- 虚拟令牌标签图标 -->
+  <rect x="275" y="176" width="6" height="8" rx="1" fill="#808080" opacity="0.7"/>
+  <rect x="284" y="176" width="6" height="8" rx="1" fill="#808080" opacity="0.7"/>
+  <rect x="293" y="176" width="6" height="8" rx="1" fill="#808080" opacity="0.7"/>
+
+  <!-- ===== 提示微调节点 ===== -->
+  <rect x="440" y="168" width="100" height="36" rx="18" fill="#FFFFFF" stroke="#1a1a2e" stroke-width="1.8" filter="url(#shadow)"/>
+  <text x="490" y="191" text-anchor="middle" font-family="'Microsoft YaHei','PingFang SC',sans-serif" font-size="15" font-weight="bold" fill="#1a1a2e">提示微调</text>
+  <!-- 软提示向量图标 -->
+  <ellipse cx="458" cy="186" rx="5" ry="4" fill="none" stroke="#808080" stroke-width="1.5" opacity="0.7"/>
+  <ellipse cx="465" cy="186" rx="5" ry="4" fill="none" stroke="#808080" stroke-width="1.5" opacity="0.7"/>
+  <ellipse cx="472" cy="186" rx="5" ry="4" fill="none" stroke="#808080" stroke-width="1.5" opacity="0.7"/>
+
+  <!-- ===== LoRA节点（高亮） ===== -->
+  <rect x="610" y="165" width="100" height="42" rx="21" fill="url(#loraGlow)" filter="url(#loraShadow)" stroke="#409EFF" stroke-width="2"/>
+  <text x="660" y="190" text-anchor="middle" font-family="'Microsoft YaHei','PingFang SC',sans-serif" font-size="16" font-weight="bold" fill="#FFFFFF">LoRA</text>
+  <!-- 低秩矩阵分解 BA 图标 -->
+  <text x="628" y="188" font-family="'Times New Roman',serif" font-size="13" font-weight="bold" fill="#FFFFFF" opacity="0.9">B</text>
+  <text x="648" y="188" font-family="'Times New Roman',serif" font-size="13" font-weight="bold" fill="#FFFFFF" opacity="0.9">A</text>
+
+  <!-- LoRA 优势列表 -->
+  <rect x="595" y="218" width="130" height="72" rx="8" fill="#FFFFFF" stroke="#409EFF" stroke-width="1.5" opacity="0.95" filter="url(#shadow)"/>
+  <text x="660" y="238" text-anchor="middle" font-family="'Microsoft YaHei','PingFang SC',sans-serif" font-size="13" fill="#1a1a2e">优势：</text>
+  <text x="660" y="257" text-anchor="middle" font-family="'Microsoft YaHei','PingFang SC',sans-serif" font-size="12" fill="#409EFF">零推理延迟</text>
+  <text x="660" y="273" text-anchor="middle" font-family="'Microsoft YaHei','PingFang SC',sans-serif" font-size="12" fill="#409EFF">可合并 · 存储小</text>
+
+  <!-- 标注1：树结构说明 -->
+  <rect x="30" y="310" width="160" height="28" rx="14" fill="#1a1a2e" opacity="0.08"/>
+  <text x="110" y="329" text-anchor="middle" font-family="'Microsoft YaHei','PingFang SC',sans-serif" font-size="13" fill="#1a1a2e" opacity="0.7">▲ 参数高效微调</text>
+
+  <!-- 标注2：适配器说明 -->
+  <rect x="30" y="350" width="180" height="28" rx="14" fill="#1a1a2e" opacity="0.08"/>
+  <text x="120" y="369" text-anchor="middle" font-family="'Microsoft YaHei','PingFang SC',sans-serif" font-size="13" fill="#1a1a2e" opacity="0.7">■ 插入小型网络层</text>
+
+  <!-- 标注3：前缀微调说明 -->
+  <rect x="30" y="390" width="180" height="28" rx="14" fill="#1a1a2e" opacity="0.08"/>
+  <text x="120" y="409" text-anchor="middle" font-family="'Microsoft YaHei','PingFang SC',sans-serif" font-size="13" fill="#1a1a2e" opacity="0.7">◆ 添加虚拟令牌</text>
+
+  <!-- 标注4：提示微调说明 -->
+  <rect x="30" y="430" width="180" height="28" rx="14" fill="#1a1a2e" opacity="0.08"/>
+  <text x="120" y="449" text-anchor="middle" font-family="'Microsoft YaHei','PingFang SC',sans-serif" font-size="13" fill="#1a1a2e" opacity="0.7">● 学习软提示向量</text>
+
+  <!-- 标注5：LoRA 说明 -->
+  <rect x="540" y="310" width="220" height="28" rx="14" fill="#409EFF" opacity="0.12"/>
+  <text x="650" y="329" text-anchor="middle" font-family="'Microsoft YaHei','PingFang SC',sans-serif" font-size="13" fill="#409EFF" font-weight="bold">★ 低秩矩阵分解</text>
+
+  <!-- 标注6：应用场景 -->
+  <rect x="540" y="350" width="220" height="28" rx="14" fill="#409EFF" opacity="0.12"/>
+  <text x="650" y="369" text-anchor="middle" font-family="'Microsoft YaHei','PingFang SC',sans-serif" font-size="13" fill="#409EFF" font-weight="bold">★ 大语言模型微调</text>
+
+  <!-- 标注7：效率 -->
+  <rect x="540" y="390" width="220" height="28" rx="14" fill="#409EFF" opacity="0.12"/>
+  <text x="650" y="409" text-anchor="middle" font-family="'Microsoft YaHei','PingFang SC',sans-serif" font-size="13" fill="#409EFF" font-weight="bold">★ 显存占用减少</text>
+
+  <!-- 标注8：训练速度 -->
+  <rect x="540" y="430" width="220" height="28" rx="14" fill="#409EFF" opacity="0.12"/>
+  <text x="650" y="449" text-anchor="middle" font-family="'Microsoft YaHei','PingFang SC',sans-serif" font-size="13" fill="#409EFF" font-weight="bold">★ 训练速度提升</text>
+
+  <!-- 底部装饰线 -->
+  <line x1="200" y1="475" x2="600" y2="475" stroke="#1a1a2e" stroke-width="1" opacity="0.1"/>
+</svg>

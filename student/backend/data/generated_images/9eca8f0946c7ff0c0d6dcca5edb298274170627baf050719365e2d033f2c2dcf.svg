@@ -1,0 +1,202 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="800" height="500">
+  <defs>
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#E8F4FD"/>
+      <stop offset="100%" stop-color="#F0F8FF"/>
+    </linearGradient>
+    <linearGradient id="boardGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#2C3E50"/>
+      <stop offset="100%" stop-color="#1a1a2e"/>
+    </linearGradient>
+    <linearGradient id="cardGrad1" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#FFFFFF"/>
+      <stop offset="100%" stop-color="#F5F9FF"/>
+    </linearGradient>
+    <filter id="shadow" x="-2" y="-2" width="104%" height="108%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#409EFF" flood-opacity="0.15"/>
+    </filter>
+    <filter id="shadowDeep" x="-2" y="-2" width="104%" height="108%">
+      <feDropShadow dx="0" dy="3" stdDeviation="4" flood-color="#1a1a2e" flood-opacity="0.2"/>
+    </filter>
+  </defs>
+
+  <!-- 背景 -->
+  <rect width="800" height="500" fill="url(#bgGrad)" rx="0"/>
+
+  <!-- 黑板主体 -->
+  <rect x="60" y="40" width="680" height="420" rx="12" fill="url(#boardGrad)" filter="url(#shadowDeep)"/>
+  <rect x="60" y="40" width="680" height="420" rx="12" fill="none" stroke="#409EFF" stroke-width="2" opacity="0.3"/>
+  
+  <!-- 黑板边框高光 -->
+  <rect x="62" y="42" width="676" height="416" rx="10" fill="none" stroke="#409EFF" stroke-width="1" opacity="0.15"/>
+
+  <!-- 黑板标题 -->
+  <text x="400" y="78" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#409EFF">智能体黑板交互系统</text>
+  <line x1="240" y1="88" x2="560" y2="88" stroke="#409EFF" stroke-width="1" opacity="0.4"/>
+
+  <!-- ==================== 左侧：发布区域 ==================== -->
+  <text x="100" y="115" font-family="Arial, sans-serif" font-size="15" font-weight="bold" fill="#409EFF">发布</text>
+  <line x1="100" y1="122" x2="155" y2="122" stroke="#409EFF" stroke-width="1.5" opacity="0.6"/>
+
+  <!-- 发布箭头 -->
+  <path d="M 260 140 L 290 140 L 275 128 Z" fill="#409EFF" opacity="0.7"/>
+  <line x1="230" y1="140" x2="260" y2="140" stroke="#409EFF" stroke-width="1.5" opacity="0.5"/>
+
+  <!-- 卡片1：任务请求 -->
+  <g filter="url(#shadow)">
+    <rect x="95" y="132" width="155" height="80" rx="6" fill="url(#cardGrad1)" stroke="#409EFF" stroke-width="1.2"/>
+    <rect x="95" y="132" width="155" height="22" rx="6" fill="#409EFF" opacity="0.15"/>
+    <text x="105" y="148" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#1a1a2e">📋 任务请求</text>
+    <text x="105" y="167" font-family="Arial, sans-serif" font-size="10" fill="#555">标签: 数据清洗</text>
+    <text x="105" y="182" font-family="Arial, sans-serif" font-size="10" fill="#555">技能: Python</text>
+    <text x="105" y="197" font-family="Arial, sans-serif" font-size="10" fill="#409EFF">优先级: 高 | 待认领</text>
+  </g>
+
+  <!-- 卡片2：任务结果 -->
+  <g filter="url(#shadow)">
+    <rect x="95" y="222" width="155" height="80" rx="6" fill="url(#cardGrad1)" stroke="#409EFF" stroke-width="1.2"/>
+    <rect x="95" y="222" width="155" height="22" rx="6" fill="#409EFF" opacity="0.15"/>
+    <text x="105" y="238" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#1a1a2e">✅ 任务结果</text>
+    <text x="105" y="257" font-family="Arial, sans-serif" font-size="10" fill="#555">标签: 完成报告</text>
+    <text x="105" y="272" font-family="Arial, sans-serif" font-size="10" fill="#555">状态: 已完成</text>
+    <text x="105" y="287" font-family="Arial, sans-serif" font-size="10" fill="#409EFF">关联: 任务#1024</text>
+  </g>
+
+  <!-- 卡片3：知识 -->
+  <g filter="url(#shadow)">
+    <rect x="95" y="312" width="155" height="80" rx="6" fill="url(#cardGrad1)" stroke="#409EFF" stroke-width="1.2"/>
+    <rect x="95" y="312" width="155" height="22" rx="6" fill="#409EFF" opacity="0.15"/>
+    <text x="105" y="328" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#1a1a2e">💡 知识</text>
+    <text x="105" y="347" font-family="Arial, sans-serif" font-size="10" fill="#555">标签: 算法</text>
+    <text x="105" y="362" font-family="Arial, sans-serif" font-size="10" fill="#555">关键词: 排序</text>
+    <text x="105" y="377" font-family="Arial, sans-serif" font-size="10" fill="#409EFF">版本: v2.1</text>
+  </g>
+
+  <!-- 左侧发布智能体图标 -->
+  <circle cx="75" cy="200" r="14" fill="#409EFF" opacity="0.2"/>
+  <circle cx="75" cy="200" r="10" fill="#409EFF" opacity="0.4"/>
+  <text x="75" y="204" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#fff">发</text>
+
+  <!-- ==================== 中央：黑板核心 ==================== -->
+  <rect x="270" y="100" width="260" height="320" rx="8" fill="#1a1a2e" stroke="#409EFF" stroke-width="1.5" opacity="0.8"/>
+  <rect x="270" y="100" width="260" height="320" rx="8" fill="#409EFF" opacity="0.05"/>
+  
+  <!-- 黑板网格线 -->
+  <line x1="290" y1="140" x2="510" y2="140" stroke="#409EFF" stroke-width="0.5" opacity="0.2"/>
+  <line x1="290" y1="200" x2="510" y2="200" stroke="#409EFF" stroke-width="0.5" opacity="0.2"/>
+  <line x1="290" y1="260" x2="510" y2="260" stroke="#409EFF" stroke-width="0.5" opacity="0.2"/>
+  <line x1="290" y1="320" x2="510" y2="320" stroke="#409EFF" stroke-width="0.5" opacity="0.2"/>
+  <line x1="290" y1="380" x2="510" y2="380" stroke="#409EFF" stroke-width="0.5" opacity="0.2"/>
+
+  <!-- 黑板标题 -->
+  <text x="400" y="128" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#409EFF">黑板</text>
+
+  <!-- 黑板上的条目 -->
+  <text x="295" y="160" font-family="Arial, sans-serif" font-size="11" fill="#CCD">📋 任务请求 #1024</text>
+  <text x="295" y="178" font-family="Arial, sans-serif" font-size="10" fill="#889">  技能: Python, SQL</text>
+
+  <text x="295" y="220" font-family="Arial, sans-serif" font-size="11" fill="#CCD">✅ 任务结果 #1024</text>
+  <text x="295" y="238" font-family="Arial, sans-serif" font-size="10" fill="#889">  状态: 已完成</text>
+
+  <text x="295" y="280" font-family="Arial, sans-serif" font-size="11" fill="#CCD">💡 知识: 排序算法</text>
+  <text x="295" y="298" font-family="Arial, sans-serif" font-size="10" fill="#889">  标签: 算法, 数据结构</text>
+
+  <text x="295" y="340" font-family="Arial, sans-serif" font-size="11" fill="#CCD">📋 任务请求 #1025</text>
+  <text x="295" y="358" font-family="Arial, sans-serif" font-size="10" fill="#889">  技能: Java, 分布式</text>
+
+  <text x="295" y="400" font-family="Arial, sans-serif" font-size="11" fill="#CCD">✅ 任务结果 #1023</text>
+  <text x="295" y="418" font-family="Arial, sans-serif" font-size="10" fill="#889">  关联: 任务#1023</text>
+
+  <!-- CAS 锁图标 -->
+  <circle cx="400" cy="450" r="16" fill="#409EFF" opacity="0.15"/>
+  <circle cx="400" cy="450" r="12" fill="#409EFF" opacity="0.3"/>
+  <text x="400" y="454" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#fff">🔒</text>
+  <text x="400" y="480" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#409EFF">CAS 原子认领</text>
+
+  <!-- ==================== 右侧：读取区域 ==================== -->
+  <text x="640" y="115" font-family="Arial, sans-serif" font-size="15" font-weight="bold" fill="#409EFF">读取</text>
+  <line x1="640" y1="122" x2="695" y2="122" stroke="#409EFF" stroke-width="1.5" opacity="0.6"/>
+
+  <!-- 读取箭头 -->
+  <path d="M 540 140 L 510 140 L 525 128 Z" fill="#409EFF" opacity="0.7"/>
+  <line x1="570" y1="140" x2="540" y2="140" stroke="#409EFF" stroke-width="1.5" opacity="0.5"/>
+
+  <!-- 卡片4：查找可用任务 -->
+  <g filter="url(#shadow)">
+    <rect x="550" y="132" width="155" height="80" rx="6" fill="url(#cardGrad1)" stroke="#409EFF" stroke-width="1.2"/>
+    <rect x="550" y="132" width="155" height="22" rx="6" fill="#409EFF" opacity="0.15"/>
+    <text x="560" y="148" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#1a1a2e">🔍 查找可用任务</text>
+    <text x="560" y="167" font-family="Arial, sans-serif" font-size="10" fill="#555">过滤: 技能匹配</text>
+    <text x="560" y="182" font-family="Arial, sans-serif" font-size="10" fill="#555">关键词: Python</text>
+    <text x="560" y="197" font-family="Arial, sans-serif" font-size="10" fill="#409EFF">结果: 3 个任务</text>
+  </g>
+
+  <!-- 卡片5：读取知识 -->
+  <g filter="url(#shadow)">
+    <rect x="550" y="222" width="155" height="80" rx="6" fill="url(#cardGrad1)" stroke="#409EFF" stroke-width="1.2"/>
+    <rect x="550" y="222" width="155" height="22" rx="6" fill="#409EFF" opacity="0.15"/>
+    <text x="560" y="238" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#1a1a2e">📖 读取知识</text>
+    <text x="560" y="257" font-family="Arial, sans-serif" font-size="10" fill="#555">搜索: 标签</text>
+    <text x="560" y="272" font-family="Arial, sans-serif" font-size="10" fill="#555">关键词: 算法</text>
+    <text x="560" y="287" font-family="Arial, sans-serif" font-size="10" fill="#409EFF">结果: 2 条知识</text>
+  </g>
+
+  <!-- 卡片6：读取结果 -->
+  <g filter="url(#shadow)">
+    <rect x="550" y="312" width="155" height="80" rx="6" fill="url(#cardGrad1)" stroke="#409EFF" stroke-width="1.2"/>
+    <rect x="550" y="312" width="155" height="22" rx="6" fill="#409EFF" opacity="0.15"/>
+    <text x="560" y="328" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#1a1a2e">📊 读取结果</text>
+    <text x="560" y="347" font-family="Arial, sans-serif" font-size="10" fill="#555">追踪: 父任务</text>
+    <text x="560" y="362" font-family="Arial, sans-serif" font-size="10" fill="#555">链接: 任务#1024</text>
+    <text x="560" y="377" font-family="Arial, sans-serif" font-size="10" fill="#409EFF">状态: 已完成</text>
+  </g>
+
+  <!-- 右侧读取智能体图标 -->
+  <circle cx="725" cy="200" r="14" fill="#409EFF" opacity="0.2"/>
+  <circle cx="725" cy="200" r="10" fill="#409EFF" opacity="0.4"/>
+  <text x="725" y="204" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#fff">读</text>
+
+  <!-- ==================== 标注 ==================== -->
+  <!-- 标注1：发布 -->
+  <g>
+    <circle cx="172" cy="115" r="10" fill="#409EFF"/>
+    <text x="172" y="119" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#fff">1</text>
+    <text x="190" y="119" font-family="Arial, sans-serif" font-size="11" fill="#1a1a2e">发布条目</text>
+  </g>
+
+  <!-- 标注2：读取 -->
+  <g>
+    <circle cx="627" cy="115" r="10" fill="#409EFF"/>
+    <text x="627" y="119" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#fff">2</text>
+    <text x="645" y="119" font-family="Arial, sans-serif" font-size="11" fill="#1a1a2e">读取查询</text>
+  </g>
+
+  <!-- 标注3：黑板 -->
+  <g>
+    <circle cx="400" cy="100" r="10" fill="#409EFF"/>
+    <text x="400" y="104" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#fff">3</text>
+    <text x="418" y="104" font-family="Arial, sans-serif" font-size="11" fill="#1a1a2e">共享黑板</text>
+  </g>
+
+  <!-- 标注4：CAS -->
+  <g>
+    <circle cx="400" cy="450" r="10" fill="#409EFF"/>
+    <text x="400" y="454" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#fff">4</text>
+    <text x="418" y="454" font-family="Arial, sans-serif" font-size="11" fill="#1a1a2e">CAS 锁</text>
+  </g>
+
+  <!-- 标注5：元数据 -->
+  <g>
+    <circle cx="172" cy="170" r="10" fill="#409EFF" opacity="0.8"/>
+    <text x="172" y="174" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#fff">5</text>
+    <text x="190" y="174" font-family="Arial, sans-serif" font-size="11" fill="#1a1a2e">元数据</text>
+  </g>
+
+  <!-- 标注6：过滤 -->
+  <g>
+    <circle cx="627" cy="170" r="10" fill="#409EFF" opacity="0.8"/>
+    <text x="627" y="174" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#fff">6</text>
+    <text x="645" y="174" font-family="Arial, sans-serif" font-size="11" fill="#1a1a2e">过滤匹配</text>
+  </g>
+
+</svg>

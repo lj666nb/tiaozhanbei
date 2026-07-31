@@ -1,0 +1,146 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="800" height="500">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#f0f7ff;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#e0f0ff;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="nominalGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#409EFF;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#6ab7ff;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="effectiveGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#1a1a2e;stop-opacity:0.8" />
+      <stop offset="100%" style="stop-color:#3a3a5e;stop-opacity:0.8" />
+    </linearGradient>
+  </defs>
+
+  <!-- 背景 -->
+  <rect width="800" height="500" fill="url(#bgGrad)" rx="8"/>
+
+  <!-- 标题 -->
+  <text x="400" y="38" text-anchor="middle" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#1a1a2e">上下文窗口演进（2020-2025）</text>
+
+  <!-- ===== 上半部分：时间线 ===== -->
+  <g transform="translate(0, 60)">
+    <!-- 时间线横轴 -->
+    <line x1="60" y1="45" x2="760" y2="45" stroke="#1a1a2e" stroke-width="2.5" stroke-linecap="round"/>
+
+    <!-- 刻度点与标签 -->
+    <!-- 2K GPT-3 2020 -->
+    <circle cx="80" cy="45" r="6" fill="#409EFF"/>
+    <text x="80" y="30" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#1a1a2e" font-weight="bold">2K</text>
+    <text x="80" y="68" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#1a1a2e">GPT-3</text>
+    <text x="80" y="82" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#666">2020</text>
+
+    <!-- 4K GPT-3.5 2022 -->
+    <circle cx="200" cy="45" r="6" fill="#409EFF"/>
+    <text x="200" y="30" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#1a1a2e" font-weight="bold">4K</text>
+    <text x="200" y="68" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#1a1a2e">GPT-3.5</text>
+    <text x="200" y="82" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#666">2022</text>
+
+    <!-- 8K -->
+    <circle cx="310" cy="45" r="5" fill="#409EFF"/>
+    <text x="310" y="30" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#1a1a2e" font-weight="bold">8K</text>
+    <text x="310" y="68" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#1a1a2e">Claude</text>
+    <text x="310" y="82" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#666">2023</text>
+
+    <!-- 32K GPT-4 -->
+    <circle cx="410" cy="45" r="6" fill="#409EFF"/>
+    <text x="410" y="30" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#1a1a2e" font-weight="bold">32K</text>
+    <text x="410" y="68" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#1a1a2e">GPT-4</text>
+    <text x="410" y="82" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#666">2023</text>
+
+    <!-- 128K Claude 2.1 -->
+    <circle cx="520" cy="45" r="6" fill="#409EFF"/>
+    <text x="520" y="30" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#1a1a2e" font-weight="bold">128K</text>
+    <text x="520" y="68" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#1a1a2e">Claude 2.1</text>
+    <text x="520" y="82" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#666">2023</text>
+
+    <!-- 200K Claude 3 -->
+    <circle cx="620" cy="45" r="6" fill="#409EFF"/>
+    <text x="620" y="30" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#1a1a2e" font-weight="bold">200K</text>
+    <text x="620" y="68" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#1a1a2e">Claude 3</text>
+    <text x="620" y="82" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#666">2024</text>
+
+    <!-- 1M-2M Gemini 1.5 Pro -->
+    <circle cx="730" cy="45" r="8" fill="#409EFF"/>
+    <text x="730" y="25" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#1a1a2e" font-weight="bold">1M-2M</text>
+    <text x="730" y="68" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#1a1a2e">Gemini 1.5</text>
+    <text x="730" y="82" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#666">2024-25</text>
+
+    <!-- 技术图标标注 -->
+    <!-- RoPE -->
+    <g transform="translate(140, 95)">
+      <rect x="-28" y="-10" width="56" height="20" rx="10" fill="#e8f4ff" stroke="#409EFF" stroke-width="1"/>
+      <text x="0" y="4" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#409EFF">RoPE</text>
+    </g>
+
+    <!-- FlashAttention -->
+    <g transform="translate(360, 95)">
+      <rect x="-38" y="-10" width="76" height="20" rx="10" fill="#e8f4ff" stroke="#409EFF" stroke-width="1"/>
+      <text x="0" y="4" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#409EFF">FlashAttention</text>
+    </g>
+
+    <!-- KV-Cache -->
+    <g transform="translate(570, 95)">
+      <rect x="-38" y="-10" width="76" height="20" rx="10" fill="#e8f4ff" stroke="#409EFF" stroke-width="1"/>
+      <text x="0" y="4" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#409EFF">KV-Cache压缩</text>
+    </g>
+  </g>
+
+  <!-- ===== 下半部分：对比柱状图 ===== -->
+  <g transform="translate(0, 200)">
+    <rect x="30" y="0" width="740" height="270" rx="6" fill="white" fill-opacity="0.7" stroke="#d0e4f5" stroke-width="1"/>
+
+    <text x="400" y="28" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#1a1a2e">标称窗口 vs 有效窗口对比</text>
+
+    <!-- 图例 -->
+    <rect x="240" y="40" width="16" height="12" rx="2" fill="url(#nominalGrad)"/>
+    <text x="262" y="51" font-family="Arial, sans-serif" font-size="12" fill="#1a1a2e">标称窗口</text>
+    <rect x="370" y="40" width="16" height="12" rx="2" fill="url(#effectiveGrad)"/>
+    <text x="392" y="51" font-family="Arial, sans-serif" font-size="12" fill="#1a1a2e">有效窗口</text>
+
+    <!-- 图表区域 -->
+    <g transform="translate(0, 70)">
+      <!-- Y轴标签 -->
+      <text x="50" y="30" text-anchor="end" font-family="Arial, sans-serif" font-size="12" fill="#1a1a2e">GPT-3</text>
+      <text x="50" y="70" text-anchor="end" font-family="Arial, sans-serif" font-size="12" fill="#1a1a2e">GPT-3.5</text>
+      <text x="50" y="110" text-anchor="end" font-family="Arial, sans-serif" font-size="12" fill="#1a1a2e">GPT-4</text>
+      <text x="50" y="150" text-anchor="end" font-family="Arial, sans-serif" font-size="12" fill="#1a1a2e">Claude 2.1</text>
+      <text x="50" y="190" text-anchor="end" font-family="Arial, sans-serif" font-size="12" fill="#1a1a2e">Claude 3</text>
+
+      <!-- GPT-3: 2K vs 1.8K -->
+      <rect x="65" y="18" width="120" height="20" rx="3" fill="url(#nominalGrad)"/>
+      <text x="190" y="34" font-family="Arial, sans-serif" font-size="11" fill="#409EFF">2K</text>
+      <rect x="65" y="42" width="108" height="20" rx="3" fill="url(#effectiveGrad)"/>
+      <text x="178" y="57" font-family="Arial, sans-serif" font-size="11" fill="#1a1a2e">1.8K</text>
+
+      <!-- GPT-3.5: 4K vs 3.2K -->
+      <rect x="65" y="58" width="180" height="20" rx="3" fill="url(#nominalGrad)"/>
+      <text x="250" y="74" font-family="Arial, sans-serif" font-size="11" fill="#409EFF">4K</text>
+      <rect x="65" y="82" width="144" height="20" rx="3" fill="url(#effectiveGrad)"/>
+      <text x="214" y="97" font-family="Arial, sans-serif" font-size="11" fill="#1a1a2e">3.2K</text>
+
+      <!-- GPT-4: 32K vs 20K -->
+      <rect x="65" y="98" width="280" height="20" rx="3" fill="url(#nominalGrad)"/>
+      <text x="350" y="114" font-family="Arial, sans-serif" font-size="11" fill="#409EFF">32K</text>
+      <rect x="65" y="122" width="175" height="20" rx="3" fill="url(#effectiveGrad)"/>
+      <text x="245" y="137" font-family="Arial, sans-serif" font-size="11" fill="#1a1a2e">20K</text>
+
+      <!-- Claude 2.1: 128K vs 64K -->
+      <rect x="65" y="138" width="380" height="20" rx="3" fill="url(#nominalGrad)"/>
+      <text x="450" y="154" font-family="Arial, sans-serif" font-size="11" fill="#409EFF">128K</text>
+      <rect x="65" y="162" width="190" height="20" rx="3" fill="url(#effectiveGrad)"/>
+      <text x="260" y="177" font-family="Arial, sans-serif" font-size="11" fill="#1a1a2e">64K</text>
+
+      <!-- Claude 3: 200K vs 120K -->
+      <rect x="65" y="178" width="420" height="20" rx="3" fill="url(#nominalGrad)"/>
+      <text x="490" y="194" font-family="Arial, sans-serif" font-size="11" fill="#409EFF">200K</text>
+      <rect x="65" y="202" width="252" height="20" rx="3" fill="url(#effectiveGrad)"/>
+      <text x="322" y="217" font-family="Arial, sans-serif" font-size="11" fill="#1a1a2e">120K</text>
+    </g>
+  </g>
+
+  <!-- 底部说明 -->
+  <text x="400" y="488" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#888">注：有效窗口为实际可稳定处理的长文本长度，通常短于标称窗口</text>
+</svg>

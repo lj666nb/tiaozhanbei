@@ -1,0 +1,115 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="800" height="500">
+  <defs>
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#E8F4FD"/>
+      <stop offset="100%" stop-color="#D0ECFA"/>
+    </linearGradient>
+    <linearGradient id="clipGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#FFFFFF"/>
+      <stop offset="100%" stop-color="#F0F8FF"/>
+    </linearGradient>
+  </defs>
+
+  <!-- 背景 -->
+  <rect width="800" height="500" fill="url(#bgGrad)" rx="8"/>
+
+  <!-- 顶部标语 -->
+  <text x="400" y="52" text-anchor="middle" font-family="sans-serif" font-size="28" font-weight="bold" fill="#1a1a2e" letter-spacing="3">
+    “信任但验证”
+  </text>
+  <text x="400" y="78" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#409EFF" opacity="0.7">
+    Trust but Verify
+  </text>
+
+  <!-- 中央剪贴板 -->
+  <g transform="translate(400, 280)">
+    <!-- 剪贴板主体 -->
+    <rect x="-120" y="-100" width="240" height="200" rx="12" fill="url(#clipGrad)" stroke="#409EFF" stroke-width="2.5"/>
+    <!-- 顶部夹子 -->
+    <rect x="-30" y="-115" width="60" height="20" rx="6" fill="#409EFF"/>
+    <circle cx="0" cy="-105" r="5" fill="#1a1a2e"/>
+    <!-- 内框 -->
+    <rect x="-100" y="-80" width="200" height="160" rx="6" fill="none" stroke="#E0E8F0" stroke-width="1"/>
+
+    <!-- 清单项目 -->
+    <g font-family="sans-serif" font-size="13" fill="#1a1a2e">
+      <!-- 1. 人工审核 -->
+      <g transform="translate(-85, -60)">
+        <rect x="0" y="-8" width="16" height="16" rx="3" fill="#409EFF"/>
+        <polyline points="3,0 7,5 13,-3" stroke="white" stroke-width="2" fill="none" stroke-linecap="round"/>
+        <circle cx="24" cy="0" r="7" fill="none" stroke="#1a1a2e" stroke-width="1.5"/>
+        <circle cx="24" cy="-3" r="2.5" fill="#1a1a2e"/>
+        <line x1="20" y1="4" x2="28" y2="4" stroke="#1a1a2e" stroke-width="1.5"/>
+        <text x="40" y="4" font-size="13">人工审核</text>
+      </g>
+
+      <!-- 2. RAG 溯源 -->
+      <g transform="translate(-85, -30)">
+        <rect x="0" y="-8" width="16" height="16" rx="3" fill="#409EFF"/>
+        <polyline points="3,0 7,5 13,-3" stroke="white" stroke-width="2" fill="none" stroke-linecap="round"/>
+        <rect x="22" y="-6" width="12" height="12" rx="2" fill="none" stroke="#1a1a2e" stroke-width="1.5"/>
+        <line x1="25" y1="0" x2="31" y2="0" stroke="#1a1a2e" stroke-width="1"/>
+        <line x1="25" y1="3" x2="29" y2="3" stroke="#1a1a2e" stroke-width="1"/>
+        <text x="40" y="4" font-size="13">RAG 溯源</text>
+      </g>
+
+      <!-- 3. 提示诚实 -->
+      <g transform="translate(-85, 0)">
+        <rect x="0" y="-8" width="16" height="16" rx="3" fill="#409EFF"/>
+        <polyline points="3,0 7,5 13,-3" stroke="white" stroke-width="2" fill="none" stroke-linecap="round"/>
+        <rect x="22" y="-7" width="14" height="12" rx="6" fill="none" stroke="#1a1a2e" stroke-width="1.5"/>
+        <text x="26" y="2" font-size="8" fill="#1a1a2e">?</text>
+        <text x="40" y="4" font-size="13">提示诚实</text>
+      </g>
+
+      <!-- 4. 低温度 -->
+      <g transform="translate(-85, 30)">
+        <rect x="0" y="-8" width="16" height="16" rx="3" fill="#409EFF"/>
+        <polyline points="3,0 7,5 13,-3" stroke="white" stroke-width="2" fill="none" stroke-linecap="round"/>
+        <rect x="22" y="-7" width="6" height="14" rx="3" fill="#409EFF"/>
+        <circle cx="25" cy="7" r="3" fill="#409EFF"/>
+        <text x="40" y="4" font-size="13">低温度 0.3</text>
+      </g>
+
+      <!-- 5. 外部验证 -->
+      <g transform="translate(15, -60)">
+        <rect x="0" y="-8" width="16" height="16" rx="3" fill="#409EFF"/>
+        <polyline points="3,0 7,5 13,-3" stroke="white" stroke-width="2" fill="none" stroke-linecap="round"/>
+        <rect x="22" y="-7" width="14" height="14" rx="3" fill="none" stroke="#1a1a2e" stroke-width="1.5"/>
+        <polyline points="25,-2 29,2 33,-4" stroke="#1a1a2e" stroke-width="1.5" fill="none"/>
+        <text x="40" y="4" font-size="13">外部验证</text>
+      </g>
+
+      <!-- 6. 透明界面 -->
+      <g transform="translate(15, -30)">
+        <rect x="0" y="-8" width="16" height="16" rx="3" fill="#409EFF"/>
+        <polyline points="3,0 7,5 13,-3" stroke="white" stroke-width="2" fill="none" stroke-linecap="round"/>
+        <ellipse cx="28" cy="-1" rx="8" ry="5" fill="none" stroke="#1a1a2e" stroke-width="1.5"/>
+        <circle cx="28" cy="-1" r="2" fill="#1a1a2e"/>
+        <text x="40" y="4" font-size="13">透明界面</text>
+      </g>
+
+      <!-- 7. 用户反馈 -->
+      <g transform="translate(15, 0)">
+        <rect x="0" y="-8" width="16" height="16" rx="3" fill="#409EFF"/>
+        <polyline points="3,0 7,5 13,-3" stroke="white" stroke-width="2" fill="none" stroke-linecap="round"/>
+        <path d="M22,-2 Q22,-8 28,-8 Q34,-8 34,-2 Q34,3 28,3 L25,3 L22,6 L22,3 Z" fill="none" stroke="#1a1a2e" stroke-width="1.5"/>
+        <text x="40" y="4" font-size="13">用户反馈</text>
+      </g>
+
+      <!-- 8. 定期审计 -->
+      <g transform="translate(15, 30)">
+        <rect x="0" y="-8" width="16" height="16" rx="3" fill="#409EFF"/>
+        <polyline points="3,0 7,5 13,-3" stroke="white" stroke-width="2" fill="none" stroke-linecap="round"/>
+        <rect x="22" y="-7" width="14" height="14" rx="2" fill="none" stroke="#1a1a2e" stroke-width="1.5"/>
+        <text x="25" y="-1" font-size="7" fill="#1a1a2e">✓</text>
+        <text x="40" y="4" font-size="13">定期审计</text>
+      </g>
+    </g>
+  </g>
+
+  <!-- 底部说明 -->
+  <text x="400" y="470" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#1a1a2e" opacity="0.5">
+    幻觉防御检查清单 · 确保 AI 输出的可靠性与真实性
+  </text>
+</svg>

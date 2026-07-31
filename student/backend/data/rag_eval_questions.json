@@ -1,0 +1,42 @@
+[
+  {
+    "question": "多模态智能体如何实现？请说明整体架构、数据采集、模态处理、规划和工具执行。",
+    "expected_any": ["Mobile-Agent", "ModelScope-Agent", "多模态融合", "规划与推理", "模态工具", "感知层", "执行层"],
+    "topic": "多模态智能体"
+  },
+  {
+    "question": "ModelScope-Agent 中 LLM、工具使用和内存控制分别负责什么？",
+    "expected_any": ["Tool Use", "Memory Control", "任务规划", "调用工具"],
+    "topic": "多模态智能体"
+  },
+  {
+    "question": "构建语音交互 Agent 时，ASR 和 TTS 分别如何使用？",
+    "expected_any": ["ASR", "TTS", "Whisper", "语音"],
+    "topic": "多模态智能体"
+  },
+  {
+    "question": "智能体的长期记忆和短期记忆有什么区别？",
+    "expected_any": ["长期记忆", "短期记忆", "Memory", "记忆"],
+    "topic": "智能体记忆"
+  },
+  {
+    "question": "ReAct 智能体怎样在推理与行动之间循环？",
+    "expected_any": ["ReAct", "推理", "行动", "观察"],
+    "topic": "Agent 架构"
+  },
+  {
+    "question": "Tool Calling 的执行流程是什么，模型和外部工具如何协作？",
+    "expected_any": ["Tool", "工具", "调用", "执行结果"],
+    "topic": "工具调用"
+  },
+  {
+    "question": "RAG 系统为什么需要文档切分、向量检索和重排序？",
+    "expected_any": ["RAG", "向量", "检索", "文档"],
+    "topic": "RAG"
+  },
+  {
+    "question": "多智能体系统中的任务分解与协同通信如何设计？",
+    "expected_any": ["多智能体", "任务", "协同", "通信"],
+    "topic": "多智能体"
+  }
+]

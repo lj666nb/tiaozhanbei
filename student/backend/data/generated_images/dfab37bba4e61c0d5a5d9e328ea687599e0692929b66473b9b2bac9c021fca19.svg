@@ -1,0 +1,144 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="800" height="500">
+  <defs>
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#f0f7ff"/>
+      <stop offset="100%" stop-color="#e8f4fd"/>
+    </linearGradient>
+    <linearGradient id="beginGlow" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#409EFF" stop-opacity="0.25"/>
+      <stop offset="100%" stop-color="#409EFF" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="endGlow" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#409EFF" stop-opacity="0"/>
+      <stop offset="100%" stop-color="#409EFF" stop-opacity="0.25"/>
+    </linearGradient>
+    <filter id="shadow" x="-2" y="-2" width="4" height="4">
+      <feDropShadow dx="0" dy="1" stdDeviation="2" flood-color="#409EFF" flood-opacity="0.15"/>
+    </filter>
+    <filter id="glowBlue">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- 背景 -->
+  <rect width="800" height="500" fill="url(#bgGrad)" rx="8"/>
+
+  <!-- 标题 -->
+  <text x="400" y="38" text-anchor="middle" font-family="sans-serif" font-size="20" font-weight="bold" fill="#1a1a2e">"迷失在中间" 现象 — 文档位置与注意力</text>
+
+  <!-- 文档长条背景 -->
+  <rect x="60" y="120" width="680" height="56" rx="6" fill="#ffffff" stroke="#d0d5e0" stroke-width="1.2" filter="url(#shadow)"/>
+
+  <!-- 开头区域（高亮） -->
+  <rect x="60" y="120" width="170" height="56" rx="6" fill="url(#beginGlow)"/>
+  <rect x="60" y="120" width="170" height="56" rx="6" fill="none" stroke="#409EFF" stroke-width="1.5" stroke-dasharray="4 3" opacity="0.4"/>
+
+  <!-- 中间区域（暗淡） -->
+  <rect x="230" y="120" width="340" height="56" fill="#f5f7fa" opacity="0.7"/>
+
+  <!-- 结尾区域（高亮） -->
+  <rect x="570" y="120" width="170" height="56" rx="6" fill="url(#endGlow)"/>
+  <rect x="570" y="120" width="170" height="56" rx="6" fill="none" stroke="#409EFF" stroke-width="1.5" stroke-dasharray="4 3" opacity="0.4"/>
+
+  <!-- 文档分区标签 -->
+  <text x="145" y="155" text-anchor="middle" font-family="sans-serif" font-size="16" font-weight="bold" fill="#409EFF">开头</text>
+  <text x="400" y="155" text-anchor="middle" font-family="sans-serif" font-size="16" fill="#a0a8b8" opacity="0.6">中间</text>
+  <text x="655" y="155" text-anchor="middle" font-family="sans-serif" font-size="16" font-weight="bold" fill="#409EFF">结尾</text>
+
+  <!-- 页面指示器（小方块） -->
+  <g opacity="0.3">
+    <rect x="80" y="130" width="10" height="36" rx="2" fill="#409EFF"/>
+    <rect x="96" y="130" width="10" height="36" rx="2" fill="#409EFF"/>
+    <rect x="112" y="130" width="10" height="36" rx="2" fill="#409EFF"/>
+    <rect x="128" y="130" width="10" height="36" rx="2" fill="#409EFF"/>
+    <rect x="144" y="130" width="10" height="36" rx="2" fill="#409EFF"/>
+  </g>
+
+  <!-- U形准确率曲线 -->
+  <polyline points="90,280 140,200 200,185 260,210 320,240 400,260 480,240 540,210 600,185 660,200 710,280"
+    fill="none" stroke="#409EFF" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" filter="url(#glowBlue)"/>
+
+  <!-- 曲线下阴影 -->
+  <path d="M90,280 L90,280 L140,200 L200,185 L260,210 L320,240 L400,260 L480,240 L540,210 L600,185 L660,200 L710,280 Z"
+    fill="#409EFF" opacity="0.06"/>
+
+  <!-- Y轴标签 -->
+  <text x="55" y="195" text-anchor="end" font-family="sans-serif" font-size="13" fill="#606266">高</text>
+  <text x="55" y="275" text-anchor="end" font-family="sans-serif" font-size="13" fill="#606266">低</text>
+
+  <!-- Y轴箭头 -->
+  <line x1="70" y1="290" x2="70" y2="175" stroke="#909399" stroke-width="1.2" marker-end="url(#arrowUp)"/>
+  <line x1="70" y1="290" x2="720" y2="290" stroke="#909399" stroke-width="1.2"/>
+  <text x="50" y="165" text-anchor="end" font-family="sans-serif" font-size="12" fill="#909399">检索准确率</text>
+
+  <!-- 放大镜 - 开头（清晰） -->
+  <g transform="translate(155, 340)">
+    <circle cx="0" cy="0" r="18" fill="none" stroke="#409EFF" stroke-width="2.5"/>
+    <line x1="13" y1="13" x2="24" y2="24" stroke="#409EFF" stroke-width="2.5" stroke-linecap="round"/>
+    <!-- 清晰对焦标记 -->
+    <circle cx="0" cy="0" r="6" fill="#409EFF" opacity="0.3"/>
+    <circle cx="0" cy="0" r="3" fill="#409EFF"/>
+  </g>
+  <text x="155" y="375" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#409EFF" font-weight="bold">清晰</text>
+
+  <!-- 放大镜 - 中间（模糊） -->
+  <g transform="translate(400, 340)">
+    <circle cx="0" cy="0" r="18" fill="none" stroke="#c0c4cc" stroke-width="2.5" stroke-dasharray="3 2"/>
+    <line x1="13" y1="13" x2="24" y2="24" stroke="#c0c4cc" stroke-width="2.5" stroke-linecap="round"/>
+    <!-- 模糊效果 - 多个虚线圈 -->
+    <circle cx="0" cy="0" r="8" fill="none" stroke="#c0c4cc" stroke-width="1" opacity="0.4"/>
+    <circle cx="0" cy="0" r="5" fill="none" stroke="#c0c4cc" stroke-width="1" opacity="0.3"/>
+    <circle cx="0" cy="0" r="2" fill="none" stroke="#c0c4cc" stroke-width="1" opacity="0.2"/>
+    <!-- 问号 -->
+    <text x="0" y="4" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#c0c4cc" font-weight="bold">?</text>
+  </g>
+  <text x="400" y="375" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#a0a8b8">模糊</text>
+
+  <!-- 放大镜 - 结尾（清晰） -->
+  <g transform="translate(645, 340)">
+    <circle cx="0" cy="0" r="18" fill="none" stroke="#409EFF" stroke-width="2.5"/>
+    <line x1="13" y1="13" x2="24" y2="24" stroke="#409EFF" stroke-width="2.5" stroke-linecap="round"/>
+    <circle cx="0" cy="0" r="6" fill="#409EFF" opacity="0.3"/>
+    <circle cx="0" cy="0" r="3" fill="#409EFF"/>
+  </g>
+  <text x="645" y="375" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#409EFF" font-weight="bold">清晰</text>
+
+  <!-- 警告图标 - 中间 -->
+  <g transform="translate(400, 100)">
+    <polygon points="0,-12 10,10 -10,10" fill="none" stroke="#e6a23c" stroke-width="2" stroke-linejoin="round"/>
+    <line x1="0" y1="-2" x2="0" y2="6" stroke="#e6a23c" stroke-width="2" stroke-linecap="round"/>
+    <circle cx="0" cy="9" r="1.5" fill="#e6a23c"/>
+  </g>
+
+  <!-- 关键信息标注 -->
+  <rect x="240" y="420" width="320" height="44" rx="22" fill="#1a1a2e" opacity="0.9"/>
+  <text x="400" y="448" text-anchor="middle" font-family="sans-serif" font-size="17" font-weight="bold" fill="#ffffff">关键信息放在开头或结尾</text>
+
+  <!-- 从曲线到标注的连线 -->
+  <line x1="400" y1="290" x2="400" y2="420" stroke="#1a1a2e" stroke-width="1.2" stroke-dasharray="4 3" opacity="0.3"/>
+
+  <!-- 底部图例 -->
+  <g transform="translate(60, 460)">
+    <line x1="0" y1="0" x2="30" y2="0" stroke="#409EFF" stroke-width="3" stroke-linecap="round"/>
+    <text x="38" y="5" font-family="sans-serif" font-size="12" fill="#606266">注意力/准确率曲线</text>
+  </g>
+  <g transform="translate(260, 460)">
+    <rect x="0" y="-6" width="14" height="14" rx="2" fill="#409EFF" opacity="0.2" stroke="#409EFF" stroke-width="1" stroke-dasharray="3 2"/>
+    <text x="20" y="5" font-family="sans-serif" font-size="12" fill="#606266">高注意力区域</text>
+  </g>
+  <g transform="translate(470, 460)">
+    <rect x="0" y="-6" width="14" height="14" rx="2" fill="#f5f7fa" stroke="#d0d5e0" stroke-width="1"/>
+    <text x="20" y="5" font-family="sans-serif" font-size="12" fill="#606266">低注意力区域</text>
+  </g>
+
+  <!-- 箭头标记 -->
+  <defs>
+    <marker id="arrowUp" markerWidth="8" markerHeight="8" refX="4" refY="0" orient="auto">
+      <path d="M0,8 L4,0 L8,8" fill="none" stroke="#909399" stroke-width="1.2"/>
+    </marker>
+  </defs>
+</svg>

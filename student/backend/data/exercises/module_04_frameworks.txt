@@ -1,0 +1,690 @@
+================================================================================
+模块四：开发框架与工程实践（13 关）
+================================================================================
+
+--------------------------------------------------------------------------------
+关卡 4-1：LangChain 核心组件模拟
+所属模块：模块四 · 开发框架与工程实践
+--------------------------------------------------------------------------------
+
+【任务描述】
+LangChain 的三大核心组件：Chain（链式调用）、Retriever（检索器）、Memory（记忆）。
+本关模拟 Chain 的基本工作原理：将多个处理步骤串联成流水线。
+
+编写类 `SimpleChain`：
+- `add_step(name, func)`：添加一个处理步骤
+- `run(input_data)`：按顺序执行所有步骤，每步的输出作为下一步的输入
+- 返回最终结果和执行日志
+
+【输入输出说明】
+pip install 无需（纯 Python 模拟）
+输入：创建 chain，添加步骤，run(data)
+输出：{"result":..., "log": [...]}
+
+【初始代码】
+```python
+class SimpleChain:
+    """模拟 LangChain 的 Chain 组件"""
+    def __init__(self):
+        self.steps = []
+
+    def add_step(self, name, func):
+        """添加处理步骤"""
+        # TODO
+        pass
+
+    def run(self, input_data):
+        """顺序执行所有步骤"""
+        # TODO
+        pass
+```
+
+【评测代码】
+```python
+def evaluate_4_1(module_dict):
+    SC = module_dict.get("SimpleChain")
+    assert SC is not None
+    chain = SC()
+    chain.add_step("trim", lambda s: s.strip())
+    chain.add_step("upper", lambda s: s.upper())
+    chain.add_step("suffix", lambda s: s + "!")
+    r = chain.run("  hello world  ")
+    assert r["result"] == "HELLO WORLD!"
+    assert len(r["log"]) == 3
+    return True, "关卡通过：正确模拟LangChain"
+```
+
+--------------------------------------------------------------------------------
+关卡 4-2：LangGraph 状态机编排
+所属模块：模块四 · 开发框架与工程实践
+--------------------------------------------------------------------------------
+
+【任务描述】
+LangGraph 用有向图定义工作流，支持条件分支和循环。本关模拟简单的状态机
+工作流编排。
+
+编写类 `StateGraph`：
+- `add_node(name, func)`：添加节点，func 接收状态并返回修改后的状态
+- `add_edge(from_node, to_node)`：添加有向边
+- `add_conditional_edge(from_node, condition_func, mapping)`：条件分支
+- `run(start_node, initial_state)`：从起始节点运行，沿边传导状态
+
+【输入输出说明】
+pip install 无需
+输入：构建图，从 start 运行
+输出：最终状态 dict
+
+【初始代码】
+```python
+class StateGraph:
+    """模拟 LangGraph 状态机"""
+    def __init__(self):
+        self.nodes = {}
+        self.edges = {}
+        self.conditional_edges = {}
+
+    def add_node(self, name, func):
+        self.nodes[name] = func
+
+    def add_edge(self, from_node, to_node):
+        self.edges[from_node] = to_node
+
+    def add_conditional_edge(self, from_node, condition_func, mapping):
+        self.conditional_edges[from_node] = (condition_func, mapping)
+
+    def run(self, start_node, initial_state):
+        # TODO: 从起始节点遍历图，应用每个节点的转换
+        current = start_node
+        state = dict(initial_state)
+        max_steps = 20
+        for _ in range(max_steps):
+            if current in self.nodes:
+                state = self.nodes[current](state)
+            if current in self.conditional_edges:
+                cond_fn, mapping = self.conditional_edges[current]
+                branch = cond_fn(state)
+                current = mapping.get(branch, current)
+            elif current in self.edges:
+                current = self.edges[current]
+            else:
+                break
+        return state
+```
+
+【评测代码】
+```python
+def evaluate_4_2(module_dict):
+    SG = module_dict.get("StateGraph")
+    assert SG is not None
+    graph = SG()
+    graph.add_node("start", lambda s: {**s, "value": s["value"] + 1})
+    graph.add_node("double", lambda s: {**s, "value": s["value"] * 2})
+    graph.add_node("done", lambda s: s)
+    graph.add_edge("start", "double")
+    graph.add_edge("double", "done")
+    r = graph.run("start", {"value": 5})
+    assert r["value"] == 12, f"5→6→12, 得到{r['value']}"
+    return True, "关卡通过：正确模拟LangGraph状态机"
+```
+
+--------------------------------------------------------------------------------
+关卡 4-3：LlamaIndex RAG 框架模拟
+所属模块：模块四 · 开发框架与工程实践
+--------------------------------------------------------------------------------
+
+【任务描述】
+LlamaIndex 专注于数据索引和检索增强生成（RAG）。核心流程：加载文档→分块
+→向量化→建索引→检索。本关模拟简化的索引-检索流程。
+
+编写类 `SimpleIndex`：
+- `add_documents(docs)`：存储文档列表
+- `build_index()`：构建倒排索引（词→文档ID列表）
+- `search(query, top_k=3)`：基于关键词匹配检索最相关文档
+
+【输入输出说明】
+输入：创建索引，添加文档，搜索
+输出：相关文档列表
+
+【初始代码】
+```python
+class SimpleIndex:
+    """模拟 LlamaIndex 文档索引与检索"""
+    def __init__(self):
+        self.docs = []
+        self.index = {}
+
+    def add_documents(self, docs):
+        """docs: list[str]"""
+        # TODO
+        pass
+
+    def build_index(self):
+        """构建倒排索引"""
+        # TODO: 对每个文档分词（按空白字符split），建立词→文档ID映射
+        pass
+
+    def search(self, query, top_k=3):
+        """检索最相关文档"""
+        # TODO: query分词，统计每个文档的命中次数，返回top_k
+        pass
+```
+
+【评测代码】
+```python
+def evaluate_4_3(module_dict):
+    SI = module_dict.get("SimpleIndex")
+    assert SI is not None
+    idx = SI()
+    idx.add_documents(["AI智能体是未来趋势", "Python是AI的主要编程语言", "深度学习需要大量数据", "智能体框架如LangChain简化开发"])
+    idx.build_index()
+    r = idx.search("智能体 AI", top_k=2)
+    assert len(r) == 2
+    assert "AI智能体是未来趋势" in r
+    return True, "关卡通过：正确模拟索引检索"
+```
+
+--------------------------------------------------------------------------------
+关卡 4-4：CrewAI 多智能体协作角色定义
+所属模块：模块四 · 开发框架与工程实践
+--------------------------------------------------------------------------------
+
+【任务描述】
+CrewAI 是多智能体协作框架，核心概念：Agent（有角色和目标的智能体）、Task
+（委派给 Agent 的任务）、Crew（协调多 Agent 协作）。
+
+编写类 `CrewAI` 模拟：
+- `create_agent(name, role, goal)`：创建一个 Agent
+- `create_task(description, assigned_agent_name)`：创建任务
+- `execute()`：顺序执行所有任务，返回每个 Agent 的执行结果
+
+【输入输出说明】
+输入：创建多个 Agent 和 Task
+输出：{"results": [{"agent":..., "task":..., "output":...}, ...]}
+
+【初始代码】
+```python
+class CrewAI:
+    """模拟 CrewAI 多智能体协作"""
+    def __init__(self):
+        self.agents = {}
+        self.tasks = []
+
+    def create_agent(self, name, role, goal):
+        self.agents[name] = {"name": name, "role": role, "goal": goal}
+
+    def create_task(self, description, assigned_agent_name):
+        self.tasks.append({"description": description, "agent": assigned_agent_name})
+
+    def execute(self):
+        # TODO: 每个Agent执行分配给它的任务
+        results = []
+        for task in self.tasks:
+            agent = self.agents.get(task["agent"])
+            if agent:
+                output = f"[{agent['role']}] 完成: {task['description']}"
+                results.append({"agent": agent["name"], "task": task["description"], "output": output})
+        return {"results": results}
+```
+
+【评测代码】
+```python
+def evaluate_4_4(module_dict):
+    Crew = module_dict.get("CrewAI")
+    assert Crew is not None
+    crew = Crew()
+    crew.create_agent("研究员", "研究", "搜索AI资料")
+    crew.create_agent("工程师", "开发", "编写AI代码")
+    crew.create_task("分析最新AI论文", "研究员")
+    crew.create_task("实现原型系统", "工程师")
+    r = crew.execute()
+    assert len(r["results"]) == 2
+    assert r["results"][0]["agent"] == "研究员"
+    return True, "关卡通过：正确模拟CrewAI协作"
+```
+
+--------------------------------------------------------------------------------
+关卡 4-5：AutoGen 多智能体对话模拟
+所属模块：模块四 · 开发框架与工程实践
+--------------------------------------------------------------------------------
+
+【任务描述】
+微软的 AutoGen 框架支持多个 AI Agent 通过对话协作完成任务。本关模拟两个
+Agent 之间的对话回合。
+
+编写函数 `autogen_dialogue(agent_a, agent_b, topic, rounds=3)`：
+- 模拟两个 Agent 围绕 topic 进行 rounds 轮对话
+- 每轮两个 Agent 各发言一次
+- 返回完整的对话记录列表
+
+【输入输出说明】
+输入：agent_a(dict), agent_b(dict), topic(str), rounds(int)
+输出：list[{"speaker":..., "message":...}]
+
+【初始代码】
+```python
+def autogen_dialogue(agent_a, agent_b, topic, rounds=3):
+    """
+    模拟 AutoGen 双Agent对话。
+    """
+    dialogue = []
+    for i in range(rounds):
+        # TODO: 模拟两个Agent交替发言
+        a_msg = f"[{agent_a['name']}] 关于'{topic}'的第{i+1}轮分析..."
+        b_msg = f"[{agent_b['name']}] 对'{topic}'的反馈和建议..."
+        dialogue.append({"speaker": agent_a["name"], "message": a_msg})
+        dialogue.append({"speaker": agent_b["name"], "message": b_msg})
+    return dialogue
+```
+
+【评测代码】
+```python
+def evaluate_4_5(student_func):
+    a = {"name": "Alice", "role": "分析师"}
+    b = {"name": "Bob", "role": "工程师"}
+    r = student_func(a, b, "AI安全", rounds=2)
+    assert len(r) == 4, "2轮应有4条消息"
+    assert r[0]["speaker"] == "Alice"
+    assert r[1]["speaker"] == "Bob"
+    assert "AI安全" in r[0]["message"]
+    return True, "关卡通过：正确模拟AutoGen对话"
+```
+
+--------------------------------------------------------------------------------
+关卡 4-6：RAG 检索增强生成全流程
+所属模块：模块四 · 开发框架与工程实践
+--------------------------------------------------------------------------------
+
+【任务描述】
+RAG 全流程：用户提问 → 检索相关文档 → 将文档拼入 Prompt → LLM 生成答案。
+本关实现完整的 RAG 模拟流程。
+
+编写函数 `rag_pipeline(query, documents, llm_simulator)`：
+- 用 TF-IDF 简化版检索最相关文档（基于词频）
+- 将检索到的文档拼接为上下文
+- 调用 llm_simulator（一个函数，接收 context+query 返回答案）生成最终回答
+
+【输入输出说明】
+输入：query(str), documents(list[str]), llm_simulator(callable)
+输出：{"retrieved": [...], "answer": str}
+
+【初始代码】
+```python
+def rag_pipeline(query, documents, llm_simulator):
+    """
+    RAG全流程：检索→增强→生成。
+    """
+    # 简易TF-IDF检索
+    query_words = set(query.lower().split())
+    scores = []
+    for i, doc in enumerate(documents):
+        doc_words = set(doc.lower().split())
+        score = len(query_words & doc_words)
+        scores.append((score, i))
+    scores.sort(reverse=True)
+    top_docs = [documents[s[1]] for s in scores[:2] if s[0] > 0]
+
+    # 拼接上下文
+    context = "\n".join(top_docs)
+    answer = llm_simulator(context, query)
+    return {"retrieved": top_docs, "answer": answer}
+```
+
+【评测代码】
+```python
+def evaluate_4_6(student_func):
+    docs = ["AI智能体可自主决策", "Python是AI开发首选语言", "北京的天气今天很好"]
+    def fake_llm(ctx, q):
+        return f"根据检索结果，关于'{q}'的回答是：{ctx[:50]}..."
+    r = student_func("AI智能体编程语言", docs, fake_llm)
+    assert len(r["retrieved"]) == 2
+    assert "AI智能体可自主决策" in r["retrieved"]
+    assert "AI开发" in r["answer"] or "智能体" in r["answer"]
+    return True, "关卡通过：正确实现RAG全流程"
+```
+
+--------------------------------------------------------------------------------
+关卡 4-7：向量数据库选型与相似度检索
+所属模块：模块四 · 开发框架与工程实践
+--------------------------------------------------------------------------------
+
+【任务描述】
+Chroma/Pinecone/Weaviate 是主流向量数据库。本关模拟向量存储和相似度检索。
+
+编写类 `VectorStore`：
+- `add(id, vector, metadata)`：存储向量
+- `search(query_vector, top_k=3)`：用欧几里得距离找最近邻
+- 返回最近的 top_k 个结果的 id 和 metadata
+
+【输入输出说明】
+输入：创建 store, 添加向量, 搜索
+输出：[{"id":..., "metadata":..., "distance":...}, ...]
+
+【初始代码】
+```python
+import math
+
+class VectorStore:
+    """模拟向量数据库"""
+    def __init__(self):
+        self.vectors = []  # [(id, vector, metadata)]
+
+    def add(self, id, vector, metadata=None):
+        # TODO
+        pass
+
+    def search(self, query_vector, top_k=3):
+        # TODO: 计算欧氏距离，返回最近的top_k
+        pass
+```
+
+【评测代码】
+```python
+def evaluate_4_7(module_dict):
+    VS = module_dict.get("VectorStore")
+    assert VS is not None
+    store = VS()
+    store.add("v1", [0.1, 0.9], {"topic": "AI"})
+    store.add("v2", [0.8, 0.2], {"topic": "编程"})
+    store.add("v3", [0.2, 0.8], {"topic": "AI"})
+    store.add("v4", [0.9, 0.1], {"topic": "编程"})
+    r = store.search([0.15, 0.85], top_k=2)
+    assert len(r) == 2
+    assert r[0]["id"] == "v1", "v1最接近查询向量"
+    return True, "关卡通过：正确实现向量检索"
+```
+
+--------------------------------------------------------------------------------
+关卡 4-8：文档切块策略与嵌入向量化
+所属模块：模块四 · 开发框架与工程实践
+--------------------------------------------------------------------------------
+
+【任务描述】
+RAG 工程中，文档切块（Chunking）和嵌入（Embedding）是关键预处理步骤。
+切块策略：固定大小切块 + 重叠区；嵌入：将文本转为数值向量。
+
+编写函数 `chunk_and_embed(text, chunk_size, overlap)`：
+- 将文本按 chunk_size 字符切块，相邻块重叠 overlap 字符
+- 对每块生成简易嵌入向量（基于字符频率的256维向量前8维简化）
+- 返回 [{"chunk": str, "vector": list[float]}, ...]
+
+【输入输出说明】
+输入：text(str), chunk_size(int), overlap(int)
+输出：list of {"chunk":..., "vector":...}
+
+【初始代码】
+```python
+def chunk_and_embed(text, chunk_size=128, overlap=20):
+    """
+    文档切块 + 简易嵌入向量生成。
+    """
+    chunks = []
+    # TODO: 滑动窗口切块
+    start = 0
+    while start < len(text):
+        chunk = text[start:start + chunk_size]
+        if not chunk:
+            break
+        # 简易嵌入：32维向量（字符统计归一化）
+        vector = [0.0] * 32
+        for i, ch in enumerate(chunk[:32]):
+            vector[i] = ord(ch) / 256.0
+        chunks.append({"chunk": chunk, "vector": vector})
+        start += chunk_size - overlap
+    return chunks
+```
+
+【评测代码】
+```python
+def evaluate_4_8(student_func):
+    text = "A" * 200 + "B" * 200
+    r = student_func(text, chunk_size=150, overlap=20)
+    assert len(r) >= 2, "至少产生2个chunk"
+    assert "A" in r[0]["chunk"]
+    assert len(r[0]["vector"]) == 32
+    return True, "关卡通过：正确实现切块与嵌入"
+```
+
+--------------------------------------------------------------------------------
+关卡 4-9：提示链 Prompt Chaining 模式
+所属模块：模块四 · 开发框架与工程实践
+--------------------------------------------------------------------------------
+
+【任务描述】
+提示链（Prompt Chaining）将复杂任务拆分为多个步骤，每步的输出作为下一步的
+输入。例如：生成大纲 → 逐节扩展 → 润色。
+
+编写函数 `prompt_chain(task_input, steps)`：
+- steps：[(step_name, transform_func), ...]
+- 顺序执行每个转换函数
+- 返回 {"intermediate": [...], "final": str}
+
+【输入输出说明】
+输入：task_input(str), steps(list)
+输出：{"intermediate": [...], "final": str}
+
+【初始代码】
+```python
+def prompt_chain(task_input, steps):
+    """
+    串行执行提示链的所有步骤。
+    """
+    intermediate = []
+    current = task_input
+    # TODO: 顺序执行每步
+    for name, func in steps:
+        current = func(current)
+        intermediate.append({"step": name, "output": current[:80]})
+    return {"intermediate": intermediate, "final": current}
+```
+
+【评测代码】
+```python
+def evaluate_4_9(student_func):
+    steps = [
+        ("outline", lambda s: f"大纲: {s}"),
+        ("expand", lambda s: s.replace("大纲:", "详细:")),
+        ("polish", lambda s: s + " [润色完成]"),
+    ]
+    r = student_func("AI智能体简介", steps)
+    assert len(r["intermediate"]) == 3
+    assert "润色完成" in r["final"]
+    return True, "关卡通过：正确实现Prompt Chaining"
+```
+
+--------------------------------------------------------------------------------
+关卡 4-10：路由 Routing 模式
+所属模块：模块四 · 开发框架与工程实践
+--------------------------------------------------------------------------------
+
+【任务描述】
+路由（Routing）根据用户意图将请求分发到不同的处理器。本关实现意图分类
+路由器。
+
+编写函数 `router(intent, handlers)`：
+- intent：用户意图字符串
+- handlers：{意图关键词: handler_function}
+- 匹配最佳 handler（关键词包含匹配），执行并返回结果
+- 无匹配时返回默认兜底结果
+
+【输入输出说明】
+输入：intent(str), handlers(dict)
+输出：{"matched": str, "result": any}
+
+【初始代码】
+```python
+def router(intent, handlers):
+    """
+    根据意图关键词路由到对应处理器。
+    """
+    # TODO: 关键词匹配，选最佳handler
+    for keyword, handler in sorted(handlers.items(), key=lambda x: -len(x[0])):
+        if keyword in intent:
+            return {"matched": keyword, "result": handler(intent)}
+    return {"matched": "default", "result": f"无法处理意图: {intent}"}
+```
+
+【评测代码】
+```python
+def evaluate_4_10(student_func):
+    handlers = {
+        "天气": lambda q: "今天晴25°C",
+        "计算": lambda q: str(eval(q.replace("计算","").strip())),
+        "搜索": lambda q: f"搜索'{q}'的结果",
+    }
+    r1 = student_func("查询天气", handlers)
+    assert r1["matched"] == "天气"
+    r2 = student_func("计算 3+5", handlers)
+    assert r2["matched"] == "计算" and "8" in str(r2["result"])
+    r3 = student_func("播放音乐", handlers)
+    assert r3["matched"] == "default"
+    return True, "关卡通过：正确实现路由模式"
+```
+
+--------------------------------------------------------------------------------
+关卡 4-11：并行化 Parallelization 模式
+所属模块：模块四 · 开发框架与工程实践
+--------------------------------------------------------------------------------
+
+【任务描述】
+并行化模式同时执行多个独立子任务，然后合并结果。本关模拟多线程并行处理。
+
+编写函数 `parallel_execute(tasks)`：
+- tasks：[(name, func), ...]
+- 串行模拟并行执行（不引入 threading 库，用 for 循环模拟）
+- 每个 task 执行后记录耗时（用 time.sleep 模拟），收集结果
+- 返回 {"results": [{"task":..., "output":...}, ...], "total_time": float}
+
+【输入输出说明】
+输入：tasks(list[tuple])
+输出：结果汇总字典
+
+【初始代码】
+```python
+import time
+
+def parallel_execute(tasks):
+    """
+    模拟并行执行多个任务。
+    """
+    results = []
+    start = time.time()
+    # 串行模拟并行（Python不用threading简化）
+    for name, func in tasks:
+        out = func()
+        results.append({"task": name, "output": out})
+    elapsed = round(time.time() - start, 4)
+    return {"results": results, "total_time": elapsed}
+```
+
+【评测代码】
+```python
+def evaluate_4_11(student_func):
+    tasks = [("A", lambda: "结果A"), ("B", lambda: "结果B"), ("C", lambda: "结果C")]
+    r = student_func(tasks)
+    assert len(r["results"]) == 3
+    assert r["total_time"] >= 0
+    return True, "关卡通过：正确实现并行化模式"
+```
+
+--------------------------------------------------------------------------------
+关卡 4-12：自我反思 Reflection 模式
+所属模块：模块四 · 开发框架与工程实践
+--------------------------------------------------------------------------------
+
+【任务描述】
+自我反思（Reflection）模式让智能体评估自己的输出质量，并迭代改进。
+流程：生成初版 → 自我评估 → 找出问题 → 改进 → 再次评估，直到满意。
+
+编写函数 `reflection_loop(initial, evaluator, improver, max_iter=3)`：
+- evaluator：评分函数（返回 0-1 分数和问题描述）
+- improver：改进函数（根据问题描述改进内容）
+- 循环直到分数 >= 0.8 或达到最大迭代次数
+
+【输入输出说明】
+输入：initial(str), evaluator(callable), improver(callable), max_iter(int)
+输出：{"final": str, "iterations": int, "final_score": float}
+
+【初始代码】
+```python
+def reflection_loop(initial, evaluator, improver, max_iter=3):
+    """
+    自我反思迭代改进循环。
+    """
+    current = initial
+    for i in range(max_iter):
+        score, issues = evaluator(current)
+        if score >= 0.8:
+            return {"final": current, "iterations": i + 1, "final_score": score}
+        current = improver(current, issues)
+    score, _ = evaluator(current)
+    return {"final": current, "iterations": max_iter, "final_score": score}
+```
+
+【评测代码】
+```python
+def evaluate_4_12(student_func):
+    def evaluator(text):
+        length = len(text)
+        if length < 20:
+            return (0.3, "太短")
+        elif length < 40:
+            return (0.6, "还不够详细")
+        return (0.9, "OK")
+    def improver(text, issues):
+        return text + " " + "补充更多细节以解决: " + issues
+    r = student_func("短", evaluator, improver, max_iter=3)
+    assert r["iterations"] <= 3
+    assert r["final_score"] >= 0.8, f"最终分数应≥0.8, 得到{r['final_score']}"
+    assert len(r["final"]) > 10
+    return True, "关卡通过：正确实现Reflection模式"
+```
+
+--------------------------------------------------------------------------------
+关卡 4-13：Agent API 工程化部署
+所属模块：模块四 · 开发框架与工程实践
+--------------------------------------------------------------------------------
+
+【任务描述】
+将 Agent 封装为 REST API 服务是工程化的关键。本关模拟 API 请求处理流程：
+鉴权→参数校验→执行→日志记录→返回结果。
+
+编写函数 `api_gateway(request, agent_func, auth_token)`：
+- 鉴权：检查 auth_token 是否为 "valid_token_2024"
+- 参数校验：request 必须包含 "action" 键
+- 执行：调用 agent_func(request)
+- 日志：记录请求时间、action、结果
+- 返回 {"status": 200/401/400, "result":...}
+
+【输入输出说明】
+输入：request(dict), agent_func(callable), auth_token(str)
+输出：{"status": int, "result": any, "log": str}
+
+【初始代码】
+```python
+from datetime import datetime
+
+def api_gateway(request, agent_func, auth_token):
+    """
+    API 网关：鉴权→校验→执行→日志。
+    """
+    # TODO: 实现完整流程
+    if auth_token != "valid_token_2024":
+        return {"status": 401, "result": "Unauthorized", "log": ""}
+    if "action" not in request:
+        return {"status": 400, "result": "Missing action", "log": ""}
+    result = agent_func(request)
+    log = f"[{datetime.now().isoformat()}] action={request['action']} status=200"
+    return {"status": 200, "result": result, "log": log}
+```
+
+【评测代码】
+```python
+def evaluate_4_13(student_func):
+    r1 = student_func({"action": "query"}, lambda r: "OK", "valid_token_2024")
+    assert r1["status"] == 200 and r1["result"] == "OK"
+    r2 = student_func({"action": "query"}, lambda r: "OK", "bad_token")
+    assert r2["status"] == 401
+    r3 = student_func({}, lambda r: "OK", "valid_token_2024")
+    assert r3["status"] == 400
+    return True, "关卡通过：正确实现API网关"
+```

@@ -1,0 +1,168 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="800" height="500">
+  <defs>
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#E8F4FD"/>
+      <stop offset="100%" stop-color="#D0EAF8"/>
+    </linearGradient>
+    <linearGradient id="card1" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#FFFFFF"/>
+      <stop offset="100%" stop-color="#F0F8FF"/>
+    </linearGradient>
+  </defs>
+
+  <!-- 背景 -->
+  <rect width="800" height="500" fill="url(#bgGrad)"/>
+
+  <!-- 标题 -->
+  <text x="400" y="38" text-anchor="middle" font-family="sans-serif" font-size="22" font-weight="bold" fill="#1a1a2e">容错机制防御层</text>
+
+  <!-- ===== 第一层：重试机制 ===== -->
+  <rect x="30" y="55" width="170" height="130" rx="10" fill="url(#card1)" stroke="#409EFF" stroke-width="1.5"/>
+  <text x="115" y="80" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="bold" fill="#409EFF">重试机制</text>
+
+  <!-- 重试箭头 -->
+  <path d="M65 105 Q65 85 85 85 L100 85" fill="none" stroke="#1a1a2e" stroke-width="2" stroke-linecap="round"/>
+  <polygon points="100,80 108,85 100,90" fill="#1a1a2e"/>
+  <path d="M100 85 Q130 85 130 105 L130 115" fill="none" stroke="#1a1a2e" stroke-width="2" stroke-linecap="round"/>
+  <polygon points="125,115 130,123 135,115" fill="#1a1a2e"/>
+
+  <!-- 指数退避时间 -->
+  <text x="115" y="108" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#1a1a2e">1s → 2s → 4s → 8s</text>
+  <text x="115" y="128" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#666">指数退避</text>
+
+  <!-- 重试次数 -->
+  <rect x="60" y="140" width="110" height="24" rx="12" fill="#E8F4FD" stroke="#409EFF" stroke-width="1"/>
+  <text x="115" y="156" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#409EFF">最多重试 3 次</text>
+
+  <!-- ===== 第二层：熔断器 ===== -->
+  <rect x="230" y="55" width="170" height="130" rx="10" fill="url(#card1)" stroke="#409EFF" stroke-width="1.5"/>
+  <text x="315" y="80" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="bold" fill="#409EFF">熔断器</text>
+
+  <!-- CLOSED 状态 -->
+  <rect x="245" y="92" width="46" height="22" rx="4" fill="#52C41A"/>
+  <text x="268" y="107" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#fff" font-weight="bold">关闭</text>
+  <text x="268" y="125" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#666">正常</text>
+
+  <!-- OPEN 状态 -->
+  <rect x="297" y="92" width="46" height="22" rx="4" fill="#F5222D"/>
+  <text x="320" y="107" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#fff" font-weight="bold">打开</text>
+  <text x="320" y="125" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#666">熔断</text>
+
+  <!-- HALF_OPEN 状态 -->
+  <rect x="349" y="92" width="46" height="22" rx="4" fill="#FAAD14"/>
+  <text x="372" y="107" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#fff" font-weight="bold">半开</text>
+  <text x="372" y="125" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#666">试探</text>
+
+  <!-- 恢复超时 -->
+  <rect x="255" y="140" width="120" height="24" rx="12" fill="#FFF7E6" stroke="#FAAD14" stroke-width="1"/>
+  <text x="315" y="156" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#D48806">恢复超时 30s</text>
+
+  <!-- ===== 第三层：优雅降级 ===== -->
+  <rect x="430" y="55" width="170" height="130" rx="10" fill="url(#card1)" stroke="#409EFF" stroke-width="1.5"/>
+  <text x="515" y="80" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="bold" fill="#409EFF">优雅降级</text>
+
+  <!-- 三级降级 -->
+  <rect x="445" y="92" width="140" height="22" rx="4" fill="#409EFF"/>
+  <text x="515" y="107" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#fff">主代理</text>
+
+  <rect x="445" y="118" width="140" height="22" rx="4" fill="#5DADE2"/>
+  <text x="515" y="133" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#fff">备用代理</text>
+
+  <rect x="445" y="144" width="140" height="22" rx="4" fill="#85C1E9"/>
+  <text x="515" y="159" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#fff">简单响应</text>
+
+  <!-- ===== 第四层：故障类型 ===== -->
+  <rect x="630" y="55" width="150" height="130" rx="10" fill="url(#card1)" stroke="#409EFF" stroke-width="1.5"/>
+  <text x="705" y="80" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="bold" fill="#409EFF">故障类型</text>
+
+  <!-- 故障图标 -->
+  <!-- 代理崩溃 -->
+  <rect x="645" y="92" width="60" height="24" rx="4" fill="#FFF1F0" stroke="#FF4D4F" stroke-width="1"/>
+  <text x="675" y="108" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#FF4D4F">代理崩溃</text>
+
+  <!-- API超时 -->
+  <rect x="710" y="92" width="60" height="24" rx="4" fill="#FFF1F0" stroke="#FF4D4F" stroke-width="1"/>
+  <text x="740" y="108" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#FF4D4F">API超时</text>
+
+  <!-- 工具故障 -->
+  <rect x="645" y="122" width="60" height="24" rx="4" fill="#FFF1F0" stroke="#FF4D4F" stroke-width="1"/>
+  <text x="675" y="138" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#FF4D4F">工具故障</text>
+
+  <!-- 网络分区 -->
+  <rect x="710" y="122" width="60" height="24" rx="4" fill="#FFF1F0" stroke="#FF4D4F" stroke-width="1"/>
+  <text x="740" y="138" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#FF4D4F">网络分区</text>
+
+  <!-- 故障计数 -->
+  <text x="705" y="165" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#999">4 种常见故障</text>
+
+  <!-- ===== 底部说明区域 ===== -->
+  <rect x="30" y="205" width="740" height="60" rx="10" fill="#1a1a2e" opacity="0.85"/>
+  <text x="400" y="230" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#fff" font-weight="bold">防御策略组合</text>
+  <text x="400" y="252" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#A0C4FF">重试 → 熔断 → 降级 → 故障隔离，逐层防御保障系统可用性</text>
+
+  <!-- ===== 层间连接箭头 ===== -->
+  <path d="M200 120 L225 120" fill="none" stroke="#409EFF" stroke-width="1.5" marker-end="url(#arrowBlue)"/>
+  <path d="M400 120 L425 120" fill="none" stroke="#409EFF" stroke-width="1.5"/>
+  <path d="M600 120 L625 120" fill="none" stroke="#409EFF" stroke-width="1.5"/>
+
+  <!-- 箭头标记 -->
+  <defs>
+    <marker id="arrowBlue" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#409EFF"/>
+    </marker>
+  </defs>
+
+  <!-- 层标签 -->
+  <text x="212" y="115" font-family="sans-serif" font-size="10" fill="#409EFF">→</text>
+  <text x="412" y="115" font-family="sans-serif" font-size="10" fill="#409EFF">→</text>
+  <text x="612" y="115" font-family="sans-serif" font-size="10" fill="#409EFF">→</text>
+
+  <!-- ===== 底部四个机制卡片 ===== -->
+  <!-- 重试机制详情 -->
+  <rect x="30" y="285" width="170" height="100" rx="8" fill="#fff" stroke="#E0E0E0" stroke-width="1"/>
+  <circle cx="50" cy="310" r="12" fill="#409EFF"/>
+  <text x="50" y="315" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#fff" font-weight="bold">1</text>
+  <text x="70" y="315" font-family="sans-serif" font-size="13" font-weight="bold" fill="#1a1a2e">重试机制</text>
+  <text x="45" y="340" font-family="sans-serif" font-size="11" fill="#666">临时故障自动重试</text>
+  <text x="45" y="358" font-family="sans-serif" font-size="11" fill="#666">指数退避避免雪崩</text>
+  <text x="45" y="376" font-family="sans-serif" font-size="11" fill="#666">最大重试次数限制</text>
+
+  <!-- 熔断器详情 -->
+  <rect x="230" y="285" width="170" height="100" rx="8" fill="#fff" stroke="#E0E0E0" stroke-width="1"/>
+  <circle cx="250" cy="310" r="12" fill="#409EFF"/>
+  <text x="250" y="315" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#fff" font-weight="bold">2</text>
+  <text x="270" y="315" font-family="sans-serif" font-size="13" font-weight="bold" fill="#1a1a2e">熔断器</text>
+  <text x="245" y="340" font-family="sans-serif" font-size="11" fill="#666">快速失败防止级联</text>
+  <text x="245" y="358" font-family="sans-serif" font-size="11" fill="#666">三状态自动切换</text>
+  <text x="245" y="376" font-family="sans-serif" font-size="11" fill="#666">半开试探恢复</text>
+
+  <!-- 优雅降级详情 -->
+  <rect x="430" y="285" width="170" height="100" rx="8" fill="#fff" stroke="#E0E0E0" stroke-width="1"/>
+  <circle cx="450" cy="310" r="12" fill="#409EFF"/>
+  <text x="450" y="315" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#fff" font-weight="bold">3</text>
+  <text x="470" y="315" font-family="sans-serif" font-size="13" font-weight="bold" fill="#1a1a2e">优雅降级</text>
+  <text x="445" y="340" font-family="sans-serif" font-size="11" fill="#666">多级备用方案</text>
+  <text x="445" y="358" font-family="sans-serif" font-size="11" fill="#666">逐步降低服务质量</text>
+  <text x="445" y="376" font-family="sans-serif" font-size="11" fill="#666">核心功能保持可用</text>
+
+  <!-- 故障类型详情 -->
+  <rect x="630" y="285" width="150" height="100" rx="8" fill="#fff" stroke="#E0E0E0" stroke-width="1"/>
+  <circle cx="650" cy="310" r="12" fill="#409EFF"/>
+  <text x="650" y="315" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#fff" font-weight="bold">4</text>
+  <text x="670" y="315" font-family="sans-serif" font-size="13" font-weight="bold" fill="#1a1a2e">故障隔离</text>
+  <text x="645" y="340" font-family="sans-serif" font-size="11" fill="#666">故障分类处理</text>
+  <text x="645" y="358" font-family="sans-serif" font-size="11" fill="#666">隔离避免扩散</text>
+  <text x="645" y="376" font-family="sans-serif" font-size="11" fill="#666">精准快速定位</text>
+
+  <!-- ===== 底部状态栏 ===== -->
+  <rect x="30" y="405" width="740" height="35" rx="8" fill="#1a1a2e" opacity="0.7"/>
+  <text x="400" y="428" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#A0C4FF">系统可用性保障 | 容错设计模式 | 分布式系统可靠性</text>
+
+  <!-- ===== 装饰性元素 ===== -->
+  <circle cx="30" cy="460" r="3" fill="#409EFF" opacity="0.3"/>
+  <circle cx="770" cy="460" r="3" fill="#409EFF" opacity="0.3"/>
+  <circle cx="400" cy="460" r="2" fill="#409EFF" opacity="0.2"/>
+
+  <!-- 顶部装饰线 -->
+  <line x1="30" y1="48" x2="770" y2="48" stroke="#409EFF" stroke-width="1" opacity="0.3"/>
+</svg>

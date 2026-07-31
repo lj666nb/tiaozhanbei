@@ -1,0 +1,142 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="800" height="500">
+  <defs>
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#f0f7ff"/>
+      <stop offset="100%" stop-color="#e8f0fe"/>
+    </linearGradient>
+    <linearGradient id="barGrad1" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#409EFF"/>
+      <stop offset="100%" stop-color="#a0cfff"/>
+    </linearGradient>
+    <linearGradient id="barGrad2" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#409EFF"/>
+      <stop offset="100%" stop-color="#b0d4ff"/>
+    </linearGradient>
+    <linearGradient id="barGrad3" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#409EFF"/>
+      <stop offset="100%" stop-color="#c0ddff"/>
+    </linearGradient>
+    <linearGradient id="barGrad4" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#409EFF"/>
+      <stop offset="100%" stop-color="#d0e8ff"/>
+    </linearGradient>
+    <linearGradient id="barGrad5" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#409EFF"/>
+      <stop offset="100%" stop-color="#dceeff"/>
+    </linearGradient>
+    <linearGradient id="barGrad6" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#409EFF"/>
+      <stop offset="100%" stop-color="#e5f0ff"/>
+    </linearGradient>
+    <linearGradient id="barGrad7" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#409EFF"/>
+      <stop offset="100%" stop-color="#eef5ff"/>
+    </linearGradient>
+    <linearGradient id="barGrad8" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#409EFF"/>
+      <stop offset="100%" stop-color="#f2f7ff"/>
+    </linearGradient>
+  </defs>
+
+  <!-- 背景 -->
+  <rect x="0" y="0" width="800" height="500" fill="url(#bgGrad)" rx="0"/>
+
+  <!-- 标题 -->
+  <text x="400" y="38" text-anchor="middle" font-family="Arial, 'Microsoft YaHei', sans-serif" font-size="20" font-weight="bold" fill="#1a1a2e">AI模型多环境评估得分对比</text>
+
+  <!-- 图表区域 -->
+  <!-- Y轴标签 -->
+  <text x="120" y="92" text-anchor="end" font-family="Arial, 'Microsoft YaHei', sans-serif" font-size="14" fill="#1a1a2e">GPT-4</text>
+  <text x="120" y="142" text-anchor="end" font-family="Arial, 'Microsoft YaHei', sans-serif" font-size="14" fill="#1a1a2e">GPT-3.5</text>
+  <text x="120" y="192" text-anchor="end" font-family="Arial, 'Microsoft YaHei', sans-serif" font-size="14" fill="#1a1a2e">Claude-2</text>
+  <text x="120" y="242" text-anchor="end" font-family="Arial, 'Microsoft YaHei', sans-serif" font-size="14" fill="#1a1a2e">Llama-2</text>
+  <text x="120" y="292" text-anchor="end" font-family="Arial, 'Microsoft YaHei', sans-serif" font-size="14" fill="#1a1a2e">ChatGLM3</text>
+
+  <!-- 网格线（水平） -->
+  <line x1="140" y1="80" x2="740" y2="80" stroke="#d0d8e8" stroke-width="0.5"/>
+  <line x1="140" y1="130" x2="740" y2="130" stroke="#d0d8e8" stroke-width="0.5"/>
+  <line x1="140" y1="180" x2="740" y2="180" stroke="#d0d8e8" stroke-width="0.5"/>
+  <line x1="140" y1="230" x2="740" y2="230" stroke="#d0d8e8" stroke-width="0.5"/>
+  <line x1="140" y1="280" x2="740" y2="280" stroke="#d0d8e8" stroke-width="0.5"/>
+
+  <!-- 网格线（垂直） -->
+  <line x1="140" y1="70" x2="140" y2="300" stroke="#d0d8e8" stroke-width="0.5"/>
+  <line x1="260" y1="70" x2="260" y2="300" stroke="#d0d8e8" stroke-width="0.5"/>
+  <line x1="380" y1="70" x2="380" y2="300" stroke="#d0d8e8" stroke-width="0.5"/>
+  <line x1="500" y1="70" x2="500" y2="300" stroke="#d0d8e8" stroke-width="0.5"/>
+  <line x1="620" y1="70" x2="620" y2="300" stroke="#d0d8e8" stroke-width="0.5"/>
+  <line x1="740" y1="70" x2="740" y2="300" stroke="#d0d8e8" stroke-width="0.5"/>
+
+  <!-- X轴刻度标签 -->
+  <text x="140" y="318" text-anchor="middle" font-family="Arial, 'Microsoft YaHei', sans-serif" font-size="12" fill="#1a1a2e">0</text>
+  <text x="260" y="318" text-anchor="middle" font-family="Arial, 'Microsoft YaHei', sans-serif" font-size="12" fill="#1a1a2e">20</text>
+  <text x="380" y="318" text-anchor="middle" font-family="Arial, 'Microsoft YaHei', sans-serif" font-size="12" fill="#1a1a2e">40</text>
+  <text x="500" y="318" text-anchor="middle" font-family="Arial, 'Microsoft YaHei', sans-serif" font-size="12" fill="#1a1a2e">60</text>
+  <text x="620" y="318" text-anchor="middle" font-family="Arial, 'Microsoft YaHei', sans-serif" font-size="12" fill="#1a1a2e">80</text>
+  <text x="740" y="318" text-anchor="middle" font-family="Arial, 'Microsoft YaHei', sans-serif" font-size="12" fill="#1a1a2e">100</text>
+
+  <!-- X轴标题 -->
+  <text x="440" y="348" text-anchor="middle" font-family="Arial, 'Microsoft YaHei', sans-serif" font-size="14" fill="#1a1a2e">评估得分</text>
+
+  <!-- 条形图 - 每个模型有8个环境评估 -->
+  <!-- 环境1: 代码生成 -->
+  <rect x="140" y="72" width="540" height="10" rx="5" ry="5" fill="url(#barGrad1)" opacity="0.9"/>
+  <rect x="140" y="122" width="480" height="10" rx="5" ry="5" fill="url(#barGrad2)" opacity="0.9"/>
+  <rect x="140" y="172" width="510" height="10" rx="5" ry="5" fill="url(#barGrad3)" opacity="0.9"/>
+  <rect x="140" y="222" width="450" height="10" rx="5" ry="5" fill="url(#barGrad4)" opacity="0.9"/>
+  <rect x="140" y="272" width="420" height="10" rx="5" ry="5" fill="url(#barGrad5)" opacity="0.9"/>
+
+  <!-- 环境2: 逻辑推理 -->
+  <rect x="140" y="86" width="510" height="10" rx="5" ry="5" fill="url(#barGrad2)" opacity="0.85"/>
+  <rect x="140" y="136" width="450" height="10" rx="5" ry="5" fill="url(#barGrad3)" opacity="0.85"/>
+  <rect x="140" y="186" width="480" height="10" rx="5" ry="5" fill="url(#barGrad4)" opacity="0.85"/>
+  <rect x="140" y="236" width="420" height="10" rx="5" ry="5" fill="url(#barGrad5)" opacity="0.85"/>
+  <rect x="140" y="286" width="390" height="10" rx="5" ry="5" fill="url(#barGrad6)" opacity="0.85"/>
+
+  <!-- 环境3: 文本摘要 -->
+  <rect x="140" y="100" width="480" height="10" rx="5" ry="5" fill="url(#barGrad3)" opacity="0.8"/>
+  <rect x="140" y="150" width="420" height="10" rx="5" ry="5" fill="url(#barGrad4)" opacity="0.8"/>
+  <rect x="140" y="200" width="450" height="10" rx="5" ry="5" fill="url(#barGrad5)" opacity="0.8"/>
+  <rect x="140" y="250" width="390" height="10" rx="5" ry="5" fill="url(#barGrad6)" opacity="0.8"/>
+  <rect x="140" y="300" width="360" height="10" rx="5" ry="5" fill="url(#barGrad7)" opacity="0.8"/>
+
+  <!-- 环境4: 翻译任务 -->
+  <rect x="140" y="114" width="450" height="10" rx="5" ry="5" fill="url(#barGrad4)" opacity="0.75"/>
+  <rect x="140" y="164" width="390" height="10" rx="5" ry="5" fill="url(#barGrad5)" opacity="0.75"/>
+  <rect x="140" y="214" width="420" height="10" rx="5" ry="5" fill="url(#barGrad6)" opacity="0.75"/>
+  <rect x="140" y="264" width="360" height="10" rx="5" ry="5" fill="url(#barGrad7)" opacity="0.75"/>
+  <rect x="140" y="314" width="330" height="10" rx="5" ry="5" fill="url(#barGrad8)" opacity="0.75"/>
+
+  <!-- 图例 -->
+  <rect x="200" y="370" width="400" height="100" rx="8" ry="8" fill="white" stroke="#d0d8e8" stroke-width="1"/>
+
+  <text x="400" y="392" text-anchor="middle" font-family="Arial, 'Microsoft YaHei', sans-serif" font-size="14" font-weight="bold" fill="#1a1a2e">评估环境说明</text>
+
+  <!-- 图例项 -->
+  <rect x="220" y="404" width="12" height="12" rx="2" fill="url(#barGrad1)"/>
+  <text x="238" y="415" font-family="Arial, 'Microsoft YaHei', sans-serif" font-size="12" fill="#1a1a2e">代码生成</text>
+
+  <rect x="330" y="404" width="12" height="12" rx="2" fill="url(#barGrad2)"/>
+  <text x="348" y="415" font-family="Arial, 'Microsoft YaHei', sans-serif" font-size="12" fill="#1a1a2e">逻辑推理</text>
+
+  <rect x="440" y="404" width="12" height="12" rx="2" fill="url(#barGrad3)"/>
+  <text x="458" y="415" font-family="Arial, 'Microsoft YaHei', sans-serif" font-size="12" fill="#1a1a2e">文本摘要</text>
+
+  <rect x="545" y="404" width="12" height="12" rx="2" fill="url(#barGrad4)"/>
+  <text x="563" y="415" font-family="Arial, 'Microsoft YaHei', sans-serif" font-size="12" fill="#1a1a2e">翻译任务</text>
+
+  <rect x="220" y="430" width="12" height="12" rx="2" fill="url(#barGrad5)"/>
+  <text x="238" y="441" font-family="Arial, 'Microsoft YaHei', sans-serif" font-size="12" fill="#1a1a2e">知识问答</text>
+
+  <rect x="330" y="430" width="12" height="12" rx="2" fill="url(#barGrad6)"/>
+  <text x="348" y="441" font-family="Arial, 'Microsoft YaHei', sans-serif" font-size="12" fill="#1a1a2e">对话交互</text>
+
+  <rect x="440" y="430" width="12" height="12" rx="2" fill="url(#barGrad7)"/>
+  <text x="458" y="441" font-family="Arial, 'Microsoft YaHei', sans-serif" font-size="12" fill="#1a1a2e">情感分析</text>
+
+  <rect x="545" y="430" width="12" height="12" rx="2" fill="url(#barGrad8)"/>
+  <text x="563" y="441" font-family="Arial, 'Microsoft YaHei', sans-serif" font-size="12" fill="#1a1a2e">安全合规</text>
+
+  <!-- 底部说明 -->
+  <text x="400" y="490" text-anchor="middle" font-family="Arial, 'Microsoft YaHei', sans-serif" font-size="11" fill="#8899aa">数据来源：公开评测基准 · 分数越高表示模型在该环境表现越好</text>
+</svg>

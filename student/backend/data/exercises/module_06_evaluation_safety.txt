@@ -1,0 +1,537 @@
+================================================================================
+模块六：评估、安全与前沿拓展（10 关）
+================================================================================
+
+--------------------------------------------------------------------------------
+关卡 6-1：AgentBench 综合评估环境
+所属模块：模块六 · 评估、安全与前沿拓展
+--------------------------------------------------------------------------------
+
+【任务描述】
+AgentBench 是首个系统性评估 LLM 作为 Agent 能力的基准，涵盖 8 大场景：
+操作系统交互、数据库操作、知识图谱推理、网页浏览、编程、游戏、家务模拟、
+工具调用。本关模拟评估流程。
+
+编写函数 `evaluate_agent_on_benchmark(agent_outputs, ground_truth)`：
+- 计算 Pass Rate：agent_output 与 ground_truth 完全匹配的比例
+- 计算 Partial Score：部分匹配得 0.5，完全匹配得 1.0
+- 返回 {"pass_rate": float, "partial_score": float, "total": int, "passed": int}
+
+【输入输出说明】
+输入：agent_outputs(list[str]), ground_truth(list[str])
+输出：评分报告 dict
+
+【初始代码】
+```python
+def evaluate_agent_on_benchmark(agent_outputs, ground_truth):
+    """
+    评估Agent在基准测试上的表现。
+    """
+    total = len(ground_truth)
+    passed = 0
+    partial = 0.0
+    # TODO: 计算 pass_rate 和 partial_score
+    for pred, gt in zip(agent_outputs, ground_truth):
+        if pred == gt:
+            passed += 1
+            partial += 1.0
+        elif gt in pred or pred in gt:
+            partial += 0.5
+    return {
+        "pass_rate": round(passed / total, 3) if total else 0,
+        "partial_score": round(partial / total, 3) if total else 0,
+        "total": total,
+        "passed": passed
+    }
+```
+
+【评测代码】
+```python
+def evaluate_6_1(student_func):
+    outputs = ["A", "B", "C", "D-partial"]
+    gt = ["A", "X", "C", "D"]
+    r = student_func(outputs, gt)
+    assert r["total"] == 4
+    assert r["passed"] == 2
+    assert 0.5 <= r["partial_score"] <= 0.8
+    return True, "关卡通过：正确评估Agent表现"
+```
+
+--------------------------------------------------------------------------------
+关卡 6-2：CRAG Benchmark RAG 评估
+所属模块：模块六 · 评估、安全与前沿拓展
+--------------------------------------------------------------------------------
+
+【任务描述】
+CRAG（Comprehensive RAG Benchmark）专门评估 RAG 系统。核心指标：
+- 检索准确率（Retrieval Accuracy）：检索到的文档中有多少是相关的
+- 生成准确率（Generation Accuracy）：最终答案的正确率
+
+编写函数 `evaluate_rag_system(retrieved_docs, relevant_docs, answers, ground_truth)`：
+- 计算 Recall@k（检索对相关文档的覆盖率）
+- 计算 Answer Accuracy（答案完全匹配率）
+
+【输入输出说明】
+输入：retrieved_docs(list[list[str]]), relevant_docs(list[set[str]]), answers(list[str]), gt(list[str])
+输出：{"recall": float, "accuracy": float}
+
+【初始代码】
+```python
+def evaluate_rag_system(retrieved_docs, relevant_docs, answers, ground_truth):
+    """
+    评估RAG系统的检索和生成质量。
+    """
+    n = len(ground_truth)
+    # Recall: 每个查询检索到的相关文档占比
+    recalls = []
+    for ret, rel in zip(retrieved_docs, relevant_docs):
+        if rel:
+            hits = len(set(ret) & rel)
+            recalls.append(hits / len(rel))
+        else:
+            recalls.append(1.0)
+    avg_recall = sum(recalls) / n if n else 0
+    # Accuracy: 答案正确率
+    correct = sum(1 for a, g in zip(answers, ground_truth) if a.strip() == g.strip())
+    return {
+        "recall": round(avg_recall, 3),
+        "accuracy": round(correct / n, 3) if n else 0
+    }
+```
+
+【评测代码】
+```python
+def evaluate_6_2(student_func):
+    ret = [["doc1","doc3"], ["doc2"]]
+    rel = [{"doc1","doc2","doc3"}, {"doc2"}]
+    ans = ["答案A", "答案B"]
+    gt = ["答案A", "答案C"]
+    r = student_func(ret, rel, ans, gt)
+    assert r["recall"] > 0.5
+    assert r["accuracy"] == 0.5
+    return True, "关卡通过：正确评估RAG系统"
+```
+
+--------------------------------------------------------------------------------
+关卡 6-3：量化评估推理能力与工具使用
+所属模块：模块六 · 评估、安全与前沿拓展
+--------------------------------------------------------------------------------
+
+【任务描述】
+评估智能体需要量化多个维度：推理能力（答案推理步骤完整性）、工具使用
+准确率（函数调用正确率）、任务完成率（达标比例）。
+
+编写函数 `multi_dimension_eval(results)`：
+- results：[{reasoning_steps, tool_calls, task_done}]
+- 计算：avg_reasoning_depth（平均推理步数）、tool_accuracy（正确调用比例）、
+  task_completion_rate（完成任务比例）
+
+【输入输出说明】
+输入：results(list[dict])
+输出：{"avg_reasoning_depth": float, "tool_accuracy": float, "completion_rate": float}
+
+【初始代码】
+```python
+def multi_dimension_eval(results):
+    """
+    多维度评估智能体能力。
+    """
+    n = len(results)
+    if n == 0:
+        return {"avg_reasoning_depth": 0, "tool_accuracy": 0, "completion_rate": 0}
+    # TODO: 计算三个维度
+    avg_depth = sum(r.get("reasoning_steps", 0) for r in results) / n
+    tool_ok = sum(r.get("tool_calls_correct", 0) for r in results)
+    tool_total = max(sum(r.get("tool_calls_total", 0) for r in results), 1)
+    tool_acc = tool_ok / tool_total
+    done = sum(1 for r in results if r.get("task_done", False))
+    return {
+        "avg_reasoning_depth": round(avg_depth, 1),
+        "tool_accuracy": round(tool_acc, 3),
+        "completion_rate": round(done / n, 3)
+    }
+```
+
+【评测代码】
+```python
+def evaluate_6_3(student_func):
+    results = [
+        {"reasoning_steps": 5, "tool_calls_correct": 3, "tool_calls_total": 4, "task_done": True},
+        {"reasoning_steps": 3, "tool_calls_correct": 2, "tool_calls_total": 2, "task_done": True},
+        {"reasoning_steps": 2, "tool_calls_correct": 0, "tool_calls_total": 3, "task_done": False},
+    ]
+    r = student_func(results)
+    assert r["completion_rate"] == 2/3
+    assert r["tool_accuracy"] > 0.5
+    return True, "关卡通过：正确实现多维度评估"
+```
+
+--------------------------------------------------------------------------------
+关卡 6-4：工具调用权限控制
+所属模块：模块六 · 评估、安全与前沿拓展
+--------------------------------------------------------------------------------
+
+【任务描述】
+智能体安全治理的核心：对工具调用的权限分级控制。高危操作（删除、修改系统
+配置）需要高级权限，低危操作（读取、查询）普通权限即可。
+
+编写函数 `check_tool_permission(tool_name, user_role, permission_policy)`：
+- permission_policy：{工具名: [允许的角色列表]}
+- 返回 {"allowed": True/False, "reason": str}
+
+【输入输出说明】
+输入：tool_name(str), user_role(str), permission_policy(dict)
+输出：{"allowed": bool, "reason": str}
+
+【初始代码】
+```python
+def check_tool_permission(tool_name, user_role, permission_policy):
+    """
+    检查用户是否有权限调用指定工具。
+    """
+    # TODO: 查找策略，判断角色是否在允许列表中
+    allowed_roles = permission_policy.get(tool_name, [])
+    if user_role in allowed_roles:
+        return {"allowed": True, "reason": "权限通过"}
+    return {"allowed": False, "reason": f"角色{user_role}无权调用{tool_name}"}
+```
+
+【评测代码】
+```python
+def evaluate_6_4(student_func):
+    policy = {
+        "read_file": ["guest", "user", "admin"],
+        "write_file": ["user", "admin"],
+        "delete_system": ["admin"],
+    }
+    assert student_func("read_file", "guest", policy)["allowed"]
+    assert not student_func("delete_system", "user", policy)["allowed"]
+    assert student_func("delete_system", "admin", policy)["allowed"]
+    return True, "关卡通过：正确实现权限控制"
+```
+
+--------------------------------------------------------------------------------
+关卡 6-5：幻觉抑制 — 检索增强与约束解码
+所属模块：模块六 · 评估、安全与前沿拓展
+--------------------------------------------------------------------------------
+
+【任务描述】
+大模型的"幻觉"（Hallucination）指生成看似合理但事实错误的内容。抑制方法
+之一：先检索可信知识库，再要求模型严格基于检索结果作答，不编造。
+
+编写函数 `reduce_hallucination(query, knowledge_base, response)`：
+- 检查 response 中是否包含 knowledge_base 之外的新事实声明
+- 将未在知识库中出现的关键实体标记为"疑似幻觉"
+- 返回 {"clean": bool, "suspicious": [str], "verified_response": str}
+
+【输入输出说明】
+输入：query(str), knowledge_base(str), response(str)
+输出：幻觉检测结果
+
+【初始代码】
+```python
+def reduce_hallucination(query, knowledge_base, response):
+    """
+    检测并标记回答中的疑似幻觉内容。
+    """
+    kb_words = set(knowledge_base.lower().split())
+    resp_words = response.lower().split()
+    suspicious = []
+    # TODO: 找出response中不在knowledge_base中的长词（>3字符）
+    for word in set(resp_words):
+        if len(word) > 3 and word not in kb_words and word not in query.lower():
+            suspicious.append(word)
+    return {
+        "clean": len(suspicious) == 0,
+        "suspicious": suspicious[:5],
+        "verified_response": response if len(suspicious) == 0 else response + " [引用已核查]"
+    }
+```
+
+【评测代码】
+```python
+def evaluate_6_5(student_func):
+    kb = "AI智能体使用大模型和工具完成自主任务"
+    resp1 = "AI智能体使用大模型完成工作"
+    r1 = student_func("什么是AI智能体", kb, resp1)
+    assert r1["clean"], "完全基于知识库应无幻觉"
+    resp2 = "AI智能体使用量子计算机完成魔法任务"
+    r2 = student_func("什么是AI智能体", kb, resp2)
+    assert not r2["clean"], "含编造内容应检测出幻觉"
+    return True, "关卡通过：正确实现幻觉检测"
+```
+
+--------------------------------------------------------------------------------
+关卡 6-6：数据隐私脱敏
+所属模块：模块六 · 评估、安全与前沿拓展
+--------------------------------------------------------------------------------
+
+【任务描述】
+智能体处理用户数据时必须保护隐私：脱敏（Masking）隐藏敏感信息如身份证号、
+手机号、邮箱地址等。
+
+编写函数 `mask_sensitive_info(text)`：
+- 手机号（11位数字）：138****5678
+- 身份证号（18位）：3****************X
+- 邮箱：u***@domain.com
+- 返回脱敏后的文本
+
+【输入输出说明】
+输入：text(str)
+输出：脱敏后的 str
+
+【初始代码】
+```python
+import re
+
+def mask_sensitive_info(text):
+    """
+    对手机号、身份证、邮箱进行脱敏处理。
+    """
+    # TODO: 正则替换
+    # 手机号: 1[3-9]\d{9} → 前3位+****+后4位
+    text = re.sub(r'(1[3-9]\d)\d{4}(\d{4})', r'\1****\2', text)
+    # 身份证: \d{17}[\dXx] → 前1位+16星+末位
+    text = re.sub(r'(\d)\d{16}(\d[\dXx])', r'\1****************\2', text)
+    # 邮箱: 用户名部分只保留首字母
+    text = re.sub(r'(\w)[\w.]*(@\w+\.\w+)', r'\1***\2', text)
+    return text
+```
+
+【评测代码】
+```python
+def evaluate_6_6(student_func):
+    text = "请联系13812345678或发邮件user@example.com，身份证320102199001011234"
+    result = student_func(text)
+    assert "13812345678" not in result, "手机号应被脱敏"
+    assert "****" in result
+    assert "user@example.com" not in result, "邮箱应被脱敏"
+    assert "320102199001011234" not in result, "身份证应被脱敏"
+    return True, "关卡通过：正确实现隐私脱敏"
+```
+
+--------------------------------------------------------------------------------
+关卡 6-7：算法偏见检测与缓解
+所属模块：模块六 · 评估、安全与前沿拓展
+--------------------------------------------------------------------------------
+
+【任务描述】
+算法偏见（Bias）指模型对特定群体有系统性歧视。简单检测方法：对比不同群体
+的模型输出差异。缓解方法：对输出进行均衡化处理。
+
+编写函数 `detect_bias(predictions, group_labels)`：
+- 计算每个群体的平均得分
+- 如果群体间最大差异 > 阈值（0.15），返回 bias_report
+- 返回 {"has_bias": bool, "group_scores": dict, "recommendation": str}
+
+【输入输出说明】
+输入：predictions(list[dict 含 score 和 group]), threshold(float)
+输出：偏见检测报告
+
+【初始代码】
+```python
+def detect_bias(predictions, threshold=0.15):
+    """
+    检测模型输出中的群体偏差。
+    predictions: [{"score": 0.8, "group": "A"}, ...]
+    """
+    # TODO: 分组统计平均分，检查组间差异
+    groups = {}
+    for p in predictions:
+        g = p["group"]
+        if g not in groups:
+            groups[g] = []
+        groups[g].append(p["score"])
+    avg_scores = {g: sum(s)/len(s) for g, s in groups.items()}
+    scores_list = list(avg_scores.values())
+    max_diff = max(scores_list) - min(scores_list) if scores_list else 0
+    return {
+        "has_bias": max_diff > threshold,
+        "group_scores": avg_scores,
+        "recommendation": "需要调整模型以消除偏差" if max_diff > threshold else "偏差在可接受范围"
+    }
+```
+
+【评测代码】
+```python
+def evaluate_6_7(student_func):
+    preds = [
+        {"score": 0.9, "group": "A"}, {"score": 0.88, "group": "A"},
+        {"score": 0.6, "group": "B"}, {"score": 0.62, "group": "B"},
+    ]
+    r = student_func(preds, threshold=0.15)
+    assert r["has_bias"], "A组≈0.89, B组≈0.61, 差异>0.15应检测到偏见"
+    assert r["group_scores"]["A"] > r["group_scores"]["B"]
+    return True, "关卡通过：正确实现偏见检测"
+```
+
+--------------------------------------------------------------------------------
+关卡 6-8：具身智能（Embodied AI）感知-操作循环
+所属模块：模块六 · 评估、安全与前沿拓展
+--------------------------------------------------------------------------------
+
+【任务描述】
+具身智能体（Embodied Agent）在物理环境中感知和操作。核心循环：感知环境
+→ 解析状态 → 规划动作 → 执行动作 → 观察效果。
+
+编写函数 `embodied_agent_loop(environment, policy, max_steps=5)`：
+- environment：dict，包含 state 和 actions 映射
+- policy：函数，根据 state 返回 action_name
+- 模拟循环直到 state 变为 "goal" 或超步数
+- 返回执行轨迹列表
+
+【输入输出说明】
+输入：environment(dict), policy(callable), max_steps(int)
+输出：[{"step": int, "state":str, "action":str}, ...]
+
+【初始代码】
+```python
+def embodied_agent_loop(environment, policy, max_steps=5):
+    """
+    具身智能体感知-规划-行动循环。
+    """
+    trajectory = []
+    state = environment.get("initial_state", "start")
+    for step in range(1, max_steps + 1):
+        action = policy(state)
+        trajectory.append({"step": step, "state": state, "action": action})
+        # 执行动作，更新状态
+        transitions = environment.get("transitions", {})
+        state = transitions.get((state, action), state)
+        if state == "goal":
+            trajectory.append({"step": step + 1, "state": "goal", "action": "done"})
+            break
+    return trajectory
+```
+
+【评测代码】
+```python
+def evaluate_6_8(student_func):
+    env = {
+        "initial_state": "start",
+        "transitions": {("start","forward"): "mid", ("mid","forward"): "goal"}
+    }
+    def policy(state):
+        return "forward"
+    r = student_func(env, policy, max_steps=5)
+    assert len(r) >= 2
+    assert r[-1]["state"] == "goal"
+    return True, "关卡通过：正确实现具身智能循环"
+```
+
+--------------------------------------------------------------------------------
+关卡 6-9：MCP 模型上下文协议模拟
+所属模块：模块六 · 评估、安全与前沿拓展
+--------------------------------------------------------------------------------
+
+【任务描述】
+MCP（Model Context Protocol）是 Anthropic 提出的智能体与外部工具的标准
+连接协议。它定义了智能体如何发现工具、请求工具、接收结果的统一接口。
+
+编写类 `MCPServer` 模拟：
+- `register_tool(name, description, input_schema, handler)`：注册工具
+- `list_tools()`：返回所有已注册工具的声明（name+description+schema）
+- `call_tool(name, arguments)`：调用工具并返回 {"content": [...]}
+
+【输入输出说明】
+pip install 无需
+输入：创建Server，注册工具，调用
+输出：MCP标准响应格式
+
+【初始代码】
+```python
+class MCPServer:
+    """MCP 协议服务端模拟"""
+    def __init__(self):
+        self.tools = {}
+
+    def register_tool(self, name, description, input_schema, handler):
+        """注册工具: handler接收arguments字典返回结果"""
+        # TODO
+        pass
+
+    def list_tools(self):
+        """返回工具列表"""
+        # TODO
+        pass
+
+    def call_tool(self, name, arguments):
+        """调用指定工具"""
+        # TODO
+        pass
+```
+
+【评测代码】
+```python
+def evaluate_6_9(module_dict):
+    MCP = module_dict.get("MCPServer")
+    assert MCP is not None
+    server = MCP()
+    server.register_tool("calculator", "执行数学运算", {"expr": "string"}, lambda args: str(eval(args["expr"])))
+    server.register_tool("weather", "查询天气", {"city": "string"}, lambda args: f"{args['city']}: 晴")
+    tools = server.list_tools()
+    assert len(tools) == 2
+    assert tools[0]["name"] in ["calculator", "weather"]
+    r = server.call_tool("calculator", {"expr": "3+5*2"})
+    assert "13" in str(r["content"])
+    return True, "关卡通过：正确实现MCP协议"
+```
+
+--------------------------------------------------------------------------------
+关卡 6-10：Skills 技能模块封装
+所属模块：模块六 · 评估、安全与前沿拓展
+--------------------------------------------------------------------------------
+
+【任务描述】
+Skills 机制将常用能力（如代码执行、文件解析、搜索）封装为可复用的技能模块，
+方便在不同 Agent 间共享。每个 Skill 有 name、description、input_schema 和
+execute 方法。
+
+编写类 `SkillRegistry`：
+- `register_skill(skill_dict)`：注册技能
+- `find_skill(task_description)`：根据任务描述关键词匹配最佳技能
+- `execute_skill(name, **kwargs)`：执行指定技能
+
+【输入输出说明】
+输入：创建registry，注册技能，匹配执行
+输出：执行结果
+
+【初始代码】
+```python
+class SkillRegistry:
+    """技能注册中心"""
+    def __init__(self):
+        self.skills = {}
+
+    def register_skill(self, name, description, keywords, handler):
+        """注册技能及其关键词"""
+        # TODO
+        pass
+
+    def find_skill(self, task_description):
+        """关键词匹配最佳技能，返回skill_name或None"""
+        # TODO
+        pass
+
+    def execute_skill(self, name, **kwargs):
+        """执行已注册的技能"""
+        # TODO
+        pass
+```
+
+【评测代码】
+```python
+def evaluate_6_10(module_dict):
+    SR = module_dict.get("SkillRegistry")
+    assert SR is not None
+    registry = SR()
+    registry.register_skill("code_exec", "安全执行Python代码", ["代码","运行","执行"], lambda code: f"执行结果: {eval(code)}")
+    registry.register_skill("web_search", "搜索网络信息", ["搜索","查找","查询"], lambda query: f"搜索结果: {query}")
+    match = registry.find_skill("帮我运行一段Python代码")
+    assert match == "code_exec", f"应匹配code_exec, 得到{match}"
+    result = registry.execute_skill("code_exec", code="1+1")
+    assert "2" in str(result)
+    match2 = registry.find_skill("搜索AI最新论文")
+    assert match2 == "web_search"
+    return True, "关卡通过：正确实现技能注册中心"
+```

@@ -1,0 +1,706 @@
+================================================================================
+模块三：智能体四大核心能力模块（14 关）
+================================================================================
+
+--------------------------------------------------------------------------------
+关卡 3-1：自然语言指令解析
+所属模块：模块三 · 智能体四大核心能力模块 — 感知模块
+--------------------------------------------------------------------------------
+
+【任务描述】
+智能体感知模块的第一个任务：精准解析用户的自然语言指令，提取意图（intent）
+和关键实体（entities）。例如 "帮我查询明天北京的天气" → intent="query_weather",
+entities={"date":"明天","city":"北京"}。
+
+编写函数 `parse_nl_instruction(text)`，使用关键词匹配（不依赖外部库）：
+- 如果包含"天气"→ intent="query_weather"，提取城市名和日期
+- 如果包含"搜索"或"查找"→ intent="search"，提取搜索内容
+- 如果包含"计算"→ intent="calculate"，提取表达式
+- 否则 intent="unknown"
+
+【输入输出说明】
+输入：text（str）
+输出：{"intent": str, "entities": dict}
+
+【初始代码】
+```python
+def parse_nl_instruction(text):
+    """
+    解析自然语言指令，提取意图和实体。
+    """
+    # TODO: 关键词匹配提取 intent 和 entities
+    pass
+```
+
+【评测代码】
+```python
+def evaluate_3_1(student_func):
+    r1 = student_func("帮我查询明天北京的天气")
+    assert r1["intent"] == "query_weather", f"应为query_weather, 得到{r1['intent']}"
+    assert "北京" in str(r1["entities"]), "应提取城市北京"
+    r2 = student_func("搜索AI智能体最新论文")
+    assert r2["intent"] == "search"
+    r3 = student_func("计算 3+5*2")
+    assert r3["intent"] == "calculate"
+    r4 = student_func("今天心情不错")
+    assert r4["intent"] == "unknown"
+    return True, "关卡通过：正确解析自然语言指令"
+```
+
+--------------------------------------------------------------------------------
+关卡 3-2：多模态感知模拟
+所属模块：模块三 · 智能体四大核心能力模块 — 感知模块
+--------------------------------------------------------------------------------
+
+【任务描述】
+多模态感知指智能体能同时处理文本、图像、语音等多种输入类型，并统一理解为
+结构化的语义表示。本关模拟多模态输入的融合处理。
+
+编写函数 `fuse_multimodal_inputs(inputs)`：
+- inputs：dict，可能包含 "text"（str）, "image_desc"（str）, "audio_transcript"（str）
+- 融合所有可用模态的信息，返回统一的语义摘要字符串
+- 格式："[融合感知] 文本: ... 图像描述: ... 语音转录: ..."
+
+【输入输出说明】
+输入：inputs(dict)
+输出：融合后的摘要字符串
+
+【初始代码】
+```python
+def fuse_multimodal_inputs(inputs):
+    """
+    融合多模态输入为统一语义表示。
+    """
+    parts = ["[融合感知]"]
+    # TODO: 遍历 inputs，拼接各模态信息
+    for modal in ["text", "image_desc", "audio_transcript"]:
+        if modal in inputs and inputs[modal]:
+            parts.append(f"{modal}: {inputs[modal]}")
+    return " ".join(parts)
+```
+
+【评测代码】
+```python
+def evaluate_3_2(student_func):
+    r = student_func({"text": "一只猫", "image_desc": "橙色虎斑猫", "audio_transcript": "喵喵叫"})
+    assert "text" in r and "image_desc" in r and "audio_transcript" in r
+    assert "一只猫" in r and "橙色虎斑猫" in r
+    r2 = student_func({"text": "只有文本"})
+    assert "image_desc" not in r2.lower()
+    return True, "关卡通过：正确融合多模态输入"
+```
+
+--------------------------------------------------------------------------------
+关卡 3-3：视觉语言模型（VLM）的基本作用
+所属模块：模块三 · 智能体四大核心能力模块 — 感知模块
+--------------------------------------------------------------------------------
+
+【任务描述】
+VLM（Vision Language Model）能理解图像内容并生成文本描述。本关模拟 VLM 的
+图像→文本映射过程。
+
+编写函数 `simulate_vlm(image_features, concept_map)`：
+- image_features：图像特征词列表 ["furry","pointy_ears","whiskers"]
+- concept_map：特征→概念的映射字典 {"furry":"动物","pointy_ears":"猫科","whiskers":"猫"}
+- 返回最可能的概念（出现次数最多的类别）及置信度
+
+【输入输出说明】
+输入：image_features(list[str]), concept_map(dict[str,str])
+输出：{"concept": str, "confidence": float}  (0~1)
+样例输入：features=["furry","whiskers"], map={"furry":"猫","whiskers":"猫","pointy_ears":"狗"}
+样例输出：{"concept": "猫", "confidence": 1.0}
+
+【初始代码】
+```python
+def simulate_vlm(image_features, concept_map):
+    """
+    模拟VLM：根据图像特征匹配最可能的概念。
+    """
+    # TODO: 统计每个概念的出现次数，返回最高频概念和占比
+    pass
+```
+
+【评测代码】
+```python
+def evaluate_3_3(student_func):
+    concept_map = {"furry": "猫", "whiskers": "猫", "pointy_ears": "狗", "tail": "猫"}
+    r = student_func(["furry", "whiskers"], concept_map)
+    assert r["concept"] == "猫", "应识别为猫"
+    assert r["confidence"] == 1.0, "全部特征指向猫，置信度应为1.0"
+    r2 = student_func(["furry", "pointy_ears"], concept_map)
+    assert r2["concept"] in ["猫", "狗"]
+    assert r2["confidence"] == 0.5, "各一半特征，置信度应为0.5"
+    return True, "关卡通过：正确模拟VLM概念识别"
+```
+
+--------------------------------------------------------------------------------
+关卡 3-4：短期记忆 — 上下文窗口管理
+所属模块：模块三 · 智能体四大核心能力模块 — 记忆模块
+--------------------------------------------------------------------------------
+
+【任务描述】
+大模型的上下文窗口有长度限制。短期记忆管理需要维护最近 N 条对话，超出限制时
+自动遗忘最早的对话。这类似于一个固定大小的"滑动窗口"队列。
+
+编写类 `ShortTermMemory`：
+- `__init__(self, max_size=5)`：设置最大容量
+- `add(self, message)`：添加一条消息（dict），超出容量时移除最早的
+- `get_context(self)`：返回当前所有消息列表
+- `get_token_estimate(self)`：估算总 token 数（按中文字符数 / 2 估算）
+
+【输入输出说明】
+创建 memory = ShortTermMemory(3)，依次 add("msg1"), add("msg2"), add("msg3"), add("msg4")
+get_context() 返回 ["msg2","msg3","msg4"]
+
+【初始代码】
+```python
+class ShortTermMemory:
+    def __init__(self, max_size=5):
+        self.max_size = max_size
+        self.messages = []
+
+    def add(self, message):
+        """添加消息，超出容量时移除最早的消息"""
+        # TODO: append + 检查长度
+        pass
+
+    def get_context(self):
+        """返回当前上下文"""
+        # TODO
+        pass
+
+    def get_token_estimate(self):
+        """估算 token 数"""
+        total_chars = sum(len(str(m)) for m in self.messages)
+        return total_chars // 2
+```
+
+【评测代码】
+```python
+def evaluate_3_4(module_dict):
+    STM = module_dict.get("ShortTermMemory")
+    assert STM is not None
+    mem = STM(max_size=3)
+    mem.add("消息A")
+    mem.add("消息B")
+    mem.add("消息C")
+    assert len(mem.get_context()) == 3
+    mem.add("消息D")
+    ctx = mem.get_context()
+    assert len(ctx) == 3, "超出容量应保持3条"
+    assert "消息A" not in ctx, "最早的消息A应被遗忘"
+    assert "消息D" in ctx, "最新消息D应在"
+    assert mem.get_token_estimate() > 0, "token估算应大于0"
+    return True, "关卡通过：正确实现短期记忆管理"
+```
+
+--------------------------------------------------------------------------------
+关卡 3-5：长期记忆 — 向量数据库语义检索模拟
+所属模块：模块三 · 智能体四大核心能力模块 — 记忆模块
+--------------------------------------------------------------------------------
+
+【任务描述】
+长期记忆使用向量数据库（如 Chroma）存储知识的向量表示，通过余弦相似度检索
+最相关内容。本关模拟这一过程（不依赖外部库）。
+
+编写函数 `semantic_search(query_embedding, memory_store, top_k=3)`：
+- query_embedding：查询向量 list[float]
+- memory_store：list of (id, text, embedding) tuples
+- 用余弦相似度计算查询与每条记忆的相似度
+- 返回相似度最高的 top_k 条记忆的 id 和 text
+
+【输入输出说明】
+输入：query_embedding(list), memory_store(list[tuple]), top_k(int)
+输出：list[dict]，如 [{"id":..., "text":..., "score":...}, ...]
+
+【初始代码】
+```python
+import math
+
+def cosine_similarity(a, b):
+    """计算两个向量的余弦相似度"""
+    dot = sum(x * y for x, y in zip(a, b))
+    norm_a = math.sqrt(sum(x**2 for x in a))
+    norm_b = math.sqrt(sum(x**2 for x in b))
+    return dot / (norm_a * norm_b) if norm_a and norm_b else 0.0
+
+def semantic_search(query_embedding, memory_store, top_k=3):
+    """
+    余弦相似度检索最相关的 top_k 条记忆。
+    """
+    # TODO: 计算所有相似度，排序，返回 top_k
+    pass
+```
+
+【评测代码】
+```python
+def evaluate_3_5(student_func):
+    store = [
+        ("m1", "AI智能体定义", [0.8, 0.1, 0.0]),
+        ("m2", "Python教程", [0.0, 0.9, 0.1]),
+        ("m3", "机器学习基础", [0.5, 0.3, 0.6]),
+        ("m4", "深度学习", [0.15, 0.8, 0.2]),
+    ]
+    query = [0.7, 0.1, 0.1]
+    results = student_func(query, store, top_k=2)
+    assert len(results) == 2
+    assert results[0]["id"] == "m1", "最相关的应该是m1"
+    assert results[0]["score"] > results[1]["score"], "应按相似度降序"
+    return True, "关卡通过：正确实现语义检索"
+```
+
+--------------------------------------------------------------------------------
+关卡 3-6：知识图谱作为记忆增强手段
+所属模块：模块三 · 智能体四大核心能力模块 — 记忆模块
+--------------------------------------------------------------------------------
+
+【任务描述】
+知识图谱以"实体-关系-实体"三元组存储知识，智能体可通过图遍历找到关联信息。
+本关模拟知识图谱的关联查询。
+
+编写类 `KnowledgeGraph` 和函数 `query_related_concepts(kg, entity, max_depth=1)`：
+- 用邻接表存储三元组
+- 查询从 entity 出发 max_depth 步内可达的所有相关实体
+
+【输入输出说明】
+输入：kg(KnowledgeGraph), entity(str), max_depth(int)
+输出：相关实体集合 set[str]
+
+【初始代码】
+```python
+class KnowledgeGraph:
+    def __init__(self):
+        self.graph = {}  # {entity: [(relation, target), ...]}
+
+    def add_triple(self, subject, relation, obj):
+        """添加 (subject, relation, object) 三元组"""
+        if subject not in self.graph:
+            self.graph[subject] = []
+        self.graph[subject].append((relation, obj))
+
+def query_related_concepts(kg, entity, max_depth=1):
+    """
+    BFS 从 entity 出发，返回 max_depth 步内可达的所有实体。
+    """
+    # TODO: BFS遍历
+    visited = set()
+    current = {entity}
+    for _ in range(max_depth):
+        next_level = set()
+        for e in current:
+            if e not in visited and e in kg.graph:
+                visited.add(e)
+                for rel, target in kg.graph[e]:
+                    next_level.add(target)
+        current = next_level
+    visited.update(current)
+    visited.discard(entity)
+    return visited
+```
+
+【评测代码】
+```python
+def evaluate_3_6(module_dict):
+    KG = module_dict.get("KnowledgeGraph")
+    query_fn = module_dict.get("query_related_concepts")
+    assert KG and query_fn
+    kg = KG()
+    kg.add_triple("AI", "包含", "机器学习")
+    kg.add_triple("AI", "包含", "深度学习")
+    kg.add_triple("机器学习", "依赖", "数学")
+    result = query_fn(kg, "AI", max_depth=2)
+    assert "机器学习" in result and "深度学习" in result
+    assert "数学" in result, "深度2应到达数学"
+    return True, "关卡通过：正确实现知识图谱关联查询"
+```
+
+--------------------------------------------------------------------------------
+关卡 3-7：复杂任务自动分解
+所属模块：模块三 · 智能体四大核心能力模块 — 规划模块
+--------------------------------------------------------------------------------
+
+【任务描述】
+规划模块的核心能力：将复杂目标自动分解为可执行的子任务序列。
+例如 "开发一个网页爬虫" → [设计URL提取逻辑, 实现HTTP请求, 解析HTML, 存储数据]。
+
+编写函数 `decompose_task(goal, subtask_templates)`：
+- goal：复杂目标字符串
+- subtask_templates：关键词→子任务列表的映射
+- 匹配 goal 中的关键词，展开对应的子任务
+- 返回分解后的子任务列表（按模板顺序、去重）
+
+【输入输出说明】
+输入：goal(str), subtask_templates(dict[str, list[str]])
+输出：子任务列表 list[str]
+
+【初始代码】
+```python
+def decompose_task(goal, subtask_templates):
+    """
+    根据目标中的关键词匹配子任务模板，返回分解结果。
+    """
+    # TODO: 关键词匹配收集子任务
+    tasks = []
+    seen = set()
+    for keyword, subtasks in subtask_templates.items():
+        if keyword in goal:
+            for t in subtasks:
+                if t not in seen:
+                    tasks.append(t)
+                    seen.add(t)
+    return tasks
+```
+
+【评测代码】
+```python
+def evaluate_3_7(student_func):
+    templates = {
+        "爬虫": ["设计URL提取逻辑", "实现HTTP请求", "解析HTML", "存储数据"],
+        "数据分析": ["数据清洗", "特征工程", "模型训练", "结果可视化"],
+        "API": ["设计接口", "实现路由", "编写文档"],
+    }
+    r = student_func("开发一个网页爬虫", templates)
+    assert len(r) == 4, "爬虫应分解为4个子任务"
+    assert "实现HTTP请求" in r
+    r2 = student_func("开发一个爬虫API", templates)
+    assert len(r2) == 7, "爬虫+API应拆分为7个"
+    return True, "关卡通过：正确分解复杂任务"
+```
+
+--------------------------------------------------------------------------------
+关卡 3-8：状态空间搜索与分层规划
+所属模块：模块三 · 智能体四大核心能力模块 — 规划模块
+--------------------------------------------------------------------------------
+
+【任务描述】
+分层规划（Hierarchical Planning）把大问题分解为高层计划，每个高层计划再分解
+为具体步骤。本关模拟简单的路径规划问题。
+
+编写函数 `hierarchical_path_plan(start, goal, waypoints)`：
+- 将完整路径分解为"高层路径"（经过哪些关键节点）和"细节步骤"
+- start="A", goal="D", waypoints=["B","C"]
+- 返回 {"high_level": ["A→B", "B→C", "C→D"], "steps": ["A→B: 直行", "B→C: 左转", "C→D: 右转"]}
+
+【输入输出说明】
+输入：start(str), goal(str), waypoints(list[str])
+输出：{"high_level": [...], "steps": [...]}
+
+【初始代码】
+```python
+def hierarchical_path_plan(start, goal, waypoints):
+    """
+    分层规划：高层经过关键节点，细节步骤逐段展开。
+    """
+    # TODO: 构建高层路径和细节步骤
+    path = [start] + waypoints + [goal]
+    high_level = [f"{path[i]}→{path[i+1]}" for i in range(len(path)-1)]
+    steps = [f"{seg}: 前进" for seg in high_level]
+    return {"high_level": high_level, "steps": steps}
+```
+
+【评测代码】
+```python
+def evaluate_3_8(student_func):
+    r = student_func("A", "D", ["B", "C"])
+    assert len(r["high_level"]) == 3
+    assert r["high_level"][0] == "A→B"
+    assert r["high_level"][2] == "C→D"
+    assert len(r["steps"]) == 3
+    r2 = student_func("Home", "Office", [])
+    assert r2["high_level"] == ["Home→Office"]
+    return True, "关卡通过：正确实现分层规划"
+```
+
+--------------------------------------------------------------------------------
+关卡 3-9：根据反馈动态调整子目标
+所属模块：模块三 · 智能体四大核心能力模块 — 规划模块
+--------------------------------------------------------------------------------
+
+【任务描述】
+Re-planning 是规划模块的关键能力：执行过程中遇到障碍时，动态调整剩余计划。
+
+编写函数 `replan_on_failure(original_plan, failed_step, alternative_steps)`：
+- 找到 original_plan 中 failed_step 的位置
+- 将其替换为 alternative_steps
+- 返回调整后的完整计划
+
+【输入输出说明】
+输入：original_plan(list), failed_step(str), alternative_steps(list)
+输出：调整后的计划 list
+
+【初始代码】
+```python
+def replan_on_failure(original_plan, failed_step, alternative_steps):
+    """
+    计划中某一步失败时，用替代步骤替换并返回新计划。
+    """
+    # TODO: 查找失败步骤位置，替换
+    pass
+```
+
+【评测代码】
+```python
+def evaluate_3_9(student_func):
+    plan = ["步骤1", "步骤2", "步骤3", "步骤4"]
+    r = student_func(plan, "步骤2", ["替代A", "替代B"])
+    assert r == ["步骤1", "替代A", "替代B", "步骤3", "步骤4"]
+    r2 = student_func(plan, "步骤4", ["替代X"])
+    assert r2 == ["步骤1", "步骤2", "步骤3", "替代X"]
+    return True, "关卡通过：正确实现动态重规划"
+```
+
+--------------------------------------------------------------------------------
+关卡 3-10：函数调用 Function Calling 机制
+所属模块：模块三 · 智能体四大核心能力模块 — 行动模块
+--------------------------------------------------------------------------------
+
+【任务描述】
+Function Calling（Tool Use）是智能体行动模块的标准机制：LLM 输出结构化 JSON
+指定要调用的函数名和参数，由宿主程序执行后返回结果。
+
+编写函数 `parse_function_call(llm_response)`：
+- 从 LLM 的 JSON 响应中解析函数调用
+- 模拟执行对应函数并返回结果
+- 支持的函数：get_weather(city), calculate(expr), search(query)
+
+【输入输出说明】
+输入：llm_response(dict) 如 {"function":"get_weather","params":{"city":"北京"}}
+输出：{"function": str, "params": dict, "result": any}
+
+【初始代码】
+```python
+def parse_function_call(llm_response):
+    """
+    解析 LLM 的函数调用 JSON 并模拟执行。
+    """
+    func_name = llm_response.get("function", "")
+    params = llm_response.get("params", {})
+    result = None
+    # TODO: 根据 func_name 调用对应模拟函数
+    if func_name == "get_weather":
+        result = f"{params.get('city','未知')}: 晴, 25°C"
+    elif func_name == "calculate":
+        try:
+            result = eval(str(params.get("expr", "0")))
+        except:
+            result = "计算错误"
+    elif func_name == "search":
+        result = f"搜索结果: 关于'{params.get('query','')}'的3条信息"
+    else:
+        result = "未知函数"
+    return {"function": func_name, "params": params, "result": result}
+```
+
+【评测代码】
+```python
+def evaluate_3_10(student_func):
+    r1 = student_func({"function": "get_weather", "params": {"city": "北京"}})
+    assert "北京" in str(r1["result"]) and "25" in str(r1["result"])
+    r2 = student_func({"function": "calculate", "params": {"expr": "3+5*2"}})
+    assert r2["result"] == 13
+    r3 = student_func({"function": "search", "params": {"query": "AI"}})
+    assert "AI" in str(r3["result"])
+    return True, "关卡通过：正确实现Function Calling"
+```
+
+--------------------------------------------------------------------------------
+关卡 3-11：外部工具集成
+所属模块：模块三 · 智能体四大核心能力模块 — 行动模块
+--------------------------------------------------------------------------------
+
+【任务描述】
+智能体需要集成多种外部工具：搜索引擎、计算器、数据库查询等。本关实现一个
+工具注册表，智能体能根据任务自动选择并调用对应工具。
+
+编写类 `ToolRegistry`：
+- `register(name, func)`：注册工具
+- `call(name, **kwargs)`：调用已注册的工具
+- `list_tools()`：列出所有可用工具名
+
+【输入输出说明】
+创建 registry，注册 2-3 个工具，调用并返回结果
+
+【初始代码】
+```python
+class ToolRegistry:
+    def __init__(self):
+        self.tools = {}
+
+    def register(self, name, func):
+        """注册一个工具"""
+        # TODO
+        pass
+
+    def call(self, name, **kwargs):
+        """调用工具"""
+        # TODO
+        pass
+
+    def list_tools(self):
+        """列出所有工具名"""
+        # TODO
+        pass
+```
+
+【评测代码】
+```python
+def evaluate_3_11(module_dict):
+    TR = module_dict.get("ToolRegistry")
+    assert TR is not None
+    registry = TR()
+    registry.register("add", lambda a, b: a + b)
+    registry.register("greet", lambda name: f"Hello, {name}")
+    assert "add" in registry.list_tools()
+    assert registry.call("add", a=3, b=5) == 8
+    assert registry.call("greet", name="World") == "Hello, World"
+    return True, "关卡通过：正确实现工具注册表"
+```
+
+--------------------------------------------------------------------------------
+关卡 3-12：沙箱安全执行代码
+所属模块：模块三 · 智能体四大核心能力模块 — 行动模块
+--------------------------------------------------------------------------------
+
+【任务描述】
+智能体需要在受限的沙箱环境中安全执行代码，防止恶意代码访问文件系统或网络。
+
+编写函数 `sandbox_execute(code, allowed_builtins=None)`：
+- 仅允许使用白名单中的内置函数（默认：print, len, range, int, float, str, list, dict, abs, min, max, sum）
+- 禁止 __import__、open、eval、exec 等危险函数
+- 用受限的 globals 字典执行代码
+- 返回执行结果字符串（captured stdout）或错误信息
+
+【输入输出说明】
+输入：code(str), allowed_builtins(set or None)
+输出：{"success": bool, "output": str}
+
+【初始代码】
+```python
+import io
+import sys
+
+def sandbox_execute(code, allowed_builtins=None):
+    """
+    在受限环境中执行 Python 代码。
+    """
+    if allowed_builtins is None:
+        allowed_builtins = {"print", "len", "range", "int", "float", "str", "list", "dict", "abs", "min", "max", "sum"}
+    safe_globals = {"__builtins__": {k: __builtins__[k] for k in allowed_builtins if k in __builtins__}}
+    safe_globals["__builtins__"]["__import__"] = None  # 禁止import
+    old_stdout = sys.stdout
+    sys.stdout = io.StringIO()
+    try:
+        exec(code, safe_globals)
+        output = sys.stdout.getvalue()
+        return {"success": True, "output": output}
+    except Exception as e:
+        return {"success": False, "output": str(e)}
+    finally:
+        sys.stdout = old_stdout
+```
+
+【评测代码】
+```python
+def evaluate_3_12(student_func):
+    r1 = student_func("print('hello sandbox')")
+    assert r1["success"] and "hello sandbox" in r1["output"]
+    r2 = student_func("print(len([1,2,3]))")
+    assert r2["success"] and "3" in r2["output"]
+    r3 = student_func("open('/etc/passwd')")
+    assert not r3["success"], "open应被禁止"
+    return True, "关卡通过：正确实现沙箱执行"
+```
+
+--------------------------------------------------------------------------------
+关卡 3-13：工具链编排设计
+所属模块：模块三 · 智能体四大核心能力模块 — 行动模块
+--------------------------------------------------------------------------------
+
+【任务描述】
+复杂任务需要多个工具按顺序协作：工具A的输出是工具B的输入，形成工具链。需要
+处理工具间的依赖关系和错误传递。
+
+编写函数 `execute_tool_chain(tool_chain, initial_input)`：
+- tool_chain：[{name, func, error_handling}]
+- 顺序执行每个工具，前一个的输出作为后一个的输入
+- 如果某工具设置了 error_handling="skip"，出错时跳过并保持输入不变
+- 返回最终结果和每步的执行状态
+
+【输入输出说明】
+输入：tool_chain(list[dict]), initial_input(any)
+输出：{"final_result": any, "steps": [{"tool":..., "ok":..., "output":...}, ...]}
+
+【初始代码】
+```python
+def execute_tool_chain(tool_chain, initial_input):
+    """
+    顺序执行工具链，支持错误跳过。
+    """
+    current = initial_input
+    steps = []
+    for tc in tool_chain:
+        try:
+            current = tc["func"](current)
+            steps.append({"tool": tc["name"], "ok": True, "output": str(current)})
+        except Exception as e:
+            if tc.get("error_handling") == "skip":
+                steps.append({"tool": tc["name"], "ok": False, "output": str(e)})
+            else:
+                return {"final_result": None, "steps": steps, "error": str(e)}
+    return {"final_result": current, "steps": steps}
+```
+
+【评测代码】
+```python
+def evaluate_3_13(student_func):
+    chain = [
+        {"name": "double", "func": lambda x: x * 2, "error_handling": "stop"},
+        {"name": "add10", "func": lambda x: x + 10, "error_handling": "skip"},
+        {"name": "to_str", "func": lambda x: str(x), "error_handling": "stop"},
+    ]
+    r = student_func(chain, 5)
+    assert r["final_result"] == "20", f"5→10→20→'20', 得到{r['final_result']}"
+    assert len(r["steps"]) == 3 and all(s["ok"] for s in r["steps"])
+    return True, "关卡通过：正确实现工具链编排"
+```
+
+--------------------------------------------------------------------------------
+关卡 3-14：人在回路 Human-in-the-Loop
+所属模块：模块三 · 智能体四大核心能力模块 — 行动模块
+--------------------------------------------------------------------------------
+
+【任务描述】
+人在回路（HITL）机制：在智能体执行高风险操作前，暂停并等待人类确认。
+本关模拟 HITL 流程。
+
+编写函数 `hitl_gate(action, risk_level, threshold=7)`：
+- 如果 risk_level >= threshold，返回 {"approved": False, "reason": "需人工审批"}
+- 如果 risk_level < threshold，返回 {"approved": True, "action": action}
+- risk_level 为 1-10 的整数
+
+【输入输出说明】
+输入：action(str), risk_level(int), threshold(int)
+输出：{"approved": bool, ...}
+
+【初始代码】
+```python
+def hitl_gate(action, risk_level, threshold=7):
+    """
+    人在回路审批门控。
+    """
+    # TODO: 根据风险等级判断是否需要人工审批
+    pass
+```
+
+【评测代码】
+```python
+def evaluate_3_14(student_func):
+    r1 = student_func("删除临时文件", 2)
+    assert r1["approved"] == True
+    r2 = student_func("删除生产数据库", 9)
+    assert r2["approved"] == False
+    assert "审批" in r2.get("reason", "")
+    r3 = student_func("修改配置", 7)
+    assert r3["approved"] == False, "阈值7及以上应拒绝"
+    return True, "关卡通过：正确实现HITL门控"
+```

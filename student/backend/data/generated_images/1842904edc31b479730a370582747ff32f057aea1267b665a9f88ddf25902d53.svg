@@ -1,0 +1,98 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="800" height="500">
+  <defs>
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#E8F4FD"/>
+      <stop offset="100%" stop-color="#D0ECF9"/>
+    </linearGradient>
+    <linearGradient id="boxGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#409EFF"/>
+      <stop offset="100%" stop-color="#3A8FE0"/>
+    </linearGradient>
+    <filter id="shadow" x="-5%" y="-5%" width="115%" height="115%">
+      <feDropShadow dx="1" dy="2" stdDeviation="2" flood-opacity="0.15"/>
+    </filter>
+  </defs>
+
+  <!-- 背景 -->
+  <rect width="800" height="500" fill="url(#bgGrad)" rx="8"/>
+
+  <!-- 标题 -->
+  <text x="400" y="38" text-anchor="middle" font-family="sans-serif" font-size="18" font-weight="bold" fill="#1a1a2e">LoRA 前向传播流程</text>
+
+  <!-- ===== 输入 x ===== -->
+  <rect x="50" y="195" width="70" height="40" rx="8" fill="#1a1a2e" filter="url(#shadow)"/>
+  <text x="85" y="220" text-anchor="middle" font-family="sans-serif" font-size="16" font-weight="bold" fill="#ffffff">输入 x</text>
+
+  <!-- 从 x 出发的水平主线 -->
+  <line x1="120" y1="215" x2="180" y2="215" stroke="#1a1a2e" stroke-width="2.5"/>
+
+  <!-- 分叉节点（小圆点） -->
+  <circle cx="180" cy="215" r="5" fill="#1a1a2e"/>
+
+  <!-- ===== 上方分支：W0 冻结 ===== -->
+  <line x1="180" y1="215" x2="180" y2="120" stroke="#1a1a2e" stroke-width="2"/>
+  <line x1="180" y1="120" x2="280" y2="120" stroke="#1a1a2e" stroke-width="2"/>
+
+  <rect x="280" y="95" width="130" height="50" rx="10" fill="#E0E0E0" stroke="#B0B0B0" stroke-width="2" filter="url(#shadow)"/>
+  <!-- 锁图标 -->
+  <rect x="295" y="107" width="14" height="12" rx="2" fill="none" stroke="#888" stroke-width="2"/>
+  <rect x="298" y="110" width="8" height="3" rx="1" fill="#888"/>
+  <circle cx="302" cy="118" r="2" fill="#888"/>
+  <text x="340" y="125" text-anchor="middle" font-family="sans-serif" font-size="16" font-weight="bold" fill="#666">W₀（冻结）</text>
+
+  <line x1="410" y1="120" x2="510" y2="120" stroke="#1a1a2e" stroke-width="2"/>
+  <line x1="510" y1="120" x2="510" y2="215" stroke="#1a1a2e" stroke-width="2"/>
+
+  <!-- ===== 下方分支：A → B ===== -->
+  <line x1="180" y1="215" x2="180" y2="310" stroke="#1a1a2e" stroke-width="2"/>
+  <line x1="180" y1="310" x2="280" y2="310" stroke="#1a1a2e" stroke-width="2"/>
+
+  <!-- A 矩阵 -->
+  <rect x="280" y="285" width="110" height="50" rx="10" fill="url(#boxGrad)" filter="url(#shadow)"/>
+  <!-- 齿轮图标（简化） -->
+  <circle cx="298" cy="310" r="8" fill="none" stroke="#fff" stroke-width="1.8"/>
+  <circle cx="298" cy="310" r="3" fill="#fff"/>
+  <text x="340" y="315" text-anchor="middle" font-family="sans-serif" font-size="15" font-weight="bold" fill="#fff">A（r×d）</text>
+
+  <line x1="390" y1="310" x2="440" y2="310" stroke="#1a1a2e" stroke-width="2"/>
+
+  <!-- B 矩阵 -->
+  <rect x="440" y="285" width="110" height="50" rx="10" fill="url(#boxGrad)" filter="url(#shadow)"/>
+  <!-- 齿轮图标 -->
+  <circle cx="458" cy="310" r="8" fill="none" stroke="#fff" stroke-width="1.8"/>
+  <circle cx="458" cy="310" r="3" fill="#fff"/>
+  <text x="500" y="315" text-anchor="middle" font-family="sans-serif" font-size="15" font-weight="bold" fill="#fff">B（d×r）</text>
+
+  <line x1="550" y1="310" x2="550" y2="215" stroke="#1a1a2e" stroke-width="2"/>
+
+  <!-- ===== 汇合节点（加法器） ===== -->
+  <circle cx="550" cy="215" r="16" fill="#1a1a2e"/>
+  <text x="550" y="221" text-anchor="middle" font-family="sans-serif" font-size="18" font-weight="bold" fill="#fff">+</text>
+
+  <!-- 从汇合点到输出 -->
+  <line x1="566" y1="215" x2="630" y2="215" stroke="#1a1a2e" stroke-width="2.5"/>
+
+  <!-- ===== 输出 h ===== -->
+  <rect x="630" y="190" width="70" height="50" rx="10" fill="#1a1a2e" filter="url(#shadow)"/>
+  <text x="665" y="220" text-anchor="middle" font-family="sans-serif" font-size="17" font-weight="bold" fill="#fff">输出 h</text>
+
+  <!-- ===== 标注框：缩放因子公式 ===== -->
+  <rect x="560" y="360" width="200" height="60" rx="10" fill="#fff" stroke="#409EFF" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="660" y="385" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#1a1a2e">缩放因子：</text>
+  <text x="660" y="407" text-anchor="middle" font-family="sans-serif" font-size="15" font-weight="bold" fill="#409EFF">α / r</text>
+
+  <!-- ===== 标注：分支说明 ===== -->
+  <rect x="60" y="60" width="140" height="36" rx="8" fill="#fff" stroke="#409EFF" stroke-width="1.2" opacity="0.9"/>
+  <text x="130" y="83" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#1a1a2e">上方分支：预训练权重</text>
+
+  <rect x="60" y="380" width="140" height="36" rx="8" fill="#fff" stroke="#409EFF" stroke-width="1.2" opacity="0.9"/>
+  <text x="130" y="403" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#1a1a2e">下方分支：低秩适配</text>
+
+  <!-- ===== 小型标注点 ===== -->
+  <!-- 冻结标注 -->
+  <text x="415" y="88" font-family="sans-serif" font-size="12" fill="#888">← 冻结</text>
+
+  <!-- 可训练标注 -->
+  <text x="415" y="278" font-family="sans-serif" font-size="12" fill="#409EFF">← 可训练</text>
+
+</svg>

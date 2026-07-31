@@ -1,0 +1,165 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" font-family="Microsoft YaHei, PingFang SC, sans-serif">
+  <defs>
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#f0f7ff"/>
+      <stop offset="100%" stop-color="#e6f0fa"/>
+    </linearGradient>
+    <linearGradient id="panelGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="100%" stop-color="#f8fbff"/>
+    </linearGradient>
+  </defs>
+
+  <!-- 背景 -->
+  <rect width="800" height="500" fill="url(#bgGrad)" rx="12"/>
+
+  <!-- 标题 -->
+  <text x="400" y="38" text-anchor="middle" font-size="18" font-weight="bold" fill="#1a1a2e">三种推理模式对比</text>
+
+  <!-- ==================== 面板1：纯思维链 ==================== -->
+  <rect x="30" y="60" width="740" height="120" rx="10" fill="url(#panelGrad)" stroke="#409EFF" stroke-width="1.5"/>
+  <rect x="30" y="60" width="740" height="32" rx="10" fill="#409EFF"/>
+  <rect x="30" y="82" width="740" height="10" fill="#409EFF"/>
+  <text x="50" y="82" font-size="15" font-weight="bold" fill="#ffffff">纯思维链 (Pure CoT)</text>
+
+  <!-- 大脑图标 -->
+  <g transform="translate(370, 115)">
+    <!-- 大脑主体 -->
+    <ellipse cx="0" cy="0" rx="28" ry="22" fill="#e8f4ff" stroke="#409EFF" stroke-width="1.8"/>
+    <!-- 大脑沟回 -->
+    <path d="M-12,-8 Q-6,-14 0,-8 Q6,-14 12,-8" fill="none" stroke="#409EFF" stroke-width="1.2"/>
+    <path d="M-15,-2 Q-8,-8 0,-2 Q8,-8 15,-2" fill="none" stroke="#409EFF" stroke-width="1.2"/>
+    <path d="M-12,4 Q-6,-2 0,4 Q6,-2 12,4" fill="none" stroke="#409EFF" stroke-width="1.2"/>
+    <path d="M-8,10 Q-4,4 0,10 Q4,4 8,10" fill="none" stroke="#409EFF" stroke-width="1.2"/>
+    <!-- 内部循环箭头 -->
+    <path d="M-18,-16 Q-28,-10 -22,-2" fill="none" stroke="#409EFF" stroke-width="1.5" marker-end="url(#arrowBlue)"/>
+    <path d="M18,-16 Q28,-10 22,-2" fill="none" stroke="#409EFF" stroke-width="1.5" marker-end="url(#arrowBlue)"/>
+    <path d="M-18,12 Q-28,6 -22,0" fill="none" stroke="#409EFF" stroke-width="1.5" marker-end="url(#arrowBlue)"/>
+  </g>
+
+  <defs>
+    <marker id="arrowBlue" markerWidth="6" markerHeight="4" refX="5" refY="2" orient="auto">
+      <path d="M0,0 L6,2 L0,4 Z" fill="#409EFF"/>
+    </marker>
+    <marker id="arrowGray" markerWidth="6" markerHeight="4" refX="5" refY="2" orient="auto">
+      <path d="M0,0 L6,2 L0,4 Z" fill="#7a8ba8"/>
+    </marker>
+  </defs>
+
+  <!-- 标注：内部推理 -->
+  <text x="370" y="158" text-anchor="middle" font-size="13" fill="#5a6a7a">内部推理链</text>
+
+  <!-- ==================== 面板2：ReAct ==================== -->
+  <rect x="30" y="200" width="740" height="130" rx="10" fill="url(#panelGrad)" stroke="#409EFF" stroke-width="1.5"/>
+  <rect x="30" y="200" width="740" height="32" rx="10" fill="#409EFF"/>
+  <rect x="30" y="222" width="740" height="10" fill="#409EFF"/>
+  <text x="50" y="222" font-size="15" font-weight="bold" fill="#ffffff">ReAct（思考-行动-观察）</text>
+
+  <!-- 思考-行动-观察循环 -->
+  <!-- 大脑1 -->
+  <g transform="translate(140, 260)">
+    <ellipse cx="0" cy="0" rx="22" ry="17" fill="#e8f4ff" stroke="#409EFF" stroke-width="1.5"/>
+    <path d="M-10,-6 Q-5,-11 0,-6 Q5,-11 10,-6" fill="none" stroke="#409EFF" stroke-width="1"/>
+    <path d="M-12,0 Q-6,-5 0,0 Q6,-5 12,0" fill="none" stroke="#409EFF" stroke-width="1"/>
+    <path d="M-8,6 Q-4,1 0,6 Q4,1 8,6" fill="none" stroke="#409EFF" stroke-width="1"/>
+  </g>
+  <text x="140" y="290" text-anchor="middle" font-size="12" fill="#5a6a7a">思考</text>
+
+  <!-- 箭头1 -->
+  <path d="M165,260 L195,260" stroke="#409EFF" stroke-width="1.8" marker-end="url(#arrowBlue)"/>
+
+  <!-- 工具图标1 -->
+  <g transform="translate(230, 260)">
+    <rect x="-14" y="-10" width="28" height="20" rx="4" fill="#f0f7ff" stroke="#409EFF" stroke-width="1.5"/>
+    <text x="0" y="4" text-anchor="middle" font-size="11" fill="#409EFF">工具</text>
+  </g>
+  <text x="230" y="290" text-anchor="middle" font-size="12" fill="#5a6a7a">行动</text>
+
+  <!-- 箭头2 -->
+  <path d="M258,260 L288,260" stroke="#409EFF" stroke-width="1.8" marker-end="url(#arrowBlue)"/>
+
+  <!-- 观察图标 -->
+  <g transform="translate(330, 260)">
+    <circle cx="0" cy="0" r="14" fill="#e8f4ff" stroke="#409EFF" stroke-width="1.5"/>
+    <circle cx="0" cy="0" r="6" fill="none" stroke="#409EFF" stroke-width="1"/>
+    <path d="M8,8 L14,14" stroke="#409EFF" stroke-width="1.5"/>
+  </g>
+  <text x="330" y="290" text-anchor="middle" font-size="12" fill="#5a6a7a">观察</text>
+
+  <!-- 循环箭头回到思考 -->
+  <path d="M345,245 Q345,230 330,230 Q300,230 270,230 Q240,230 220,230 Q200,230 185,230 Q170,230 162,245" fill="none" stroke="#7a8ba8" stroke-width="1.3" stroke-dasharray="4,3" marker-end="url(#arrowGray)"/>
+
+  <!-- 第二个循环 -->
+  <g transform="translate(470, 260)">
+    <ellipse cx="0" cy="0" rx="22" ry="17" fill="#e8f4ff" stroke="#409EFF" stroke-width="1.5"/>
+    <path d="M-10,-6 Q-5,-11 0,-6 Q5,-11 10,-6" fill="none" stroke="#409EFF" stroke-width="1"/>
+    <path d="M-12,0 Q-6,-5 0,0 Q6,-5 12,0" fill="none" stroke="#409EFF" stroke-width="1"/>
+    <path d="M-8,6 Q-4,1 0,6 Q4,1 8,6" fill="none" stroke="#409EFF" stroke-width="1"/>
+  </g>
+  <path d="M495,260 L525,260" stroke="#409EFF" stroke-width="1.8" marker-end="url(#arrowBlue)"/>
+  <g transform="translate(560, 260)">
+    <rect x="-14" y="-10" width="28" height="20" rx="4" fill="#f0f7ff" stroke="#409EFF" stroke-width="1.5"/>
+    <text x="0" y="4" text-anchor="middle" font-size="11" fill="#409EFF">工具</text>
+  </g>
+  <path d="M588,260 L618,260" stroke="#409EFF" stroke-width="1.8" marker-end="url(#arrowBlue)"/>
+  <g transform="translate(660, 260)">
+    <circle cx="0" cy="0" r="14" fill="#e8f4ff" stroke="#409EFF" stroke-width="1.5"/>
+    <circle cx="0" cy="0" r="6" fill="none" stroke="#409EFF" stroke-width="1"/>
+    <path d="M8,8 L14,14" stroke="#409EFF" stroke-width="1.5"/>
+  </g>
+
+  <text x="400" y="318" text-anchor="middle" font-size="12" fill="#7a8ba8">反复循环：思考 → 行动 → 观察 → 思考 ...</text>
+
+  <!-- ==================== 面板3：规划-执行 ==================== -->
+  <rect x="30" y="350" width="740" height="130" rx="10" fill="url(#panelGrad)" stroke="#409EFF" stroke-width="1.5"/>
+  <rect x="30" y="350" width="740" height="32" rx="10" fill="#409EFF"/>
+  <rect x="30" y="372" width="740" height="10" fill="#409EFF"/>
+  <text x="50" y="382" font-size="15" font-weight="bold" fill="#ffffff">规划-执行 (Plan-Execute)</text>
+
+  <!-- 规划文档 -->
+  <g transform="translate(120, 420)">
+    <rect x="-30" y="-22" width="60" height="44" rx="4" fill="#f0f7ff" stroke="#409EFF" stroke-width="1.5"/>
+    <rect x="-24" y="-16" width="48" height="4" rx="2" fill="#409EFF" opacity="0.4"/>
+    <rect x="-24" y="-8" width="48" height="4" rx="2" fill="#409EFF" opacity="0.3"/>
+    <rect x="-24" y="0" width="48" height="4" rx="2" fill="#409EFF" opacity="0.3"/>
+    <rect x="-24" y="8" width="48" height="4" rx="2" fill="#409EFF" opacity="0.3"/>
+    <text x="0" y="32" text-anchor="middle" font-size="12" fill="#5a6a7a">规划方案</text>
+  </g>
+
+  <!-- 箭头：规划到执行 -->
+  <path d="M155,420 L195,420" stroke="#409EFF" stroke-width="2" marker-end="url(#arrowBlue)"/>
+
+  <!-- 三个并行执行块 -->
+  <g transform="translate(310, 400)">
+    <rect x="-28" y="-16" width="56" height="32" rx="6" fill="#e8f4ff" stroke="#409EFF" stroke-width="1.5"/>
+    <text x="0" y="4" text-anchor="middle" font-size="12" fill="#409EFF">执行 A</text>
+  </g>
+
+  <g transform="translate(310, 435)">
+    <rect x="-28" y="-16" width="56" height="32" rx="6" fill="#e8f4ff" stroke="#409EFF" stroke-width="1.5"/>
+    <text x="0" y="4" text-anchor="middle" font-size="12" fill="#409EFF">执行 B</text>
+  </g>
+
+  <g transform="translate(310, 470)">
+    <rect x="-28" y="-16" width="56" height="32" rx="6" fill="#e8f4ff" stroke="#409EFF" stroke-width="1.5"/>
+    <text x="0" y="4" text-anchor="middle" font-size="12" fill="#409EFF">执行 C</text>
+  </g>
+
+  <!-- 并行标注 -->
+  <text x="310" y="388" text-anchor="middle" font-size="11" fill="#7a8ba8">并行执行</text>
+
+  <!-- 箭头从三个执行块汇聚 -->
+  <path d="M368,408 L430,435" stroke="#409EFF" stroke-width="1.5" marker-end="url(#arrowBlue)"/>
+  <path d="M368,435 L430,435" stroke="#409EFF" stroke-width="1.5" marker-end="url(#arrowBlue)"/>
+  <path d="M368,462 L430,435" stroke="#409EFF" stroke-width="1.5" marker-end="url(#arrowBlue)"/>
+
+  <!-- 合并块 -->
+  <g transform="translate(500, 435)">
+    <rect x="-35" y="-18" width="70" height="36" rx="8" fill="#409EFF" opacity="0.9"/>
+    <text x="0" y="5" text-anchor="middle" font-size="13" font-weight="bold" fill="#ffffff">结果合并</text>
+  </g>
+
+  <!-- 底部标注 -->
+  <text x="400" y="495" text-anchor="middle" font-size="12" fill="#7a8ba8">先规划，再并行执行，最后汇总结果</text>
+
+</svg>

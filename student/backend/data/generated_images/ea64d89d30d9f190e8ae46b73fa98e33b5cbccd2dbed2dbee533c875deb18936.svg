@@ -1,0 +1,127 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="800" height="500">
+  <defs>
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#E8F4FD"/>
+      <stop offset="100%" stop-color="#F0F8FF"/>
+    </linearGradient>
+    <linearGradient id="frameGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#FFFFFF"/>
+      <stop offset="100%" stop-color="#F5FAFF"/>
+    </linearGradient>
+  </defs>
+
+  <!-- 背景 -->
+  <rect width="800" height="500" fill="url(#bgGrad)" rx="8"/>
+
+  <!-- 标题 -->
+  <text x="400" y="38" text-anchor="middle" font-family="'Microsoft YaHei', 'PingFang SC', sans-serif" font-size="20" font-weight="bold" fill="#1a1a2e">格式一致性演示</text>
+
+  <!-- 顶部三个示例框架 -->
+  <!-- 示例1 -->
+  <g transform="translate(60, 60)">
+    <rect width="200" height="120" rx="10" fill="url(#frameGrad)" stroke="#409EFF" stroke-width="2"/>
+    <rect width="200" height="30" rx="10" fill="#409EFF" opacity="0.15"/>
+    <text x="100" y="20" text-anchor="middle" font-family="'Microsoft YaHei', sans-serif" font-size="14" font-weight="bold" fill="#409EFF">示例 1</text>
+    <text x="15" y="52" font-family="'Microsoft YaHei', sans-serif" font-size="13" fill="#1a1a2e">评论：</text>
+    <rect x="70" y="40" width="115" height="20" rx="4" fill="#F0F8FF" stroke="#B8D8F0" stroke-width="1"/>
+    <text x="75" y="55" font-family="'Microsoft YaHei', sans-serif" font-size="11" fill="#666">这是一条评论</text>
+    <text x="15" y="82" font-family="'Microsoft YaHei', sans-serif" font-size="13" fill="#1a1a2e">分类：</text>
+    <rect x="70" y="70" width="115" height="20" rx="4" fill="#F0F8FF" stroke="#B8D8F0" stroke-width="1"/>
+    <text x="75" y="85" font-family="'Microsoft YaHei', sans-serif" font-size="11" fill="#666">正面评价</text>
+  </g>
+
+  <!-- 示例2 -->
+  <g transform="translate(300, 60)">
+    <rect width="200" height="120" rx="10" fill="url(#frameGrad)" stroke="#409EFF" stroke-width="2"/>
+    <rect width="200" height="30" rx="10" fill="#409EFF" opacity="0.15"/>
+    <text x="100" y="20" text-anchor="middle" font-family="'Microsoft YaHei', sans-serif" font-size="14" font-weight="bold" fill="#409EFF">示例 2</text>
+    <text x="15" y="52" font-family="'Microsoft YaHei', sans-serif" font-size="13" fill="#1a1a2e">评论：</text>
+    <rect x="70" y="40" width="115" height="20" rx="4" fill="#F0F8FF" stroke="#B8D8F0" stroke-width="1"/>
+    <text x="75" y="55" font-family="'Microsoft YaHei', sans-serif" font-size="11" fill="#666">质量非常好</text>
+    <text x="15" y="82" font-family="'Microsoft YaHei', sans-serif" font-size="13" fill="#1a1a2e">分类：</text>
+    <rect x="70" y="70" width="115" height="20" rx="4" fill="#F0F8FF" stroke="#B8D8F0" stroke-width="1"/>
+    <text x="75" y="85" font-family="'Microsoft YaHei', sans-serif" font-size="11" fill="#666">正面评价</text>
+  </g>
+
+  <!-- 示例3 -->
+  <g transform="translate(540, 60)">
+    <rect width="200" height="120" rx="10" fill="url(#frameGrad)" stroke="#409EFF" stroke-width="2"/>
+    <rect width="200" height="30" rx="10" fill="#409EFF" opacity="0.15"/>
+    <text x="100" y="20" text-anchor="middle" font-family="'Microsoft YaHei', sans-serif" font-size="14" font-weight="bold" fill="#409EFF">示例 3</text>
+    <text x="15" y="52" font-family="'Microsoft YaHei', sans-serif" font-size="13" fill="#1a1a2e">评论：</text>
+    <rect x="70" y="40" width="115" height="20" rx="4" fill="#F0F8FF" stroke="#B8D8F0" stroke-width="1"/>
+    <text x="75" y="55" font-family="'Microsoft YaHei', sans-serif" font-size="11" fill="#666">发货速度很快</text>
+    <text x="15" y="82" font-family="'Microsoft YaHei', sans-serif" font-size="13" fill="#1a1a2e">分类：</text>
+    <rect x="70" y="70" width="115" height="20" rx="4" fill="#F0F8FF" stroke="#B8D8F0" stroke-width="1"/>
+    <text x="75" y="85" font-family="'Microsoft YaHei', sans-serif" font-size="11" fill="#666">正面评价</text>
+  </g>
+
+  <!-- 连接箭头 - 从示例1到示例2 -->
+  <line x1="265" y1="120" x2="295" y2="120" stroke="#409EFF" stroke-width="2" stroke-dasharray="4,3"/>
+  <polygon points="293,115 303,120 293,125" fill="#409EFF"/>
+
+  <!-- 连接箭头 - 从示例2到示例3 -->
+  <line x1="505" y1="120" x2="535" y2="120" stroke="#409EFF" stroke-width="2" stroke-dasharray="4,3"/>
+  <polygon points="533,115 543,120 533,125" fill="#409EFF"/>
+
+  <!-- 垂直连接箭头 - 从示例到下方 -->
+  <line x1="400" y1="185" x2="400" y2="225" stroke="#409EFF" stroke-width="2" stroke-dasharray="4,3"/>
+  <polygon points="395,223 400,233 405,223" fill="#409EFF"/>
+
+  <!-- 标注：格式一致 -->
+  <rect x="340" y="195" width="120" height="22" rx="11" fill="#409EFF" opacity="0.2"/>
+  <text x="400" y="211" text-anchor="middle" font-family="'Microsoft YaHei', sans-serif" font-size="12" fill="#409EFF" font-weight="bold">格式一致</text>
+
+  <!-- 底部“现在/Now”框架 -->
+  <g transform="translate(300, 240)">
+    <rect width="200" height="120" rx="10" fill="url(#frameGrad)" stroke="#409EFF" stroke-width="2.5"/>
+    <rect width="200" height="30" rx="10" fill="#409EFF" opacity="0.25"/>
+    <text x="100" y="20" text-anchor="middle" font-family="'Microsoft YaHei', sans-serif" font-size="14" font-weight="bold" fill="#409EFF">现在 / Now</text>
+    <text x="15" y="52" font-family="'Microsoft YaHei', sans-serif" font-size="13" fill="#1a1a2e">评论：</text>
+    <rect x="70" y="40" width="115" height="20" rx="4" fill="#E8F4FD" stroke="#409EFF" stroke-width="1.5"/>
+    <text x="75" y="55" font-family="'Microsoft YaHei', sans-serif" font-size="11" fill="#1a1a2e">包装精美</text>
+    <text x="15" y="82" font-family="'Microsoft YaHei', sans-serif" font-size="13" fill="#1a1a2e">分类：</text>
+    <rect x="70" y="70" width="115" height="20" rx="4" fill="#FFF3E0" stroke="#FFB74D" stroke-width="1.5"/>
+    <text x="75" y="85" font-family="'Microsoft YaHei', sans-serif" font-size="11" fill="#E65100">待分类</text>
+  </g>
+
+  <!-- 高亮标注 -->
+  <g transform="translate(510, 280)">
+    <rect x="0" y="0" width="100" height="22" rx="11" fill="#FFB74D" opacity="0.3"/>
+    <text x="50" y="16" text-anchor="middle" font-family="'Microsoft YaHei', sans-serif" font-size="11" fill="#E65100" font-weight="bold">输出高亮</text>
+    <line x1="20" y1="22" x2="-10" y2="35" stroke="#FFB74D" stroke-width="1.5" stroke-dasharray="3,2"/>
+  </g>
+
+  <!-- 底部右侧 - 错误示例 -->
+  <g transform="translate(620, 360)">
+    <!-- 红色X背景 -->
+    <circle cx="30" cy="30" r="28" fill="#FFF0F0" stroke="#FF4444" stroke-width="2"/>
+    <line x1="18" y1="18" x2="42" y2="42" stroke="#FF4444" stroke-width="3" stroke-linecap="round"/>
+    <line x1="42" y1="18" x2="18" y2="42" stroke="#FF4444" stroke-width="3" stroke-linecap="round"/>
+
+    <!-- 错位框架 -->
+    <rect x="-80" y="10" width="160" height="90" rx="8" fill="#FFF5F5" stroke="#FF4444" stroke-width="2" stroke-dasharray="5,3" transform="rotate(-3, 0, 55)"/>
+    <rect x="-80" y="10" width="160" height="25" rx="8" fill="#FF4444" opacity="0.1" transform="rotate(-3, 0, 55)"/>
+    <text x="0" y="28" text-anchor="middle" font-family="'Microsoft YaHei', sans-serif" font-size="12" fill="#FF4444" font-weight="bold" transform="rotate(-3, 0, 55)">格式错误</text>
+    <text x="-65" y="48" font-family="'Microsoft YaHei', sans-serif" font-size="11" fill="#FF4444" transform="rotate(-3, 0, 55)">评论：</text>
+    <text x="-65" y="68" font-family="'Microsoft YaHei', sans-serif" font-size="11" fill="#FF4444" transform="rotate(-3, 0, 55)">分类：</text>
+
+    <!-- 连接线从正确到错误 -->
+    <line x1="-40" y1="-15" x2="-60" y2="-30" stroke="#FF4444" stroke-width="1.5" stroke-dasharray="4,3"/>
+  </g>
+
+  <!-- 警告标注 -->
+  <g transform="translate(540, 440)">
+    <rect x="0" y="0" width="120" height="22" rx="11" fill="#FF4444" opacity="0.15"/>
+    <text x="60" y="16" text-anchor="middle" font-family="'Microsoft YaHei', sans-serif" font-size="11" fill="#FF4444" font-weight="bold">结构不一致</text>
+  </g>
+
+  <!-- 底部标注 -->
+  <text x="400" y="480" text-anchor="middle" font-family="'Microsoft YaHei', sans-serif" font-size="12" fill="#666">所有框架保持相同的结构：评论 + 分类</text>
+
+  <!-- 左侧装饰线 -->
+  <line x1="30" y1="50" x2="30" y2="460" stroke="#409EFF" stroke-width="2" opacity="0.3" stroke-linecap="round"/>
+  <circle cx="30" cy="50" r="4" fill="#409EFF" opacity="0.5"/>
+  <circle cx="30" cy="460" r="4" fill="#409EFF" opacity="0.5"/>
+
+</svg>

@@ -1,0 +1,189 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="800" height="500">
+  <defs>
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#E8F4FD"/>
+      <stop offset="100%" stop-color="#F0F8FF"/>
+    </linearGradient>
+    <linearGradient id="cardGrad1" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="100%" stop-color="#F5FAFF"/>
+    </linearGradient>
+    <linearGradient id="cardGrad2" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="100%" stop-color="#F5FAFF"/>
+    </linearGradient>
+    <linearGradient id="cardGrad3" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="100%" stop-color="#F5FAFF"/>
+    </linearGradient>
+    <linearGradient id="cardGrad4" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="100%" stop-color="#F5FAFF"/>
+    </linearGradient>
+  </defs>
+
+  <!-- 背景 -->
+  <rect width="800" height="500" fill="url(#bgGrad)" rx="0"/>
+
+  <!-- 标题 -->
+  <text x="400" y="48" text-anchor="middle" font-family="Arial, sans-serif" font-size="22" font-weight="bold" fill="#1a1a2e">LoRA 四大核心优势</text>
+  <line x1="300" y1="60" x2="500" y2="60" stroke="#409EFF" stroke-width="2" stroke-linecap="round"/>
+
+  <!-- ===== 卡片1：参数效率 ===== -->
+  <g transform="translate(30, 90)">
+    <rect width="170" height="340" rx="14" fill="url(#cardGrad1)" stroke="#409EFF" stroke-width="1.5" filter="drop-shadow(0 2px 6px rgba(64,158,255,0.12))"/>
+    <!-- 图标圆 -->
+    <circle cx="85" cy="45" r="28" fill="#E8F4FD" stroke="#409EFF" stroke-width="1.5"/>
+    <!-- 参数图标：齿轮+箭头 -->
+    <g transform="translate(85,45)">
+      <circle cx="0" cy="0" r="10" fill="none" stroke="#409EFF" stroke-width="1.8"/>
+      <circle cx="0" cy="0" r="4" fill="#409EFF"/>
+      <line x1="10" y1="-8" x2="18" y2="-14" stroke="#409EFF" stroke-width="1.8" stroke-linecap="round"/>
+      <line x1="10" y1="8" x2="18" y2="14" stroke="#409EFF" stroke-width="1.8" stroke-linecap="round"/>
+      <line x1="-10" y1="-8" x2="-18" y2="-14" stroke="#409EFF" stroke-width="1.8" stroke-linecap="round"/>
+      <line x1="-10" y1="8" x2="-18" y2="14" stroke="#409EFF" stroke-width="1.8" stroke-linecap="round"/>
+    </g>
+    <!-- 标题 -->
+    <text x="85" y="98" text-anchor="middle" font-family="Arial, sans-serif" font-size="15" font-weight="bold" fill="#1a1a2e">参数效率</text>
+    <!-- 标签：0.06% -->
+    <rect x="35" y="112" width="100" height="28" rx="14" fill="#409EFF" opacity="0.12"/>
+    <text x="85" y="131" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#409EFF">0.06%</text>
+    <!-- 说明文字 -->
+    <text x="85" y="165" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#555">仅需训练</text>
+    <text x="85" y="183" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#555">极少量参数</text>
+    <!-- 收缩箭头 -->
+    <g transform="translate(85, 210)">
+      <line x1="0" y1="0" x2="0" y2="24" stroke="#409EFF" stroke-width="2" stroke-linecap="round"/>
+      <polygon points="-6,18 0,26 6,18" fill="#409EFF"/>
+      <line x1="-16" y1="0" x2="16" y2="0" stroke="#409EFF" stroke-width="1.5" stroke-linecap="round"/>
+      <line x1="-12" y1="6" x2="12" y2="6" stroke="#409EFF" stroke-width="1.5" stroke-linecap="round"/>
+      <line x1="-8" y1="12" x2="8" y2="12" stroke="#409EFF" stroke-width="1.5" stroke-linecap="round"/>
+    </g>
+    <text x="85" y="260" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#666">参数量缩减</text>
+    <text x="85" y="276" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#666">至原模型0.06%</text>
+  </g>
+
+  <!-- ===== 卡片2：存储效率 ===== -->
+  <g transform="translate(220, 90)">
+    <rect width="170" height="340" rx="14" fill="url(#cardGrad2)" stroke="#409EFF" stroke-width="1.5" filter="drop-shadow(0 2px 6px rgba(64,158,255,0.12))"/>
+    <!-- 图标圆 -->
+    <circle cx="85" cy="45" r="28" fill="#E8F4FD" stroke="#409EFF" stroke-width="1.5"/>
+    <!-- 存储图标：硬盘 -->
+    <g transform="translate(85,45)">
+      <rect x="-14" y="-10" width="28" height="20" rx="3" fill="none" stroke="#409EFF" stroke-width="1.8"/>
+      <rect x="-10" y="-6" width="20" height="4" rx="1" fill="#409EFF" opacity="0.3"/>
+      <rect x="-10" y="0" width="20" height="4" rx="1" fill="#409EFF" opacity="0.3"/>
+      <circle cx="0" cy="6" r="2" fill="#409EFF"/>
+    </g>
+    <!-- 标题 -->
+    <text x="85" y="98" text-anchor="middle" font-family="Arial, sans-serif" font-size="15" font-weight="bold" fill="#1a1a2e">存储效率</text>
+    <!-- 对比标签 -->
+    <rect x="25" y="112" width="120" height="28" rx="14" fill="#409EFF" opacity="0.12"/>
+    <text x="85" y="131" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#409EFF">1.4TB → 15.6GB</text>
+    <!-- 说明文字 -->
+    <text x="85" y="165" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#555">存储占用</text>
+    <text x="85" y="183" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#555">大幅降低</text>
+    <!-- 箭头对比图 -->
+    <g transform="translate(85, 210)">
+      <!-- 大 -->
+      <rect x="-30" y="0" width="60" height="20" rx="4" fill="#409EFF" opacity="0.15"/>
+      <text x="0" y="14" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#409EFF">1.4 TB</text>
+      <!-- 箭头 -->
+      <line x1="0" y1="24" x2="0" y2="36" stroke="#409EFF" stroke-width="2" stroke-linecap="round"/>
+      <polygon points="-5,32 0,38 5,32" fill="#409EFF"/>
+      <!-- 小 -->
+      <rect x="-30" y="40" width="60" height="20" rx="4" fill="#409EFF" opacity="0.35"/>
+      <text x="0" y="54" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#1a1a2e">15.6 GB</text>
+    </g>
+    <text x="85" y="270" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#666">存储量缩减</text>
+    <text x="85" y="286" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#666">至原模型1.1%</text>
+  </g>
+
+  <!-- ===== 卡片3：无灾难性遗忘 ===== -->
+  <g transform="translate(410, 90)">
+    <rect width="170" height="340" rx="14" fill="url(#cardGrad3)" stroke="#409EFF" stroke-width="1.5" filter="drop-shadow(0 2px 6px rgba(64,158,255,0.12))"/>
+    <!-- 图标圆 -->
+    <circle cx="85" cy="45" r="28" fill="#E8F4FD" stroke="#409EFF" stroke-width="1.5"/>
+    <!-- 大脑图标 -->
+    <g transform="translate(85,45)">
+      <ellipse cx="0" cy="-2" rx="14" ry="12" fill="none" stroke="#409EFF" stroke-width="1.8"/>
+      <path d="M-14,-2 Q-16,-10 -10,-12 Q-6,-14 -4,-8" fill="none" stroke="#409EFF" stroke-width="1.5" stroke-linecap="round"/>
+      <path d="M14,-2 Q16,-10 10,-12 Q6,-14 4,-8" fill="none" stroke="#409EFF" stroke-width="1.5" stroke-linecap="round"/>
+      <path d="M-8,4 Q-4,10 0,6 Q4,10 8,4" fill="none" stroke="#409EFF" stroke-width="1.5" stroke-linecap="round"/>
+      <!-- 内部亮点 -->
+      <circle cx="-5" cy="-4" r="2" fill="#409EFF" opacity="0.4"/>
+      <circle cx="5" cy="-4" r="2" fill="#409EFF" opacity="0.4"/>
+      <circle cx="0" cy="2" r="1.5" fill="#409EFF" opacity="0.4"/>
+    </g>
+    <!-- 标题 -->
+    <text x="85" y="98" text-anchor="middle" font-family="Arial, sans-serif" font-size="15" font-weight="bold" fill="#1a1a2e">无灾难性遗忘</text>
+    <!-- 标签 -->
+    <rect x="25" y="112" width="120" height="28" rx="14" fill="#409EFF" opacity="0.12"/>
+    <text x="85" y="131" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#409EFF">知识保留</text>
+    <!-- 说明文字 -->
+    <text x="85" y="165" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#555">原始知识</text>
+    <text x="85" y="183" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#555">完整保留</text>
+    <!-- 大脑保留图 -->
+    <g transform="translate(85, 215)">
+      <!-- 大脑轮廓 -->
+      <ellipse cx="0" cy="0" rx="22" ry="18" fill="#E8F4FD" stroke="#409EFF" stroke-width="1.2"/>
+      <path d="M-22,0 Q-26,-12 -18,-16 Q-10,-20 -6,-10" fill="none" stroke="#409EFF" stroke-width="1.2" stroke-linecap="round"/>
+      <path d="M22,0 Q26,-12 18,-16 Q10,-20 6,-10" fill="none" stroke="#409EFF" stroke-width="1.2" stroke-linecap="round"/>
+      <!-- 内部神经 -->
+      <line x1="-10" y1="-6" x2="-4" y2="0" stroke="#409EFF" stroke-width="1" opacity="0.5"/>
+      <line x1="-4" y1="0" x2="4" y2="-4" stroke="#409EFF" stroke-width="1" opacity="0.5"/>
+      <line x1="4" y1="-4" x2="10" y2="2" stroke="#409EFF" stroke-width="1" opacity="0.5"/>
+      <line x1="-6" y1="4" x2="0" y2="8" stroke="#409EFF" stroke-width="1" opacity="0.5"/>
+      <line x1="0" y1="8" x2="8" y2="4" stroke="#409EFF" stroke-width="1" opacity="0.5"/>
+      <circle cx="-10" cy="-6" r="2" fill="#409EFF" opacity="0.5"/>
+      <circle cx="10" cy="2" r="2" fill="#409EFF" opacity="0.5"/>
+      <circle cx="0" cy="8" r="2" fill="#409EFF" opacity="0.5"/>
+      <!-- 勾号 -->
+      <circle cx="18" cy="-14" r="8" fill="#409EFF" opacity="0.2"/>
+      <polyline points="14,-14 17,-11 22,-17" fill="none" stroke="#409EFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+    </g>
+    <text x="85" y="270" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#666">新增知识不覆盖</text>
+    <text x="85" y="286" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#666">原有知识</text>
+  </g>
+
+  <!-- ===== 卡片4：零推理延迟 ===== -->
+  <g transform="translate(600, 90)">
+    <rect width="170" height="340" rx="14" fill="url(#cardGrad4)" stroke="#409EFF" stroke-width="1.5" filter="drop-shadow(0 2px 6px rgba(64,158,255,0.12))"/>
+    <!-- 图标圆 -->
+    <circle cx="85" cy="45" r="28" fill="#E8F4FD" stroke="#409EFF" stroke-width="1.5"/>
+    <!-- 合并图标 -->
+    <g transform="translate(85,45)">
+      <circle cx="-6" cy="-4" r="7" fill="none" stroke="#409EFF" stroke-width="1.5"/>
+      <circle cx="6" cy="4" r="7" fill="none" stroke="#409EFF" stroke-width="1.5"/>
+      <line x1="-1" y1="-1" x2="1" y2="1" stroke="#409EFF" stroke-width="1.8" stroke-linecap="round"/>
+      <line x1="0" y1="-2" x2="2" y2="0" stroke="#409EFF" stroke-width="1.8" stroke-linecap="round"/>
+      <line x1="-2" y1="0" x2="0" y2="2" stroke="#409EFF" stroke-width="1.8" stroke-linecap="round"/>
+    </g>
+    <!-- 标题 -->
+    <text x="85" y="98" text-anchor="middle" font-family="Arial, sans-serif" font-size="15" font-weight="bold" fill="#1a1a2e">零推理延迟</text>
+    <!-- 标签 -->
+    <rect x="25" y="112" width="120" height="28" rx="14" fill="#409EFF" opacity="0.12"/>
+    <text x="85" y="131" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#409EFF">W = W₀ + BA</text>
+    <!-- 说明文字 -->
+    <text x="85" y="165" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#555">推理时</text>
+    <text x="85" y="183" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#555">无额外延迟</text>
+    <!-- 合并公式 -->
+    <g transform="translate(85, 215)">
+      <rect x="-32" y="-18" width="64" height="36" rx="8" fill="#E8F4FD" stroke="#409EFF" stroke-width="1"/>
+      <text x="0" y="-2" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#1a1a2e">W = W₀ + BA</text>
+      <text x="0" y="12" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#666">合并后权重</text>
+    </g>
+    <!-- 合并箭头 -->
+    <g transform="translate(85, 268)">
+      <line x1="-20" y1="0" x2="20" y2="0" stroke="#409EFF" stroke-width="1.5" stroke-linecap="round"/>
+      <polygon points="16,-4 22,0 16,4" fill="#409EFF"/>
+      <text x="0" y="-8" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#409EFF">合并</text>
+    </g>
+  </g>
+
+  <!-- 底部标注 -->
+  <g transform="translate(400, 460)">
+    <text x="0" y="0" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#888">LoRA（Low-Rank Adaptation）通过低秩分解实现高效微调</text>
+  </g>
+
+</svg>

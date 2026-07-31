@@ -1,0 +1,170 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="800" height="500">
+  <defs>
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#E8F4FD"/>
+      <stop offset="100%" stop-color="#F0F8FF"/>
+    </linearGradient>
+    <linearGradient id="blueGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#409EFF"/>
+      <stop offset="100%" stop-color="#2B7FD4"/>
+    </linearGradient>
+    <linearGradient id="funnelGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#409EFF"/>
+      <stop offset="100%" stop-color="#1a1a2e"/>
+    </linearGradient>
+    <filter id="shadow" x="-5%" y="-5%" width="115%" height="115%">
+      <feDropShadow dx="1" dy="2" stdDeviation="3" flood-opacity="0.12"/>
+    </filter>
+  </defs>
+
+  <!-- 背景 -->
+  <rect width="800" height="500" fill="url(#bgGrad)" rx="8"/>
+
+  <!-- 标题 -->
+  <text x="400" y="32" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#1a1a2e">传统数据库 vs 向量数据库</text>
+
+  <!-- ===== 左侧：传统数据库 ===== -->
+  <rect x="30" y="52" width="340" height="210" rx="10" fill="white" stroke="#409EFF" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="200" y="78" text-anchor="middle" font-family="Arial, sans-serif" font-size="15" font-weight="bold" fill="#1a1a2e">传统数据库</text>
+
+  <!-- SQL 表格 -->
+  <rect x="50" y="92" width="140" height="80" rx="4" fill="#F5F9FF" stroke="#409EFF" stroke-width="1"/>
+  <text x="120" y="110" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#1a1a2e" font-weight="bold">用户表</text>
+  <line x1="50" y1="116" x2="190" y2="116" stroke="#409EFF" stroke-width="0.8"/>
+  <text x="60" y="132" font-family="Arial, sans-serif" font-size="11" fill="#333">ID | 姓名</text>
+  <line x1="50" y1="138" x2="190" y2="138" stroke="#ddd" stroke-width="0.5"/>
+  <text x="60" y="152" font-family="Arial, sans-serif" font-size="11" fill="#333">1 | 张三</text>
+  <text x="60" y="166" font-family="Arial, sans-serif" font-size="11" fill="#333">2 | 李四</text>
+
+  <!-- 精确查询 - 成功 -->
+  <rect x="210" y="92" width="140" height="36" rx="4" fill="#E8F5E9" stroke="#4CAF50" stroke-width="1"/>
+  <text x="280" y="108" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#2E7D32">SELECT WHERE name='张'</text>
+  <text x="280" y="122" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#2E7D32">✓ 精确匹配成功</text>
+
+  <!-- 语义查询 - 失败 -->
+  <rect x="210" y="136" width="140" height="36" rx="4" fill="#FFEBEE" stroke="#EF5350" stroke-width="1"/>
+  <text x="280" y="152" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#C62828">"深度学习相关文章"</text>
+  <text x="280" y="166" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#C62828">✗ 语义查询失败</text>
+
+  <!-- 标注 -->
+  <text x="200" y="200" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#666">仅支持精确匹配，无法理解语义</text>
+
+  <!-- 左侧底部说明 -->
+  <rect x="50" y="215" width="300" height="36" rx="4" fill="#FFF3E0" stroke="#FFB74D" stroke-width="0.8"/>
+  <text x="200" y="232" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#E65100">⚠ 无法处理模糊语义查询</text>
+  <text x="200" y="246" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#BF360C">需要精确的关键词匹配</text>
+
+  <!-- ===== 右侧：向量数据库 ===== -->
+  <rect x="430" y="52" width="340" height="210" rx="10" fill="white" stroke="#409EFF" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="600" y="78" text-anchor="middle" font-family="Arial, sans-serif" font-size="15" font-weight="bold" fill="#1a1a2e">向量数据库</text>
+
+  <!-- 文本嵌入漏斗 -->
+  <text x="470" y="100" font-family="Arial, sans-serif" font-size="11" fill="#1a1a2e">文本</text>
+  <rect x="460" y="105" width="20" height="14" rx="2" fill="#409EFF"/>
+  <text x="470" y="116" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="white">词</text>
+
+  <!-- 漏斗 -->
+  <polygon points="465,120 475,120 480,155 460,155" fill="url(#funnelGrad)" opacity="0.8"/>
+  <text x="470" y="145" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="white">嵌入</text>
+
+  <!-- 向量点 -->
+  <circle cx="453" cy="165" r="3" fill="#409EFF"/>
+  <circle cx="462" cy="170" r="3" fill="#409EFF"/>
+  <circle cx="471" cy="163" r="3" fill="#409EFF"/>
+  <circle cx="480" cy="168" r="3" fill="#409EFF"/>
+  <circle cx="488" cy="165" r="3" fill="#409EFF"/>
+
+  <text x="470" y="185" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#666">向量嵌入</text>
+
+  <!-- 2D 向量空间可视化 -->
+  <rect x="525" y="90" width="230" height="130" rx="6" fill="#F0F7FF" stroke="#409EFF" stroke-width="0.8" stroke-dasharray="4,3"/>
+
+  <!-- 坐标轴 -->
+  <line x1="535" y1="205" x2="745" y2="205" stroke="#999" stroke-width="0.5"/>
+  <line x1="535" y1="205" x2="535" y2="98" stroke="#999" stroke-width="0.5"/>
+  <text x="740" y="218" font-family="Arial, sans-serif" font-size="9" fill="#999">维度1</text>
+  <text x="520" y="108" font-family="Arial, sans-serif" font-size="9" fill="#999">维度2</text>
+
+  <!-- 神经网络聚类 -->
+  <ellipse cx="590" cy="160" rx="35" ry="25" fill="#409EFF" opacity="0.12" stroke="#409EFF" stroke-width="0.8" stroke-dasharray="3,2"/>
+  <circle cx="575" cy="155" r="4" fill="#409EFF"/>
+  <circle cx="590" cy="148" r="4" fill="#409EFF"/>
+  <circle cx="600" cy="158" r="4" fill="#409EFF"/>
+  <circle cx="582" cy="168" r="4" fill="#409EFF"/>
+  <circle cx="595" cy="172" r="4" fill="#409EFF"/>
+  <text x="590" y="195" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#409EFF" font-weight="bold">神经网络</text>
+
+  <!-- 深度学习聚类 -->
+  <ellipse cx="670" cy="145" rx="35" ry="25" fill="#1a1a2e" opacity="0.08" stroke="#1a1a2e" stroke-width="0.8" stroke-dasharray="3,2"/>
+  <circle cx="658" cy="140" r="4" fill="#1a1a2e"/>
+  <circle cx="672" cy="135" r="4" fill="#1a1a2e"/>
+  <circle cx="682" cy="145" r="4" fill="#1a1a2e"/>
+  <circle cx="665" cy="152" r="4" fill="#1a1a2e"/>
+  <circle cx="678" cy="155" r="4" fill="#1a1a2e"/>
+  <text x="670" y="180" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#1a1a2e" font-weight="bold">深度学习</text>
+
+  <!-- 聚类连接 -->
+  <line x1="620" y1="155" x2="640" y2="145" stroke="#409EFF" stroke-width="0.8" stroke-dasharray="3,2" opacity="0.5"/>
+  <text x="630" y="140" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#409EFF" opacity="0.7">相似</text>
+
+  <!-- 右侧底部说明 -->
+  <rect x="450" y="215" width="300" height="36" rx="4" fill="#E8F5E9" stroke="#4CAF50" stroke-width="0.8"/>
+  <text x="600" y="232" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#2E7D32">✓ 语义相似度搜索</text>
+  <text x="600" y="246" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#1B5E20">自动聚类相似内容</text>
+
+  <!-- ===== 底部：进化时间线 ===== -->
+  <rect x="30" y="280" width="740" height="200" rx="10" fill="white" stroke="#409EFF" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="400" y="308" text-anchor="middle" font-family="Arial, sans-serif" font-size="15" font-weight="bold" fill="#1a1a2e">向量数据库技术演进</text>
+
+  <!-- 时间线 -->
+  <line x1="80" y1="360" x2="720" y2="360" stroke="#409EFF" stroke-width="2"/>
+  <circle cx="80" cy="360" r="6" fill="#409EFF"/>
+  <circle cx="250" cy="360" r="6" fill="#409EFF"/>
+  <circle cx="420" cy="360" r="6" fill="#409EFF"/>
+  <circle cx="590" cy="360" r="6" fill="#409EFF"/>
+  <circle cx="720" cy="360" r="6" fill="#409EFF"/>
+
+  <!-- 时间点标签 -->
+  <text x="80" y="385" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#1a1a2e" font-weight="bold">2017</text>
+  <text x="250" y="385" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#1a1a2e" font-weight="bold">2019</text>
+  <text x="420" y="385" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#1a1a2e" font-weight="bold">2020</text>
+  <text x="590" y="385" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#1a1a2e" font-weight="bold">2022</text>
+  <text x="720" y="385" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#1a1a2e" font-weight="bold">至今</text>
+
+  <!-- 技术节点 -->
+  <rect x="45" y="330" width="70" height="22" rx="11" fill="#409EFF" opacity="0.9"/>
+  <text x="80" y="345" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="white" font-weight="bold">FAISS</text>
+
+  <rect x="205" y="330" width="90" height="22" rx="11" fill="#409EFF" opacity="0.9"/>
+  <text x="250" y="345" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="white" font-weight="bold">Milvus</text>
+
+  <rect x="370" y="330" width="100" height="22" rx="11" fill="#409EFF" opacity="0.9"/>
+  <text x="420" y="345" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="white" font-weight="bold">Pinecone</text>
+
+  <rect x="545" y="330" width="90" height="22" rx="11" fill="#409EFF" opacity="0.9"/>
+  <text x="590" y="345" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="white" font-weight="bold">Qdrant</text>
+
+  <rect x="675" y="330" width="90" height="22" rx="11" fill="#1a1a2e" opacity="0.9"/>
+  <text x="720" y="345" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="white" font-weight="bold">Chroma</text>
+
+  <!-- 描述 -->
+  <text x="80" y="408" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#666">Facebook 开源</text>
+  <text x="250" y="408" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#666">分布式向量搜索</text>
+  <text x="420" y="408" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#666">云原生向量DB</text>
+  <text x="590" y="408" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#666">高性能向量DB</text>
+  <text x="720" y="408" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#666">轻量级嵌入DB</text>
+
+  <!-- 演进箭头 -->
+  <polygon points="160,356 170,360 160,364" fill="#409EFF" opacity="0.5"/>
+  <polygon points="330,356 340,360 330,364" fill="#409EFF" opacity="0.5"/>
+  <polygon points="500,356 510,360 500,364" fill="#409EFF" opacity="0.5"/>
+  <polygon points="660,356 670,360 660,364" fill="#409EFF" opacity="0.5"/>
+
+  <!-- 底部说明 -->
+  <text x="400" y="440" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#1a1a2e">从 FAISS 到 Chroma，向量数据库不断演进，支持更高效的语义搜索</text>
+
+  <!-- 标注 -->
+  <rect x="30" y="455" width="740" height="18" rx="4" fill="#F5F9FF" stroke="#409EFF" stroke-width="0.5"/>
+  <text x="400" y="468" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#409EFF">传统数据库：精确匹配 → 向量数据库：语义相似度搜索 · 技术栈：FAISS → Milvus/Pinecone → Qdrant/Chroma</text>
+
+</svg>

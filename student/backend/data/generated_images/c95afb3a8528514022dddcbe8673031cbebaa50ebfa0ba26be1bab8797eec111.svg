@@ -1,0 +1,96 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="800" height="500">
+  <defs>
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#f0f4ff"/>
+      <stop offset="100%" stop-color="#e8f0fe"/>
+    </linearGradient>
+    <linearGradient id="barGrad1" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#409EFF"/>
+      <stop offset="100%" stop-color="#6bb7ff"/>
+    </linearGradient>
+    <linearGradient id="barGrad2" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#409EFF"/>
+      <stop offset="100%" stop-color="#7ec2ff"/>
+    </linearGradient>
+    <linearGradient id="barGrad3" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#409EFF"/>
+      <stop offset="100%" stop-color="#8ec8ff"/>
+    </linearGradient>
+    <linearGradient id="arrowGrad" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#409EFF"/>
+      <stop offset="100%" stop-color="#a0cfff"/>
+    </linearGradient>
+  </defs>
+
+  <!-- 背景 -->
+  <rect width="800" height="500" fill="url(#bgGrad)" rx="8"/>
+
+  <!-- 标题 -->
+  <text x="400" y="42" text-anchor="middle" font-family="'Microsoft YaHei', 'PingFang SC', sans-serif" font-size="20" font-weight="bold" fill="#1a1a2e">思维链（CoT）有效性对比</text>
+  <text x="400" y="66" text-anchor="middle" font-family="'Microsoft YaHei', 'PingFang SC', sans-serif" font-size="13" fill="#5a5a7a">CoT Effectiveness by Task Type</text>
+
+  <!-- 坐标轴标签 -->
+  <text x="100" y="100" text-anchor="middle" font-family="'Microsoft YaHei', 'PingFang SC', sans-serif" font-size="13" fill="#1a1a2e" font-weight="bold">任务类型</text>
+  <text x="100" y="118" text-anchor="middle" font-family="'Microsoft YaHei', 'PingFang SC', sans-serif" font-size="11" fill="#5a5a7a">Task Type</text>
+
+  <!-- 有效性标签（右侧） -->
+  <text x="700" y="100" text-anchor="middle" font-family="'Microsoft YaHei', 'PingFang SC', sans-serif" font-size="13" fill="#1a1a2e" font-weight="bold">CoT 有效性</text>
+  <text x="700" y="118" text-anchor="middle" font-family="'Microsoft YaHei', 'PingFang SC', sans-serif" font-size="11" fill="#5a5a7a">Effectiveness</text>
+
+  <!-- 柱状图区域 -->
+  <!-- 第1行：数学文字题 - 最长条 -->
+  <rect x="180" y="140" width="420" height="32" rx="16" fill="url(#barGrad1)"/>
+  <text x="190" y="160" font-family="'Microsoft YaHei', 'PingFang SC', sans-serif" font-size="14" fill="#ffffff" font-weight="bold">数学文字题 / Math Word Problems</text>
+  <text x="610" y="160" text-anchor="end" font-family="'Microsoft YaHei', 'PingFang SC', sans-serif" font-size="12" fill="#1a1a2e" font-weight="bold">最显著</text>
+
+  <!-- 第2行：逻辑推理 - 最长条 -->
+  <rect x="180" y="192" width="420" height="32" rx="16" fill="url(#barGrad1)"/>
+  <text x="190" y="212" font-family="'Microsoft YaHei', 'PingFang SC', sans-serif" font-size="14" fill="#ffffff" font-weight="bold">逻辑推理 / Logic</text>
+
+  <!-- 第3行：多条件决策 - 中等条 -->
+  <rect x="180" y="244" width="300" height="32" rx="16" fill="url(#barGrad2)"/>
+  <text x="190" y="264" font-family="'Microsoft YaHei', 'PingFang SC', sans-serif" font-size="14" fill="#ffffff" font-weight="bold">多条件决策 / Decision</text>
+
+  <!-- 第4行：代码调试 - 中等条 -->
+  <rect x="180" y="296" width="260" height="32" rx="16" fill="url(#barGrad2)"/>
+  <text x="190" y="316" font-family="'Microsoft YaHei', 'PingFang SC', sans-serif" font-size="14" fill="#ffffff" font-weight="bold">代码调试 / Debugging</text>
+
+  <!-- 第5行：常识推理 - 中等条 -->
+  <rect x="180" y="348" width="230" height="32" rx="16" fill="url(#barGrad3)"/>
+  <text x="190" y="368" font-family="'Microsoft YaHei', 'PingFang SC', sans-serif" font-size="14" fill="#ffffff" font-weight="bold">常识推理 / Commonsense</text>
+
+  <!-- 第6行：文本摘要 - 短条 -->
+  <rect x="180" y="400" width="100" height="32" rx="16" fill="#a0cfff"/>
+  <text x="190" y="420" font-family="'Microsoft YaHei', 'PingFang SC', sans-serif" font-size="14" fill="#ffffff" font-weight="bold">文本摘要 / Summarization</text>
+
+  <!-- 第7行：翻译 - 短条 -->
+  <rect x="180" y="452" width="80" height="32" rx="16" fill="#a0cfff"/>
+  <text x="190" y="472" font-family="'Microsoft YaHei', 'PingFang SC', sans-serif" font-size="14" fill="#ffffff" font-weight="bold">翻译 / Translation</text>
+
+  <!-- 箭头指示条 -->
+  <rect x="180" y="504" width="420" height="4" rx="2" fill="url(#arrowGrad)" opacity="0.6"/>
+
+  <!-- 箭头左端 -->
+  <polygon points="180,506 170,500 170,512" fill="#409EFF"/>
+
+  <!-- 箭头右端 -->
+  <polygon points="600,506 610,500 610,512" fill="#a0cfff"/>
+
+  <!-- 箭头标签 -->
+  <text x="390" y="530" text-anchor="middle" font-family="'Microsoft YaHei', 'PingFang SC', sans-serif" font-size="13" fill="#1a1a2e" font-weight="bold">最显著 / Most Significant</text>
+  <text x="390" y="548" text-anchor="middle" font-family="'Microsoft YaHei', 'PingFang SC', sans-serif" font-size="13" fill="#5a5a7a">很少 / Rarely Needed</text>
+
+  <!-- 装饰性圆点 -->
+  <circle cx="160" cy="156" r="4" fill="#409EFF" opacity="0.7"/>
+  <circle cx="160" cy="208" r="4" fill="#409EFF" opacity="0.7"/>
+  <circle cx="160" cy="260" r="4" fill="#409EFF" opacity="0.7"/>
+  <circle cx="160" cy="312" r="4" fill="#409EFF" opacity="0.7"/>
+  <circle cx="160" cy="364" r="4" fill="#409EFF" opacity="0.7"/>
+  <circle cx="160" cy="416" r="4" fill="#a0cfff" opacity="0.7"/>
+  <circle cx="160" cy="468" r="4" fill="#a0cfff" opacity="0.7"/>
+
+  <!-- 底部说明 -->
+  <rect x="250" y="565" width="300" height="28" rx="14" fill="#409EFF" opacity="0.12"/>
+  <text x="400" y="583" text-anchor="middle" font-family="'Microsoft YaHei', 'PingFang SC', sans-serif" font-size="12" fill="#1a1a2e">条越长表示思维链（CoT）对该任务越有效</text>
+
+</svg>

@@ -1,0 +1,171 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="800" height="500">
+  <defs>
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#f0f7ff"/>
+      <stop offset="100%" stop-color="#e8f4fd"/>
+    </linearGradient>
+    <linearGradient id="robotGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#409EFF"/>
+      <stop offset="100%" stop-color="#2d7fd6"/>
+    </linearGradient>
+    <linearGradient id="arrowGrad" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#409EFF" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#409EFF" stop-opacity="0.2"/>
+    </linearGradient>
+    <filter id="shadow" x="-5%" y="-5%" width="110%" height="115%">
+      <feDropShadow dx="0" dy="3" stdDeviation="4" flood-color="#1a1a2e" flood-opacity="0.08"/>
+    </filter>
+  </defs>
+
+  <!-- 背景 -->
+  <rect width="800" height="500" fill="url(#bgGrad)" rx="0"/>
+
+  <!-- 地面线 -->
+  <line x1="60" y1="420" x2="740" y2="420" stroke="#d0d7e6" stroke-width="1.5" stroke-dasharray="6,4"/>
+
+  <!-- ==================== 左侧：AI 机器人 ==================== -->
+  <g transform="translate(140, 200)" filter="url(#shadow)">
+    <!-- 机器人身体 -->
+    <rect x="-45" y="20" width="90" height="100" rx="16" fill="url(#robotGrad)"/>
+    <!-- 身体细节 - 面板 -->
+    <rect x="-25" y="45" width="50" height="30" rx="6" fill="#ffffff" fill-opacity="0.15"/>
+    <circle cx="-10" cy="60" r="4" fill="#ffffff" fill-opacity="0.5"/>
+    <circle cx="5" cy="60" r="4" fill="#ffffff" fill-opacity="0.5"/>
+    <circle cx="20" cy="60" r="4" fill="#ffffff" fill-opacity="0.5"/>
+    <!-- 身体按钮 -->
+    <circle cx="-15" cy="90" r="5" fill="#ffffff" fill-opacity="0.3"/>
+    <circle cx="15" cy="90" r="5" fill="#ffffff" fill-opacity="0.3"/>
+
+    <!-- 机器人头部 -->
+    <rect x="-38" y="-40" width="76" height="65" rx="18" fill="url(#robotGrad)"/>
+    <!-- 眼睛 -->
+    <ellipse cx="-14" cy="-15" rx="10" ry="11" fill="#ffffff"/>
+    <ellipse cx="14" cy="-15" rx="10" ry="11" fill="#ffffff"/>
+    <circle cx="-12" cy="-14" r="5" fill="#1a1a2e"/>
+    <circle cx="16" cy="-14" r="5" fill="#1a1a2e"/>
+    <!-- 眼睛高光 -->
+    <circle cx="-10" cy="-17" r="2" fill="#ffffff" fill-opacity="0.8"/>
+    <circle cx="18" cy="-17" r="2" fill="#ffffff" fill-opacity="0.8"/>
+    <!-- 微笑 -->
+    <path d="M-10,5 Q0,16 10,5" stroke="#ffffff" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+    <!-- 天线 -->
+    <line x1="0" y1="-40" x2="0" y2="-58" stroke="#409EFF" stroke-width="3" stroke-linecap="round"/>
+    <circle cx="0" cy="-62" r="6" fill="#409EFF"/>
+    <circle cx="0" cy="-62" r="3" fill="#ffffff" fill-opacity="0.6"/>
+
+    <!-- 机器人手臂 - 左 -->
+    <rect x="-65" y="30" width="22" height="55" rx="10" fill="#2d7fd6"/>
+    <!-- 机器人手臂 - 右 -->
+    <rect x="43" y="30" width="22" height="55" rx="10" fill="#2d7fd6"/>
+    <!-- 手部 -->
+    <circle cx="-54" cy="88" r="12" fill="#2d7fd6"/>
+    <circle cx="54" cy="88" r="12" fill="#2d7fd6"/>
+  </g>
+
+  <!-- ==================== 右侧：用户 ==================== -->
+  <g transform="translate(560, 195)" filter="url(#shadow)">
+    <!-- 用户身体 -->
+    <rect x="-40" y="30" width="80" height="105" rx="18" fill="#e8ecf1"/>
+    <!-- 衣服细节 -->
+    <rect x="-25" y="55" width="50" height="20" rx="4" fill="#d0d7e6" fill-opacity="0.5"/>
+
+    <!-- 用户头部 -->
+    <circle cx="0" cy="-10" r="38" fill="#f5d6b8"/>
+    <!-- 头发 -->
+    <ellipse cx="0" cy="-35" rx="40" ry="22" fill="#4a3728"/>
+    <ellipse cx="-20" cy="-20" rx="12" ry="18" fill="#4a3728"/>
+    <ellipse cx="20" cy="-20" rx="12" ry="18" fill="#4a3728"/>
+    <!-- 眼睛 -->
+    <ellipse cx="-12" cy="-8" rx="5" ry="6" fill="#ffffff"/>
+    <ellipse cx="12" cy="-8" rx="5" ry="6" fill="#ffffff"/>
+    <circle cx="-11" cy="-7" r="3.5" fill="#1a1a2e"/>
+    <circle cx="13" cy="-7" r="3.5" fill="#1a1a2e"/>
+    <!-- 嘴巴（说话中） -->
+    <ellipse cx="0" cy="8" rx="8" ry="6" fill="#c4956a"/>
+    <ellipse cx="0" cy="8" rx="6" ry="4" fill="#a07050"/>
+    <!-- 眼镜 -->
+    <circle cx="-12" cy="-8" r="9" stroke="#409EFF" stroke-width="2" fill="none"/>
+    <circle cx="12" cy="-8" r="9" stroke="#409EFF" stroke-width="2" fill="none"/>
+    <line x1="-3" y1="-8" x2="3" y2="-8" stroke="#409EFF" stroke-width="2"/>
+  </g>
+
+  <!-- ==================== 说话气泡 ==================== -->
+  <g transform="translate(490, 95)">
+    <rect x="-95" y="-30" width="190" height="60" rx="16" fill="#ffffff" stroke="#409EFF" stroke-width="2" filter="url(#shadow)"/>
+    <!-- 气泡尾巴 -->
+    <polygon points="0,30 -10,50 10,30" fill="#ffffff" stroke="#409EFF" stroke-width="2"/>
+    <polygon points="0,30 -8,46 8,30" fill="#ffffff"/>
+    <!-- 任务文字 -->
+    <text x="0" y="-2" text-anchor="middle" font-family="'Microsoft YaHei', 'PingFang SC', sans-serif" font-size="16" font-weight="600" fill="#1a1a2e">请写一首关于春天的诗</text>
+  </g>
+
+  <!-- ==================== 中间：发光箭头 ==================== -->
+  <g transform="translate(310, 240)">
+    <!-- 箭头主体 -->
+    <line x1="0" y1="0" x2="140" y2="0" stroke="#409EFF" stroke-width="4" stroke-linecap="round" stroke-opacity="0.7"/>
+    <!-- 箭头头部 -->
+    <polygon points="140,-10 160,0 140,10" fill="#409EFF" fill-opacity="0.9"/>
+    <!-- 发光效果 -->
+    <line x1="0" y1="-6" x2="130" y2="-6" stroke="#409EFF" stroke-width="2" stroke-linecap="round" stroke-opacity="0.2"/>
+    <line x1="0" y1="6" x2="130" y2="6" stroke="#409EFF" stroke-width="2" stroke-linecap="round" stroke-opacity="0.2"/>
+    <!-- 箭头上的小光点 -->
+    <circle cx="40" cy="0" r="3" fill="#409EFF" fill-opacity="0.4"/>
+    <circle cx="80" cy="0" r="2.5" fill="#409EFF" fill-opacity="0.3"/>
+    <circle cx="115" cy="0" r="2" fill="#409EFF" fill-opacity="0.5"/>
+  </g>
+
+  <!-- ==================== 标注 ==================== -->
+
+  <!-- 标注 1：AI 机器人 -->
+  <g transform="translate(95, 150)">
+    <line x1="0" y1="0" x2="30" y2="30" stroke="#1a1a2e" stroke-width="1.5" stroke-opacity="0.5"/>
+    <rect x="-55" y="-22" width="110" height="30" rx="8" fill="#ffffff" stroke="#409EFF" stroke-width="1.5" filter="url(#shadow)"/>
+    <text x="0" y="-2" text-anchor="middle" font-family="'Microsoft YaHei', 'PingFang SC', sans-serif" font-size="14" font-weight="600" fill="#1a1a2e">AI 助手</text>
+  </g>
+
+  <!-- 标注 2：聆听状态 -->
+  <g transform="translate(190, 130)">
+    <line x1="0" y1="0" x2="-10" y2="25" stroke="#1a1a2e" stroke-width="1.5" stroke-opacity="0.5"/>
+    <rect x="-48" y="-22" width="96" height="30" rx="8" fill="#ffffff" stroke="#409EFF" stroke-width="1.5" filter="url(#shadow)"/>
+    <text x="0" y="-2" text-anchor="middle" font-family="'Microsoft YaHei', 'PingFang SC', sans-serif" font-size="14" font-weight="600" fill="#1a1a2e">专注聆听</text>
+  </g>
+
+  <!-- 标注 3：用户 -->
+  <g transform="translate(620, 130)">
+    <line x1="0" y1="0" x2="-15" y2="30" stroke="#1a1a2e" stroke-width="1.5" stroke-opacity="0.5"/>
+    <rect x="-48" y="-22" width="96" height="30" rx="8" fill="#ffffff" stroke="#409EFF" stroke-width="1.5" filter="url(#shadow)"/>
+    <text x="0" y="-2" text-anchor="middle" font-family="'Microsoft YaHei', 'PingFang SC', sans-serif" font-size="14" font-weight="600" fill="#1a1a2e">用户</text>
+  </g>
+
+  <!-- 标注 4：直接指令 -->
+  <g transform="translate(395, 185)">
+    <line x1="0" y1="0" x2="0" y2="25" stroke="#1a1a2e" stroke-width="1.5" stroke-opacity="0.5"/>
+    <rect x="-58" y="-22" width="116" height="30" rx="8" fill="#ffffff" stroke="#409EFF" stroke-width="1.5" filter="url(#shadow)"/>
+    <text x="0" y="-2" text-anchor="middle" font-family="'Microsoft YaHei', 'PingFang SC', sans-serif" font-size="14" font-weight="600" fill="#1a1a2e">直接指令</text>
+  </g>
+
+  <!-- 标注 5：零样本概念 -->
+  <g transform="translate(400, 310)">
+    <rect x="-90" y="-14" width="180" height="28" rx="8" fill="#409EFF" fill-opacity="0.12" stroke="#409EFF" stroke-width="1.2"/>
+    <text x="0" y="5" text-anchor="middle" font-family="'Microsoft YaHei', 'PingFang SC', sans-serif" font-size="14" font-weight="600" fill="#1a1a2e">零样本：无示例直接执行</text>
+  </g>
+
+  <!-- 标注 6：无示例 -->
+  <g transform="translate(490, 175)">
+    <line x1="0" y1="0" x2="20" y2="20" stroke="#1a1a2e" stroke-width="1.5" stroke-opacity="0.5"/>
+    <rect x="-48" y="-22" width="96" height="30" rx="8" fill="#ffffff" stroke="#409EFF" stroke-width="1.5" filter="url(#shadow)"/>
+    <text x="0" y="-2" text-anchor="middle" font-family="'Microsoft YaHei', 'PingFang SC', sans-serif" font-size="14" font-weight="600" fill="#1a1a2e">无示例</text>
+  </g>
+
+  <!-- 标题 -->
+  <text x="400" y="55" text-anchor="middle" font-family="'Microsoft YaHei', 'PingFang SC', sans-serif" font-size="22" font-weight="700" fill="#1a1a2e">零样本学习概念图</text>
+  <text x="400" y="80" text-anchor="middle" font-family="'Microsoft YaHei', 'PingFang SC', sans-serif" font-size="13" fill="#666" fill-opacity="0.8">用户直接下达任务指令，AI 无需示例即可理解并执行</text>
+
+  <!-- 装饰性科技圆点 -->
+  <circle cx="50" cy="50" r="3" fill="#409EFF" fill-opacity="0.15"/>
+  <circle cx="750" cy="60" r="4" fill="#409EFF" fill-opacity="0.1"/>
+  <circle cx="40" cy="450" r="3" fill="#409EFF" fill-opacity="0.12"/>
+  <circle cx="760" cy="440" r="2.5" fill="#409EFF" fill-opacity="0.15"/>
+  <circle cx="400" cy="470" r="3" fill="#409EFF" fill-opacity="0.08"/>
+
+</svg>

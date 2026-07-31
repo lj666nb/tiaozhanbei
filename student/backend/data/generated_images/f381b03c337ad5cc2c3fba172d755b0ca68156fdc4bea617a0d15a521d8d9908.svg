@@ -1,0 +1,155 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="800" height="500">
+  <defs>
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#e8f4ff"/>
+      <stop offset="100%" stop-color="#f0f8ff"/>
+    </linearGradient>
+    <linearGradient id="blueGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#409EFF"/>
+      <stop offset="100%" stop-color="#2b7fd6"/>
+    </linearGradient>
+    <linearGradient id="glowGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#60b0ff"/>
+      <stop offset="100%" stop-color="#409EFF"/>
+    </linearGradient>
+    <filter id="shadow" x="-5%" y="-5%" width="115%" height="115%">
+      <feDropShadow dx="1" dy="2" stdDeviation="3" flood-opacity="0.12"/>
+    </filter>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- 背景 -->
+  <rect width="800" height="500" fill="url(#bgGrad)" rx="0"/>
+
+  <!-- 标题 -->
+  <text x="400" y="38" text-anchor="middle" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#1a1a2e">LoRA 让大模型微调更高效</text>
+
+  <!-- ===== 左侧：全量微调（灰色调） ===== -->
+  <g opacity="0.55">
+    <!-- 服务器机柜 -->
+    <rect x="60" y="80" width="160" height="280" rx="8" fill="#d0d5dd" stroke="#b0b5bd" stroke-width="1.5" filter="url(#shadow)"/>
+    <!-- 机柜顶部指示灯 -->
+    <rect x="75" y="90" width="130" height="6" rx="3" fill="#b0b5bd"/>
+    <circle cx="85" cy="93" r="2" fill="#888"/>
+    <circle cx="95" cy="93" r="2" fill="#888"/>
+    <circle cx="105" cy="93" r="2" fill="#888"/>
+    <!-- GPU 卡槽 x4 -->
+    <rect x="80" y="110" width="120" height="35" rx="4" fill="#e0e4ea" stroke="#c0c5cc" stroke-width="1"/>
+    <rect x="80" y="155" width="120" height="35" rx="4" fill="#e0e4ea" stroke="#c0c5cc" stroke-width="1"/>
+    <rect x="80" y="200" width="120" height="35" rx="4" fill="#e0e4ea" stroke="#c0c5cc" stroke-width="1"/>
+    <rect x="80" y="245" width="120" height="35" rx="4" fill="#e0e4ea" stroke="#c0c5cc" stroke-width="1"/>
+    <!-- GPU 卡槽内部细节 -->
+    <rect x="90" y="118" width="40" height="20" rx="3" fill="#c0c5cc"/>
+    <rect x="145" y="118" width="40" height="20" rx="3" fill="#c0c5cc"/>
+    <rect x="90" y="163" width="40" height="20" rx="3" fill="#c0c5cc"/>
+    <rect x="145" y="163" width="40" height="20" rx="3" fill="#c0c5cc"/>
+    <rect x="90" y="208" width="40" height="20" rx="3" fill="#c0c5cc"/>
+    <rect x="145" y="208" width="40" height="20" rx="3" fill="#c0c5cc"/>
+    <rect x="90" y="253" width="40" height="20" rx="3" fill="#c0c5cc"/>
+    <rect x="145" y="253" width="40" height="20" rx="3" fill="#c0c5cc"/>
+    <!-- 散热格栅 -->
+    <rect x="80" y="295" width="120" height="40" rx="4" fill="#d5dae0" stroke="#c0c5cc" stroke-width="1"/>
+    <line x1="90" y1="305" x2="190" y2="305" stroke="#b0b5bd" stroke-width="1"/>
+    <line x1="90" y1="315" x2="190" y2="315" stroke="#b0b5bd" stroke-width="1"/>
+    <line x1="90" y1="325" x2="190" y2="325" stroke="#b0b5bd" stroke-width="1"/>
+    <!-- 价格标签 -->
+    <rect x="85" y="345" width="110" height="28" rx="14" fill="#e0e4ea" stroke="#b0b5bd" stroke-width="1"/>
+    <text x="140" y="364" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#888">$500K+</text>
+  </g>
+
+  <!-- 左侧标签 -->
+  <text x="140" y="420" text-anchor="middle" font-family="Arial, sans-serif" font-size="15" fill="#999" font-weight="bold">全量微调</text>
+  <text x="140" y="442" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" fill="#aaa">高成本·大算力</text>
+
+  <!-- ===== 过渡箭头 ===== -->
+  <g>
+    <!-- 箭头线 -->
+    <line x1="235" y1="220" x2="340" y2="220" stroke="#409EFF" stroke-width="2.5" stroke-dasharray="8,4"/>
+    <!-- 箭头头部 -->
+    <polygon points="340,210 358,220 340,230" fill="#409EFF"/>
+    <!-- 过渡标签 -->
+    <rect x="255" y="185" width="95" height="24" rx="12" fill="#409EFF" opacity="0.15"/>
+    <text x="302" y="202" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" fill="#409EFF" font-weight="bold">参数高效</text>
+  </g>
+
+  <!-- ===== 右侧：LoRA 微调（高亮） ===== -->
+  <!-- 笔记本电脑 -->
+  <g filter="url(#shadow)">
+    <!-- 屏幕 -->
+    <rect x="420" y="80" width="180" height="135" rx="8" fill="#1a1a2e" stroke="#409EFF" stroke-width="2"/>
+    <!-- 屏幕内：大脑/LLM 模型 -->
+    <circle cx="510" cy="148" r="40" fill="none" stroke="#409EFF" stroke-width="2" opacity="0.5"/>
+    <circle cx="510" cy="148" r="28" fill="none" stroke="#409EFF" stroke-width="1.5" opacity="0.4"/>
+    <circle cx="510" cy="148" r="16" fill="none" stroke="#409EFF" stroke-width="1" opacity="0.3"/>
+    <!-- 大脑褶皱线 -->
+    <path d="M485 135 Q500 125 515 135" stroke="#409EFF" stroke-width="1.2" fill="none" opacity="0.5"/>
+    <path d="M495 155 Q510 145 530 158" stroke="#409EFF" stroke-width="1.2" fill="none" opacity="0.5"/>
+    <path d="M480 150 Q495 140 505 152" stroke="#409EFF" stroke-width="1.2" fill="none" opacity="0.5"/>
+    <path d="M515 130 Q530 120 540 133" stroke="#409EFF" stroke-width="1.2" fill="none" opacity="0.5"/>
+    <path d="M500 165 Q515 158 528 168" stroke="#409EFF" stroke-width="1.2" fill="none" opacity="0.5"/>
+    <!-- 大脑中心节点 -->
+    <circle cx="510" cy="148" r="5" fill="#409EFF" opacity="0.8"/>
+    <!-- 标签：大模型 -->
+    <text x="510" y="148" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#409EFF" font-weight="bold">LLM</text>
+    <!-- 屏幕底部标签 -->
+    <rect x="445" y="225" width="130" height="20" rx="10" fill="#409EFF" opacity="0.12"/>
+    <text x="510" y="239" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#409EFF" font-weight="bold">大语言模型</text>
+    <!-- 键盘底座 -->
+    <rect x="405" y="218" width="210" height="12" rx="3" fill="#d0d5dd" stroke="#b0b5bd" stroke-width="1"/>
+    <rect x="410" y="222" width="200" height="4" rx="2" fill="#e0e4ea"/>
+  </g>
+
+  <!-- LoRA 适配器（发光蓝色拼图块） -->
+  <g filter="url(#glow)">
+    <!-- 拼图块主体 -->
+    <rect x="615" y="130" width="45" height="45" rx="6" fill="url(#glowGrad)" stroke="#409EFF" stroke-width="1.5"/>
+    <!-- 拼图凸起（左侧） -->
+    <circle cx="615" cy="148" r="8" fill="#409EFF"/>
+    <rect x="610" y="140" width="10" height="16" fill="#409EFF"/>
+    <!-- 拼图凸起（上方） -->
+    <circle cx="638" cy="130" r="8" fill="#409EFF"/>
+    <rect x="630" y="125" width="16" height="10" fill="#409EFF"/>
+    <!-- 拼图凹槽（右侧） -->
+    <rect x="655" y="145" width="8" height="14" fill="url(#bgGrad)" rx="2"/>
+    <!-- 拼图块上的插头图标 -->
+    <rect x="628" y="148" width="12" height="6" rx="1" fill="#fff" opacity="0.8"/>
+    <rect x="632" y="154" width="4" height="8" rx="1" fill="#fff" opacity="0.8"/>
+    <!-- 小闪电符号 -->
+    <path d="M640 143 L635 150 L640 150 L637 157" stroke="#fff" stroke-width="1.5" fill="none" opacity="0.7"/>
+  </g>
+
+  <!-- LoRA 适配器标签 -->
+  <rect x="610" y="185" width="55" height="20" rx="10" fill="#409EFF" opacity="0.15"/>
+  <text x="637" y="199" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#409EFF" font-weight="bold">LoRA</text>
+
+  <!-- 连接线：LoRA 适配器 → 大脑 -->
+  <path d="M660 152 Q680 148 600 148" stroke="#409EFF" stroke-width="1.5" fill="none" stroke-dasharray="4,3" opacity="0.5"/>
+
+  <!-- 右侧标签 -->
+  <text x="637" y="420" text-anchor="middle" font-family="Arial, sans-serif" font-size="15" fill="#409EFF" font-weight="bold">LoRA 微调</text>
+  <text x="637" y="442" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" fill="#409EFF" opacity="0.7">低成本·高效率</text>
+
+  <!-- ===== 底部标注 ===== -->
+  <!-- 标注 1：全量微调 -->
+  <rect x="60" y="465" width="16" height="16" rx="3" fill="#d0d5dd" opacity="0.6"/>
+  <text x="82" y="478" font-family="Arial, sans-serif" font-size="13" fill="#666">全量微调：更新全部参数</text>
+
+  <!-- 标注 2：LoRA -->
+  <rect x="310" y="465" width="16" height="16" rx="3" fill="#409EFF" opacity="0.6"/>
+  <text x="332" y="478" font-family="Arial, sans-serif" font-size="13" fill="#666">LoRA：低秩适配</text>
+
+  <!-- 标注 3：参数高效 -->
+  <rect x="530" y="465" width="16" height="16" rx="3" fill="#409EFF" opacity="0.6"/>
+  <text x="552" y="478" font-family="Arial, sans-serif" font-size="13" fill="#666">参数高效微调（PEFT）</text>
+
+  <!-- 标注 4：适配器 -->
+  <rect x="720" y="465" width="16" height="16" rx="3" fill="#60b0ff" opacity="0.6"/>
+  <text x="742" y="478" font-family="Arial, sans-serif" font-size="13" fill="#666">适配器模块</text>
+
+</svg>

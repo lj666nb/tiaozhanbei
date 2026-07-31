@@ -1,0 +1,129 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="800" height="500">
+  <defs>
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#f0f7ff"/>
+      <stop offset="100%" stop-color="#e8f2fc"/>
+    </linearGradient>
+    <linearGradient id="piece1" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#409EFF"/>
+      <stop offset="100%" stop-color="#3a8fe0"/>
+    </linearGradient>
+    <linearGradient id="piece2" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#5aadff"/>
+      <stop offset="100%" stop-color="#409EFF"/>
+    </linearGradient>
+    <linearGradient id="piece3" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#2d8ae0"/>
+      <stop offset="100%" stop-color="#1f7ad0"/>
+    </linearGradient>
+    <linearGradient id="piece4" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#6db8ff"/>
+      <stop offset="100%" stop-color="#4da0f0"/>
+    </linearGradient>
+  </defs>
+
+  <!-- 背景 -->
+  <rect width="800" height="500" fill="url(#bgGrad)" rx="12"/>
+
+  <!-- 标题 -->
+  <text x="400" y="48" text-anchor="middle" font-family="'Microsoft YaHei','PingFang SC',sans-serif" font-size="22" font-weight="700" fill="#1a1a2e" letter-spacing="3">AI 任务框架 — 四要素模型</text>
+
+  <!-- 拼图块整体容器：中心在 (400, 270)，每个拼图块 140x110，间隔 0 -->
+  <!-- 拼图块 1：左上 (角色设定) -->
+  <g transform="translate(260, 195)">
+    <rect x="0" y="0" width="130" height="105" rx="16" fill="url(#piece1)" stroke="#2d7bc0" stroke-width="1.5"/>
+    <!-- 拼图凸起：右侧 -->
+    <path d="M130,35 Q145,35 145,52.5 Q145,70 130,70" fill="url(#piece1)" stroke="#2d7bc0" stroke-width="1.5"/>
+    <!-- 拼图凸起：底部 -->
+    <path d="M50,105 Q50,120 65,120 Q80,120 80,105" fill="url(#piece1)" stroke="#2d7bc0" stroke-width="1.5"/>
+    <!-- 人物剪影图标 -->
+    <g transform="translate(65, 35)" fill="none" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="0" cy="-18" r="10"/>
+      <path d="M-18,25 Q-18,8 0,8 Q18,8 18,25"/>
+    </g>
+    <!-- 标签 -->
+    <text x="65" y="92" text-anchor="middle" font-family="'Microsoft YaHei','PingFang SC',sans-serif" font-size="14" font-weight="600" fill="#1a1a2e">角色设定</text>
+  </g>
+
+  <!-- 拼图块 2：右上 (任务描述) -->
+  <g transform="translate(410, 195)">
+    <rect x="0" y="0" width="130" height="105" rx="16" fill="url(#piece2)" stroke="#3a8fe0" stroke-width="1.5"/>
+    <!-- 拼图凸起：左侧 -->
+    <path d="M0,35 Q-15,35 -15,52.5 Q-15,70 0,70" fill="url(#piece2)" stroke="#3a8fe0" stroke-width="1.5"/>
+    <!-- 拼图凸起：底部 -->
+    <path d="M50,105 Q50,120 65,120 Q80,120 80,105" fill="url(#piece2)" stroke="#3a8fe0" stroke-width="1.5"/>
+    <!-- 剪贴板图标 -->
+    <g transform="translate(65, 38)" fill="none" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="-14" y="-18" width="28" height="34" rx="4"/>
+      <rect x="-10" y="-14" width="20" height="6" rx="1"/>
+      <line x1="-8" y1="-2" x2="8" y2="-2"/>
+      <line x1="-8" y1="4" x2="8" y2="4"/>
+      <line x1="-8" y1="10" x2="5" y2="10"/>
+    </g>
+    <text x="65" y="92" text-anchor="middle" font-family="'Microsoft YaHei','PingFang SC',sans-serif" font-size="14" font-weight="600" fill="#1a1a2e">任务描述</text>
+  </g>
+
+  <!-- 拼图块 3：左下 (输入数据) -->
+  <g transform="translate(260, 320)">
+    <rect x="0" y="0" width="130" height="105" rx="16" fill="url(#piece3)" stroke="#1f6ab0" stroke-width="1.5"/>
+    <!-- 拼图凸起：右侧 -->
+    <path d="M130,35 Q145,35 145,52.5 Q145,70 130,70" fill="url(#piece3)" stroke="#1f6ab0" stroke-width="1.5"/>
+    <!-- 拼图凸起：顶部 -->
+    <path d="M50,0 Q50,-15 65,-15 Q80,-15 80,0" fill="url(#piece3)" stroke="#1f6ab0" stroke-width="1.5"/>
+    <!-- 文档+箭头图标 -->
+    <g transform="translate(65, 38)" fill="none" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M-14,-16 L-6,-16 L-6,-4 L6,-4 L6,-16 L14,-16 L14,20 L-14,20 Z"/>
+      <line x1="-8" y1="4" x2="8" y2="4"/>
+      <line x1="-8" y1="10" x2="8" y2="10"/>
+      <line x1="-8" y1="16" x2="2" y2="16"/>
+      <!-- 箭头 -->
+      <line x1="18" y1="-6" x2="28" y2="-6"/>
+      <polygon points="28,-10 34,-6 28,-2"/>
+    </g>
+    <text x="65" y="92" text-anchor="middle" font-family="'Microsoft YaHei','PingFang SC',sans-serif" font-size="14" font-weight="600" fill="#1a1a2e">输入数据</text>
+  </g>
+
+  <!-- 拼图块 4：右下 (输出格式) -->
+  <g transform="translate(410, 320)">
+    <rect x="0" y="0" width="130" height="105" rx="16" fill="url(#piece4)" stroke="#4a90d0" stroke-width="1.5"/>
+    <!-- 拼图凸起：左侧 -->
+    <path d="M0,35 Q-15,35 -15,52.5 Q-15,70 0,70" fill="url(#piece4)" stroke="#4a90d0" stroke-width="1.5"/>
+    <!-- 拼图凸起：顶部 -->
+    <path d="M50,0 Q50,-15 65,-15 Q80,-15 80,0" fill="url(#piece4)" stroke="#4a90d0" stroke-width="1.5"/>
+    <!-- 齿轮+括号图标 -->
+    <g transform="translate(65, 38)" fill="none" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="0" cy="0" r="10"/>
+      <circle cx="0" cy="0" r="4"/>
+      <line x1="0" y1="-14" x2="0" y2="-10"/>
+      <line x1="0" y1="10" x2="0" y2="14"/>
+      <line x1="-14" y1="0" x2="-10" y2="0"/>
+      <line x1="10" y1="0" x2="14" y2="0"/>
+      <line x1="-10" y1="-10" x2="-7" y2="-7"/>
+      <line x1="7" y1="7" x2="10" y2="10"/>
+      <line x1="-10" y1="10" x2="-7" y2="7"/>
+      <line x1="7" y1="-7" x2="10" y2="-10"/>
+      <!-- 括号 -->
+      <path d="M-22,-12 Q-26,-12 -26,0 Q-26,12 -22,12"/>
+      <path d="M22,-12 Q26,-12 26,0 Q26,12 22,12"/>
+    </g>
+    <text x="65" y="92" text-anchor="middle" font-family="'Microsoft YaHei','PingFang SC',sans-serif" font-size="14" font-weight="600" fill="#1a1a2e">输出格式</text>
+  </g>
+
+  <!-- 连接线（拼图块之间的视觉连接） -->
+  <line x1="390" y1="248" x2="410" y2="248" stroke="#b0d4ff" stroke-width="2" stroke-dasharray="4,3"/>
+  <line x1="390" y1="373" x2="410" y2="373" stroke="#b0d4ff" stroke-width="2" stroke-dasharray="4,3"/>
+  <line x1="313" y1="300" x2="313" y2="320" stroke="#b0d4ff" stroke-width="2" stroke-dasharray="4,3"/>
+  <line x1="487" y1="300" x2="487" y2="320" stroke="#b0d4ff" stroke-width="2" stroke-dasharray="4,3"/>
+
+  <!-- 中心箭头指示流程 -->
+  <g transform="translate(400, 270)">
+    <path d="M-8,-8 L0,0 L8,-8" fill="none" stroke="#1a1a2e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M-8,8 L0,0 L8,8" fill="none" stroke="#1a1a2e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M-8,-8 L0,0 L-8,8" fill="none" stroke="#1a1a2e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M8,-8 L0,0 L8,8" fill="none" stroke="#1a1a2e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+
+  <!-- 底部说明文字 -->
+  <text x="400" y="460" text-anchor="middle" font-family="'Microsoft YaHei','PingFang SC',sans-serif" font-size="13" fill="#5a6a7a" opacity="0.8">四个模块相互关联，构成完整的 AI 任务处理闭环</text>
+
+</svg>

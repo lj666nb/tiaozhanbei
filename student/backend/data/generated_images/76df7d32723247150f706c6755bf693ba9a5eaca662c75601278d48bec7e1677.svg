@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="800" height="500">
+  <defs>
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#E8F4FD"/>
+      <stop offset="100%" stop-color="#F0F8FF"/>
+    </linearGradient>
+    <linearGradient id="blueGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#409EFF"/>
+      <stop offset="100%" stop-color="#3A8EE6"/>
+    </linearGradient>
+    <linearGradient id="lightBlueGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#7EC8FF"/>
+      <stop offset="100%" stop-color="#60B4FF"/>
+    </linearGradient>
+  </defs>
+
+  <!-- 背景 -->
+  <rect width="800" height="500" fill="url(#bgGrad)" rx="0"/>
+
+  <!-- 标题 -->
+  <text x="400" y="38" text-anchor="middle" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#1a1a2e">LoRA 低秩分解原理图</text>
+
+  <!-- ===== 顶部：大权重矩阵 W ===== -->
+  <!-- 大正方形 -->
+  <rect x="280" y="65" width="240" height="240" rx="8" fill="none" stroke="#888" stroke-width="2.5" stroke-dasharray="none"/>
+  <rect x="280" y="65" width="240" height="240" rx="8" fill="#E0E0E0" fill-opacity="0.5"/>
+
+  <!-- 挂锁图标 -->
+  <g transform="translate(500, 75)">
+    <rect x="0" y="8" width="16" height="14" rx="2" fill="#888" stroke="#666" stroke-width="1.5"/>
+    <path d="M4,8 V5 C4,1 12,1 12,5 V8" fill="none" stroke="#666" stroke-width="1.5"/>
+    <circle cx="8" cy="15" r="2" fill="#666"/>
+  </g>
+
+  <!-- W 标签 -->
+  <text x="400" y="140" text-anchor="middle" font-family="Arial, sans-serif" font-size="22" font-weight="bold" fill="#1a1a2e">W（冻结）</text>
+  <text x="400" y="175" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" fill="#1a1a2e">4096×4096</text>
+  <text x="400" y="200" text-anchor="middle" font-family="Arial, sans-serif" font-size="15" fill="#666">= 1670 万参数</text>
+
+  <!-- ===== 加号连接 ===== -->
+  <text x="400" y="340" text-anchor="middle" font-family="Arial, sans-serif" font-size="28" font-weight="bold" fill="#1a1a2e">+</text>
+
+  <!-- ===== 底部：B 和 A 矩阵 ===== -->
+
+  <!-- B 矩阵 (d×r) - 左侧 -->
+  <rect x="255" y="360" width="100" height="55" rx="6" fill="url(#blueGrad)"/>
+  <text x="305" y="388" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="white">B</text>
+  <text x="305" y="406" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" fill="white" opacity="0.9">d×r</text>
+
+  <!-- 乘号 -->
+  <text x="380" y="395" text-anchor="middle" font-family="Arial, sans-serif" font-size="24" font-weight="bold" fill="#1a1a2e">×</text>
+
+  <!-- A 矩阵 (r×d) - 右侧 -->
+  <rect x="415" y="360" width="100" height="55" rx="6" fill="url(#lightBlueGrad)"/>
+  <text x="465" y="388" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="white">A</text>
+  <text x="465" y="406" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" fill="white" opacity="0.9">r×d</text>
+
+  <!-- 可训练标注 -->
+  <text x="400" y="445" text-anchor="middle" font-family="Arial, sans-serif" font-size="15" fill="#409EFF" font-weight="bold">可训练：约 13.1 万参数（r=16）</text>
+
+  <!-- ===== 箭头标注：参数减少 ===== -->
+  <!-- 箭头线 -->
+  <line x1="570" y1="200" x2="570" y2="388" stroke="#FF6B6B" stroke-width="2" stroke-dasharray="6,3"/>
+  <polygon points="570,392 564,382 576,382" fill="#FF6B6B"/>
+
+  <!-- 标注框 -->
+  <rect x="585" y="270" width="155" height="50" rx="10" fill="#FF6B6B" fill-opacity="0.12" stroke="#FF6B6B" stroke-width="1.5"/>
+  <text x="662" y="296" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#FF6B6B">参数减少</text>
+  <text x="662" y="314" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#FF6B6B">128 倍！</text>
+
+  <!-- ===== 底部说明 ===== -->
+  <text x="400" y="480" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" fill="#999">低秩分解：W' = W + B × A，仅训练 B 和 A，大幅减少参数量</text>
+
+</svg>

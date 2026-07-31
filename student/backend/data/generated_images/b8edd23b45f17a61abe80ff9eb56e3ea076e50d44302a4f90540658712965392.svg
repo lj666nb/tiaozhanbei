@@ -1,0 +1,199 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="800" height="500">
+  <defs>
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#E8F4FD"/>
+      <stop offset="100%" stop-color="#F0F8FF"/>
+    </linearGradient>
+    <linearGradient id="chatBotGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#B0C4DE"/>
+      <stop offset="100%" stop-color="#8FA8C8"/>
+    </linearGradient>
+    <linearGradient id="agentGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#409EFF"/>
+      <stop offset="100%" stop-color="#2B7BE3"/>
+    </linearGradient>
+  </defs>
+
+  <!-- 背景 -->
+  <rect width="800" height="500" fill="url(#bgGrad)" rx="8"/>
+
+  <!-- 标题 -->
+  <text x="400" y="38" text-anchor="middle" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#1a1a2e">智能体 vs 聊天机器人 — 核心对比</text>
+
+  <!-- ===== 第1列：核心能力 ===== -->
+  <rect x="20" y="55" width="245" height="430" rx="10" fill="white" stroke="#D0D0D0" stroke-width="1.2" opacity="0.9"/>
+  <text x="142" y="82" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#1a1a2e">核心能力</text>
+
+  <!-- 聊天机器人子列 -->
+  <rect x="30" y="95" width="105" height="375" rx="8" fill="#F5F8FC" stroke="#C8D8E8" stroke-width="1"/>
+  <text x="82" y="118" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#6B7B8D">聊天机器人</text>
+
+  <!-- 图标：对话气泡 -->
+  <rect x="45" y="132" width="75" height="50" rx="10" fill="url(#chatBotGrad)" opacity="0.7"/>
+  <text x="82" y="158" text-anchor="middle" font-family="Arial, sans-serif" font-size="22">💬</text>
+  <text x="82" y="196" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#4A5A6A">对话交互</text>
+
+  <!-- 图标：知识库 -->
+  <rect x="45" y="215" width="75" height="50" rx="10" fill="url(#chatBotGrad)" opacity="0.7"/>
+  <text x="82" y="241" text-anchor="middle" font-family="Arial, sans-serif" font-size="22">📚</text>
+  <text x="82" y="279" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#4A5A6A">知识库</text>
+
+  <!-- 图标：单轮对话 -->
+  <rect x="45" y="298" width="75" height="50" rx="10" fill="url(#chatBotGrad)" opacity="0.7"/>
+  <text x="82" y="324" text-anchor="middle" font-family="Arial, sans-serif" font-size="22">🔗</text>
+  <text x="82" y="362" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#4A5A6A">单轮对话</text>
+
+  <!-- 标注：有限 -->
+  <rect x="50" y="420" width="65" height="24" rx="12" fill="#E8EEF5"/>
+  <text x="82" y="436" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#6B7B8D">能力有限</text>
+
+  <!-- 智能体子列 -->
+  <rect x="145" y="95" width="110" height="375" rx="8" fill="#F0F7FF" stroke="#409EFF" stroke-width="1.2"/>
+  <text x="200" y="118" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#409EFF">智能体</text>
+
+  <!-- 图标：对话+工具 -->
+  <rect x="157" y="132" width="86" height="50" rx="10" fill="url(#agentGrad)" opacity="0.85"/>
+  <text x="200" y="158" text-anchor="middle" font-family="Arial, sans-serif" font-size="22">💬⚙️</text>
+  <text x="200" y="196" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#409EFF">对话+工具</text>
+
+  <!-- 图标：数据库 -->
+  <rect x="157" y="215" width="86" height="50" rx="10" fill="url(#agentGrad)" opacity="0.85"/>
+  <text x="200" y="241" text-anchor="middle" font-family="Arial, sans-serif" font-size="22">🗄️</text>
+  <text x="200" y="279" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#409EFF">数据库</text>
+
+  <!-- 图标：多步推理 -->
+  <rect x="157" y="298" width="86" height="50" rx="10" fill="url(#agentGrad)" opacity="0.85"/>
+  <text x="200" y="324" text-anchor="middle" font-family="Arial, sans-serif" font-size="22">🔄🧠</text>
+  <text x="200" y="362" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#409EFF">多步推理</text>
+
+  <!-- 标注：扩展 -->
+  <rect x="167" y="420" width="66" height="24" rx="12" fill="#E0F0FF"/>
+  <text x="200" y="436" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#409EFF">能力扩展</text>
+
+  <!-- ===== 第2列：技术架构 ===== -->
+  <rect x="280" y="55" width="240" height="430" rx="10" fill="white" stroke="#D0D0D0" stroke-width="1.2" opacity="0.9"/>
+  <text x="400" y="82" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#1a1a2e">技术架构</text>
+
+  <!-- 聊天机器人架构：简单箭头 -->
+  <rect x="295" y="100" width="210" height="170" rx="8" fill="#F5F8FC" stroke="#C8D8E8" stroke-width="1"/>
+  <text x="400" y="122" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#6B7B8D">聊天机器人</text>
+
+  <!-- 用户 → LLM → 回复 -->
+  <rect x="310" y="140" width="50" height="30" rx="6" fill="#B0C4DE"/>
+  <text x="335" y="159" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="white">用户</text>
+
+  <text x="370" y="160" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" fill="#6B7B8D">→</text>
+
+  <rect x="385" y="140" width="45" height="30" rx="6" fill="#8FA8C8"/>
+  <text x="407" y="159" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="white">LLM</text>
+
+  <text x="440" y="160" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" fill="#6B7B8D">→</text>
+
+  <rect x="455" y="140" width="40" height="30" rx="6" fill="#B0C4DE"/>
+  <text x="475" y="159" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="white">回复</text>
+
+  <!-- 标注：单向流程 -->
+  <rect x="330" y="200" width="110" height="22" rx="11" fill="#E8EEF5"/>
+  <text x="385" y="215" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#6B7B8D">单向简单流程</text>
+
+  <!-- 智能体架构：复杂循环 -->
+  <rect x="295" y="280" width="210" height="190" rx="8" fill="#F0F7FF" stroke="#409EFF" stroke-width="1.2"/>
+  <text x="400" y="302" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#409EFF">智能体</text>
+
+  <!-- 循环图：用户→LLM→规划器→工具→记忆→结果→循环 -->
+  <rect x="310" y="318" width="40" height="26" rx="5" fill="#409EFF" opacity="0.8"/>
+  <text x="330" y="335" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="white">用户</text>
+
+  <text x="355" y="336" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="#409EFF">→</text>
+
+  <rect x="365" y="318" width="40" height="26" rx="5" fill="#409EFF"/>
+  <text x="385" y="335" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="white">LLM</text>
+
+  <text x="410" y="336" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="#409EFF">→</text>
+
+  <rect x="420" y="318" width="50" height="26" rx="5" fill="#2B7BE3"/>
+  <text x="445" y="335" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="white">规划器</text>
+
+  <text x="475" y="336" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="#409EFF">→</text>
+
+  <rect x="310" y="358" width="40" height="26" rx="5" fill="#2B7BE3"/>
+  <text x="330" y="375" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="white">工具</text>
+
+  <text x="355" y="376" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="#409EFF">→</text>
+
+  <rect x="365" y="358" width="40" height="26" rx="5" fill="#2B7BE3"/>
+  <text x="385" y="375" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="white">记忆</text>
+
+  <text x="410" y="376" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="#409EFF">→</text>
+
+  <rect x="420" y="358" width="50" height="26" rx="5" fill="#409EFF" opacity="0.8"/>
+  <text x="445" y="375" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="white">结果</text>
+
+  <!-- 循环箭头 -->
+  <text x="475" y="376" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="#409EFF">↻</text>
+
+  <!-- 标注：循环反馈 -->
+  <rect x="340" y="410" width="100" height="22" rx="11" fill="#E0F0FF"/>
+  <text x="390" y="425" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#409EFF">循环反馈机制</text>
+
+  <!-- ===== 第3列：用户体验 ===== -->
+  <rect x="535" y="55" width="245" height="430" rx="10" fill="white" stroke="#D0D0D0" stroke-width="1.2" opacity="0.9"/>
+  <text x="657" y="82" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#1a1a2e">用户体验</text>
+
+  <!-- 聊天机器人 -->
+  <rect x="545" y="95" width="225" height="170" rx="8" fill="#F5F8FC" stroke="#C8D8E8" stroke-width="1"/>
+  <text x="657" y="118" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#6B7B8D">聊天机器人</text>
+
+  <!-- 人物持续对话 -->
+  <circle cx="590" cy="160" r="18" fill="#B0C4DE" opacity="0.7"/>
+  <text x="590" y="165" text-anchor="middle" font-family="Arial, sans-serif" font-size="16">👤</text>
+
+  <text x="615" y="165" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" fill="#6B7B8D">⟷</text>
+
+  <rect x="635" y="148" width="60" height="28" rx="14" fill="#C8D8E8"/>
+  <text x="665" y="166" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#4A5A6A">实时对话</text>
+
+  <!-- 对话气泡连续 -->
+  <rect x="570" y="195" width="80" height="20" rx="10" fill="#E0E8F0"/>
+  <text x="610" y="209" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#6B7B8D">每轮需用户</text>
+
+  <rect x="660" y="195" width="80" height="20" rx="10" fill="#E0E8F0"/>
+  <text x="700" y="209" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#6B7B8D">持续交互</text>
+
+  <!-- 标注 -->
+  <rect x="580" y="235" width="110" height="22" rx="11" fill="#E8EEF5"/>
+  <text x="635" y="250" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#6B7B8D">全程人工参与</text>
+
+  <!-- 智能体 -->
+  <rect x="545" y="275" width="225" height="195" rx="8" fill="#F0F7FF" stroke="#409EFF" stroke-width="1.2"/>
+  <text x="657" y="298" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#409EFF">智能体</text>
+
+  <!-- 人物分配任务后离开 -->
+  <circle cx="590" cy="340" r="18" fill="#409EFF" opacity="0.8"/>
+  <text x="590" y="345" text-anchor="middle" font-family="Arial, sans-serif" font-size="16">👤</text>
+
+  <text x="615" y="345" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" fill="#409EFF">→</text>
+
+  <rect x="635" y="328" width="70" height="28" rx="14" fill="#409EFF" opacity="0.85"/>
+  <text x="670" y="346" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="white">分配任务</text>
+
+  <!-- 离开图标 -->
+  <text x="720" y="345" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" fill="#409EFF">🚶</text>
+
+  <!-- 异步更新 -->
+  <rect x="570" y="370" width="85" height="22" rx="11" fill="#E0F0FF"/>
+  <text x="612" y="385" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#409EFF">异步更新</text>
+
+  <rect x="665" y="370" width="85" height="22" rx="11" fill="#E0F0FF"/>
+  <text x="707" y="385" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#409EFF">关键节点确认</text>
+
+  <!-- 标注 -->
+  <rect x="580" y="410" width="120" height="22" rx="11" fill="#E0F0FF"/>
+  <text x="640" y="425" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#409EFF">委托式管理</text>
+
+  <!-- 列标签 -->
+  <rect x="20" y="490" width="245" height="3" rx="1.5" fill="#D0D0D0"/>
+  <rect x="280" y="490" width="240" height="3" rx="1.5" fill="#D0D0D0"/>
+  <rect x="535" y="490" width="245" height="3" rx="1.5" fill="#D0D0D0"/>
+
+</svg>

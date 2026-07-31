@@ -1,0 +1,157 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="800" height="500">
+  <defs>
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#E8F4FD"/>
+      <stop offset="100%" stop-color="#F0F8FF"/>
+    </linearGradient>
+    <linearGradient id="scaleGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#409EFF"/>
+      <stop offset="100%" stop-color="#2B7ED6"/>
+    </linearGradient>
+    <filter id="shadow" x="-5%" y="-5%" width="110%" height="110%">
+      <feDropShadow dx="1" dy="2" stdDeviation="3" flood-color="#1a1a2e" flood-opacity="0.1"/>
+    </filter>
+  </defs>
+
+  <!-- 背景 -->
+  <rect width="800" height="500" fill="url(#bgGrad)"/>
+
+  <!-- 标题 -->
+  <text x="400" y="38" text-anchor="middle" font-family="sans-serif" font-size="20" font-weight="bold" fill="#1a1a2e">多智能体系统：收益与成本权衡</text>
+
+  <!-- 天平底座 -->
+  <rect x="350" y="440" width="100" height="12" rx="3" fill="#1a1a2e" opacity="0.7"/>
+  <rect x="390" y="420" width="20" height="24" rx="2" fill="#1a1a2e" opacity="0.6"/>
+
+  <!-- 天平横梁 -->
+  <rect x="100" y="230" width="600" height="8" rx="4" fill="#1a1a2e" opacity="0.5" filter="url(#shadow)"/>
+  <!-- 横梁倾斜（收益更重，向右倾斜） -->
+  <g transform="rotate(6, 400, 234)">
+    <rect x="100" y="230" width="600" height="8" rx="4" fill="#1a1a2e" opacity="0.5"/>
+  </g>
+
+  <!-- 左侧：收益（较轻，向上） -->
+  <g transform="rotate(6, 400, 234)">
+    <!-- 左侧托盘绳 -->
+    <line x1="200" y1="234" x2="200" y2="310" stroke="#1a1a2e" stroke-width="2" opacity="0.4"/>
+    <line x1="160" y1="310" x2="240" y2="310" stroke="#1a1a2e" stroke-width="2" opacity="0.4"/>
+
+    <!-- 左侧托盘 -->
+    <rect x="145" y="310" width="110" height="8" rx="3" fill="#409EFF" opacity="0.6"/>
+
+    <!-- 收益标签 -->
+    <text x="200" y="345" text-anchor="middle" font-family="sans-serif" font-size="15" font-weight="bold" fill="#409EFF">收益 ↑</text>
+
+    <!-- 收益项目 -->
+    <g transform="translate(200, 370)">
+      <text x="0" y="0" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#1a1a2e">专业化</text>
+      <text x="0" y="20" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#1a1a2e">并行处理</text>
+      <text x="0" y="40" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#1a1a2e">鲁棒性</text>
+      <text x="0" y="60" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#1a1a2e">涌现智能</text>
+    </g>
+
+    <!-- 向上箭头 -->
+    <polygon points="200,280 193,295 207,295" fill="#409EFF" opacity="0.7"/>
+    <line x1="200" y1="295" x2="200" y2="260" stroke="#409EFF" stroke-width="2.5" opacity="0.7"/>
+  </g>
+
+  <!-- 右侧：成本（较重，向下） -->
+  <g transform="rotate(6, 400, 234)">
+    <!-- 右侧托盘绳 -->
+    <line x1="600" y1="234" x2="600" y2="310" stroke="#1a1a2e" stroke-width="2" opacity="0.4"/>
+    <line x1="560" y1="310" x2="640" y2="310" stroke="#1a1a2e" stroke-width="2" opacity="0.4"/>
+
+    <!-- 右侧托盘 -->
+    <rect x="545" y="310" width="110" height="8" rx="3" fill="#1a1a2e" opacity="0.4"/>
+
+    <!-- 成本标签 -->
+    <text x="600" y="345" text-anchor="middle" font-family="sans-serif" font-size="15" font-weight="bold" fill="#1a1a2e">成本 ↓</text>
+
+    <!-- 成本项目 -->
+    <g transform="translate(600, 370)">
+      <text x="0" y="0" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#1a1a2e">开发复杂度</text>
+      <text x="0" y="20" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#1a1a2e">运行成本</text>
+      <text x="0" y="40" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#1a1a2e">信息衰减</text>
+      <text x="0" y="60" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#1a1a2e">一致性问题</text>
+      <text x="0" y="80" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#1a1a2e">延迟累积</text>
+    </g>
+
+    <!-- 向下箭头 -->
+    <polygon points="600,295 593,280 607,280" fill="#1a1a2e" opacity="0.5"/>
+    <line x1="600" y1="260" x2="600" y2="295" stroke="#1a1a2e" stroke-width="2.5" opacity="0.5"/>
+  </g>
+
+  <!-- 底部说明 -->
+  <text x="400" y="480" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#666">当收益超过成本时，系统值得构建</text>
+
+  <!-- 右侧成本图标装饰 -->
+  <!-- 开发复杂度 - 齿轮 -->
+  <g transform="translate(680, 130)">
+    <circle cx="0" cy="0" r="10" fill="none" stroke="#409EFF" stroke-width="2" opacity="0.5"/>
+    <line x1="-8" y1="0" x2="8" y2="0" stroke="#409EFF" stroke-width="1.5" opacity="0.5"/>
+    <line x1="0" y1="-8" x2="0" y2="8" stroke="#409EFF" stroke-width="1.5" opacity="0.5"/>
+    <line x1="-5.5" y1="-5.5" x2="5.5" y2="5.5" stroke="#409EFF" stroke-width="1.5" opacity="0.5"/>
+    <line x1="5.5" y1="-5.5" x2="-5.5" y2="5.5" stroke="#409EFF" stroke-width="1.5" opacity="0.5"/>
+  </g>
+
+  <!-- 运行成本 - 硬币 -->
+  <g transform="translate(680, 175)">
+    <circle cx="0" cy="0" r="8" fill="#409EFF" opacity="0.3"/>
+    <circle cx="0" cy="0" r="8" fill="none" stroke="#409EFF" stroke-width="1.5" opacity="0.5"/>
+    <text x="0" y="3" text-anchor="middle" font-family="sans-serif" font-size="8" fill="#409EFF" opacity="0.7">$</text>
+  </g>
+
+  <!-- 信息衰减 - 电话游戏 -->
+  <g transform="translate(680, 220)">
+    <text x="0" y="0" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#409EFF" opacity="0.7">信息</text>
+    <text x="0" y="12" text-anchor="middle" font-family="sans-serif" font-size="7" fill="#409EFF" opacity="0.4">衰减</text>
+  </g>
+
+  <!-- 一致性问题 - 矛盾箭头 -->
+  <g transform="translate(680, 265)">
+    <line x1="-8" y1="-4" x2="8" y2="4" stroke="#409EFF" stroke-width="1.5" opacity="0.5"/>
+    <line x1="-8" y1="4" x2="8" y2="-4" stroke="#409EFF" stroke-width="1.5" opacity="0.5"/>
+  </g>
+
+  <!-- 延迟累积 - 时钟 -->
+  <g transform="translate(680, 310)">
+    <circle cx="0" cy="0" r="8" fill="none" stroke="#409EFF" stroke-width="1.5" opacity="0.5"/>
+    <line x1="0" y1="0" x2="0" y2="-5" stroke="#409EFF" stroke-width="1.5" opacity="0.5"/>
+    <line x1="0" y1="0" x2="4" y2="0" stroke="#409EFF" stroke-width="1.5" opacity="0.5"/>
+  </g>
+
+  <!-- 左侧收益图标装饰 -->
+  <!-- 专业化 -->
+  <g transform="translate(120, 130)">
+    <rect x="-8" y="-8" width="16" height="16" rx="2" fill="none" stroke="#409EFF" stroke-width="1.5" opacity="0.5"/>
+    <text x="0" y="3" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#409EFF" opacity="0.7">专</text>
+  </g>
+
+  <!-- 并行处理 -->
+  <g transform="translate(120, 175)">
+    <line x1="-6" y1="-6" x2="6" y2="-6" stroke="#409EFF" stroke-width="1.5" opacity="0.5"/>
+    <line x1="-6" y1="0" x2="6" y2="0" stroke="#409EFF" stroke-width="1.5" opacity="0.5"/>
+    <line x1="-6" y1="6" x2="6" y2="6" stroke="#409EFF" stroke-width="1.5" opacity="0.5"/>
+  </g>
+
+  <!-- 鲁棒性 -->
+  <g transform="translate(120, 220)">
+    <polygon points="0,-8 8,6 -8,6" fill="none" stroke="#409EFF" stroke-width="1.5" opacity="0.5"/>
+  </g>
+
+  <!-- 涌现智能 -->
+  <g transform="translate(120, 265)">
+    <circle cx="0" cy="-4" r="4" fill="none" stroke="#409EFF" stroke-width="1.5" opacity="0.5"/>
+    <circle cx="-5" cy="4" r="3" fill="none" stroke="#409EFF" stroke-width="1.5" opacity="0.5"/>
+    <circle cx="5" cy="4" r="3" fill="none" stroke="#409EFF" stroke-width="1.5" opacity="0.5"/>
+  </g>
+
+  <!-- 平衡指示 -->
+  <g transform="rotate(6, 400, 234)">
+    <text x="400" y="225" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#1a1a2e" opacity="0.6">⚖ 平衡点</text>
+  </g>
+
+  <!-- 装饰性连接线 -->
+  <line x1="130" y1="130" x2="130" y2="310" stroke="#409EFF" stroke-width="0.5" opacity="0.15"/>
+  <line x1="670" y1="130" x2="670" y2="310" stroke="#1a1a2e" stroke-width="0.5" opacity="0.15"/>
+</svg>

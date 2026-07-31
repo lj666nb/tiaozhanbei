@@ -1,0 +1,73 @@
+{
+   "checksum": "ff38b5e3409b2e3df474ba2436d2d238",
+   "roots": {
+      "bookmark_bar": {
+         "children": [ {
+            "date_added": "13429959635516831",
+            "date_last_used": "0",
+            "guid": "3ad7c164-7b20-4c11-9b67-58b74c9ca989",
+            "id": "8",
+            "name": "Lenovo Support",
+            "show_icon": false,
+            "source": "oem_preload",
+            "type": "url",
+            "url": "https://support.lenovo.com/",
+            "visit_count": 0
+         }, {
+            "date_added": "13429959635516151",
+            "date_last_used": "0",
+            "guid": "3ce8fe38-ae1a-40e8-aca3-5a02bac40934",
+            "id": "7",
+            "name": "Lenovo",
+            "show_icon": false,
+            "source": "oem_preload",
+            "type": "url",
+            "url": "https://www.lenovo.com/",
+            "visit_count": 0
+         } ],
+         "date_added": "13429959635327753",
+         "date_last_used": "0",
+         "date_modified": "13429959635516831",
+         "guid": "0bc5d13f-2cba-5d74-951f-3f233fe6c908",
+         "id": "1",
+         "name": "收藏夹栏",
+         "source": "unknown",
+         "type": "folder"
+      },
+      "other": {
+         "children": [  ],
+         "date_added": "13429959635327753",
+         "date_last_used": "0",
+         "date_modified": "0",
+         "guid": "82b081ec-3dd3-529c-8475-ab6c344590dd",
+         "id": "2",
+         "name": "其他收藏夹",
+         "source": "unknown",
+         "type": "folder"
+      },
+      "synced": {
+         "children": [  ],
+         "date_added": "13429959635327753",
+         "date_last_used": "0",
+         "date_modified": "0",
+         "guid": "4cf2e351-0e85-532b-bb37-df045d8f8d0f",
+         "id": "3",
+         "name": "移动收藏夹",
+         "source": "unknown",
+         "type": "folder"
+      },
+      "workspaces_v2": {
+         "children": [  ],
+         "date_added": "13429959635327753",
+         "date_last_used": "0",
+         "date_modified": "0",
+         "guid": "75aa6670-344f-549d-b742-660f029506ab",
+         "id": "5",
+         "name": "工作区",
+         "source": "unknown",
+         "type": "folder"
+      }
+   },
+   "sync_metadata": "CkEKHgiIgQISCN/1QrefAQAAKg4QABgAIAAoBDAAOABAABIAKhg1UVd1N3BQQzI0bkNheG9XOGFMWG1BPT1IA6AGDBKOAQgCEokBChxZY1NUb252RVNQd3FDczRMMmNyVmh2NjhMOTg9EiQwNjY3MmYyNS02YzIyLTU1OGYtODQzYy0yNmI4MWRiOTg2MjEYACAAKAAw6aXQgYAyOOaq0IGAMkDmqtCBgDJKHG9QVmtod0JSYlY2NUtDV1IyK0lPTkhXb091OD1aAGUAAAAAwj4CYAASjgEIBRKJAQocd1JCclpMKzZQQTlhdktnak5QN0pYRExjZnZzPRIkMGI4MmMyY2ItMzk5OS01Mjk4LThiMzctOTAxYWUxZmNjOTY5GAAgACgAMJyq1rn7Mzi1rta5+zNAta7WufszShxubXg2NXNRRHZ4SThUZ0VlditBK250dG9TbjQ9WgBlAAAAAMI+AmAAEo4BCAESiQEKHHl4Si82ZnZrZWNyN2twNUVRekI0dFdMcGRiRT0SJGE4NWY5OGMzLWQ1YjEtNTVmYS05NGIxLWFmYmM3ODYwNTZjORgAIAAoADDopdCBgDI4zqrQgYAyQM6q0IGAMkocYVJDV0xnaEY5YjVJbnFLSUR2dUovanZRa0ZjPVoAZQAAAADCPgJgABKOAQgDEokBChxuamdEdTg4ZUNydlhwODZwRDdmSEdjcUZwODg9EiRkMDFjMTM1OC1hY2M0LTU3YzktODc2My03Y2QwZGJkMjEyYzQYACAAKAAw7qXQgYAyOJmr0IGAMkCZq9CBgDJKHHl6TkIwMWNuNTRBN2NSVTB1VCsvUGdtVHRVbz1aAGUAAAAAwj4CYAAwADgA",
+   "version": 1
+}

@@ -1,0 +1,94 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="800" height="500">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#e8f4fd;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#f0f8ff;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="blockGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#6ab7ff;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#409EFF;stop-opacity:1" />
+    </linearGradient>
+    <filter id="shadow" x="-5%" y="-5%" width="110%" height="110%">
+      <feDropShadow dx="1" dy="2" stdDeviation="2" flood-color="#1a1a2e" flood-opacity="0.15"/>
+    </filter>
+  </defs>
+
+  <!-- 背景 -->
+  <rect x="0" y="0" width="800" height="500" fill="url(#bgGrad)" rx="8"/>
+
+  <!-- 标题 -->
+  <text x="400" y="28" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#1a1a2e">Transformer 前向传播流程图</text>
+
+  <!-- ===== 输入文本 ===== -->
+  <rect x="300" y="42" width="200" height="36" rx="10" fill="url(#blockGrad)" filter="url(#shadow)"/>
+  <text x="400" y="65" text-anchor="middle" font-family="Arial, sans-serif" font-size="15" fill="#ffffff" font-weight="bold">输入文本</text>
+
+  <!-- 箭头：输入 -> Token嵌入 -->
+  <line x1="400" y1="78" x2="400" y2="112" stroke="#1a1a2e" stroke-width="2" marker-end="url(#arrowBlue)"/>
+  <defs>
+    <marker id="arrowBlue" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#1a1a2e"/>
+    </marker>
+  </defs>
+
+  <!-- ===== Token嵌入 ===== -->
+  <rect x="280" y="115" width="240" height="36" rx="10" fill="url(#blockGrad)" filter="url(#shadow)"/>
+  <text x="400" y="138" text-anchor="middle" font-family="Arial, sans-serif" font-size="15" fill="#ffffff" font-weight="bold">Token 嵌入</text>
+
+  <!-- 箭头：Token嵌入 -> 位置编码 -->
+  <line x1="400" y1="151" x2="400" y2="185" stroke="#1a1a2e" stroke-width="2" marker-end="url(#arrowBlue)"/>
+
+  <!-- ===== 位置编码 ===== -->
+  <rect x="280" y="188" width="240" height="36" rx="10" fill="url(#blockGrad)" filter="url(#shadow)"/>
+  <text x="400" y="211" text-anchor="middle" font-family="Arial, sans-serif" font-size="15" fill="#ffffff" font-weight="bold">位置编码</text>
+
+  <!-- 箭头：位置编码 -> 编码器层 -->
+  <line x1="400" y1="224" x2="400" y2="258" stroke="#1a1a2e" stroke-width="2" marker-end="url(#arrowBlue)"/>
+
+  <!-- ===== 编码器层 1~N ===== -->
+  <rect x="260" y="261" width="280" height="40" rx="10" fill="url(#blockGrad)" filter="url(#shadow)"/>
+  <text x="400" y="286" text-anchor="middle" font-family="Arial, sans-serif" font-size="15" fill="#ffffff" font-weight="bold">编码器层 1 ~ N</text>
+
+  <!-- 箭头：编码器层 -> 编码表示 -->
+  <line x1="400" y1="301" x2="400" y2="335" stroke="#1a1a2e" stroke-width="2" marker-end="url(#arrowBlue)"/>
+
+  <!-- ===== 编码表示 ===== -->
+  <rect x="280" y="338" width="240" height="36" rx="10" fill="url(#blockGrad)" filter="url(#shadow)"/>
+  <text x="400" y="361" text-anchor="middle" font-family="Arial, sans-serif" font-size="15" fill="#ffffff" font-weight="bold">编码表示</text>
+
+  <!-- 分叉箭头 -->
+  <line x1="400" y1="374" x2="400" y2="400" stroke="#1a1a2e" stroke-width="2"/>
+  <line x1="400" y1="400" x2="220" y2="400" stroke="#1a1a2e" stroke-width="2"/>
+  <line x1="400" y1="400" x2="580" y2="400" stroke="#1a1a2e" stroke-width="2"/>
+  <line x1="220" y1="400" x2="220" y2="418" stroke="#1a1a2e" stroke-width="2" marker-end="url(#arrowBlue)"/>
+  <line x1="580" y1="400" x2="580" y2="418" stroke="#1a1a2e" stroke-width="2" marker-end="url(#arrowBlue)"/>
+
+  <!-- ===== 训练路径 ===== -->
+  <rect x="95" y="421" width="250" height="36" rx="10" fill="url(#blockGrad)" filter="url(#shadow)"/>
+  <text x="220" y="444" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="#ffffff" font-weight="bold">训练：教师强制并行解码</text>
+
+  <!-- ===== 推理路径 ===== -->
+  <rect x="455" y="421" width="250" height="36" rx="10" fill="url(#blockGrad)" filter="url(#shadow)"/>
+  <text x="580" y="444" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="#ffffff" font-weight="bold">推理：自回归逐词生成</text>
+
+  <!-- 箭头到输出 -->
+  <line x1="220" y1="457" x2="220" y2="475" stroke="#1a1a2e" stroke-width="2"/>
+  <line x1="580" y1="457" x2="580" y2="475" stroke="#1a1a2e" stroke-width="2"/>
+  <line x1="220" y1="475" x2="400" y2="475" stroke="#1a1a2e" stroke-width="2"/>
+  <line x1="580" y1="475" x2="400" y2="475" stroke="#1a1a2e" stroke-width="2"/>
+  <line x1="400" y1="475" x2="400" y2="483" stroke="#1a1a2e" stroke-width="2" marker-end="url(#arrowBlue)"/>
+
+  <!-- ===== 输出文本 ===== -->
+  <rect x="300" y="456" width="200" height="36" rx="10" fill="url(#blockGrad)" filter="url(#shadow)"/>
+  <text x="400" y="479" text-anchor="middle" font-family="Arial, sans-serif" font-size="15" fill="#ffffff" font-weight="bold">输出文本</text>
+
+  <!-- 标注 -->
+  <text x="700" y="138" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" fill="#1a1a2e" font-style="italic">词向量映射</text>
+  <text x="700" y="211" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" fill="#1a1a2e" font-style="italic">位置信息注入</text>
+  <text x="700" y="286" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" fill="#1a1a2e" font-style="italic">多层注意力计算</text>
+  <text x="120" y="400" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" fill="#1a1a2e" font-weight="bold">训练模式</text>
+  <text x="680" y="400" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" fill="#1a1a2e" font-weight="bold">推理模式</text>
+
+  <!-- 装饰性连接点 -->
+  <circle cx="400" cy="400" r="4" fill="#1a1a2e"/>
+</svg>

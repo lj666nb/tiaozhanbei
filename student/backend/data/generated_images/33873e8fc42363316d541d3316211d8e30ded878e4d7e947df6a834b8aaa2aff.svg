@@ -1,0 +1,83 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="800" height="500">
+  <defs>
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#f0f7ff"/>
+      <stop offset="100%" stop-color="#e8f3ff"/>
+    </linearGradient>
+    <linearGradient id="cardGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="100%" stop-color="#f8fbff"/>
+    </linearGradient>
+    <filter id="cardShadow" x="-5%" y="-5%" width="110%" height="115%">
+      <feDropShadow dx="0" dy="3" stdDeviation="6" flood-color="#409EFF" flood-opacity="0.12"/>
+    </filter>
+  </defs>
+
+  <!-- 背景 -->
+  <rect width="800" height="500" fill="url(#bgGrad)" rx="0"/>
+
+  <!-- 标题 -->
+  <text x="400" y="52" text-anchor="middle" font-family="'PingFang SC','Microsoft YaHei','Noto Sans SC',sans-serif" font-size="22" font-weight="700" fill="#1a1a2e" letter-spacing="1">核心能力评估指标</text>
+  <line x1="340" y1="65" x2="460" y2="65" stroke="#409EFF" stroke-width="2.5" stroke-linecap="round" opacity="0.6"/>
+
+  <!-- 卡片1：经济性 -->
+  <g filter="url(#cardShadow)">
+    <rect x="60" y="110" width="320" height="190" rx="16" fill="url(#cardGrad)" stroke="#e8f0fe" stroke-width="1.5"/>
+    <!-- 圆形图标区 -->
+    <circle cx="220" cy="195" r="48" fill="#f0f7ff" stroke="#409EFF" stroke-width="2"/>
+    <!-- 硬币 -->
+    <circle cx="220" cy="195" r="22" fill="none" stroke="#409EFF" stroke-width="2.2"/>
+    <circle cx="220" cy="195" r="14" fill="none" stroke="#409EFF" stroke-width="1.5" opacity="0.5"/>
+    <text x="220" y="200" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="700" fill="#409EFF">¥</text>
+    <!-- 闪光 -->
+    <line x1="248" y1="172" x2="254" y2="166" stroke="#409EFF" stroke-width="2.5" stroke-linecap="round"/>
+    <line x1="252" y1="178" x2="260" y2="176" stroke="#409EFF" stroke-width="2" stroke-linecap="round"/>
+    <line x1="245" y1="180" x2="250" y2="175" stroke="#409EFF" stroke-width="1.5" stroke-linecap="round"/>
+    <!-- 标签 -->
+    <text x="220" y="268" text-anchor="middle" font-family="'PingFang SC','Microsoft YaHei','Noto Sans SC',sans-serif" font-size="17" font-weight="600" fill="#1a1a2e">经济性</text>
+    <text x="220" y="290" text-anchor="middle" font-family="'PingFang SC','Microsoft YaHei','Noto Sans SC',sans-serif" font-size="13" fill="#6b7a8f">成本效益评估</text>
+  </g>
+
+  <!-- 卡片2：灵活性 -->
+  <g filter="url(#cardShadow)">
+    <rect x="420" y="110" width="320" height="190" rx="16" fill="url(#cardGrad)" stroke="#e8f0fe" stroke-width="1.5"/>
+    <circle cx="580" cy="195" r="48" fill="#f0f7ff" stroke="#409EFF" stroke-width="2"/>
+    <!-- 弧形箭头 -->
+    <path d="M 558 180 Q 558 162 575 162 Q 595 162 598 178" fill="none" stroke="#409EFF" stroke-width="3" stroke-linecap="round"/>
+    <polygon points="598,178 592,170 592,186" fill="#409EFF"/>
+    <path d="M 602 195 Q 602 215 585 215 Q 565 215 562 200" fill="none" stroke="#409EFF" stroke-width="3" stroke-linecap="round"/>
+    <polygon points="562,200 568,208 568,192" fill="#409EFF"/>
+    <!-- 标签 -->
+    <text x="580" y="268" text-anchor="middle" font-family="'PingFang SC','Microsoft YaHei','Noto Sans SC',sans-serif" font-size="17" font-weight="600" fill="#1a1a2e">灵活性</text>
+    <text x="580" y="290" text-anchor="middle" font-family="'PingFang SC','Microsoft YaHei','Noto Sans SC',sans-serif" font-size="13" fill="#6b7a8f">适应调整能力</text>
+  </g>
+
+  <!-- 卡片3：模型能力 -->
+  <g filter="url(#cardShadow)">
+    <rect x="60" y="330" width="320" height="150" rx="16" fill="url(#cardGrad)" stroke="#e8f0fe" stroke-width="1.5"/>
+    <circle cx="220" cy="405" r="48" fill="#f0f7ff" stroke="#409EFF" stroke-width="2"/>
+    <!-- 肌肉手臂 -->
+    <path d="M 200 395 Q 195 380 205 370 Q 218 358 230 370 Q 240 380 235 395" fill="none" stroke="#409EFF" stroke-width="2.8" stroke-linecap="round"/>
+    <path d="M 210 385 Q 215 378 225 378 Q 232 378 235 385" fill="none" stroke="#409EFF" stroke-width="2.5" stroke-linecap="round"/>
+    <circle cx="220" cy="400" r="6" fill="none" stroke="#409EFF" stroke-width="2"/>
+    <path d="M 205 408 Q 215 418 235 408" fill="none" stroke="#409EFF" stroke-width="2.5" stroke-linecap="round"/>
+    <!-- 标签 -->
+    <text x="220" y="458" text-anchor="middle" font-family="'PingFang SC','Microsoft YaHei','Noto Sans SC',sans-serif" font-size="17" font-weight="600" fill="#1a1a2e">模型能力</text>
+  </g>
+
+  <!-- 卡片4：偏见规避 -->
+  <g filter="url(#cardShadow)">
+    <rect x="420" y="330" width="320" height="150" rx="16" fill="url(#cardGrad)" stroke="#e8f0fe" stroke-width="1.5"/>
+    <circle cx="580" cy="405" r="48" fill="#f0f7ff" stroke="#409EFF" stroke-width="2"/>
+    <!-- 警告三角 + 勾 -->
+    <polygon points="580,372 560,418 600,418" fill="none" stroke="#409EFF" stroke-width="2.5" stroke-linejoin="round"/>
+    <line x1="580" y1="392" x2="580" y2="406" stroke="#409EFF" stroke-width="2.5" stroke-linecap="round"/>
+    <circle cx="580" cy="413" r="2.5" fill="#409EFF"/>
+    <path d="M 568 410 L 575 417 L 592 400" fill="none" stroke="#409EFF" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/>
+    <!-- 标签 -->
+    <text x="580" y="458" text-anchor="middle" font-family="'PingFang SC','Microsoft YaHei','Noto Sans SC',sans-serif" font-size="17" font-weight="600" fill="#1a1a2e">偏见规避</text>
+  </g>
+
+  <!-- 底部标注 -->
+  <text x="400" y="490" text-anchor="middle" font-family="'PingFang SC','Microsoft YaHei','Noto Sans SC',sans-serif" font-size="12" fill="#a0b4c8">综合评估框架 · 四项核心维度</text>
+</svg>

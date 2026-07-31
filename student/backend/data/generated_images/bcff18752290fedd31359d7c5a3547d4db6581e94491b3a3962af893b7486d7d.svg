@@ -1,0 +1,133 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="800" height="500">
+  <defs>
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#E8F4FD"/>
+      <stop offset="100%" stop-color="#F0F8FF"/>
+    </linearGradient>
+    <linearGradient id="panelGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#FFFFFF"/>
+      <stop offset="100%" stop-color="#F5FAFF"/>
+    </linearGradient>
+  </defs>
+
+  <!-- 背景 -->
+  <rect width="800" height="500" fill="url(#bgGrad)"/>
+
+  <!-- 标题 -->
+  <text x="400" y="32" text-anchor="middle" font-family="sans-serif" font-size="20" font-weight="bold" fill="#1a1a2e">消息可靠性机制</text>
+
+  <!-- ========== 面板1：ACK机制 ========== -->
+  <rect x="20" y="50" width="240" height="200" rx="10" fill="url(#panelGrad)" stroke="#409EFF" stroke-width="1.5"/>
+  <rect x="20" y="50" width="240" height="32" rx="10" fill="#409EFF" opacity="0.15"/>
+  <text x="140" y="72" text-anchor="middle" font-family="sans-serif" font-size="15" font-weight="bold" fill="#409EFF">ACK 确认机制</text>
+
+  <!-- 发送方 -->
+  <rect x="45" y="100" width="80" height="36" rx="6" fill="#409EFF" opacity="0.2" stroke="#409EFF" stroke-width="1"/>
+  <text x="85" y="123" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#1a1a2e">发送方</text>
+
+  <!-- 箭头：发送消息 -->
+  <line x1="125" y1="118" x2="175" y2="118" stroke="#409EFF" stroke-width="1.5" marker-end="url(#arrowBlue)"/>
+  <polygon points="173,113 183,118 173,123" fill="#409EFF"/>
+
+  <!-- 消息信封 -->
+  <rect x="178" y="106" width="28" height="22" rx="3" fill="#409EFF" opacity="0.3" stroke="#409EFF" stroke-width="1"/>
+  <line x1="178" y1="108" x2="192" y2="118" stroke="#409EFF" stroke-width="0.8"/>
+  <line x1="206" y1="108" x2="192" y2="118" stroke="#409EFF" stroke-width="0.8"/>
+  <text x="192" y="120" text-anchor="middle" font-family="sans-serif" font-size="8" fill="#409EFF">消息</text>
+
+  <!-- 接收方 -->
+  <rect x="45" y="155" width="80" height="36" rx="6" fill="#409EFF" opacity="0.2" stroke="#409EFF" stroke-width="1"/>
+  <text x="85" y="178" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#1a1a2e">接收方</text>
+
+  <!-- 箭头：ACK返回 -->
+  <line x1="175" y1="173" x2="125" y2="173" stroke="#1a1a2e" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <polygon points="127,168 117,173 127,178" fill="#1a1a2e"/>
+
+  <!-- ACK标记 -->
+  <rect x="178" y="161" width="28" height="22" rx="3" fill="#67C23A" opacity="0.25" stroke="#67C23A" stroke-width="1"/>
+  <text x="192" y="176" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#67C23A">✓</text>
+
+  <!-- 超时时钟 -->
+  <circle cx="220" cy="118" r="14" fill="none" stroke="#E6A23C" stroke-width="1.5"/>
+  <line x1="220" y1="118" x2="220" y2="108" stroke="#E6A23C" stroke-width="1.2"/>
+  <line x1="220" y1="118" x2="228" y2="118" stroke="#E6A23C" stroke-width="1.2"/>
+  <circle cx="220" cy="118" r="2" fill="#E6A23C"/>
+  <text x="220" y="140" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#E6A23C">超时</text>
+
+  <!-- 标注 -->
+  <text x="85" y="240" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#666">发送→等待ACK→超时重传</text>
+
+  <!-- ========== 面板2：重试策略 ========== -->
+  <rect x="280" y="50" width="240" height="200" rx="10" fill="url(#panelGrad)" stroke="#409EFF" stroke-width="1.5"/>
+  <rect x="280" y="50" width="240" height="32" rx="10" fill="#409EFF" opacity="0.15"/>
+  <text x="400" y="72" text-anchor="middle" font-family="sans-serif" font-size="15" font-weight="bold" fill="#409EFF">重试策略</text>
+
+  <!-- 立即重试 -->
+  <text x="300" y="102" font-family="sans-serif" font-size="13" font-weight="bold" fill="#1a1a2e">立即重试</text>
+  <line x1="300" y1="115" x2="340" y2="115" stroke="#409EFF" stroke-width="1.5"/>
+  <line x1="345" y1="115" x2="385" y2="115" stroke="#409EFF" stroke-width="1.5"/>
+  <line x1="390" y1="115" x2="430" y2="115" stroke="#409EFF" stroke-width="1.5"/>
+  <line x1="435" y1="115" x2="475" y2="115" stroke="#409EFF" stroke-width="1.5"/>
+  <text x="490" y="119" font-family="sans-serif" font-size="10" fill="#409EFF">→→→</text>
+
+  <!-- 指数退避 -->
+  <text x="300" y="145" font-family="sans-serif" font-size="13" font-weight="bold" fill="#1a1a2e">指数退避</text>
+  <line x1="300" y1="158" x2="320" y2="158" stroke="#409EFF" stroke-width="1.5"/>
+  <text x="325" y="162" font-family="sans-serif" font-size="9" fill="#666">1s</text>
+  <line x1="340" y1="158" x2="370" y2="158" stroke="#409EFF" stroke-width="1.5"/>
+  <text x="375" y="162" font-family="sans-serif" font-size="9" fill="#666">2s</text>
+  <line x1="385" y1="158" x2="425" y2="158" stroke="#409EFF" stroke-width="1.5"/>
+  <text x="430" y="162" font-family="sans-serif" font-size="9" fill="#666">4s</text>
+  <line x1="440" y1="158" x2="490" y2="158" stroke="#409EFF" stroke-width="1.5"/>
+  <text x="495" y="162" font-family="sans-serif" font-size="9" fill="#666">8s</text>
+
+  <!-- 死信队列 -->
+  <text x="300" y="195" font-family="sans-serif" font-size="13" font-weight="bold" fill="#1a1a2e">死信队列</text>
+  <rect x="300" y="205" width="60" height="24" rx="4" fill="#F56C6C" opacity="0.2" stroke="#F56C6C" stroke-width="1"/>
+  <text x="330" y="221" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#F56C6C">失败消息</text>
+  <path d="M370,217 L390,217 L395,205 L415,205" stroke="#F56C6C" stroke-width="1.2" fill="none"/>
+  <rect x="400" y="205" width="60" height="24" rx="4" fill="#E6A23C" opacity="0.2" stroke="#E6A23C" stroke-width="1"/>
+  <text x="430" y="221" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#E6A23C">人工审核</text>
+
+  <!-- ========== 面板3：幂等性 ========== -->
+  <rect x="540" y="50" width="240" height="200" rx="10" fill="url(#panelGrad)" stroke="#409EFF" stroke-width="1.5"/>
+  <rect x="540" y="50" width="240" height="32" rx="10" fill="#409EFF" opacity="0.15"/>
+  <text x="660" y="72" text-anchor="middle" font-family="sans-serif" font-size="15" font-weight="bold" fill="#409EFF">幂等性</text>
+
+  <!-- 唯一消息ID -->
+  <text x="560" y="102" font-family="sans-serif" font-size="13" font-weight="bold" fill="#1a1a2e">唯一消息ID</text>
+  <rect x="560" y="110" width="80" height="24" rx="4" fill="#409EFF" opacity="0.15" stroke="#409EFF" stroke-width="1"/>
+  <text x="600" y="126" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#409EFF">ID: #A7F2</text>
+
+  <!-- 重复检测 -->
+  <text x="560" y="155" font-family="sans-serif" font-size="13" font-weight="bold" fill="#1a1a2e">重复检测</text>
+  <rect x="560" y="163" width="80" height="24" rx="4" fill="#F56C6C" opacity="0.15" stroke="#F56C6C" stroke-width="1"/>
+  <text x="600" y="179" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#F56C6C">ID: #A7F2</text>
+  <line x1="640" y1="175" x2="670" y2="175" stroke="#F56C6C" stroke-width="1.5" stroke-dasharray="3,2"/>
+  <text x="685" y="179" font-family="sans-serif" font-size="12" fill="#F56C6C">重复!</text>
+
+  <!-- 缓存命中 -->
+  <text x="560" y="210" font-family="sans-serif" font-size="13" font-weight="bold" fill="#1a1a2e">返回缓存结果</text>
+  <rect x="560" y="218" width="60" height="22" rx="4" fill="#67C23A" opacity="0.2" stroke="#67C23A" stroke-width="1"/>
+  <text x="590" y="233" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#67C23A">缓存命中</text>
+
+  <!-- 底部说明 -->
+  <text x="400" y="280" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#999">三种机制共同保障消息的可靠传递与处理</text>
+
+  <!-- 图例 -->
+  <rect x="200" y="300" width="400" height="60" rx="8" fill="white" stroke="#E0E0E0" stroke-width="1"/>
+  <text x="400" y="320" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="#1a1a2e">图例</text>
+
+  <circle cx="240" cy="340" r="6" fill="#409EFF" opacity="0.3" stroke="#409EFF" stroke-width="1"/>
+  <text x="255" y="344" font-family="sans-serif" font-size="12" fill="#666">消息</text>
+
+  <circle cx="340" cy="340" r="6" fill="#67C23A" opacity="0.3" stroke="#67C23A" stroke-width="1"/>
+  <text x="355" y="344" font-family="sans-serif" font-size="12" fill="#666">ACK</text>
+
+  <circle cx="440" cy="340" r="6" fill="#E6A23C" opacity="0.3" stroke="#E6A23C" stroke-width="1"/>
+  <text x="455" y="344" font-family="sans-serif" font-size="12" fill="#666">超时/重试</text>
+
+  <circle cx="545" cy="340" r="6" fill="#F56C6C" opacity="0.3" stroke="#F56C6C" stroke-width="1"/>
+  <text x="560" y="344" font-family="sans-serif" font-size="12" fill="#666">失败/重复</text>
+
+</svg>

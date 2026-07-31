@@ -1,0 +1,120 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="800" height="500">
+  <defs>
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#E8F4FD"/>
+      <stop offset="100%" stop-color="#F0F8FF"/>
+    </linearGradient>
+    <linearGradient id="leftBoxGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#409EFF"/>
+      <stop offset="100%" stop-color="#2B7FD4"/>
+    </linearGradient>
+    <linearGradient id="rightBoxGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#409EFF"/>
+      <stop offset="100%" stop-color="#2B7FD4"/>
+    </linearGradient>
+    <linearGradient id="skillLibGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1a1a2e"/>
+      <stop offset="100%" stop-color="#2a2a4e"/>
+    </linearGradient>
+    <filter id="shadow" x="-5%" y="-5%" width="115%" height="115%">
+      <feDropShadow dx="1" dy="2" stdDeviation="3" flood-opacity="0.12" flood-color="#1a1a2e"/>
+    </filter>
+  </defs>
+
+  <!-- 背景 -->
+  <rect width="800" height="500" fill="url(#bgGrad)" rx="0"/>
+
+  <!-- 标题区域 -->
+  <text x="400" y="38" text-anchor="middle" font-family="sans-serif" font-size="20" font-weight="bold" fill="#1a1a2e">技能复用对比：无技能库 vs 有技能库</text>
+
+  <!-- ====== 左侧：无技能 ====== -->
+  <text x="200" y="72" text-anchor="middle" font-family="sans-serif" font-size="16" font-weight="bold" fill="#1a1a2e">❌ 无技能库</text>
+
+  <!-- 代理1 -->
+  <rect x="60" y="90" width="120" height="36" rx="6" fill="url(#leftBoxGrad)" filter="url(#shadow)"/>
+  <text x="120" y="113" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#fff" font-weight="bold">代理 1</text>
+
+  <!-- 代理2 -->
+  <rect x="60" y="160" width="120" height="36" rx="6" fill="url(#leftBoxGrad)" filter="url(#shadow)"/>
+  <text x="120" y="183" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#fff" font-weight="bold">代理 2</text>
+
+  <!-- 代理3 -->
+  <rect x="60" y="230" width="120" height="36" rx="6" fill="url(#leftBoxGrad)" filter="url(#shadow)"/>
+  <text x="120" y="253" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#fff" font-weight="bold">代理 3</text>
+
+  <!-- 重复构建区域 -->
+  <rect x="210" y="85" width="130" height="28" rx="5" fill="#FFE0E0" stroke="#FF6B6B" stroke-width="1.5"/>
+  <text x="275" y="103" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#CC3333" font-weight="bold">代码审查</text>
+
+  <rect x="210" y="155" width="130" height="28" rx="5" fill="#FFE0E0" stroke="#FF6B6B" stroke-width="1.5"/>
+  <text x="275" y="173" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#CC3333" font-weight="bold">测试</text>
+
+  <rect x="210" y="225" width="130" height="28" rx="5" fill="#FFE0E0" stroke="#FF6B6B" stroke-width="1.5"/>
+  <text x="275" y="243" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#CC3333" font-weight="bold">文档</text>
+
+  <!-- 重复箭头 -->
+  <line x1="180" y1="108" x2="208" y2="99" stroke="#FF6B6B" stroke-width="1.8" marker-end="url(#arrowRed)"/>
+  <line x1="180" y1="178" x2="208" y2="169" stroke="#FF6B6B" stroke-width="1.8"/>
+  <line x1="180" y1="248" x2="208" y2="239" stroke="#FF6B6B" stroke-width="1.8"/>
+
+  <!-- 重复箭头标记 -->
+  <defs>
+    <marker id="arrowRed" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#FF6B6B"/>
+    </marker>
+  </defs>
+
+  <!-- 效率低标注 -->
+  <text x="275" y="280" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#FF6B6B" font-weight="bold">✖ 效率低</text>
+  <text x="275" y="300" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#FF6B6B">重复造轮子</text>
+
+  <!-- 分隔线 -->
+  <line x1="380" y1="60" x2="380" y2="460" stroke="#409EFF" stroke-width="2" stroke-dasharray="6,4" opacity="0.4"/>
+
+  <!-- ====== 右侧：有技能 ====== -->
+  <text x="590" y="72" text-anchor="middle" font-family="sans-serif" font-size="16" font-weight="bold" fill="#1a1a2e">✅ 有技能库</text>
+
+  <!-- 技能库中心 -->
+  <rect x="470" y="160" width="140" height="50" rx="10" fill="url(#skillLibGrad)" filter="url(#shadow)"/>
+  <text x="540" y="185" text-anchor="middle" font-family="sans-serif" font-size="15" fill="#fff" font-weight="bold">📚 技能库</text>
+  <text x="540" y="200" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#A0C4FF">代码审查·测试·文档</text>
+
+  <!-- 代理1-右 -->
+  <rect x="650" y="90" width="120" height="36" rx="6" fill="url(#rightBoxGrad)" filter="url(#shadow)"/>
+  <text x="710" y="113" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#fff" font-weight="bold">代理 1</text>
+
+  <rect x="650" y="160" width="120" height="36" rx="6" fill="url(#rightBoxGrad)" filter="url(#shadow)"/>
+  <text x="710" y="183" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#fff" font-weight="bold">代理 2</text>
+
+  <rect x="650" y="230" width="120" height="36" rx="6" fill="url(#rightBoxGrad)" filter="url(#shadow)"/>
+  <text x="710" y="253" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#fff" font-weight="bold">代理 3</text>
+
+  <!-- 下载箭头：技能库 → 代理 -->
+  <defs>
+    <marker id="arrowBlue" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#409EFF"/>
+    </marker>
+  </defs>
+
+  <!-- 代理1 ← 技能库 -->
+  <line x1="610" y1="108" x2="648" y2="108" stroke="#409EFF" stroke-width="2" marker-end="url(#arrowBlue)"/>
+  <!-- 代理2 ← 技能库 -->
+  <line x1="610" y1="178" x2="648" y2="178" stroke="#409EFF" stroke-width="2" marker-end="url(#arrowBlue)"/>
+  <!-- 代理3 ← 技能库 -->
+  <line x1="610" y1="248" x2="648" y2="248" stroke="#409EFF" stroke-width="2" marker-end="url(#arrowBlue)"/>
+
+  <!-- 标注：可复用性、一致性、效率 -->
+  <rect x="440" y="290" width="200" height="28" rx="5" fill="#E8F4FD" stroke="#409EFF" stroke-width="1.2"/>
+  <text x="540" y="309" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#1a1a2e" font-weight="bold">♻ 可复用性</text>
+
+  <rect x="440" y="325" width="200" height="28" rx="5" fill="#E8F4FD" stroke="#409EFF" stroke-width="1.2"/>
+  <text x="540" y="344" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#1a1a2e" font-weight="bold">📌 一致性</text>
+
+  <rect x="440" y="360" width="200" height="28" rx="5" fill="#E8F4FD" stroke="#409EFF" stroke-width="1.2"/>
+  <text x="540" y="379" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#1a1a2e" font-weight="bold">⚡ 效率</text>
+
+  <!-- 底部说明 -->
+  <rect x="60" y="440" width="680" height="40" rx="8" fill="#1a1a2e" opacity="0.06"/>
+  <text x="400" y="465" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#1a1a2e" opacity="0.7">技能库让团队共享预构建模块，避免重复劳动，提升整体效率</text>
+
+</svg>

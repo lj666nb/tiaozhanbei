@@ -1,0 +1,106 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="800" height="500">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#e8f4fd;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#f0f8ff;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="cardGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#ffffff;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#f5faff;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+
+  <!-- 背景 -->
+  <rect width="800" height="500" fill="url(#bgGrad)" rx="12"/>
+
+  <!-- 标题 -->
+  <text x="400" y="38" text-anchor="middle" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#1a1a2e">决策框架：模型优化 vs 知识注入</text>
+
+  <!-- 中心问题节点 -->
+  <ellipse cx="400" cy="95" rx="90" ry="30" fill="#409EFF" opacity="0.15" stroke="#409EFF" stroke-width="2"/>
+  <text x="400" y="100" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#1a1a2e">需要什么？</text>
+
+  <!-- 分支线 - 左 -->
+  <line x1="310" y1="105" x2="180" y2="170" stroke="#409EFF" stroke-width="2" stroke-dasharray="6,3"/>
+  <line x1="490" y1="105" x2="620" y2="170" stroke="#409EFF" stroke-width="2" stroke-dasharray="6,3"/>
+
+  <!-- 左分支标签 -->
+  <text x="200" y="165" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" fill="#409EFF" font-weight="bold">改变模型行为/风格</text>
+
+  <!-- 右分支标签 -->
+  <text x="600" y="165" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" fill="#409EFF" font-weight="bold">注入动态知识</text>
+
+  <!-- 左分支卡片 - Fine-tuning -->
+  <rect x="60" y="185" width="260" height="220" rx="14" fill="url(#cardGrad)" stroke="#409EFF" stroke-width="1.5" opacity="0.95"/>
+  <rect x="60" y="185" width="260" height="40" rx="14" fill="#409EFF" opacity="0.12"/>
+
+  <!-- 微调图标 - 齿轮+大脑 -->
+  <circle cx="190" cy="215" r="16" fill="none" stroke="#409EFF" stroke-width="2"/>
+  <circle cx="190" cy="215" r="6" fill="#409EFF" opacity="0.6"/>
+  <!-- 齿轮齿 -->
+  <line x1="190" y1="197" x2="190" y2="201" stroke="#409EFF" stroke-width="2"/>
+  <line x1="190" y1="229" x2="190" y2="233" stroke="#409EFF" stroke-width="2"/>
+  <line x1="172" y1="215" x2="176" y2="215" stroke="#409EFF" stroke-width="2"/>
+  <line x1="204" y1="215" x2="208" y2="215" stroke="#409EFF" stroke-width="2"/>
+  <!-- 大脑纹路 -->
+  <path d="M182 210 Q190 205 198 210" fill="none" stroke="#409EFF" stroke-width="1.5"/>
+  <path d="M184 220 Q190 225 196 220" fill="none" stroke="#409EFF" stroke-width="1.5"/>
+
+  <text x="190" y="260" text-anchor="middle" font-family="Arial, sans-serif" font-size="15" font-weight="bold" fill="#1a1a2e">微调 (Fine-tuning)</text>
+
+  <!-- 使用场景列表 -->
+  <circle cx="90" cy="295" r="4" fill="#409EFF" opacity="0.7"/>
+  <text x="102" y="300" font-family="Arial, sans-serif" font-size="14" fill="#333">专业领域知识固定</text>
+
+  <circle cx="90" cy="330" r="4" fill="#409EFF" opacity="0.7"/>
+  <text x="102" y="335" font-family="Arial, sans-serif" font-size="14" fill="#333">特定输出格式</text>
+
+  <circle cx="90" cy="365" r="4" fill="#409EFF" opacity="0.7"/>
+  <text x="102" y="370" font-family="Arial, sans-serif" font-size="14" fill="#333">基础能力提升</text>
+
+  <!-- 右分支卡片 - RAG -->
+  <rect x="480" y="185" width="260" height="220" rx="14" fill="url(#cardGrad)" stroke="#409EFF" stroke-width="1.5" opacity="0.95"/>
+  <rect x="480" y="185" width="260" height="40" rx="14" fill="#409EFF" opacity="0.12"/>
+
+  <!-- RAG图标 - 放大镜+文档 -->
+  <circle cx="610" cy="215" r="14" fill="none" stroke="#409EFF" stroke-width="2"/>
+  <line x1="620" y1="225" x2="630" y2="235" stroke="#409EFF" stroke-width="2.5" stroke-linecap="round"/>
+  <!-- 文档线条 -->
+  <rect x="598" y="207" width="10" height="12" rx="1" fill="none" stroke="#409EFF" stroke-width="1.5"/>
+  <line x1="600" y1="211" x2="606" y2="211" stroke="#409EFF" stroke-width="1"/>
+  <line x1="600" y1="214" x2="606" y2="214" stroke="#409EFF" stroke-width="1"/>
+
+  <text x="610" y="260" text-anchor="middle" font-family="Arial, sans-serif" font-size="15" font-weight="bold" fill="#1a1a2e">RAG (检索增强)</text>
+
+  <!-- 使用场景列表 -->
+  <circle cx="510" cy="295" r="4" fill="#409EFF" opacity="0.7"/>
+  <text x="522" y="300" font-family="Arial, sans-serif" font-size="14" fill="#333">知识频繁更新</text>
+
+  <circle cx="510" cy="330" r="4" fill="#409EFF" opacity="0.7"/>
+  <text x="522" y="335" font-family="Arial, sans-serif" font-size="14" fill="#333">需要引用来源</text>
+
+  <circle cx="510" cy="365" r="4" fill="#409EFF" opacity="0.7"/>
+  <text x="522" y="370" font-family="Arial, sans-serif" font-size="14" fill="#333">知识库巨大</text>
+
+  <!-- 底部混合策略区域 -->
+  <line x1="400" y1="420" x2="400" y2="440" stroke="#409EFF" stroke-width="2" stroke-dasharray="4,3"/>
+
+  <!-- 混合策略卡片 -->
+  <rect x="200" y="445" width="400" height="45" rx="22" fill="#409EFF" opacity="0.12" stroke="#409EFF" stroke-width="1.5"/>
+  <rect x="200" y="445" width="400" height="45" rx="22" fill="url(#cardGrad)" opacity="0.5"/>
+
+  <!-- 混合图标 -->
+  <circle cx="260" cy="467" r="10" fill="none" stroke="#409EFF" stroke-width="1.5"/>
+  <circle cx="260" cy="467" r="4" fill="#409EFF" opacity="0.5"/>
+  <circle cx="290" cy="467" r="10" fill="none" stroke="#409EFF" stroke-width="1.5"/>
+  <line x1="296" y1="461" x2="302" y2="455" stroke="#409EFF" stroke-width="1.5"/>
+  <text x="280" y="471" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#409EFF">+</text>
+
+  <text x="380" y="472" text-anchor="middle" font-family="Arial, sans-serif" font-size="15" font-weight="bold" fill="#1a1a2e">混合策略 = 最佳效果</text>
+
+  <!-- 装饰性小点 -->
+  <circle cx="30" cy="30" r="3" fill="#409EFF" opacity="0.15"/>
+  <circle cx="770" cy="40" r="4" fill="#409EFF" opacity="0.1"/>
+  <circle cx="50" cy="470" r="2.5" fill="#409EFF" opacity="0.12"/>
+  <circle cx="750" cy="460" r="3" fill="#409EFF" opacity="0.1"/>
+</svg>

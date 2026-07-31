@@ -1,0 +1,100 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" font-family="Microsoft YaHei, PingFang SC, sans-serif">
+  <defs>
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#E8F4FD"/>
+      <stop offset="100%" stop-color="#F0F8FF"/>
+    </linearGradient>
+    <linearGradient id="boxGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#409EFF"/>
+      <stop offset="100%" stop-color="#2B7ED6"/>
+    </linearGradient>
+    <linearGradient id="boxGrad2" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#5AB0FF"/>
+      <stop offset="100%" stop-color="#409EFF"/>
+    </linearGradient>
+    <filter id="shadow" x="-5%" y="-5%" width="115%" height="115%">
+      <feDropShadow dx="1" dy="2" stdDeviation="3" flood-color="#409EFF" flood-opacity="0.2"/>
+    </filter>
+  </defs>
+
+  <!-- 背景 -->
+  <rect width="800" height="500" fill="url(#bgGrad)" rx="8"/>
+
+  <!-- 标题 -->
+  <text x="400" y="32" text-anchor="middle" font-size="18" font-weight="bold" fill="#1a1a2e">智能体选择决策流程</text>
+
+  <!-- ===== 根节点 ===== -->
+  <rect x="300" y="52" width="200" height="40" rx="20" fill="url(#boxGrad)" filter="url(#shadow)"/>
+  <text x="400" y="77" text-anchor="middle" font-size="14" fill="#fff" font-weight="bold">任务单一领域还是跨领域？</text>
+
+  <!-- 连线：根 → 左分支 -->
+  <line x1="300" y1="72" x2="180" y2="130" stroke="#409EFF" stroke-width="2" stroke-dasharray="6,3"/>
+  <!-- 连线：根 → 右分支 -->
+  <line x1="500" y1="72" x2="620" y2="130" stroke="#409EFF" stroke-width="2" stroke-dasharray="6,3"/>
+
+  <!-- ===== 左分支：单一领域 ===== -->
+  <rect x="80" y="130" width="200" height="40" rx="10" fill="#E8F4FD" stroke="#409EFF" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="180" y="155" text-anchor="middle" font-size="14" fill="#1a1a2e">单一领域 → 单智能体</text>
+
+  <!-- 左分支标注 -->
+  <text x="180" y="200" text-anchor="middle" font-size="12" fill="#666">适用场景示例：</text>
+  <rect x="100" y="210" width="160" height="28" rx="6" fill="#fff" stroke="#409EFF" stroke-width="1" opacity="0.8"/>
+  <text x="180" y="229" text-anchor="middle" font-size="12" fill="#409EFF">文档分类 / 情感分析</text>
+
+  <!-- ===== 右分支：跨领域 ===== -->
+  <rect x="520" y="130" width="200" height="40" rx="10" fill="#E8F4FD" stroke="#409EFF" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="620" y="155" text-anchor="middle" font-size="14" fill="#1a1a2e">跨领域 → 继续判断</text>
+
+  <!-- 右分支三个子节点连线 -->
+  <line x1="570" y1="170" x2="520" y2="230" stroke="#409EFF" stroke-width="1.5" stroke-dasharray="5,3"/>
+  <line x1="620" y1="170" x2="620" y2="230" stroke="#409EFF" stroke-width="1.5" stroke-dasharray="5,3"/>
+  <line x1="670" y1="170" x2="720" y2="230" stroke="#409EFF" stroke-width="1.5" stroke-dasharray="5,3"/>
+
+  <!-- 子节点1 -->
+  <rect x="420" y="230" width="200" height="36" rx="8" fill="url(#boxGrad2)" filter="url(#shadow)"/>
+  <text x="520" y="253" text-anchor="middle" font-size="13" fill="#fff">严格顺序依赖？→ 顺序流水线</text>
+
+  <!-- 子节点2 -->
+  <rect x="520" y="280" width="200" height="36" rx="8" fill="url(#boxGrad2)" filter="url(#shadow)"/>
+  <text x="620" y="303" text-anchor="middle" font-size="13" fill="#fff">需多视角验证？→ 辩论/投票机制</text>
+
+  <!-- 子节点3 -->
+  <rect x="620" y="330" width="200" height="36" rx="8" fill="url(#boxGrad2)" filter="url(#shadow)"/>
+  <text x="720" y="353" text-anchor="middle" font-size="13" fill="#fff">错误成本高？→ 交叉验证</text>
+
+  <!-- 连线：子节点之间 -->
+  <line x1="520" y1="266" x2="620" y2="280" stroke="#409EFF" stroke-width="1" stroke-dasharray="4,3" opacity="0.5"/>
+  <line x1="620" y1="316" x2="720" y2="330" stroke="#409EFF" stroke-width="1" stroke-dasharray="4,3" opacity="0.5"/>
+
+  <!-- ===== 底部表格 ===== -->
+  <rect x="30" y="390" width="740" height="100" rx="8" fill="#fff" stroke="#409EFF" stroke-width="1.5" filter="url(#shadow)"/>
+  
+  <!-- 表头 -->
+  <rect x="30" y="390" width="740" height="28" rx="8" fill="#409EFF"/>
+  <rect x="30" y="410" width="740" height="8" fill="#409EFF"/>
+  <text x="160" y="409" text-anchor="middle" font-size="13" font-weight="bold" fill="#fff">场景示例</text>
+  <text x="400" y="409" text-anchor="middle" font-size="13" font-weight="bold" fill="#fff">推荐方案</text>
+  <text x="640" y="409" text-anchor="middle" font-size="13" font-weight="bold" fill="#fff">说明</text>
+
+  <!-- 分隔线 -->
+  <line x1="280" y1="390" x2="280" y2="490" stroke="#409EFF" stroke-width="1" opacity="0.4"/>
+  <line x1="520" y1="390" x2="520" y2="490" stroke="#409EFF" stroke-width="1" opacity="0.4"/>
+
+  <!-- 行1 -->
+  <text x="160" y="440" text-anchor="middle" font-size="12" fill="#1a1a2e">智能客服问答</text>
+  <text x="400" y="440" text-anchor="middle" font-size="12" fill="#409EFF" font-weight="bold">单智能体</text>
+  <text x="640" y="440" text-anchor="middle" font-size="11" fill="#666">单一领域，无需多角色</text>
+  <line x1="30" y1="450" x2="770" y2="450" stroke="#E8F4FD" stroke-width="1"/>
+
+  <!-- 行2 -->
+  <text x="160" y="470" text-anchor="middle" font-size="12" fill="#1a1a2e">多模态内容审核</text>
+  <text x="400" y="470" text-anchor="middle" font-size="12" fill="#409EFF" font-weight="bold">多智能体（辩论）</text>
+  <text x="640" y="470" text-anchor="middle" font-size="11" fill="#666">需多视角交叉验证</text>
+  <line x1="30" y1="480" x2="770" y2="480" stroke="#E8F4FD" stroke-width="1"/>
+
+  <!-- 行3 -->
+  <text x="160" y="498" text-anchor="middle" font-size="12" fill="#1a1a2e">金融风控分析</text>
+  <text x="400" y="498" text-anchor="middle" font-size="12" fill="#409EFF" font-weight="bold">多智能体（流水线）</text>
+  <text x="640" y="498" text-anchor="middle" font-size="11" fill="#666">严格顺序依赖，高错误成本</text>
+
+</svg>

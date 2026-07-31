@@ -1,0 +1,207 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="800" height="500">
+  <defs>
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#f0f5ff"/>
+      <stop offset="100%" stop-color="#e8f0fe"/>
+    </linearGradient>
+    <linearGradient id="llmGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#e8ecf1"/>
+      <stop offset="100%" stop-color="#d5dce6"/>
+    </linearGradient>
+    <linearGradient id="agentGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#409EFF"/>
+      <stop offset="100%" stop-color="#2d7fd6"/>
+    </linearGradient>
+  </defs>
+
+  <!-- 背景 -->
+  <rect width="800" height="500" fill="url(#bgGrad)" rx="8"/>
+
+  <!-- 标题 -->
+  <text x="400" y="38" text-anchor="middle" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#1a1a2e">LLM 与 AI Agent 对比</text>
+
+  <!-- ====== 左侧 LLM 列 ====== -->
+  <rect x="40" y="55" width="310" height="420" rx="10" fill="white" stroke="#c0c8d4" stroke-width="1.5"/>
+  <!-- LLM 头部 -->
+  <rect x="40" y="55" width="310" height="50" rx="10" fill="url(#llmGrad)"/>
+  <rect x="40" y="95" width="310" height="10" fill="url(#llmGrad)"/>
+  <!-- 大脑图标 -->
+  <circle cx="75" cy="80" r="16" fill="#7a8ba8"/>
+  <path d="M68 80 Q68 68 75 68 Q82 68 82 80 Q82 88 75 88 Q68 88 68 80Z" fill="white" opacity="0.8"/>
+  <path d="M71 76 Q71 72 75 72 Q79 72 79 76" fill="none" stroke="white" stroke-width="1.5"/>
+  <path d="M71 84 Q71 88 75 88 Q79 88 79 84" fill="none" stroke="white" stroke-width="1.5"/>
+  <text x="100" y="85" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#1a1a2e">LLM</text>
+
+  <!-- LLM 能力列表 -->
+  <text x="60" y="130" font-family="Arial, sans-serif" font-size="14" fill="#1a1a2e" font-weight="bold">能力</text>
+
+  <!-- 有勾选项 -->
+  <g transform="translate(55, 148)">
+    <rect x="0" y="0" width="14" height="14" rx="3" fill="#67c23a"/>
+    <polyline points="3,7 6,10 11,3" fill="none" stroke="white" stroke-width="2"/>
+    <text x="22" y="12" font-family="Arial, sans-serif" font-size="13" fill="#333">文本生成</text>
+  </g>
+  <g transform="translate(55, 172)">
+    <rect x="0" y="0" width="14" height="14" rx="3" fill="#67c23a"/>
+    <polyline points="3,7 6,10 11,3" fill="none" stroke="white" stroke-width="2"/>
+    <text x="22" y="12" font-family="Arial, sans-serif" font-size="13" fill="#333">翻译</text>
+  </g>
+  <g transform="translate(55, 196)">
+    <rect x="0" y="0" width="14" height="14" rx="3" fill="#67c23a"/>
+    <polyline points="3,7 6,10 11,3" fill="none" stroke="white" stroke-width="2"/>
+    <text x="22" y="12" font-family="Arial, sans-serif" font-size="13" fill="#333">摘要</text>
+  </g>
+
+  <!-- 叉选项 -->
+  <g transform="translate(55, 230)">
+    <rect x="0" y="0" width="14" height="14" rx="3" fill="#e6e8eb"/>
+    <line x1="3" y1="3" x2="11" y2="11" stroke="#999" stroke-width="2"/>
+    <line x1="11" y1="3" x2="3" y2="11" stroke="#999" stroke-width="2"/>
+    <text x="22" y="12" font-family="Arial, sans-serif" font-size="13" fill="#999">查天气</text>
+  </g>
+  <g transform="translate(55, 254)">
+    <rect x="0" y="0" width="14" height="14" rx="3" fill="#e6e8eb"/>
+    <line x1="3" y1="3" x2="11" y2="11" stroke="#999" stroke-width="2"/>
+    <line x1="11" y1="3" x2="3" y2="11" stroke="#999" stroke-width="2"/>
+    <text x="22" y="12" font-family="Arial, sans-serif" font-size="13" fill="#999">发送邮件</text>
+  </g>
+  <g transform="translate(55, 278)">
+    <rect x="0" y="0" width="14" height="14" rx="3" fill="#e6e8eb"/>
+    <line x1="3" y1="3" x2="11" y2="11" stroke="#999" stroke-width="2"/>
+    <line x1="11" y1="3" x2="3" y2="11" stroke="#999" stroke-width="2"/>
+    <text x="22" y="12" font-family="Arial, sans-serif" font-size="13" fill="#999">预订航班</text>
+  </g>
+
+  <!-- LLM 限制标注 -->
+  <rect x="55" y="310" width="270" height="55" rx="6" fill="#fff5f5" stroke="#ffccc7" stroke-width="1"/>
+  <text x="70" y="332" font-family="Arial, sans-serif" font-size="12" fill="#e74c3c">⚠ 仅文本处理</text>
+  <text x="70" y="352" font-family="Arial, sans-serif" font-size="12" fill="#e74c3c">⚠ 无法调用外部工具</text>
+
+  <!-- ====== 右侧 AI Agent 列 ====== -->
+  <rect x="450" y="55" width="310" height="420" rx="10" fill="white" stroke="#409EFF" stroke-width="1.5"/>
+  <!-- Agent 头部 -->
+  <rect x="450" y="55" width="310" height="50" rx="10" fill="url(#agentGrad)"/>
+  <rect x="450" y="95" width="310" height="10" fill="url(#agentGrad)"/>
+  <!-- 机器人图标 -->
+  <circle cx="485" cy="80" r="16" fill="white" opacity="0.3"/>
+  <rect x="476" y="72" width="18" height="14" rx="4" fill="white"/>
+  <circle cx="480" cy="77" r="2" fill="#409EFF"/>
+  <circle cx="490" cy="77" r="2" fill="#409EFF"/>
+  <rect x="478" y="82" width="14" height="2" rx="1" fill="#409EFF"/>
+  <text x="510" y="85" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="white">AI Agent</text>
+
+  <!-- Agent 能力列表 -->
+  <text x="470" y="130" font-family="Arial, sans-serif" font-size="14" fill="#1a1a2e" font-weight="bold">能力</text>
+
+  <g transform="translate(465, 148)">
+    <rect x="0" y="0" width="14" height="14" rx="3" fill="#67c23a"/>
+    <polyline points="3,7 6,10 11,3" fill="none" stroke="white" stroke-width="2"/>
+    <text x="22" y="12" font-family="Arial, sans-serif" font-size="13" fill="#333">文本生成</text>
+  </g>
+  <g transform="translate(465, 172)">
+    <rect x="0" y="0" width="14" height="14" rx="3" fill="#67c23a"/>
+    <polyline points="3,7 6,10 11,3" fill="none" stroke="white" stroke-width="2"/>
+    <text x="22" y="12" font-family="Arial, sans-serif" font-size="13" fill="#333">翻译</text>
+  </g>
+  <g transform="translate(465, 196)">
+    <rect x="0" y="0" width="14" height="14" rx="3" fill="#67c23a"/>
+    <polyline points="3,7 6,10 11,3" fill="none" stroke="white" stroke-width="2"/>
+    <text x="22" y="12" font-family="Arial, sans-serif" font-size="13" fill="#333">摘要</text>
+  </g>
+  <g transform="translate(465, 220)">
+    <rect x="0" y="0" width="14" height="14" rx="3" fill="#67c23a"/>
+    <polyline points="3,7 6,10 11,3" fill="none" stroke="white" stroke-width="2"/>
+    <text x="22" y="12" font-family="Arial, sans-serif" font-size="13" fill="#333">实时搜索</text>
+  </g>
+  <g transform="translate(465, 244)">
+    <rect x="0" y="0" width="14" height="14" rx="3" fill="#67c23a"/>
+    <polyline points="3,7 6,10 11,3" fill="none" stroke="white" stroke-width="2"/>
+    <text x="22" y="12" font-family="Arial, sans-serif" font-size="13" fill="#333">API 调用</text>
+  </g>
+  <g transform="translate(465, 268)">
+    <rect x="0" y="0" width="14" height="14" rx="3" fill="#67c23a"/>
+    <polyline points="3,7 6,10 11,3" fill="none" stroke="white" stroke-width="2"/>
+    <text x="22" y="12" font-family="Arial, sans-serif" font-size="13" fill="#333">代码执行</text>
+  </g>
+  <g transform="translate(465, 292)">
+    <rect x="0" y="0" width="14" height="14" rx="3" fill="#67c23a"/>
+    <polyline points="3,7 6,10 11,3" fill="none" stroke="white" stroke-width="2"/>
+    <text x="22" y="12" font-family="Arial, sans-serif" font-size="13" fill="#333">发送邮件</text>
+  </g>
+
+  <!-- Agent 优势标注 -->
+  <rect x="465" y="320" width="270" height="55" rx="6" fill="#e6f7ff" stroke="#91d5ff" stroke-width="1"/>
+  <text x="480" y="342" font-family="Arial, sans-serif" font-size="12" fill="#409EFF">✓ 多模态交互</text>
+  <text x="480" y="362" font-family="Arial, sans-serif" font-size="12" fill="#409EFF">✓ 工具调用 + 自主决策</text>
+
+  <!-- ====== 中间对比维度 ====== -->
+  <!-- 分隔线 -->
+  <line x1="365" y1="55" x2="365" y2="475" stroke="#d0d7e2" stroke-width="1" stroke-dasharray="4,4"/>
+
+  <!-- 维度标题 -->
+  <text x="395" y="120" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#1a1a2e">对比维度</text>
+
+  <!-- 1. 自主性 -->
+  <g transform="translate(370, 155)">
+    <circle cx="25" cy="0" r="18" fill="#e6f0fa" stroke="#409EFF" stroke-width="1.5"/>
+    <!-- 齿轮 -->
+    <circle cx="25" cy="0" r="8" fill="none" stroke="#409EFF" stroke-width="1.5"/>
+    <circle cx="25" cy="0" r="3" fill="#409EFF"/>
+    <line x1="25" y1="-10" x2="25" y2="-14" stroke="#409EFF" stroke-width="1.5"/>
+    <line x1="25" y1="10" x2="25" y2="14" stroke="#409EFF" stroke-width="1.5"/>
+    <line x1="15" y1="0" x2="11" y2="0" stroke="#409EFF" stroke-width="1.5"/>
+    <line x1="35" y1="0" x2="39" y2="0" stroke="#409EFF" stroke-width="1.5"/>
+    <text x="60" y="5" font-family="Arial, sans-serif" font-size="13" fill="#1a1a2e">自主性</text>
+  </g>
+
+  <!-- 2. 记忆 -->
+  <g transform="translate(370, 205)">
+    <circle cx="25" cy="0" r="18" fill="#e6f0fa" stroke="#409EFF" stroke-width="1.5"/>
+    <!-- 大脑 + 数据库 -->
+    <path d="M18 -5 Q18 -10 25 -10 Q32 -10 32 -5 Q32 0 25 0 Q18 0 18 -5Z" fill="none" stroke="#409EFF" stroke-width="1.5"/>
+    <rect x="21" y="2" width="8" height="6" rx="1" fill="#409EFF" opacity="0.6"/>
+    <text x="60" y="5" font-family="Arial, sans-serif" font-size="13" fill="#1a1a2e">记忆</text>
+  </g>
+
+  <!-- 3. 工具 -->
+  <g transform="translate(370, 255)">
+    <circle cx="25" cy="0" r="18" fill="#e6f0fa" stroke="#409EFF" stroke-width="1.5"/>
+    <!-- 扳手 -->
+    <line x1="18" y1="-6" x2="32" y2="8" stroke="#409EFF" stroke-width="2.5" stroke-linecap="round"/>
+    <circle cx="18" cy="-6" r="3" fill="none" stroke="#409EFF" stroke-width="1.5"/>
+    <text x="60" y="5" font-family="Arial, sans-serif" font-size="13" fill="#1a1a2e">工具调用</text>
+  </g>
+
+  <!-- 4. 规划 -->
+  <g transform="translate(370, 305)">
+    <circle cx="25" cy="0" r="18" fill="#e6f0fa" stroke="#409EFF" stroke-width="1.5"/>
+    <!-- 路线图 -->
+    <line x1="14" y1="0" x2="20" y2="-6" stroke="#409EFF" stroke-width="1.5"/>
+    <line x1="20" y1="-6" x2="26" y2="2" stroke="#409EFF" stroke-width="1.5"/>
+    <line x1="26" y1="2" x2="36" y2="-4" stroke="#409EFF" stroke-width="1.5"/>
+    <circle cx="14" cy="0" r="2" fill="#409EFF"/>
+    <circle cx="36" cy="-4" r="2" fill="#409EFF"/>
+    <text x="60" y="5" font-family="Arial, sans-serif" font-size="13" fill="#1a1a2e">规划</text>
+  </g>
+
+  <!-- 5. 错误恢复 -->
+  <g transform="translate(370, 355)">
+    <circle cx="25" cy="0" r="18" fill="#e6f0fa" stroke="#409EFF" stroke-width="1.5"/>
+    <!-- 循环箭头 -->
+    <path d="M15 -4 Q15 -10 25 -10 Q35 -10 35 -4" fill="none" stroke="#409EFF" stroke-width="1.5"/>
+    <polyline points="32,-8 35,-4 30,-2" fill="none" stroke="#409EFF" stroke-width="1.5"/>
+    <text x="60" y="5" font-family="Arial, sans-serif" font-size="13" fill="#1a1a2e">错误恢复</text>
+  </g>
+
+  <!-- 中间箭头指示 -->
+  <g transform="translate(395, 420)">
+    <text x="0" y="0" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#7a8ba8">LLM</text>
+    <line x1="-20" y1="8" x2="20" y2="8" stroke="#c0c8d4" stroke-width="1.5"/>
+    <polyline points="15,4 20,8 15,12" fill="none" stroke="#c0c8d4" stroke-width="1.5"/>
+    <polyline points="-15,4 -20,8 -15,12" fill="none" stroke="#c0c8d4" stroke-width="1.5"/>
+    <text x="0" y="26" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#7a8ba8">AI Agent</text>
+  </g>
+
+  <!-- 底部说明 -->
+  <text x="400" y="480" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#999">AI Agent = LLM + 记忆 + 规划 + 工具调用 + 自主决策</text>
+</svg>

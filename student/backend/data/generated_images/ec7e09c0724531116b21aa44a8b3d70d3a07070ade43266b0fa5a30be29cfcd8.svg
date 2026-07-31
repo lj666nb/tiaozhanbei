@@ -1,0 +1,127 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="800" height="500">
+  <defs>
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#e8f4ff"/>
+      <stop offset="100%" stop-color="#f0f8ff"/>
+    </linearGradient>
+    <linearGradient id="judgeGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#409EFF"/>
+      <stop offset="100%" stop-color="#2b7ed4"/>
+    </linearGradient>
+    <linearGradient id="agentGrad1" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1a1a2e"/>
+      <stop offset="100%" stop-color="#2d2d4a"/>
+    </linearGradient>
+    <linearGradient id="agentGrad2" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1a1a2e"/>
+      <stop offset="100%" stop-color="#2d2d4a"/>
+    </linearGradient>
+  </defs>
+
+  <!-- 背景 -->
+  <rect width="800" height="500" fill="url(#bgGrad)" rx="8"/>
+
+  <!-- 标题 -->
+  <text x="400" y="30" text-anchor="middle" font-size="18" font-weight="bold" fill="#1a1a2e" font-family="sans-serif">结构化辩论框架</text>
+
+  <!-- 裁判（顶部） -->
+  <rect x="350" y="50" width="100" height="40" rx="20" fill="url(#judgeGrad)"/>
+  <text x="400" y="75" text-anchor="middle" font-size="14" fill="white" font-weight="bold" font-family="sans-serif">裁判员</text>
+  <!-- 裁判笔记板 -->
+  <rect x="460" y="55" width="50" height="30" rx="3" fill="white" stroke="#409EFF" stroke-width="1.5"/>
+  <text x="485" y="73" text-anchor="middle" font-size="10" fill="#409EFF" font-family="sans-serif">笔记</text>
+  <!-- 裁判观察线 -->
+  <line x1="400" y1="90" x2="400" y2="110" stroke="#409EFF" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <line x1="400" y1="110" x2="250" y2="140" stroke="#409EFF" stroke-width="1" stroke-dasharray="4,3"/>
+  <line x1="400" y1="110" x2="550" y2="140" stroke="#409EFF" stroke-width="1" stroke-dasharray="4,3"/>
+
+  <!-- 专家 A（左侧） -->
+  <rect x="170" y="130" width="80" height="80" rx="40" fill="url(#agentGrad1)"/>
+  <text x="210" y="165" text-anchor="middle" font-size="12" fill="white" font-weight="bold" font-family="sans-serif">专家 A</text>
+  <text x="210" y="180" text-anchor="middle" font-size="10" fill="#aabbdd" font-family="sans-serif">正方</text>
+
+  <!-- 专家 B（右侧） -->
+  <rect x="550" y="130" width="80" height="80" rx="40" fill="url(#agentGrad2)"/>
+  <text x="590" y="165" text-anchor="middle" font-size="12" fill="white" font-weight="bold" font-family="sans-serif">专家 B</text>
+  <text x="590" y="180" text-anchor="middle" font-size="10" fill="#aabbdd" font-family="sans-serif">反方</text>
+
+  <!-- 第1轮：开场陈述 -->
+  <rect x="100" y="240" width="160" height="36" rx="18" fill="#409EFF" opacity="0.9"/>
+  <text x="180" y="263" text-anchor="middle" font-size="13" fill="white" font-weight="bold" font-family="sans-serif">第1轮：开场陈述</text>
+  <!-- 专家A的气泡 -->
+  <rect x="120" y="280" width="140" height="40" rx="12" fill="white" stroke="#409EFF" stroke-width="1.5"/>
+  <polygon points="190,280 180,268 200,268" fill="white" stroke="#409EFF" stroke-width="1.5"/>
+  <text x="190" y="305" text-anchor="middle" font-size="12" fill="#1a1a2e" font-family="sans-serif">提出论点 A</text>
+  <!-- 专家B的气泡 -->
+  <rect x="540" y="280" width="140" height="40" rx="12" fill="white" stroke="#409EFF" stroke-width="1.5"/>
+  <polygon points="610,280 600,268 620,268" fill="white" stroke="#409EFF" stroke-width="1.5"/>
+  <text x="610" y="305" text-anchor="middle" font-size="12" fill="#1a1a2e" font-family="sans-serif">提出论点 B</text>
+
+  <!-- 第2轮：同行批评 -->
+  <rect x="100" y="340" width="160" height="36" rx="18" fill="#409EFF" opacity="0.9"/>
+  <text x="180" y="363" text-anchor="middle" font-size="13" fill="white" font-weight="bold" font-family="sans-serif">第2轮：同行批评</text>
+  <!-- 批评箭头 A→B -->
+  <line x1="260" y1="370" x2="530" y2="370" stroke="#e74c3c" stroke-width="2" marker-end="url(#arrowRed)"/>
+  <defs>
+    <marker id="arrowRed" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0,0 8,3 0,6" fill="#e74c3c"/>
+    </marker>
+  </defs>
+  <rect x="350" y="358" width="90" height="24" rx="12" fill="#ffeaea" stroke="#e74c3c" stroke-width="1"/>
+  <text x="395" y="374" text-anchor="middle" font-size="11" fill="#e74c3c" font-family="sans-serif">质疑论点 A</text>
+  <!-- 批评箭头 B→A -->
+  <line x1="540" y1="390" x2="270" y2="390" stroke="#e74c3c" stroke-width="2" marker-end="url(#arrowRed)"/>
+  <rect x="360" y="380" width="90" height="24" rx="12" fill="#ffeaea" stroke="#e74c3c" stroke-width="1"/>
+  <text x="405" y="396" text-anchor="middle" font-size="11" fill="#e74c3c" font-family="sans-serif">质疑论点 B</text>
+
+  <!-- 第3轮：反驳 -->
+  <rect x="100" y="420" width="160" height="36" rx="18" fill="#409EFF" opacity="0.9"/>
+  <text x="180" y="443" text-anchor="middle" font-size="13" fill="white" font-weight="bold" font-family="sans-serif">第3轮：反驳</text>
+  <!-- 盾牌 A -->
+  <rect x="120" y="460" width="60" height="30" rx="6" fill="#1a1a2e" opacity="0.8"/>
+  <text x="150" y="479" text-anchor="middle" font-size="11" fill="white" font-family="sans-serif">反驳 A</text>
+  <!-- 盾牌 B -->
+  <rect x="620" y="460" width="60" height="30" rx="6" fill="#1a1a2e" opacity="0.8"/>
+  <text x="650" y="479" text-anchor="middle" font-size="11" fill="white" font-family="sans-serif">反驳 B</text>
+
+  <!-- 第4轮：总结陈述 -->
+  <rect x="300" y="420" width="200" height="36" rx="18" fill="#409EFF" opacity="0.9"/>
+  <text x="400" y="443" text-anchor="middle" font-size="13" fill="white" font-weight="bold" font-family="sans-serif">第4轮：总结陈述</text>
+  <!-- 总结文档 -->
+  <rect x="250" y="462" width="60" height="28" rx="3" fill="white" stroke="#409EFF" stroke-width="1.5"/>
+  <text x="280" y="480" text-anchor="middle" font-size="10" fill="#409EFF" font-family="sans-serif">总结 A</text>
+  <rect x="490" y="462" width="60" height="28" rx="3" fill="white" stroke="#409EFF" stroke-width="1.5"/>
+  <text x="520" y="480" text-anchor="middle" font-size="10" fill="#409EFF" font-family="sans-serif">总结 B</text>
+
+  <!-- 右侧质量指标 -->
+  <rect x="720" y="100" width="70" height="180" rx="8" fill="white" stroke="#409EFF" stroke-width="1.5" opacity="0.9"/>
+  <text x="755" y="120" text-anchor="middle" font-size="11" fill="#1a1a2e" font-weight="bold" font-family="sans-serif">质量提升</text>
+
+  <!-- 指标1：更少幻觉 -->
+  <text x="755" y="145" text-anchor="middle" font-size="10" fill="#409EFF" font-family="sans-serif">更少幻觉</text>
+  <line x1="730" y1="150" x2="780" y2="150" stroke="#409EFF" stroke-width="1.5"/>
+  <polygon points="780,147 785,150 780,153" fill="#409EFF"/>
+
+  <!-- 指标2：发现盲点 -->
+  <text x="755" y="170" text-anchor="middle" font-size="10" fill="#409EFF" font-family="sans-serif">发现盲点</text>
+  <line x1="730" y1="175" x2="780" y2="175" stroke="#409EFF" stroke-width="1.5"/>
+  <polygon points="780,172 785,175 780,178" fill="#409EFF"/>
+
+  <!-- 指标3：更深推理 -->
+  <text x="755" y="195" text-anchor="middle" font-size="10" fill="#409EFF" font-family="sans-serif">更深推理</text>
+  <line x1="730" y1="200" x2="780" y2="200" stroke="#409EFF" stroke-width="1.5"/>
+  <polygon points="780,197 785,200 780,203" fill="#409EFF"/>
+
+  <!-- 指标4：减少偏见 -->
+  <text x="755" y="220" text-anchor="middle" font-size="10" fill="#409EFF" font-family="sans-serif">减少偏见</text>
+  <line x1="730" y1="225" x2="780" y2="225" stroke="#409EFF" stroke-width="1.5"/>
+  <polygon points="780,222 785,225 780,228" fill="#409EFF"/>
+
+  <!-- 箭头趋势 -->
+  <line x1="730" y1="240" x2="780" y2="240" stroke="#409EFF" stroke-width="1.5"/>
+  <polygon points="780,237 785,240 780,243" fill="#409EFF"/>
+  <text x="755" y="258" text-anchor="middle" font-size="9" fill="#1a1a2e" font-family="sans-serif">上升趋势</text>
+
+  <!-- 底部说明 -->
+  <text x="400" y="495" text-anchor="middle" font-size="11" fill="#888" font-family="sans-serif">多轮结构化辩论框架 · 提升推理质量</text>
+</svg>

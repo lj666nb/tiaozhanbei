@@ -1,0 +1,186 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="800" height="500">
+  <defs>
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#f0f7ff"/>
+      <stop offset="100%" stop-color="#e8f2fe"/>
+    </linearGradient>
+    <linearGradient id="panelGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="100%" stop-color="#f8fbff"/>
+    </linearGradient>
+  </defs>
+
+  <!-- 背景 -->
+  <rect width="800" height="500" fill="url(#bgGrad)" rx="0"/>
+
+  <!-- 标题 -->
+  <text x="400" y="42" text-anchor="middle" font-family="Arial, sans-serif" font-size="22" font-weight="bold" fill="#1a1a2e">AgentBench 评估框架</text>
+  <line x1="300" y1="54" x2="500" y2="54" stroke="#409EFF" stroke-width="2" opacity="0.5"/>
+
+  <!-- 雷达图中心 -->
+  <!-- 中心点坐标 (400, 260) -->
+  <!-- 半径: 120 -->
+
+  <!-- 8个轴的角度 (从顶部顺时针) -->
+  <!-- 轴1: 90° (顶部)  OS -->
+  <!-- 轴2: 45° (右上)  DB -->
+  <!-- 轴3: 0° (右侧)   KG -->
+  <!-- 轴4: 315° (右下) Web -->
+  <!-- 轴5: 270° (底部) DCG -->
+  <!-- 轴6: 225° (左下) LTP -->
+  <!-- 轴7: 180° (左侧) Code -->
+  <!-- 轴8: 135° (左上) NLP -->
+
+  <!-- 计算各轴端点 (中心400,260, 半径120) -->
+  <!-- 轴1: (400, 140) -->
+  <!-- 轴2: (484.85, 175.15) -->
+  <!-- 轴3: (520, 260) -->
+  <!-- 轴4: (484.85, 344.85) -->
+  <!-- 轴5: (400, 380) -->
+  <!-- 轴6: (315.15, 344.85) -->
+  <!-- 轴7: (280, 260) -->
+  <!-- 轴8: (315.15, 175.15) -->
+
+  <!-- 填充区域 (八边形) - 使用半透明蓝色 -->
+  <polygon points="400,155 478,182 510,260 478,338 400,365 322,338 290,260 322,182"
+           fill="#409EFF" fill-opacity="0.25" stroke="none"/>
+
+  <!-- 内部填充区域 (较小) -->
+  <polygon points="400,175 460,195 485,260 460,325 400,345 340,325 315,260 340,195"
+           fill="#409EFF" fill-opacity="0.35" stroke="none"/>
+
+  <!-- 更内部填充区域 -->
+  <polygon points="400,195 445,210 462,260 445,310 400,325 355,310 338,260 355,210"
+           fill="#409EFF" fill-opacity="0.45" stroke="none"/>
+
+  <!-- 中心填充 -->
+  <circle cx="400" cy="260" r="25" fill="#409EFF" fill-opacity="0.5"/>
+
+  <!-- 绘制轴线条 -->
+  <line x1="400" y1="260" x2="400" y2="140" stroke="#409EFF" stroke-width="1.5" opacity="0.6"/>
+  <line x1="400" y1="260" x2="484.85" y2="175.15" stroke="#409EFF" stroke-width="1.5" opacity="0.6"/>
+  <line x1="400" y1="260" x2="520" y2="260" stroke="#409EFF" stroke-width="1.5" opacity="0.6"/>
+  <line x1="400" y1="260" x2="484.85" y2="344.85" stroke="#409EFF" stroke-width="1.5" opacity="0.6"/>
+  <line x1="400" y1="260" x2="400" y2="380" stroke="#409EFF" stroke-width="1.5" opacity="0.6"/>
+  <line x1="400" y1="260" x2="315.15" y2="344.85" stroke="#409EFF" stroke-width="1.5" opacity="0.6"/>
+  <line x1="400" y1="260" x2="280" y2="260" stroke="#409EFF" stroke-width="1.5" opacity="0.6"/>
+  <line x1="400" y1="260" x2="315.15" y2="175.15" stroke="#409EFF" stroke-width="1.5" opacity="0.6"/>
+
+  <!-- 轮廓八边形 -->
+  <polygon points="400,140 484.85,175.15 520,260 484.85,344.85 400,380 315.15,344.85 280,260 315.15,175.15"
+           fill="none" stroke="#409EFF" stroke-width="2" opacity="0.5"/>
+
+  <!-- 内部网格八边形 -->
+  <polygon points="400,170 463.64,196.36 490,260 463.64,323.64 400,350 336.36,323.64 310,260 336.36,196.36"
+           fill="none" stroke="#409EFF" stroke-width="1" opacity="0.3"/>
+  <polygon points="400,200 442.42,217.58 460,260 442.42,302.42 400,320 357.58,302.42 340,260 357.58,217.58"
+           fill="none" stroke="#409EFF" stroke-width="1" opacity="0.3"/>
+  <polygon points="400,230 421.21,238.79 430,260 421.21,281.21 400,290 378.79,281.21 370,260 378.79,238.79"
+           fill="none" stroke="#409EFF" stroke-width="1" opacity="0.3"/>
+
+  <!-- 中心圆 -->
+  <circle cx="400" cy="260" r="18" fill="#409EFF" fill-opacity="0.6"/>
+  <circle cx="400" cy="260" r="8" fill="#409EFF" fill-opacity="0.9"/>
+  <text x="400" y="263" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#ffffff" font-weight="bold">AI</text>
+
+  <!-- 轴标签 - 中文 -->
+  <!-- OS - 顶部 -->
+  <rect x="370" y="112" width="60" height="24" rx="12" fill="#ffffff" stroke="#409EFF" stroke-width="1" opacity="0.9"/>
+  <text x="400" y="128" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="#1a1a2e" font-weight="bold">操作系统</text>
+
+  <!-- DB - 右上 -->
+  <rect x="492" y="158" width="60" height="24" rx="12" fill="#ffffff" stroke="#409EFF" stroke-width="1" opacity="0.9"/>
+  <text x="522" y="174" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="#1a1a2e" font-weight="bold">数据库</text>
+
+  <!-- KG - 右侧 -->
+  <rect x="530" y="248" width="60" height="24" rx="12" fill="#ffffff" stroke="#409EFF" stroke-width="1" opacity="0.9"/>
+  <text x="560" y="264" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="#1a1a2e" font-weight="bold">知识图谱</text>
+
+  <!-- Web - 右下 -->
+  <rect x="492" y="338" width="60" height="24" rx="12" fill="#ffffff" stroke="#409EFF" stroke-width="1" opacity="0.9"/>
+  <text x="522" y="354" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="#1a1a2e" font-weight="bold">网页交互</text>
+
+  <!-- DCG - 底部 -->
+  <rect x="370" y="382" width="60" height="24" rx="12" fill="#ffffff" stroke="#409EFF" stroke-width="1" opacity="0.9"/>
+  <text x="400" y="398" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="#1a1a2e" font-weight="bold">数字内容</text>
+
+  <!-- LTP - 左下 -->
+  <rect x="248" y="338" width="60" height="24" rx="12" fill="#ffffff" stroke="#409EFF" stroke-width="1" opacity="0.9"/>
+  <text x="278" y="354" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="#1a1a2e" font-weight="bold">长期规划</text>
+
+  <!-- Code - 左侧 -->
+  <rect x="210" y="248" width="60" height="24" rx="12" fill="#ffffff" stroke="#409EFF" stroke-width="1" opacity="0.9"/>
+  <text x="240" y="264" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="#1a1a2e" font-weight="bold">代码生成</text>
+
+  <!-- NLP - 左上 -->
+  <rect x="248" y="158" width="60" height="24" rx="12" fill="#ffffff" stroke="#409EFF" stroke-width="1" opacity="0.9"/>
+  <text x="278" y="174" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="#1a1a2e" font-weight="bold">自然语言</text>
+
+  <!-- 底部仪表板面板 - 圆角卡片 -->
+  <!-- 面板1: 操作系统 -->
+  <rect x="40" y="430" width="85" height="55" rx="8" fill="url(#panelGrad)" stroke="#409EFF" stroke-width="1" opacity="0.8"/>
+  <rect x="50" y="438" width="20" height="20" rx="4" fill="#409EFF" fill-opacity="0.15"/>
+  <text x="60" y="452" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#409EFF">🖥</text>
+  <text x="50" y="470" font-family="Arial, sans-serif" font-size="11" fill="#1a1a2e" font-weight="bold">操作系统</text>
+  <text x="50" y="482" font-family="Arial, sans-serif" font-size="9" fill="#666">环境交互</text>
+
+  <!-- 面板2: 数据库 -->
+  <rect x="135" y="430" width="85" height="55" rx="8" fill="url(#panelGrad)" stroke="#409EFF" stroke-width="1" opacity="0.8"/>
+  <rect x="145" y="438" width="20" height="20" rx="4" fill="#409EFF" fill-opacity="0.15"/>
+  <text x="155" y="452" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#409EFF">🗄</text>
+  <text x="145" y="470" font-family="Arial, sans-serif" font-size="11" fill="#1a1a2e" font-weight="bold">数据库</text>
+  <text x="145" y="482" font-family="Arial, sans-serif" font-size="9" fill="#666">数据查询</text>
+
+  <!-- 面板3: 知识图谱 -->
+  <rect x="230" y="430" width="85" height="55" rx="8" fill="url(#panelGrad)" stroke="#409EFF" stroke-width="1" opacity="0.8"/>
+  <rect x="240" y="438" width="20" height="20" rx="4" fill="#409EFF" fill-opacity="0.15"/>
+  <text x="250" y="452" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#409EFF">🔗</text>
+  <text x="240" y="470" font-family="Arial, sans-serif" font-size="11" fill="#1a1a2e" font-weight="bold">知识图谱</text>
+  <text x="240" y="482" font-family="Arial, sans-serif" font-size="9" fill="#666">关系推理</text>
+
+  <!-- 面板4: 网页交互 -->
+  <rect x="325" y="430" width="85" height="55" rx="8" fill="url(#panelGrad)" stroke="#409EFF" stroke-width="1" opacity="0.8"/>
+  <rect x="335" y="438" width="20" height="20" rx="4" fill="#409EFF" fill-opacity="0.15"/>
+  <text x="345" y="452" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#409EFF">🌐</text>
+  <text x="335" y="470" font-family="Arial, sans-serif" font-size="11" fill="#1a1a2e" font-weight="bold">网页交互</text>
+  <text x="335" y="482" font-family="Arial, sans-serif" font-size="9" fill="#666">浏览操作</text>
+
+  <!-- 面板5: 数字内容 -->
+  <rect x="420" y="430" width="85" height="55" rx="8" fill="url(#panelGrad)" stroke="#409EFF" stroke-width="1" opacity="0.8"/>
+  <rect x="430" y="438" width="20" height="20" rx="4" fill="#409EFF" fill-opacity="0.15"/>
+  <text x="440" y="452" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#409EFF">📄</text>
+  <text x="430" y="470" font-family="Arial, sans-serif" font-size="11" fill="#1a1a2e" font-weight="bold">数字内容</text>
+  <text x="430" y="482" font-family="Arial, sans-serif" font-size="9" fill="#666">内容管理</text>
+
+  <!-- 面板6: 长期规划 -->
+  <rect x="515" y="430" width="85" height="55" rx="8" fill="url(#panelGrad)" stroke="#409EFF" stroke-width="1" opacity="0.8"/>
+  <rect x="525" y="438" width="20" height="20" rx="4" fill="#409EFF" fill-opacity="0.15"/>
+  <text x="535" y="452" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#409EFF">📋</text>
+  <text x="525" y="470" font-family="Arial, sans-serif" font-size="11" fill="#1a1a2e" font-weight="bold">长期规划</text>
+  <text x="525" y="482" font-family="Arial, sans-serif" font-size="9" fill="#666">任务分解</text>
+
+  <!-- 面板7: 代码生成 -->
+  <rect x="610" y="430" width="85" height="55" rx="8" fill="url(#panelGrad)" stroke="#409EFF" stroke-width="1" opacity="0.8"/>
+  <rect x="620" y="438" width="20" height="20" rx="4" fill="#409EFF" fill-opacity="0.15"/>
+  <text x="630" y="452" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#409EFF">💻</text>
+  <text x="620" y="470" font-family="Arial, sans-serif" font-size="11" fill="#1a1a2e" font-weight="bold">代码生成</text>
+  <text x="620" y="482" font-family="Arial, sans-serif" font-size="9" fill="#666">编程能力</text>
+
+  <!-- 面板8: 自然语言 -->
+  <rect x="705" y="430" width="85" height="55" rx="8" fill="url(#panelGrad)" stroke="#409EFF" stroke-width="1" opacity="0.8"/>
+  <rect x="715" y="438" width="20" height="20" rx="4" fill="#409EFF" fill-opacity="0.15"/>
+  <text x="725" y="452" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#409EFF">💬</text>
+  <text x="715" y="470" font-family="Arial, sans-serif" font-size="11" fill="#1a1a2e" font-weight="bold">自然语言</text>
+  <text x="715" y="482" font-family="Arial, sans-serif" font-size="9" fill="#666">语义理解</text>
+
+  <!-- 图例 - 右上角 -->
+  <rect x="650" y="60" width="130" height="70" rx="8" fill="#ffffff" stroke="#409EFF" stroke-width="1" opacity="0.7"/>
+  <text x="660" y="78" font-family="Arial, sans-serif" font-size="11" fill="#1a1a2e" font-weight="bold">评估等级</text>
+  <rect x="660" y="86" width="12" height="12" rx="2" fill="#409EFF" fill-opacity="0.25"/>
+  <text x="678" y="96" font-family="Arial, sans-serif" font-size="10" fill="#555">基础</text>
+  <rect x="660" y="102" width="12" height="12" rx="2" fill="#409EFF" fill-opacity="0.45"/>
+  <text x="678" y="112" font-family="Arial, sans-serif" font-size="10" fill="#555">进阶</text>
+  <rect x="660" y="118" width="12" height="12" rx="2" fill="#409EFF" fill-opacity="0.65"/>
+  <text x="678" y="128" font-family="Arial, sans-serif" font-size="10" fill="#555">精通</text>
+
+</svg>

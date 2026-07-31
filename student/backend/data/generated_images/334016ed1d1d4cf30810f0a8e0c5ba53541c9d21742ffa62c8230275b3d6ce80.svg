@@ -1,0 +1,201 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="800" height="500">
+  <defs>
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#f0f7ff"/>
+      <stop offset="100%" stop-color="#e8f4ff"/>
+    </linearGradient>
+    <linearGradient id="chainGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#409EFF"/>
+      <stop offset="100%" stop-color="#3a8fe0"/>
+    </linearGradient>
+    <linearGradient id="graphGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#409EFF"/>
+      <stop offset="100%" stop-color="#3a8fe0"/>
+    </linearGradient>
+    <linearGradient id="vennGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#409EFF"/>
+      <stop offset="100%" stop-color="#2d7fd0"/>
+    </linearGradient>
+  </defs>
+
+  <!-- 背景 -->
+  <rect width="800" height="500" fill="url(#bgGrad)" rx="8"/>
+
+  <!-- 标题 -->
+  <text x="400" y="38" text-anchor="middle" font-family="sans-serif" font-size="20" font-weight="bold" fill="#1a1a2e">LangChain 与 LangGraph 对比</text>
+
+  <!-- ==================== 左侧：LangChain 流水线 ==================== -->
+  <text x="200" y="75" text-anchor="middle" font-family="sans-serif" font-size="16" font-weight="bold" fill="#1a1a2e">LangChain：链式流水线</text>
+
+  <!-- 流水线背景框 -->
+  <rect x="30" y="90" width="340" height="290" rx="12" fill="white" stroke="#409EFF" stroke-width="1.5" stroke-opacity="0.4"/>
+
+  <!-- 原料图标 -->
+  <g transform="translate(60, 130)">
+    <rect x="0" y="0" width="36" height="36" rx="6" fill="#409EFF" opacity="0.15"/>
+    <text x="18" y="24" text-anchor="middle" font-family="sans-serif" font-size="16" fill="#409EFF">🍅</text>
+  </g>
+  <g transform="translate(110, 130)">
+    <rect x="0" y="0" width="36" height="36" rx="6" fill="#409EFF" opacity="0.15"/>
+    <text x="18" y="24" text-anchor="middle" font-family="sans-serif" font-size="16" fill="#409EFF">🧅</text>
+  </g>
+  <g transform="translate(160, 130)">
+    <rect x="0" y="0" width="36" height="36" rx="6" fill="#409EFF" opacity="0.15"/>
+    <text x="18" y="24" text-anchor="middle" font-family="sans-serif" font-size="16" fill="#409EFF">🥕</text>
+  </g>
+
+  <!-- 箭头 1 -->
+  <g transform="translate(210, 148)">
+    <text font-family="sans-serif" font-size="18" fill="#409EFF">→</text>
+  </g>
+
+  <!-- 处理站 1：加载 -->
+  <rect x="240" y="120" width="100" height="56" rx="10" fill="#409EFF" opacity="0.12" stroke="#409EFF" stroke-width="1.5"/>
+  <text x="290" y="142" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="#1a1a2e">加载</text>
+  <text x="290" y="162" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#666">Load</text>
+
+  <!-- 箭头 2 -->
+  <text x="350" y="148" text-anchor="middle" font-family="sans-serif" font-size="18" fill="#409EFF">→</text>
+
+  <!-- 处理站 2：分割 -->
+  <rect x="60" y="210" width="100" height="56" rx="10" fill="#409EFF" opacity="0.12" stroke="#409EFF" stroke-width="1.5"/>
+  <text x="110" y="232" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="#1a1a2e">分割</text>
+  <text x="110" y="252" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#666">Split</text>
+
+  <!-- 箭头 3 -->
+  <text x="170" y="238" text-anchor="middle" font-family="sans-serif" font-size="18" fill="#409EFF">→</text>
+
+  <!-- 处理站 3：嵌入 -->
+  <rect x="185" y="210" width="100" height="56" rx="10" fill="#409EFF" opacity="0.12" stroke="#409EFF" stroke-width="1.5"/>
+  <text x="235" y="232" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="#1a1a2e">嵌入</text>
+  <text x="235" y="252" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#666">Embed</text>
+
+  <!-- 箭头 4 -->
+  <text x="295" y="238" text-anchor="middle" font-family="sans-serif" font-size="18" fill="#409EFF">→</text>
+
+  <!-- 处理站 4：存储 -->
+  <rect x="310" y="210" width="100" height="56" rx="10" fill="#409EFF" opacity="0.12" stroke="#409EFF" stroke-width="1.5"/>
+  <text x="360" y="232" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="#1a1a2e">存储</text>
+  <text x="360" y="252" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#666">Store</text>
+
+  <!-- 输出箭头 -->
+  <text x="420" y="238" text-anchor="middle" font-family="sans-serif" font-size="18" fill="#409EFF">→</text>
+
+  <!-- 输出结果 -->
+  <rect x="430" y="215" width="50" height="46" rx="23" fill="#409EFF" opacity="0.2"/>
+  <text x="455" y="243" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#409EFF">✓</text>
+
+  <!-- 流水线标注 -->
+  <g transform="translate(60, 300)">
+    <circle cx="6" cy="6" r="5" fill="#409EFF" opacity="0.6"/>
+    <text x="18" y="10" font-family="sans-serif" font-size="12" fill="#1a1a2e">顺序处理</text>
+  </g>
+  <g transform="translate(60, 325)">
+    <circle cx="6" cy="6" r="5" fill="#409EFF" opacity="0.6"/>
+    <text x="18" y="10" font-family="sans-serif" font-size="12" fill="#1a1a2e">线性流程</text>
+  </g>
+
+  <!-- ==================== 右侧：LangGraph 决策图 ==================== -->
+  <text x="600" y="75" text-anchor="middle" font-family="sans-serif" font-size="16" font-weight="bold" fill="#1a1a2e">LangGraph：图式决策</text>
+
+  <!-- 图背景框 -->
+  <rect x="430" y="90" width="340" height="290" rx="12" fill="white" stroke="#409EFF" stroke-width="1.5" stroke-opacity="0.4"/>
+
+  <!-- 棋盘格背景 -->
+  <g transform="translate(470, 120)" opacity="0.08">
+    <rect x="0" y="0" width="20" height="20" fill="#409EFF"/>
+    <rect x="40" y="0" width="20" height="20" fill="#409EFF"/>
+    <rect x="80" y="0" width="20" height="20" fill="#409EFF"/>
+    <rect x="20" y="20" width="20" height="20" fill="#409EFF"/>
+    <rect x="60" y="20" width="20" height="20" fill="#409EFF"/>
+    <rect x="100" y="20" width="20" height="20" fill="#409EFF"/>
+    <rect x="0" y="40" width="20" height="20" fill="#409EFF"/>
+    <rect x="40" y="40" width="20" height="20" fill="#409EFF"/>
+    <rect x="80" y="40" width="20" height="20" fill="#409EFF"/>
+    <rect x="20" y="60" width="20" height="20" fill="#409EFF"/>
+    <rect x="60" y="60" width="20" height="20" fill="#409EFF"/>
+    <rect x="100" y="60" width="20" height="20" fill="#409EFF"/>
+  </g>
+
+  <!-- 节点 A（起始） -->
+  <circle cx="520" cy="145" r="22" fill="#409EFF" opacity="0.15" stroke="#409EFF" stroke-width="2"/>
+  <text x="520" y="150" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="#1a1a2e">A</text>
+
+  <!-- 节点 B -->
+  <circle cx="620" cy="145" r="22" fill="#409EFF" opacity="0.15" stroke="#409EFF" stroke-width="2"/>
+  <text x="620" y="150" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="#1a1a2e">B</text>
+
+  <!-- 节点 C -->
+  <circle cx="520" cy="230" r="22" fill="#409EFF" opacity="0.15" stroke="#409EFF" stroke-width="2"/>
+  <text x="520" y="235" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="#1a1a2e">C</text>
+
+  <!-- 节点 D -->
+  <circle cx="660" cy="230" r="22" fill="#409EFF" opacity="0.15" stroke="#409EFF" stroke-width="2"/>
+  <text x="660" y="235" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="#1a1a2e">D</text>
+
+  <!-- 节点 E（终点） -->
+  <circle cx="590" cy="300" r="22" fill="#409EFF" opacity="0.15" stroke="#409EFF" stroke-width="2"/>
+  <text x="590" y="305" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="#1a1a2e">E</text>
+
+  <!-- 连线箭头 -->
+  <g stroke="#409EFF" stroke-width="1.8" fill="none" marker-end="url(#arrow)">
+    <line x1="542" y1="145" x2="598" y2="145"/>
+    <line x1="520" y1="167" x2="520" y2="208"/>
+    <line x1="642" y1="155" x2="655" y2="218"/>
+    <line x1="542" y1="230" x2="638" y2="230"/>
+    <line x1="555" y1="248" x2="580" y2="285"/>
+    <line x1="660" y1="252" x2="605" y2="288"/>
+  </g>
+
+  <!-- 箭头标记 -->
+  <defs>
+    <marker id="arrow" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L8,3 L0,6 Z" fill="#409EFF"/>
+    </marker>
+  </defs>
+
+  <!-- 决策标签 -->
+  <g transform="translate(555, 135)">
+    <text font-family="sans-serif" font-size="10" fill="#409EFF">是</text>
+  </g>
+  <g transform="translate(505, 190)">
+    <text font-family="sans-serif" font-size="10" fill="#409EFF">否</text>
+  </g>
+  <g transform="translate(648, 190)">
+    <text font-family="sans-serif" font-size="10" fill="#409EFF">分支</text>
+  </g>
+
+  <!-- 图标注 -->
+  <g transform="translate(470, 340)">
+    <circle cx="6" cy="6" r="5" fill="#409EFF" opacity="0.6"/>
+    <text x="18" y="10" font-family="sans-serif" font-size="12" fill="#1a1a2e">分支决策</text>
+  </g>
+  <g transform="translate(470, 365)">
+    <circle cx="6" cy="6" r="5" fill="#409EFF" opacity="0.6"/>
+    <text x="18" y="10" font-family="sans-serif" font-size="12" fill="#1a1a2e">多路径</text>
+  </g>
+
+  <!-- ==================== 底部：韦恩图 ==================== -->
+  <text x="400" y="410" text-anchor="middle" font-family="sans-serif" font-size="16" font-weight="bold" fill="#1a1a2e">核心关系</text>
+
+  <!-- 韦恩图 -->
+  <g transform="translate(400, 440)">
+    <!-- 左圆：Chain -->
+    <circle cx="-45" cy="0" r="40" fill="#409EFF" opacity="0.12" stroke="#409EFF" stroke-width="1.8"/>
+    <text x="-45" y="-5" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="#1a1a2e">链</text>
+    <text x="-45" y="12" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#666">Chain</text>
+
+    <!-- 右圆：Graph -->
+    <circle cx="45" cy="0" r="40" fill="#409EFF" opacity="0.12" stroke="#409EFF" stroke-width="1.8"/>
+    <text x="45" y="-5" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="#1a1a2e">图</text>
+    <text x="45" y="12" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#666">Graph</text>
+
+    <!-- 交集区域 -->
+    <circle cx="0" cy="0" r="22" fill="#409EFF" opacity="0.25"/>
+    <text x="0" y="-3" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="#1a1a2e">工具</text>
+    <text x="0" y="14" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#666">Tools</text>
+  </g>
+
+  <!-- 底部说明 -->
+  <text x="400" y="485" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#888">链式顺序处理 · 图式分支决策 · 共享工具生态</text>
+</svg>

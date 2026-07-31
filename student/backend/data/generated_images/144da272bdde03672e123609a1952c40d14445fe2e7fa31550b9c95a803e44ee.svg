@@ -1,0 +1,152 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="800" height="500">
+  <defs>
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#E8F4FD"/>
+      <stop offset="100%" stop-color="#F0F8FF"/>
+    </linearGradient>
+    <linearGradient id="dfGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#409EFF"/>
+      <stop offset="100%" stop-color="#2B7BD6"/>
+    </linearGradient>
+    <filter id="shadow" x="-5%" y="-5%" width="110%" height="110%">
+      <feDropShadow dx="1" dy="2" stdDeviation="3" flood-opacity="0.15" flood-color="#1a1a2e"/>
+    </filter>
+  </defs>
+
+  <!-- 背景 -->
+  <rect width="800" height="500" fill="url(#bgGrad)" rx="8"/>
+
+  <!-- 标题 -->
+  <text x="400" y="38" text-anchor="middle" font-family="Microsoft YaHei, SimHei, sans-serif" font-size="20" font-weight="bold" fill="#1a1a2e">目录服务（DF）架构图</text>
+
+  <!-- ===== 中央 DF（目录服务）图标 ===== -->
+  <g filter="url(#shadow)">
+    <rect x="330" y="155" width="140" height="100" rx="14" fill="url(#dfGrad)"/>
+    <!-- 书页图标 -->
+    <rect x="355" y="170" width="22" height="28" rx="2" fill="white" opacity="0.9"/>
+    <rect x="382" y="170" width="22" height="28" rx="2" fill="white" opacity="0.7"/>
+    <rect x="409" y="170" width="22" height="28" rx="2" fill="white" opacity="0.5"/>
+    <line x1="360" y1="180" x2="372" y2="180" stroke="#409EFF" stroke-width="1.5"/>
+    <line x1="360" y1="186" x2="372" y2="186" stroke="#409EFF" stroke-width="1.5"/>
+    <line x1="387" y1="180" x2="399" y2="180" stroke="#409EFF" stroke-width="1.5"/>
+    <line x1="387" y1="186" x2="399" y2="186" stroke="#409EFF" stroke-width="1.5"/>
+    <text x="400" y="220" text-anchor="middle" font-family="Microsoft YaHei, SimHei, sans-serif" font-size="14" font-weight="bold" fill="white">服务注册中心</text>
+  </g>
+
+  <!-- DF 标签 -->
+  <text x="400" y="145" text-anchor="middle" font-family="Microsoft YaHei, SimHei, sans-serif" font-size="16" font-weight="bold" fill="#1a1a2e">DF（目录服务）</text>
+
+  <!-- ===== 三个服务注册节点 ===== -->
+
+  <!-- 节点1：数据分析 -->
+  <g filter="url(#shadow)">
+    <rect x="60" y="100" width="160" height="80" rx="10" fill="white" stroke="#409EFF" stroke-width="2"/>
+    <rect x="60" y="100" width="160" height="28" rx="10" fill="#409EFF"/>
+    <rect x="60" y="118" width="160" height="10" fill="#409EFF"/>
+    <text x="140" y="119" text-anchor="middle" font-family="Microsoft YaHei, SimHei, sans-serif" font-size="13" font-weight="bold" fill="white">数据分析</text>
+    <text x="140" y="150" text-anchor="middle" font-family="Microsoft YaHei, SimHei, sans-serif" font-size="12" fill="#1a1a2e">数据挖掘引擎</text>
+    <text x="140" y="170" text-anchor="middle" font-family="Microsoft YaHei, SimHei, sans-serif" font-size="11" fill="#409EFF">data-analysis</text>
+  </g>
+
+  <!-- 节点2：网络搜索 -->
+  <g filter="url(#shadow)">
+    <rect x="60" y="230" width="160" height="80" rx="10" fill="white" stroke="#409EFF" stroke-width="2"/>
+    <rect x="60" y="230" width="160" height="28" rx="10" fill="#409EFF"/>
+    <rect x="60" y="248" width="160" height="10" fill="#409EFF"/>
+    <text x="140" y="249" text-anchor="middle" font-family="Microsoft YaHei, SimHei, sans-serif" font-size="13" font-weight="bold" fill="white">网络搜索</text>
+    <text x="140" y="280" text-anchor="middle" font-family="Microsoft YaHei, SimHei, sans-serif" font-size="12" fill="#1a1a2e">智能检索代理</text>
+    <text x="140" y="300" text-anchor="middle" font-family="Microsoft YaHei, SimHei, sans-serif" font-size="11" fill="#409EFF">web-search</text>
+  </g>
+
+  <!-- 节点3：翻译服务 -->
+  <g filter="url(#shadow)">
+    <rect x="60" y="360" width="160" height="80" rx="10" fill="white" stroke="#409EFF" stroke-width="2"/>
+    <rect x="60" y="360" width="160" height="28" rx="10" fill="#409EFF"/>
+    <rect x="60" y="378" width="160" height="10" fill="#409EFF"/>
+    <text x="140" y="379" text-anchor="middle" font-family="Microsoft YaHei, SimHei, sans-serif" font-size="13" font-weight="bold" fill="white">翻译服务</text>
+    <text x="140" y="410" text-anchor="middle" font-family="Microsoft YaHei, SimHei, sans-serif" font-size="12" fill="#1a1a2e">多语言翻译器</text>
+    <text x="140" y="430" text-anchor="middle" font-family="Microsoft YaHei, SimHei, sans-serif" font-size="11" fill="#409EFF">translation</text>
+  </g>
+
+  <!-- ===== 注册箭头（从节点到 DF） ===== -->
+  <!-- 节点1 → DF -->
+  <line x1="220" y1="140" x2="330" y2="180" stroke="#409EFF" stroke-width="1.8" stroke-dasharray="5,3"/>
+  <polygon points="328,175 330,180 325,181" fill="#409EFF"/>
+  <text x="270" y="148" text-anchor="middle" font-family="Microsoft YaHei, SimHei, sans-serif" font-size="12" fill="#409EFF" font-weight="bold">注册</text>
+
+  <!-- 节点2 → DF -->
+  <line x1="220" y1="270" x2="330" y2="220" stroke="#409EFF" stroke-width="1.8" stroke-dasharray="5,3"/>
+  <polygon points="328,223 330,218 325,219" fill="#409EFF"/>
+  <text x="270" y="258" text-anchor="middle" font-family="Microsoft YaHei, SimHei, sans-serif" font-size="12" fill="#409EFF" font-weight="bold">注册</text>
+
+  <!-- 节点3 → DF -->
+  <line x1="220" y1="400" x2="330" y2="250" stroke="#409EFF" stroke-width="1.8" stroke-dasharray="5,3"/>
+  <polygon points="328,253 330,248 325,249" fill="#409EFF"/>
+  <text x="270" y="370" text-anchor="middle" font-family="Microsoft YaHei, SimHei, sans-serif" font-size="12" fill="#409EFF" font-weight="bold">注册</text>
+
+  <!-- ===== 查询代理（右侧） ===== -->
+  <g filter="url(#shadow)">
+    <rect x="580" y="200" width="160" height="80" rx="10" fill="white" stroke="#1a1a2e" stroke-width="2"/>
+    <rect x="580" y="200" width="160" height="28" rx="10" fill="#1a1a2e"/>
+    <rect x="580" y="218" width="160" height="10" fill="#1a1a2e"/>
+    <text x="660" y="219" text-anchor="middle" font-family="Microsoft YaHei, SimHei, sans-serif" font-size="13" font-weight="bold" fill="white">查询代理</text>
+    <text x="660" y="250" text-anchor="middle" font-family="Microsoft YaHei, SimHei, sans-serif" font-size="12" fill="#1a1a2e">任务请求者</text>
+    <text x="660" y="270" text-anchor="middle" font-family="Microsoft YaHei, SimHei, sans-serif" font-size="11" fill="#409EFF">query-agent</text>
+  </g>
+
+  <!-- 查询箭头：代理 → DF -->
+  <line x1="580" y1="230" x2="470" y2="210" stroke="#1a1a2e" stroke-width="2"/>
+  <polygon points="472,213 470,208 466,211" fill="#1a1a2e"/>
+  <text x="530" y="218" text-anchor="middle" font-family="Microsoft YaHei, SimHei, sans-serif" font-size="11" fill="#1a1a2e" font-weight="bold">搜索</text>
+
+  <!-- 返回箭头：DF → 代理 -->
+  <line x1="470" y1="195" x2="580" y2="215" stroke="#409EFF" stroke-width="2"/>
+  <polygon points="578,212 580,217 584,214" fill="#409EFF"/>
+  <text x="530" y="200" text-anchor="middle" font-family="Microsoft YaHei, SimHei, sans-serif" font-size="10" fill="#409EFF">返回匹配列表</text>
+
+  <!-- ===== 生命周期状态机（底部） ===== -->
+  <g>
+    <text x="400" y="330" text-anchor="middle" font-family="Microsoft YaHei, SimHei, sans-serif" font-size="15" font-weight="bold" fill="#1a1a2e">代理生命周期</text>
+
+    <!-- 设置 -->
+    <rect x="140" y="345" width="100" height="40" rx="20" fill="#409EFF" filter="url(#shadow)"/>
+    <text x="190" y="370" text-anchor="middle" font-family="Microsoft YaHei, SimHei, sans-serif" font-size="14" font-weight="bold" fill="white">设置</text>
+
+    <!-- 箭头1 -->
+    <line x1="240" y1="365" x2="290" y2="365" stroke="#1a1a2e" stroke-width="2"/>
+    <polygon points="288,361 294,365 288,369" fill="#1a1a2e"/>
+
+    <!-- 添加行为 -->
+    <rect x="294" y="345" width="160" height="40" rx="20" fill="#1a1a2e" filter="url(#shadow)"/>
+    <text x="374" y="363" text-anchor="middle" font-family="Microsoft YaHei, SimHei, sans-serif" font-size="12" font-weight="bold" fill="white">添加行为</text>
+    <text x="374" y="380" text-anchor="middle" font-family="Microsoft YaHei, SimHei, sans-serif" font-size="10" fill="#A0C4FF">任务寻找 · 任务处理</text>
+
+    <!-- 箭头2 -->
+    <line x1="454" y1="365" x2="504" y2="365" stroke="#1a1a2e" stroke-width="2"/>
+    <polygon points="502,361 508,365 502,369" fill="#1a1a2e"/>
+
+    <!-- 执行循环 -->
+    <rect x="508" y="345" width="120" height="40" rx="20" fill="#409EFF" filter="url(#shadow)"/>
+    <text x="568" y="370" text-anchor="middle" font-family="Microsoft YaHei, SimHei, sans-serif" font-size="14" font-weight="bold" fill="white">执行循环</text>
+
+    <!-- 循环箭头 -->
+    <path d="M628,365 Q660,365 660,340 Q660,320 628,320" stroke="#409EFF" stroke-width="1.8" fill="none" stroke-dasharray="4,3"/>
+    <polygon points="628,323 628,318 624,321" fill="#409EFF"/>
+  </g>
+
+  <!-- ===== 取消注册标注 ===== -->
+  <text x="400" y="470" text-anchor="middle" font-family="Microsoft YaHei, SimHei, sans-serif" font-size="12" fill="#1a1a2e" opacity="0.7">
+    支持取消注册（Deregister）操作 · 服务可动态加入或离开
+  </text>
+
+  <!-- 底部标注 -->
+  <g opacity="0.5">
+    <rect x="300" y="478" width="8" height="8" rx="2" fill="#409EFF"/>
+    <text x="312" y="487" font-family="Microsoft YaHei, SimHei, sans-serif" font-size="10" fill="#1a1a2e">注册</text>
+    <rect x="360" y="478" width="8" height="8" rx="2" fill="#1a1a2e"/>
+    <text x="372" y="487" font-family="Microsoft YaHei, SimHei, sans-serif" font-size="10" fill="#1a1a2e">搜索</text>
+    <rect x="420" y="478" width="8" height="8" rx="2" fill="#A0C4FF"/>
+    <text x="432" y="487" font-family="Microsoft YaHei, SimHei, sans-serif" font-size="10" fill="#1a1a2e">取消注册</text>
+  </g>
+
+</svg>

@@ -1,0 +1,207 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="800" height="500">
+  <defs>
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#E8F4FD"/>
+      <stop offset="100%" stop-color="#F0F8FF"/>
+    </linearGradient>
+    <linearGradient id="blueGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#409EFF"/>
+      <stop offset="100%" stop-color="#2B7BE8"/>
+    </linearGradient>
+  </defs>
+
+  <!-- 背景 -->
+  <rect width="800" height="500" fill="url(#bgGrad)"/>
+
+  <!-- 标题 -->
+  <text x="400" y="38" text-anchor="middle" font-family="sans-serif" font-size="20" font-weight="bold" fill="#1a1a2e">AI 智能体演进：从工具到工作者</text>
+
+  <!-- ===== 左侧面板：传统程序 ===== -->
+  <rect x="40" y="60" width="220" height="280" rx="12" fill="white" stroke="#409EFF" stroke-width="1.5" opacity="0.95"/>
+  <rect x="40" y="60" width="220" height="36" rx="12" fill="#409EFF" opacity="0.15"/>
+  <text x="150" y="84" text-anchor="middle" font-family="sans-serif" font-size="15" font-weight="bold" fill="#1a1a2e">传统程序</text>
+
+  <!-- 传送带机器 -->
+  <rect x="70" y="110" width="160" height="60" rx="6" fill="#409EFF" opacity="0.12" stroke="#409EFF" stroke-width="1.2"/>
+  <!-- 传送带 -->
+  <rect x="75" y="140" width="150" height="8" rx="4" fill="#409EFF" opacity="0.5"/>
+  <circle cx="90" cy="144" r="6" fill="#409EFF" opacity="0.4"/>
+  <circle cx="210" cy="144" r="6" fill="#409EFF" opacity="0.4"/>
+  <!-- 齿轮 -->
+  <circle cx="100" cy="120" r="10" fill="none" stroke="#409EFF" stroke-width="1.5"/>
+  <circle cx="100" cy="120" r="3" fill="#409EFF"/>
+  <line x1="100" y1="112" x2="100" y2="128" stroke="#409EFF" stroke-width="1"/>
+  <line x1="92" y1="120" x2="108" y2="120" stroke="#409EFF" stroke-width="1"/>
+  <circle cx="200" cy="120" r="10" fill="none" stroke="#409EFF" stroke-width="1.5"/>
+  <circle cx="200" cy="120" r="3" fill="#409EFF"/>
+  <line x1="200" y1="112" x2="200" y2="128" stroke="#409EFF" stroke-width="1"/>
+  <line x1="192" y1="120" x2="208" y2="120" stroke="#409EFF" stroke-width="1"/>
+  <!-- 传送带上的方块 -->
+  <rect x="120" y="130" width="12" height="10" rx="2" fill="#409EFF" opacity="0.6"/>
+  <rect x="145" y="130" width="12" height="10" rx="2" fill="#409EFF" opacity="0.4"/>
+  <rect x="170" y="130" width="12" height="10" rx="2" fill="#409EFF" opacity="0.5"/>
+
+  <!-- 固定路径箭头 -->
+  <line x1="90" y1="180" x2="210" y2="180" stroke="#409EFF" stroke-width="1" stroke-dasharray="4,3" opacity="0.5"/>
+  <polygon points="210,177 218,180 210,183" fill="#409EFF" opacity="0.5"/>
+
+  <!-- 输入输出 -->
+  <rect x="85" y="195" width="130" height="28" rx="5" fill="#409EFF" opacity="0.08" stroke="#409EFF" stroke-width="0.8"/>
+  <text x="150" y="214" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#409EFF">固定输入 → 固定输出</text>
+
+  <!-- 标注：齿轮 -->
+  <rect x="75" y="240" width="60" height="22" rx="4" fill="#1a1a2e" opacity="0.08"/>
+  <text x="105" y="255" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#1a1a2e">⚙️ 齿轮逻辑</text>
+
+  <!-- 标注：固定路径 -->
+  <rect x="155" y="240" width="70" height="22" rx="4" fill="#1a1a2e" opacity="0.08"/>
+  <text x="190" y="255" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#1a1a2e">固定路径</text>
+
+  <!-- 底部标签 -->
+  <rect x="70" y="278" width="160" height="28" rx="14" fill="#409EFF" opacity="0.1"/>
+  <text x="150" y="297" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#409EFF" font-weight="bold">🔧 工具</text>
+
+  <!-- ===== 中间面板：大语言模型 ===== -->
+  <rect x="290" y="60" width="220" height="280" rx="12" fill="white" stroke="#409EFF" stroke-width="1.5" opacity="0.95"/>
+  <rect x="290" y="60" width="220" height="36" rx="12" fill="#409EFF" opacity="0.15"/>
+  <text x="400" y="84" text-anchor="middle" font-family="sans-serif" font-size="15" font-weight="bold" fill="#1a1a2e">大语言模型</text>
+
+  <!-- 大脑形状图书馆 -->
+  <!-- 大脑轮廓 -->
+  <ellipse cx="400" cy="145" rx="60" ry="45" fill="#409EFF" opacity="0.08" stroke="#409EFF" stroke-width="1.2"/>
+  <!-- 大脑褶皱 -->
+  <path d="M360 130 Q380 120 400 130 Q420 120 440 130" fill="none" stroke="#409EFF" stroke-width="0.8" opacity="0.3"/>
+  <path d="M355 145 Q375 135 400 145 Q425 135 445 145" fill="none" stroke="#409EFF" stroke-width="0.8" opacity="0.3"/>
+  <path d="M360 160 Q380 150 400 160 Q420 150 440 160" fill="none" stroke="#409EFF" stroke-width="0.8" opacity="0.3"/>
+
+  <!-- 书架上的书 -->
+  <rect x="365" y="100" width="8" height="18" rx="1" fill="#409EFF" opacity="0.5"/>
+  <rect x="375" y="102" width="7" height="16" rx="1" fill="#409EFF" opacity="0.35"/>
+  <rect x="384" y="98" width="8" height="20" rx="1" fill="#409EFF" opacity="0.45"/>
+  <rect x="394" y="101" width="6" height="17" rx="1" fill="#409EFF" opacity="0.3"/>
+  <rect x="402" y="99" width="8" height="19" rx="1" fill="#409EFF" opacity="0.5"/>
+  <rect x="412" y="103" width="7" height="15" rx="1" fill="#409EFF" opacity="0.35"/>
+  <rect x="421" y="100" width="8" height="18" rx="1" fill="#409EFF" opacity="0.4"/>
+
+  <!-- 更多书 -->
+  <rect x="370" y="125" width="7" height="14" rx="1" fill="#409EFF" opacity="0.4"/>
+  <rect x="380" y="122" width="9" height="17" rx="1" fill="#409EFF" opacity="0.3"/>
+  <rect x="392" y="124" width="7" height="15" rx="1" fill="#409EFF" opacity="0.45"/>
+  <rect x="402" y="120" width="8" height="19" rx="1" fill="#409EFF" opacity="0.35"/>
+  <rect x="413" y="123" width="7" height="16" rx="1" fill="#409EFF" opacity="0.4"/>
+  <rect x="423" y="125" width="8" height="14" rx="1" fill="#409EFF" opacity="0.3"/>
+
+  <!-- 知识光芒 -->
+  <line x1="340" y1="130" x2="330" y2="125" stroke="#409EFF" stroke-width="1" opacity="0.3"/>
+  <line x1="340" y1="145" x2="328" y2="145" stroke="#409EFF" stroke-width="1" opacity="0.3"/>
+  <line x1="340" y1="160" x2="330" y2="165" stroke="#409EFF" stroke-width="1" opacity="0.3"/>
+  <line x1="460" y1="130" x2="470" y2="125" stroke="#409EFF" stroke-width="1" opacity="0.3"/>
+  <line x1="460" y1="145" x2="472" y2="145" stroke="#409EFF" stroke-width="1" opacity="0.3"/>
+  <line x1="460" y1="160" x2="470" y2="165" stroke="#409EFF" stroke-width="1" opacity="0.3"/>
+
+  <!-- 无手图标 -->
+  <text x="400" y="195" text-anchor="middle" font-family="sans-serif" font-size="22" opacity="0.4">🚫</text>
+  <text x="400" y="212" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#409EFF" opacity="0.6">无行动能力</text>
+
+  <!-- 标注：知识库 -->
+  <rect x="325" y="235" width="70" height="22" rx="4" fill="#1a1a2e" opacity="0.08"/>
+  <text x="360" y="251" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#1a1a2e">📚 知识库</text>
+
+  <!-- 标注：文本生成 -->
+  <rect x="415" y="235" width="80" height="22" rx="4" fill="#1a1a2e" opacity="0.08"/>
+  <text x="455" y="251" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#1a1a2e">文本生成</text>
+
+  <!-- 底部标签 -->
+  <rect x="320" y="278" width="160" height="28" rx="14" fill="#409EFF" opacity="0.1"/>
+  <text x="400" y="297" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#409EFF" font-weight="bold">🧠 知识</text>
+
+  <!-- ===== 右侧面板：AI 智能体 ===== -->
+  <rect x="540" y="60" width="220" height="280" rx="12" fill="white" stroke="#409EFF" stroke-width="1.5" opacity="0.95"/>
+  <rect x="540" y="60" width="220" height="36" rx="12" fill="#409EFF" opacity="0.15"/>
+  <text x="650" y="84" text-anchor="middle" font-family="sans-serif" font-size="15" font-weight="bold" fill="#1a1a2e">AI 智能体</text>
+
+  <!-- 机器人厨师 -->
+  <!-- 身体 -->
+  <rect x="610" y="130" width="80" height="60" rx="8" fill="#409EFF" opacity="0.12" stroke="#409EFF" stroke-width="1.2"/>
+  <!-- 头 -->
+  <circle cx="650" cy="115" r="18" fill="#409EFF" opacity="0.15" stroke="#409EFF" stroke-width="1.2"/>
+  <!-- 眼睛 -->
+  <circle cx="643" cy="112" r="3" fill="#409EFF"/>
+  <circle cx="657" cy="112" r="3" fill="#409EFF"/>
+  <!-- 微笑 -->
+  <path d="M644 120 Q650 126 656 120" fill="none" stroke="#409EFF" stroke-width="1.2"/>
+  <!-- 天线 -->
+  <line x1="650" y1="97" x2="650" y2="88" stroke="#409EFF" stroke-width="1.2"/>
+  <circle cx="650" cy="86" r="3" fill="#409EFF"/>
+
+  <!-- 围裙 -->
+  <rect x="622" y="150" width="56" height="35" rx="4" fill="white" stroke="#409EFF" stroke-width="0.8" opacity="0.7"/>
+  <line x1="635" y1="150" x2="635" y2="185" stroke="#409EFF" stroke-width="0.6" opacity="0.4"/>
+  <line x1="665" y1="150" x2="665" y2="185" stroke="#409EFF" stroke-width="0.6" opacity="0.4"/>
+
+  <!-- 左手 - 拿锅铲 -->
+  <line x1="610" y1="145" x2="590" y2="155" stroke="#409EFF" stroke-width="1.5"/>
+  <line x1="590" y1="155" x2="580" y2="145" stroke="#409EFF" stroke-width="1.5"/>
+  <rect x="576" y="138" width="8" height="14" rx="2" fill="#409EFF" opacity="0.5"/>
+
+  <!-- 右手 - 拿勺子 -->
+  <line x1="690" y1="145" x2="710" y2="155" stroke="#409EFF" stroke-width="1.5"/>
+  <line x1="710" y1="155" x2="718" y2="148" stroke="#409EFF" stroke-width="1.5"/>
+  <circle cx="720" cy="146" r="5" fill="none" stroke="#409EFF" stroke-width="1.2"/>
+
+  <!-- 锅 -->
+  <ellipse cx="595" cy="175" rx="18" ry="6" fill="none" stroke="#409EFF" stroke-width="1.2"/>
+  <path d="M577 175 L577 190 Q577 196 583 196 L607 196 Q613 196 613 190 L613 175" fill="none" stroke="#409EFF" stroke-width="1.2"/>
+  <!-- 火焰 -->
+  <path d="M590 196 Q593 202 596 196 Q599 202 602 196" fill="none" stroke="#409EFF" stroke-width="1" opacity="0.6"/>
+
+  <!-- 菜谱 -->
+  <rect x="680" y="170" width="30" height="22" rx="3" fill="white" stroke="#409EFF" stroke-width="0.8" opacity="0.7"/>
+  <line x1="684" y1="176" x2="706" y2="176" stroke="#409EFF" stroke-width="0.6" opacity="0.4"/>
+  <line x1="684" y1="181" x2="700" y2="181" stroke="#409EFF" stroke-width="0.6" opacity="0.4"/>
+  <line x1="684" y1="186" x2="703" y2="186" stroke="#409EFF" stroke-width="0.6" opacity="0.4"/>
+
+  <!-- 食材 -->
+  <circle cx="630" cy="200" r="5" fill="#409EFF" opacity="0.3"/>
+  <circle cx="645" cy="203" r="4" fill="#409EFF" opacity="0.25"/>
+  <circle cx="660" cy="200" r="5" fill="#409EFF" opacity="0.3"/>
+  <rect x="638" y="195" width="3" height="8" rx="1" fill="#409EFF" opacity="0.2"/>
+
+  <!-- 标注：主动执行 -->
+  <rect x="565" y="228" width="80" height="22" rx="4" fill="#1a1a2e" opacity="0.08"/>
+  <text x="605" y="244" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#1a1a2e">主动执行</text>
+
+  <!-- 标注：使用工具 -->
+  <rect x="660" y="228" width="80" height="22" rx="4" fill="#1a1a2e" opacity="0.08"/>
+  <text x="700" y="244" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#1a1a2e">使用工具</text>
+
+  <!-- 底部标签 -->
+  <rect x="570" y="278" width="160" height="28" rx="14" fill="#409EFF" opacity="0.1"/>
+  <text x="650" y="297" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#409EFF" font-weight="bold">👨‍🍳 工作者</text>
+
+  <!-- ===== 底部桥接隐喻 ===== -->
+  <rect x="100" y="370" width="600" height="50" rx="25" fill="white" stroke="#409EFF" stroke-width="1.5" opacity="0.9"/>
+
+  <!-- 三个层级 -->
+  <rect x="120" y="380" width="160" height="30" rx="15" fill="#409EFF" opacity="0.12"/>
+  <text x="200" y="400" text-anchor="middle" font-family="sans-serif" font-size="15" font-weight="bold" fill="#1a1a2e">🔧 工具</text>
+
+  <text x="400" y="400" text-anchor="middle" font-family="sans-serif" font-size="18" fill="#409EFF" opacity="0.5">→</text>
+
+  <rect x="320" y="380" width="160" height="30" rx="15" fill="#409EFF" opacity="0.12"/>
+  <text x="400" y="400" text-anchor="middle" font-family="sans-serif" font-size="15" font-weight="bold" fill="#1a1a2e">🧠 知识</text>
+
+  <text x="490" y="400" text-anchor="middle" font-family="sans-serif" font-size="18" fill="#409EFF" opacity="0.5">→</text>
+
+  <rect x="520" y="380" width="160" height="30" rx="15" fill="#409EFF" opacity="0.12"/>
+  <text x="600" y="400" text-anchor="middle" font-family="sans-serif" font-size="15" font-weight="bold" fill="#1a1a2e">👨‍🍳 工作者</text>
+
+  <!-- 底部说明文字 -->
+  <text x="400" y="445" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#409EFF" opacity="0.7">从被动执行到主动思考，再到自主行动——AI 能力的跃迁</text>
+
+  <!-- 连接线 - 面板到底部桥 -->
+  <line x1="150" y1="340" x2="200" y2="370" stroke="#409EFF" stroke-width="0.8" opacity="0.2" stroke-dasharray="3,3"/>
+  <line x1="400" y1="340" x2="400" y2="370" stroke="#409EFF" stroke-width="0.8" opacity="0.2" stroke-dasharray="3,3"/>
+  <line x1="650" y1="340" x2="600" y2="370" stroke="#409EFF" stroke-width="0.8" opacity="0.2" stroke-dasharray="3,3"/>
+
+</svg>

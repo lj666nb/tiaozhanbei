@@ -1,0 +1,110 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="800" height="500">
+  <defs>
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#e8f4fd"/>
+      <stop offset="100%" stop-color="#f0f8ff"/>
+    </linearGradient>
+    <linearGradient id="hexGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#e0f0ff"/>
+      <stop offset="100%" stop-color="#f5faff"/>
+    </linearGradient>
+  </defs>
+
+  <!-- 背景 -->
+  <rect width="800" height="500" fill="url(#bgGrad)"/>
+
+  <!-- 标题 -->
+  <text x="400" y="38" text-anchor="middle" font-family="sans-serif" font-size="20" font-weight="bold" fill="#1a1a2e">Agent 工程与部署学习路径图</text>
+
+  <!-- 六边形顶点计算函数：中心(cx,cy)，半径r，返回6个顶点 -->
+  <!-- 六边形1: FastAPI + Pydantic (cx=160, cy=120) -->
+  <polygon points="160,90 195,108 195,145 160,163 125,145 125,108" fill="url(#hexGrad)" stroke="#409EFF" stroke-width="2.5"/>
+  <text x="160" y="120" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="bold" fill="#1a1a2e">FastAPI</text>
+  <text x="160" y="140" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="bold" fill="#1a1a2e">+ Pydantic</text>
+  <text x="160" y="158" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#666">类型安全 API</text>
+
+  <!-- 六边形2: 异步非阻塞 (cx=310, cy=120) -->
+  <polygon points="310,90 345,108 345,145 310,163 275,145 275,108" fill="url(#hexGrad)" stroke="#409EFF" stroke-width="2.5"/>
+  <text x="310" y="120" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="bold" fill="#1a1a2e">异步非阻塞</text>
+  <text x="310" y="140" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#666">async/await 并发</text>
+
+  <!-- 六边形3: Celery任务队列 (cx=460, cy=120) -->
+  <polygon points="460,90 495,108 495,145 460,163 425,145 425,108" fill="url(#hexGrad)" stroke="#409EFF" stroke-width="2.5"/>
+  <text x="460" y="120" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="bold" fill="#1a1a2e">Celery</text>
+  <text x="460" y="140" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="bold" fill="#1a1a2e">任务队列</text>
+  <text x="460" y="158" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#666">分布式任务处理</text>
+
+  <!-- 六边形4: 可观测性三板斧 (cx=610, cy=120) -->
+  <polygon points="610,90 645,108 645,145 610,163 575,145 575,108" fill="url(#hexGrad)" stroke="#409EFF" stroke-width="2.5"/>
+  <text x="610" y="118" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="#1a1a2e">可观测性</text>
+  <text x="610" y="136" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="#1a1a2e">三板斧</text>
+  <text x="610" y="156" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#666">日志+指标+链路</text>
+
+  <!-- 六边形5: SSE流式输出 (cx=235, cy=270) -->
+  <polygon points="235,240 270,258 270,295 235,313 200,295 200,258" fill="url(#hexGrad)" stroke="#409EFF" stroke-width="2.5"/>
+  <text x="235" y="270" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="bold" fill="#1a1a2e">SSE</text>
+  <text x="235" y="290" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="bold" fill="#1a1a2e">流式输出</text>
+  <text x="235" y="308" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#666">流式事件</text>
+
+  <!-- 六边形6: 容器化部署 (cx=400, cy=270) -->
+  <polygon points="400,240 435,258 435,295 400,313 365,295 365,258" fill="url(#hexGrad)" stroke="#409EFF" stroke-width="2.5"/>
+  <text x="400" y="268" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="bold" fill="#1a1a2e">容器化部署</text>
+  <text x="400" y="290" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#666">Docker + K8s</text>
+
+  <!-- 连接线（六边形之间的箭头） -->
+  <!-- 1->2 -->
+  <line x1="195" y1="127" x2="273" y2="127" stroke="#409EFF" stroke-width="1.5" marker-end="url(#arrowBlue)"/>
+  <!-- 2->3 -->
+  <line x1="345" y1="127" x2="423" y2="127" stroke="#409EFF" stroke-width="1.5" marker-end="url(#arrowBlue)"/>
+  <!-- 3->4 -->
+  <line x1="495" y1="127" x2="573" y2="127" stroke="#409EFF" stroke-width="1.5" marker-end="url(#arrowBlue)"/>
+  <!-- 1->5 -->
+  <line x1="180" y1="163" x2="215" y2="238" stroke="#409EFF" stroke-width="1.5" marker-end="url(#arrowBlue)"/>
+  <!-- 2->6 -->
+  <line x1="330" y1="163" x2="380" y2="238" stroke="#409EFF" stroke-width="1.5" marker-end="url(#arrowBlue)"/>
+  <!-- 3->6 -->
+  <line x1="440" y1="163" x2="420" y2="238" stroke="#409EFF" stroke-width="1.5" marker-end="url(#arrowBlue)"/>
+
+  <!-- 箭头标记 -->
+  <defs>
+    <marker id="arrowBlue" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0,0 8,3 0,6" fill="#409EFF"/>
+    </marker>
+  </defs>
+
+  <!-- 向上延伸方向区域 -->
+  <text x="400" y="360" text-anchor="middle" font-family="sans-serif" font-size="16" font-weight="bold" fill="#1a1a2e">进阶学习方向</text>
+  <line x1="400" y1="365" x2="400" y2="380" stroke="#1a1a2e" stroke-width="1.5"/>
+
+  <!-- 四个向上箭头和标签 -->
+  <!-- LangServe -->
+  <g>
+    <line x1="130" y1="380" x2="130" y2="420" stroke="#409EFF" stroke-width="2" marker-end="url(#arrowBlue)"/>
+    <rect x="95" y="425" width="70" height="24" rx="12" fill="#409EFF" opacity="0.15"/>
+    <text x="130" y="442" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="bold" fill="#1a1a2e">LangServe</text>
+  </g>
+
+  <!-- K8s HPA -->
+  <g>
+    <line x1="270" y1="380" x2="270" y2="420" stroke="#409EFF" stroke-width="2" marker-end="url(#arrowBlue)"/>
+    <rect x="235" y="425" width="70" height="24" rx="12" fill="#409EFF" opacity="0.15"/>
+    <text x="270" y="442" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="bold" fill="#1a1a2e">K8s HPA</text>
+  </g>
+
+  <!-- LLM缓存 -->
+  <g>
+    <line x1="400" y1="380" x2="400" y2="420" stroke="#409EFF" stroke-width="2" marker-end="url(#arrowBlue)"/>
+    <rect x="365" y="425" width="70" height="24" rx="12" fill="#409EFF" opacity="0.15"/>
+    <text x="400" y="442" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="bold" fill="#1a1a2e">LLM 缓存</text>
+  </g>
+
+  <!-- LangSmith追踪 -->
+  <g>
+    <line x1="530" y1="380" x2="530" y2="420" stroke="#409EFF" stroke-width="2" marker-end="url(#arrowBlue)"/>
+    <rect x="495" y="425" width="70" height="24" rx="12" fill="#409EFF" opacity="0.15"/>
+    <text x="530" y="442" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="bold" fill="#1a1a2e">LangSmith</text>
+  </g>
+
+  <!-- 底部说明 -->
+  <text x="400" y="480" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#888">从基础组件到生产部署的完整学习路径</text>
+</svg>

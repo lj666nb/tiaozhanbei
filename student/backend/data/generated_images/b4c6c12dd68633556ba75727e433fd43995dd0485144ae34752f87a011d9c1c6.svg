@@ -1,0 +1,89 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="800" height="500">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#e8f4fd;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#d4ecf9;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="cardGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#5ab0ff;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#409EFF;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="coreGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#2d3561;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#1a1a2e;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+
+  <!-- 背景 -->
+  <rect width="800" height="500" fill="url(#bgGrad)" rx="8"/>
+
+  <!-- 标题 -->
+  <text x="400" y="38" text-anchor="middle" font-family="Microsoft YaHei, SimHei, sans-serif" font-size="20" font-weight="bold" fill="#1a1a2e">Transformer 模型核心模块</text>
+
+  <!-- 连接线（五边形布局） -->
+  <g stroke="#1a1a2e" stroke-width="2" fill="none" opacity="0.5">
+    <!-- 中心到各卡片 -->
+    <line x1="400" y1="250" x2="400" y2="120"/>
+    <line x1="400" y1="250" x2="580" y2="185"/>
+    <line x1="400" y1="250" x2="540" y2="360"/>
+    <line x1="400" y1="250" x2="260" y2="360"/>
+    <line x1="400" y1="250" x2="220" y2="185"/>
+    <!-- 卡片间连接（五边形外环） -->
+    <line x1="400" y1="120" x2="580" y2="185"/>
+    <line x1="580" y1="185" x2="540" y2="360"/>
+    <line x1="540" y1="360" x2="260" y2="360"/>
+    <line x1="260" y1="360" x2="220" y2="185"/>
+    <line x1="220" y1="185" x2="400" y2="120"/>
+  </g>
+
+  <!-- 中心：Transformer Core -->
+  <circle cx="400" cy="250" r="48" fill="url(#coreGrad)" stroke="#409EFF" stroke-width="2"/>
+  <text x="400" y="242" text-anchor="middle" font-family="Microsoft YaHei, SimHei, sans-serif" font-size="14" font-weight="bold" fill="#ffffff">Transformer</text>
+  <text x="400" y="262" text-anchor="middle" font-family="Microsoft YaHei, SimHei, sans-serif" font-size="14" font-weight="bold" fill="#ffffff">核心</text>
+
+  <!-- 卡片1：Token Embedding（上方） -->
+  <g>
+    <rect x="340" y="72" width="120" height="48" rx="12" fill="url(#cardGrad)" stroke="#1a1a2e" stroke-width="1.5"/>
+    <text x="400" y="92" text-anchor="middle" font-family="Microsoft YaHei, SimHei, sans-serif" font-size="14" font-weight="bold" fill="#ffffff">Token 嵌入</text>
+    <!-- 图标：文本到向量 -->
+    <text x="400" y="112" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#ffffff">T → [v₁,v₂,...]</text>
+  </g>
+
+  <!-- 卡片2：Positional Encoding（右上） -->
+  <g>
+    <rect x="532" y="155" width="120" height="48" rx="12" fill="url(#cardGrad)" stroke="#1a1a2e" stroke-width="1.5"/>
+    <text x="592" y="175" text-anchor="middle" font-family="Microsoft YaHei, SimHei, sans-serif" font-size="14" font-weight="bold" fill="#ffffff">位置编码</text>
+    <!-- 图标：正弦波 -->
+    <text x="592" y="195" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#ffffff">sin/cos 波</text>
+  </g>
+
+  <!-- 卡片3：Self-Attention（右下） -->
+  <g>
+    <rect x="492" y="330" width="120" height="48" rx="12" fill="url(#cardGrad)" stroke="#1a1a2e" stroke-width="1.5"/>
+    <text x="552" y="350" text-anchor="middle" font-family="Microsoft YaHei, SimHei, sans-serif" font-size="14" font-weight="bold" fill="#ffffff">自注意力</text>
+    <!-- 图标：Q-K-V -->
+    <text x="552" y="370" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#ffffff">Q → K → V</text>
+  </g>
+
+  <!-- 卡片4：Multi-Head Attention（左下） -->
+  <g>
+    <rect x="188" y="330" width="120" height="48" rx="12" fill="url(#cardGrad)" stroke="#1a1a2e" stroke-width="1.5"/>
+    <text x="248" y="350" text-anchor="middle" font-family="Microsoft YaHei, SimHei, sans-serif" font-size="14" font-weight="bold" fill="#ffffff">多头注意力</text>
+    <!-- 图标：多平行头 -->
+    <text x="248" y="370" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#ffffff">Head₁...Headₙ</text>
+  </g>
+
+  <!-- 卡片5：Feed-Forward Network（左上） -->
+  <g>
+    <rect x="160" y="155" width="120" height="48" rx="12" fill="url(#cardGrad)" stroke="#1a1a2e" stroke-width="1.5"/>
+    <text x="220" y="175" text-anchor="middle" font-family="Microsoft YaHei, SimHei, sans-serif" font-size="14" font-weight="bold" fill="#ffffff">前馈网络</text>
+    <!-- 图标：神经网络节点 -->
+    <text x="220" y="195" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#ffffff">层₁ → 层₂</text>
+  </g>
+
+  <!-- 底部说明 -->
+  <text x="400" y="460" text-anchor="middle" font-family="Microsoft YaHei, SimHei, sans-serif" font-size="13" fill="#5a6a7a">五个核心模块围绕 Transformer 核心协同工作，实现序列建模与特征提取</text>
+
+  <!-- 装饰性小圆点 -->
+  <circle cx="400" cy="250" r="3" fill="#5ab0ff" opacity="0.6"/>
+</svg>

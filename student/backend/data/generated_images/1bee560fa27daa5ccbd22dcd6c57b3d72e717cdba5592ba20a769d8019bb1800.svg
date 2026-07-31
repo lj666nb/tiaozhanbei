@@ -1,0 +1,157 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="800" height="500">
+  <defs>
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#E8F4FD"/>
+      <stop offset="100%" stop-color="#F0F8FF"/>
+    </linearGradient>
+    <linearGradient id="queryGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#409EFF"/>
+      <stop offset="100%" stop-color="#6AB7FF"/>
+    </linearGradient>
+    <linearGradient id="resultGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#1a1a2e"/>
+      <stop offset="100%" stop-color="#2d2d5e"/>
+    </linearGradient>
+    <filter id="shadow" x="-5%" y="-5%" width="115%" height="115%">
+      <feDropShadow dx="1" dy="2" stdDeviation="3" flood-color="#409EFF" flood-opacity="0.15"/>
+    </filter>
+  </defs>
+
+  <!-- 背景 -->
+  <rect width="800" height="500" fill="url(#bgGrad)" rx="8"/>
+
+  <!-- 标题 -->
+  <text x="400" y="38" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#1a1a2e">检索器工作流架构图</text>
+
+  <!-- 查询输入 -->
+  <rect x="30" y="200" width="90" height="44" rx="22" fill="url(#queryGrad)" filter="url(#shadow)"/>
+  <text x="75" y="227" text-anchor="middle" font-family="Arial, sans-serif" font-size="15" fill="#fff" font-weight="bold">查询</text>
+
+  <!-- 箭头：查询 → 分支 -->
+  <line x1="120" y1="222" x2="165" y2="222" stroke="#409EFF" stroke-width="2.5" marker-end="url(#arrowBlue)"/>
+  <defs>
+    <marker id="arrowBlue" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#409EFF"/>
+    </marker>
+  </defs>
+
+  <!-- 分支竖线 -->
+  <line x1="165" y1="80" x2="165" y2="380" stroke="#409EFF" stroke-width="2" stroke-dasharray="4,3"/>
+
+  <!-- 5个检索策略卡片 -->
+  <!-- 1. VectorStoreRetriever -->
+  <g filter="url(#shadow)">
+    <rect x="185" y="62" width="170" height="58" rx="8" fill="#fff" stroke="#409EFF" stroke-width="1.5"/>
+    <rect x="185" y="62" width="170" height="24" rx="8" fill="#409EFF" opacity="0.12"/>
+    <text x="270" y="80" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" fill="#1a1a2e" font-weight="bold">向量存储检索器</text>
+    <!-- 嵌入向量图标 -->
+    <circle cx="210" cy="98" r="6" fill="none" stroke="#409EFF" stroke-width="1.5"/>
+    <circle cx="225" cy="98" r="6" fill="none" stroke="#409EFF" stroke-width="1.5"/>
+    <circle cx="240" cy="98" r="6" fill="none" stroke="#409EFF" stroke-width="1.5"/>
+    <line x1="210" y1="92" x2="210" y2="104" stroke="#409EFF" stroke-width="0.8"/>
+    <line x1="225" y1="92" x2="225" y2="104" stroke="#409EFF" stroke-width="0.8"/>
+    <line x1="240" y1="92" x2="240" y2="104" stroke="#409EFF" stroke-width="0.8"/>
+    <text x="260" y="102" font-family="Arial, sans-serif" font-size="10" fill="#666">嵌入向量</text>
+  </g>
+
+  <!-- 2. MultiQueryRetriever -->
+  <g filter="url(#shadow)">
+    <rect x="185" y="138" width="170" height="58" rx="8" fill="#fff" stroke="#409EFF" stroke-width="1.5"/>
+    <rect x="185" y="138" width="170" height="24" rx="8" fill="#409EFF" opacity="0.12"/>
+    <text x="270" y="156" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" fill="#1a1a2e" font-weight="bold">多查询检索器</text>
+    <!-- 分支箭头图标 -->
+    <line x1="205" y1="178" x2="220" y2="178" stroke="#409EFF" stroke-width="1.5"/>
+    <line x1="220" y1="170" x2="220" y2="186" stroke="#409EFF" stroke-width="1.5"/>
+    <line x1="220" y1="170" x2="235" y2="165" stroke="#409EFF" stroke-width="1.2"/>
+    <line x1="220" y1="178" x2="235" y2="178" stroke="#409EFF" stroke-width="1.2"/>
+    <line x1="220" y1="186" x2="235" y2="191" stroke="#409EFF" stroke-width="1.2"/>
+    <text x="255" y="180" font-family="Arial, sans-serif" font-size="10" fill="#666">多路分支</text>
+  </g>
+
+  <!-- 3. ContextualCompressionRetriever -->
+  <g filter="url(#shadow)">
+    <rect x="185" y="214" width="170" height="58" rx="8" fill="#fff" stroke="#409EFF" stroke-width="1.5"/>
+    <rect x="185" y="214" width="170" height="24" rx="8" fill="#409EFF" opacity="0.12"/>
+    <text x="270" y="232" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" fill="#1a1a2e" font-weight="bold">上下文压缩检索器</text>
+    <!-- 漏斗图标 -->
+    <polygon points="205,248 240,248 235,256 210,256" fill="none" stroke="#409EFF" stroke-width="1.5"/>
+    <line x1="215" y1="256" x2="230" y2="256" stroke="#409EFF" stroke-width="1.2"/>
+    <line x1="218" y1="256" x2="218" y2="260" stroke="#409EFF" stroke-width="1"/>
+    <line x1="227" y1="256" x2="227" y2="260" stroke="#409EFF" stroke-width="1"/>
+    <text x="260" y="256" font-family="Arial, sans-serif" font-size="10" fill="#666">过滤压缩</text>
+  </g>
+
+  <!-- 4. SelfQueryRetriever -->
+  <g filter="url(#shadow)">
+    <rect x="185" y="290" width="170" height="58" rx="8" fill="#fff" stroke="#409EFF" stroke-width="1.5"/>
+    <rect x="185" y="290" width="170" height="24" rx="8" fill="#409EFF" opacity="0.12"/>
+    <text x="270" y="308" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" fill="#1a1a2e" font-weight="bold">自查询检索器</text>
+    <!-- 结构化过滤网格 -->
+    <rect x="205" y="320" width="8" height="8" fill="#409EFF" opacity="0.4" rx="1"/>
+    <rect x="216" y="320" width="8" height="8" fill="#409EFF" opacity="0.4" rx="1"/>
+    <rect x="227" y="320" width="8" height="8" fill="#409EFF" opacity="0.4" rx="1"/>
+    <rect x="205" y="331" width="8" height="8" fill="#409EFF" opacity="0.4" rx="1"/>
+    <rect x="216" y="331" width="8" height="8" fill="#409EFF" opacity="0.4" rx="1"/>
+    <rect x="227" y="331" width="8" height="8" fill="#409EFF" opacity="0.4" rx="1"/>
+    <text x="255" y="332" font-family="Arial, sans-serif" font-size="10" fill="#666">元数据过滤</text>
+  </g>
+
+  <!-- 5. EnsembleRetriever -->
+  <g filter="url(#shadow)">
+    <rect x="185" y="366" width="170" height="58" rx="8" fill="#fff" stroke="#409EFF" stroke-width="1.5"/>
+    <rect x="185" y="366" width="170" height="24" rx="8" fill="#409EFF" opacity="0.12"/>
+    <text x="270" y="384" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" fill="#1a1a2e" font-weight="bold">集成检索器</text>
+    <!-- 多输入合并图标 -->
+    <line x1="205" y1="406" x2="215" y2="400" stroke="#409EFF" stroke-width="1.2"/>
+    <line x1="215" y1="400" x2="215" y2="410" stroke="#409EFF" stroke-width="1.2"/>
+    <line x1="215" y1="400" x2="225" y2="395" stroke="#409EFF" stroke-width="1.2"/>
+    <line x1="215" y1="410" x2="225" y2="415" stroke="#409EFF" stroke-width="1.2"/>
+    <circle cx="230" cy="405" r="4" fill="#409EFF" opacity="0.5"/>
+    <text x="255" y="408" font-family="Arial, sans-serif" font-size="10" fill="#666">多源合并</text>
+  </g>
+
+  <!-- 从分支到各卡片的箭头 -->
+  <line x1="165" y1="91" x2="185" y2="91" stroke="#409EFF" stroke-width="1.5" marker-end="url(#arrowBlue)"/>
+  <line x1="165" y1="167" x2="185" y2="167" stroke="#409EFF" stroke-width="1.5" marker-end="url(#arrowBlue)"/>
+  <line x1="165" y1="243" x2="185" y2="243" stroke="#409EFF" stroke-width="1.5" marker-end="url(#arrowBlue)"/>
+  <line x1="165" y1="319" x2="185" y2="319" stroke="#409EFF" stroke-width="1.5" marker-end="url(#arrowBlue)"/>
+  <line x1="165" y1="395" x2="185" y2="395" stroke="#409EFF" stroke-width="1.5" marker-end="url(#arrowBlue)"/>
+
+  <!-- 从卡片到汇总的箭头 -->
+  <line x1="355" y1="91" x2="400" y2="91" stroke="#409EFF" stroke-width="1.5"/>
+  <line x1="355" y1="167" x2="400" y2="167" stroke="#409EFF" stroke-width="1.5"/>
+  <line x1="355" y1="243" x2="400" y2="243" stroke="#409EFF" stroke-width="1.5"/>
+  <line x1="355" y1="319" x2="400" y2="319" stroke="#409EFF" stroke-width="1.5"/>
+  <line x1="355" y1="395" x2="400" y2="395" stroke="#409EFF" stroke-width="1.5"/>
+
+  <!-- 汇总竖线 -->
+  <line x1="400" y1="80" x2="400" y2="380" stroke="#409EFF" stroke-width="2" stroke-dasharray="4,3"/>
+
+  <!-- 箭头到结果 -->
+  <line x1="400" y1="222" x2="445" y2="222" stroke="#1a1a2e" stroke-width="2.5" marker-end="url(#arrowDark)"/>
+  <defs>
+    <marker id="arrowDark" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#1a1a2e"/>
+    </marker>
+  </defs>
+
+  <!-- 最终结果框 -->
+  <g filter="url(#shadow)">
+    <rect x="455" y="190" width="130" height="64" rx="10" fill="url(#resultGrad)"/>
+    <rect x="455" y="190" width="130" height="24" rx="10" fill="#fff" opacity="0.15"/>
+    <text x="520" y="208" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="#fff" font-weight="bold">检索结果</text>
+    <text x="520" y="232" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#A8D8FF">Top-K 文档</text>
+  </g>
+
+  <!-- 标注 -->
+  <g font-family="Arial, sans-serif" font-size="11" fill="#1a1a2e" opacity="0.7">
+    <text x="75" y="185">① 输入查询</text>
+    <text x="270" y="50">② 五种检索策略</text>
+    <text x="520" y="175">③ 结果汇总</text>
+  </g>
+
+  <!-- 装饰性浅色元素 -->
+  <circle cx="700" cy="60" r="25" fill="#409EFF" opacity="0.04"/>
+  <circle cx="720" cy="440" r="35" fill="#409EFF" opacity="0.04"/>
+  <rect x="600" y="400" width="80" height="80" rx="40" fill="#409EFF" opacity="0.03"/>
+</svg>

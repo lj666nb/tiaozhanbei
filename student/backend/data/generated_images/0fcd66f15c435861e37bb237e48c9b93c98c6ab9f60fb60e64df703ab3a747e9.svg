@@ -1,0 +1,114 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="800" height="500">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#e8f4fd;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#f0f8ff;stop-opacity:1" />
+    </linearGradient>
+    <filter id="shadow" x="-5%" y="-5%" width="115%" height="115%">
+      <feDropShadow dx="0" dy="2" stdDeviation="4" flood-color="#409EFF" flood-opacity="0.15"/>
+    </filter>
+    <filter id="hubShadow" x="-10%" y="-10%" width="130%" height="130%">
+      <feDropShadow dx="0" dy="3" stdDeviation="6" flood-color="#1a1a2e" flood-opacity="0.2"/>
+    </filter>
+  </defs>
+
+  <!-- 背景 -->
+  <rect width="800" height="500" fill="url(#bgGrad)" rx="8"/>
+
+  <!-- 标题 -->
+  <text x="400" y="38" text-anchor="middle" font-family="'Microsoft YaHei','PingFang SC',sans-serif" font-size="20" font-weight="bold" fill="#1a1a2e">Agent API 服务部署架构</text>
+
+  <!-- 连接线：中心到五个节点 -->
+  <!-- 中心坐标: 400, 250 -->
+  <!-- 节点坐标（半径160）：
+      上: 400, 90
+      右上: 560, 170
+      右下: 530, 330
+      左下: 270, 330
+      左上: 240, 170
+  -->
+
+  <g stroke="#409EFF" stroke-width="2.5" fill="none" opacity="0.7">
+    <!-- 中心到上 -->
+    <line x1="400" y1="250" x2="400" y2="110"/>
+    <!-- 中心到右上 -->
+    <line x1="400" y1="250" x2="545" y2="185"/>
+    <!-- 中心到右下 -->
+    <line x1="400" y1="250" x2="520" y2="320"/>
+    <!-- 中心到左下 -->
+    <line x1="400" y1="250" x2="280" y2="320"/>
+    <!-- 中心到左上 -->
+    <line x1="400" y1="250" x2="255" y2="185"/>
+  </g>
+
+  <!-- 中心枢纽 -->
+  <circle cx="400" cy="250" r="48" fill="#1a1a2e" filter="url(#hubShadow)"/>
+  <circle cx="400" cy="250" r="42" fill="#409EFF" opacity="0.15"/>
+  <circle cx="400" cy="250" r="36" fill="#1a1a2e"/>
+  <text x="400" y="242" text-anchor="middle" font-family="'Microsoft YaHei','PingFang SC',sans-serif" font-size="14" font-weight="bold" fill="#ffffff">Agent</text>
+  <text x="400" y="262" text-anchor="middle" font-family="'Microsoft YaHei','PingFang SC',sans-serif" font-size="14" font-weight="bold" fill="#ffffff">API 服务</text>
+
+  <!-- 节点1：FastAPI + Pydantic（上方） -->
+  <g filter="url(#shadow)">
+    <rect x="348" y="70" width="104" height="56" rx="12" fill="#ffffff" stroke="#409EFF" stroke-width="2"/>
+    <!-- 齿轮图标 -->
+    <g transform="translate(370, 98)" fill="#409EFF">
+      <circle cx="0" cy="0" r="8" fill="none" stroke="#409EFF" stroke-width="2"/>
+      <circle cx="0" cy="0" r="3" fill="#409EFF"/>
+    </g>
+    <text x="400" y="104" text-anchor="middle" font-family="'Microsoft YaHei','PingFang SC',sans-serif" font-size="13" font-weight="bold" fill="#1a1a2e">FastAPI</text>
+    <text x="400" y="120" text-anchor="middle" font-family="'Microsoft YaHei','PingFang SC',sans-serif" font-size="11" fill="#409EFF">+ Pydantic</text>
+  </g>
+
+  <!-- 节点2：异步并发（右上） -->
+  <g filter="url(#shadow)">
+    <rect x="508" y="148" width="104" height="56" rx="12" fill="#ffffff" stroke="#409EFF" stroke-width="2"/>
+    <!-- 平行箭头图标 -->
+    <g transform="translate(530, 176)" fill="none" stroke="#409EFF" stroke-width="2">
+      <path d="M-6,-6 L0,0 L-6,6"/>
+      <path d="M6,-6 L0,0 L6,6"/>
+    </g>
+    <text x="560" y="180" text-anchor="middle" font-family="'Microsoft YaHei','PingFang SC',sans-serif" font-size="13" font-weight="bold" fill="#1a1a2e">异步并发</text>
+  </g>
+
+  <!-- 节点3：结构化日志（右下） -->
+  <g filter="url(#shadow)">
+    <rect x="478" y="298" width="104" height="56" rx="12" fill="#ffffff" stroke="#409EFF" stroke-width="2"/>
+    <!-- JSON文档图标 -->
+    <g transform="translate(500, 326)" fill="#409EFF">
+      <rect x="-8" y="-10" width="16" height="20" rx="2" fill="none" stroke="#409EFF" stroke-width="2"/>
+      <line x1="-4" y1="-4" x2="4" y2="-4" stroke="#409EFF" stroke-width="1.5"/>
+      <line x1="-4" y1="0" x2="4" y2="0" stroke="#409EFF" stroke-width="1.5"/>
+      <line x1="-4" y1="4" x2="2" y2="4" stroke="#409EFF" stroke-width="1.5"/>
+    </g>
+    <text x="530" y="330" text-anchor="middle" font-family="'Microsoft YaHei','PingFang SC',sans-serif" font-size="13" font-weight="bold" fill="#1a1a2e">结构化日志</text>
+  </g>
+
+  <!-- 节点4：Prometheus监控（左下） -->
+  <g filter="url(#shadow)">
+    <rect x="218" y="298" width="104" height="56" rx="12" fill="#ffffff" stroke="#409EFF" stroke-width="2"/>
+    <!-- 图表图标 -->
+    <g transform="translate(240, 326)" fill="none" stroke="#409EFF" stroke-width="2">
+      <rect x="-8" y="-10" width="16" height="20" rx="2"/>
+      <polyline points="-5,5 -2,0 1,3 5,-5"/>
+    </g>
+    <text x="270" y="330" text-anchor="middle" font-family="'Microsoft YaHei','PingFang SC',sans-serif" font-size="13" font-weight="bold" fill="#1a1a2e">Prometheus</text>
+    <text x="270" y="346" text-anchor="middle" font-family="'Microsoft YaHei','PingFang SC',sans-serif" font-size="11" fill="#409EFF">监控</text>
+  </g>
+
+  <!-- 节点5：Docker部署（左上） -->
+  <g filter="url(#shadow)">
+    <rect x="188" y="148" width="104" height="56" rx="12" fill="#ffffff" stroke="#409EFF" stroke-width="2"/>
+    <!-- 容器鲸鱼图标 -->
+    <g transform="translate(210, 176)" fill="#409EFF">
+      <path d="M-8,-4 C-8,-8 -4,-10 0,-8 C2,-6 6,-6 8,-4 L8,2 C8,4 6,6 4,6 L-6,6 C-8,6 -10,4 -10,2 L-8,-4Z" fill="none" stroke="#409EFF" stroke-width="1.8"/>
+      <rect x="-6" y="-2" width="3" height="3" rx="0.5" fill="#409EFF"/>
+      <rect x="-1" y="-2" width="3" height="3" rx="0.5" fill="#409EFF"/>
+      <rect x="4" y="-2" width="3" height="3" rx="0.5" fill="#409EFF"/>
+    </g>
+    <text x="240" y="180" text-anchor="middle" font-family="'Microsoft YaHei','PingFang SC',sans-serif" font-size="13" font-weight="bold" fill="#1a1a2e">Docker 部署</text>
+  </g>
+
+  <!-- 底部说明 -->
+  <text x="400" y="470" text-anchor="middle" font-family="'Microsoft YaHei','PingFang SC',sans-serif" font-size="12" fill="#666666">API 工程化部署架构 · 中心化服务 + 可观测性</text>
+</svg>

@@ -1,0 +1,145 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="800" height="500">
+  <defs>
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#E8F4FD"/>
+      <stop offset="100%" stop-color="#F0F8FF"/>
+    </linearGradient>
+    <linearGradient id="blueGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#409EFF"/>
+      <stop offset="100%" stop-color="#2D7FE0"/>
+    </linearGradient>
+    <filter id="shadow" x="-5%" y="-5%" width="115%" height="115%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#1a1a2e" flood-opacity="0.08"/>
+    </filter>
+  </defs>
+
+  <!-- 背景 -->
+  <rect width="800" height="500" fill="url(#bgGrad)" rx="8"/>
+
+  <!-- 标题 -->
+  <text x="400" y="38" text-anchor="middle" font-family="sans-serif" font-size="20" font-weight="bold" fill="#1a1a2e">三种通信方式对比</text>
+
+  <!-- ==================== 左侧：消息队列 ==================== -->
+  <g filter="url(#shadow)">
+    <rect x="20" y="60" width="240" height="420" rx="10" fill="white" stroke="#409EFF" stroke-width="1.5"/>
+  </g>
+  <text x="140" y="90" text-anchor="middle" font-family="sans-serif" font-size="15" font-weight="bold" fill="#409EFF">消息队列</text>
+
+  <!-- 队列盒子 -->
+  <rect x="80" y="200" width="120" height="50" rx="6" fill="#409EFF" opacity="0.9"/>
+  <text x="140" y="228" text-anchor="middle" font-family="sans-serif" font-size="13" fill="white" font-weight="bold">队列</text>
+
+  <!-- 发送者代理 -->
+  <rect x="70" y="120" width="60" height="40" rx="20" fill="#1a1a2e" opacity="0.85"/>
+  <text x="100" y="145" text-anchor="middle" font-family="sans-serif" font-size="12" fill="white">发送者</text>
+
+  <!-- 接收者代理 -->
+  <rect x="150" y="290" width="60" height="40" rx="20" fill="#1a1a2e" opacity="0.85"/>
+  <text x="180" y="315" text-anchor="middle" font-family="sans-serif" font-size="12" fill="white">接收者</text>
+
+  <!-- 异步箭头：发送者→队列 -->
+  <line x1="100" y1="160" x2="115" y2="200" stroke="#409EFF" stroke-width="2" marker-end="url(#arrowBlue)"/>
+  <text x="85" y="185" font-family="sans-serif" font-size="11" fill="#409EFF">发送</text>
+
+  <!-- 异步箭头：队列→接收者 -->
+  <line x1="160" y1="250" x2="175" y2="290" stroke="#409EFF" stroke-width="2" marker-end="url(#arrowBlue)"/>
+  <text x="165" y="275" font-family="sans-serif" font-size="11" fill="#409EFF">接收</text>
+
+  <!-- 解耦标注 -->
+  <text x="140" y="380" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#1a1a2e" opacity="0.7">解耦通信</text>
+  <text x="140" y="400" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#1a1a2e" opacity="0.5">异步传输</text>
+
+  <!-- 标注框 -->
+  <rect x="55" y="430" width="170" height="30" rx="15" fill="#409EFF" opacity="0.12"/>
+  <text x="140" y="450" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#409EFF">松耦合 · 异步</text>
+
+  <!-- ==================== 中间：共享上下文 ==================== -->
+  <g filter="url(#shadow)">
+    <rect x="280" y="60" width="240" height="420" rx="10" fill="white" stroke="#409EFF" stroke-width="1.5"/>
+  </g>
+  <text x="400" y="90" text-anchor="middle" font-family="sans-serif" font-size="15" font-weight="bold" fill="#409EFF">共享上下文</text>
+
+  <!-- 中央数据库 -->
+  <rect x="350" y="190" width="100" height="70" rx="8" fill="#409EFF" opacity="0.9"/>
+  <text x="400" y="218" text-anchor="middle" font-family="sans-serif" font-size="12" fill="white" font-weight="bold">共享数据</text>
+  <text x="400" y="238" text-anchor="middle" font-family="sans-serif" font-size="11" fill="white" opacity="0.9">文档/数据库</text>
+
+  <!-- 代理1 - 左侧 -->
+  <rect x="295" y="110" width="55" height="35" rx="17" fill="#1a1a2e" opacity="0.85"/>
+  <text x="322" y="132" text-anchor="middle" font-family="sans-serif" font-size="11" fill="white">代理 A</text>
+
+  <!-- 代理2 - 右侧 -->
+  <rect x="450" y="110" width="55" height="35" rx="17" fill="#1a1a2e" opacity="0.85"/>
+  <text x="477" y="132" text-anchor="middle" font-family="sans-serif" font-size="11" fill="white">代理 B</text>
+
+  <!-- 代理3 - 下方 -->
+  <rect x="370" y="310" width="55" height="35" rx="17" fill="#1a1a2e" opacity="0.85"/>
+  <text x="397" y="332" text-anchor="middle" font-family="sans-serif" font-size="11" fill="white">代理 C</text>
+
+  <!-- 读写箭头 -->
+  <!-- A→数据库（写） -->
+  <line x1="322" y1="145" x2="370" y2="190" stroke="#409EFF" stroke-width="2" marker-end="url(#arrowBlue)"/>
+  <text x="330" y="172" font-family="sans-serif" font-size="11" fill="#409EFF">写入</text>
+
+  <!-- 数据库→B（读） -->
+  <line x1="430" y1="210" x2="470" y2="145" stroke="#409EFF" stroke-width="2" marker-end="url(#arrowBlue)"/>
+  <text x="445" y="180" font-family="sans-serif" font-size="11" fill="#409EFF">读取</text>
+
+  <!-- 数据库→C（读） -->
+  <line x1="400" y1="260" x2="397" y2="310" stroke="#409EFF" stroke-width="2" marker-end="url(#arrowBlue)"/>
+  <text x="410" y="290" font-family="sans-serif" font-size="11" fill="#409EFF">读取</text>
+
+  <!-- 信息透明标注 -->
+  <text x="400" y="380" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#1a1a2e" opacity="0.7">信息透明</text>
+  <text x="400" y="400" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#1a1a2e" opacity="0.5">共享访问</text>
+
+  <!-- 标注框 -->
+  <rect x="315" y="430" width="170" height="30" rx="15" fill="#409EFF" opacity="0.12"/>
+  <text x="400" y="450" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#409EFF">高透明 · 一致性</text>
+
+  <!-- ==================== 右侧：结构化对话 ==================== -->
+  <g filter="url(#shadow)">
+    <rect x="540" y="60" width="240" height="420" rx="10" fill="white" stroke="#409EFF" stroke-width="1.5"/>
+  </g>
+  <text x="660" y="90" text-anchor="middle" font-family="sans-serif" font-size="15" font-weight="bold" fill="#409EFF">结构化对话</text>
+
+  <!-- 代理1 - 左 -->
+  <rect x="560" y="150" width="60" height="40" rx="20" fill="#1a1a2e" opacity="0.85"/>
+  <text x="590" y="175" text-anchor="middle" font-family="sans-serif" font-size="12" fill="white">代理 X</text>
+
+  <!-- 代理2 - 右 -->
+  <rect x="700" y="150" width="60" height="40" rx="20" fill="#1a1a2e" opacity="0.85"/>
+  <text x="730" y="175" text-anchor="middle" font-family="sans-serif" font-size="12" fill="white">代理 Y</text>
+
+  <!-- 对话气泡 - 从左到右 -->
+  <path d="M 610 165 Q 640 145 660 155 L 680 165 Q 690 170 680 180 L 660 190 Q 640 200 610 185 Z" fill="#409EFF" opacity="0.15" stroke="#409EFF" stroke-width="1"/>
+  <text x="645" y="172" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#1a1a2e">请求</text>
+
+  <!-- 对话气泡 - 从右到左 -->
+  <path d="M 710 195 Q 680 215 660 205 L 640 195 Q 630 190 640 180 L 660 170 Q 680 160 710 175 Z" fill="#409EFF" opacity="0.15" stroke="#409EFF" stroke-width="1"/>
+  <text x="675" y="192" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#1a1a2e">响应</text>
+
+  <!-- JSON 结构显示 -->
+  <rect x="575" y="250" width="170" height="100" rx="6" fill="#1a1a2e" opacity="0.08"/>
+  <text x="590" y="270" font-family="monospace" font-size="10" fill="#1a1a2e">{</text>
+  <text x="595" y="285" font-family="monospace" font-size="10" fill="#409EFF">  "type": "请求"</text>
+  <text x="595" y="300" font-family="monospace" font-size="10" fill="#409EFF">  "data": { }</text>
+  <text x="595" y="315" font-family="monospace" font-size="10" fill="#409EFF">  "id": "msg_1"</text>
+  <text x="590" y="335" font-family="monospace" font-size="10" fill="#1a1a2e">}</text>
+
+  <!-- 丰富交互标注 -->
+  <text x="660" y="380" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#1a1a2e" opacity="0.7">丰富交互</text>
+  <text x="660" y="400" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#1a1a2e" opacity="0.5">结构化消息</text>
+
+  <!-- 标注框 -->
+  <rect x="575" y="430" width="170" height="30" rx="15" fill="#409EFF" opacity="0.12"/>
+  <text x="660" y="450" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#409EFF">强类型 · 可验证</text>
+
+  <!-- 箭头标记定义 -->
+  <defs>
+    <marker id="arrowBlue" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L8,3 L0,6 Z" fill="#409EFF"/>
+    </marker>
+  </defs>
+
+</svg>

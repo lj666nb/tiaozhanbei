@@ -1,0 +1,135 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="800" height="500">
+  <defs>
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#E8F4FD"/>
+      <stop offset="100%" stop-color="#D0ECFA"/>
+    </linearGradient>
+    <filter id="shadow" x="-2" y="-2" width="104%" height="108%">
+      <feDropShadow dx="1" dy="2" stdDeviation="2" flood-color="#409EFF" flood-opacity="0.15"/>
+    </filter>
+    <marker id="arrowBlue" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#409EFF"/>
+    </marker>
+  </defs>
+
+  <!-- 背景 -->
+  <rect width="800" height="500" fill="url(#bgGrad)" rx="8"/>
+
+  <!-- 标题 -->
+  <text x="400" y="32" text-anchor="middle" font-family="sans-serif" font-size="18" font-weight="bold" fill="#1a1a2e">动态重规划器 — 代码模块结构</text>
+
+  <!-- ===== 第一行：基础数据结构 ===== -->
+  <rect x="30" y="55" width="160" height="52" rx="6" fill="#ffffff" stroke="#409EFF" stroke-width="1.8" filter="url(#shadow)"/>
+  <text x="110" y="74" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="#1a1a2e">基础数据结构</text>
+  <text x="110" y="92" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#1a1a2e" opacity="0.8">StepStatus · DeviationLevel</text>
+  <text x="110" y="103" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#1a1a2e" opacity="0.8">ReplanStrategy 枚举</text>
+
+  <!-- ===== 第一行：执行监控器 ===== -->
+  <rect x="300" y="55" width="160" height="52" rx="6" fill="#ffffff" stroke="#409EFF" stroke-width="1.8" filter="url(#shadow)"/>
+  <text x="380" y="74" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="#1a1a2e">执行监控器</text>
+  <text x="380" y="92" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#1a1a2e" opacity="0.8">ExecutionMonitor</text>
+  <text x="380" y="103" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#1a1a2e" opacity="0.8">检查器注册 + 评估</text>
+
+  <!-- ===== 第一行：重规划器 ===== -->
+  <rect x="570" y="55" width="200" height="52" rx="6" fill="#ffffff" stroke="#409EFF" stroke-width="1.8" filter="url(#shadow)"/>
+  <text x="670" y="74" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="#1a1a2e">重规划器 Replanner</text>
+  <text x="670" y="92" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#1a1a2e" opacity="0.8">策略决策 → 状态保持</text>
+  <text x="670" y="103" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#1a1a2e" opacity="0.8">兼容检查 → 重规划</text>
+
+  <!-- 第一行箭头：基础数据结构 → 执行监控器 -->
+  <line x1="190" y1="81" x2="295" y2="81" stroke="#409EFF" stroke-width="1.8" marker-end="url(#arrowBlue)"/>
+
+  <!-- 第一行箭头：执行监控器 → 重规划器 -->
+  <line x1="460" y1="81" x2="565" y2="81" stroke="#409EFF" stroke-width="1.8" marker-end="url(#arrowBlue)"/>
+
+  <!-- ===== 第二行：执行引擎 ===== -->
+  <rect x="30" y="155" width="160" height="52" rx="6" fill="#ffffff" stroke="#409EFF" stroke-width="1.8" filter="url(#shadow)"/>
+  <text x="110" y="174" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="#1a1a2e">执行引擎</text>
+  <text x="110" y="192" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#1a1a2e" opacity="0.8">ExecutionEngine</text>
+  <text x="110" y="203" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#1a1a2e" opacity="0.8">执行计划循环</text>
+
+  <!-- ===== 第二行：旅行订票模拟 ===== -->
+  <rect x="300" y="155" width="160" height="52" rx="6" fill="#ffffff" stroke="#409EFF" stroke-width="1.8" filter="url(#shadow)"/>
+  <text x="380" y="174" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="#1a1a2e">旅行订票模拟</text>
+  <text x="380" y="192" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#1a1a2e" opacity="0.8">航班预订场景</text>
+
+  <!-- ===== 第二行：回滚策略演示 ===== -->
+  <rect x="570" y="155" width="200" height="52" rx="6" fill="#ffffff" stroke="#409EFF" stroke-width="1.8" filter="url(#shadow)"/>
+  <text x="670" y="174" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="#1a1a2e">回滚策略演示</text>
+  <text x="670" y="192" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#1a1a2e" opacity="0.8">补偿事务流程</text>
+
+  <!-- 第二行箭头：执行引擎 → 旅行订票模拟 -->
+  <line x1="190" y1="181" x2="295" y2="181" stroke="#409EFF" stroke-width="1.8" marker-end="url(#arrowBlue)"/>
+
+  <!-- 第二行箭头：旅行订票模拟 → 回滚策略演示 -->
+  <line x1="460" y1="181" x2="565" y2="181" stroke="#409EFF" stroke-width="1.8" marker-end="url(#arrowBlue)"/>
+
+  <!-- ===== 纵向连接箭头 ===== -->
+
+  <!-- 基础数据结构 → 执行引擎 -->
+  <line x1="110" y1="107" x2="110" y2="150" stroke="#409EFF" stroke-width="1.8" marker-end="url(#arrowBlue)"/>
+
+  <!-- 执行监控器 → 旅行订票模拟 -->
+  <line x1="380" y1="107" x2="380" y2="150" stroke="#409EFF" stroke-width="1.8" marker-end="url(#arrowBlue)"/>
+
+  <!-- 重规划器 → 回滚策略演示 -->
+  <line x1="670" y1="107" x2="670" y2="150" stroke="#409EFF" stroke-width="1.8" marker-end="url(#arrowBlue)"/>
+
+  <!-- ===== 模块间交叉依赖箭头（虚线） ===== -->
+
+  <!-- 执行监控器 → 重规划器（向下虚线） -->
+  <path d="M 380 107 L 380 120 L 670 120 L 670 150" fill="none" stroke="#409EFF" stroke-width="1.2" stroke-dasharray="5,4" marker-end="url(#arrowBlue)" opacity="0.6"/>
+
+  <!-- 旅行订票模拟 → 回滚策略演示（向上虚线） -->
+  <path d="M 380 155 L 380 140 L 670 140 L 670 150" fill="none" stroke="#409EFF" stroke-width="1.2" stroke-dasharray="5,4" marker-end="url(#arrowBlue)" opacity="0.6"/>
+
+  <!-- ===== 标注 ===== -->
+
+  <!-- 标注1：数据流 -->
+  <rect x="30" y="235" width="110" height="24" rx="12" fill="#409EFF" opacity="0.15"/>
+  <text x="85" y="251" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#1a1a2e" font-weight="bold">数据流</text>
+
+  <!-- 标注2：策略决策 -->
+  <rect x="170" y="235" width="110" height="24" rx="12" fill="#409EFF" opacity="0.15"/>
+  <text x="225" y="251" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#1a1a2e" font-weight="bold">策略决策</text>
+
+  <!-- 标注3：状态保持 -->
+  <rect x="310" y="235" width="110" height="24" rx="12" fill="#409EFF" opacity="0.15"/>
+  <text x="365" y="251" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#1a1a2e" font-weight="bold">状态保持</text>
+
+  <!-- 标注4：兼容检查 -->
+  <rect x="450" y="235" width="110" height="24" rx="12" fill="#409EFF" opacity="0.15"/>
+  <text x="505" y="251" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#1a1a2e" font-weight="bold">兼容检查</text>
+
+  <!-- 标注5：循环执行 -->
+  <rect x="590" y="235" width="110" height="24" rx="12" fill="#409EFF" opacity="0.15"/>
+  <text x="645" y="251" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#1a1a2e" font-weight="bold">循环执行</text>
+
+  <!-- 标注6：事务补偿 -->
+  <rect x="30" y="275" width="110" height="24" rx="12" fill="#409EFF" opacity="0.15"/>
+  <text x="85" y="291" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#1a1a2e" font-weight="bold">事务补偿</text>
+
+  <!-- 标注7：场景模拟 -->
+  <rect x="170" y="275" width="110" height="24" rx="12" fill="#409EFF" opacity="0.15"/>
+  <text x="225" y="291" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#1a1a2e" font-weight="bold">场景模拟</text>
+
+  <!-- 标注8：枚举定义 -->
+  <rect x="310" y="275" width="110" height="24" rx="12" fill="#409EFF" opacity="0.15"/>
+  <text x="365" y="291" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#1a1a2e" font-weight="bold">枚举定义</text>
+
+  <!-- ===== 底部说明 ===== -->
+  <rect x="30" y="330" width="740" height="150" rx="8" fill="#ffffff" stroke="#409EFF" stroke-width="1" opacity="0.7"/>
+  <text x="400" y="355" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="bold" fill="#1a1a2e">模块依赖关系说明</text>
+
+  <text x="50" y="380" font-family="sans-serif" font-size="12" fill="#1a1a2e">• 基础数据结构定义核心枚举类型，供其他模块引用</text>
+  <text x="50" y="400" font-family="sans-serif" font-size="12" fill="#1a1a2e">• 执行监控器注册检查器并评估执行状态，触发重规划决策</text>
+  <text x="50" y="420" font-family="sans-serif" font-size="12" fill="#1a1a2e">• 重规划器根据偏差等级选择策略，保持状态并进行兼容性检查</text>
+  <text x="50" y="440" font-family="sans-serif" font-size="12" fill="#1a1a2e">• 执行引擎驱动计划循环，旅行订票模拟验证流程，回滚策略演示补偿事务</text>
+
+  <!-- 图例 -->
+  <rect x="600" y="370" width="12" height="12" rx="2" fill="none" stroke="#409EFF" stroke-width="1.8"/>
+  <text x="618" y="381" font-family="sans-serif" font-size="11" fill="#1a1a2e">实线：直接依赖</text>
+
+  <line x1="600" y1="400" x2="612" y2="400" stroke="#409EFF" stroke-width="1.2" stroke-dasharray="5,4"/>
+  <text x="618" y="404" font-family="sans-serif" font-size="11" fill="#1a1a2e">虚线：交叉依赖</text>
+</svg>
