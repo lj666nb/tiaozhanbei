@@ -398,7 +398,7 @@ def _mutation_candidates(code: str) -> list[tuple[str, str]]:
     for m in re.finditer(r'(?m)(\s*)for\s+(\w+)\s+in\s+(\w+)\s*:', region):
         indent, var, iterable = m.group(1), m.group(2), m.group(3)
         body_start = m.end()
-        broken = region[:body_start] + f"\n{indent}    # BUG: 未过滤 None 值\n{indent}    " + region[body_start:].lstrip()
+        broken = region[:body_start] + f"\n{indent}    " + region[body_start:].lstrip()
         if "if " + var + " is not None" not in broken and var + " is not None" not in broken:
             desc = (f"🔍 L1-数据流故障：循环中未过滤 `None` 值。当 `{iterable}` 包含 None 元素时，"
                     "后续处理会因访问 None 的属性而崩溃。请添加空值守卫逻辑。")
@@ -431,11 +431,11 @@ def _mutation_candidates(code: str) -> list[tuple[str, str]]:
             if param_names:
                 first_param = param_names[0]
                 insert_pos = func_body_start
+                # 在函数体开头注入一条无保护的参数使用（不添加 BUG 注释）
                 broken = (region[:insert_pos] +
-                         f'\n{indent}    # BUG: 先使用了参数，后面才校验——如果参数非法，这里会先崩溃\n'
-                         f'{indent}    _ = len({first_param}) if hasattr({first_param}, "__len__") else str({first_param})\n' +
+                         f'\n{indent}    _ = len({first_param}) if hasattr({first_param}, "__len__") else str({first_param})\n' +
                          region[insert_pos:])
-                desc = (f"🔍 L2-逻辑错误：在 `{func_name}()` 中，参数 `{first_param}` 在校验之前就被使用了。"
+                desc = (f"L2-逻辑错误：在 `{func_name}()` 中，参数 `{first_param}` 在校验之前就被使用了。"
                         "当传入非法参数时，错误消息会指向使用处而非校验处，误导调试方向。请将校验移到函数开头。")
                 candidates.append((_replace_region(code, broken, start, end), desc))
                 break
@@ -444,7 +444,7 @@ def _mutation_candidates(code: str) -> list[tuple[str, str]]:
     # 3.1 吞掉异常
     for m in re.finditer(r'(?m)(\s*)except\s+(?:Exception|BaseException|)\s*:', region):
         indent = m.group(1)
-        broken = region[:m.start()] + f"{indent}except Exception as _e:\n{indent}    pass  # BUG: 吞掉了所有异常" + region[m.end():]
+        broken = region[:m.start()] + f"{indent}except Exception as _e:\n{indent}    pass" + region[m.end():]
         desc = ("🔍 L3-设计误用：异常处理过于宽泛（`except Exception: pass`），吞掉了所有错误信息。"
                 "真正的工程实践中，应该只捕获已知可恢复的异常类型，并记录/传播不可恢复的错误。"
                 "请添加具体的异常类型和适当的错误处理逻辑。")
@@ -453,47 +453,79 @@ def _mutation_candidates(code: str) -> list[tuple[str, str]]:
     # 3.2 返回可变内部状态（引用泄露）
     for m in re.finditer(r'(?m)(\s*)return\s+self\._(\w+)', region):
         indent, attr = m.group(1), m.group(2)
-        broken = region[:m.start()] + f"{indent}return self._{attr}  # BUG: 直接返回内部可变状态，调用方可意外修改" + region[m.end():]
+        broken = region[:m.start()] + f"{indent}return self._{attr}" + region[m.end():]
         desc = (f"🔍 L3-设计误用：直接返回了内部属性 `self._{attr}` 的引用，"
                 "调用方可以不经任何检查就修改对象的内部状态。应返回 `copy.deepcopy()` 的安全副本。")
         candidates.append((_replace_region(code, broken, start, end), desc))
 
-    # ── 兜底故障（确保每道题至少有一个可修复的故障）──
-    # 运算符翻转
-    operator_rules = [(">=", ">"), ("<=", "<"), ("==", "!=")]
-    for old, new in operator_rules:
-        if old in region:
-            broken_region = region.replace(old, new, 1)
-            desc = (f"🔍 L2-逻辑错误：一个比较运算符从 `{old}` 变成了 `{new}`，导致边界条件判断错误。"
-                    "当输入恰好等于边界值时，原应通过的条件现在会失败。请通过失败用例反推哪个边界被改变了。")
-            candidates.append((_replace_region(code, broken_region, start, end), desc))
+    # ── 兜底故障（确保每道题至少有一个可修复的、隐蔽的故障）──
+    # 优先级：注入语义层面的细微错误，而非显而易见的 return None
 
-    # 消息协议角色拼写/取值错误（多行列表返回也能稳定注入）
-    role_match = re.search(r'(["\']role["\']\s*:\s*["\'])user(["\'])', region)
-    if role_match:
-        broken_region = (
-            region[:role_match.start()]
-            + role_match.group(1)
-            + "assistant"
-            + role_match.group(2)
-            + region[role_match.end():]
-        )
-        desc = (
-            "🔍 L2-协议契约故障：用户消息的 `role` 被错误改成了 `assistant`。"
-            "代码仍能运行，但下游模型会把用户输入当成模型历史回复，导致消息语义错位。"
-            "请根据失败用例检查消息顺序与角色协议。"
-        )
-        candidates.append((_replace_region(code, broken_region, start, end), desc))
-
-    # 最后手段：return 值破坏
-    for match in list(re.finditer(r"(?m)^(\s*)return\s+([^\n#]+)", region))[:3]:
+    # 兜底 1：类型强制转换错误 — 在最终 return 前插入意外的 str() 包裹
+    for match in list(re.finditer(r"(?m)^(\s*)return\s+([^\n#]+)", region))[-2:]:
         expression = match.group(2).strip()
         if expression in {"None", "False", "True"} or expression.endswith(("{", "[", "(")):
             continue
-        broken_region = region[:match.start()] + f"{match.group(1)}return None  # BUG: 返回值意外变成 None" + region[match.end():]
-        desc = ("🔍 L1-数据流故障：一个关键函数的返回值被意外覆盖为 None。"
-                "这在真实开发中常发生在忘记 return 语句、或条件分支未覆盖所有路径时。请根据测试追踪数据流。")
+        broken_region = (
+            region[:match.start()]
+            + f"{match.group(1)}return str({expression})"
+            + region[match.end():]
+        )
+        desc = (
+            "🔍 L1-数据流故障：返回值被意外转换成了字符串类型。"
+            "下游调用方期望原始类型却收到了 str，会导致后续比较或索引操作失败。"
+            "请根据测试失败信息追踪：哪个类型断言失败了？返回值在哪个位置被转换了？"
+        )
         candidates.append((_replace_region(code, broken_region, start, end), desc))
+
+    # 兜底 2：字典/列表 key 拼写错误 — 细微但真实的 bug
+    for m in re.finditer(r'(["\'])(\w{4,})\1\s*:\s*|\["(\w{4,})"\]|\.get\(["\'](\w{4,})["\']\)', region):
+        key = m.group(2) or m.group(3) or m.group(4) or ""
+        if len(key) <= 4:
+            continue
+        # 随机交换最后两个字符（如 "status" → "stauts"）
+        wrong_key = key[:-2] + key[-1] + key[-2]
+        broken_region = region.replace(key, wrong_key, 1)
+        desc = (
+            f"🔍 L2-逻辑错误：一个字典键名 `{key}` 存在拼写错误（typo）。"
+            "代码可以运行但查询结果永远为空或取不到值，逻辑会静默失败。"
+            "请通过测试用例反推哪个键名与实际数据不一致。"
+        )
+        candidates.append((_replace_region(code, broken_region, start, end), desc))
+        break  # 只注入一个 key 错误
+
+    # 兜底 3：条件反转 — 把 if xxx: 反转为 if not xxx:
+    for m in re.finditer(r'(?m)(\s*)if\s+(\w+(?:\.\w+)?)\s*:', region):
+        indent, cond = m.group(1), m.group(2)
+        if cond in {"__name__"}:
+            continue
+        broken_region = (
+            region[:m.start()]
+            + f"{indent}if not {cond}:"
+            + region[m.end():]
+        )
+        desc = (
+            f"🔍 L2-逻辑错误：条件判断 `{cond}` 被反转了（`if {cond}` → `if not {cond}`）。"
+            "这会导致正常路径被跳过而异常路径被当作正常路径执行。"
+            "请将测试结果与代码逻辑逐条对照，定位被反转的条件。"
+        )
+        candidates.append((_replace_region(code, broken_region, start, end), desc))
+
+    # 兜底 4：注释掉一行关键逻辑（静默跳过）
+    for m in list(re.finditer(r'(?m)^(\s*)(\w[\w.]*\s*=\s*[^#\n]+)$', region))[-3:]:
+        indent = m.group(1)
+        line = m.group(2).strip()
+        if len(line) < 10 or line.startswith("return") or line.startswith("pass"):
+            continue
+        broken_line = f"{indent}# {line}"
+        broken_region = region[:m.start()] + broken_line + region[m.end():]
+        desc = (
+            "🔍 L2-逻辑错误：一行关键赋值或计算被意外注释掉了。"
+            "代码仍能运行但缺少了一个中间处理步骤，导致下游逻辑拿到过期或默认值。"
+            "请对比正常执行路径与当前路径，定位被跳过的操作。"
+        )
+        candidates.append((_replace_region(code, broken_region, start, end), desc))
+        break
 
     return candidates
 
@@ -502,7 +534,107 @@ def _build_mutation(exercise_id: str, code: str) -> tuple[str, str]:
     for mutated, description in _mutation_candidates(code):
         if not _judge_exercise_code(exercise_id, mutated)["passed"]:
             return mutated, description
-    return code, "请为当前实现补充一个异常输入保护，并确保全部测试仍然通过。"
+    # 所有候选都未命中 → 强制注入一个底层故障，保证每道题都有真实的修复挑战
+    return _force_mutation(exercise_id, code)
+
+
+def _force_mutation(exercise_id: str, code: str) -> tuple[str, str]:
+    """When rule-based mutations all miss, inject a subtle but deterministic fault via AST rewrite.
+
+    Design principles:
+    1. No # BUG / # FIXME / # TODO comments
+    2. Subtle enough to require comparing test output to locate
+    3. Guaranteed to fail at least one test case
+    """
+    tree = ast.parse(code)
+    mutator = _ForceMutator()
+    mutated_tree = mutator.visit(tree)
+    if not mutator.mutated:
+        return code + "\n\n# 请确认全部测试仍然通过\n", "请验证所有测试用例并确保没有因环境变化导致的意外失败。"
+
+    mutated_code = ast.unparse(mutated_tree)
+
+    if not _judge_exercise_code(exercise_id, mutated_code)["passed"]:
+        return mutated_code, mutator.description
+
+    for _attempt in range(3):
+        mutator2 = _ForceMutator(aggressive=True)
+        mutated_tree2 = mutator2.visit(ast.parse(code))
+        if mutator2.mutated:
+            mutated_code2 = ast.unparse(mutated_tree2)
+            if not _judge_exercise_code(exercise_id, mutated_code2)["passed"]:
+                return mutated_code2, mutator2.description
+
+    return mutated_code, mutator.description
+
+
+class _ForceMutator(ast.NodeTransformer):
+    """AST 重写器：注入一个隐蔽的功能故障。
+
+    故障类型（按优先级）：
+    1. 函数返回值类型转换 —— 在最后一个 return 语句外包一层错误的类型转换
+    2. 条件边界偏移 —— 在 if 比较中把 > 变成 >= 或反之
+    3. 字典键名细微拼写错误 —— 交换 dict key 的两个相邻字符
+    """
+
+    def __init__(self, aggressive: bool = False):
+        super().__init__()
+        self.aggressive = aggressive
+        self.mutated = False
+        self.description = ""
+
+    def visit_FunctionDef(self, node: ast.FunctionDef):
+        # Only mutate the first non-private function
+        if self.mutated or node.name.startswith("_"):
+            return self.generic_visit(node)
+
+        # Strategy 1: modify the type of the last return value
+        return_stmts = [
+            (i, stmt) for i, stmt in enumerate(node.body)
+            if isinstance(stmt, ast.Return) and stmt.value is not None
+        ]
+        if return_stmts:
+            idx, ret = return_stmts[-1]
+
+            # Reliable: type-coerce non-None return values
+            if isinstance(ret.value, ast.Name):
+                # Variable return → wrap in incorrect list()
+                new_ret = ast.Return(value=ast.Call(
+                    func=ast.Name(id="list", ctx=ast.Load()),
+                    args=[ast.Tuple(elts=[ret.value], ctx=ast.Load())],
+                    keywords=[],
+                ))
+                node.body[idx] = new_ret
+                self.mutated = True
+                self.description = (
+                    "L1-数据流故障：返回值被意外包装成了单元素列表。"
+                    "下游期望标量值却收到了列表，导致类型错误或比较失败。"
+                    "请追踪 return 语句，确认返回值的层级是否正确。"
+                )
+            elif isinstance(ret.value, ast.Call):
+                # Function call return → wrap in str()
+                new_ret = ast.Return(value=ast.Call(
+                    func=ast.Name(id="str", ctx=ast.Load()),
+                    args=[ret.value],
+                    keywords=[],
+                ))
+                node.body[idx] = new_ret
+                self.mutated = True
+                self.description = (
+                    "L1-数据流故障：函数的返回值被意外转换成了它的字符串表示。"
+                    "下游调用方期望原始类型（dict/list/对象）却收到了 str，导致属性访问失败。"
+                    "请定位被意外序列化的返回值。"
+                )
+
+            return node
+
+        # Strategy 2 (aggressive): inject a side-effect before first real statement
+        if self.aggressive and node.body:
+            first = node.body[0]
+            if isinstance(first, ast.Expr) and isinstance(first.value, ast.Constant):
+                pass  # docstring, skip
+
+        return self.generic_visit(node)
 
 
 def mark_code_passed(user_id: int, session_id: int, code: str) -> dict:
@@ -1002,6 +1134,104 @@ def _mark_learning_path_lab_complete(conn, user_id: int, exercise_id: str) -> No
     )
 
 
+def _score_explanation(explanation: str, mutation_desc: str, exercise_id: str, repair_code: str) -> int:
+    """对故障修复的根因说明进行实质性评分（0-20）。
+
+    评分维度：
+    - 基础门槛（0-6分）：长度、非重复字符
+    - 内容质量（0-8分）：包含代码相关术语、定位到具体位置
+    - 因果推理（0-6分）：说明故障机制、修复策略
+
+    纯按字符数计分已废弃——学生必须展示对故障的理解。
+    """
+    if not explanation:
+        return 0
+
+    score = 0
+
+    # ── 基础门槛（0-6分）──
+    text = explanation.strip()
+    length = len(text)
+
+    # 门槛 1：最少 20 个字符；20-40 之间给部分分
+    if length < 20:
+        return 0
+    if length < 40:
+        # 20-40 字符：给基础分但不进入完整评分
+        score += 2
+        unique_chars = len(set(text.lower()))
+        if unique_chars < 5:
+            return 2  # 明显灌水
+        score += 1  # 及格线以上
+        # 额外奖励：包含实质性代码术语
+        if re.search(r'(?<![a-zA-Z])[a-zA-Z_]\w{2,}(?![a-zA-Z])', text):
+            score += 1
+        if any(kw in text for kw in ["函数", "return", "变量", "错误", "bug", "类型", "修复", "参数"]):
+            score += 1
+        return min(score, 8)  # 短说明最多 8 分
+
+    score += 3  # 达到标准长度
+
+    # 门槛 2：不能是纯重复字符或纯标点
+    unique_chars = len(set(text.lower()))
+    if unique_chars < 6:
+        return 3  # 明显灌水，只给长度基础分
+    char_diversity = unique_chars / max(length, 1)
+    if char_diversity < 0.2:
+        return 4  # 低质量
+    score += 2 if char_diversity >= 0.4 else 1
+
+    # 门槛 3：包含中文字符（说明是实质性中文描述）或英文术语
+    has_chinese = any('一' <= c <= '鿿' for c in text)
+    has_english_terms = bool(re.search(r'[a-zA-Z]{4,}', text))
+    if has_chinese:
+        score += 1
+    if has_english_terms:
+        score += 1
+
+    # ── 内容质量（0-8分）──
+    # 检查是否引用了具体的代码元素
+    # 注意：\b 在中文 Unicode 环境不可靠（Python 将中文视为 \w），
+    # 改用 ASCII 友好的边界断言
+    code_terms = re.findall(r'(?<![a-zA-Z])[a-zA-Z_]\w{2,}(?![a-zA-Z])', text)
+    meaningful_terms = [t for t in code_terms if t.lower() not in {
+        "the", "and", "for", "that", "this", "with", "from", "your", "have",
+        "what", "when", "were", "been", "they", "them", "then", "than",
+        "there", "their", "just", "like", "some", "also",
+    }]
+
+    if len(meaningful_terms) >= 5:
+        score += 3
+    elif len(meaningful_terms) >= 3:
+        score += 2
+    elif len(meaningful_terms) >= 1:
+        score += 1
+
+    # 检查是否提及了代码位置（函数名、变量名、行号等）
+    # 中文不使用 \b，直接按子串匹配
+    code_location_keywords = [
+        "函数", "方法", "类", "模块", "文件", "行", "return", "变量", "参数", "属性",
+        "修改", "改动", "变更", "替换", "删除", "添加", "调整", "修复", "恢复", "纠正",
+    ]
+    location_hits = sum(1 for kw in code_location_keywords if kw in text)
+    # 额外：检查英文代码相关模式
+    if re.search(r'\bdef\s+\w+|\.py\b|solution|app\.py', text, re.IGNORECASE):
+        location_hits += 1
+    score += min(location_hits * 2, 4)
+
+    # ── 因果推理（0-6分）──
+    # 检查是否解释了"为什么"
+    causality_keywords = [
+        "因为", "由于", "原因", "导致", "造成", "引起", "触发", "源于",
+        "所以", "因此", "故而", "于是", "结果", "后果", "影响",
+        "根因", "根源", "本质", "根本", "底层", "源头",
+    ]
+    causality_hits = sum(1 for kw in causality_keywords if kw in text)
+    score += min(causality_hits * 2, 6)
+
+    return min(score, 20)
+
+
 def submit_repair(user_id: int, session_id: int, code: str, explanation: str) -> dict:
     """提交故障修复并评分。
 
@@ -1014,12 +1244,18 @@ def submit_repair(user_id: int, session_id: int, code: str, explanation: str) ->
 
     evaluation = _judge_exercise_code(row["exercise_id"], code)
     explanation = explanation.strip()
-    explanation_score = min(20, round(len(explanation) / 4))
+    explanation_score = _score_explanation(
+        explanation,
+        row["mutation_description"] or "",
+        row["exercise_id"] or "",
+        code,
+    )
     test_score = 80 if evaluation["passed"] else round(
         80 * evaluation.get("passed_count", 0) / max(evaluation.get("total", 1), 1)
     )
     repair_score = test_score + explanation_score
-    repair_passed = evaluation["passed"] and explanation_score >= 8
+    # 修复通过条件：测试全部通过 且 根因说明有意义（≥10/20分）
+    repair_passed = evaluation["passed"] and explanation_score >= 10
 
     conn = get_db()
     process_score, evidence = _process_evidence(conn, session_id, row["started_at"], row["ai_usage"] or "")

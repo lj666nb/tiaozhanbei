@@ -29,7 +29,7 @@ from services.judge_service import get_flagship_exercise, judge_submission
 
 WORKSPACE_ROOT = Path(BASE_DIR) / "data" / "lab_workspaces"
 MAX_FILE_SIZE = 300_000
-SKIP_PARTS = {".venv", "__pycache__", ".git", ".pytest_cache"}
+SKIP_PARTS = {".venv", "__pycache__", ".git", ".pytest_cache", ".cache"}
 TUTOR_HISTORY_LIMIT = 12
 logger = logging.getLogger(__name__)
 TRACK_CONFIG = {

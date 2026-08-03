@@ -84,7 +84,12 @@ function getProgress(moduleId) {
   const module = MODULES.find(item => item.id === moduleId)
   return (module?.tasks || []).filter(task => {
     const progress = progressData.value[task.id]
-    return Boolean(progress?.verified || progress?.skipped)
+    return Boolean(
+      progress?.verified
+      || progress?.skipped
+      || progress?.score != null
+      || (progress?.acceptance_passed && progress?.completed_stages?.includes('acceptance')),
+    )
   }).length
 }
 
