@@ -70,6 +70,7 @@ def _session_dict(row) -> dict:
         ("defense_questions_json", []),
         ("defense_answers_json", []),
         ("report_json", {}),
+        ("variant_hints_json", []),
     ):
         data[column.removesuffix("_json")] = _loads(data.pop(column, None), default)
     data["verified"] = bool(data.get("verified"))
@@ -1679,13 +1680,14 @@ def generate_variant(user_id: int, session_id: int) -> dict:
         raise ValueError("该实验暂无变式迁移场景，请联系教师添加")
 
     scenario = variant_spec["scenario"]
+    hints = json.dumps(variant_spec.get("hints", []), ensure_ascii=False)
     now = datetime.now().isoformat()
     conn = get_db()
     conn.execute(
         """UPDATE capability_sessions
-           SET variant_scenario = ?, status = 'variant_pending'
+           SET variant_scenario = ?, variant_hints_json = ?, status = 'variant_pending'
            WHERE id = ? AND user_id = ?""",
-        (scenario, session_id, user_id),
+        (scenario, hints, session_id, user_id),
     )
     conn.commit()
     updated = conn.execute("SELECT * FROM capability_sessions WHERE id = ?", (session_id,)).fetchone()
@@ -1693,6 +1695,7 @@ def generate_variant(user_id: int, session_id: int) -> dict:
     data = _session_dict(updated)
     data["variant_scenario"] = scenario
     data["variant_target"] = variant_spec.get("target", "")
+    data["variant_hints"] = variant_spec.get("hints", [])
     return data
 
 
@@ -1743,10 +1746,11 @@ def switch_project_state(user_id: int, session_id: int, target_state: str) -> di
         # 规格可能在课程迭代中修正。始终使用当前规格，避免旧会话继续加载
         # 已废弃或事实错误的变式说明。
         scenario = str(variant_spec["scenario"])
+        hints = json.dumps(variant_spec.get("hints", []), ensure_ascii=False)
         conn = get_db()
         conn.execute(
-            "UPDATE capability_sessions SET variant_scenario = ? WHERE id = ? AND user_id = ?",
-            (scenario, session_id, user_id),
+            "UPDATE capability_sessions SET variant_scenario = ?, variant_hints_json = ? WHERE id = ? AND user_id = ?",
+            (scenario, hints, session_id, user_id),
         )
         conn.commit()
         conn.close()

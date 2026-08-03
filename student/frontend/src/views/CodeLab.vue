@@ -494,6 +494,31 @@
           请在 <b>solution.py</b> 中实现上述变式函数。你可以复用原有代码，但必须适应新的输入/输出契约。
           完成后点击下方按钮提交判题。
         </p>
+        <div v-if="capabilityStatus !== 'verified' && variantHints.length" class="hint-ladder">
+          <button
+            class="hint-reveal"
+            :disabled="variantHintCount >= variantHints.length"
+            @click="revealNextVariantHint"
+          >
+            <el-icon><MagicStick /></el-icon>
+            {{
+              variantHintCount >= variantHints.length
+                ? '已查看全部提示'
+                : variantHintCount
+                  ? `继续查看提示 ${variantHintCount + 1}`
+                  : '我卡住了，给我一级提示'
+            }}
+          </button>
+          <div
+            v-for="hint in visibleVariantHints"
+            :key="hint.level"
+            class="hint-card"
+          >
+            <span>提示 {{ hint.level }}</span>
+            <b>{{ hint.title }}</b>
+            <p>{{ hint.content }}</p>
+          </div>
+        </div>
         <div v-if="capabilityStatus !== 'verified'" class="variant-actions">
           <button class="primary-action dialog-submit" :disabled="variantBusy" @click="handleVariantSubmit">
             <el-icon v-if="variantBusy" class="is-loading"><Loading /></el-icon>
@@ -707,6 +732,12 @@ const repairExplanation = ref('')
 const variantCode = ref('')
 const variantBusy = ref(false)
 const variantDialog = ref(false)
+const variantHintCount = ref(0)
+const variantHints = computed(() => {
+  const hints = capabilitySession.value?.variant_hints
+  return Array.isArray(hints) ? hints : []
+})
+const visibleVariantHints = computed(() => variantHints.value.slice(0, variantHintCount.value))
 const capabilityStatus = computed(() => capabilitySession.value?.status || 'coding')
 const hasVariant = computed(() => Boolean(capabilitySession.value?.has_variant))
 const projectState = computed(() => workspace.value?.project_state || 'initial')
@@ -2020,6 +2051,12 @@ async function handleTopAction() {
 }
 
 // ── 变式迁移 ──
+function revealNextVariantHint() {
+  const max = variantHints.value.length
+  if (variantHintCount.value >= max) return
+  variantHintCount.value = Math.min(variantHintCount.value + 1, max)
+}
+
 async function ensureVariantScenario() {
   if (capabilitySession.value?.variant_scenario) return
   capabilityBusy.value = true
@@ -2035,6 +2072,7 @@ async function ensureVariantScenario() {
 
 async function openVariantSubmission() {
   await ensureVariantScenario()
+  variantHintCount.value = 0
   const reopening = capabilityStatus.value === 'verified'
   if (projectState.value !== 'variant' || reopening) {
     const switched = await switchProjectState('variant', { force: reopening })

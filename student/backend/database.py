@@ -374,6 +374,7 @@ def init_db():
     _run_migration(conn, "capability_sessions", "variant_code TEXT DEFAULT ''", "能力验证表迁移: 变式代码")
     _run_migration(conn, "capability_sessions", "variant_score REAL DEFAULT 0", "能力验证表迁移: 变式评分")
     _run_migration(conn, "capability_sessions", "variant_passed_at TIMESTAMP", "能力验证表迁移: 变式完成时间")
+    _run_migration(conn, "capability_sessions", "variant_hints_json TEXT DEFAULT '[]'", "能力验证表迁移: 变式提示")
 
     # 编程能力真实性验证会话：代码正确只是起点，答辩与故障修复通过后才算掌握
     conn.executescript("""

@@ -73,7 +73,24 @@ ADDITIONAL_VARIANT_SPECS = {
                 ],
                 "expected": {"tool": "shutdown_grid", "args": {}, "decision": "deny"},
             },
+        ],        "hints": [
+                {
+                        "level": 1,
+                        "title": "判断顺序很重要",
+                        "content": "权限检查有固定的优先级——先排除非法输入，再检查是否在允许范围内，最后判断是否需要额外确认。想想：如果工具根本不在允许列表中，还需要检查它是否高风险吗？"
+                },
+                {
+                        "level": 2,
+                        "title": "三层决策模型",
+                        "content": "函数需要按顺序做三件事：(1) 验证 call 中各字段的类型是否合法 (2) 检查工具名是否在 allowed_tools 中，不在则拒绝 (3) 检查是否在高风险列表中且用户未确认，是则要求确认，否则放行。注意：输入验证要放在最前面，尽早抛出 ValueError。"
+                },
+                {
+                        "level": 3,
+                        "title": "分步实现指南",
+                        "content": "第一步：检查 call['name'] 是否为非空字符串、call['args'] 是否为 dict、call['confirmed'] 是否为 bool，任一不满足则 raise ValueError。\n第二步：若 call['name'] 不在 allowed_tools 中，返回 decision='deny'。\n第三步：若 call['name'] 在 high_risk_tools 中且 call['confirmed'] 为 False，返回 decision='confirm'。\n第四步：其余情况返回 decision='allow'。\n注意使用 dict(call) 或 copy 创建新字典，不要修改原始输入。"
+                }
         ],
+
     },
     "2-4": {
         "target": "run_incident_response_plan",
@@ -121,7 +138,24 @@ ADDITIONAL_VARIANT_SPECS = {
                 "args": [["isolate", "restart"], {"isolate": True}],
                 "exception": "ValueError",
             },
+        ],        "hints": [
+                {
+                        "level": 1,
+                        "title": "安全第一的设计",
+                        "content": "这个场景的核心是「失败即停止」——想象你在执行故障恢复脚本，如果重启失败就继续释放流量，会造成更严重的后果。关键点：如何在遍历过程中检测到失败并立即返回？"
+                },
+                {
+                        "level": 2,
+                        "title": "遍历与提前退出",
+                        "content": "先验证 plan 非空且 tool_results 包含所有步骤的结果——缺失任何一步都应拒绝执行。然后用 for 循环遍历 plan，每步检查 tool_results[step]：True 则追加到 executed 列表继续，False 则立即返回失败状态并标记 failed_step。循环正常结束说明全部成功。"
+                },
+                {
+                        "level": 3,
+                        "title": "分步实现指南",
+                        "content": "第一步：if not plan or any(step not in tool_results for step in plan): raise ValueError。\n第二步：创建 executed = []，遍历 plan 中的每个 step。\n第三步：executed.append(step)，若 tool_results[step] 为 False，返回 {'executed': executed, 'status': 'failed', 'failed_step': step}。\n第四步：循环结束后返回 {'executed': executed, 'status': 'completed', 'failed_step': None}。\n注意用 plan.copy() 避免修改输入列表，返回新字典。"
+                }
         ],
+
     },
     "3-1": {
         "target": "merge_telemetry_state",
@@ -159,7 +193,24 @@ ADDITIONAL_VARIANT_SPECS = {
                 "args": [{"alerts": []}, {"alerts": "smoke"}, {"alerts": "append"}],
                 "exception": "ValueError",
             },
+        ],        "hints": [
+                {
+                        "level": 1,
+                        "title": "策略驱动的合并",
+                        "content": "不是简单覆盖——不同字段有不同的合并规则。温度要覆盖（取最新值），告警要追加（保留历史），计数器要累加。关键是：从哪里读取每个字段该用什么策略？"
+                },
+                {
+                        "level": 2,
+                        "title": "遍历 + 查表模式",
+                        "content": "先复制 current 避免修改输入。然后遍历 update 的每个字段，用 policies.get(field, 'replace') 查策略。append 时需要确保新旧值都是列表再拼接；sum 时需要确保都是非布尔数字再相加；默认直接覆盖。类型不匹配时抛出 ValueError。"
+                },
+                {
+                        "level": 3,
+                        "title": "分步实现指南",
+                        "content": "第一步：result = dict(current) 创建副本。\n第二步：for key, new_val in update.items(): 获取 policy = policies.get(key, 'replace')。\n第三步：若 policy == 'append'，验证 isinstance(result.get(key), list) and isinstance(new_val, list) 后 result[key] = result.get(key, []) + new_val。\n第四步：若 policy == 'sum'，验证两者都是 (int|float) 且非 bool 后 result[key] = result.get(key, 0) + new_val。\n第五步：若 policy == 'replace' 直接 result[key] = new_val；否则 raise ValueError。"
+                }
         ],
+
     },
     "3-2": {
         "target": "route_facility_incident",
@@ -202,7 +253,24 @@ ADDITIONAL_VARIANT_SPECS = {
                 "args": [{"category": "power", "confidence": True, "severity": "low", "life_safety": False}],
                 "exception": "ValueError",
             },
+        ],        "hints": [
+                {
+                        "level": 1,
+                        "title": "优先级分层的判断",
+                        "content": "不是简单的 if-elif 链——有些条件（如生命安全）必须优先于其他所有规则。想想：如果一个事件既涉及生命安全又属于 network 类别，应该路由到哪里？哪个条件应该写在最前面？"
+                },
+                {
+                        "level": 2,
+                        "title": "先验证，再按优先级判断",
+                        "content": "首先验证 confidence 是 0~1 之间的非布尔数字，不是则抛 ValueError。然后按优先级从高到低判断：(1) life_safety 或 severity=='critical' → emergency (2) confidence < 0.7 → manual_review (3) 按 category 路由到对应团队。未知类别抛 ValueError。"
+                },
+                {
+                        "level": 3,
+                        "title": "分步实现指南",
+                        "content": "第一步：验证 isinstance(incident['confidence'], (int, float)) and not isinstance(incident['confidence'], bool) and 0 <= incident['confidence'] <= 1，不满足则 raise ValueError。\n第二步：if incident.get('life_safety') or incident.get('severity') == 'critical': return 'emergency'。\n第三步：if incident['confidence'] < 0.7: return 'manual_review'。\n第四步：用 if-elif 按 category 返回对应团队：network→network_team, power/water→facility_team, access→security_team，else raise ValueError。"
+                }
         ],
+
     },
     "3-3": {
         "target": "create_delivery_checkpoint",
@@ -250,7 +318,24 @@ ADDITIONAL_VARIANT_SPECS = {
                 "args": ["DEL-9", {"location": "A楼"}, 1],
                 "exception": "ValueError",
             },
+        ],        "hints": [
+                {
+                        "level": 1,
+                        "title": "白名单过滤",
+                        "content": "配送车断电恢复时不应保留 api_key 等敏感信息。关键思路：不是保存所有字段，而是只允许白名单中的字段（location、next_action、cargo）进入检查点。想想如何从 state 字典中只提取这些字段？"
+                },
+                {
+                        "level": 2,
+                        "title": "验证 + 过滤 + 组装",
+                        "content": "函数分三步：(1) 验证 task_id 非空字符串、version 为正整数、state 包含必需字段 (2) 从 state 中只提取 location、next_action 和可选的 cargo，忽略其他键 (3) 组装返回字典，resume_token 格式为 f'{task_id}:{version}'。"
+                },
+                {
+                        "level": 3,
+                        "title": "分步实现指南",
+                        "content": "第一步：验证 isinstance(task_id, str) and task_id.strip() 非空；验证 isinstance(version, int) and not isinstance(version, bool) and version > 0；验证 'location' in state and 'next_action' in state。\n第二步：filtered = {'location': state['location'], 'next_action': state['next_action']}，若 'cargo' in state 则 filtered['cargo'] = state['cargo']。\n第三步：return {'task_id': task_id, 'version': version, 'state': filtered, 'resume_token': f'{task_id}:{version}'}。"
+                }
         ],
+
     },
     "4-1": {
         "target": "retrieve_library_resources",
@@ -303,7 +388,24 @@ ADDITIONAL_VARIANT_SPECS = {
                 "args": [[], [], 0, 0, "计算机"],
                 "exception": "ValueError",
             },
+        ],        "hints": [
+                {
+                        "level": 1,
+                        "title": "双维度打分",
+                        "content": "每个资源的得分由两部分组成：查询词匹配分 + 院系偏好加分。先想想如何去掉 query_terms 中的重复词，然后在资源的 terms 列表中逐一检查命中。"
+                },
+                {
+                        "level": 2,
+                        "title": "计算 → 过滤 → 排序 → 截断",
+                        "content": "流程分四步：(1) 对 query_terms 去重得到 terms_set (2) 遍历 resources，计算 score = 命中数 + 院系加分 (3) 过滤 score < min_score 的项 (4) 按 score 降序、id 升序稳定排序后取前 top_k 条。返回时只保留 id、title、score 三个字段。"
+                },
+                {
+                        "level": 3,
+                        "title": "分步实现指南",
+                        "content": "第一步：if top_k <= 0 or min_score < 0: raise ValueError；terms_set = list(set(query_terms))。\n第二步：for r in resources: score = sum(1 for t in terms_set if t in r.get('terms', []))；if r.get('department') == department: score += 1。\n第三步：if score >= min_score: 收集 {'id': r['id'], 'title': r['title'], 'score': score}。\n第四步：sorted(results, key=lambda x: (-x['score'], x['id']))[:top_k]。"
+                }
         ],
+
     },
     "4-2": {
         "target": "build_auditable_policy_answer",
@@ -362,7 +464,24 @@ ADDITIONAL_VARIANT_SPECS = {
                     "stale_sources": 0,
                 },
             },
+        ],        "hints": [
+                {
+                        "level": 1,
+                        "title": "可靠性与时效性",
+                        "content": "校务回答必须有据可查。关键约束有两个：证据必须足够新（近两年内），且过期证据要明确告知用户。想想：空问题、非法年份、不完整的证据条目——这些边界情况应该怎么处理？"
+                },
+                {
+                        "level": 2,
+                        "title": "三步处理流水线",
+                        "content": "(1) 验证输入合法性：question 非空、current_year 是正整数、每条 evidence 含 id/text/year (2) 筛选有效证据 year >= current_year-1，最多取前三条 (3) 无证据→无法确认转人工；有有效→分号连接正文并返回 citations；全过期→提示过期转人工。务必统计 stale_sources 数量。"
+                },
+                {
+                        "level": 3,
+                        "title": "分步实现指南",
+                        "content": "第一步：if not question.strip() or not isinstance(current_year, int) or isinstance(current_year, bool): raise ValueError；遍历 evidence 确保每条含 id、text、year。\n第二步：valid = [e for e in evidence if e['year'] >= current_year - 1][:3]；stale = len([e for e in evidence if e['year'] < current_year - 1])。\n第三步：if not evidence: answer='暂未找到可靠政策依据...', needs_human=True。\nelif not valid: answer='现有资料已过期...', needs_human=True。\nelse: answer='根据现行政策：' + '；'.join(e['text'] for e in valid), citations=[e['id'] for e in valid], needs_human=False。"
+                }
         ],
+
     },
     "4-3": {
         "target": "handle_campus_it_ticket",
@@ -448,6 +567,23 @@ ADDITIONAL_VARIANT_SPECS = {
                     "trace": ["validate", "route", "human"],
                 },
             },
+        ],        "hints": [
+                {
+                        "level": 1,
+                        "title": "多层决策编排",
+                        "content": "这是最复杂的变式——你需要像调度员一样编排多个决策层。先画出决策树：紧急优先 → 置信度检查 → 按类别分流。每个分支的返回格式都一样（ticket_id/route/answer/citations/trace），保持统一。"
+                },
+                {
+                        "level": 2,
+                        "title": "按优先级编排决策",
+                        "content": "函数结构：(1) 验证 ticket 字段合法性 (2) 初始化 trace=['validate','route'] (3) 按优先级判断：urgent→onsite 最高；confidence<0.65→human；然后按 category 分流——device 查 device_status、account 找最高 priority 知识、chat 返回服务说明；未知类别抛错 (4) 每个分支都要追加对应节点到 trace。"
+                },
+                {
+                        "level": 3,
+                        "title": "分步实现指南",
+                        "content": "第一步：验证 ticket['id'] 非空字符串、confidence 是 0~1 数字、category 是合法值。\n第二步：trace = ['validate', 'route']；若 ticket.get('urgent')：trace.append('onsite')，返回现场工程师已安排。\n第三步：if ticket['confidence'] < 0.65: trace.append('human')，返回转人工。\n第四步：按 category 处理——device: status = device_status.get(ticket.get('device_id',''))，存在则 trace.append('device') 并返回状态描述，不存在则转 onsite；account: 从 knowledge 中筛选 tags 含 'account' 的按 priority 降序取第一个，trace.append('knowledge')，返回知识文本和 citations=[k['id']]；chat: trace.append('chat')，返回 IT 服务范围说明。"
+                }
         ],
+
     },
 }
