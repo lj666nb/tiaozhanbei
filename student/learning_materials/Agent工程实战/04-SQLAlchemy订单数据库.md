@@ -10,6 +10,8 @@
 
 如果没有数据库，Agent 只能编造答案（幻觉）。有了数据库，Agent 的回答就有了**可验证的事实基础**。
 
+> 🧠 **这个数据库很特别**：它不是你写完就扔的一次性练习。项目 5（提示模板）、项目 6（工具调用）、项目 7（工具 Agent）以及最终的毕业项目，**全部都会导入并查询你在这里创建的同一个 `orders.db` 文件**。你正在构建的是整个订单客服系统的数据基础层。
+
 ### 什么是 ORM？
 
 > 🧠 **关键概念：ORM（Object-Relational Mapping）** 让你用 Python 类来操作数据库表，而不用手写 SQL 字符串。你定义 `class Order(Base)`，SQLAlchemy 自动把它映射到 `orders` 表。
@@ -29,9 +31,9 @@ Python:     [<Order id=1 customer='张三' ...>, ...]
 ### 本节目标
 
 1. **理解 ORM**：为什么不用手写 SQL
-2. **定义模型**：用 SQLAlchemy 声明式语法定义 `Order` 类
-3. **创建数据库**：`create_engine` + `Base.metadata.create_all`
-4. **实现查询**：按状态、客户、金额组合过滤，返回字典列表
+2. **定义模型**：用 SQLAlchemy 声明式语法定义包含 11 列的 `Order` 类
+3. **创建数据库**：`create_engine` + `Base.metadata.create_all`，生成持久化的 `orders.db` 文件
+4. **实现查询**：支持 7 种过滤器（编号、客户、类别、状态、快递、金额范围），返回字典列表
 
 ---
 
@@ -55,7 +57,7 @@ pip install -r requirements.txt
 
 ### 3.1 最小可运行示例
 
-先用 Python 交互环境验证模型定义能否正常创建表：
+以下代码放入 `solution.py`（**只放定义，不放执行语句**——判题安全检查不允许模块顶层有裸函数调用）：
 
 ```python
 from sqlalchemy import create_engine, Column, Integer, String, Float
@@ -67,15 +69,28 @@ class Order(Base):
     __tablename__ = 'orders'
 
     id = Column(Integer, primary_key=True)
-    customer_name = Column(String, nullable=False)
-    product = Column(String, nullable=False)
+    order_id = Column(String(20), unique=True, nullable=False)
+    customer_name = Column(String(50), nullable=False)
+    customer_phone = Column(String(20))
+    product = Column(String(100), nullable=False)
+    category = Column(String(30), nullable=False)
     amount = Column(Float, nullable=False)
-    status = Column(String, nullable=False, default='pending')
+    status = Column(String(20), nullable=False, default='pending')
+    carrier = Column(String(30))
+    eta = Column(String(20))
+    created_at = Column(String(20), nullable=False)
+```
 
-# 验证：创建内存数据库
-engine = create_engine('sqlite:///test_orders.db')
+在终端中交互验证模型定义是否正确：
+
+```bash
+python -c "
+from solution import Base, Order
+from sqlalchemy import create_engine
+engine = create_engine('sqlite:///orders.db')
 Base.metadata.create_all(engine)
-print('表创建成功！')
+print('表创建成功！orders.db 已生成')
+"
 ```
 
 <!-- lab-check:first_llm_call -->
@@ -84,13 +99,19 @@ print('表创建成功！')
 
 ### 3.2 列类型速查
 
-| 列 | 类型 | 说明 |
-|-----|------|------|
-| `id` | `Integer, primary_key=True` | 主键，自动递增 |
-| `customer_name` | `String, nullable=False` | 不能为空 |
-| `product` | `String, nullable=False` | 商品名 |
-| `amount` | `Float, nullable=False` | 订单金额 |
-| `status` | `String, default='pending'` | 默认值为 pending |
+| 列 | 类型 | 约束 | 说明 |
+|-----|------|------|------|
+| `id` | `Integer, primary_key=True` | NOT NULL | 主键，自动递增 |
+| `order_id` | `String(20), unique=True` | NOT NULL, UNIQUE | 业务编号，如 `ORD-20260730-0001` |
+| `customer_name` | `String(50)` | NOT NULL | 客户姓名 |
+| `customer_phone` | `String(20)` | 可空 | 联系电话（可空——不是所有渠道都需要） |
+| `product` | `String(100)` | NOT NULL | 商品名称 |
+| `category` | `String(30)` | NOT NULL | 商品类别：图书 / 电子产品 / 服装 / 食品 等 |
+| `amount` | `Float` | NOT NULL | 订单金额（元） |
+| `status` | `String(20)` | NOT NULL, default='pending' | 状态：pending → paid → shipped → delivered；也可能 refunding → refunded 或 cancelled |
+| `carrier` | `String(30)` | 可空 | 快递公司（发货后才填充），如 顺丰速运 / 中通快递 / 京东物流 |
+| `eta` | `String(20)` | 可空 | 预计送达日期（发货后才填充） |
+| `created_at` | `String(20)` | NOT NULL | 订单创建日期（ISO 格式） |
 
 ---
 
@@ -118,6 +139,8 @@ def setup_order_db(db_path='orders.db'):
 
 每个查询应该创建自己的会话实例，用完即关。返回 `Session` 类（工厂）让调用方自己管理会话生命周期。
 
+以下为使用示例（在 `app.py` 或终端中运行，**不要放入 solution.py**）：
+
 ```python
 engine, Session = setup_order_db('orders.db')
 session = Session()         # 创建会话
@@ -138,29 +161,47 @@ def query_orders(session, **filters):
     """按可选条件查询订单。
     
     支持的过滤器:
-        status: 订单状态 ('paid', 'pending', 'cancelled')
-        customer_name: 客户名
-        min_amount: 最小金额
+        order_id:       订单编号，精确匹配
+        customer_name:  客户名，模糊匹配（LIKE %xxx%）
+        category:       商品类别，精确匹配
+        status:         订单状态，精确匹配
+        carrier:        快递公司，精确匹配
+        min_amount:     最低金额（>=）
+        max_amount:     最高金额（<=）
     
     Returns:
-        list[dict]: 订单字典列表
+        list[dict]: 订单字典列表（含全部11列）
     """
     query = session.query(Order)
     
+    if 'order_id' in filters:
+        query = query.filter(Order.order_id == filters['order_id'])
+    if 'customer_name' in filters:
+        query = query.filter(Order.customer_name.like(f"%{filters['customer_name']}%"))
+    if 'category' in filters:
+        query = query.filter(Order.category == filters['category'])
     if 'status' in filters:
         query = query.filter(Order.status == filters['status'])
-    if 'customer_name' in filters:
-        query = query.filter(Order.customer_name == filters['customer_name'])
+    if 'carrier' in filters:
+        query = query.filter(Order.carrier == filters['carrier'])
     if 'min_amount' in filters:
         query = query.filter(Order.amount >= filters['min_amount'])
+    if 'max_amount' in filters:
+        query = query.filter(Order.amount <= filters['max_amount'])
     
     return [
         {
             'id': order.id,
+            'order_id': order.order_id,
             'customer_name': order.customer_name,
+            'customer_phone': order.customer_phone,
             'product': order.product,
+            'category': order.category,
             'amount': order.amount,
             'status': order.status,
+            'carrier': order.carrier,
+            'eta': order.eta,
+            'created_at': order.created_at,
         }
         for order in query.all()
     ]
@@ -172,17 +213,25 @@ def query_orders(session, **filters):
 session.query(Order)              =>  SELECT * FROM orders
   .filter(Order.status == 'paid') =>  WHERE status = 'paid'
   .filter(Order.amount >= 100)    =>  AND amount >= 100
+  .filter(Order.category == '图书') =>  AND category = '图书'
   .all()                          =>  执行查询，返回列表
 ```
 
-> 🧠 **链式 `.filter()`**：每次 `.filter()` 返回新的查询对象，多个 filter 之间是 **AND** 关系。如果想用 OR，用 `or_()`。
+> 🧠 **链式 `.filter()`**：每次 `.filter()` 返回新的查询对象，多个 filter 之间是 **AND** 关系。客户名使用 `.like()` 实现模糊搜索。
+>
+> 🧠 **min_amount 和 max_amount 可以组合**：同时传入 `min_amount=100, max_amount=200` 就是金额在 100~200 之间的订单。
 
 ### 5.3 返回字典而非 ORM 对象
 
 ```python
 # 不推荐：返回 Order 对象（与数据库会话绑定，会话关闭后访问属性可能出错）
 # 推荐：返回普通字典（独立、可序列化、随时可用）
-return [{'id': o.id, 'customer_name': o.customer_name, 'product': o.product, 'amount': o.amount, 'status': o.status} for o in query.all()]
+return [
+    {'id': o.id, 'order_id': o.order_id, 'customer_name': o.customer_name,
+     'product': o.product, 'category': o.category, 'amount': o.amount,
+     'status': o.status, 'carrier': o.carrier, 'eta': o.eta, ...}
+    for o in query.all()
+]
 ```
 
 ---
@@ -192,25 +241,61 @@ return [{'id': o.id, 'customer_name': o.customer_name, 'product': o.product, 'am
 将 `solution.py` 中的函数导入 `app.py`，完成端到端验证：
 
 ```python
-from solution import setup_order_db, query_orders, Order
+from sqlalchemy import create_engine
+from sqlalchemy.orm import sessionmaker
+from solution import setup_order_db, query_orders, Order, Base
 
 engine, Session = setup_order_db('orders.db')
 session = Session()
 
 # 插入测试数据（仅首次运行）
-from solution import Base
 Base.metadata.create_all(engine)
 if session.query(Order).count() == 0:
     session.add_all([
-        Order(customer_name='张三', product='Python教程', amount=99.0, status='paid'),
-        Order(customer_name='李四', product='AI入门', amount=199.0, status='pending'),
+        Order(order_id='ORD-20260730-0001', customer_name='张三', customer_phone='13800001111',
+              product='Python编程从入门到实践', category='图书', amount=89.00, status='delivered',
+              carrier='顺丰速运', eta='2026-07-25', created_at='2026-07-20'),
+        Order(order_id='ORD-20260730-0002', customer_name='李四', customer_phone='13800002222',
+              product='AI智能体开发实战', category='图书', amount=199.00, status='shipped',
+              carrier='中通快递', eta='2026-08-05', created_at='2026-07-28'),
+        Order(order_id='ORD-20260730-0003', customer_name='王五', customer_phone='13800003333',
+              product='机械键盘K850', category='电子产品', amount=459.00, status='paid',
+              carrier=None, eta=None, created_at='2026-07-30'),
+        Order(order_id='ORD-20260730-0004', customer_name='赵六', customer_phone='13800004444',
+              product='蓝牙耳机Pro', category='电子产品', amount=299.00, status='refunding',
+              carrier=None, eta=None, created_at='2026-07-29'),
+        Order(order_id='ORD-20260730-0005', customer_name='孙七', customer_phone='13800005555',
+              product='有机绿茶礼盒', category='食品', amount=128.00, status='pending',
+              carrier=None, eta=None, created_at='2026-08-01'),
+        Order(order_id='ORD-20260730-0006', customer_name='周八', customer_phone='13800006666',
+              product='Python教程进阶版', category='图书', amount=149.00, status='shipped',
+              carrier='京东物流', eta='2026-08-03', created_at='2026-07-31'),
+        Order(order_id='ORD-20260730-0007', customer_name='吴九', customer_phone='13800007777',
+              product='智能手表S3', category='电子产品', amount=899.00, status='delivered',
+              carrier='顺丰速运', eta='2026-07-22', created_at='2026-07-18'),
+        Order(order_id='ORD-20260730-0008', customer_name='郑十', customer_phone='13800008888',
+              product='纯棉T恤三件装', category='服装', amount=199.00, status='cancelled',
+              carrier=None, eta=None, created_at='2026-08-02'),
+        Order(order_id='ORD-20260730-0009', customer_name='张三', customer_phone='13800001111',
+              product='数据分析实战', category='图书', amount=79.00, status='paid',
+              carrier=None, eta=None, created_at='2026-08-01'),
+        Order(order_id='ORD-20260730-0010', customer_name='李白', customer_phone='13800009999',
+              product='深度学习框架', category='图书', amount=259.00, status='refunded',
+              carrier=None, eta=None, created_at='2026-07-15'),
     ])
     session.commit()
+    print(f"已插入 {session.query(Order).count()} 条订单数据。")
 
 # 查询示例
 paid_orders = query_orders(session, status='paid')
 for o in paid_orders:
-    print(f"订单{o['id']}: {o['customer_name']} - {o['product']} ¥{o['amount']}")
+    print(f"[{o['order_id']}] {o['customer_name']} - {o['product']} ¥{o['amount']}")
+
+# 演示新过滤器：按快递公司查询
+shipped = query_orders(session, carrier='顺丰速运')
+print(f"\n顺丰配送的订单：{len(shipped)} 条")
+for o in shipped:
+    print(f"  {o['order_id']}: {o['product']} → 预计 {o['eta']} 送达")
 
 session.close()
 ```
@@ -229,6 +314,9 @@ session.close()
 
 ## 八、常见问题
 
+### Q: 这个数据库在后续项目中怎么用？
+**A:** 项目 5（提示模板）、项目 6（工具调用）、项目 7（工具 Agent）和毕业项目（端到端客服），**全部**会导入并查询你现在创建的 `orders.db`。这就是为什么我们要用真实数据建模——它不是一次性的练习题，而是整个客服系统的数据基础层。后续项目的教程会教你用 `sqlite:///../2-1/orders.db` 引用这个数据库。
+
 ### Q: SQLite 和 PostgreSQL 有什么区别？
 **A:** SQLite 是文件数据库（一个 `.db` 文件），不需要额外安装服务，适合学习和单机应用。PostgreSQL 是网络数据库服务器，适合生产环境。SQLAlchemy 的好处是：切换数据库只需改一行 `create_engine` 的 URL，代码不用动。
 
@@ -237,6 +325,7 @@ session.close()
 
 ### Q: `nullable=False` 是必须的吗？
 **A:** 在项目 4 的判题测试中没有严格要求，但在真实项目中强烈建议：它能防止脏数据（比如缺少客户名的订单）进入数据库。这就是**数据完整性约束**。
+**注意**：`customer_phone`、`carrier`、`eta` 设计为可空——不是所有订单都需要电话（如微信小程序订单），快递信息也只在发货后才填充。这是真实业务建模的体现。
 
 ---
 

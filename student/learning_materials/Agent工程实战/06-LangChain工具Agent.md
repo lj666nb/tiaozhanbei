@@ -64,16 +64,48 @@ pip install -r requirements.txt
 
 ## 三、最小 Agent——不到 15 行代码
 
+> 🧠 **前提**：你已完成项目 4（用 SQLAlchemy 构建订单数据库），`../2-1/orders.db` 已存在且包含 10 条真实订单数据。本节将直接查询这份持久化数据库，让 Agent 获取真实业务数据。
+
 ```python
 from langchain.agents import create_agent
 from langchain.tools import tool
+from sqlalchemy import create_engine, Column, Integer, String, Float
+from sqlalchemy.orm import declarative_base, sessionmaker
 
-# 1. 定义工具（同上一节）
+# ── 对接项目4的持久化订单数据库（orders.db） ──
+Base = declarative_base()
+
+class Order(Base):
+    __tablename__ = 'orders'
+    id = Column(Integer, primary_key=True)
+    order_id = Column(String(20), unique=True, nullable=False)
+    customer_name = Column(String(50), nullable=False)
+    customer_phone = Column(String(20))
+    product = Column(String(100), nullable=False)
+    category = Column(String(30), nullable=False)
+    amount = Column(Float, nullable=False)
+    status = Column(String(20), nullable=False, default='pending')
+    carrier = Column(String(30))
+    eta = Column(String(20))
+    created_at = Column(String(20), nullable=False)
+
+# 1. 定义工具：用 SQLAlchemy 查询 ../2-1/orders.db
 @tool
 def query_order_tool(order_id: str) -> str:
-    """根据订单编号查询物流状态。订单编号形如 O-100。"""
-    orders = {"O-100": "已发货（顺丰，预计7月30日送达）", "O-200": "退款审核中"}
-    return orders.get(order_id, f"订单 {order_id} 不存在，请核对编号。")
+    """根据订单编号查询物流状态。订单编号形如 ORD-20260730-0001。"""
+    engine = create_engine('sqlite:///../2-1/orders.db')  # ← 项目4的持久化数据库
+    Session = sessionmaker(bind=engine)
+    session = Session()
+    try:
+        order = session.query(Order).filter(Order.order_id == order_id).first()
+        if order is None:
+            return f"订单 {order_id} 不存在，请核对编号。"
+        return (
+            f"订单{order_id}：{order.status}"
+            + (f"（{order.carrier}，预计{order.eta}送达）" if order.carrier else "")
+        )
+    finally:
+        session.close()
 
 # 2. 创建 Agent
 agent = create_agent(
@@ -88,7 +120,7 @@ agent = create_agent(
 # 3. 运行 Agent
 result = agent.invoke({
     "messages": [
-        {"role": "user", "content": "订单 O-100 到哪了？"}
+        {"role": "user", "content": "订单 ORD-20260730-0001 到哪了？"}
     ]
 })
 
@@ -121,12 +153,12 @@ print(result["messages"][-1].content)
 用上一节的订单查询为例，Agent 内部发生了什么：
 
 ```text
-阶段1 → 模型收到用户消息 "订单 O-100 到哪了？"
+阶段1 → 模型收到用户消息 "订单 ORD-20260730-0001 到哪了？"
 阶段2 → 模型判断：这需要真实订单数据，我用不了……但我有 query_order_tool！
-         生成 tool_call: {"name": "query_order_tool", "args": {"order_id": "O-100"}}
-阶段3 → 框架自动执行 query_order_tool("O-100")，返回 "已发货（顺丰，预计7月30日送达）"
+         生成 tool_call: {"name": "query_order_tool", "args": {"order_id": "ORD-20260730-0001"}}
+阶段3 → 框架自动执行 query_order_tool("ORD-20260730-0001")，返回 "已发货（顺丰，预计7月30日送达）"
          框架自动把工具结果作为 ToolMessage 追加到消息历史
-阶段4 → 模型看到工具结果，生成最终回答："您的订单 O-100 已通过顺丰发货，预计7月30日送达。
+阶段4 → 模型看到工具结果，生成最终回答："您的订单 ORD-20260730-0001 已通过顺丰发货，预计7月30日送达。
          如需进一步帮助，请随时联系我。"
 ```
 
@@ -158,7 +190,7 @@ agent = create_agent(
 
 ```python
 # 场景1：只涉及订单
-result = agent.invoke({"messages": [{"role": "user", "content": "订单 O-100 到哪了？"}]})
+result = agent.invoke({"messages": [{"role": "user", "content": "订单 ORD-20260730-0001 到哪了？"}]})
 # Agent 应该只调用 query_order_tool
 
 # 场景2：涉及退款政策
@@ -166,7 +198,7 @@ result = agent.invoke({"messages": [{"role": "user", "content": "我买的软件
 # Agent 应该只调用 refund_policy
 
 # 场景3：同时涉及两个工具
-result = agent.invoke({"messages": [{"role": "user", "content": "订单 O-200 是实体商品，状态和退款规则分别是什么？"}]})
+result = agent.invoke({"messages": [{"role": "user", "content": "订单 ORD-20260730-0004 是实体商品，状态和退款规则分别是什么？"}]})
 # Agent 可能依次调用两个工具（取决于模型判断）
 ```
 
@@ -264,12 +296,14 @@ def run_tool_plan(plan, registry, max_steps=5):
 ## 七、重构 `app.py`——从手动编排到 Agent
 
 ```python
-# app.py —— Agent 版
+# app.py —— Agent 版：工具直接对接项目4的 orders.db
 import os
 from dotenv import load_dotenv
 from langchain_openai import ChatOpenAI
 from langchain.agents import create_agent
 from langchain.tools import tool
+from sqlalchemy import create_engine, Column, Integer, String, Float
+from sqlalchemy.orm import declarative_base, sessionmaker
 from solution import run_tool_plan
 
 load_dotenv()
@@ -281,17 +315,53 @@ model = ChatOpenAI(
     temperature=0,
 )
 
+# ── 对接项目4的持久化订单数据库 ──
+Base = declarative_base()
+
+class Order(Base):
+    __tablename__ = 'orders'
+    id = Column(Integer, primary_key=True)
+    order_id = Column(String(20), unique=True, nullable=False)
+    customer_name = Column(String(50), nullable=False)
+    customer_phone = Column(String(20))
+    product = Column(String(100), nullable=False)
+    category = Column(String(30), nullable=False)
+    amount = Column(Float, nullable=False)
+    status = Column(String(20), nullable=False, default='pending')
+    carrier = Column(String(30))
+    eta = Column(String(20))
+    created_at = Column(String(20), nullable=False)
+
+def query_order(order_id: str) -> dict:
+    """从项目4的 orders.db 查询订单。"""
+    engine = create_engine('sqlite:///../2-1/orders.db')
+    Session = sessionmaker(bind=engine)
+    session = Session()
+    try:
+        order = session.query(Order).filter(Order.order_id == order_id).first()
+        if order is None:
+            return {"status": "not_found", "message": f"订单 {order_id} 不存在"}
+        return {
+            "status": order.status, "carrier": order.carrier or "暂无",
+            "eta": order.eta or "暂无", "customer_name": order.customer_name,
+            "product": order.product,
+        }
+    finally:
+        session.close()
+
 @tool
 def query_order_tool(order_id: str) -> str:
-    """根据订单编号查询物流状态。订单编号形如 O-100。"""
-    orders = {"O-100": "已发货（顺丰，预计7月30日送达）", "O-200": "退款审核中"}
-    return orders.get(order_id, f"订单 {order_id} 不存在")
+    """根据订单编号查询物流状态。订单编号形如 ORD-20260730-0001。"""
+    result = query_order(order_id)
+    if result.get("status") == "not_found":
+        return f"订单 {order_id} 不存在，请核对编号。"
+    return f"{result['status']}（{result['carrier']}，预计{result['eta']}送达）"
 
 @tool
 def refund_policy(product_type: str) -> str:
     """查询退款政策。product_type 为 'digital' 或 'physical'。"""
-    policies = {"digital": "数字商品激活后不可退款", "physical": "签收后7天内可申请"}
-    return policies.get(product_type, "需要人工确认")
+    policies = {"digital": "数字商品（课程、软件等）激活后不支持退款。", "physical": "实体商品签收后7天内可申请退款，需保持商品完好。"}
+    return policies.get(product_type, "未找到该商品类型的退款政策，需要人工确认。")
 
 agent = create_agent(
     model=model,
@@ -300,7 +370,7 @@ agent = create_agent(
 )
 
 # 测试：需要工具的问题
-result = agent.invoke({"messages": [{"role": "user", "content": "订单 O-100 的状态？"}]})
+result = agent.invoke({"messages": [{"role": "user", "content": "订单 ORD-20260730-0001 的状态？"}]})
 print("需要工具:", result["messages"][-1].content)
 
 # 测试：不需要工具的问题

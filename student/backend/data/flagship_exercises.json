@@ -77,26 +77,29 @@
     "id": "2-1",
     "module": "阶段二：LangChain 工具 Agent",
     "title": "用 SQLAlchemy 构建订单数据库",
-    "description": "工具 Agent 需要真实数据源。实现 setup_order_db(db_path) 和 query_orders(session, **filters)。用 SQLAlchemy ORM 定义 Order 模型（id, customer_name, product, amount, status），创建 SQLite 引擎和 Session，支持按 status / customer_name / min_amount 组合过滤，返回字段完整的字典列表。非法参数抛出 ValueError。",
-    "input_output": "setup_order_db(db_path) 返回 SQLAlchemy Engine；query_orders(session, **filters) 返回 [{id, customer_name, product, amount, status}, ...]。filters 可选 status / customer_name / min_amount。",
-    "starter_code": "from sqlalchemy import create_engine, Column, Integer, String, Float\nfrom sqlalchemy.orm import declarative_base, sessionmaker\n\nBase = declarative_base()\n\nclass Order(Base):\n    __tablename__ = 'orders'\n    id = Column(Integer, primary_key=True)\n    customer_name = Column(String, nullable=False)\n    product = Column(String, nullable=False)\n    amount = Column(Float, nullable=False)\n    status = Column(String, nullable=False, default='pending')\n\ndef setup_order_db(db_path='orders.db'):\n    \"\"\"创建引擎和表，返回 (engine, Session)\"\"\"\n    raise NotImplementedError\n\ndef query_orders(session, **filters):\n    \"\"\"按可选条件查询订单，返回字典列表\"\"\"\n    raise NotImplementedError\n",
+    "description": "工具 Agent 需要真实数据源——这个数据库将被后续项目5/6/7及毕业项目复用。实现 setup_order_db(db_path) 和 query_orders(session, **filters)。用 SQLAlchemy ORM 定义 Order 模型（id, order_id, customer_name, customer_phone, product, category, amount, status, carrier, eta, created_at），创建 SQLite 引擎和 Session，支持按 order_id / customer_name（模糊）/ category / status / carrier / min_amount / max_amount 组合过滤，返回字段完整的字典列表。非法参数抛出 ValueError。",
+    "input_output": "setup_order_db(db_path) 返回 (engine, Session)；query_orders(session, **filters) 返回 [{id, order_id, customer_name, customer_phone, product, category, amount, status, carrier, eta, created_at}, ...]。filters 可选 order_id / customer_name / category / status / carrier / min_amount / max_amount。",
+    "starter_code": "from sqlalchemy import create_engine, Column, Integer, String, Float\nfrom sqlalchemy.orm import declarative_base, sessionmaker\n\nBase = declarative_base()\n\nclass Order(Base):\n    __tablename__ = 'orders'\n    id = Column(Integer, primary_key=True)\n    order_id = Column(String(20), unique=True, nullable=False)\n    customer_name = Column(String(50), nullable=False)\n    customer_phone = Column(String(20))\n    product = Column(String(100), nullable=False)\n    category = Column(String(30), nullable=False)\n    amount = Column(Float, nullable=False)\n    status = Column(String(20), nullable=False, default='pending')\n    carrier = Column(String(30))\n    eta = Column(String(20))\n    created_at = Column(String(20), nullable=False)\n\ndef setup_order_db(db_path='orders.db'):\n    \"\"\"创建引擎和表，返回 (engine, Session)\"\"\"\n    raise NotImplementedError\n\ndef query_orders(session, **filters):\n    \"\"\"按可选条件查询订单，返回字典列表。\n    支持: order_id, customer_name(模糊), category, status,\n          carrier, min_amount, max_amount\"\"\"\n    raise NotImplementedError\n",
     "steps": [
-      "定义 Order 模型列",
+      "定义 Order 模型（含全部11列）",
       "实现 setup_order_db 创建引擎和表",
-      "实现 query_orders 基础查询",
-      "补充组合过滤和空结果处理"
+      "实现 query_orders 基础过滤",
+      "补充快递、分类与金额范围过滤",
+      "实现订单编号精确查询"
     ],
     "acceptance": [
-      "Order 模型定义完整",
+      "Order 模型定义完整（11列）",
       "数据库和表可创建",
-      "过滤条件正确生效",
-      "组合过滤结果准确"
+      "7种过滤器均正确生效",
+      "组合过滤结果准确",
+      "订单编号精确查询可用"
     ],
     "skills": [
       "SQLAlchemy ORM",
       "SQLite",
-      "查询过滤",
-      "数据库设计"
+      "数据建模",
+      "多条件查询",
+      "范围查询"
     ]
   },
   {

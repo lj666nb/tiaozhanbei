@@ -329,14 +329,32 @@ graph = builder.compile(checkpointer=InMemorySaver())
 
 ---
 
-## 六、端到端测试清单——8 条场景全覆盖
+## 六、端到端测试清单——9 条场景全覆盖
 
 ```python
-# 测试数据
-ORDER_DB = {
-    "O-100": {"status": "已发货"},
-    "O-200": {"status": "退款审核中"},
-}
+# 测试数据——从项目4的真实订单数据库加载
+from sqlalchemy import create_engine
+from sqlalchemy.orm import sessionmaker
+from solution import Order, Base
+
+def load_order_db():
+    """从项目4的持久化数据库加载订单，返回 {order_id: {字段...}} 映射。"""
+    engine = create_engine('sqlite:///../../2-1/orders.db')
+    Session = sessionmaker(bind=engine)
+    session = Session()
+    try:
+        return {
+            o.order_id: {
+                "status": o.status, "carrier": o.carrier,
+                "eta": o.eta, "customer_name": o.customer_name,
+                "product": o.product,
+            }
+            for o in session.query(Order).all()
+        }
+    finally:
+        session.close()
+
+ORDER_DB = load_order_db()
 DOCUMENTS = [
     {"id": "refund-1", "text": "实体商品签收后7天内可申请退款", "terms": ["退款", "实体"]},
     {"id": "refund-2", "text": "退款审核需1个工作日", "terms": ["退款", "审核"]},
@@ -358,16 +376,16 @@ r_ok = handle_support_turn(
 assert r_low["route"] == "human"
 assert r_ok["route"] == "knowledge"
 
-# 测试3：存在的订单
+# 测试3：存在的订单（真实数据库查询）
 result = handle_support_turn(
-    {"id": "r4", "text": "O-100", "intent": "order", "confidence": 0.9, "urgent": False},
+    {"id": "r4", "text": "ORD-20260730-0001", "intent": "order", "confidence": 0.9, "urgent": False},
     ORDER_DB, DOCUMENTS)
 assert result["route"] == "order"
-assert "已发货" in result["answer"]
+assert "已发货" in result["answer"] or "delivered" in result["answer"].lower()
 
 # 测试4：不存在的订单
 result = handle_support_turn(
-    {"id": "r5", "text": "O-999", "intent": "order", "confidence": 0.9, "urgent": False},
+    {"id": "r5", "text": "ORD-99999999-9999", "intent": "order", "confidence": 0.9, "urgent": False},
     ORDER_DB, DOCUMENTS)
 assert "未找到" in result["answer"]
 
@@ -393,9 +411,17 @@ assert result["route"] == "respond"
 # 测试8：输入不可变
 original_db = dict(ORDER_DB)
 handle_support_turn(
-    {"id": "r9", "text": "O-100", "intent": "order", "confidence": 0.9, "urgent": False},
+    {"id": "r9", "text": "ORD-20260730-0001", "intent": "order", "confidence": 0.9, "urgent": False},
     ORDER_DB, DOCUMENTS)
 assert ORDER_DB == original_db  # 数据库未被修改
+
+# 测试9：已发货订单包含快递信息
+result = handle_support_turn(
+    {"id": "r10", "text": "ORD-20260730-0002", "intent": "order", "confidence": 0.85, "urgent": False},
+    ORDER_DB, DOCUMENTS)
+assert result["route"] == "order"
+# 已发货的订单回答应包含快递公司信息
+assert "中通" in result["answer"] or "shipped" in result["answer"].lower()
 ```
 
 ---
@@ -418,7 +444,7 @@ assert ORDER_DB == original_db  # 数据库未被修改
 
 毕业项目不是终点。以下方向可以让这个 Agent 更接近生产级：
 
-1. **真实 API 替换**：把内存 `ORDER_DB` 替换为真实的 HTTP API 调用，增加超时和重试
+1. **生产数据库升级**：把 SQLite 文件数据库升级为 PostgreSQL 或 MySQL 网络数据库（只需改一行 `create_engine` URL）
 2. **向量检索升级**：把词项匹配替换为 embedding + 向量数据库（ChromaDB / Milvus）
 3. **持久化检查点**：把 `InMemorySaver` 替换为 `SqliteSaver` 或 `PostgresSaver`
 4. **权限与安全**：在 validate 节点加入用户鉴权，根据权限限制可查询的订单范围

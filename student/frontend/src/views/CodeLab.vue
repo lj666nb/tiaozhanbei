@@ -1519,7 +1519,7 @@ const projectStateCopy = {
   },
   repair: {
     title: '进入故障修复项目',
-    message: '系统会把代表性故障真正写入 solution.py 并刷新工作区。当前代码会被替换；如果本关已经完成，也会重新打开故障修复阶段供你再次提交评分。',
+    message: '系统会将代表性故障写入 repair_target.py（不会影响你已经写好的 solution.py）。请在 repair_target.py 中定位并修复故障，然后提交评分。',
     confirm: '切换并开始修复',
   },
   variant: {
@@ -2074,7 +2074,7 @@ async function retryRepairAttempt() {
       { type: 'status', text: `🔁 已开始第 ${result.retry_attempt || 2} 次故障修复` },
       { type: 'status', text: `上次得分：${result.previous_repair_score || 0} 分（评分记录已保留）` },
       { type: 'status', text: `故障描述：${result.mutation_description || capabilitySession.value?.mutation_description || ''}` },
-      { type: 'status', text: '👉 代表性故障已重新写入 solution.py，请运行 python -m lab_test 后再次定位和修复' },
+      { type: 'status', text: '👉 代表性故障已写入 repair_target.py（solution.py 未受影响），请定位并修复后重新提交' },
       { type: 'status', text: '━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━' },
     )
     showTerminal()

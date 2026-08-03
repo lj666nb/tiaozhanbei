@@ -190,7 +190,14 @@ def run_tool_call():
     func = namespace.get("execute_tool_call")
     require(callable(func), "必须定义 execute_tool_call(tool_call, registry)")
     def query_order(order_id):
-        return "订单" + order_id + "：已发货"
+        db = {
+            "ORD-20260730-0001": {"status": "delivered", "carrier": "顺丰速运", "eta": "2026-07-25", "customer_name": "张三", "product": "Python编程从入门到实践"},
+            "ORD-20260730-0002": {"status": "shipped", "carrier": "中通快递", "eta": "2026-08-05", "customer_name": "李四", "product": "AI智能体开发实战"},
+        }
+        order = db.get(order_id)
+        if not order:
+            return {"status": "not_found", "message": f"订单 {order_id} 不存在"}
+        return order
     def broken(order_id):
         raise RuntimeError("上游超时")
     registry = {
@@ -198,8 +205,9 @@ def run_tool_call():
         "broken": {"required": ["order_id"], "handler": broken},
     }
     record("正常调用并生成工具消息", lambda: require(
-        func({"id": "c1", "name": "query_order", "args": {"order_id": "O1"}}, registry) ==
-        {"role": "tool", "tool_call_id": "c1", "name": "query_order", "status": "success", "content": "订单O1：已发货"},
+        func({"id": "c1", "name": "query_order", "args": {"order_id": "ORD-20260730-0001"}}, registry) ==
+        {"role": "tool", "tool_call_id": "c1", "name": "query_order", "status": "success",
+         "content": {"status": "delivered", "carrier": "顺丰速运", "eta": "2026-07-25", "customer_name": "张三", "product": "Python编程从入门到实践"}},
         "成功结果结构不正确"))
     def missing_arg():
         try: func({"id": "c2", "name": "query_order", "args": {}}, registry)
@@ -212,7 +220,7 @@ def run_tool_call():
         raise AssertionError("未知工具必须抛出 ValueError")
     record("拒绝未注册工具", unknown_tool)
     def isolate_error():
-        result = func({"id": "c4", "name": "broken", "args": {"order_id": "O2"}}, registry)
+        result = func({"id": "c4", "name": "broken", "args": {"order_id": "ORD-20260730-0002"}}, registry)
         require(result.get("status") == "error", "工具异常必须转为 error 状态")
         require(result.get("role") == "tool" and result.get("tool_call_id") == "c4", "错误消息契约不完整")
         require(str(result.get("content", "")).startswith("工具执行失败："), "错误内容缺少统一前缀")
@@ -321,20 +329,51 @@ def run_sqlalchemy_query():
             class _Order(Base):
                 __tablename__ = 'orders'
                 id = Column(Integer, primary_key=True)
-                customer_name = Column(String, nullable=False)
-                product = Column(String, nullable=False)
+                order_id = Column(String(20), unique=True, nullable=False)
+                customer_name = Column(String(50), nullable=False)
+                customer_phone = Column(String(20))
+                product = Column(String(100), nullable=False)
+                category = Column(String(30), nullable=False)
                 amount = Column(Float, nullable=False)
-                status = Column(String, nullable=False, default='pending')
+                status = Column(String(20), nullable=False, default='pending')
+                carrier = Column(String(30))
+                eta = Column(String(20))
+                created_at = Column(String(20), nullable=False)
             try:
                 Base.metadata.create_all(engine)
             except Exception:
                 pass
             samples = [
-                _Order(customer_name='张三', product='Python教程', amount=99.0, status='paid'),
-                _Order(customer_name='李四', product='AI入门', amount=199.0, status='pending'),
-                _Order(customer_name='王五', product='数据分析', amount=149.0, status='paid'),
-                _Order(customer_name='赵六', product='机器学习实战', amount=259.0, status='paid'),
-                _Order(customer_name='孙七', product='深度学习', amount=89.0, status='cancelled'),
+                _Order(order_id='ORD-20260730-0001', customer_name='张三', customer_phone='13800001111',
+                       product='Python编程从入门到实践', category='图书', amount=89.00, status='delivered',
+                       carrier='顺丰速运', eta='2026-07-25', created_at='2026-07-20'),
+                _Order(order_id='ORD-20260730-0002', customer_name='李四', customer_phone='13800002222',
+                       product='AI智能体开发实战', category='图书', amount=199.00, status='shipped',
+                       carrier='中通快递', eta='2026-08-05', created_at='2026-07-28'),
+                _Order(order_id='ORD-20260730-0003', customer_name='王五', customer_phone='13800003333',
+                       product='机械键盘K850', category='电子产品', amount=459.00, status='paid',
+                       carrier=None, eta=None, created_at='2026-07-30'),
+                _Order(order_id='ORD-20260730-0004', customer_name='赵六', customer_phone='13800004444',
+                       product='蓝牙耳机Pro', category='电子产品', amount=299.00, status='refunding',
+                       carrier=None, eta=None, created_at='2026-07-29'),
+                _Order(order_id='ORD-20260730-0005', customer_name='孙七', customer_phone='13800005555',
+                       product='有机绿茶礼盒', category='食品', amount=128.00, status='pending',
+                       carrier=None, eta=None, created_at='2026-08-01'),
+                _Order(order_id='ORD-20260730-0006', customer_name='周八', customer_phone='13800006666',
+                       product='Python教程进阶版', category='图书', amount=149.00, status='shipped',
+                       carrier='京东物流', eta='2026-08-03', created_at='2026-07-31'),
+                _Order(order_id='ORD-20260730-0007', customer_name='吴九', customer_phone='13800007777',
+                       product='智能手表S3', category='电子产品', amount=899.00, status='delivered',
+                       carrier='顺丰速运', eta='2026-07-22', created_at='2026-07-18'),
+                _Order(order_id='ORD-20260730-0008', customer_name='郑十', customer_phone='13800008888',
+                       product='纯棉T恤三件装', category='服装', amount=199.00, status='cancelled',
+                       carrier=None, eta=None, created_at='2026-08-02'),
+                _Order(order_id='ORD-20260730-0009', customer_name='张三', customer_phone='13800001111',
+                       product='数据分析实战', category='图书', amount=79.00, status='paid',
+                       carrier=None, eta=None, created_at='2026-08-01'),
+                _Order(order_id='ORD-20260730-0010', customer_name='李白', customer_phone='13800009999',
+                       product='深度学习框架', category='图书', amount=259.00, status='refunded',
+                       carrier=None, eta=None, created_at='2026-07-15'),
             ]
             session.add_all(samples)
             session.commit()
@@ -345,25 +384,26 @@ def run_sqlalchemy_query():
         require(isinstance(result, list), f"返回必须是列表，得到{type(result).__name__}")
         for item in result:
             require(isinstance(item, dict), "每条结果必须是字典")
-            for key in ["id", "customer_name", "product", "amount", "status"]:
+            for key in ["id", "order_id", "customer_name", "product", "category", "amount", "status"]:
                 require(key in item, f"结果缺少字段 {key}")
     def all_paid():
         r = query(session, status="paid")
-        require(len(r) == 3, f"已支付订单应为3条，得到{len(r)}")
+        require(len(r) == 2, f"已支付订单应为2条，得到{len(r)}")
         require(all(o["status"] == "paid" for o in r), "状态过滤不生效")
     record("按状态过滤订单", all_paid)
     def by_customer():
         r = query(session, customer_name="张三")
-        require(len(r) == 1 and r[0]["customer_name"] == "张三", "按客户查询不准确")
-    record("按客户名查询", by_customer)
+        require(len(r) == 2, f"张三应有2条订单，得到{len(r)}")
+        require(all("张三" in o["customer_name"] for o in r), "客户名模糊查询不生效")
+    record("按客户名模糊查询", by_customer)
     def min_amount():
         r = query(session, min_amount=150.0)
-        require(len(r) == 2, f"金额>=150应为2条，得到{len(r)}")
+        require(len(r) == 6, f"金额>=150应为6条，得到{len(r)}")
         require(all(o["amount"] >= 150.0 for o in r), "金额过滤不生效")
     record("按最小金额过滤", min_amount)
     def combined():
         r = query(session, status="paid", min_amount=100.0)
-        require(len(r) == 2, f"组合过滤应为2条，得到{len(r)}")
+        require(len(r) == 1, f"已支付且金额>=100应为1条，得到{len(r)}")
         require(all(o["status"] == "paid" and o["amount"] >= 100.0 for o in r), "组合过滤不生效")
     record("组合过滤条件", combined)
     def empty():
@@ -372,8 +412,29 @@ def run_sqlalchemy_query():
     record("无匹配时返回空列表", empty)
     def no_filter():
         r = query(session)
-        require(len(r) == 5, f"无过滤应返回全部5条，得到{len(r)}")
+        require(len(r) == 10, f"无过滤应返回全部10条，得到{len(r)}")
     record("无过滤条件返回全部订单", no_filter)
+    def by_order_id():
+        r = query(session, order_id="ORD-20260730-0001")
+        require(len(r) == 1, f"精确编号查询应为1条，得到{len(r)}")
+        require(r[0]["customer_name"] == "张三", "订单客户不匹配")
+        require(r[0]["carrier"] == "顺丰速运", "快递公司不匹配")
+    record("按订单编号精确查询", by_order_id)
+    def by_category():
+        r = query(session, category="图书")
+        require(len(r) == 5, f"图书类别应为5条，得到{len(r)}")
+        require(all(o["category"] == "图书" for o in r), "类别过滤不生效")
+    record("按商品类别过滤", by_category)
+    def by_carrier():
+        r = query(session, carrier="顺丰速运")
+        require(len(r) == 2, f"顺丰快递应为2条，得到{len(r)}")
+        require(all(o["carrier"] == "顺丰速运" for o in r), "快递过滤不生效")
+    record("按快递公司过滤", by_carrier)
+    def amount_range():
+        r = query(session, min_amount=100.0, max_amount=200.0)
+        require(len(r) == 4, f"金额100-200范围应为4条，得到{len(r)}")
+        require(all(100.0 <= o["amount"] <= 200.0 for o in r), "金额范围过滤不生效")
+    record("金额范围过滤", amount_range)
     session.close()
 
 mode = spec.get("mode", "generic")

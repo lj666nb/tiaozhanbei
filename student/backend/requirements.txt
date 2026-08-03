@@ -37,6 +37,9 @@ openpyxl>=3.1.0
 Pillow>=10.0.0
 pytesseract>=0.3.0
 
+# --- 数据库 ORM ---
+sqlalchemy>=2.0.0
+
 # --- PostgreSQL 支持 ---
 psycopg2-binary>=2.9.9
 

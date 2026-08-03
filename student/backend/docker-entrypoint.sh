@@ -12,6 +12,7 @@ if [ -d /app/seed-data ]; then
     [ -e "$source" ] || continue
     case "$(basename "$source")" in
       *.db) continue ;;
+      lab_workspaces|generated_images|chroma_db|pdfs) continue ;;
     esac
     cp -a "$source" /app/data/
   done

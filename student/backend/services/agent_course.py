@@ -49,17 +49,17 @@ COURSE_TRACKS = [
     },
     {
         "name": "LangChain：链与工具 Agent",
-        "description": "先搭建订单数据库，再把它接入可复用提示链、工具调用和 Agent 循环。",
+        "description": "用 SQLAlchemy 搭建持久化订单数据库（后续项目5/6/7和毕业项目都会复用），再把它接入可复用提示链、工具调用和 Agent 循环。",
         "tasks": [
             {
                 "topic": "项目4：用 SQLAlchemy 构建订单数据库",
                 "knowledge": "04-SQLAlchemy订单数据库",
                 "framework": "SQLAlchemy + SQLite",
-                "deliverable": "可查询的订单数据库",
-                "duration": "75分钟",
-                "action": "定义 Order 模型、创建 SQLite 引擎、实现带过滤的查询函数",
+                "deliverable": "持久化订单数据库 orders.db（11列，10+条数据）",
+                "duration": "90分钟",
+                "action": "定义含 order_id、customer_phone、category、carrier、eta 的完整 Order 模型、创建 SQLite 引擎、实现7种过滤器的查询函数",
                 "resource": "引导教程 + 编程实验 2-1",
-                "check": "可按状态、客户、金额组合查询，过滤条件和结果字段正确",
+                "check": "可按编号、状态、客户、类别、快递、金额范围组合查询，orders.db 持久化存储后续项目直接复用",
                 "lab_id": "2-1",
                 "module_id": 2,
             },

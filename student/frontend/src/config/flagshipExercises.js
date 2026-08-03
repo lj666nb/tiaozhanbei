@@ -17,9 +17,9 @@ export const MODULES = [
     name: '阶段二：LangChain 工具 Agent',
     level: '进阶',
     project: '订单客服 Agent',
-    description: '先用 SQLAlchemy 搭建订单数据库，再接入可复用提示链、安全工具契约和 Agent 循环。',
+    description: '先用 SQLAlchemy 搭建持久化订单数据库（后续项目全部复用），再接入可复用提示链、安全工具契约和 Agent 循环。',
     tasks: [
-      { id: '2-1', title: '用 SQLAlchemy 构建订单数据库', duration: '75分钟' },
+      { id: '2-1', title: '用 SQLAlchemy 构建订单数据库', duration: '90分钟' },
       { id: '2-2', title: '渲染可复用客服提示模板', duration: '60分钟' },
       { id: '2-3', title: '校验并执行工具调用', duration: '75分钟' },
       { id: '2-4', title: '实现多步工具执行循环', duration: '90分钟' },

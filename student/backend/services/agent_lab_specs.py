@@ -109,20 +109,25 @@ SPECS = {
             {"description": "缺少模板字段时报错", "args": ["{a}-{b}", {"a": "x"}], "exception": "ValueError"},
         ],
     },
-    "2-3": {"mode": "tool_call", "target": "execute_tool_call"},
-    "2-4": {"mode": "tool_plan", "target": "run_tool_plan"},
+    "2-3": {"mode": "tool_call", "target": "execute_tool_call", "requires_db": True},
+    "2-4": {"mode": "tool_plan", "target": "run_tool_plan", "requires_db": True},
     "2-1": {
         "mode": "sqlalchemy_query",
         "target": "setup_order_db",
         "cases": [
             {"description": "创建数据库并定义Order模型", "args": [], "setup_only": True},
-            {"description": "按状态过滤已支付订单", "args": [{"status": "paid"}], "expected_count": 3,
-             "expected_keys": ["id", "customer_name", "product", "amount", "status"]},
-            {"description": "按客户名查询", "args": [{"customer_name": "张三"}], "expected_count": 1},
-            {"description": "按最小金额过滤", "args": [{"min_amount": 150.0}], "expected_count": 2},
-            {"description": "组合过滤条件", "args": [{"status": "paid", "min_amount": 100.0}], "expected_count": 2},
+            {"description": "按状态过滤已支付订单", "args": [{"status": "paid"}], "expected_count": 2,
+             "expected_keys": ["id", "order_id", "customer_name", "customer_phone", "product", "category", "amount", "status", "carrier", "eta", "created_at"]},
+            {"description": "按客户名模糊查询", "args": [{"customer_name": "张三"}], "expected_count": 2},
+            {"description": "按最小金额过滤", "args": [{"min_amount": 150.0}], "expected_count": 6},
+            {"description": "组合过滤条件", "args": [{"status": "paid", "min_amount": 100.0}], "expected_count": 1},
+            {"description": "按订单编号精确查询", "args": [{"order_id": "ORD-20260730-0001"}], "expected_count": 1,
+             "expected_keys": ["id", "order_id", "customer_name", "product", "category", "amount", "status", "carrier", "eta"]},
+            {"description": "按商品类别过滤", "args": [{"category": "图书"}], "expected_count": 5},
+            {"description": "按快递公司过滤", "args": [{"carrier": "顺丰速运"}], "expected_count": 2},
+            {"description": "金额范围过滤", "args": [{"min_amount": 100.0, "max_amount": 200.0}], "expected_count": 4},
         ],
-        "extra_cases": 2,
+        "extra_cases": 4,
     },
     "3-1": {
         "target": "merge_state",
@@ -195,11 +200,11 @@ SPECS = {
                 {"id": "R1", "text": "立即处理", "intent": "faq", "confidence": 0.99, "urgent": True, "terms": ["退款"]}, {}, []
             ], "expected": {"request_id": "R1", "route": "human", "answer": "已为你转接人工客服。", "citations": [], "trace": ["validate", "route", "human"]}, "immutable": True},
             {"description": "订单工具返回状态", "args": [
-                {"id": "R2", "text": "订单在哪", "intent": "order", "confidence": 0.9, "urgent": False, "order_id": "O1"},
-                {"O1": "已发货"}, []
-            ], "expected": {"request_id": "R2", "route": "order", "answer": "订单O1当前状态：已发货", "citations": [], "trace": ["validate", "route", "order"]}, "immutable": True},
+                {"id": "R2", "text": "订单在哪", "intent": "order", "confidence": 0.9, "urgent": False, "order_id": "ORD-20260730-0001"},
+                {"ORD-20260730-0001": {"status": "已发货", "carrier": "顺丰速运", "eta": "2026-07-25", "customer_name": "张三", "product": "Python编程从入门到实践"}}, []
+            ], "expected": {"request_id": "R2", "route": "order", "answer": "订单ORD-20260730-0001当前状态：已发货", "citations": [], "trace": ["validate", "route", "order"]}, "immutable": True},
             {"description": "找不到订单时降级", "args": [
-                {"id": "R3", "text": "查订单", "intent": "order", "confidence": 0.8, "urgent": False, "order_id": "X"}, {}, []
+                {"id": "R3", "text": "查订单", "intent": "order", "confidence": 0.8, "urgent": False, "order_id": "ORD-99999999-9999"}, {}, []
             ], "expected": {"request_id": "R3", "route": "human", "answer": "未找到订单，已为你转接人工客服。", "citations": [], "trace": ["validate", "route", "order", "human"]}},
             {"description": "FAQ检索并引用来源", "args": [
                 {"id": "R4", "text": "退款时效", "intent": "faq", "confidence": 0.8, "urgent": False, "terms": ["退款", "时效"]}, {},
@@ -211,8 +216,12 @@ SPECS = {
             {"description": "普通闲聊直接响应", "args": [
                 {"id": "R6", "text": "你好", "intent": "chat", "confidence": 0.7, "urgent": False}, {}, []
             ], "expected": {"request_id": "R6", "route": "respond", "answer": "你好，我可以帮你查询订单或解答常见问题。", "citations": [], "trace": ["validate", "route", "respond"]}},
+            {"description": "订单查询显示快递信息", "args": [
+                {"id": "R7", "text": "我的快递到哪了", "intent": "order", "confidence": 0.85, "urgent": False, "order_id": "ORD-20260730-0002"},
+                {"ORD-20260730-0002": {"status": "运输中", "carrier": "中通快递", "eta": "2026-08-05", "customer_name": "李四", "product": "AI智能体开发实战"}}, []
+            ], "expected": {"request_id": "R7", "route": "order", "answer": "订单ORD-20260730-0002当前状态：运输中", "citations": [], "trace": ["validate", "route", "order"]}},
             {"description": "拒绝非法置信度", "args": [
-                {"id": "R7", "text": "x", "intent": "chat", "confidence": 2, "urgent": False}, {}, []
+                {"id": "R8", "text": "x", "intent": "chat", "confidence": 2, "urgent": False}, {}, []
             ], "exception": "ValueError"},
         ],
     },

@@ -4,7 +4,7 @@
 
 前几节中，模型只能凭它训练时学到的知识来回答问题。但现实中有大量信息模型不知道：
 
-- 「订单 O-100 的物流状态是什么？」——模型不可能知道你们公司的订单系统
+- 「订单 ORD-20260730-0001 的物流状态是什么？」——模型不可能知道你们公司的订单系统
 - 「今天北京天气怎么样？」——模型的知识截止到训练日期
 - 「把这份数据写入数据库」——模型不能直接操作外部系统
 
@@ -16,8 +16,8 @@
 >
 > ```text
 > 1. 你告诉模型：「我有一个 query_order 工具，参数是 order_id」
-> 2. 模型判断这个问题需要查订单 → 生成 {"name": "query_order", "args": {"order_id": "O-100"}}
-> 3. 你的代码收到这个 JSON → 校验 → 真的调用 query_order("O-100") → 把结果发回给模型
+> 2. 模型判断这个问题需要查订单 → 生成 {"name": "query_order", "args": {"order_id": "ORD-20260730-0001"}}
+> 3. 你的代码收到这个 JSON → 校验 → 真的调用 query_order("ORD-20260730-0001") → 把结果发回给模型
 > 4. 模型读取结果 → 生成最终回答
 > ```
 >
@@ -52,22 +52,51 @@ pip install -r requirements.txt
 
 > 🧠 **工程原则**：业务逻辑（查数据库、算价格、调 API）应该写成**普通 Python 函数**。不要一开始就和 LangChain 耦合——这样你的业务代码可以在任何框架中使用，也更容易单独测试。
 
+这里我们**对接项目 4 创建的持久化订单数据库**——它包含 10 条真实电商订单，后续所有项目共用这一份数据。
+
 ```python
-# 模拟订单数据库
-ORDER_DB = {
-    "O-100": {"status": "已发货", "carrier": "顺丰", "eta": "2026-07-30"},
-    "O-200": {"status": "退款审核中", "carrier": None, "eta": None},
-}
+# 对接项目4的持久化订单数据库（orders.db）
+# 路径 ../2-1/orders.db：从当前项目目录向上一级，进入项目4的工作区
+from sqlalchemy import create_engine, Column, Integer, String, Float
+from sqlalchemy.orm import declarative_base, sessionmaker
+
+Base = declarative_base()
+
+class Order(Base):
+    __tablename__ = 'orders'
+    id = Column(Integer, primary_key=True)
+    order_id = Column(String(20), unique=True, nullable=False)
+    customer_name = Column(String(50), nullable=False)
+    customer_phone = Column(String(20))
+    product = Column(String(100), nullable=False)
+    category = Column(String(30), nullable=False)
+    amount = Column(Float, nullable=False)
+    status = Column(String(20), nullable=False, default='pending')
+    carrier = Column(String(30))
+    eta = Column(String(20))
+    created_at = Column(String(20), nullable=False)
 
 def query_order(order_id: str) -> dict:
-    """查询订单状态。这是纯业务函数——不依赖任何 AI 框架。"""
+    """根据订单编号查询订单状态、快递公司和预计送达时间。"""
     order_id = order_id.strip()
     if not order_id:
         raise ValueError("order_id 不能为空")
-    result = ORDER_DB.get(order_id)
-    if result is None:
-        return {"status": "not_found", "message": f"订单 {order_id} 不存在"}
-    return result
+    engine = create_engine('sqlite:///../2-1/orders.db')
+    Session = sessionmaker(bind=engine)
+    session = Session()
+    try:
+        order = session.query(Order).filter(Order.order_id == order_id).first()
+        if order is None:
+            return {"status": "not_found", "message": f"订单 {order_id} 不存在"}
+        return {
+            "status": order.status,
+            "carrier": order.carrier or "暂无",
+            "eta": order.eta or "暂无",
+            "customer_name": order.customer_name,
+            "product": order.product,
+        }
+    finally:
+        session.close()
 ```
 
 ---
@@ -81,7 +110,7 @@ from langchain.tools import tool
 
 @tool
 def query_order_tool(order_id: str) -> dict:
-    """根据订单编号查询当前状态。订单编号形如 O-100。"""
+    """根据订单编号查询当前状态和物流信息。订单编号形如 ORD-20260730-0001。"""
     return query_order(order_id)
 ```
 
@@ -103,7 +132,7 @@ def query_order_tool(order_id: str) -> dict:
 model_with_tools = model.bind_tools([query_order_tool])
 
 # 发起请求
-response = model_with_tools.invoke("帮我查一下订单 O-100 的状态")
+response = model_with_tools.invoke("帮我查一下订单 ORD-20260730-0001 的状态")
 ```
 
 > 🧠 **`bind_tools()` 做了什么？** 它把工具的参数 Schema（名称、描述、参数类型）注入到模型的 system prompt 中。模型看到这些信息后，遇到相关问题就会生成一个 `tool_calls` 列表。**`bind_tools()` 不会执行任何函数**——它只是「告知」模型有哪些工具可用。
@@ -115,7 +144,7 @@ response = model_with_tools.invoke("帮我查一下订单 O-100 的状态")
 print(response.tool_calls)
 # 输出类似：
 # [{'name': 'query_order_tool',
-#   'args': {'order_id': 'O-100'},
+#   'args': {'order_id': 'ORD-20260730-0001'},
 #   'id': 'call_abc123'}]
 ```
 
@@ -250,12 +279,11 @@ model = ChatOpenAI(
     temperature=0,
 )
 
-# 注册工具
+# 用 @tool 装饰器把业务函数注册为模型可调用的工具
 @tool
 def query_order_tool(order_id: str) -> str:
-    """根据订单编号查询物流状态和预计送达时间。订单编号形如 O-100。"""
-    db = {"O-100": "已发货（顺丰，预计7月30日送达）", "O-200": "退款审核中"}
-    return db.get(order_id, f"订单 {order_id} 不存在")
+    """根据订单编号查询物流状态和预计送达时间。订单编号形如 ORD-20260730-0001。"""
+    return query_order(order_id)  # 调用上面已定义的真实数据库查询
 
 # 构建工具注册表
 TOOL_REGISTRY = {
@@ -269,7 +297,7 @@ TOOL_REGISTRY = {
 model_with_tools = model.bind_tools([query_order_tool])
 
 # 发起请求
-messages = [{"role": "user", "content": "帮我查订单 O-100"}]
+messages = [{"role": "user", "content": "帮我查订单 ORD-20260730-0001"}]
 response = model_with_tools.invoke(messages)
 
 # 处理工具调用
@@ -292,7 +320,7 @@ if response.tool_calls:
 
 | 现象 | 可能原因 | 排查方法 |
 |------|---------|---------|
-| 模型不调用工具，直接回答 | docstring 描述不清，或问题不需要查数据 | 让问题明确需要工具才能回答（如「查订单 O-100」） |
+| 模型不调用工具，直接回答 | docstring 描述不清，或问题不需要查数据 | 让问题明确需要工具才能回答（如「查订单 ORD-20260730-0001」） |
 | 模型调用了不存在的工具名 | 幻觉——模型编造了工具名 | 始终用工具注册表白名单校验 |
 | 返回结果后模型不继续回答 | 忘记把工具结果追加到 messages 中 | 确认 `messages.append(result)` |
 | `tool_call_id` 不对应 | 工具结果写回了错误的 `tool_call_id` | 用原始 `tool_call["id"]` 作为 `tool_call_id` |

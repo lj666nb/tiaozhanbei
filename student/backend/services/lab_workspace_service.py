@@ -202,12 +202,13 @@ def _course(exercise_id: str) -> dict:
             "无法识别时抛出 ValueError。返回拼接后的完整字符串。"
         ),
         "2-1": (
-            "先定义 Base = declarative_base()，再继承 Base 定义 Order 类，声明表名 __tablename__ 和各列。"
+            "先定义 Base = declarative_base()，再继承 Base 定义 Order 类，声明 __tablename__ 和全部11列"
+            "（id, order_id, customer_name, customer_phone, product, category, amount, status, carrier, eta, created_at）。"
             "setup_order_db 用 create_engine(f'sqlite:///{db_path}') 创建引擎，用 Base.metadata.create_all(engine) 建表，"
             "再用 sessionmaker(bind=engine) 返回 Session 类。\n\n"
             "query_orders 接收 session 和 **filters，构建 query = session.query(Order)，"
-            "按 filters 中的 status / customer_name / min_amount 逐项叠加 .filter()，"
-            "最后遍历 query.all() 将每行转成字典返回。无匹配时返回空列表。"
+            "按 filters 中的 order_id / customer_name(LIKE模糊) / category / status / carrier / min_amount / max_amount 逐项叠加 .filter()，"
+            "最后遍历 query.all() 将每行转成字典返回（包含全部11列）。无匹配时返回空列表。"
         ),
     }
     impl_notes = _IMPL_NOTES.get(exercise_id, "")
@@ -424,18 +425,13 @@ def _passed_project_snapshot(root: Path) -> dict[str, str]:
 
 
 def _restore_passed_project_snapshot(root: Path, snapshot: dict[str, str]) -> None:
-    """Restore a server-created snapshot while keeping local env credentials."""
+    """补齐通关快照中缺失的支持文件，不删除用户已存在的任何文件。"""
     if not snapshot:
         return
-    for child in list(root.iterdir()):
-        if child.name in {".venv", ".lab-state.json"} or child.name == ".env" or child.name.startswith(".env."):
-            continue
-        if child.is_dir():
-            shutil.rmtree(child)
-        else:
-            child.unlink()
     for relative, content in snapshot.items():
         target = _safe_path(root, relative, allow_hidden=True)
+        if target.exists():
+            continue  # 保留用户已有文件，不覆盖
         target.parent.mkdir(parents=True, exist_ok=True)
         target.write_text(str(content), encoding="utf-8")
 
@@ -1079,10 +1075,23 @@ def _project_env_values(root: Path) -> dict[str, str]:
 
 def _project_api_config(root: Path) -> dict[str, str]:
     values = _project_env_values(root)
+    # 找不到精确匹配时，模糊匹配包含 "api" 或 "key" 的变量名
     key_names = (
-        "DEEPSEEK_API_KEY", "OPENAI_API_KEY", "LLM_API_KEY", "API_KEY",
+        "DEEPSEEK_API_KEY", "DEEP_SEEK_API", "OPENAI_API_KEY",
+        "LLM_API_KEY", "API_KEY", "DEEPSEEK_KEY",
     )
-    api_key = next((values.get(name, "").strip() for name in key_names if values.get(name, "").strip()), "")
+    api_key = ""
+    for name in key_names:
+        v = values.get(name, "").strip()
+        if v:
+            api_key = v
+            break
+    if not api_key:
+        for k, v in values.items():
+            v = v.strip()
+            if v and any(term in k.upper() for term in ("API_KEY", "APIKEY", "DEEPSEEK", "DEEP_SEEK", "LLM_KEY", "OPENAI_KEY")):
+                api_key = v
+                break
     placeholders = {
         "your-api-key", "your_api_key", "replace-me", "replace_me",
         "changeme", "test", "demo", "sk-xxx",
@@ -1167,12 +1176,12 @@ def apply_project_state(
 
     # ── 写入目标文件 ──
     if target_state == "repair":
-        # 故障修复：将含错代码写入独立文件 repair_target.py，保留用户原始 solution.py
+        # 故障修复：将含错代码写入独立文件 repair_target.py
+        # solution.py 和其他文件一概不动，保证用户写的代码不会被覆盖
         (root / "repair_target.py").write_text(solution_code, encoding="utf-8")
-        # 如果 solution.py 曾被之前会话覆盖，从通关快照恢复用户原版
-        snapshot = state.get("passed_project_files")
-        if isinstance(snapshot, dict) and snapshot.get("solution.py"):
-            (root / "solution.py").write_text(snapshot["solution.py"], encoding="utf-8")
+    elif target_state == "passed":
+        # 通关后不动 solution.py——上面的 _restore_passed_project_snapshot 已补齐支持文件
+        pass
     else:
         (root / "solution.py").write_text(solution_code, encoding="utf-8")
     variant_task = root / "VARIANT_TASK.md"
@@ -1790,6 +1799,12 @@ def check_stage(
         for name in course["project_files"]:
             ok = (root / name).is_file()
             add(name, ok, "文件存在，名称完全一致" if ok else f"请在项目根目录创建 {name}")
+        # 跨练习依赖：项目5/6/7和毕业项目需要项目4的持久化数据库
+        if exercise_id in {"2-2", "2-3", "2-4", "4-3"}:
+            db_path = root.parent / "2-1" / "orders.db"
+            ok = db_path.is_file() and db_path.stat().st_size > 0
+            add("项目4数据库", ok,
+                "orders.db 已就绪——后续项目可复用项目4的订单数据" if ok else "请先完成项目4（2-1）：用 SQLAlchemy 构建订单数据库，生成 orders.db")
     elif stage_id == "environment":
         cfg = root / ".venv" / "pyvenv.cfg"
         add("虚拟环境目录", cfg.is_file(), "检测到 .venv/pyvenv.cfg" if cfg.is_file() else "请执行 python -m venv .venv")
@@ -1942,8 +1957,11 @@ def check_stage(
                         imported.update(alias.name for alias in node.names)
                     elif isinstance(node, ast.ImportFrom) and node.module:
                         imported.add(node.module)
-                has_framework = any(any(name == expected or name.startswith(expected + ".") for expected in course["framework_imports"]) for name in imported)
-                add("框架接入", has_framework, f"检测到：{', '.join(sorted(imported)) or '无导入'}" if has_framework else f"需要导入 {course['framework']}")
+                # 2-1 是纯 SQLAlchemy 数据库练习，app.py 不需要 LangChain 导入
+                _required_imports = ["sqlalchemy"] if exercise_id == "2-1" else course["framework_imports"]
+                has_framework = any(any(name == expected or name.startswith(expected + ".") for expected in _required_imports) for name in imported)
+                _missing = [e for e in _required_imports if not any(name == e or name.startswith(e + ".") for name in imported)]
+                add("框架接入", has_framework, f"检测到：{', '.join(sorted(imported)) or '无导入'}" if has_framework else f"需要在 app.py 中导入：{', '.join(_missing)}")
                 has_solution = any(name == "solution" or name.startswith("solution.") for name in imported)
                 add("核心模块接入", has_solution, "已导入 solution" if has_solution else "请从 solution 导入你实现的函数")
                 for label, passed, detail in _integration_contract_checks(exercise_id, tree):
