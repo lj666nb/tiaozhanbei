@@ -575,7 +575,7 @@
       <div v-else-if="capabilityStatus === 'variant_pending'" class="verified-report">
         <div :class="['score-ring', repairEvidence.tests_passed ? 'ok' : 'low']">{{ capabilitySession?.repair_score || 0 }}</div>
         <h2>{{ repairEvidence.tests_passed ? '故障已修复并完成评分' : '本次修复仍有未通过项' }}</h2>
-        <p>无论本次是否修好，都可以重新挑战故障修复，或带着当前得分继续变式迁移。</p>
+        <p>{{ repairEvidence.tests_passed ? '测试与根因说明均达到要求，可以继续变式迁移。' : '本次尚未形成有效修复证据，请根据失败用例继续修改并重新提交。' }}</p>
         <div class="repair-result-grid">
           <div><small>测试恢复</small><b>{{ repairEvidence.test_score || 0 }} / 80</b></div>
           <div><small>根因说明</small><b>{{ repairEvidence.explanation_score || 0 }} / 20</b></div>
@@ -2143,12 +2143,15 @@ async function handleVariantSubmit() {
           ...failedCases.map(c => ({ type: 'error', text: `  ✗ ${c.description}: ${c.error || '未满足预期'}` })),
         )
       }
-      ElMessage.warning(`变式已完成评分：通过 ${evaluation.passed_count || 0}/${evaluation.total || '?'}，本阶段不再阻塞后续流程`)
+      capabilitySession.value = { ...capabilitySession.value, ...result, status: 'variant_pending', report: result.report }
+      ElMessage.warning(`变式尚未通过：通过 ${evaluation.passed_count || 0}/${evaluation.total || '?'}，请修改后重新提交`)
+      showTerminal()
+      return
     }
     capabilitySession.value = { ...capabilitySession.value, ...result, status: 'verified', report: result.report }
     variantDialog.value = false
     defenseDialog.value = true
-    ElMessage.success(result.variant_passed ? '🎉 变式迁移通过！完整能力验证完成。' : '变式迁移已评分并保存，完整能力验证完成。')
+    ElMessage.success('🎉 变式迁移通过！完整能力验证完成。')
   } catch (error) {
     ElMessage.error(error.response?.data?.detail || error.message || '变式迁移提交失败，请稍后重试')
   } finally {
@@ -2288,15 +2291,18 @@ async function submitRepairCode() {
         ...failedCases.map(c => ({ type: 'error', text: `  ✗ ${c.description}: ${c.error || '未满足预期'}` })),
       )
     }
-    // 提交即完成本阶段；测试结果只影响评分，不再阻塞变式迁移。
-    const newStatus = result.status || 'verified'
+    const newStatus = result.status || 'repair_pending'
     capabilitySession.value = { ...capabilitySession.value, ...result, status: newStatus, report: result.report }
     defenseDialog.value = true
-    ElMessage.success(
-      newStatus === 'variant_pending'
-        ? `故障修复已提交并完成评分（${Math.round(result.repair_score || 0)}分），变式迁移已解锁`
-        : '故障修复已提交并完成评分',
-    )
+    if (result.repair_passed) {
+      ElMessage.success(
+        newStatus === 'variant_pending'
+          ? `故障修复通过（${Math.round(result.repair_score || 0)}分），变式迁移已解锁`
+          : '故障修复通过',
+      )
+    } else {
+      ElMessage.warning(`故障修复尚未通过（${Math.round(result.repair_score || 0)}分），请根据失败用例继续修改`)
+    }
   } catch (error) {
     ElMessage.error(error.response?.data?.detail || error.message || '故障修复提交失败，请稍后重试')
   } finally { capabilityBusy.value = false }

@@ -23,6 +23,7 @@ from pathlib import Path
 from typing import Any
 
 from database import get_db
+from services.agent_lab_faults import FAULT_PROFILES, curated_mutation_candidates
 from services.agent_lab_variants import ADDITIONAL_VARIANT_SPECS
 from services.ai_service import call_llm
 from services.judge_service import get_flagship_exercise, is_flagship_exercise, judge_submission
@@ -84,6 +85,8 @@ def _session_dict(row) -> dict:
         data["defense_grading_status"] = "grading"
     else:
         data["defense_grading_status"] = "pending"
+    if "mutation_description" in data:
+        data["mutation_description"] = _public_mutation_description(data.get("mutation_description"))
     return data
 
 
@@ -365,6 +368,51 @@ def _replace_region(code: str, region: str, start: int, end: int) -> str:
     return code[:start] + region + code[end:]
 
 
+def _encode_mutation_metadata(meta: dict, evaluation: dict) -> str:
+    failed_cases = [
+        str(item.get("description", "")).strip()
+        for item in evaluation.get("results", [])
+        if not item.get("passed") and str(item.get("description", "")).strip()
+    ][:2]
+    focus = str(meta.get("focus") or "本实验的核心输入输出契约")
+    case_text = "、".join(failed_cases) or "至少一个服务端测试点"
+    public = (
+        f"故障现象：{case_text}未通过。请先运行测试，对照输入、期望与实际结果定位问题；"
+        f"重点检查“{focus}”。系统不会在修复前直接公布根因。"
+    )
+    payload = {
+        "version": 2,
+        "public": public,
+        "focus": focus,
+        "root_cause": str(meta.get("root_cause") or "实现偏离了题目约定的输入输出契约。"),
+        "root_terms": [str(term) for term in meta.get("root_terms", []) if str(term).strip()],
+        "failed_cases": failed_cases,
+    }
+    return json.dumps(payload, ensure_ascii=False)
+
+
+def _decode_mutation_metadata(raw: Any) -> dict:
+    text = str(raw or "").strip()
+    if not text:
+        return {"public": "故障已注入，请运行测试，根据失败现象定位根因。", "root_cause": "", "root_terms": []}
+    try:
+        data = json.loads(text)
+        if isinstance(data, dict) and data.get("version") == 2:
+            return data
+    except Exception:
+        pass
+    # 旧会话曾把答案直接存入描述。恢复时不再把旧根因泄露给学生。
+    return {
+        "public": "代表性故障已注入。请运行测试，对照输入、期望与实际结果定位根因。",
+        "root_cause": text,
+        "root_terms": [],
+    }
+
+
+def _public_mutation_description(raw: Any) -> str:
+    return str(_decode_mutation_metadata(raw).get("public") or "")
+
+
 def _mutation_candidates(code: str) -> list[tuple[str, str]]:
     """生成真实的、有教育意义的故障变体，模拟实际开发中的常见错误。
 
@@ -451,8 +499,8 @@ def _mutation_candidates(code: str) -> list[tuple[str, str]]:
                 "请添加具体的异常类型和适当的错误处理逻辑。")
         candidates.append((_replace_region(code, broken, start, end), desc))
 
-    # 3.2 返回可变内部状态（引用泄露）
-    for m in re.finditer(r'(?m)(\s*)return\s+self\._(\w+)', region):
+    # 3.2 深拷贝保护被移除（返回可变内部状态引用）
+    for m in re.finditer(r'(?m)(\s*)return\s+copy\.deepcopy\(self\._(\w+)\)', region):
         indent, attr = m.group(1), m.group(2)
         broken = region[:m.start()] + f"{indent}return self._{attr}" + region[m.end():]
         desc = (f"🔍 L3-设计误用：直接返回了内部属性 `self._{attr}` 的引用，"
@@ -531,12 +579,46 @@ def _mutation_candidates(code: str) -> list[tuple[str, str]]:
     return candidates
 
 
+def _generic_fault_profile(exercise_id: str, description: str) -> dict:
+    profile = dict(FAULT_PROFILES.get(exercise_id, {}))
+    profile.setdefault("focus", "本实验的核心输入输出契约")
+    profile["root_cause"] = description
+    term_groups = (
+        (["浅拷贝", "深拷贝", "copy", "deepcopy", "引用"], "浅拷贝"),
+        (["content", "对象", "字符串", "类型"], ".content"),
+        (["边界", "切片", "偏移", "off-by-one"], "off-by-one"),
+        (["返回值", "str", "字符串", "类型"], "字符串类型"),
+        (["键名", "拼写", "key", "字典"], "拼写错误"),
+        (["条件", "反转", "分支", "if"], "条件判断"),
+        (["赋值", "计算", "跳过", "变量"], "注释掉"),
+    )
+    root_terms = list(profile.get("root_terms", []))
+    for terms, marker in term_groups:
+        if marker in description:
+            root_terms.extend(terms)
+    profile["root_terms"] = list(dict.fromkeys(root_terms))
+    return profile
+
+
 def _build_mutation(exercise_id: str, code: str) -> tuple[str, str]:
+    # 优先选择与本实验知识目标绑定的故障；只有学生写法无法命中时才使用通用兜底。
+    for mutated, meta in curated_mutation_candidates(exercise_id, code):
+        evaluation = _judge_exercise_code(exercise_id, mutated)
+        if not evaluation["passed"]:
+            return mutated, _encode_mutation_metadata(meta, evaluation)
+
     for mutated, description in _mutation_candidates(code):
-        if not _judge_exercise_code(exercise_id, mutated)["passed"]:
-            return mutated, description
+        evaluation = _judge_exercise_code(exercise_id, mutated)
+        if not evaluation["passed"]:
+            return mutated, _encode_mutation_metadata(
+                _generic_fault_profile(exercise_id, description), evaluation,
+            )
     # 所有候选都未命中 → 强制注入一个底层故障，保证每道题都有真实的修复挑战
-    return _force_mutation(exercise_id, code)
+    mutated, description = _force_mutation(exercise_id, code)
+    evaluation = _judge_exercise_code(exercise_id, mutated)
+    return mutated, _encode_mutation_metadata(
+        _generic_fault_profile(exercise_id, description), evaluation,
+    )
 
 
 def _force_mutation(exercise_id: str, code: str) -> tuple[str, str]:
@@ -1136,108 +1218,53 @@ def _mark_learning_path_lab_complete(conn, user_id: int, exercise_id: str) -> No
 
 
 def _score_explanation(explanation: str, mutation_desc: str, exercise_id: str, repair_code: str) -> int:
-    """对故障修复的根因说明进行实质性评分（0-20）。
-
-    评分维度：
-    - 基础门槛（0-6分）：长度、非重复字符
-    - 内容质量（0-8分）：包含代码相关术语、定位到具体位置
-    - 因果推理（0-6分）：说明故障机制、修复策略
-
-    纯按字符数计分已废弃——学生必须展示对故障的理解。
-    """
-    if not explanation:
+    """按真实根因、代码定位、因果链和回归验证四个维度评分。"""
+    text = str(explanation or "").strip()
+    if len(text) < 20 or len(set(text.lower())) < 8:
         return 0
 
-    score = 0
+    meta = _decode_mutation_metadata(mutation_desc)
+    expected_terms = [str(term).lower() for term in meta.get("root_terms", []) if str(term).strip()]
+    lowered = text.lower()
 
-    # ── 基础门槛（0-6分）──
-    text = explanation.strip()
-    length = len(text)
+    # 真实根因（0-8）：必须命中本次私有故障的概念，而不是堆砌通用术语。
+    root_hits = sum(1 for term in expected_terms if term in lowered)
+    root_score = 0
+    if root_hits >= 3:
+        root_score = 8
+    elif root_hits == 2:
+        root_score = 6
+    elif root_hits == 1:
+        root_score = 3
 
-    # 门槛 1：最少 20 个字符；20-40 之间给部分分
-    if length < 20:
-        return 0
-    if length < 40:
-        # 20-40 字符：给基础分但不进入完整评分
-        score += 2
-        unique_chars = len(set(text.lower()))
-        if unique_chars < 5:
-            return 2  # 明显灌水
-        score += 1  # 及格线以上
-        # 额外奖励：包含实质性代码术语
-        if re.search(r'(?<![a-zA-Z])[a-zA-Z_]\w{2,}(?![a-zA-Z])', text):
-            score += 1
-        if any(kw in text for kw in ["函数", "return", "变量", "错误", "bug", "类型", "修复", "参数"]):
-            score += 1
-        return min(score, 8)  # 短说明最多 8 分
+    # 代码定位（0-4）：说明具体函数、变量、条件或返回结构。
+    identifiers = [name.lower() for name in _code_identifiers(repair_code)]
+    identifier_hits = sum(1 for name in identifiers if name in lowered)
+    location_markers = ["函数", "变量", "参数", "条件", "分支", "返回", "字段", "第", "行"]
+    location_hits = identifier_hits + sum(1 for marker in location_markers if marker in text)
+    location_score = min(location_hits, 4)
 
-    score += 3  # 达到标准长度
+    # 因果机制（0-4）：必须连接错误机制与可观察后果。
+    cause_markers = ["因为", "由于", "导致", "造成", "所以", "因此", "使得", "从而", "后果"]
+    cause_score = min(sum(1 for marker in cause_markers if marker in text) * 2, 4)
 
-    # 门槛 2：不能是纯重复字符或纯标点
-    unique_chars = len(set(text.lower()))
-    if unique_chars < 6:
-        return 3  # 明显灌水，只给长度基础分
-    char_diversity = unique_chars / max(length, 1)
-    if char_diversity < 0.2:
-        return 4  # 低质量
-    score += 2 if char_diversity >= 0.4 else 1
+    # 修复与回归验证（0-4）：描述改动和用于防止复发的测试。
+    fix_markers = ["修复", "改为", "恢复", "替换", "调整", "删除", "增加"]
+    verify_markers = ["测试", "用例", "边界", "回归", "重新运行", "通过"]
+    fix_score = 2 if any(marker in text for marker in fix_markers) else 0
+    verify_score = 2 if any(marker in text for marker in verify_markers) else 0
 
-    # 门槛 3：包含中文字符（说明是实质性中文描述）或英文术语
-    has_chinese = any('一' <= c <= '鿿' for c in text)
-    has_english_terms = bool(re.search(r'[a-zA-Z]{4,}', text))
-    if has_chinese:
-        score += 1
-    if has_english_terms:
-        score += 1
-
-    # ── 内容质量（0-8分）──
-    # 检查是否引用了具体的代码元素
-    # 注意：\b 在中文 Unicode 环境不可靠（Python 将中文视为 \w），
-    # 改用 ASCII 友好的边界断言
-    code_terms = re.findall(r'(?<![a-zA-Z])[a-zA-Z_]\w{2,}(?![a-zA-Z])', text)
-    meaningful_terms = [t for t in code_terms if t.lower() not in {
-        "the", "and", "for", "that", "this", "with", "from", "your", "have",
-        "what", "when", "were", "been", "they", "them", "then", "than",
-        "there", "their", "just", "like", "some", "also",
-    }]
-
-    if len(meaningful_terms) >= 5:
-        score += 3
-    elif len(meaningful_terms) >= 3:
-        score += 2
-    elif len(meaningful_terms) >= 1:
-        score += 1
-
-    # 检查是否提及了代码位置（函数名、变量名、行号等）
-    # 中文不使用 \b，直接按子串匹配
-    code_location_keywords = [
-        "函数", "方法", "类", "模块", "文件", "行", "return", "变量", "参数", "属性",
-        "修改", "改动", "变更", "替换", "删除", "添加", "调整", "修复", "恢复", "纠正",
-    ]
-    location_hits = sum(1 for kw in code_location_keywords if kw in text)
-    # 额外：检查英文代码相关模式
-    if re.search(r'\bdef\s+\w+|\.py\b|solution|app\.py', text, re.IGNORECASE):
-        location_hits += 1
-    score += min(location_hits * 2, 4)
-
-    # ── 因果推理（0-6分）──
-    # 检查是否解释了"为什么"
-    causality_keywords = [
-        "因为", "由于", "原因", "导致", "造成", "引起", "触发", "源于",
-        "所以", "因此", "故而", "于是", "结果", "后果", "影响",
-        "根因", "根源", "本质", "根本", "底层", "源头",
-    ]
-    causality_hits = sum(1 for kw in causality_keywords if kw in text)
-    score += min(causality_hits * 2, 6)
-
+    score = root_score + location_score + cause_score + fix_score + verify_score
+    # 未识别到真实根因时，套话最高只能得到 8 分，无法达到通过线。
+    if root_score == 0:
+        score = min(score, 8)
     return min(score, 20)
 
 
 def submit_repair(user_id: int, session_id: int, code: str, explanation: str) -> dict:
     """提交故障修复并评分。
 
-    测试与说明分数保留真实结果，但完整提交后即完成本阶段，不再用通过线
-    阻塞后续变式迁移。
+    只有测试全部恢复且根因说明达到要求，才解锁变式迁移。
     """
     row = _owned_session(user_id, session_id)
     if row["status"] != "repair_pending":
@@ -1263,10 +1290,15 @@ def submit_repair(user_id: int, session_id: int, code: str, explanation: str) ->
     code_score = 100
     defense_score = float(row["defense_score"] or 0)
     total_score = round(code_score * 0.25 + defense_score * 0.25 + repair_score * 0.40 + process_score * 0.10)
+    mutation_meta = _decode_mutation_metadata(row["mutation_description"])
     report = {
-        "verified": True,
-        "verdict": "能力已验证",
-        "summary": "代码、原理答辩和故障修复均已提交评分并形成可复核证据。",
+        "verified": False,
+        "verdict": "故障修复通过" if repair_passed else "故障修复尚未通过",
+        "summary": (
+            "测试已恢复，根因说明达到要求，可以进入变式迁移。"
+            if repair_passed
+            else "本次提交尚未形成有效修复证据，请根据失败用例继续定位并重新提交。"
+        ),
         "dimensions": {
             "代码正确性": code_score,
             "原理理解": round(defense_score),
@@ -1281,7 +1313,8 @@ def submit_repair(user_id: int, session_id: int, code: str, explanation: str) ->
             if question.get("source_path")
         )),
         "repair_evidence": {
-            "description": row["mutation_description"],
+            "description": mutation_meta.get("public", ""),
+            "root_cause": mutation_meta.get("root_cause", "") if repair_passed else "",
             "explanation": explanation,
             "tests_passed": bool(evaluation["passed"]),
             "test_score": test_score,
@@ -1293,24 +1326,26 @@ def submit_repair(user_id: int, session_id: int, code: str, explanation: str) ->
         },
         "total_score": total_score,
         "next_step": (
-            "继续完成变式迁移，并根据本次失败测试补强修复方案。"
+            "根据失败测试继续修复；测试与根因说明均通过后才能进入变式迁移。"
             if not repair_passed
-            else "尝试修改输入约束或替换一种实现策略，再比较两种方案的取舍。"
+            else "进入变式迁移，在新业务约束下重新实现同一核心能力。"
         ),
     }
-    # 检查是否有变式迁移场景，如有则进入 variant_pending 而非直接 verified
+    # 只有修复真正通过才进入下一阶段。
     exercise_id = str(row["exercise_id"] or "")
     has_variant = _get_variant_spec(exercise_id) is not None
-    next_status = "variant_pending" if has_variant else "verified"
+    next_status = (
+        "variant_pending" if repair_passed and has_variant
+        else "verified" if repair_passed
+        else "repair_pending"
+    )
     now = datetime.now().isoformat()
 
-    if has_variant:
+    if has_variant or not repair_passed:
         report.update({
             "verified": False,
-            "verdict": "故障修复已评分",
-            "summary": "故障修复已完成评分；可重新挑战本阶段，或继续完成变式迁移。",
+            "verdict": "故障修复通过" if repair_passed else "故障修复尚未通过",
         })
-        # 修复提交评分后先保存阶段报告；变式完成时在此基础上补齐最终维度。
         conn.execute(
             """UPDATE capability_sessions
                SET repair_code = ?, repair_explanation = ?, repair_score = ?, process_score = ?,
@@ -1318,7 +1353,7 @@ def submit_repair(user_id: int, session_id: int, code: str, explanation: str) ->
                WHERE id = ? AND user_id = ?""",
             (
                 code, explanation, repair_score, process_score, total_score,
-                json.dumps(report, ensure_ascii=False), "variant_pending", session_id, user_id,
+                json.dumps(report, ensure_ascii=False), next_status, session_id, user_id,
             ),
         )
     else:
@@ -1341,8 +1376,8 @@ def submit_repair(user_id: int, session_id: int, code: str, explanation: str) ->
             ),
         ),
     )
-    # 只有完成整套闭环，代码提交才进入掌握度统计。
-    if not has_variant:
+    # 只有真正完成整套闭环，代码提交才进入掌握度统计。
+    if repair_passed and not has_variant:
         conn.execute(
             """UPDATE code_submissions SET verified = 1
                WHERE id = (
@@ -1367,7 +1402,7 @@ def submit_repair(user_id: int, session_id: int, code: str, explanation: str) ->
         "repair_passed": repair_passed,
         "repair_completed": True,
         "repair_score": repair_score,
-        "verified": not has_variant,
+        "verified": repair_passed and not has_variant,
         "report": report,
         "evaluation": evaluation,
         "status": next_status,
@@ -1701,6 +1736,38 @@ def generate_variant(user_id: int, session_id: int) -> dict:
 
 def _variant_starter_code(variant_spec: dict) -> str:
     target = str(variant_spec.get("target") or "solve_variant")
+    runner = str(variant_spec.get("runner") or "")
+    if runner == "repair_db":
+        return '''"""校园设备报修数据库变式。"""
+
+from sqlalchemy import Column, Integer, String, create_engine
+from sqlalchemy.orm import declarative_base, sessionmaker
+
+Base = declarative_base()
+
+
+class RepairTicket(Base):
+    __tablename__ = "repair_tickets"
+    # 按 VARIANT_TASK.md 完成字段与约束
+
+
+def setup_repair_db(db_path=":memory:"):
+    """创建报修数据库并返回 (engine, Session)。"""
+    raise NotImplementedError("请完成数据库初始化")
+
+
+def query_repair_tickets(session, **filters):
+    """组合过滤报修工单并返回稳定排序的业务字典。"""
+    raise NotImplementedError("请完成组合查询")
+'''
+    if runner == "incident_plan":
+        return '''"""生产故障处置计划变式。"""
+
+
+def run_incident_response_plan(plan, registry, max_steps=5):
+    """执行真实工具，失败即停，并返回可审计轨迹。"""
+    raise NotImplementedError("请完成处置计划执行器")
+'''
     return (
         '"""变式迁移独立实现区。\n\n'
         "请根据 VARIANT_TASK.md 中的新业务场景和输入输出契约完成函数。\n"
@@ -1804,7 +1871,7 @@ def switch_project_state(user_id: int, session_id: int, target_state: str) -> di
 def submit_variant(user_id: int, session_id: int, code: str) -> dict:
     """提交变式迁移代码并评分。
 
-    分数保留真实测试表现，但提交并完成评分后即完成该阶段，不再以 60 分作为流程门槛。
+    只有全部变式测试通过，才完成能力验证。
     """
     row = _owned_session(user_id, session_id)
     if row["status"] != "variant_pending":
@@ -1820,14 +1887,14 @@ def submit_variant(user_id: int, session_id: int, code: str) -> dict:
     variant_score = 100 if passed else max(0, round(variant_result["passed_count"] / max(variant_result["total"], 1) * 100))
 
     conn = get_db()
-    # 完成评分即完成完整验证流程；variant_passed 仍保留客观测试结论。
     now = datetime.now().isoformat()
+    next_status = "verified" if passed else "variant_pending"
     conn.execute(
         """UPDATE capability_sessions
            SET variant_code = ?, variant_score = ?, variant_passed_at = ?,
-               status = 'verified'
+               status = ?, verified = 0, completed_at = NULL
            WHERE id = ? AND user_id = ?""",
-        (code, variant_score, now, session_id, user_id),
+        (code, variant_score, now if passed else None, next_status, session_id, user_id),
     )
 
     # 重新计算总分（加入变式维度）
@@ -1853,15 +1920,30 @@ def submit_variant(user_id: int, session_id: int, code: str) -> dict:
             "passed_count": variant_result["passed_count"],
             "total": variant_result["total"],
         },
-        "summary": "代码、原理答辩、故障修复与变式迁移均已完成评分并形成可复核证据。",
+        "summary": (
+            "代码、原理答辩、故障修复与变式迁移均已通过并形成可复核证据。"
+            if passed
+            else "变式迁移尚有测试未通过，请根据新场景约束继续修改并重新提交。"
+        ),
+        "verified": bool(passed),
+        "verdict": "能力已验证" if passed else "变式迁移尚未通过",
+        "next_step": "查看失败用例并继续完成迁移任务。" if not passed else "完整能力验证已通过。",
     }
 
-    conn.execute(
-        """UPDATE capability_sessions
-           SET total_score = ?, report_json = ?, verified = 1, completed_at = ?
-           WHERE id = ? AND user_id = ?""",
-        (total_score, json.dumps(report, ensure_ascii=False), now, session_id, user_id),
-    )
+    if passed:
+        conn.execute(
+            """UPDATE capability_sessions
+               SET total_score = ?, report_json = ?, verified = 1, completed_at = ?
+               WHERE id = ? AND user_id = ?""",
+            (total_score, json.dumps(report, ensure_ascii=False), now, session_id, user_id),
+        )
+    else:
+        conn.execute(
+            """UPDATE capability_sessions
+               SET total_score = ?, report_json = ?, verified = 0, completed_at = NULL
+               WHERE id = ? AND user_id = ?""",
+            (total_score, json.dumps(report, ensure_ascii=False), session_id, user_id),
+        )
     conn.execute(
         "INSERT INTO capability_events (session_id, user_id, event_type, payload_json) VALUES (?, ?, 'variant_submit', ?)",
         (
@@ -1870,16 +1952,17 @@ def submit_variant(user_id: int, session_id: int, code: str) -> dict:
             json.dumps({"variant_score": variant_score, "passed": passed, "graded": True}, ensure_ascii=False),
         ),
     )
-    conn.execute(
-        """UPDATE code_submissions SET verified = 1
-           WHERE id = (
-               SELECT id FROM code_submissions
-               WHERE user_id = ? AND exercise_id = ? AND passed = 1
-               ORDER BY id DESC LIMIT 1
-           )""",
-        (user_id, row["exercise_id"]),
-    )
-    _mark_learning_path_lab_complete(conn, user_id, row["exercise_id"])
+    if passed:
+        conn.execute(
+            """UPDATE code_submissions SET verified = 1
+               WHERE id = (
+                   SELECT id FROM code_submissions
+                   WHERE user_id = ? AND exercise_id = ? AND passed = 1
+                   ORDER BY id DESC LIMIT 1
+               )""",
+            (user_id, row["exercise_id"]),
+        )
+        _mark_learning_path_lab_complete(conn, user_id, row["exercise_id"])
     conn.commit()
     updated = conn.execute("SELECT * FROM capability_sessions WHERE id = ?", (session_id,)).fetchone()
     conn.close()
@@ -1890,7 +1973,8 @@ def submit_variant(user_id: int, session_id: int, code: str) -> dict:
 
     data = _session_dict(updated)
     data["variant_passed"] = passed
-    data["variant_completed"] = True
+    data["variant_completed"] = bool(passed)
+    data["variant_submitted"] = True
     data["evaluation"] = variant_result
     data["report"] = report
     return data
@@ -1910,6 +1994,12 @@ def _judge_variant_code(code: str, variant_spec: dict) -> dict:
             "passed": False, "total": total, "passed_count": 0,
             "compile_error": policy_error, "results": [],
         }
+
+    runner_kind = str(variant_spec.get("runner") or "")
+    if runner_kind == "repair_db":
+        return _judge_repair_db_variant(code, total)
+    if runner_kind == "incident_plan":
+        return _judge_incident_plan_variant(code, total)
 
     # 构建临时判题脚本
     target = variant_spec["target"]
@@ -2001,6 +2091,171 @@ print("__JUDGE_RESULT__" + json.dumps(results, ensure_ascii=False))
         return {"passed": False, "total": total, "passed_count": 0, "compile_error": str(exc)[:240], "results": []}
 
 
+def _run_custom_variant_harness(code: str, harness: str, total: int) -> dict:
+    """运行需要真实 ORM 对象或可调用工具的私有变式测试。"""
+    runner_code = f'''import copy, json, time
+source = {json.dumps(code)}
+namespace = {{"__name__": "variant_submission"}}
+results = []
+
+def record(description, check):
+    started = time.perf_counter()
+    try:
+        check()
+        results.append({{"description": description, "passed": True, "error": None,
+                        "duration_ms": round((time.perf_counter() - started) * 1000, 2)}})
+    except Exception as exc:
+        results.append({{"description": description, "passed": False,
+                        "error": (str(exc).strip() or type(exc).__name__)[:300],
+                        "duration_ms": round((time.perf_counter() - started) * 1000, 2)}})
+
+exec(compile(source, "variant.py", "exec"), namespace)
+{harness}
+print("__JUDGE_RESULT__" + json.dumps(results, ensure_ascii=False, default=str))
+'''
+    try:
+        with tempfile.TemporaryDirectory() as tmp:
+            runner_path = Path(tmp) / "variant_runner.py"
+            runner_path.write_text(runner_code, encoding="utf-8")
+            proc = subprocess.run(
+                [os.environ.get("PYTHON_PATH", "python"), "-I", "-X", "utf8", str(runner_path)],
+                cwd=tmp, capture_output=True, text=True, encoding="utf-8", errors="replace", timeout=15,
+            )
+        marker_lines = [line for line in (proc.stdout or "").splitlines() if line.startswith("__JUDGE_RESULT__")]
+        if proc.returncode != 0 or not marker_lines:
+            error = (proc.stderr or proc.stdout or "变式代码执行失败").strip().splitlines()[-1][:300]
+            return {"passed": False, "total": total, "passed_count": 0, "compile_error": error, "results": []}
+        results = json.loads(marker_lines[-1].removeprefix("__JUDGE_RESULT__"))
+        results = [{"case_index": index, **item} for index, item in enumerate(results, 1)]
+        passed_count = sum(1 for item in results if item.get("passed"))
+        return {
+            "passed": passed_count == total,
+            "total": total,
+            "passed_count": passed_count,
+            "compile_error": "",
+            "results": results,
+        }
+    except subprocess.TimeoutExpired:
+        return {"passed": False, "total": total, "passed_count": 0, "compile_error": "变式代码执行超时", "results": []}
+    except Exception as exc:
+        return {"passed": False, "total": total, "passed_count": 0, "compile_error": str(exc)[:300], "results": []}
+
+
+def _judge_repair_db_variant(code: str, total: int) -> dict:
+    harness = r'''
+from sqlalchemy import inspect
+RepairTicket = namespace.get("RepairTicket")
+setup = namespace.get("setup_repair_db")
+query = namespace.get("query_repair_tickets")
+
+def schema_check():
+    assert RepairTicket is not None and callable(setup) and callable(query), "必须定义 RepairTicket、setup_repair_db 和 query_repair_tickets"
+    assert getattr(RepairTicket, "__tablename__", "") == "repair_tickets", "表名必须是 repair_tickets"
+    columns = RepairTicket.__table__.columns
+    required = {"id", "ticket_id", "building", "category", "priority", "status", "created_at"}
+    assert required.issubset(set(columns.keys())), "报修表字段不完整"
+    assert columns["ticket_id"].unique and not columns["ticket_id"].nullable, "ticket_id 必须唯一且非空"
+    assert not columns["building"].nullable and not columns["category"].nullable, "building/category 必须非空"
+    assert columns["status"].default is not None and columns["status"].default.arg == "open", "status 默认值必须是 open"
+    engine, Session = setup(":memory:")
+    assert "repair_tickets" in inspect(engine).get_table_names(), "setup_repair_db 必须真实创建数据表"
+    assert callable(Session), "第二个返回值必须是 Session 工厂"
+record("创建带唯一约束和默认状态的报修表", schema_check)
+
+def seeded_session():
+    engine, Session = setup(":memory:")
+    session = Session()
+    session.add_all([
+        RepairTicket(ticket_id="R-2", building="一教A区", category="network", priority=2, status="open", created_at="2026-08-02"),
+        RepairTicket(ticket_id="R-1", building="二教", category="device", priority=5, status="closed", created_at="2026-08-01"),
+        RepairTicket(ticket_id="R-3", building="一教B区", category="device", priority=5, status="open", created_at="2026-08-03"),
+        RepairTicket(ticket_id="R-4", building="实验楼", category="network", priority=4, created_at="2026-08-04"),
+    ])
+    session.commit()
+    return session
+
+def building_check():
+    rows = query(seeded_session(), building="一教")
+    assert [row["ticket_id"] for row in rows] == ["R-3", "R-2"], "楼宇必须模糊匹配并稳定排序"
+    expected_keys = {"ticket_id", "building", "category", "priority", "status", "created_at"}
+    assert all(set(row) == expected_keys for row in rows), "返回字典只能包含业务字段"
+record("按楼宇模糊匹配并稳定排序", building_check)
+
+def combined_check():
+    rows = query(seeded_session(), category="network", status="open", min_priority=3, max_priority=5)
+    assert [row["ticket_id"] for row in rows] == ["R-4"], "组合过滤结果不正确"
+record("组合状态、类别与优先级范围过滤", combined_check)
+
+def invalid_check():
+    session = seeded_session()
+    for filters in ({"owner": "x"}, {"min_priority": 5, "max_priority": 2}):
+        try:
+            query(session, **filters)
+        except ValueError:
+            continue
+        raise AssertionError("未知过滤字段和反向范围必须抛出 ValueError")
+record("拒绝未知过滤字段和反向优先级范围", invalid_check)
+'''
+    return _run_custom_variant_harness(code, harness, total)
+
+
+def _judge_incident_plan_variant(code: str, total: int) -> dict:
+    harness = r'''
+run_plan = namespace.get("run_incident_response_plan")
+
+def require_function():
+    assert callable(run_plan), "必须定义 run_incident_response_plan"
+
+def success_check():
+    require_function()
+    calls = []
+    def isolate(service): calls.append("isolate"); return {"service": service, "isolated": True}
+    def restart(service): calls.append("restart"); return "restarted:" + service
+    def health(service): calls.append("health"); return {"healthy": True}
+    plan = [{"name":"isolate","args":{"service":"pay"}}, {"name":"restart","args":{"service":"pay"}}, {"name":"health","args":{"service":"pay"}}]
+    result = run_plan(plan, {"isolate":isolate,"restart":restart,"health":health}, 5)
+    assert calls == ["isolate", "restart", "health"], "工具调用顺序不正确"
+    assert result["status"] == "completed" and result["failed_step"] is None, "完成状态不正确"
+    assert [item["step"] for item in result["trace"]] == calls, "轨迹顺序不正确"
+    assert all(item["status"] == "success" for item in result["trace"]), "成功轨迹状态不正确"
+record("按顺序调用三个真实处置工具", success_check)
+
+def failure_check():
+    require_function()
+    calls = []
+    def isolate(): calls.append("isolate"); return "ok"
+    def restart(): calls.append("restart"); raise RuntimeError("restart failed")
+    def release(): calls.append("release"); return "danger"
+    result = run_plan([{"name":"isolate","args":{}},{"name":"restart","args":{}},{"name":"release","args":{}}], {"isolate":isolate,"restart":restart,"release":release})
+    assert calls == ["isolate", "restart"], "失败后不得继续执行后续步骤"
+    assert result["status"] == "failed" and result["failed_step"] == "restart", "失败步骤记录不正确"
+    assert result["trace"][-1]["status"] == "failed" and "restart failed" in str(result["trace"][-1]["observation"]), "异常必须写入轨迹"
+record("工具异常写入轨迹并阻止后续副作用", failure_check)
+
+def validation_check():
+    require_function()
+    checks = [([{"name":"missing","args":{}}], {}, 5), ([{"name":"ok","args":{}}] * 3, {"ok": lambda: "ok"}, 2)]
+    for plan, registry, limit in checks:
+        try:
+            run_plan(plan, registry, limit)
+        except ValueError:
+            continue
+        raise AssertionError("未知工具或超出 max_steps 必须抛出 ValueError")
+record("拒绝未知工具和超出步数上限的计划", validation_check)
+
+def immutable_check():
+    require_function()
+    plan = [{"name":"ok","args":{"value":1}}]
+    registry = {"ok": lambda value: value}
+    before_plan = copy.deepcopy(plan)
+    before_keys = list(registry.keys())
+    run_plan(plan, registry)
+    assert plan == before_plan and list(registry.keys()) == before_keys, "不得修改计划和注册表"
+record("执行过程不得修改计划和注册表", immutable_check)
+'''
+    return _run_custom_variant_harness(code, harness, total)
+
+
 def get_completed_sessions(user_id: int) -> list[dict]:
     """获取用户所有已完成的能力验证会话历史。
 
@@ -2047,12 +2302,13 @@ def get_completed_sessions(user_id: int) -> list[dict]:
 
 
 def get_exercise_scores(user_id: int) -> dict[str, dict]:
-    """获取用户所有已完成的实验关卡分数概览。
+    """获取用户每道实验关卡最新一次会话的进度与分数概览。
 
     返回 {exercise_id: {score, test_score, capability_score, verified, skipped, status}, ...}
     """
     conn = get_db()
-    # 每个 exercise 取最新的 capability session
+    # 必须按全部状态取最新会话。若排除 coding，重新开始关卡后会错误回退
+    # 到更早的 verified/skipped 会话，从而在首页显示为已完成。
     rows = conn.execute(
         """SELECT cs.id, cs.exercise_id, cs.status, cs.code_score, cs.defense_score,
                   cs.repair_score, cs.variant_score, cs.total_score, cs.verified,
@@ -2060,9 +2316,7 @@ def get_exercise_scores(user_id: int) -> dict[str, dict]:
            FROM capability_sessions cs
            WHERE cs.user_id = ? AND cs.id IN (
                SELECT MAX(id) FROM capability_sessions
-               WHERE user_id = ? AND status IN (
-                   'verified', 'skipped', 'variant_pending', 'repair_pending', 'defense_pending'
-               )
+               WHERE user_id = ?
                GROUP BY exercise_id
            )""",
         (user_id, user_id),

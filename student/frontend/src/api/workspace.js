@@ -18,7 +18,9 @@ function handleStreamAuthFailure(response) {
 export const getLabWorkspace = (exerciseId, reset = false) =>
   request.get(`/workspaces/${exerciseId}`, { params: { reset } })
 
-export const getLabProgressOverview = () => request.get('/workspaces/progress/all')
+export const getLabProgressOverview = () => request.get('/workspaces/progress/all', {
+  params: { _t: Date.now() },
+})
 
 export const listLabEntries = (exerciseId, path = '') =>
   request.get(`/workspaces/${exerciseId}/entries`, { params: { path } })

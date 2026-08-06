@@ -394,6 +394,7 @@ def init_db():
             repair_explanation TEXT DEFAULT '',
             variant_scenario TEXT DEFAULT '',
             variant_code TEXT DEFAULT '',
+            variant_hints_json TEXT DEFAULT '[]',
             ai_usage TEXT DEFAULT '未使用',
             code_score REAL DEFAULT 0,
             defense_score REAL DEFAULT 0,

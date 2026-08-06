@@ -2,7 +2,7 @@
 
 import json
 
-from fastapi import APIRouter, Depends, HTTPException
+from fastapi import APIRouter, Depends, HTTPException, Response
 from fastapi.responses import StreamingResponse
 from pydantic import BaseModel, Field
 
@@ -52,8 +52,9 @@ def _fail(exc: Exception):
 
 
 @router.get("/progress/all", response_model=APIResponse)
-async def get_progress_overview(current_user: dict = Depends(get_current_user)):
+async def get_progress_overview(response: Response, current_user: dict = Depends(get_current_user)):
     try:
+        response.headers["Cache-Control"] = "no-store, no-cache, must-revalidate"
         return APIResponse(data=lab_workspace_service.get_progress_overview(current_user["id"]))
     except Exception as exc:
         _fail(exc)

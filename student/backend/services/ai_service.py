@@ -1,5 +1,6 @@
 """LangChain AI服务封装 — 支持用户自行配置API Key/Base URL/模型"""
 import json
+import os
 import re
 from typing import AsyncGenerator, Optional, List
 from langchain_openai import ChatOpenAI
@@ -36,6 +37,26 @@ def _build_llm(user_id: int, temperature: float = 0.7, max_tokens: int = 4096,
         - None: 使用 OpenAI SDK 默认值（connect=5s, read=600s）
         - 默认 (10, 300): 连接 10s，读取 300s（5分钟）
     """
+    if os.getenv("LOCAL_GPU_MODEL_AUTO", "0") == "1":
+        # The local 1.7B fine-tune is kept within the laptop GPU's safe budget.
+        # The local server enforces the same ceiling as a second line of defense.
+        local_max_tokens = min(
+            max_tokens,
+            int(os.getenv("LOCAL_GPU_MODEL_MAX_OUTPUT_TOKENS", "768")),
+        )
+        return ChatOpenAI(
+            model=os.getenv("LOCAL_GPU_MODEL_NAME", "tiaozhanbei-qwen3-1.7b-local"),
+            openai_api_key="project-local-model",
+            base_url=os.getenv(
+                "LOCAL_GPU_MODEL_BASE_URL",
+                "http://host.docker.internal:8010/v1",
+            ),
+            temperature=min(temperature, 0.45),
+            max_tokens=local_max_tokens,
+            request_timeout=request_timeout,
+            extra_body=extra_body,
+        )
+
     user_config = _get_user_llm_config(user_id)
 
     if not user_config or not user_config.get("api_key"):

@@ -31,6 +31,7 @@ debug.log
 # ===== 临时文件 =====
 tmp_*.json
 *.tmp
+tmp/
 
 # ===== IDE =====
 .idea/
@@ -54,10 +55,26 @@ Thumbs.db
 # ===== 大文件/数据文件 =====
 *.pdf
 *.bin
+*.safetensors
+*.gguf
+*.pt
+*.pth
+*.ckpt
+*.onnx
+*.h5
+*.tflite
 *.pickle
 **/chroma_db/
 **/dataset/backup/
 **/hub/
+/models/
+/weights/
+/checkpoints/
+local-llm/models/
+local-llm/weights/
+local-llm/checkpoints/
 
 # ===== Docker =====
 docker-compose.override.yml
+.venv-local-llm/
+local-llm/*.log

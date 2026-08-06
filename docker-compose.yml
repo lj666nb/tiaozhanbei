@@ -41,6 +41,9 @@ services:
       - SILICONFLOW_API_KEY=${SILICONFLOW_API_KEY:-}
       - SILICONFLOW_BASE_URL=https://api.siliconflow.cn/v1
       - EMBEDDING_MEMORY_CACHE_SIZE=256
+      - LOCAL_GPU_MODEL_AUTO=1
+      - LOCAL_GPU_MODEL_BASE_URL=http://host.docker.internal:8010/v1
+      - LOCAL_GPU_MODEL_NAME=tiaozhanbei-qwen3-1.7b-local
     command: ["sh", "/app/docker-entrypoint.sh"]
     restart: unless-stopped
     networks:

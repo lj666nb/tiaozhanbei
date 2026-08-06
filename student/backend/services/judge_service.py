@@ -30,6 +30,10 @@ BLOCKED_NODES = (
     ast.Global, ast.Nonlocal, ast.With, ast.AsyncWith,
 )
 
+ALLOWED_IMPORT_ROOTS = {
+    "copy", "json", "math", "re", "string", "typing", "sqlalchemy",
+}
+
 
 def load_flagship_exercises() -> list[dict]:
     try:
@@ -73,7 +77,15 @@ def _policy_error(code: str) -> str | None:
             if not ok:
                 return "安全检查未通过：模块级变量只能使用常量或可信任函数调用"
             continue
-        if isinstance(statement, (ast.Import, ast.ImportFrom)):
+        if isinstance(statement, ast.Import):
+            roots = {alias.name.split(".", 1)[0] for alias in statement.names}
+            if not roots.issubset(ALLOWED_IMPORT_ROOTS):
+                return "安全检查未通过：只允许导入本实验白名单中的模块"
+            continue
+        if isinstance(statement, ast.ImportFrom):
+            root = str(statement.module or "").split(".", 1)[0]
+            if statement.level or root not in ALLOWED_IMPORT_ROOTS:
+                return "安全检查未通过：只允许导入本实验白名单中的模块"
             continue
         return "安全检查未通过：模块顶层只能定义函数、类或常量"
 

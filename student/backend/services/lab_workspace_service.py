@@ -425,14 +425,14 @@ def _passed_project_snapshot(root: Path) -> dict[str, str]:
 
 
 def _restore_passed_project_snapshot(root: Path, snapshot: dict[str, str]) -> None:
-    """补齐通关快照中缺失的支持文件，不删除用户已存在的任何文件。"""
+    """恢复通关快照中的项目文件，不删除快照之外的本地文件。"""
     if not snapshot:
         return
     for relative, content in snapshot.items():
         target = _safe_path(root, relative, allow_hidden=True)
-        if target.exists():
-            continue  # 保留用户已有文件，不覆盖
         target.parent.mkdir(parents=True, exist_ok=True)
+        # “全部测试通过”状态必须展示可信快照，而不是当前可能已改坏的同名文件。
+        # .env 和密钥类文件不会进入 snapshot，因此不会被这里覆盖。
         target.write_text(str(content), encoding="utf-8")
 
 
@@ -646,6 +646,13 @@ def _write_state(root: Path, state: dict) -> None:
 
 def _assistant_runtime(user_id: int) -> dict:
     """Return safe model availability metadata without exposing credentials."""
+    if os.getenv("LOCAL_GPU_MODEL_AUTO", "0") == "1":
+        return {
+            "status": "ready",
+            "available": True,
+            "model": os.getenv("LOCAL_GPU_MODEL_NAME", "tiaozhanbei-qwen3-1.7b-local"),
+            "provider": "project_local_gpu",
+        }
     try:
         from database import get_db
 

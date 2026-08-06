@@ -427,7 +427,7 @@ class LabWorkspaceServiceTests(unittest.TestCase):
         self.assertEqual(files["solution.py"], CORRECT_BUILD_CHAT_MESSAGES)
         self.assertEqual(files["app.py"], CHAT_APP)
         self.assertNotIn("VARIANT_TASK.md", files)
-        self.assertNotIn("scratch.txt", files)
+        self.assertEqual(files["scratch.txt"], "temporary\n")
         self.assertIn("OPENAI_API_KEY=keep-local-secret", files[".env"])
         self.assertEqual(
             set(restored["completed_stages"]),

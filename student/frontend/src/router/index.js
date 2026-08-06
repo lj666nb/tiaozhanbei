@@ -39,6 +39,46 @@ const router = createRouter({
   routes
 })
 
+const STALE_ASSET_RELOAD_PARAM = '__asset_reload'
+const STALE_ASSET_PATTERN = /Failed to fetch dynamically imported module|Importing a module script failed|error loading dynamically imported module|Unable to preload CSS|Loading CSS chunk|ChunkLoadError/i
+
+function reloadFromFreshShell(target) {
+  const url = new URL(target || window.location.href, window.location.origin)
+
+  // The marker prevents a genuinely broken deployment from causing an
+  // infinite refresh loop. It is removed as soon as the new route loads.
+  if (url.searchParams.has(STALE_ASSET_RELOAD_PARAM)) return false
+
+  url.searchParams.set(STALE_ASSET_RELOAD_PARAM, String(Date.now()))
+  window.location.replace(`${url.pathname}${url.search}${url.hash}`)
+  return true
+}
+
+// Vite emits this event when a deployment replaces a preloaded JS/CSS asset.
+// Reload the HTML shell so an already-open tab picks up the new asset hashes.
+window.addEventListener('vite:preloadError', (event) => {
+  event.preventDefault()
+  reloadFromFreshShell(window.location.href)
+})
+
+// Vue Router reports the same deployment race when a lazy route component is
+// imported. Recover the requested route instead of leaving the click inert.
+router.onError((error, to) => {
+  const message = String(error?.message || error || '')
+  if (!STALE_ASSET_PATTERN.test(message)) return
+  reloadFromFreshShell(to?.fullPath || window.location.href)
+})
+
+// A successful route load proves the current asset set is healthy. Remove the
+// one-shot marker without adding another browser-history entry.
+router.isReady().then(() => {
+  const url = new URL(window.location.href)
+  if (!url.searchParams.has(STALE_ASSET_RELOAD_PARAM)) return
+
+  url.searchParams.delete(STALE_ASSET_RELOAD_PARAM)
+  window.history.replaceState(window.history.state, '', `${url.pathname}${url.search}${url.hash}`)
+})
+
 router.beforeEach(async (to, from, next) => {
   const userStore = useUserStore()
 

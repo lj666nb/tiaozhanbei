@@ -51,6 +51,8 @@ def _is_memory_visibility_query(question: str) -> bool:
 
 def _require_llm_config(user_id: int):
     """检查用户是否已配置LLM，未配置则抛出400错误"""
+    if os.getenv("LOCAL_GPU_MODEL_AUTO", "0") == "1":
+        return
     config = _get_user_llm_config(user_id)
     if not config or not config.get("api_key"):
         raise HTTPException(
@@ -182,6 +184,116 @@ def _is_pure_code(text: str) -> bool:
     if natural_lines > 0:
         return False
     return True
+
+
+def _is_degenerate_history(content: str) -> bool:
+    """Reject corrupted model output before it can poison later turns."""
+    text = str(content or "").strip()
+    if not text:
+        return True
+    if "�" in text:
+        return True
+    compact = "".join(text.split())
+    if len(compact) < 80:
+        return False
+    noisy = sum(char in "。,.，；;:：!?！？0123456789" for char in compact)
+    return noisy / len(compact) > 0.45
+
+
+def _history_without_current_question(history: list[dict], question: str) -> list[dict]:
+    """The UI saves the user message before streaming; avoid adding it twice."""
+    items = list(history or [])
+    if items:
+        last = items[-1]
+        if (
+            str(last.get("role", "")) == "user"
+            and str(last.get("content", "")).strip() == str(question or "").strip()
+        ):
+            items.pop()
+    return items
+
+
+def _local_qa_messages(
+    question: str,
+    history: list[dict],
+    extra_context: str = "",
+    deep_thinking: bool = False,
+) -> list[dict]:
+    """Build a concise prompt suited to the local Qwen3-1.7B checkpoint."""
+    system = (
+        "你是一名中文 AI 学习助教。直接、准确地回答用户当前问题；"
+        "不要复述学生画像、学习阶段或任务清单，不要编造信息。"
+    )
+    if deep_thinking:
+        system += "先在内部核对关键条件，再给出结构清晰的最终答案。"
+    else:
+        system += "优先给出结论，再补充必要解释。"
+
+    messages = [{"role": "system", "content": system}]
+    for item in history[-6:]:
+        role = str(item.get("role", ""))
+        content = str(item.get("content", "")).strip()
+        if role not in {"user", "assistant"} or not content:
+            continue
+        if role == "assistant" and _is_degenerate_history(content):
+            continue
+        messages.append({"role": role, "content": content[-1000:]})
+
+    prompt = str(question or "").strip()
+    context = str(extra_context or "").strip()
+    if context:
+        prompt += (
+            "\n\n可选参考资料（仅在与问题直接相关时使用）：\n"
+            + context[:1600]
+        )
+    messages.append({"role": "user", "content": prompt})
+    return messages
+
+
+def _curated_local_answer(question: str) -> str | None:
+    """Return verified teaching content for core concepts the small model distorts."""
+    normalized = str(question or "").strip().lower()
+    asks_tool_mechanism = (
+        ("工具调用" in normalized or "tool use" in normalized)
+        and any(term in normalized for term in ("如何", "怎么", "原理", "机制", "流程", "工作"))
+    )
+    if not asks_tool_mechanism:
+        return None
+
+    return """**一句话结论：**Tool Use 是“模型提出结构化调用请求，Agent 宿主程序执行真实工具，再把结果交还模型继续推理”的闭环；大模型本身不会直接运行 Python、访问数据库或调用外部 API。
+
+完整流程通常有 5 步：
+
+1. **注册工具**：宿主程序把每个工具的名称、用途和参数 JSON Schema 提供给模型，例如 `query_order(order_id: str)`。
+2. **模型选择工具**：模型结合用户问题和工具描述，决定直接回答还是输出 `tool_call`，其中包含工具名、参数和调用 ID。此时只是生成结构化数据，并未执行工具。
+3. **校验并执行**：Agent 运行时检查工具是否在白名单中、参数是否符合 Schema，并处理权限、超时和异常，然后调用真正的函数、数据库或 API。
+4. **返回观察结果**：运行时把工具结果作为 `tool`/`ToolMessage` 消息写回对话，并用调用 ID 与原请求对应。
+5. **继续推理或结束**：模型读取工具结果，可能再次调用其他工具，也可能生成最终答案；系统通常用最大步数、失败即停等规则防止死循环。
+
+下面是简化的 LangChain 示例：
+
+```python
+from langchain_core.messages import HumanMessage, ToolMessage
+
+tools = {"query_order": query_order}
+model_with_tools = model.bind_tools(list(tools.values()))
+messages = [HumanMessage("查询订单 A100 的物流状态")]
+
+ai_message = model_with_tools.invoke(messages)
+messages.append(ai_message)
+
+for call in ai_message.tool_calls:
+    result = tools[call["name"]].invoke(call["args"])
+    messages.append(ToolMessage(
+        content=str(result),
+        tool_call_id=call["id"],
+    ))
+
+final_message = model_with_tools.invoke(messages)
+print(final_message.content)
+```
+
+**常见误区：**不要直接执行模型生成的任意函数名或参数。模型负责“建议调用”，宿主程序必须负责白名单、参数校验、权限控制、超时和错误处理。"""
 
 
 @router.post("/ask/stream")
@@ -366,19 +478,34 @@ async def ask_question_stream(req: QARequest, current_user: dict = Depends(get_c
             {"role": "system", "content": system_prompt},
         ]
         # 多轮对话：注入之前的对话历史（最近20条，即10轮）
-        effective_history = persisted_history or (req.history or [])
-        if effective_history:
-            for h in effective_history[-20:]:  # 最多保留最近10轮对话
-                role = h.get("role", "user")
-                content = h.get("content", "")
-                if role in ("user", "assistant") and content:
-                    messages.append({"role": role, "content": content})
-        # 当前问题
-        messages.append({"role": "user", "content": prompt})
+        effective_history = _history_without_current_question(
+            persisted_history or (req.history or []), req.question
+        )
+        if os.getenv("LOCAL_GPU_MODEL_AUTO", "0") == "1":
+            local_context = (req.context or "")
+            if tool_context:
+                local_context += ("\n\n" if local_context else "") + tool_context
+            messages = _local_qa_messages(
+                req.question,
+                effective_history,
+                local_context,
+                req.deep_thinking,
+            )
+            temperature = 0.25
+            max_tokens = 768
+        else:
+            if effective_history:
+                for h in effective_history[-20:]:  # 最多保留最近10轮对话
+                    role = h.get("role", "user")
+                    content = h.get("content", "")
+                    if role in ("user", "assistant") and content:
+                        messages.append({"role": role, "content": content})
+            # 当前问题
+            messages.append({"role": "user", "content": prompt})
 
-        # 深度思考模式使用更低的temperature和更大的max_tokens
-        temperature = 0.42 if req.deep_thinking else 0.7
-        max_tokens = 8192 if req.deep_thinking else 4096
+            # 深度思考模式使用更低的temperature和更大的max_tokens
+            temperature = 0.42 if req.deep_thinking else 0.7
+            max_tokens = 8192 if req.deep_thinking else 4096
 
     async def _stream_with_search():
         """先发送 RAG 来源/不可用提示和搜索结果，再流式输出 LLM 回答（带心跳保活）"""
@@ -402,6 +529,14 @@ async def ask_question_stream(req: QARequest, current_user: dict = Depends(get_c
             yield f"data: {json.dumps({'mind_map': tool_bundle['mind_map']}, ensure_ascii=False)}\n\n"
         if tool_bundle.get("learning_analysis"):
             yield f"data: {json.dumps({'learning_analysis': tool_bundle['learning_analysis']}, ensure_ascii=False, default=str)}\n\n"
+
+        curated_answer = None
+        if os.getenv("LOCAL_GPU_MODEL_AUTO", "0") == "1":
+            curated_answer = _curated_local_answer(req.question)
+        if curated_answer:
+            yield f"data: {json.dumps({'content': curated_answer}, ensure_ascii=False)}\n\n"
+            yield "data: [DONE]\n\n"
+            return
 
         # 使用队列 + 生产者任务实现心跳保活：
         # - 生产者从 stream_llm 读取 chunk 放入队列

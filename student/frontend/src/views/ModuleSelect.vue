@@ -21,7 +21,7 @@
         <span>LEARNING PATH</span>
         <h2>选择学习阶段</h2>
       </div>
-      <p>4 个阶段 · 12 个工程关卡</p>
+      <p>{{ MODULES.length }} 个阶段 · {{ totalTasks }} 个工程关卡</p>
     </div>
     <div class="module-grid">
       <button
@@ -56,7 +56,7 @@
 </template>
 
 <script setup>
-import { computed, onMounted, ref } from 'vue'
+import { computed, onBeforeUnmount, onMounted, ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { MODULES } from '../config/flagshipExercises'
 import { recordStudyVisit } from '../api/learning'
@@ -68,13 +68,30 @@ const totalTasks = computed(() => MODULES.reduce((sum, module) => sum + module.t
 const totalCompleted = computed(() => MODULES.reduce((sum, module) => sum + getProgress(module.id), 0))
 const completionRate = computed(() => totalTasks.value ? Math.round(totalCompleted.value / totalTasks.value * 100) : 0)
 
-onMounted(async () => {
-  recordStudyVisit()
+async function loadProgress() {
   try {
     progressData.value = await getLabProgressOverview() || {}
   } catch (_) {
     progressData.value = {}
   }
+}
+
+function refreshProgressWhenVisible() {
+  if (document.visibilityState === 'visible') loadProgress()
+}
+
+onMounted(() => {
+  recordStudyVisit()
+  loadProgress()
+  window.addEventListener('focus', loadProgress)
+  window.addEventListener('pageshow', loadProgress)
+  document.addEventListener('visibilitychange', refreshProgressWhenVisible)
+})
+
+onBeforeUnmount(() => {
+  window.removeEventListener('focus', loadProgress)
+  window.removeEventListener('pageshow', loadProgress)
+  document.removeEventListener('visibilitychange', refreshProgressWhenVisible)
 })
 
 /**
@@ -82,15 +99,7 @@ onMounted(async () => {
  */
 function getProgress(moduleId) {
   const module = MODULES.find(item => item.id === moduleId)
-  return (module?.tasks || []).filter(task => {
-    const progress = progressData.value[task.id]
-    return Boolean(
-      progress?.verified
-      || progress?.skipped
-      || progress?.score != null
-      || (progress?.acceptance_passed && progress?.completed_stages?.includes('acceptance')),
-    )
-  }).length
+  return (module?.tasks || []).filter(task => Boolean(progressData.value[task.id]?.verified)).length
 }
 
 /** 点击模块 → 进入关卡列表页 */

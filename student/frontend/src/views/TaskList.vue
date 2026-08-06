@@ -64,9 +64,9 @@
             </div>
             <div class="preview-action">
               <el-button type="primary" size="large" @click="enterTask(selectedTask)">
-                {{ getScoreDetail(selectedTask.id) ? '重新进入关卡' : '开始挑战' }}
+                {{ getTaskActionLabel(selectedTask.id) }}
               </el-button>
-              <small>{{ getScoreDetail(selectedTask.id) ? '已有记录会保留，可继续完善' : '将在独立实验工作区中打开' }}</small>
+              <small>{{ getTaskActionHint(selectedTask.id) }}</small>
             </div>
           </div>
 
@@ -156,7 +156,7 @@
 </template>
 
 <script setup>
-import { ref, computed, onMounted } from 'vue'
+import { ref, computed, onMounted, onBeforeUnmount } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
 import { MODULES } from '../config/flagshipExercises'
 import { getLabProgressOverview } from '../api/workspace'
@@ -181,13 +181,30 @@ const moduleProgress = computed(() => currentModule.value?.taskCount
 /**
  * 加载进度数据（含分数）
  */
-onMounted(async () => {
+async function loadProgress() {
   try {
     const data = await getLabProgressOverview()
     progressData.value = data || {}
   } catch (_) {
     progressData.value = {}
   }
+}
+
+function refreshProgressWhenVisible() {
+  if (document.visibilityState === 'visible') loadProgress()
+}
+
+onMounted(() => {
+  loadProgress()
+  window.addEventListener('focus', loadProgress)
+  window.addEventListener('pageshow', loadProgress)
+  document.addEventListener('visibilitychange', refreshProgressWhenVisible)
+})
+
+onBeforeUnmount(() => {
+  window.removeEventListener('focus', loadProgress)
+  window.removeEventListener('pageshow', loadProgress)
+  document.removeEventListener('visibilitychange', refreshProgressWhenVisible)
 })
 
 /**
@@ -209,7 +226,23 @@ function enterTask(task) {
 }
 
 function isCompleted(taskId) {
-  return !!getScoreDetail(taskId)
+  const detail = getScoreDetail(taskId)
+  return Boolean(detail?.verified)
+}
+
+function getTaskActionLabel(taskId) {
+  const detail = getScoreDetail(taskId)
+  if (!detail) return '开始挑战'
+  if (detail.verified || detail.skipped) return '重新进入关卡'
+  return '继续完成关卡'
+}
+
+function getTaskActionHint(taskId) {
+  const detail = getScoreDetail(taskId)
+  if (!detail) return '将在独立实验工作区中打开'
+  if (detail.verified) return '本关已完成，可重新进入复习或完善'
+  if (detail.skipped) return '本关曾跳过能力验证，重新进入后可继续完成'
+  return '当前记录尚未完成，将从上次进度继续'
 }
 
 /**

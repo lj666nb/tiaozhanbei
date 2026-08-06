@@ -59,14 +59,14 @@ class GuidanceContextServiceTests(unittest.TestCase):
         self.assertEqual(result["lab_id"], "1-1")
         self.assertIn("项目1：发出第一条模型消息", result["topic"])
         self.assertIn("build_chat_messages", result["prompt"])
-        self.assertIn("ChatModel.invoke", result["prompt"])
+        self.assertIn("model.invoke", result["prompt"])
         self.assertIn("solution.py", result["project_files"])
         self.assertIn("扩展方案", result["prompt"])
 
     def test_explicit_lab_keeps_lab_and_path_aligned(self):
         result = guidance.build_learning_context(self.user_id, "如何实现条件路由？", "3-2")
         self.assertEqual(result["lab_id"], "3-2")
-        self.assertIn("项目8：用条件边实现智能路由", result["topic"])
+        self.assertIn("项目9：用条件边实现智能路由", result["topic"])
         self.assertIn("紧急或低置信度请求转人工", result["prompt"])
 
     def test_lab_assistant_receives_the_same_authoritative_context(self):

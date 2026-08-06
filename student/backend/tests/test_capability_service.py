@@ -31,6 +31,29 @@ class CapabilityLoopTest(unittest.TestCase):
         lab_workspace_service.WORKSPACE_ROOT = self.original_workspace_root
         self.temp_dir.cleanup()
 
+    def test_progress_uses_latest_session_even_when_it_is_still_coding(self):
+        old_session = capability_service.start_session(self.user_id, "1-1")
+        conn = database.get_db()
+        conn.execute(
+            """UPDATE capability_sessions
+               SET status = 'verified', verified = 1, total_score = 96,
+                   completed_at = '2026-08-01T10:00:00'
+               WHERE id = ?""",
+            (old_session["id"],),
+        )
+        conn.commit()
+        conn.close()
+
+        latest_session = capability_service.start_session(
+            self.user_id, "1-1", force_new=True
+        )
+        scores = capability_service.get_exercise_scores(self.user_id)
+
+        self.assertEqual(scores["1-1"]["session_id"], latest_session["id"])
+        self.assertEqual(scores["1-1"]["status"], "coding")
+        self.assertFalse(scores["1-1"]["verified"])
+        self.assertEqual(scores["1-1"]["score"], 0)
+
     @staticmethod
     def correct_code():
         return CORRECT_SOLUTION
@@ -49,6 +72,8 @@ class CapabilityLoopTest(unittest.TestCase):
         self.assertEqual(len(passed["defense_questions"]), 3)
         self.assertIn("source", passed["defense_questions"][0])
         self.assertNotEqual(passed["mutation_code"], self.correct_code())
+        self.assertIn("故障现象", passed["mutation_description"])
+        self.assertNotIn("assistant", passed["mutation_description"])
 
         answers = [
             {"question_id": "q1", "answer": "build_chat_messages 的输入参数是系统提示和用户文本；处理步骤是类型校验、清理空白和构造消息，输出并返回消息列表。"},
@@ -101,11 +126,11 @@ class CapabilityLoopTest(unittest.TestCase):
             self.user_id,
             session["id"],
             self.correct_code(),
-            "故障根因是关键返回值被改成空值，导致测试读取不到字典；我恢复了返回表达式并重新运行全部用例。",
+            "build_chat_messages 的用户消息 role 被误改成 assistant，导致模型把新问题当成历史回答；我恢复为 user 并重新运行全部边界测试。",
         )
         self.assertFalse(repaired["verified"])
         self.assertEqual(repaired["status"], "variant_pending")
-        self.assertEqual(repaired["report"]["verdict"], "故障修复已评分")
+        self.assertEqual(repaired["report"]["verdict"], "故障修复通过")
         self.assertGreaterEqual(repaired["report"]["total_score"], 60)
 
         variant_code = self.correct_code() + """
@@ -125,6 +150,8 @@ def build_incident_triage_messages(policy, incident):
     source = incident.get("source", "monitoring")
     if not isinstance(source, str) or not source.strip():
         raise ValueError("来源非法")
+    def escape(value):
+        return value.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
     return [
         {
             "role": "system",
@@ -134,10 +161,10 @@ def build_incident_triage_messages(policy, incident):
             "role": "user",
             "content": (
                 "<incident>\\n"
-                f"id={values['id']}\\n"
+                f"id={escape(values['id'])}\\n"
                 f"severity={levels[values['severity']]}\\n"
-                f"source={source.strip()}\\n"
-                f"description={values['description']}\\n"
+                f"source={escape(source.strip())}\\n"
+                f"description={escape(values['description'])}\\n"
                 "</incident>"
             ),
         },
@@ -225,7 +252,7 @@ def build_incident_triage_messages(policy, incident):
         self.assertEqual(retriable["status"], "repair_pending")
         self.assertEqual(retriable["defense_grading_status"], "pending")
 
-    def test_repair_submission_unlocks_variant_even_when_tests_fail(self):
+    def test_failed_repair_remains_blocked_until_it_passes(self):
         session = capability_service.start_session(self.user_id, "1-1")
         conn = database.get_db()
         conn.execute(
@@ -248,18 +275,12 @@ def build_incident_triage_messages(policy, incident):
 
         self.assertFalse(result["repair_passed"])
         self.assertTrue(result["repair_completed"])
-        self.assertEqual(result["status"], "variant_pending")
+        self.assertEqual(result["status"], "repair_pending")
         self.assertFalse(result["verified"])
         self.assertLess(result["repair_score"], 100)
         persisted = capability_service.get_session(self.user_id, session["id"])
-        self.assertEqual(persisted["status"], "variant_pending")
+        self.assertEqual(persisted["status"], "repair_pending")
         self.assertFalse(persisted["report"]["repair_evidence"]["tests_passed"])
-
-        retried = capability_service.retry_repair(self.user_id, session["id"])
-        self.assertEqual(retried["status"], "repair_pending")
-        self.assertEqual(retried["retry_attempt"], 2)
-        self.assertEqual(retried["previous_repair_score"], result["repair_score"])
-        self.assertTrue(retried["mutation_code"])
 
     def test_project_state_switches_refresh_real_workspace_and_keep_pass_permission(self):
         workspace = lab_workspace_service.get_workspace(self.user_id, "1-1")
@@ -293,7 +314,8 @@ def build_incident_triage_messages(policy, incident):
         )
         repair_files = {item["path"]: item["content"] for item in repair["workspace"]["files"]}
         self.assertEqual(repair["target_state"], "repair")
-        self.assertEqual(repair_files["solution.py"], passed["mutation_code"])
+        self.assertEqual(repair_files["repair_target.py"], passed["mutation_code"])
+        self.assertEqual(repair_files["solution.py"], self.correct_code())
 
         conn = database.get_db()
         conn.execute(
@@ -370,17 +392,58 @@ def build_incident_triage_messages(policy, incident):
     def test_additional_variant_is_scored_by_private_cases(self):
         spec = capability_service._get_variant_spec("2-1")
         code = """
-def render_incident_brief(template, incident):
-    try:
-        return template.format(**incident)
-    except (KeyError, ValueError, TypeError):
-        raise ValueError("缺少模板字段")
+from sqlalchemy import Column, Integer, String, create_engine
+from sqlalchemy.orm import declarative_base, sessionmaker
+
+Base = declarative_base()
+
+class RepairTicket(Base):
+    __tablename__ = "repair_tickets"
+    id = Column(Integer, primary_key=True)
+    ticket_id = Column(String(30), unique=True, nullable=False)
+    building = Column(String(80), nullable=False)
+    category = Column(String(30), nullable=False)
+    priority = Column(Integer, nullable=False)
+    status = Column(String(20), nullable=False, default="open")
+    created_at = Column(String(30), nullable=False)
+
+def setup_repair_db(db_path=":memory:"):
+    url = "sqlite:///:memory:" if db_path == ":memory:" else "sqlite:///" + db_path
+    engine = create_engine(url)
+    Base.metadata.create_all(engine)
+    return engine, sessionmaker(bind=engine)
+
+def query_repair_tickets(session, **filters):
+    allowed = {"ticket_id", "building", "category", "status", "min_priority", "max_priority"}
+    if any(key not in allowed for key in filters):
+        raise ValueError("未知过滤字段")
+    minimum = filters.get("min_priority")
+    maximum = filters.get("max_priority")
+    if minimum is not None and maximum is not None and minimum > maximum:
+        raise ValueError("优先级范围非法")
+    query = session.query(RepairTicket)
+    if filters.get("ticket_id") is not None:
+        query = query.filter(RepairTicket.ticket_id == filters["ticket_id"])
+    if filters.get("building") is not None:
+        query = query.filter(RepairTicket.building.contains(filters["building"]))
+    if filters.get("category") is not None:
+        query = query.filter(RepairTicket.category == filters["category"])
+    if filters.get("status") is not None:
+        query = query.filter(RepairTicket.status == filters["status"])
+    if minimum is not None:
+        query = query.filter(RepairTicket.priority >= minimum)
+    if maximum is not None:
+        query = query.filter(RepairTicket.priority <= maximum)
+    rows = query.order_by(RepairTicket.priority.desc(), RepairTicket.ticket_id.asc()).all()
+    return [{"ticket_id": row.ticket_id, "building": row.building, "category": row.category,
+             "priority": row.priority, "status": row.status, "created_at": row.created_at}
+            for row in rows]
 """
         result = capability_service._judge_variant_code(code, spec)
         self.assertTrue(result["passed"])
         self.assertEqual(result["passed_count"], result["total"])
 
-    def test_variant_submission_is_saved_and_completes_even_with_low_score(self):
+    def test_failed_variant_remains_pending_and_unverified(self):
         session = capability_service.start_session(self.user_id, "1-1")
         conn = database.get_db()
         conn.execute(
@@ -401,10 +464,11 @@ def render_incident_brief(template, incident):
         )
 
         self.assertFalse(result["variant_passed"])
-        self.assertTrue(result["variant_completed"])
+        self.assertFalse(result["variant_completed"])
+        self.assertTrue(result["variant_submitted"])
         self.assertEqual(result["variant_score"], 0)
-        self.assertEqual(result["status"], "verified")
-        self.assertTrue(result["verified"])
+        self.assertEqual(result["status"], "variant_pending")
+        self.assertFalse(result["verified"])
 
     def test_learning_events_are_persisted(self):
         session = capability_service.start_session(self.user_id, "1-1")
